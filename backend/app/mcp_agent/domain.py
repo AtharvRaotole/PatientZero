@@ -27,7 +27,7 @@ ENABLED = os.getenv("MCP_AGENT", "on").lower() not in ("0", "off", "false", "no"
 ROUTE_OPTS = {"depth", "fresh", "session", "generate_fix"}
 PASS_OPTS = {"client_ip"}  # used by the agent loop (LLM budget), not by the tool
 # Tools the LLM is never offered (writes go through the UI's explicit "Generate fix" button only).
-LLM_HIDDEN_TOOLS = {"remediation_plan"}
+LLM_HIDDEN_TOOLS = {"remediation_plan", "crew_run"}
 # Deterministic intent -> MCP tool. Every intent's full structured answer (panels, graph, wake list) comes from
 # the composite `investigate` tool; the intent is recorded next to it in the trace.
 INTENT_TOOL = {"exposure": "investigate", "who_to_wake": "investigate", "path_between": "investigate",

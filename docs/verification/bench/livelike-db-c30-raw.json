@@ -1,0 +1,116 @@
+{
+ "id": "B-20261016T152034-cee8",
+ "label": "live-like",
+ "at": "2026-10-16T15:20:57+00:00",
+ "clients": 30,
+ "procs": 4,
+ "retry_busy": false,
+ "duration_s": 20.0,
+ "read_graph": "fleet:acme",
+ "scratch_graph": "bench:B-20261016T152034-cee8",
+ "scratch_deleted": true,
+ "mix": {
+  "read_exposure_incident": 40,
+  "read_exposure_deep": 20,
+  "read_who_to_wake": 15,
+  "write_event": 20,
+  "read_scratch": 5
+ },
+ "overall": {
+  "ops": 30404,
+  "errors": 305,
+  "throughput_ops_s": 1520.2,
+  "p50_ms": 18.19,
+  "p95_ms": 37.18,
+  "p99_ms": 50.3,
+  "max_ms": 95.7,
+  "mean_ms": 19.72
+ },
+ "reads": {
+  "ops": 24473,
+  "errors": 242,
+  "throughput_ops_s": 1223.7,
+  "p50_ms": 19.13,
+  "p95_ms": 38.6,
+  "p99_ms": 51.64,
+  "max_ms": 95.7,
+  "mean_ms": 20.76
+ },
+ "writes": {
+  "ops": 5931,
+  "errors": 63,
+  "throughput_ops_s": 296.6,
+  "p50_ms": 14.24,
+  "p95_ms": 29.27,
+  "p99_ms": 38.49,
+  "max_ms": 64.88,
+  "mean_ms": 15.44
+ },
+ "by_op": {
+  "read_exposure_incident": {
+   "ops": 12205,
+   "errors": 126,
+   "throughput_ops_s": 610.2,
+   "p50_ms": 21.17,
+   "p95_ms": 40.82,
+   "p99_ms": 53.09,
+   "max_ms": 85.79,
+   "mean_ms": 22.96
+  },
+  "read_exposure_deep": {
+   "ops": 6089,
+   "errors": 65,
+   "throughput_ops_s": 304.4,
+   "p50_ms": 19.67,
+   "p95_ms": 39.67,
+   "p99_ms": 55.15,
+   "max_ms": 86.07,
+   "mean_ms": 21.66
+  },
+  "read_who_to_wake": {
+   "ops": 4682,
+   "errors": 38,
+   "throughput_ops_s": 234.1,
+   "p50_ms": 14.37,
+   "p95_ms": 29.18,
+   "p99_ms": 39.57,
+   "max_ms": 95.7,
+   "mean_ms": 15.45
+  },
+  "write_event": {
+   "ops": 5931,
+   "errors": 63,
+   "throughput_ops_s": 296.6,
+   "p50_ms": 14.24,
+   "p95_ms": 29.27,
+   "p99_ms": 38.49,
+   "max_ms": 64.88,
+   "mean_ms": 15.44
+  },
+  "read_scratch": {
+   "ops": 1497,
+   "errors": 13,
+   "throughput_ops_s": 74.8,
+   "p50_ms": 14.73,
+   "p95_ms": 30.01,
+   "p99_ms": 42.51,
+   "max_ms": 73.01,
+   "mean_ms": 15.83
+  }
+ },
+ "events_written": 5931,
+ "error_samples": [
+  "read_exposure_incident: ResponseError: Max pending queries exceeded",
+  "write_event: ResponseError: Max pending queries exceeded",
+  "write_event: ResponseError: Max pending queries exceeded",
+  "write_event: ResponseError: Max pending queries exceeded",
+  "read_exposure_deep: ResponseError: Max pending queries exceeded"
+ ],
+ "falkordb": {
+  "redis_version": "8.0.2",
+  "modules": [
+   "graph@60001"
+  ]
+ },
+ "target": "db"
+}

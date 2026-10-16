@@ -66,7 +66,7 @@ def _new_client():
 
 
 def _drive(read_graph: str, scratch: str, run_id: str, services: list[str], mix: dict[str, float], n_threads: int,
-           start_wall: float, duration_s: float, seed: float, offset: int) -> dict:
+           start_wall: float, duration_s: float, seed: float, offset: int, retry_busy: bool = False) -> dict:
     """Run n_threads clients in this process from start_wall for duration_s. Returns raw latencies per op."""
     ops = list(mix)
     weights = [mix[o] for o in ops]
@@ -95,20 +95,12 @@ def _drive(read_graph: str, scratch: str, run_id: str, services: list[str], mix:
             op = rnd.choices(ops, weights)[0]
             t = time.perf_counter()
             try:
-                if op == "read_exposure_incident":
-                    rg.ro_query(CATALOGUE["exposure"]["cypher"], {"pkgs": QIX_PKGS, "depth": 4})
-                elif op == "read_exposure_deep":
-                    rg.ro_query(CATALOGUE["exposure"]["cypher"], {"pkgs": ["debug"], "depth": 6})
-                elif op == "read_who_to_wake":
-                    rg.ro_query(CATALOGUE["who_to_wake"]["cypher"],
-                                {"services": rnd.sample(services, min(3, len(services)))})
-                elif op == "write_event":
+                if op == "write_event":
                     n += 1
-                    sg.query(CATALOGUE["bench_write_event"]["cypher"],
-                             {"run": run_id, "id": f"{ci}-{n}", "client": ci, "ts": time.time(),
-                              "service": rnd.choice(services)})
+                if retry_busy:  # what the app does: retry queue-full rejections with backoff (db.with_busy_retry)
+                    db.with_busy_retry(lambda: _op(op, rg, sg, rnd, ci, n, run_id, services))
                 else:
-                    sg.ro_query(CATALOGUE["bench_read_scratch"]["cypher"], {"run": run_id})
+                    _op(op, rg, sg, rnd, ci, n, run_id, services)
                 ll[op].append((time.perf_counter() - t) * 1000)
             except Exception as e:  # noqa: BLE001
                 le[op] += 1
@@ -133,7 +125,8 @@ def _drive(read_graph: str, scratch: str, run_id: str, services: list[str], mix:
 
 
 def run(clients: int = 16, duration_s: float = 10.0, read_graph: str | None = None,
-        mix: dict[str, float] | None = None, label: str = "local", seed: int | None = None, procs: int = 1) -> dict:
+        mix: dict[str, float] | None = None, label: str = "local", seed: int | None = None, procs: int = 1,
+        retry_busy: bool = False) -> dict:
     """procs > 1 spreads the clients over worker processes, so the Python client (GIL) is not the bottleneck."""
     clients = max(1, min(MAX_CLIENTS, int(clients)))
     duration_s = max(1.0, min(MAX_DURATION_S, float(duration_s)))
@@ -156,8 +149,8 @@ def run(clients: int = 16, duration_s: float = 10.0, read_graph: str | None = No
         start_wall = time.time() + (0.5 if procs == 1 else 3.0)
         split = [clients // procs + (1 if i < clients % procs else 0) for i in range(procs)]
         offsets = [sum(split[:i]) for i in range(procs)]
-        args = [(read_graph, scratch, run_id, services, mix, split[i], start_wall, duration_s, rs.random(), offsets[i])
-                for i in range(procs)]
+        args = [(read_graph, scratch, run_id, services, mix, split[i], start_wall, duration_s, rs.random(), offsets[i],
+                 retry_busy) for i in range(procs)]
         if procs == 1:
             parts = [_drive(*args[0])]
         else:
@@ -181,7 +174,7 @@ def run(clients: int = 16, duration_s: float = 10.0, read_graph: str | None = No
     writes = [x for o in ops if o.startswith("write") for x in lat[o]]
     return {
         "id": run_id, "label": label, "at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "clients": clients, "procs": procs, "duration_s": round(secs, 2), "read_graph": read_graph,
+        "clients": clients, "procs": procs, "retry_busy": retry_busy, "duration_s": round(secs, 2), "read_graph": read_graph,
         "scratch_graph": scratch, "scratch_deleted": scratch not in db.client().list_graphs(), "mix": mix,
         "overall": _stats(all_lat, sum(errs.values()), secs),
         "reads": _stats(reads, sum(v for k, v in errs.items() if k.startswith("read")), secs),
@@ -189,6 +182,20 @@ def run(clients: int = 16, duration_s: float = 10.0, read_graph: str | None = No
         "by_op": {o: _stats(lat[o], errs[o], secs) for o in ops}, "events_written": written,
         "error_samples": samples, "falkordb": _server_info(),
     }
+
+
+def _op(op: str, rg, sg, rnd: random.Random, ci: int, n: int, run_id: str, services: list[str]):
+    """One benchmark operation (a single FalkorDB round trip)."""
+    if op == "read_exposure_incident":
+        return rg.ro_query(CATALOGUE["exposure"]["cypher"], {"pkgs": QIX_PKGS, "depth": 4})
+    if op == "read_exposure_deep":
+        return rg.ro_query(CATALOGUE["exposure"]["cypher"], {"pkgs": ["debug"], "depth": 6})
+    if op == "read_who_to_wake":
+        return rg.ro_query(CATALOGUE["who_to_wake"]["cypher"], {"services": rnd.sample(services, min(3, len(services)))})
+    if op == "write_event":
+        return sg.query(CATALOGUE["bench_write_event"]["cypher"],
+                        {"run": run_id, "id": f"{ci}-{n}", "client": ci, "ts": time.time(), "service": rnd.choice(services)})
+    return sg.ro_query(CATALOGUE["bench_read_scratch"]["cypher"], {"run": run_id})
 
 
 def _drive_star(a):

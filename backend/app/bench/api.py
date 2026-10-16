@@ -38,6 +38,7 @@ class RunRequest(BaseModel):
     clients: int = Field(30, ge=1, le=64)
     duration_s: float = Field(20, ge=1, le=60)
     write_pct: int | None = Field(None, ge=0, le=90, description="share of writes; reads split the rest")
+    retry_busy: bool = Field(True, description="retry FalkorDB queue-full rejections like the app does")
 
 
 @router.post("/run", dependencies=[Depends(require_admin)], status_code=202)
@@ -62,11 +63,12 @@ def bench_run(req: RunRequest | None = None):
     def go():
         try:
             try:
-                res = runner.run(clients=clients, duration_s=dur, mix=mix, label="server", procs=SERVER_PROCS)
+                res = runner.run(clients=clients, duration_s=dur, mix=mix, label="server", procs=SERVER_PROCS,
+                                 retry_busy=req.retry_busy)
             except (OSError, ImportError, RuntimeError) as e:
                 if "setup failed" in str(e) or SERVER_PROCS <= 1:
                     raise
-                res = runner.run(clients=clients, duration_s=dur, mix=mix, label="server", procs=1)
+                res = runner.run(clients=clients, duration_s=dur, mix=mix, label="server", procs=1, retry_busy=req.retry_busy)
             runner.save(res)
         except Exception as e:  # noqa: BLE001
             _state["error"] = f"{type(e).__name__}: {str(e)[:200]}"

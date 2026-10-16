@@ -1,0 +1,109 @@
+{
+ "id": "B-20261016T151126-1ed5",
+ "label": "local",
+ "at": "2026-10-16T15:11:50+00:00",
+ "clients": 32,
+ "procs": 4,
+ "duration_s": 20.0,
+ "read_graph": "fleet:acme",
+ "scratch_graph": "bench:B-20261016T151126-1ed5",
+ "scratch_deleted": true,
+ "mix": {
+  "read_exposure_incident": 40,
+  "read_exposure_deep": 20,
+  "read_who_to_wake": 15,
+  "write_event": 20,
+  "read_scratch": 5
+ },
+ "overall": {
+  "ops": 32792,
+  "errors": 0,
+  "throughput_ops_s": 1639.6,
+  "p50_ms": 17.01,
+  "p95_ms": 43.46,
+  "p99_ms": 58.36,
+  "max_ms": 132.52,
+  "mean_ms": 19.51
+ },
+ "reads": {
+  "ops": 26141,
+  "errors": 0,
+  "throughput_ops_s": 1307.0,
+  "p50_ms": 18.56,
+  "p95_ms": 45.21,
+  "p99_ms": 59.92,
+  "max_ms": 132.52,
+  "mean_ms": 20.96
+ },
+ "writes": {
+  "ops": 6651,
+  "errors": 0,
+  "throughput_ops_s": 332.6,
+  "p50_ms": 11.54,
+  "p95_ms": 33.0,
+  "p99_ms": 46.8,
+  "max_ms": 70.55,
+  "mean_ms": 13.79
+ },
+ "by_op": {
+  "read_exposure_incident": {
+   "ops": 13127,
+   "errors": 0,
+   "throughput_ops_s": 656.4,
+   "p50_ms": 21.88,
+   "p95_ms": 48.7,
+   "p99_ms": 64.22,
+   "max_ms": 102.66,
+   "mean_ms": 24.33
+  },
+  "read_exposure_deep": {
+   "ops": 6525,
+   "errors": 0,
+   "throughput_ops_s": 326.2,
+   "p50_ms": 19.43,
+   "p95_ms": 45.14,
+   "p99_ms": 59.09,
+   "max_ms": 132.52,
+   "mean_ms": 21.74
+  },
+  "read_who_to_wake": {
+   "ops": 4834,
+   "errors": 0,
+   "throughput_ops_s": 241.7,
+   "p50_ms": 10.95,
+   "p95_ms": 32.16,
+   "p99_ms": 45.15,
+   "max_ms": 73.35,
+   "mean_ms": 13.26
+  },
+  "write_event": {
+   "ops": 6651,
+   "errors": 0,
+   "throughput_ops_s": 332.6,
+   "p50_ms": 11.54,
+   "p95_ms": 33.0,
+   "p99_ms": 46.8,
+   "max_ms": 70.55,
+   "mean_ms": 13.79
+  },
+  "read_scratch": {
+   "ops": 1655,
+   "errors": 0,
+   "throughput_ops_s": 82.8,
+   "p50_ms": 11.37,
+   "p95_ms": 31.26,
+   "p99_ms": 46.19,
+   "max_ms": 85.46,
+   "mean_ms": 13.64
+  }
+ },
+ "events_written": 6651,
+ "error_samples": [],
+ "falkordb": {
+  "redis_version": "8.0.2",
+  "modules": [
+   "graph@60001"
+  ]
+ },
+ "target": "db"
+}

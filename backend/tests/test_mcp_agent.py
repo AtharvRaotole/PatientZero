@@ -157,3 +157,11 @@ def test_tenant_context_reaches_the_mcp_tool():
     assert via_mcp["tool_via"] == "mcp"
     assert [e["service"] for e in via_mcp["exposed"]] == [e["service"] for e in direct["exposed"]]
     assert {e["service"] for e in via_mcp["exposed"]} != {e["service"] for e in acme["exposed"]}
+
+
+def test_write_tools_hidden_from_llm():
+    assert {"remediation_plan", "crew_run"} <= mcp_domain.LLM_HIDDEN_TOOLS
+    names = {t["function"]["name"] for t in AGENT_DOMAIN.registry.openai_tools()}
+    assert "crew_run" not in names and "remediation_plan" not in names
+    with pytest.raises(ValueError):
+        AGENT_DOMAIN.registry.call("crew_run", {})

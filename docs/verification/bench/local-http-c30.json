@@ -1,0 +1,50 @@
+{
+ "target": "http",
+ "url": "http://localhost:8765",
+ "at": "2026-10-16T15:21:52+00:00",
+ "clients": 30,
+ "duration_s": 20.22,
+ "overall": {
+  "ops": 1911,
+  "errors": 0,
+  "throughput_ops_s": 94.5,
+  "p50_ms": 313.19,
+  "p95_ms": 509.32,
+  "p99_ms": 586.32,
+  "max_ms": 774.0,
+  "mean_ms": 316.06
+ },
+ "by_op": {
+  "ask": {
+   "ops": 1599,
+   "errors": 0,
+   "throughput_ops_s": 79.1,
+   "p50_ms": 339.79,
+   "p95_ms": 520.37,
+   "p99_ms": 593.69,
+   "max_ms": 774.0,
+   "mean_ms": 344.19
+  },
+  "fleet": {
+   "ops": 312,
+   "errors": 0,
+   "throughput_ops_s": 15.4,
+   "p50_ms": 165.49,
+   "p95_ms": 284.84,
+   "p99_ms": 342.3,
+   "max_ms": 351.96,
+   "mean_ms": 171.92
+  }
+ },
+ "status_counts": {
+  "200": 1911
+ },
+ "error_samples": [],
+ "health": {
+  "status": "ok",
+  "falkordb": "up",
+  "graph": "fleet:acme",
+  "agent_mode": "deterministic"
+ },
+ "writes": "none (read-only HTTP load; server-side mixed runs use POST /api/bench/run)"
+}

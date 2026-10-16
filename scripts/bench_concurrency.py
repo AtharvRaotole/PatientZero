@@ -100,6 +100,8 @@ def main() -> int:
     ap.add_argument("--duration", type=float, default=10)
     ap.add_argument("--graph", default=None, help="read graph for --target db (default: FALKORDB_GRAPH)")
     ap.add_argument("--write-pct", type=int, default=None)
+    ap.add_argument("--retry-busy", action="store_true",
+                    help="db target: retry FalkorDB queue-full rejections like the app does (default: count them)")
     ap.add_argument("--procs", type=int, default=1, help="db target: spread clients over N processes (Python GIL)")
     ap.add_argument("--label", default="local")
     ap.add_argument("--seed", type=int, default=None)
@@ -118,7 +120,7 @@ def main() -> int:
             mix = {"read_exposure_incident": rest * 0.5, "read_exposure_deep": rest * 0.25,
                    "read_who_to_wake": rest * 0.2, "read_scratch": rest * 0.05, "write_event": a.write_pct}
         res = runner.run(clients=a.clients, duration_s=a.duration, read_graph=a.graph, mix=mix, label=a.label,
-                         seed=a.seed, procs=a.procs)
+                         seed=a.seed, procs=a.procs, retry_busy=a.retry_busy)
         res["target"] = "db"
         if a.save:
             runner.save(res)

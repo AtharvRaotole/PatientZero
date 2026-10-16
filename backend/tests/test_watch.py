@@ -256,3 +256,14 @@ def test_stream_over_real_server_sends_hello_and_poll_events():
     finally:
         proc.terminate()
         proc.wait(timeout=10)
+
+
+@pytestmark_live
+def test_watcher_covers_every_tenant_graph():
+    tenants = pytest.importorskip("app.tenants")
+    have = set(db.client().list_graphs())
+    want = {t for t, g in tenants.TENANTS.items() if g in have}
+    assert set(core.tenant_graphs()) == want
+    if {"acme", "globex"} <= set(tenants.TENANTS) and {"fleet:acme", "fleet:globex"} <= have:
+        assert core.tenant_graphs() == {"acme": "fleet:acme", "globex": "fleet:globex"} | {
+            t: g for t, g in core.tenant_graphs().items() if t not in ("acme", "globex")}

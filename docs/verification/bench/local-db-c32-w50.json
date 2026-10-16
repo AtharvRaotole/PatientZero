@@ -1,0 +1,110 @@
+{
+ "id": "B-20261016T152246-e63b",
+ "label": "local-write-heavy",
+ "at": "2026-10-16T15:23:09+00:00",
+ "clients": 32,
+ "procs": 4,
+ "retry_busy": false,
+ "duration_s": 20.0,
+ "read_graph": "fleet:acme",
+ "scratch_graph": "bench:B-20261016T152246-e63b",
+ "scratch_deleted": true,
+ "mix": {
+  "read_exposure_incident": 25.0,
+  "read_exposure_deep": 12.5,
+  "read_who_to_wake": 10.0,
+  "read_scratch": 2.5,
+  "write_event": 50
+ },
+ "overall": {
+  "ops": 51454,
+  "errors": 0,
+  "throughput_ops_s": 2572.7,
+  "p50_ms": 10.74,
+  "p95_ms": 28.62,
+  "p99_ms": 39.1,
+  "max_ms": 96.21,
+  "mean_ms": 12.43
+ },
+ "reads": {
+  "ops": 25707,
+  "errors": 0,
+  "throughput_ops_s": 1285.3,
+  "p50_ms": 13.33,
+  "p95_ms": 31.77,
+  "p99_ms": 42.38,
+  "max_ms": 96.21,
+  "mean_ms": 14.98
+ },
+ "writes": {
+  "ops": 25747,
+  "errors": 0,
+  "throughput_ops_s": 1287.3,
+  "p50_ms": 8.36,
+  "p95_ms": 23.79,
+  "p99_ms": 32.65,
+  "max_ms": 85.41,
+  "mean_ms": 9.89
+ },
+ "by_op": {
+  "read_exposure_incident": {
+   "ops": 12975,
+   "errors": 0,
+   "throughput_ops_s": 648.8,
+   "p50_ms": 15.78,
+   "p95_ms": 34.15,
+   "p99_ms": 45.16,
+   "max_ms": 96.21,
+   "mean_ms": 17.69
+  },
+  "read_exposure_deep": {
+   "ops": 6401,
+   "errors": 0,
+   "throughput_ops_s": 320.1,
+   "p50_ms": 13.37,
+   "p95_ms": 31.33,
+   "p99_ms": 40.63,
+   "max_ms": 69.9,
+   "mean_ms": 15.24
+  },
+  "read_who_to_wake": {
+   "ops": 5078,
+   "errors": 0,
+   "throughput_ops_s": 253.9,
+   "p50_ms": 7.04,
+   "p95_ms": 22.31,
+   "p99_ms": 31.98,
+   "max_ms": 74.83,
+   "mean_ms": 8.77
+  },
+  "read_scratch": {
+   "ops": 1253,
+   "errors": 0,
+   "throughput_ops_s": 62.6,
+   "p50_ms": 9.1,
+   "p95_ms": 23.2,
+   "p99_ms": 34.08,
+   "max_ms": 56.87,
+   "mean_ms": 10.87
+  },
+  "write_event": {
+   "ops": 25747,
+   "errors": 0,
+   "throughput_ops_s": 1287.3,
+   "p50_ms": 8.36,
+   "p95_ms": 23.79,
+   "p99_ms": 32.65,
+   "max_ms": 85.41,
+   "mean_ms": 9.89
+  }
+ },
+ "events_written": 25747,
+ "error_samples": [],
+ "falkordb": {
+  "redis_version": "8.0.2",
+  "modules": [
+   "graph@60001"
+  ]
+ },
+ "target": "db"
+}
