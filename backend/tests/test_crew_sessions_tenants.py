@@ -441,3 +441,22 @@ def test_reset_memory_is_per_tenant():
     assert client.get(f"/api/sessions/{s2}", params={"tenant": "globex"}).status_code == 404
     assert client.get(f"/api/sessions/{s1}", params={"tenant": "acme"}).status_code == 200
     assert g("globex").ro_query("MATCH (n) WHERE n:CrewRun OR n:AgentRun OR n:Turn RETURN count(n)").result_set[0][0] == 0
+
+
+def test_fixer_pins_exactly_when_no_fixed_release():
+    """Shai-Hulud advisories list no fixed release: the Fixer pins the published version resolved today, exactly,
+    and no pinned spec admits any malicious version."""
+    run = crew(SHAI, "globex")
+    plan = findings(run)["patch_plan"]["data"]
+    inc = json.load(open(os.path.join(ROOT, "data", "incidents", "2025-09-15-shai-hulud.json")))
+    bad = {c["package"]: set(c["bad_versions"]) for c in inc["compromised"]}
+    assert {p["service"] for p in plan["per_service"]} == GLOBEX_SHAI_EXPOSED
+    assert plan["exact_pins"] and set(plan["exact_pins"]) <= set(bad)
+    for p in plan["per_service"]:
+        pj = p["package_json"]
+        assert pj.get("overrides"), p
+        for section in ("dependencies", "overrides"):
+            for spec, val in (pj.get(section) or {}).items():
+                pkg = spec if section == "dependencies" else spec.rsplit("@", 1)[0]
+                assert not val.startswith("^"), (p["service"], spec, val)
+                assert not any(check(b, val, pkg)[0] for b in bad[pkg]), (p["service"], spec, val)

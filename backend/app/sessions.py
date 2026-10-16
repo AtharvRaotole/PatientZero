@@ -136,6 +136,7 @@ def about_refs(r: dict) -> dict[str, list[str]]:
                                   "versions": [pv["key"] for pv in ent.get("package_versions") or []
                                                if pv.get("in_graph")],
                                   "incidents": []}
+    refs["services"] += [e["service"] for e in (r.get("exposed") or [])[:25] if e.get("service")]
     if (r.get("path") or {}).get("package"):
         refs["packages"].append(r["path"]["package"])
     fix = r.get("fix") or {}

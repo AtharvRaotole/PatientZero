@@ -27,6 +27,16 @@ _Last updated: Fri Oct 16 2026, 12:40 AM ET_
 - [x] Live deploy redeployed with ADMIN_TOKEN set (value in ~/.config/patientzero/admin-token, chmod 600); live demo memory reset
 - Reset before recording: `curl -XPOST https://patientzero-production-2cb3.up.railway.app/api/admin/reset -H "X-Admin-Token: $(cat ~/.config/patientzero/admin-token)"`
 
+## Track 2 backend: crew, sessions, tenants (Fri Oct 16 2026, about 11:45 AM ET)
+- [x] Agent crew (backend/app/crew): Triage, Investigator, Responder, Fixer hand off through FalkorDB (AgentRun, Finding, HANDED_OFF_TO); each agent reads upstream findings from the graph; Investigator and Responder concurrent. POST /api/crew/run (SSE or JSON), GET /api/crew/{id} replay, 6 runs per IP per minute
+- [x] Sessions in the graph (Session, Turn, ABOUT); follow-ups "who should I wake for that?" and "and at depth 6?"; GET /api/sessions/{id}
+- [x] Tenants: fleet:acme and fleet:globex (synthetic Globex, real npm ranges). Shai-Hulud: Acme not hit, Globex 4 of 12. `?tenant=` / X-Tenant / body field on every endpoint, allowlist; reset and seed scripts take TENANT; seed_if_missing seeds both
+- [x] Memory over time: re-triage updates the Incident (last_seen, triage_count, delta); playbooks uses_count and last_used, Fixer prefers most reused; Shai-Hulud fixes pin exactly to the published version resolved today (no fixed release listed)
+- [x] MCP tools crew_run, session_history, list_tenants (cross-tenant guard inside pinned requests)
+- [x] Tests: 19 new (DAG shape, graph-read proof by tampering, SSE, replay, follow-ups, isolation, delta, playbook reuse, exact pins, 20 concurrent crews); full suite green on FalkorDB 6.0.1 and on 4.22.1 (the live version) for the new tests
+- Contract for the frontend: docs/CONTRACT-crew-sessions-tenants.md
+- Live needs one redeploy; the container seeds fleet:globex on start without touching fleet:acme
+
 ## Next actions
 - Final polish pass on screenshots for the README
 - Redeploy after pushing UI changes: `sh scripts/redeploy-railway.sh` (ships origin/main; no GitHub auto-deploy)

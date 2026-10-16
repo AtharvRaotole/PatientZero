@@ -301,8 +301,10 @@ def package_json_patch(findings: list[dict], dev_direct: set[str] | None = None)
         direct = f.get("direct_exposed", any(len(p["via"]) == 2 and p.get("exposed") for p in paths))
         scope = f"{pkg}@{major_range(f['bad_version'])}"
         if direct:
-            (dev if pkg in (dev_direct or set()) else deps)[pkg] = f"^{clean}"
-            overrides[scope] = f"^{clean}"
+            # pin_exact: no fixed release is known, so a caret range would re-admit the bad versions.
+            spec = clean if f.get("pin_exact") else f"^{clean}"
+            (dev if pkg in (dev_direct or set()) else deps)[pkg] = spec
+            overrides[scope] = spec
         else:
             overrides[scope] = clean
     out: dict = {}
@@ -328,12 +330,44 @@ def spec_package(spec: str) -> str:
     return spec.rsplit("@", 1)[0] if "@" in spec[1:] else spec
 
 
+def _today(f: dict) -> str | None:
+    p = f.get("path") or {}
+    v = p.get("resolved_today")
+    if not v:
+        last = (p.get("via") or [""])[-1]
+        v = last.rsplit("@", 1)[1] if "@" in last[1:] else None
+    return v if v and re.fullmatch(r"\d+\.\d+\.\d+", v) else None
+
+
+def known_good_pins(exposed: list[dict]) -> dict[str, str]:
+    """Per package with no fixed release on record (e.g. Shai-Hulud): the highest version any exposed path resolves
+    to today. Those are published, non-malicious versions (the malicious ones were unpublished), and one pin per
+    package keeps the fleet-wide override block consistent."""
+    bad: dict[str, set[str]] = defaultdict(set)
+    seen: dict[str, set[str]] = defaultdict(set)
+    for e in exposed:
+        for f in e["findings"]:
+            bad[f["package"]].add(f["bad_version"])
+            if f.get("exposed") and not f.get("clean_version") and _today(f):
+                seen[f["package"]].add(_today(f))
+    return {pkg: max(vs - bad[pkg], key=lambda v: tuple(int(x) for x in v.split(".")))
+            for pkg, vs in seen.items() if vs - bad[pkg]}
+
+
+def known_good(f: dict, pins: dict[str, str]) -> dict:
+    if f.get("clean_version") or f["package"] not in pins:
+        return f
+    return {**f, "clean_version": pins[f["package"]], "pin_exact": True,
+            "clean_source": "resolved today (no fixed release listed)"}
+
+
 def build_fix(result: dict, wake: list[dict], dev_direct: set[str] | None = None) -> dict:
     """Pure function: per-service install-safe package.json patch + notification drafts (no I/O)."""
     owners = {w["service"]: w for w in wake}
     per_service, combined, pins_all = [], {}, {}
+    good = known_good_pins(result["exposed"])
     for e in result["exposed"]:
-        ex = [f for f in e["findings"] if f["exposed"]]
+        ex = [known_good(f, good) for f in e["findings"] if f["exposed"]]
         pins = {f["package"]: f["clean_version"] for f in ex if f.get("clean_version")}
         pins_all.update(pins)
         patch = package_json_patch(ex, dev_direct)
@@ -348,6 +382,11 @@ def build_fix(result: dict, wake: list[dict], dev_direct: set[str] | None = None
             ids = ", ".join(x for x in [f.get("advisory_id"), f.get("ghsa")] if x) or "user report"
             lines.append(f"* {f['package']}@{f['bad_version']} ({ids})")
             lines.append(f"  path: {f['path']['display']}")
+        for f in ex:
+            if f.get("pin_exact"):
+                lines.append(f"{f['package']}: the advisory lists no fixed release, so it is pinned exactly to "
+                             f"{f['clean_version']}, the published version resolved today (malicious versions were "
+                             f"unpublished).")
         missing = [f["package"] for f in ex if not f.get("clean_version")]
         if missing:
             lines.append(f"No clean version on record for: {', '.join(missing)}. Pin manually.")

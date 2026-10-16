@@ -23,7 +23,9 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 RAW = DATA / "raw"
 TENANT = os.getenv("TENANT", "acme").strip().lower() or "acme"
-GRAPH = os.getenv("FALKORDB_GRAPH") or f"fleet:{TENANT}"
+# FALKORDB_GRAPH only names the default tenant's graph; any other tenant always loads into fleet:<tenant>, so a
+# leftover FALKORDB_GRAPH=fleet:acme can never make TENANT=globex overwrite Acme.
+GRAPH = (os.getenv("FALKORDB_GRAPH") or "fleet:acme") if TENANT == "acme" else f"fleet:{TENANT}"
 # Optional extra incidents, comma separated. 'qix' is always loaded; 'shai-hulud' adds the Sept 2025 worm
 # (data/incidents/2025-09-15-shai-hulud.json, built by ingest/fetch_shai_hulud.py). Off by default for acme so
 # the SPEC acceptance counts (19 affected versions) hold. Globex's story is the Shai-Hulud contrast, so every

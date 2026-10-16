@@ -217,11 +217,11 @@ class Crew:
                 for e in sorted(res["safe"], key=lambda e: (e.get("tier") or 9, e["service"]))]
         n = len(exposed)
         text = (f"{n} of {res['fleet_size']} {tenants.company()} services can install a malicious version at depth "
-                f"{self.depth}" + (f"; {len(safe)} more reach an affected package but every range excludes the bad "
-                                   f"version." if safe else ".")) if n else (
+                f"{self.depth}" + (f"; {len(safe)} more {'reaches' if len(safe) == 1 else 'reach'} an affected package "
+                                   f"but every range excludes the bad version." if safe else ".")) if n else (
             f"Not hit: none of the {res['fleet_size']} {tenants.company()} services can install a malicious version "
-            f"at depth {self.depth}" + (f"; {len(safe)} reach an affected package but every range excludes it."
-                                        if safe else "."))
+            f"at depth {self.depth}" + (f"; {len(safe)} {'reaches' if len(safe) == 1 else 'reach'} an affected "
+                                        f"package but every range excludes it." if safe else "."))
         self.finding(tr, "triage", "blast_radius", f"Blast radius: {n} of {res['fleet_size']}", text,
                      {"exposed": slim, "safe": safe, "clean_count": len(res["clean"]), "fleet_size": res["fleet_size"],
                       "depth": self.depth, "incident_id": self.incident_id, "company": tenants.company()})
@@ -268,7 +268,7 @@ class Crew:
                 shortest = {"service": crit["service"], "package": crit["findings"][0]["package"], **p}
         direct = sum(1 for c in chains if c["direct"])
         text = (f"{len(chains)} exposure chain{'s' if len(chains) != 1 else ''}: {direct} direct, "
-                f"{len(chains) - direct} transitive" + (f", deepest {deepest['hops']} hops ({deepest['service']})"
+                f"{len(chains) - direct} transitive" + (f", deepest {deepest['hops']} hop{'s' if deepest['hops'] != 1 else ''} ({deepest['service']})"
                                                          if deepest else "")
                 + (f". Most common carrier: {carriers.most_common(1)[0][0]} "
                    f"({carriers.most_common(1)[0][1]} services)." if carriers else ".")) if chains else \
@@ -278,8 +278,8 @@ class Crew:
                       "shortest_to_critical": shortest})
         neg = ("; ".join(f"{s['service']} (range {s['requirement']} excludes it)" for s in safe[:4])
                + (f" and {len(safe) - 4} more" if len(safe) > 4 else "")) if safe else ""
-        ntext = (f"{len(safe)} service{'s' if len(safe) != 1 else ''} reach an affected package but cannot install "
-                 f"the bad version: {neg}." if safe else
+        ntext = (f"{len(safe)} service{'s' if len(safe) != 1 else ''} {'reaches' if len(safe) == 1 else 'reach'} an "
+                 f"affected package but cannot install the bad version: {neg}." if safe else
                  f"No near misses: {br['clean_count']} services never reach an affected package.")
         self.finding(tr, "investigator", "honest_negatives", "Honest negatives", ntext,
                      {"safe": safe, "clean_count": br["clean_count"]})
@@ -346,11 +346,14 @@ class Crew:
         tiers = {e["service"]: e.get("tier") for e in br["exposed"]}
         order = sorted(patch, key=lambda s: (tiers.get(s) or 9, s))
         carrier = (paths.get("carriers") or [[None, 0]])[0]
+        exact = sorted({f["package"] for e in br["exposed"] for f in e["findings"] if not f.get("clean_version")})
         text = (f"Install-safe patches for {len(patch)} service{'s' if len(patch) != 1 else ''}, tier 1 first "
                 f"({', '.join(order[:3])}{'...' if len(order) > 3 else ''}); {len(fix['specs'])} scoped pin"
                 f"{'s' if len(fix['specs']) != 1 else ''}" + (f"; {carrier[0]} is the most common carrier "
-                                                              f"({carrier[1]} services)" if carrier[0] else "") + ".")
-        self.finding(tr, "fixer", "patch_plan", "Patch plan", text, {
+                                                              f"({carrier[1]} services)" if carrier[0] else "") + "."
+                + (f" No fixed release is listed for {', '.join(exact[:4])}{'...' if len(exact) > 4 else ''}, so "
+                   f"those are pinned exactly to the version resolved today." if exact else ""))
+        self.finding(tr, "fixer", "patch_plan", "Patch plan", text, {"exact_pins": exact,
             "order": order, "specs": fix["specs"], "combined": fix["combined"], "pins": fix["pins"],
             "per_service": [{"service": p["service"], "tier": p["tier"], "package_json": p["package_json"]}
                             for p in fix["per_service"]], "incident_id": self.incident_id})
@@ -438,7 +441,7 @@ class Crew:
 
 
 def _slim_finding(f: dict) -> dict:
-    keep = ("via", "requirements", "requirement", "hops", "exposed", "reason", "display")
+    keep = ("via", "requirements", "requirement", "hops", "exposed", "reason", "display", "resolved_today")
     return dict(package=f["package"], bad_version=f["bad_version"], clean_version=f.get("clean_version"),
                 advisory_id=f.get("advisory_id"), ghsa=f.get("ghsa"), exposed=True,
                 direct_exposed=f.get("direct_exposed", False),

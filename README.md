@@ -86,6 +86,7 @@ cp .env.example .env                 # defaults work locally; OPENAI_API_KEY is 
 ./scripts/start-falkordb.sh          # downloads falkordb.so (v6.0.1) on first run, starts redis-server on :6379 (AOF on)
 python3 -m venv ingest/.venv && ingest/.venv/bin/pip install -r ingest/requirements.txt
 ingest/.venv/bin/python ingest/load.py          # builds graph fleet:acme from data/ (under 1 s, idempotent)
+TENANT=globex ingest/.venv/bin/python ingest/load.py   # second tenant: graph fleet:globex (Globex, hit by Shai-Hulud)
 (cd backend && uv sync)
 (cd frontend && npm install)
 ./scripts/dev.sh                     # backend :8000, frontend http://localhost:3001
@@ -104,7 +105,7 @@ NODE_PATH=/path/to/node_modules node scripts/e2e_screenshots.cjs           # 12 
 | Method | Path | Description |
 |---|---|---|
 | GET | `/health` | FalkorDB status, graph, agent mode, LLM model, tools, LLM budget |
-| POST | `/api/ask` | `{query, depth?, fresh?, session?, mode?}`: the agent. Returns outcome, message, paths, graph, wake, trace |
+| POST | `/api/ask` | `{query, depth?, fresh?, session_id?, tenant?, mode?}`: the agent. Returns outcome, message, paths, graph, wake, trace; with `session_id`, follow-ups ("who should I wake for that?", "and at depth 6?") resolve from the history stored in the graph |
 | POST | `/api/fix` | Same, plus remediation plan written to the graph as an Incident |
 | POST | `/api/summary` | Optional one-paragraph AI summary, name-checked |
 | GET | `/api/fleet`, `/api/fleet/graph` | Fleet services and the full graph for the hero view |
@@ -116,12 +117,18 @@ NODE_PATH=/path/to/node_modules node scripts/e2e_screenshots.cjs           # 12 
 | POST | `/api/byo/scan` | `{github_url \| package_json, include_dev?, depth?}`: scan your repo in an isolated graph |
 | POST | `/api/incidents/{id}/approve`, GET `/api/playbooks` | Approve-then-remember (DELETE `/api/playbooks` is admin) |
 | POST | `/api/byo/cleanup` | Delete expired BYO scan graphs (admin) |
+| POST | `/api/crew/run` | `{query, depth?, session_id?, tenant?}`: four agents (Triage, Investigator, Responder, Fixer) hand off through FalkorDB; streams SSE (`run`, `agent_start`, `read`, `finding`, `handoff`, `agent_done`, `done`), or JSON with `?stream=false`. 6 per IP per minute |
+| GET | `/api/crew/{run_id}`, `/api/crew` | Replay a crew run from the graph; recent runs |
+| GET | `/api/sessions/{id}` | Conversation history (turns and the graph nodes each was ABOUT) |
+| GET | `/api/tenants` | Tenants, each a separate FalkorDB graph. Every endpoint takes `?tenant=` or `X-Tenant` (default acme) |
 
 Admin endpoints need the `X-Admin-Token` header when `ADMIN_TOKEN` is set (always on the public deploy):
-`curl -XPOST $URL/api/admin/reset -H "X-Admin-Token: $ADMIN_TOKEN"`. Locally, with `ADMIN_TOKEN` empty, they are open.
+`curl -XPOST "$URL/api/admin/reset?tenant=acme" -H "X-Admin-Token: $ADMIN_TOKEN"` (one tenant per call). Locally, with
+`ADMIN_TOKEN` empty, they are open. Full request, response and SSE shapes for the crew, sessions and tenants:
+[docs/CONTRACT-crew-sessions-tenants.md](docs/CONTRACT-crew-sessions-tenants.md).
 
 ## MCP server (Claude Desktop, Cursor)
-The same 8 tools over stdio. Add to `claude_desktop_config.json` or `.cursor/mcp.json`:
+The same 8 tools over stdio, plus `investigate`, `crew_run`, `session_history` and `list_tenants`. Add to `claude_desktop_config.json` or `.cursor/mcp.json`:
 ```json
 {
   "mcpServers": {
@@ -198,9 +205,21 @@ FalkorDB features used: multi-graph tenancy, variable-length paths, `algo.SPpath
 - **Track 1: Agents That Act on Connected Data.** The agent resolves an incident against the graph, traverses
   multi-hop dependency paths, decides exposure, finds who to wake, proposes an install-safe fix and writes the
   incident back to the graph.
-- **Track 2 (memory).** Episodic memory (`Incident`, `Finding`, recalled as "Seen before" next to fresh results)
-  and procedural memory (`Playbook`: a human approves a fix once, and later incidents that touch the same packages
-  find it by graph traversal and reuse it, recorded as `APPLIED_PLAYBOOK`).
+- **Track 2: Agent Memory and Coordination.**
+  - *Shared state and handoffs between agents:* the incident crew. Triage, Investigator, Responder and Fixer each
+    write `(:AgentRun)-[:PRODUCED]->(:Finding)` and hand off with `HANDED_OFF_TO {reason}`; every agent reads the
+    previous agents' findings back from FalkorDB by walking those edges (nothing is passed in Python).
+    Investigator and Responder run concurrently, so the handoff graph is a real DAG. Replayable from the graph.
+  - *Episodic memory that updates over time:* `Incident` nodes, recalled as "Seen before"; a re-triage updates
+    `last_seen`, `triage_count` and a "what changed since last time" delta (newly exposed, no longer exposed).
+  - *Procedural memory:* `Playbook` (approve a fix once, later incidents find it by traversal), with `uses_count`
+    and `last_used`; the Fixer prefers the most reused playbook.
+  - *Persistent conversation history:* `(:Session)-[:HAS_TURN]->(:Turn)-[:ABOUT]->(node)`; follow-ups such as
+    "who should I wake for that?" resolve "that" from the last turn in the graph.
+  - *Separate memory per tenant:* Acme and Globex are separate FalkorDB graphs (multigraph). Shai-Hulud: Acme is
+    not hit, Globex has 4 of 12 services exposed. An incident approved in Acme is never recalled in Globex.
+  - *High-concurrency reads and writes:* a test runs 20 crews at once (10 per tenant) with exact node and edge
+    counts and one atomically updated Incident per tenant.
 
 ## Demo script
 See [docs/DEMO.md](docs/DEMO.md).
