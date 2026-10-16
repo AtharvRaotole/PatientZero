@@ -1,28 +1,30 @@
 # PatientZero demo voiceover
 
-Narration for `demo/patientzero-demo.mp4` (1:59.6). Voice: OpenAI `gpt-4o-mini-tts`, `onyx`, calm founder-demo delivery.
-Each line starts 0.25 s after its beat (0.5 s for the first; a "+x" in Start delays it further) and must end before the next beat; `scripts/voiceover.py` builds
-`demo/patientzero-demo-voiced.mp4` from this table (per-beat clips, cached, at most 1.08x speed-up, loudness -16 LUFS).
+Narration for `demo/patientzero-demo-voiced.mp4`, in the beat order of `docs/DEMO.md` (the 2:00 shot list).
+Voice: OpenAI `gpt-4o-mini-tts`, `onyx`, calm founder-demo delivery. "Falkor DB" is spelled apart so it is spoken as two words.
 
-Sources for the numbers: 19 packages and 2.71 billion downloads are the npm downloads API totals for the 19 compromised
-packages, Sept 1 to 7, 2025 (as in the app's kicker). Advisories are real OSV / GHSA records. The 22-service fleet is synthetic.
+How it is built:
+1. `python3 scripts/voiceover.py --clips` makes one TTS clip per beat (cached in `demo/vo/` by text hash) and writes
+   `demo/vo/durations.json`.
+2. `scripts/record_demo.cjs` records the live site and holds every beat at least as long as its clip, so a line
+   never runs into the next beat. It writes `demo/beats.json`.
+3. `python3 scripts/voiceover.py` places each clip 0.3 s after its beat starts, writes the captions
+   (`demo/patientzero-demo.srt`, one cue per sentence), burns them in, and writes the silent
+   `demo/patientzero-demo.mp4` and the voiced `demo/patientzero-demo-voiced.mp4`.
 
-| Start | Beat | Window | Narration |
-|---|---|---|---|
-| 0:00.0 | home | 10.3 s | September 8th, 2025. A phished npm maintainer. Nineteen packages, 2.7 billion downloads a week, shipped malware. |
-| 0:09.3 +1.0 | replay | 4.5 s | Are we hit? Graph traversal on Falkor DB answers. |
-| 0:14.8 | graph lit | 10.5 s | Real OSV advisories and npm data, on a synthetic fleet. Thirteen of twenty-two services can install malware. |
-| 0:25.3 | exposure | 5.6 s | Every chain ends in a real npm semver check on the last edge. |
-| 0:30.9 | honest negatives | 7.0 s | Honest negatives too. Checkout API reaches debug, but its range excludes the bad version. |
-| 0:37.9 | depth | 7.5 s | Direct dependencies alone show one service. Transitive depth is the whole story. |
-| 0:45.4 | insights | 10.8 s | Fourteen of the nineteen compromised packages are reachable from this fleet. Every cell in the matrix is a path in the graph. |
-| 0:56.2 | who to wake | 4.0 s | Owners and on-call, straight from the graph. |
-| 1:00.2 | fix | 6.8 s | The fix: clean version pins, one draft per team, written back to Falkor DB. |
-| 1:07.0 | approve | 5.0 s | A human approves it, and it becomes a playbook. |
-| 1:12.0 | recall | 8.4 s | Later, someone types three letters. PatientZero knows what they mean. |
-| 1:20.4 | memory answer | 4.8 s | It answers from graph memory, and cites the incident. |
-| 1:25.2 | timeline | 5.6 s | Compromise to playbook, as dated nodes in the graph. |
-| 1:30.8 | byo axios | 7.4 s | Bring your own repo. Axios was exposed at runtime, through debug. |
-| 1:38.2 | byo express | 9.9 s | Express 4 pins debug 2.6.9 exactly, so its runtime was clean. We show the work either way. |
-| 1:48.1 | mcp | 7.2 s | Agents get the same tools over MCP, with the same answer: thirteen of twenty-two. |
-| 1:55.3 | close | 4.2 s | Know your blast radius before the postmortem. |
+Sources for the numbers: 19 packages and 2.71 billion downloads are the npm downloads API totals for the 19
+compromised packages, Sept 1 to 7, 2025 (as in the app's kicker). Advisories are real OSV and GHSA records. The fleets
+are synthetic. The benchmark figures are the last saved run on the deploy (in process, synthetic scratch writes,
+retry on busy; about 49 req/s end to end over HTTP at 30 clients).
+
+| Beat | DEMO.md | Narration |
+|---|---|---|
+| hook | 0:00 Hook | September 8th, 2025. npm maintainer qix was phished, and nineteen of his packages shipped malware. Are we hit? |
+| replay | 0:08 Multi-hop answer | Every chain is a multi-hop traversal in Falkor DB, with an npm semver check on the last edge. Honest negatives: checkout API reaches debug, but its range rules the bad version out. Direct dependencies alone find one. Depth is the whole story. |
+| crew | 0:25 Crew (handoffs) | Four deterministic specialists. Each reads its inputs back from the graph, and every finding and handoff is a node or edge in Falkor DB, so this run replays from a link. Pages are drafts, never sent. |
+| followups | 0:50 Follow-ups | Sessions live in the graph too. A follow-up resolves against earlier turns, and asking who to wake gives the teams and on-call people first. |
+| fix | 1:05 Act and remember | It writes the incident into Falkor DB, I approve the plan as a playbook, and the next time it answers from graph memory. |
+| tenants | 1:15 Tenants | Each tenant is its own graph. Globex is hit by Shai-Hulud, and Acme is not. Nothing from Acme's memory or sessions shows up in Globex. |
+| watch | 1:28 Live watch | A real feed: npm malware advisories from OSV, checked against every tenant within one poll, with their real publish dates. This button replays a past advisory, labelled as a replay. |
+| hood | 1:40 Under the hood | Every answer is traced: each MCP tool call, then parameterised Cypher, never generated from your text. The benchmark runs in process, on synthetic scratch writes. End to end over HTTP, it is about fifty requests a second. |
+| close | 1:52 Close | Deterministic first, every answer traced, memory in the graph. PatientZero. |

@@ -1,13 +1,17 @@
-// Records the ~2 minute draft demo video headlessly, beat by beat per docs/DEMO.md, against the live site.
+// Records the 2:00 demo against the live site, in the exact beat order of docs/DEMO.md, holding each beat at least as
+// long as its narration clip so the voiceover never runs into the next beat.
 //
-//   sh scripts/reset-live.sh && sh scripts/seed-demo-memory.sh       # memory seeded, as judges will see it
-//   (cd backend && uv run python ../scripts/mcp_demo_client.py > ../demo/mcp-capture.txt)   # REAL MCP output
-//   NODE_PATH=<dir with playwright-core>/node_modules node scripts/record_demo.cjs
-//   sh scripts/reset-live.sh && sh scripts/seed-demo-memory.sh       # leave exactly one approved incident
+//   CLEAR_REPLAYS=1 sh scripts/reset-live.sh && TENANT=globex CLEAR_REPLAYS=1 sh scripts/reset-live.sh   # empty memory, no reseed
+//   python3 scripts/voiceover.py --clips        # narration clips + demo/vo/durations.json (cached, cents)
+//   NODE_PATH=/workspace/tools/node_modules node scripts/record_demo.cjs
+//   python3 scripts/voiceover.py                # captions, demo/patientzero-demo.mp4 (silent) and -voiced.mp4
+//   then reset both tenants again with CLEAR_REPLAYS=1 (no reseed), so judges get a clean first run.
 //
-// Output: demo/patientzero-demo.mp4 (NAME=patientzero-demo-draft for the draft) (1920x1080 H.264, captions burned in, no audio) and
-// demo/patientzero-demo-draft.srt. Env: APP_URL, CHROME (/usr/bin/google-chrome), KEEP_RAW=1.
-// The app runs in Auto mode, but every beat here is answered by the deterministic router: no LLM calls.
+// Output: demo/raw-demo.mp4 (1920x996 H.264, no captions, no audio; voiceover.py pads it to 1080 and burns captions in)
+// and demo/beats.json. Env: APP_URL, CHROME (/usr/bin/google-chrome), KEEP_RAW=1.
+// Every input is answered by the deterministic router: no LLM calls. Approve happens on camera; the watch Replay
+// button is clicked once, at 1:28. The page is loaded once, unrecorded, first (warm-up), and the header counters
+// are left to settle before the first beat.
 const { chromium } = require("playwright-core");
 const fs = require("fs");
 const path = require("path");
@@ -18,9 +22,9 @@ const ROOT = path.join(__dirname, "..");
 const OUT = path.join(ROOT, "demo");
 const RAW = path.join(OUT, "raw");
 const W = 1600, H = 830; // recorded viewport, scaled to 1920x996 on encode
-const STRIP = 84; // caption strip under the page (1080 - 996): captions never cover the UI
-const NAME = process.env.NAME || "patientzero-demo";
+const LEAD = 0.3, TAIL = 0.45; // voice starts LEAD s into a beat; the beat ends TAIL s after the voice does
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
+const DUR = JSON.parse(fs.readFileSync(path.join(OUT, "vo", "durations.json"), "utf8"));
 
 // ---------------------------------------------------------------- visible cursor (headless video has none)
 const CURSOR = () => {
@@ -148,239 +152,216 @@ async function dragDepth(from, to, t1 = 600, t2 = 700) {
   await page.mouse.up();
 }
 
-// ---------------------------------------------------------------- the MCP beat (real captured output)
-function mcpHtml(lines) {
-  const esc = (s) => s.replace(/[&<>]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;" })[c]);
-  return `<!doctype html><html><head><meta charset="utf-8"><style>
-  html,body{margin:0;height:100%;background:#FAFAF9;font-family:Inter,ui-sans-serif,system-ui,sans-serif;color:#0C0A09}
-  .wrap{height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:22px}
-  .kicker{font-size:15px;color:#57534E;letter-spacing:-.01em}
-  .kicker b{color:#0C0A09;font-weight:600}
-  .term{width:1180px;border-radius:12px;background:#0C0A09;box-shadow:0 24px 48px -16px rgba(12,10,9,.25);overflow:hidden}
-  .bar{height:34px;display:flex;align-items:center;gap:7px;padding:0 14px;border-bottom:1px solid #292524}
-  .bar i{width:10px;height:10px;border-radius:50%;background:#44403C;display:block}
-  .bar span{margin-left:10px;font:12px ui-monospace,monospace;color:#A8A29E}
-  pre{margin:0;padding:22px 24px 26px;font:15.5px/1.65 "DejaVu Sans Mono",ui-monospace,monospace;color:#E7E5E4;white-space:pre-wrap;word-break:break-word;min-height:300px}
-  .p{color:#A8A29E}.o{color:#FAFAF9}.r{color:#F2A7A9}
-  .note{font-size:13px;color:#69625D}
-  </style></head><body><div class="wrap">
-  <div class="kicker"><b>The same tools over MCP.</b> Real output, replayed: an MCP client calling <code>remediation_plan</code>, the entry point behind the qix replay.</div>
-  <div class="term"><div class="bar"><i></i><i></i><i></i><span>backend, local</span></div><pre id="t"></pre></div>
-  <div class="note">Captured from <code>scripts/mcp_demo_client.py</code>: the MCP server (backend/app/mcp_server.py) over stdio, run locally against the same fleet graph. The incident it wrote went to the local dev graph, not the live site.</div>
-  </div><script>
-  const cmd = "uv run python ../scripts/mcp_demo_client.py";
-  const lines = ${JSON.stringify(lines.map(esc))};
-  const t = document.getElementById("t");
-  let i = 0;
-  function typeCmd(){ if(i<=cmd.length){ t.innerHTML='<span class="p">$ </span><span class="o">'+cmd.slice(0,i)+'</span>'; i++; setTimeout(typeCmd, 20); } else { setTimeout(()=>out(0), 300); } }
-  function out(k){ if(k>=lines.length) return; const l=lines[k]; t.innerHTML += '\\n<span class="'+(l.startsWith('&lt;-')?'r':'o')+'">'+l+'</span>'; setTimeout(()=>out(k+1), 260); }
-  setTimeout(typeCmd, 300);
-  </script></body></html>`;
+// Hold the current beat until its narration has finished.
+let cur = null;
+async function hold() {
+  if (!cur) return;
+  const until = cur.t + LEAD + (DUR[cur.name] || 0) + TAIL;
+  const wait = until - now();
+  if (wait > 0) await sleep(wait * 1000);
+  else console.log(`  (beat ${cur.name} ran ${(-wait).toFixed(1)} s past its narration)`);
 }
+async function startBeat(name) { await hold(); beat(name); cur = beats[beats.length - 1]; }
 
-function srtTime(s) {
-  s = Math.max(0, s);
-  const h = Math.floor(s / 3600), m = Math.floor((s % 3600) / 60), sec = Math.floor(s % 60), ms = Math.round((s - Math.floor(s)) * 1000);
-  const p = (n, w = 2) => String(n).padStart(w, "0");
-  return `${p(h)}:${p(m)}:${p(sec)},${p(Math.min(ms, 999), 3)}`;
+const INPUT = "input[aria-label='Ask PatientZero']";
+async function ask(q, ms = 600) {
+  await scrollToY(0, ms);
+  await click(page.locator(INPUT), 500);
+  await page.keyboard.press("Control+A");
+  await page.keyboard.press("Backspace");
+  await typeHuman(q);
+  await page.keyboard.press("Escape");
+  await sleep(120);
+  await page.keyboard.press("Enter");
+}
+async function switchTenant(id) {
+  await scrollToY(0, 500);
+  await click(page.locator("[data-testid=tenant-switcher] button"), 600);
+  await sleep(250);
+  await click(page.locator(`[data-tenant-option=${id}]`), 500);
+  await page.waitForFunction((t) => document.querySelector("[data-testid=graph-name]")?.textContent === `fleet:${t}`, id, { timeout: 30000 });
 }
 
 // ---------------------------------------------------------------- run
 (async () => {
   fs.mkdirSync(RAW, { recursive: true });
   for (const f of fs.readdirSync(RAW)) fs.unlinkSync(path.join(RAW, f));
-  const mcpFile = path.join(OUT, "mcp-capture.txt");
-  if (!fs.existsSync(mcpFile)) throw new Error("demo/mcp-capture.txt missing: run scripts/mcp_demo_client.py first (see header)");
-  const mcpLines = fs.readFileSync(mcpFile, "utf8").trim().split("\n");
-
   const browser = await chromium.launch({ executablePath: process.env.CHROME || "/usr/bin/google-chrome", headless: true, args: ["--no-sandbox", "--hide-scrollbars"] });
-  // Pre-pass, not recorded: find where the services we hover sit in the (fixed, radial) fleet layout.
+
+  // Warm-up, not recorded: load the page once, wait for the fleet graph, find where the hovered service sits.
   {
     const pre = await browser.newContext({ viewport: { width: W, height: H }, deviceScaleFactor: 1 });
     const pg = await pre.newPage();
     await pg.goto(APP, { waitUntil: "load", timeout: 90000 });
-    await pg.waitForFunction(() => document.body.innerText.includes("package versions"), null, { timeout: 60000 });
-    await pg.evaluate(() => document.getElementById("graph").scrollIntoView()); // the whole frame in view
+    await pg.waitForFunction(() => document.body.innerText.includes("package versions"), null, { timeout: 90000 });
+    await pg.evaluate(() => document.getElementById("graph").scrollIntoView());
     await sleep(2500);
-    for (const [id, fx, fy] of [["web-frontend", 0.139, 0.297], ["img-service", 0.133, 0.386], ["auth-service", 0.732, 0.881]]) {
-      found[id] = await searchNode(pg, id, fx, fy);
-      console.log(`located ${id}: ${found[id] ? found[id].map((v) => v.toFixed(3)).join(", ") : "not found"}`);
-    }
+    found["img-service"] = await searchNode(pg, "img-service", 0.133, 0.386);
+    console.log(`warm-up done; img-service at ${found["img-service"] ? found["img-service"].map((v) => v.toFixed(3)).join(", ") : "not found"}`);
     await pre.close();
   }
+
   const ctx = await browser.newContext({ viewport: { width: W, height: H }, deviceScaleFactor: 1, recordVideo: { dir: RAW, size: { width: W, height: H } } });
   await ctx.addInitScript(CURSOR);
   page = await ctx.newPage();
+  const consoleErrors = [];
+  page.on("console", (m) => { if (m.type() === "error") consoleErrors.push(m.text()); });
+  page.on("response", (r) => { if (r.status() >= 400) consoleErrors.push(`${r.status()} ${r.url()}`); });
   t0 = Date.now();
   await page.goto(APP, { waitUntil: "load", timeout: 90000 });
   await waitText(/package versions/);
   await page.mouse.move(mouse.x, mouse.y);
-  const trim = now(); // the video starts here, once the app has painted
-  beat("home");
-  await sleep(800);
-  caption("Sept 8, 2025: one npm maintainer, qix, was phished.", 3.6);
+  await sleep(2600); // the header counters count up from 0: let them settle before the first frame
+  const trim = now();
+
+  // 0:00 Hook
+  beat("hook"); cur = beats[0]; cur.t = trim;
+  await sleep(700);
   await hover(page.getByText("Sept 8, 2025. One phished maintainer", { exact: false }), 900);
-  await sleep(2600);
-  caption("19 packages, 2.71 billion downloads the week before. Are we hit?", 4.2);
-  // a quiet look at the fleet graph: hover a service so its dependency chain lights up
-  await hoverNode("web-frontend", 0.139, 0.297, 1000);
-  await sleep(2600);
+  await sleep(2400);
+  const g0 = await box(page.locator("[data-graph]"));
+  await moveTo(g0.b.x + g0.b.width * 0.5, g0.b.y + g0.b.height * 0.35, 1200);
 
-  // 0:12 Replay
-  beat("replay");
-  caption("PatientZero answers from a FalkorDB graph of our 22 services.", 3.6);
-  await click(page.getByRole("button", { name: "Replay the qix compromise", exact: true }), 900);
-  await waitText(/services can install a malicious version/);
-  await sleep(3300); // auto-scroll to the graph, chains draw in hop by hop
-  beat("graph lit");
-  caption("Red means the range on the last edge admits the malicious version.", 4.4);
-  await hoverNode("img-service", 0.133, 0.386, 1000); // a 4-hop chain lights up on its own
-  await sleep(2600);
-  await hoverNode("auth-service", 0.732, 0.881, 900);
-  caption("Six hand-written Cypher queries, answered in milliseconds.", 3.4);
-  await sleep(1500);
-  const gg = await box(page.locator("[data-graph]"));
-  await moveTo(gg.b.x + gg.b.width * 0.5, gg.b.y - 30, 800);
-  await sleep(1500);
-
-  // 0:28 Exposure
-  beat("exposure");
-  await scrollToEl(page.locator("h2", { hasText: /^Exposure$/ }), 90, 1100);
-  caption("Every chain ends in an npm semver check on the last edge.", 4);
-  await hover(page.getByText("auth-service", { exact: true }).first(), 900);
-  await sleep(2500);
-  beat("honest negatives");
-  await click(page.getByRole("tab", { name: /Excluded by range/ }).first(), 800);
-  caption("Honest negatives: checkout-api reaches debug, but its range excludes the bad version.", 4.6);
-  await sleep(400);
-  await hover(page.getByText("checkout-api", { exact: true }).first(), 900);
-  await sleep(2900);
-
-  // 0:44 Depth
-  beat("depth");
+  // 0:08 Multi-hop answer
+  await startBeat("replay");
+  await click(page.getByRole("button", { name: "Replay the qix compromise", exact: true }), 700);
+  await waitText(/13 of 22 services can install a malicious version/);
+  await sleep(2400); // auto-scroll to the graph, chains draw in hop by hop
+  await hoverNode("img-service", 0.133, 0.386, 900); // one red chain lights up
+  await sleep(1400);
+  await scrollToEl(page.locator("h2", { hasText: /^Exposure$/ }), 90, 900);
+  await click(page.getByRole("tab", { name: /Excluded by range/ }).first(), 700);
+  await sleep(300);
+  await hover(page.getByText("checkout-api", { exact: true }).first(), 700);
+  await sleep(1800);
   await scrollToEl(page.locator("#graph"), 70, 800);
   await dragDepth(4, 1, 350, 450);
-  await waitText(/1 of 22 services can install/);
-  caption("Direct dependencies only: 1 service. Transitive depth is the whole story.", 3.6);
-  await sleep(1900);
+  await waitText(/(^|\D)1 of 22 services can install/);
+  await sleep(1300);
   await dragDepth(1, 4, 300, 450);
   await waitText(/13 of 22 services can install/);
+
+  // 0:25 Crew
+  await startBeat("crew");
+  await scrollToY(0, 600);
+  await click(page.locator("[data-testid=hero-crew]"), 700);
+  await page.locator("[data-testid=crew-view]").waitFor({ timeout: 30000 });
+  await sleep(1200);
+  await scrollToEl(page.locator("[data-testid=crew-view]"), 72, 600);
+  await sleep(3800); // lanes fill at reading speed; the handoffs fan out to Investigator and Responder in parallel
+  const chip = page.getByText("Read from the graph", { exact: true });
+  if (await chip.count()) await hover(chip.first(), 700);
+  await sleep(1400);
+  const skip = page.getByRole("button", { name: /Skip to end/ });
+  if (await skip.count()) await click(skip.first(), 600);
+  await page.locator("[data-testid=crew-view][data-status=done]").waitFor({ timeout: 60000 });
+  await sleep(400);
+  await scrollToEl(page.locator("[data-testid=crew-summary]"), 90, 900);
+  await hover(page.getByText("Not sent", { exact: false }).first(), 700);
+  await sleep(1200);
+  const share = page.getByRole("button", { name: /Share replay/ });
+  if (await share.count()) await click(share.first(), 700);
   await sleep(700);
 
-  // 0:55 Insights
-  beat("insights");
-  await scrollToEl(page.locator("h3", { hasText: /^Insights$/ }), 120, 1200);
-  caption("14 of the 19 compromised packages are reachable from this fleet.", 4.8);
-  const rings = await box(page.locator("svg").filter({ has: page.locator("text", { hasText: /compromised packages/ }) }).first());
-  await moveTo(rings.x, rings.y, 1000); // the core fans out on hover
-  await sleep(2200);
-  await click(page.getByRole("tab", { name: "Exposure matrix" }), 800);
-  caption("Every cell in the matrix is a path in the graph.", 3.2);
-  await moveTo(rings.b.x + 260, rings.b.y + 150, 800);
-  await sleep(2200);
-
-  // 1:07 Who to wake, then Fix
-  beat("who to wake");
-  await scrollToEl(page.locator("h2", { hasText: /^Who to wake$/ }), 90, 1100);
-  caption("Owning team and on-call for every exposed service, from the graph.", 3.2);
-  await sleep(2900);
-  beat("fix");
-  await scrollToEl(page.locator("h2", { hasText: /^Fix$/ }), 90, 1100);
-  await click(page.getByRole("button", { name: /Generate fix/ }), 900);
-  await waitText(/written to the graph/);
-  caption("Overrides pinned to clean versions, one draft per team. Written back to FalkorDB.", 4.6);
-  await sleep(1500);
-  await scrollToEl(page.locator("h2", { hasText: /^Fix$/ }), 90, 600);
-  await sleep(1200);
-  beat("approve");
-  await click(page.getByRole("button", { name: /^Approve$/ }), 900);
-  await waitText(/Approved and remembered/);
-  caption("A human approves the plan; it is remembered as a playbook.", 3.4);
-  await sleep(2800);
-
-  // 1:22 Recall
-  beat("recall");
-  await scrollToY(0, 1000);
-  const input = page.locator("input[aria-label='Ask PatientZero']");
-  await click(input, 900);
-  await page.keyboard.press("Control+A");
-  await sleep(250);
-  caption("Ask again, in one word.", 2.6);
-  await typeHuman("qix");
-  await sleep(500);
-  await page.keyboard.press("Enter");
-  await waitText(/Answered from graph memory/);
-  await sleep(500);
+  // 0:50 Follow-ups: "and at depth 6?" first, then "who should I wake for that?"
+  await startBeat("followups");
+  await ask("and at depth 6?", 500);
+  await waitText(/14 of 22 services can install a malicious version/);
+  await sleep(400);
   await scrollToY(0, 400);
-  await hover(page.locator("[data-testid='interpreted']"), 700); // the typed text stays; the reading shows below
-  await sleep(1000);
-  await scrollToEl(page.locator("#report"), 80, 1000);
-  beat("memory answer");
-  caption("Answered from graph memory, citing the incident and when.", 4.2);
-  await hover(page.locator("[data-testid='memory-line']"), 900);
-  await sleep(3000);
-
-  // 1:32 Timeline
-  beat("timeline");
-  await scrollToEl(page.locator("#timeline"), 70, 1300);
-  caption("Compromise, advisories, our incident and the approved playbook, as dated nodes.", 4.4);
-  await sleep(4200);
-
-  // 1:40 Bring your own repo
-  beat("byo axios");
-  await scrollToEl(page.locator("#byo"), 70, 900);
-  caption("Bring your own repo: its real dependency graph, in a separate FalkorDB graph.", 2.6);
-  await click(page.getByRole("button", { name: "axios/axios" }), 650);
-  await waitText(/Runtime exposed\. A fresh install could have pulled malware/, 120000);
-  await sleep(300);
-  await scrollToEl(page.getByText("Runtime exposed. A fresh install could have pulled malware.", { exact: true }), 110, 800);
-  caption("axios: exposed at runtime through https-proxy-agent, then debug.", 3.4);
-  await hover(page.getByText("debug@4.4.2", { exact: true }).last(), 600);
-  await sleep(1500);
-  beat("byo express");
-  await scrollToEl(page.locator("#byo"), 70, 1000);
-  await click(page.getByRole("button", { name: "expressjs/express@4.x (runtime only)" }), 900);
-  await waitText(/Runtime clean\./, 120000);
+  await sleep(900);
+  await hover(page.locator("[data-testid=followup-line]"), 500);
+  await sleep(500);
+  await ask("who should I wake for that?", 300);
+  await waitText(/Wake 8 teams for 14 exposed services/);
+  await sleep(500);
+  await scrollToEl(page.locator("#who-to-wake"), 90, 800);
   await sleep(600);
-  await scrollToEl(page.getByText("Runtime clean.", { exact: true }), 110, 1100);
-  caption("Express 4 pins debug 2.6.9 exactly, so its runtime was clean.", 4.4);
-  await hover(page.getByText(/Excluded by range: debug 2\.6\.9/).first(), 800);
-  await sleep(2800);
 
-  // MCP beat, then close
-  beat("mcp");
-  await page.setContent(mcpHtml(mcpLines), { waitUntil: "load" });
-  await page.mouse.move(-50, -50);
-  caption("The same tools over MCP: a real client gets the same 13 of 22.", 6.6);
-  await sleep(7100);
-  beat("close");
-  await page.setContent(`<!doctype html><html><body style="margin:0;height:100vh;display:flex;align-items:center;justify-content:center;background:#FAFAF9;font-family:Inter,sans-serif">
-    <div style="text-align:center"><div style="display:flex;align-items:center;gap:14px;justify-content:center">
-    <svg width="44" height="44" viewBox="0 0 24 24" fill="none"><ellipse cx="10.5" cy="13.25" rx="6.1" ry="8.25" stroke="#0C0A09" stroke-width="2.5"/><path d="M15.6 7.4 L20.9 2.6" stroke="#0C0A09" stroke-width="1.75" stroke-linecap="round"/><circle cx="20.9" cy="2.6" r="1.6" fill="#0C0A09"/><circle cx="15.1" cy="7.75" r="3.5" fill="#E5484D" stroke="#FAFAF9" stroke-width="1.6"/></svg>
-    <span style="font-size:44px;font-weight:600;letter-spacing:-.025em;color:#0C0A09">PatientZero</span></div>
-    <p style="margin-top:18px;font-size:20px;color:#57534E">Know your blast radius before the postmortem.</p>
-    <p style="margin-top:6px;font-size:15px;color:#69625D">FalkorDB graph traversal, npm semver on the last edge, graph memory.</p></div></body></html>`);
-  caption("Deterministic first. The LLM only when needed, name-checked, with hard spend caps.", 4.6);
-  await sleep(4800);
+  // 1:05 Act and remember: Depth back to 4, Generate fix, Approve, then ask "qix"
+  await startBeat("fix");
+  await scrollToEl(page.locator("#graph"), 70, 600);
+  await dragDepth(6, 4, 300, 400);
+  await waitText(/13 of 22 services can install/);
+  await scrollToEl(page.locator("h2", { hasText: /^Fix$/ }), 90, 800);
+  await click(page.getByRole("button", { name: /Generate fix/ }), 600);
+  await waitText(/written to the graph/);
+  await sleep(500);
+  await scrollToEl(page.locator("h2", { hasText: /^Fix$/ }), 90, 400);
+  await click(page.getByRole("button", { name: /^Approve$/ }), 600);
+  await waitText(/Approved and remembered/);
+  await sleep(700);
+  await ask("qix", 600);
+  await waitText(/Answered from graph memory/);
+  await sleep(300);
+  await scrollToY(0, 300);
+
+  // 1:15 Tenants
+  await startBeat("tenants");
+  await switchTenant("globex");
+  await sleep(500);
+  await ask("were we hit by Shai-Hulud?", 300);
+  await waitText(/4 of 12 services can install a malicious version/);
+  await sleep(1600);
+  await switchTenant("acme");
+  await ask("were we hit by Shai-Hulud?", 300);
+  await page.locator("[data-testid=not-hit]").waitFor({ timeout: 30000 });
+  await sleep(500);
+  await scrollToY(0, 300);
+
+  // 1:28 Live watch, one Replay click
+  await startBeat("watch");
+  await scrollToEl(page.locator("#watch"), 70, 1100);
+  await page.locator("[data-testid=live-watch]").waitFor({ timeout: 30000 });
+  await sleep(300);
+  await hover(page.locator("[data-testid=watch-headline]"), 700);
+  await sleep(2400);
+  await hover(page.locator("[data-testid=watch-verdicts]"), 600);
+  await sleep(1000);
+  await click(page.locator("[data-testid=watch-replay]"), 700);
+  await page.locator("[data-testid=watch-replay-result]").waitFor({ timeout: 30000 });
+  await sleep(500);
+  await hover(page.locator("[data-testid=watch-replay-result]"), 600);
+  await sleep(1200);
+  const rrow = page.locator("[data-testid=watch-feed] li[data-replay=true]");
+  if (await rrow.count()) await hover(rrow.first(), 600);
+
+  // 1:40 Under the hood: an exposure answer's 5-call MCP chain, one Cypher step, then the bench card
+  await startBeat("hood");
+  await ask("debug@4.4.2", 600);
+  await page.waitForFunction(() => +(document.querySelector("[data-testid=mcp-chain]")?.dataset.calls || 0) >= 5, null, { timeout: 30000 });
+  await sleep(300);
+  await scrollToEl(page.locator("[data-testid=mcp-chain]"), 120, 1000);
+  await hover(page.locator("[data-testid=mcp-chain]"), 500);
+  await sleep(600);
+  await click(page.locator("[data-testid=trace-mcp] button").first(), 500);
+  await sleep(700);
+  const steps = page.locator("button[aria-expanded]").filter({ hasText: /rows?/ });
+  if (await steps.count()) await click(steps.first(), 500);
+  await sleep(1300);
+  await scrollToEl(page.locator("#performance"), 70, 1100);
+  await page.locator("[data-testid=bench]").waitFor({ timeout: 30000 });
+  await sleep(200);
+  await hover(page.locator("[data-testid=bench-http]"), 600);
+  await sleep(1000);
+  await hover(page.locator("[data-testid=bench-scope]"), 600);
+
+  // 1:52 Close: same screen
+  await startBeat("close");
+  await moveTo(W - 60, H - 60, 900);
+  await hold();
   const end = now();
 
   const video = page.video();
   await ctx.close();
   await browser.close();
   const raw = await video.path();
-
-  // captions relative to the trimmed start
-  const srt = caps.map((c, i) => `${i + 1}\n${srtTime(c.start - trim)} --> ${srtTime(Math.min(c.end, end) - trim)}\n${c.text}\n`).join("\n");
-  const srtPath = path.join(OUT, `${NAME}.srt`);
-  fs.writeFileSync(srtPath, srt);
-  fs.writeFileSync(path.join(OUT, "beats.json"), JSON.stringify(beats.map((b) => ({ ...b, t: +(b.t - trim).toFixed(1) })), null, 1));
-
-  const mp4 = path.join(OUT, `${NAME}.mp4`);
-  const style = "FontName=Inter,FontSize=7.5,PrimaryColour=&H00FFFFFF,OutlineColour=&H30141210,BackColour=&H30141210,BorderStyle=3,Outline=4,Shadow=0,MarginV=${process.env.MARGINV || 7},Bold=0";
-  const fontsdir = "/usr/share/fonts/truetype/sand-box/google/Inter";
+  fs.writeFileSync(path.join(OUT, "beats.json"), JSON.stringify(beats.map((b) => ({ ...b, t: +(b.t - trim).toFixed(2) })), null, 1));
+  const mp4 = path.join(OUT, "raw-demo.mp4");
   execFileSync("ffmpeg", ["-y", "-loglevel", "error", "-ss", String(trim), "-i", raw, "-t", String(end - trim),
-    "-vf", `fps=30,scale=1920:${Math.round(H * 1920 / W)}:flags=lanczos,pad=1920:1080:0:0:color=0xFAFAF9,subtitles=${srtPath}:fontsdir=${fontsdir}:force_style='${style}'`,
-    "-c:v", "libx264", "-preset", "slow", "-crf", process.env.CRF || "24", "-pix_fmt", "yuv420p", "-movflags", "+faststart", "-an", mp4], { stdio: "inherit" });
+    "-vf", `fps=30,scale=1920:${Math.round(H * 1920 / W)}:flags=lanczos`,
+    "-c:v", "libx264", "-preset", "slow", "-crf", "18", "-pix_fmt", "yuv420p", "-an", mp4], { stdio: "inherit" });
   if (!process.env.KEEP_RAW) fs.rmSync(RAW, { recursive: true, force: true });
-  console.log(`wrote ${path.relative(ROOT, mp4)} (${(fs.statSync(mp4).size / 1e6).toFixed(1)} MB, ${(end - trim).toFixed(1)} s) and ${path.relative(ROOT, srtPath)}`);
+  console.log(`console errors / 4xx-5xx during the run: ${consoleErrors.length ? consoleErrors.join(" | ") : "none"}`);
+  console.log(`wrote ${path.relative(ROOT, mp4)} (${(end - trim).toFixed(1)} s) and demo/beats.json`);
 })().catch((e) => { console.error("RECORD ERROR", e); process.exit(1); });

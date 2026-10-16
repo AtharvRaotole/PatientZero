@@ -3,7 +3,7 @@
 Every quoted string below is on screen as written. Record at 1280x800 or larger, browser zoom 100%, mode **Auto** in
 the top bar, starting at the top of the page on the **Acme** tenant.
 
-**Before recording.** Run `sh scripts/reset-live.sh` (memory starts empty: the Fix and Approve clicks happen live).
+**Before recording.** Run `CLEAR_REPLAYS=1 sh scripts/reset-live.sh` and `TENANT=globex CLEAR_REPLAYS=1 sh scripts/reset-live.sh`, with no reseed (memory starts empty: the Fix and Approve clicks happen live). Load the page once and let the header counters settle. `scripts/record_demo.cjs` follows this shot list beat for beat, and `demo/voiceover.md` holds its narration.
 Do not type free-form LLM questions on camera. Every input below is answered by the deterministic router.
 
 | Time | Beat | On screen | Do | Say |
