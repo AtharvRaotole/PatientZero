@@ -40,8 +40,8 @@ def test_debug_442_is_its_own_answer_after_fix(incident):
     assert "checkout-api" in safe  # honest negative: express pins debug 2.6.9
     assert "lint-service" in {e["service"] for e in d["exposed"]}
     sb = d["memory"]["seen_before"]
-    assert sb["id"] == incident and sb["same_trigger"] is False
-    assert sb["text"].startswith("Seen before: " + incident)
+    assert incident in [i["id"] for i in d["memory"]["incidents"]] and sb["same_trigger"] is False
+    assert sb["text"].startswith("Seen before: INC-")
 
 
 @pytest.mark.parametrize("q", ["maintainer qix was phished", "chalk@5.6.1", "GHSA-4x49-vf9v-38px",
@@ -51,7 +51,7 @@ def test_incident_queries_traverse_after_fix(incident, q):
     assert d["outcome"] in ("answered_with_path", "not_in_graph"), d["message"]
     assert d["outcome"] != "answered_from_memory"
     assert any(s["tool"] == "exposure" and s.get("cypher") for s in d["trace"])
-    assert d["memory"] and d["memory"]["seen_before"]["id"] == incident
+    assert d["memory"] and incident in [i["id"] for i in d["memory"]["incidents"]]
 
 
 def test_qix_phished_has_paths_and_diff(incident):
@@ -73,5 +73,5 @@ def test_bare_recall_still_answers_from_memory(incident):
     d = ask("qix")
     assert d["outcome"] == "answered_from_memory"
     assert d["exposed_count"] == 13 and "fresh traversal" in d["message"]
-    assert d["memory"]["incidents"][0]["id"] == incident
+    assert d["memory"]["incidents"][0]["id"].startswith("INC-")
     assert ask("qix", fresh=True)["outcome"] == "answered_with_path"

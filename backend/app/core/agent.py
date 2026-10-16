@@ -26,6 +26,7 @@ from . import budget
 from .registry import ToolRegistry
 
 MAX_STEPS = 6
+CACHE_VERSION = 3  # bump when prompts, tools or validation change, so stale cached answers are not served
 
 
 class Domain(Protocol):
@@ -92,7 +93,7 @@ def _norm(text: str) -> str:
 
 
 def _cache_key(kind: str, text: str, opts: dict) -> str:
-    raw = json.dumps([kind, _norm(text), config.GRAPH_NAME, config.OPENAI_MODEL, opts.get("depth"),
+    raw = json.dumps([CACHE_VERSION, kind, _norm(text), config.GRAPH_NAME, config.OPENAI_MODEL, opts.get("depth"),
                       bool(opts.get("fresh"))])
     return hashlib.sha256(raw.encode()).hexdigest()[:24]
 
@@ -155,6 +156,21 @@ def _run_llm(domain: Domain, text: str, **opts) -> dict:
                                       {"role": "user", "content": text}]
     final = ""
     total_tokens = 0
+    # Ground the model first: if the deterministic router understood the question, its investigation is handed
+    # to the model as an already-made `investigate` call. The model then only phrases the answer or asks for a
+    # follow-up tool, which saves a round trip and stops it from picking a weaker tool.
+    if "investigate" in domain.registry.tools:
+        det = domain.route(text, **opts)
+        if domain.confident(det) and det.get("outcome") != "unknown_entity":
+            structured = det
+            trace.append(_step("agent", "deterministic router pre-ran investigate; LLM phrases the answer"))
+            trace.extend(det.get("trace", []))
+            dig = getattr(domain, "digest", None)
+            messages += [{"role": "assistant", "content": None, "tool_calls": [
+                             {"id": "pre", "type": "function", "function": {
+                                 "name": "investigate", "arguments": json.dumps({"question": text})}}]},
+                         {"role": "tool", "tool_call_id": "pre", "content": json.dumps(
+                             dig(det) if dig else _summarize_for_llm(det), default=str)[:3000]}]
     for _ in range(MAX_STEPS):
         t = time.perf_counter()
         msg, usage = _chat(messages, domain.registry.openai_tools(), config.LLM_MAX_TOKENS_TOOLS,

@@ -122,6 +122,7 @@ class PatientZero:
         names.update(x for x in (r.get("entity_key"), r.get("trigger")) if x)
         ent = r.get("entity") or {}
         names.update(ent.get("maintainers") or [])
+        names.update(ent.get("services") or [])  # resolved against the graph by resolve_entity
         if r.get("maintainers"):
             names.update(r["maintainers"].get("maintainers") or [])
             names.update(r["maintainers"].get("had_publish_rights") or [])

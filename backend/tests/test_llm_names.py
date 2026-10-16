@@ -73,11 +73,11 @@ def test_invented_service_and_person_fall_back_to_template(llm_on, monkeypatch):
 @live
 def test_grounded_llm_answer_is_kept_and_prompt_is_small(llm_on, monkeypatch):
     q = "are we safe from that npm phishing attack last september?"
-    sent = mock_openai(monkeypatch, [call("investigate", {"question": "maintainer qix was phished"}),
-                                     {"role": "assistant", "content": "13 of 22 services are exposed, including "
+    sent = mock_openai(monkeypatch, [{"role": "assistant", "content": "13 of 22 services are exposed, including "
                                                                       "img-service via simple-swizzle."}])
     r = agent.run(DOMAIN, q, mode="llm", fresh=True)
     assert r["llm_summary"] and r["llm_unverified"] == [] and r["exposed_count"] == 13
+    assert len(sent) == 1  # the router pre-ran investigate, so the model only phrases the answer
     # Whole second request (system + tools + question + tool result) stays well under 2k tokens (~4 chars/token).
     assert len(json.dumps(sent[-1])) < 8000
 
