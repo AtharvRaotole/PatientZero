@@ -71,7 +71,10 @@ export default function Home() {
   const [incidents, setIncidents] = useState<Incident[] | null>(null);
   const [query, setQuery] = useState("");
   const [lastQuery, setLastQuery] = useState("");
-  const [depth, setDepth] = useState(4);
+  const [depth, setDepthState] = useState(4);
+  // The slider value as a ref too, so an answer can be checked against what the slider shows right now.
+  const depthRef = useRef(4);
+  const setDepth = useCallback((d: number) => { depthRef.current = d; setDepthState(d); }, []);
   const [result, setResult] = useState<AskResponse | null>(null);
   const [loading, setLoading] = useState(false);
   const [fixLoading, setFixLoading] = useState(false);
@@ -228,23 +231,37 @@ export default function Home() {
     }
   }, []);
 
-  // Only the latest request may land: a slow answer for an older depth must never overwrite a newer one.
+  // Only the latest request may land: each query or depth change aborts the one in flight, and an answer whose
+  // depth is not what the slider shows now is dropped. A follow-up like "and at depth 6?" is the one case where
+  // the answer moves the slider, and only when it is the latest request.
   const seq = useRef(0);
+  const depthTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const inflight = useRef<AbortController | null>(null);
   const run = useCallback(
     async (q: string, opts: { depth?: number; fresh?: boolean } = {}) => {
       const text = q.trim();
       if (!text) return;
       const my = ++seq.current;
+      inflight.current?.abort();
+      const ctl = new AbortController();
+      inflight.current = ctl;
+      const asked = opts.depth ?? depthRef.current;
       setQuery(text);
       setLastQuery(text);
       setLoading(true);
       setErr(null);
       try {
         const t = getTenant();
-        const r = await apiPost<AskResponse>("/api/ask", { query: text, depth: opts.depth ?? depth, fresh: !!opts.fresh, session: sessionId(), mode, tenant: t, session_id: sessionIdFor(t) });
-        if (my !== seq.current) return;
+        const r = await apiPost<AskResponse>("/api/ask", { query: text, depth: asked, fresh: !!opts.fresh, session: sessionId(), mode, tenant: t, session_id: sessionIdFor(t) }, ctl.signal);
+        if (my !== seq.current || ctl.signal.aborted) return;
+        if (asked !== depthRef.current) {
+          // The slider moved while this was in flight: this answer is for an old depth, never show it.
+          if (!depthTimer.current) run(text, { depth: depthRef.current, fresh: opts.fresh });
+          return;
+        }
+        // The answer's depth wins only when it differs from what was asked ("and at depth 6?"), so slider and answer agree.
+        if (r.depth && r.depth !== asked) setDepth(r.depth);
         setResult(r);
-        if (r.depth && r.depth !== (opts.depth ?? depth)) setDepth(r.depth); // "and at depth 6?" moves the slider too
         markSessionUsed(t);
         appendTurn(t, text, r);
         refreshHistory();
@@ -257,7 +274,7 @@ export default function Home() {
           if (!toGraph) resultsRef.current?.focus({ preventScroll: true });
         }, 120);
       } catch (e) {
-        if (my !== seq.current) return;
+        if (my !== seq.current || ctl.signal.aborted) return;
         const a = e as ApiError;
         setErr({ message: a.message, kind: a.kind ?? "error" });
         setResult(null);
@@ -266,12 +283,13 @@ export default function Home() {
         if (my === seq.current) setLoading(false);
       }
     },
-    [depth, loadMeta, mode, refreshHistory, appendTurn],
+    [loadMeta, mode, refreshHistory, appendTurn, setDepth],
   );
 
   const switchTenant = useCallback((t: string) => {
     if (t === getTenant()) return;
     seq.current++; // drop any answer still in flight for the old tenant
+    inflight.current?.abort();
     histSeq.current++; // and any history request
     storeTenant(t);
     setTenantState(t);
@@ -320,12 +338,14 @@ export default function Home() {
   }, []);
 
   // Dragging the slider re-traces once it settles, not once per step.
-  const depthTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const onDepth = (d: number) => {
     setDepth(d);
     if (!lastQuery) return;
     if (depthTimer.current) clearTimeout(depthTimer.current);
-    depthTimer.current = setTimeout(() => run(lastQuery, { depth: d, fresh: true }), 220);
+    seq.current++; // an answer in flight is for an older depth now
+    inflight.current?.abort();
+    setLoading(true);
+    depthTimer.current = setTimeout(() => { depthTimer.current = null; run(lastQuery, { depth: d, fresh: true }); }, 220);
   };
 
   const onFix = async () => {

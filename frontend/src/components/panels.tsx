@@ -34,7 +34,7 @@ export function OutcomeBanner({ r: raw, onFresh, onCrew }: { r: AskResponse; onF
     r.mode === "llm" ? `LLM${r.llm_model ? ` ${r.llm_model}` : ""}, ${tokens} tokens` : "Deterministic",
   ].filter(Boolean) as string[];
   return (
-    <motion.header initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+    <motion.header data-testid="answer" data-depth={r.depth} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
       <p className="flex flex-wrap items-center gap-x-2 text-[13px] text-ink-3">
         <span className="font-medium text-ink-2">{label}</span>
         {meta.map((m) => <span key={m} className="flex items-center gap-2"><span className="text-line-strong">/</span>{m}</span>)}

@@ -129,8 +129,36 @@ const exposedCount = (page) =>
   // Dragging the slider fires one change per step; only the last depth may land, whatever order answers arrive in.
   for (const v of [6, 5, 4, 3, 2, 1, 2, 3, 4]) { await setDepth(page, v); await new Promise((r) => setTimeout(r, 35)); }
   await new Promise((r) => setTimeout(r, 2500));
-  const settled = await page.evaluate(() => ({ slider: document.querySelector("input[aria-label='graph depth']").value, text: document.body.innerText.match(/services at depth (\d)/)?.[1] }));
-  check("P0-2 slider drag lands on the last depth", settled.slider === "4" && settled.text === "4", JSON.stringify(settled));
+  const depthState = () => page.evaluate(() => ({
+    slider: document.querySelector("input[aria-label='graph depth']").value,
+    label: document.querySelector("input[aria-label='graph depth']")?.nextElementSibling?.textContent ?? null,
+    answer: document.querySelector("[data-testid=answer]")?.getAttribute("data-depth") ?? null,
+  }));
+  const settled = await depthState();
+  check("P0-2 slider drag lands on the last depth", settled.slider === "4" && settled.answer === "4" && settled.label === "4", JSON.stringify(settled));
+
+  // Out-of-order answers: hold the depth-2 answer for 3 s so it arrives after the depth-5 one. The answer must stay at 5.
+  let heldAsk = false;
+  const holdDepth2 = (req) => {
+    let body = null;
+    try { body = req.method() === "POST" && /\/api\/ask/.test(req.url()) ? JSON.parse(req.postData() || "{}") : null; } catch { body = null; }
+    if (body && body.depth === 2 && !heldAsk) { heldAsk = true; setTimeout(() => req.continue().catch(() => {}), 3000); }
+    else req.continue().catch(() => {});
+  };
+  await page.setRequestInterception(true);
+  page.on("request", holdDepth2);
+  await setDepth(page, 2);
+  await new Promise((r) => setTimeout(r, 500)); // the depth-2 request is out and held
+  await setDepth(page, 5);
+  await page.waitForFunction(() => document.querySelector("[data-testid=answer]")?.getAttribute("data-depth") === "5", { timeout: 15000 }).catch(() => {});
+  await new Promise((r) => setTimeout(r, 3500)); // the held depth-2 answer lands now, last
+  const late = await depthState();
+  page.off("request", holdDepth2);
+  await page.setRequestInterception(false);
+  check("depth: an earlier answer arriving last never overrides the slider", heldAsk && late.slider === "5" && late.answer === "5" && late.label === "5", JSON.stringify({ heldAsk, ...late }));
+  await setDepth(page, 4);
+  await page.waitForFunction(() => document.querySelector("[data-testid=answer]")?.getAttribute("data-depth") === "4", { timeout: 15000 });
+  await new Promise((r) => setTimeout(r, 1200));
 
   // AC9: generate fix
   await clickText(page, "Generate fix");

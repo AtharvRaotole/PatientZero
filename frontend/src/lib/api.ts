@@ -62,7 +62,7 @@ export async function apiGet<T>(path: string, tenant: string = getTenant()): Pro
   return handle<T>(res);
 }
 
-export async function apiPost<T>(path: string, body: unknown): Promise<T> {
+export async function apiPost<T>(path: string, body: unknown, signal?: AbortSignal): Promise<T> {
   let res: Response;
   const headers: Record<string, string> = { "content-type": "application/json", "X-Tenant": getTenant() };
   const admin = adminToken();
@@ -72,8 +72,11 @@ export async function apiPost<T>(path: string, body: unknown): Promise<T> {
       method: "POST",
       headers,
       body: JSON.stringify(body),
+      signal,
     });
-  } catch {
+  } catch (e) {
+    if (signal?.aborted) throw e; // superseded by a newer request: the caller drops it
+
     throw new ApiError(`API unreachable at ${API_URL}. Is the backend running?`, 0, "network");
   }
   return handle<T>(res);
