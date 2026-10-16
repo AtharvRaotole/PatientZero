@@ -19,3 +19,7 @@ next-env.d.ts
 # misc
 .DS_Store
 *.log
+# explicit (also covered by patterns above / frontend/.gitignore)
+backend/.venv/
+frontend/node_modules/
+frontend/.next/
