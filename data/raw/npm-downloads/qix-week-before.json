@@ -1,0 +1,27 @@
+{
+ "source": "https://api.npmjs.org/downloads/point/2025-09-01:2025-09-07/<pkg>",
+ "period": "2025-09-01:2025-09-07",
+ "fetched_at": "2026-10-16T04:06:23Z",
+ "packages": {
+  "ansi-regex": 243643338,
+  "ansi-styles": 371415344,
+  "backslash": 266008,
+  "chalk": 299998281,
+  "chalk-template": 3890204,
+  "color": 31702112,
+  "color-convert": 193536705,
+  "color-name": 191711320,
+  "color-string": 27487692,
+  "debug": 357603707,
+  "error-ex": 47177455,
+  "has-ansi": 12160689,
+  "is-arrayish": 73802159,
+  "simple-swizzle": 26266918,
+  "slice-ansi": 59805286,
+  "strip-ansi": 261171246,
+  "supports-color": 287104688,
+  "supports-hyperlinks": 19195650,
+  "wrap-ansi": 197993431
+ },
+ "total": 2705932233
+}

@@ -84,7 +84,7 @@ export default function ByoSection() {
   const hit = (scan?.exposed.length ?? 0) > 0;
 
   return (
-    <section id="byo" className="mt-14">
+    <section id="byo" className="mt-20">
       <div className="mb-5 flex flex-wrap items-end justify-between gap-4">
         <div>
           <p className="mb-2 inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/30 px-3 py-1 text-[11px] text-white/60"><CalendarClock className="h-3.5 w-3.5 text-amber-300" />Bring your own repo</p>

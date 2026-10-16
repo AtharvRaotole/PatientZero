@@ -1,8 +1,24 @@
 "use client";
-import { motion } from "framer-motion";
+import { animate, motion, useMotionValue, useTransform } from "framer-motion";
 import { Check, Copy } from "lucide-react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import clsx from "clsx";
+
+/** Animated number: counts from the previous value to `value` (ease-out), respects reduced motion. */
+export function CountUp({ value, className, duration = 0.9 }: { value: number; className?: string; duration?: number }) {
+  const mv = useMotionValue(0);
+  const text = useTransform(mv, (v) => Math.round(v).toLocaleString());
+  useEffect(() => {
+    const reduce = typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) {
+      mv.set(value);
+      return;
+    }
+    const c = animate(mv, value, { duration, ease: [0.16, 1, 0.3, 1] });
+    return () => c.stop();
+  }, [value, duration, mv]);
+  return <motion.span className={clsx("tabular", className)}>{text}</motion.span>;
+}
 
 export function Card({ className, children, delay = 0 }: { className?: string; children: React.ReactNode; delay?: number }) {
   return (
@@ -23,8 +39,8 @@ export function CardHeader({ icon, title, right, sub }: { icon: React.ReactNode;
       <div className="flex items-center gap-2.5">
         <span className="grid h-7 w-7 place-items-center rounded-lg bg-white/[0.06] text-white/80">{icon}</span>
         <div>
-          <h3 className="text-[13px] font-semibold tracking-tight text-white/90">{title}</h3>
-          {sub && <p className="text-[11px] text-white/40">{sub}</p>}
+          <h3 className="text-[13.5px] font-semibold tracking-[-0.01em] text-white/92">{title}</h3>
+          {sub && <p className="mt-0.5 text-[11.5px] leading-snug text-white/42">{sub}</p>}
         </div>
       </div>
       {right}
@@ -57,7 +73,7 @@ export function CopyButton({ text, label = "Copy" }: { text: string; label?: str
         setDone(true);
         setTimeout(() => setDone(false), 1400);
       }}
-      className="inline-flex items-center gap-1.5 rounded-lg bg-white/[0.06] px-2.5 py-1 text-[11px] font-medium text-white/75 ring-1 ring-inset ring-white/10 transition hover:bg-white/10 hover:text-white"
+      className="press inline-flex items-center gap-1.5 rounded-lg bg-white/[0.06] px-2.5 py-1 text-[11px] font-medium text-white/75 ring-1 ring-inset ring-white/10 hover:bg-white/10 hover:text-white"
     >
       {done ? <Check className="h-3.5 w-3.5 text-emerald-300" /> : <Copy className="h-3.5 w-3.5" />}
       {done ? "Copied" : label}

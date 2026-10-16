@@ -10,13 +10,14 @@ import {
   ErrorCard, ExposurePanel, FixPanel, InsightsPanel, MemoryDetail, MemoryPanel, OutcomeBanner, PathPanel, ScopeStrip, SpofPanel,
   TracePanel, WakeCard, WakeOnly,
 } from "@/components/panels";
-import { Card, Pill, Skeleton } from "@/components/ui";
+import { Card, CountUp, Pill, Skeleton } from "@/components/ui";
 import { AgentAnswer, PlaybooksPanel } from "@/components/agentui";
 import ByoSection from "@/components/ByoSection";
 import { Timeline, type TimelineEvent } from "@/components/viz";
 import { CalendarRange } from "lucide-react";
 import { CardHeader } from "@/components/ui";
 import type { Playbook } from "@/lib/types";
+import { QIX_DOWNLOADS_SOURCE, QIX_PACKAGES, QIX_WEEK_DOWNLOADS } from "@/lib/facts";
 
 const GraphCanvas = dynamic(() => import("@/components/GraphCanvas"), { ssr: false });
 
@@ -68,6 +69,15 @@ export default function Home() {
     }
   }, []);
   const inputRef = useRef<HTMLInputElement>(null);
+  const overlayRef = useRef<HTMLDivElement>(null);
+  const [overlayH, setOverlayH] = useState(260);
+  useEffect(() => {
+    const el = overlayRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(([e]) => setOverlayH(Math.round(e.contentRect.height) + 24));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
   const resultsRef = useRef<HTMLDivElement>(null);
 
   const loadMeta = useCallback(async () => {
@@ -192,6 +202,7 @@ export default function Home() {
     <div className="relative min-h-screen overflow-x-hidden">
       <div className="aurora" />
       <div className="grid-bg pointer-events-none fixed inset-0 z-0" />
+      <div className="noise" />
 
       {/* Top bar */}
       <header className="relative z-20 mx-auto flex max-w-[1500px] items-center justify-between px-6 pt-5">
@@ -201,31 +212,31 @@ export default function Home() {
           </div>
           <div>
             <p className="text-[15px] font-semibold tracking-tight">PatientZero</p>
-            <p className="text-[11px] text-white/45">npm supply-chain incident agent on FalkorDB</p>
+            <p className="hidden text-[11px] text-white/45 sm:block">npm supply-chain incident agent on FalkorDB</p>
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <Pill tone="warn"><FlaskConical className="h-3 w-3" />Synthetic Acme fleet, real npm data</Pill>
+          <Pill tone="warn" className="whitespace-nowrap"><FlaskConical className="h-3 w-3" /><span className="hidden lg:inline">Synthetic Acme fleet, real npm data</span><span className="lg:hidden">Synthetic fleet</span></Pill>
           {health ? (
             <Pill tone={up ? "safe" : "danger"}>
               <span className={clsx("h-1.5 w-1.5 rounded-full", up ? "bg-emerald-400 shadow-[0_0_8px_#34d399]" : "bg-rose-400")} />
-              FalkorDB {health.falkordb} · {health.graph}
+              <span className="whitespace-nowrap">FalkorDB {health.falkordb}<span className="hidden lg:inline"> · {health.graph}</span></span>
             </Pill>
           ) : healthErr ? (
             <Pill tone="danger">API offline</Pill>
           ) : (
             <Skeleton className="h-5 w-40 rounded-full" />
           )}
-          <a href="#byo" className="hidden rounded-full border border-white/10 px-3 py-0.5 text-[11px] text-white/70 transition hover:border-white/25 hover:text-white md:inline-flex">Scan your repo</a>
+          <a href="#byo" className="press hidden whitespace-nowrap rounded-full border border-white/10 px-3 py-0.5 text-[11px] text-white/70 hover:border-white/25 hover:text-white lg:inline-flex">Scan your repo</a>
           <ModeSwitch llm={health?.agent_mode === "llm"} model={health?.llm_model ?? null} mode={mode} setMode={setMode} />
         </div>
       </header>
 
       {/* Hero: the graph */}
       <main className="relative z-10 mx-auto max-w-[1500px] px-6 pb-24 pt-5">
-        <div className="relative h-[680px] overflow-hidden rounded-3xl border border-white/[0.08] bg-[radial-gradient(ellipse_at_center,rgba(20,24,40,0.85),rgba(5,6,10,0.95))] shadow-[0_40px_120px_-40px_rgba(124,156,255,0.35)]">
+        <div className="relative h-[900px] overflow-hidden rounded-3xl md:h-[860px] xl:h-[680px] border border-white/[0.08] bg-[radial-gradient(ellipse_at_center,rgba(20,24,40,0.85),rgba(5,6,10,0.95))] shadow-[0_40px_120px_-40px_rgba(124,156,255,0.35)]">
           {fleet ? (
-            <GraphCanvas fleet={fleet} highlight={result?.graph ?? null} onNodeClick={() => {}} />
+            <GraphCanvas fleet={fleet} highlight={result?.graph ?? null} onNodeClick={() => {}} topInset={overlayH} />
           ) : (
             <div className="absolute inset-0 grid place-items-center">
               {healthErr || (health && !up) ? null : (
@@ -236,10 +247,10 @@ export default function Home() {
 
           {/* overlay: headline + command bar */}
           <div className="pointer-events-none absolute inset-x-0 top-0 p-6 md:p-8">
-            <div className="pointer-events-auto max-w-2xl">
+            <div ref={overlayRef} className="pointer-events-auto max-w-2xl">
               <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-                <p className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/30 px-3 py-1 text-[11px] text-white/60 backdrop-blur">
-                  <ShieldAlert className="h-3.5 w-3.5 text-rose-300" /> Sept 8 2025: one phished maintainer, 19 packages, ~2B weekly downloads
+                <p className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/30 px-3 py-1 text-[11px] text-white/60 backdrop-blur" title={`Source: ${QIX_DOWNLOADS_SOURCE}`}>
+                  <ShieldAlert className="h-3.5 w-3.5 text-rose-300" /> Sept 8 2025: one phished maintainer, {QIX_PACKAGES} packages, {(QIX_WEEK_DOWNLOADS / 1e9).toFixed(2)} billion downloads the week before
                 </p>
                 <h1 className="text-gradient text-4xl font-semibold leading-[1.05] tracking-tight md:text-[52px]">
                   Know your blast radius
@@ -269,7 +280,7 @@ export default function Home() {
                 />
                 <span className="hidden items-center gap-1 rounded-md border border-white/10 px-1.5 py-0.5 text-[10px] text-white/35 sm:flex"><Command className="h-3 w-3" />K</span>
                 <button type="submit" disabled={loading || !query.trim() || !up}
-                  className="inline-flex items-center gap-2 rounded-xl bg-white px-3.5 py-2 text-sm font-semibold text-black transition hover:bg-white/90 disabled:opacity-40">
+                  className="press inline-flex items-center gap-2 rounded-xl bg-white px-3.5 py-2 text-sm font-semibold text-black shadow-[0_8px_24px_-8px_rgba(255,255,255,0.45)] hover:bg-white/90 disabled:opacity-40 disabled:shadow-none">
                   {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <CornerDownLeft className="h-4 w-4" />} Trace
                 </button>
               </motion.form>
@@ -277,7 +288,7 @@ export default function Home() {
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.35 }} className="mt-3 flex flex-wrap gap-1.5">
                 {PRESETS.map((p) => (
                   <button key={p.q} onClick={() => run(p.q, { fresh: p.q.includes("phished") })} disabled={!up || loading}
-                    className="group inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-black/35 px-3 py-1 text-[12px] text-white/70 backdrop-blur transition hover:border-white/25 hover:text-white disabled:opacity-40">
+                    className="press group inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-black/35 px-3 py-1 text-[12px] text-white/70 backdrop-blur hover:border-white/25 hover:bg-white/[0.06] hover:text-white disabled:opacity-40">
                     {p.q}
                     <span className="text-[10px] text-white/30 group-hover:text-white/50">{p.hint}</span>
                   </button>
@@ -287,7 +298,7 @@ export default function Home() {
           </div>
 
           {/* legend + stats */}
-          <div className="pointer-events-none absolute bottom-5 left-6 flex flex-wrap items-center gap-3 text-[11px] text-white/55">
+          <div className="pointer-events-none absolute bottom-5 left-6 hidden flex-wrap items-center gap-3 text-[11px] text-white/55 xl:flex">
             <Legend color="#7c9cff" label="Service" />
             <Legend color="#94a3b8" label="Package version" />
             <Legend color="#ff4d6d" label="Exposed" glow />
@@ -298,9 +309,9 @@ export default function Home() {
           <div className="absolute bottom-5 right-6 flex items-center gap-2">
             {fleet && (
               <div className="glass-strong flex items-center gap-4 rounded-xl px-4 py-2 text-[11px] text-white/60">
-                <span className="flex items-center gap-1.5"><Boxes className="h-3.5 w-3.5" /><b className="font-semibold text-white/90">{svcCount}</b> services</span>
-                <span className="flex items-center gap-1.5"><Waypoints className="h-3.5 w-3.5" /><b className="font-semibold text-white/90">{pkgCount.toLocaleString()}</b> versions</span>
-                <span className="flex items-center gap-1.5"><GitBranch className="h-3.5 w-3.5" /><b className="font-semibold text-white/90">{fleet.edges.length.toLocaleString()}</b> edges</span>
+                <span className="flex items-center gap-1.5"><Boxes className="h-3.5 w-3.5" /><b className="font-semibold text-white/90"><CountUp value={svcCount} /></b> services</span>
+                <span className="flex items-center gap-1.5"><Waypoints className="h-3.5 w-3.5" /><b className="font-semibold text-white/90"><CountUp value={pkgCount} duration={1.4} /></b> versions</span>
+                <span className="flex items-center gap-1.5"><GitBranch className="h-3.5 w-3.5" /><b className="font-semibold text-white/90"><CountUp value={fleet.edges.length} duration={1.4} /></b> edges</span>
               </div>
             )}
             {isIncident && (
@@ -334,10 +345,15 @@ export default function Home() {
           {!result && !loading && !err && up && <EmptyState onPick={(q) => run(q, { fresh: q.includes("phished") })} />}
 
           {loading && !result && (
-            <div className="grid gap-4 lg:grid-cols-3">
-              <Skeleton className="h-28 lg:col-span-3" />
-              <Skeleton className="h-96 lg:col-span-2" />
-              <Skeleton className="h-96" />
+            <div className="space-y-4" aria-busy="true" aria-label="Loading results">
+              <div className="glass flex items-center justify-between rounded-2xl p-5">
+                <div className="space-y-3"><div className="flex gap-2"><Skeleton className="h-5 w-32 rounded-full" /><Skeleton className="h-5 w-24 rounded-full" /><Skeleton className="h-5 w-28 rounded-full" /></div><Skeleton className="h-4 w-[520px] max-w-[60vw]" /><Skeleton className="h-4 w-[380px] max-w-[45vw]" /></div>
+                <Skeleton className="h-14 w-40" />
+              </div>
+              <div className="grid gap-4 lg:grid-cols-[minmax(0,1.65fr)_minmax(0,1fr)]">
+                <div className="glass space-y-3 rounded-2xl p-5">{[0, 1, 2, 3, 4].map((i) => <Skeleton key={i} className="h-16" />)}</div>
+                <div className="glass space-y-2 rounded-2xl p-5">{[0, 1, 2, 3, 4, 5].map((i) => <Skeleton key={i} className="h-9" />)}</div>
+              </div>
             </div>
           )}
 
@@ -378,9 +394,14 @@ export default function Home() {
         </div>
 
         {up && (
-          <section className="mt-14">
+          <section className="mt-20">
+            <div className="mb-5">
+              <p className="eyebrow mb-2">Timeline</p>
+              <h2 className="text-gradient text-3xl font-semibold tracking-[-0.02em] md:text-4xl">From compromise to remediation</h2>
+              <p className="mt-2 max-w-2xl text-[14px] leading-relaxed text-white/50">Every dated event in the graph: the curated compromise, OSV advisories, incidents written back by the agent, and playbooks approved by a human.</p>
+            </div>
             <Card>
-              <CardHeader icon={<CalendarRange className="h-4 w-4" />} title="From compromise to remediation" sub="Every dated event in the graph: the curated compromise, OSV advisories, incidents and approved playbooks" />
+              <CardHeader icon={<CalendarRange className="h-4 w-4" />} title="Event log" sub="Read from FalkorDB by queries/timeline.cypher" />
               <div className="scroll-thin max-h-[520px] overflow-y-auto p-6">{timeline ? <Timeline events={timeline} /> : <Skeleton className="h-40" />}</div>
             </Card>
           </section>
@@ -402,8 +423,8 @@ function ModeSwitch({ llm, model, mode, setMode }: { llm: boolean; model: string
   return (
     <div className="flex items-center rounded-full bg-white/[0.05] p-0.5 text-[11px] ring-1 ring-inset ring-white/10" title="Auto: deterministic router first, the LLM only picks tools when the router is unsure">
       {(["auto", "deterministic"] as const).map((m) => (
-        <button key={m} onClick={() => setMode(m)} className={clsx("rounded-full px-2.5 py-0.5 font-medium transition", mode === m ? "bg-white/15 text-white" : "text-white/50 hover:text-white/80")}>
-          {m === "auto" ? `LLM assist · ${model ?? "gpt-4o-mini"}` : "Deterministic"}
+        <button key={m} onClick={() => setMode(m)} className={clsx("press whitespace-nowrap rounded-full px-2.5 py-0.5 font-medium", mode === m ? "bg-white/15 text-white" : "text-white/50 hover:text-white/80")}>
+          {m === "auto" ? <>LLM assist<span className="hidden lg:inline"> · {model ?? "gpt-4o-mini"}</span></> : "Deterministic"}
         </button>
       ))}
     </div>
@@ -428,8 +449,8 @@ function EmptyState({ onPick }: { onPick: (q: string) => void }) {
   return (
     <div className="grid gap-4 md:grid-cols-3">
       {items.map((it, i) => (
-        <Card key={it.title} delay={0.1 + i * 0.08} className="group cursor-pointer p-5 transition hover:border-white/20">
-          <button onClick={() => onPick(it.q)} className="text-left">
+        <Card key={it.title} delay={0.1 + i * 0.08} className="lift group cursor-pointer">
+          <button onClick={() => onPick(it.q)} className="h-full w-full p-5 text-left">
             <span className="grid h-10 w-10 place-items-center rounded-xl bg-white/[0.06]">{it.icon}</span>
             <h3 className="mt-4 text-[15px] font-semibold tracking-tight text-white/90">{it.title}</h3>
             <p className="mt-1.5 text-sm leading-relaxed text-white/50">{it.body}</p>

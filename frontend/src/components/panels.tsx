@@ -7,7 +7,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import type { AskResponse, Fix, Incident, ServiceExposure, TraceStep, WakeEntry } from "@/lib/types";
-import { Card, CardHeader, CopyButton, PathChain, Pill, Skeleton } from "./ui";
+import { Card, CardHeader, CopyButton, CountUp, PathChain, Pill, Skeleton } from "./ui";
 import { ApproveBar, ModePill } from "./agentui";
 import { BlastRings, ExposureMatrix, SpofScatter } from "./viz";
 import type { Playbook } from "@/lib/types";
@@ -36,9 +36,15 @@ export function OutcomeBanner({ r, onFresh }: { r: AskResponse; onFresh: () => v
       <div className="mt-3 flex flex-wrap items-end justify-between gap-4">
         <p className="max-w-3xl text-[15px] leading-relaxed text-white/85">{r.message}</p>
         {r.outcome === "answered_with_path" && r.exposed.length > 0 && (
-          <div className="flex items-baseline gap-2">
-            <span className="text-5xl font-semibold tracking-tight text-rose-300 tabular-nums">{r.exposed.length}</span>
-            <span className="text-sm text-white/50">/ {r.fleet_size} services exposed</span>
+          <div className="shrink-0 text-right">
+            <div className="flex items-baseline justify-end gap-2">
+              <CountUp key={r.query + r.depth} value={r.exposed.length} className="text-[56px] font-semibold leading-none tracking-[-0.04em] text-rose-300" />
+              <span className="text-sm text-white/45">/ <CountUp key={"f" + r.query} value={r.fleet_size ?? 0} duration={0.6} /> services exposed</span>
+            </div>
+            <div className="mt-3 h-1 w-56 overflow-hidden rounded-full bg-white/[0.06]">
+              <motion.div key={r.query + r.depth} initial={{ width: 0 }} animate={{ width: `${(100 * r.exposed.length) / Math.max(r.fleet_size ?? 1, 1)}%` }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
+                className="h-full rounded-full bg-gradient-to-r from-rose-500 to-fuchsia-400 shadow-[0_0_12px_rgba(255,77,109,0.6)]" />
+            </div>
           </div>
         )}
         {r.outcome === "answered_from_memory" && (
