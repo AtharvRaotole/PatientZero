@@ -59,6 +59,14 @@ class PatientZero:
     def route(self, text: str, **opts) -> dict:
         return ask(text, **opts)
 
+    def confident(self, r: dict) -> bool:
+        """The router is confident unless it found nothing at all to anchor on. An explicit id or pkg@ver that is
+        not in the graph is a confident, honest unknown_entity: the LLM must not be asked to guess."""
+        if r["outcome"] != "unknown_entity":
+            return True
+        ent = r.get("entity") or {}
+        return bool(ent.get("unresolved"))
+
     def allowed_names(self, r: dict) -> set[str]:
         names: set[str] = set()
         for group in ("exposed", "safe"):

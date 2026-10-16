@@ -56,7 +56,7 @@ def health() -> dict[str, Any]:
             "falkordb": "up" if p["ok"] else "down", "graph": config.GRAPH_NAME,
             "graph_loaded": p.get("graph_loaded", False), "error": p.get("error"),
             "agent_mode": "llm" if agent.llm_available() else "deterministic",
-            "llm_model": config.LLM_MODEL if agent.llm_available() else None,
+            "llm_model": config.OPENAI_MODEL if agent.llm_available() else None,
             "domain": DOMAIN.name, "tools": DOMAIN.registry.names(),
             "queries": len(db.CATALOGUE)}
 
@@ -150,3 +150,20 @@ def graph_demo() -> dict[str, Any]:
     """Kept for the scaffold health check. Returns a tiny real slice of the fleet graph."""
     tr = Trace()
     return {"path": tools.path_between(tr, "img-service", "is-arrayish"), "trace": tr.steps}
+
+
+# Routers owned by other modules (BYO scans, playbooks). Included when importable; see
+# docs/CONTRACT-byo-playbooks.md. A missing or broken module never takes the core API down.
+for _mod in ("app.byo.routes", "app.byo.api", "app.playbooks", "app.playbook_routes", "app.byo.playbooks"):
+    try:
+        import importlib
+
+        _m = importlib.import_module(_mod)
+        if getattr(_m, "router", None) is not None and _m.router not in [r for r in app.router.routes]:
+            app.include_router(_m.router)
+            log.info("included router from %s", _mod)
+    except ModuleNotFoundError as _e:
+        if _e.name != _mod:
+            log.warning("router %s not loaded: %s", _mod, _e)
+    except Exception as _e:  # noqa: BLE001
+        log.warning("router %s failed to load: %s", _mod, _e)

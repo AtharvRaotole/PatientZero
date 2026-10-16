@@ -1,5 +1,8 @@
 """Generic agent loop over a domain adapter.
 
+Cost rules: the deterministic router runs FIRST; the LLM is called only when the domain says the router was not
+confident (or the request forces mode=llm). Token caps per call, answers cached per (question, graph, options).
+
 Modes:
   deterministic  the domain's regex/keyword router picks a fixed tool sequence (no LLM, always available)
   llm            OpenAI tool calling over the same registry. The model only chooses tools and arguments; it never
@@ -8,8 +11,11 @@ Modes:
 """
 from __future__ import annotations
 
+import hashlib
 import json
+import threading
 import time
+from pathlib import Path
 from typing import Any, Protocol
 
 import httpx
@@ -26,6 +32,7 @@ class Domain(Protocol):
     system_prompt: str
 
     def route(self, text: str, **opts) -> dict: ...           # deterministic answer (full structured response)
+    def confident(self, response: dict) -> bool: ...          # did the deterministic router understand it?
     def allowed_names(self, response: dict) -> set[str]: ...  # names the LLM sentence may mention
     def known_names(self) -> set[str]: ...                    # every entity name in the graph
 
@@ -35,31 +42,97 @@ def llm_available() -> bool:
 
 
 def run(domain: Domain, text: str, *, mode: str = "auto", **opts) -> dict:
-    want_llm = mode == "llm" or (mode == "auto" and config.AGENT_MODE in ("auto", "llm"))
-    if want_llm and llm_available() and not opts.get("generate_fix"):
-        try:
-            return _run_llm(domain, text, **opts)
-        except Exception as e:  # noqa: BLE001 - fall back, never fail the user because of the LLM
-            r = domain.route(text, **opts)
-            r["trace"].insert(0, _step("llm", f"LLM unavailable ({type(e).__name__}: {e}); deterministic fallback"))
-            r["mode"] = "deterministic"
-            return r
+    llm_ok = llm_available() and not opts.get("generate_fix") and mode != "deterministic"
+    if mode == "llm" and llm_ok:
+        return _llm_or_fallback(domain, text, **opts)
     r = domain.route(text, **opts)
     r["mode"] = "deterministic"
+    if llm_ok and mode == "auto" and config.AGENT_MODE != "deterministic" and not domain.confident(r):
+        r2 = _llm_or_fallback(domain, text, **opts)
+        r2["trace"].insert(0, _step("agent", "deterministic router not confident; asked the LLM to pick tools"))
+        return r2
+    r["trace"].append(_step("agent", "LLM not used: deterministic router answered" if llm_available()
+                            else "LLM not configured: deterministic router", llm_used=False))
     return r
+
+
+def _llm_or_fallback(domain: Domain, text: str, **opts) -> dict:
+    key = _cache_key("ask", text, opts)
+    hit = _cache_get(key)
+    if hit is not None:
+        hit = json.loads(json.dumps(hit))
+        hit["trace"].insert(0, _step("llm", "cached LLM answer (no API call)", llm_used=False, cached=True))
+        return hit
+    try:
+        r = _run_llm(domain, text, **opts)
+        _cache_put(key, r)
+        return r
+    except Exception as e:  # noqa: BLE001 - never fail the user because of the LLM
+        r = domain.route(text, **opts)
+        r["trace"].insert(0, _step("llm", f"LLM unavailable ({type(e).__name__}); deterministic fallback"))
+        r["mode"] = "deterministic"
+        return r
+
+
+# ----------------------------------------------------------------------------- cache
+_cache: dict[str, tuple[float, dict]] = {}
+_lock = threading.Lock()
+
+
+def _norm(text: str) -> str:
+    return " ".join(text.lower().split()).strip(" ?!.")
+
+
+def _cache_key(kind: str, text: str, opts: dict) -> str:
+    raw = json.dumps([kind, _norm(text), config.GRAPH_NAME, config.OPENAI_MODEL, opts.get("depth"),
+                      bool(opts.get("fresh"))])
+    return hashlib.sha256(raw.encode()).hexdigest()[:24]
+
+
+def _disk() -> Path | None:
+    return Path(config.LLM_CACHE_FILE) if config.LLM_CACHE_FILE else None
+
+
+def _cache_get(key: str) -> dict | None:
+    with _lock:
+        if not _cache and _disk() and _disk().exists():
+            try:
+                _cache.update({k: tuple(v) for k, v in json.loads(_disk().read_text()).items()})
+            except (OSError, ValueError):
+                pass
+        v = _cache.get(key)
+    if v and time.time() - v[0] < config.LLM_CACHE_TTL:
+        return v[1]
+    return None
+
+
+def _cache_put(key: str, value: dict) -> None:
+    with _lock:
+        _cache[key] = (time.time(), value)
+        d = _disk()
+        if d:
+            try:
+                d.parent.mkdir(parents=True, exist_ok=True)
+                fresh = {k: v for k, v in _cache.items() if time.time() - v[0] < config.LLM_CACHE_TTL}
+                d.write_text(json.dumps(fresh, default=str))
+            except OSError:
+                pass
 
 
 def _step(tool: str, note: str, ms: float = 0, **kw) -> dict:
     return dict(tool=tool, query=None, cypher=None, params=kw.pop("params", {}), ms=ms, rows=0, note=note, **kw)
 
 
-def _chat(messages: list[dict], tools: list[dict]) -> dict:
+def _chat(messages: list[dict], tools: list[dict] | None, max_tokens: int) -> tuple[dict, dict]:
+    body: dict[str, Any] = {"model": config.OPENAI_MODEL, "temperature": 0, "messages": messages,
+                            "max_tokens": max_tokens}
+    if tools:
+        body.update(tools=tools, tool_choice="auto")
     r = httpx.post(f"{config.LLM_BASE_URL.rstrip('/')}/chat/completions", timeout=config.LLM_TIMEOUT,
-                   headers={"Authorization": f"Bearer {config.OPENAI_API_KEY}"},
-                   json={"model": config.LLM_MODEL, "temperature": 0, "messages": messages, "tools": tools,
-                         "tool_choice": "auto"})
+                   headers={"Authorization": f"Bearer {config.OPENAI_API_KEY}"}, json=body)
     r.raise_for_status()
-    return r.json()["choices"][0]["message"]
+    data = r.json()
+    return data["choices"][0]["message"], data.get("usage") or {}
 
 
 def _run_llm(domain: Domain, text: str, **opts) -> dict:
@@ -69,13 +142,16 @@ def _run_llm(domain: Domain, text: str, **opts) -> dict:
     messages: list[dict[str, Any]] = [{"role": "system", "content": domain.system_prompt},
                                       {"role": "user", "content": text}]
     final = ""
+    total_tokens = 0
     for _ in range(MAX_STEPS):
         t = time.perf_counter()
-        msg = _chat(messages, domain.registry.openai_tools())
+        msg, usage = _chat(messages, domain.registry.openai_tools(), config.LLM_MAX_TOKENS_TOOLS)
         calls = msg.get("tool_calls") or []
-        trace.append(_step("llm", f"{config.LLM_MODEL} chose " + (", ".join(c["function"]["name"] for c in calls)
-                                                                   or "to answer"),
-                           ms=round((time.perf_counter() - t) * 1000, 2)))
+        tokens = usage.get("total_tokens", 0)
+        total_tokens += tokens
+        trace.append(_step("llm", f"{config.OPENAI_MODEL} chose " + (", ".join(c["function"]["name"] for c in calls)
+                                                                    or "to answer") + f" ({tokens} tokens)",
+                           ms=round((time.perf_counter() - t) * 1000, 2), llm_used=True, tokens=tokens))
         messages.append({k: v for k, v in msg.items() if k in ("role", "content", "tool_calls")})
         if not calls:
             final = (msg.get("content") or "").strip()
@@ -102,7 +178,8 @@ def _run_llm(domain: Domain, text: str, **opts) -> dict:
     r = dict(structured)
     r["trace"] = trace
     r["mode"] = "llm"
-    r["llm_model"] = config.LLM_MODEL
+    r["llm_model"] = config.OPENAI_MODEL
+    r["llm_tokens"] = total_tokens
     unverified = unverified_names(final, domain.allowed_names(r), domain.known_names()) if final else []
     r["llm_summary"] = final or None
     r["llm_unverified"] = unverified
@@ -145,11 +222,15 @@ def summarize(domain: Domain, response: dict) -> dict:
         "spof", "path", "fix")}), default=str)[:14000]
     msgs = [{"role": "system", "content": domain.summary_prompt},
             {"role": "user", "content": f"Graph result (JSON):\n{facts}"}]
+    key = _cache_key("summary", facts, {})
+    hit = _cache_get(key)
+    if hit is not None:
+        return {**hit, "cached": True}
     t = time.perf_counter()
-    r = httpx.post(f"{config.LLM_BASE_URL.rstrip('/')}/chat/completions", timeout=config.LLM_TIMEOUT,
-                   headers={"Authorization": f"Bearer {config.OPENAI_API_KEY}"},
-                   json={"model": config.LLM_MODEL, "temperature": 0.2, "messages": msgs})
-    r.raise_for_status()
-    text = r.json()["choices"][0]["message"]["content"].strip()
-    return {"summary": text, "model": config.LLM_MODEL, "ms": round((time.perf_counter() - t) * 1000, 2),
-            "unverified": unverified_names(text, domain.allowed_names(response), domain.known_names())}
+    msg, usage = _chat(msgs, None, config.LLM_MAX_TOKENS_SUMMARY)
+    text = (msg.get("content") or "").strip()
+    out = {"summary": text, "model": config.OPENAI_MODEL, "ms": round((time.perf_counter() - t) * 1000, 2),
+           "tokens": usage.get("total_tokens", 0),
+           "unverified": unverified_names(text, domain.allowed_names(response), domain.known_names())}
+    _cache_put(key, out)
+    return out

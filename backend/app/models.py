@@ -103,6 +103,7 @@ class AskResponse(Loose):
     llm_unverified: list[str] = []
     mode: Literal["llm", "deterministic"] = "deterministic"
     llm_model: str | None = None
+    llm_tokens: int | None = None
 
 
 class ErrorResponse(BaseModel):
@@ -121,4 +122,6 @@ class SummaryResponse(BaseModel):
     unverified: list[str] = []
     model: str | None = None
     ms: float | None = None
+    tokens: int | None = None
+    cached: bool = False
     error: str | None = None

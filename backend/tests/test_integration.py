@@ -24,7 +24,8 @@ def ask(q, **kw):
 
 
 def tools_run(d):
-    return [s["tool"] for s in d["trace"]]
+    """Tools that actually ran Cypher (agent/LLM notes excluded)."""
+    return [s["tool"] for s in d["trace"] if s.get("cypher")]
 
 
 @pytest.fixture

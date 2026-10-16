@@ -29,6 +29,11 @@ class FakeDomain:
                 "exposed": [{"service": "img-service", "findings": [{"package": "simple-swizzle",
                                                                      "path": {"via": ["img-service", "sharp@0.33.5"]}}]}]}
 
+    def confident(self, r):
+        return self.is_confident
+
+    is_confident = False
+
     def allowed_names(self, r):
         return {"img-service", "simple-swizzle", "sharp"}
 
@@ -47,7 +52,8 @@ def mock_openai(monkeypatch, replies):
 
     def fake_post(url, **kw):
         req = httpx.Request("POST", url)
-        return httpx.Response(200, json={"choices": [{"message": next(it)}]}, request=req)
+        return httpx.Response(200, json={"choices": [{"message": next(it)}], "usage": {"total_tokens": 42}},
+                              request=req)
 
     monkeypatch.setattr(agent.httpx, "post", fake_post)
 
@@ -63,7 +69,39 @@ def test_llm_picks_tool_and_answer_is_name_checked(llm_on, monkeypatch):
     assert r["mode"] == "llm"
     assert d.calls == [("qix", {"fresh": True, "session": "s"})]  # request ctx injected, not model-controlled
     assert r["llm_unverified"] == ["checkout-api"]  # named but not in the graph result: flagged
-    assert [t["tool"] for t in r["trace"]][:2] == ["llm", "exposure"]
+    tools = [t["tool"] for t in r["trace"]]
+    assert tools[:3] == ["agent", "llm", "exposure"]  # router not confident -> LLM -> tool
+    assert r["llm_tokens"] == 84 and any("42 tokens" in (t.get("note") or "") for t in r["trace"])
+
+
+def test_confident_router_never_calls_llm(llm_on, monkeypatch):
+    d = FakeDomain()
+    d.is_confident = True
+
+    def boom(*a, **k):
+        raise AssertionError("LLM must not be called")
+
+    monkeypatch.setattr(agent.httpx, "post", boom)
+    r = agent.run(d, "qix")
+    assert r["mode"] == "deterministic"
+    assert "LLM not used" in r["trace"][-1]["note"]
+
+
+def test_llm_answers_are_cached(llm_on, monkeypatch):
+    calls = []
+    replies = [{"role": "assistant", "content": "img-service is exposed."}]
+
+    def fake_post(url, **kw):
+        calls.append(kw["json"]["max_tokens"])
+        return httpx.Response(200, json={"choices": [{"message": replies[0]}], "usage": {"total_tokens": 10}},
+                              request=httpx.Request("POST", url))
+
+    monkeypatch.setattr(agent.httpx, "post", fake_post)
+    d = FakeDomain()
+    agent.run(d, "Which services?  ")
+    r = agent.run(d, "which services")
+    assert calls == [config.LLM_MAX_TOKENS_TOOLS]  # second ask served from cache, token cap sent
+    assert r["trace"][1]["note"].startswith("cached LLM answer")
 
 
 def test_llm_error_falls_back_to_deterministic(llm_on, monkeypatch):
@@ -73,7 +111,7 @@ def test_llm_error_falls_back_to_deterministic(llm_on, monkeypatch):
     monkeypatch.setattr(agent.httpx, "post", boom)
     r = agent.run(FakeDomain(), "qix")
     assert r["mode"] == "deterministic"
-    assert "deterministic fallback" in r["trace"][0]["note"]
+    assert any("deterministic fallback" in (t.get("note") or "") for t in r["trace"])
 
 
 def test_no_key_is_deterministic(monkeypatch):

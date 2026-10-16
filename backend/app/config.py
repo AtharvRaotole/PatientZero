@@ -24,9 +24,14 @@ CORS_ORIGINS = [o.strip() for o in os.getenv(
     "CORS_ORIGINS", "http://localhost:3001,http://127.0.0.1:3001,http://localhost:3000"
 ).split(",") if o.strip()]
 
-# Agent mode. auto: LLM tool calling when OPENAI_API_KEY is set, else the deterministic router.
+# Agent mode. auto: deterministic router first; the LLM (if OPENAI_API_KEY is set) is called only when the router
+# cannot classify the question confidently. deterministic: never call the LLM. llm: always use LLM tool calling.
 AGENT_MODE = os.getenv("AGENT_MODE", "auto").lower()  # auto | deterministic | llm
 OPENAI_API_KEY = os.getenv("OPENAI_API_KEY") or os.getenv("LLM_API_KEY") or ""
 LLM_BASE_URL = os.getenv("LLM_BASE_URL") or "https://api.openai.com/v1"
-LLM_MODEL = os.getenv("LLM_MODEL") or "gpt-4o-mini"
+OPENAI_MODEL = os.getenv("OPENAI_MODEL") or "gpt-4o-mini"
+LLM_MAX_TOKENS_TOOLS = int(os.getenv("LLM_MAX_TOKENS_TOOLS", "400"))
+LLM_MAX_TOKENS_SUMMARY = int(os.getenv("LLM_MAX_TOKENS_SUMMARY", "250"))
+LLM_CACHE_TTL = int(os.getenv("LLM_CACHE_TTL", "1800"))  # seconds
+LLM_CACHE_FILE = os.getenv("LLM_CACHE_FILE", str(ROOT / ".cache" / "llm_cache.json"))  # "" disables disk cache
 LLM_TIMEOUT = float(os.getenv("LLM_TIMEOUT", "20"))
