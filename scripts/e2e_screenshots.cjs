@@ -1,0 +1,184 @@
+// End-to-end browser check of the main journey + screenshots (headless Chrome via puppeteer-core).
+// Run: npm i puppeteer-core (anywhere) and
+//   NODE_PATH=<dir>/node_modules node scripts/e2e_screenshots.cjs
+// Env: APP_URL (http://localhost:3001), API_URL (http://localhost:8000), CHROME (/usr/bin/google-chrome)
+const puppeteer = require("puppeteer-core");
+const path = require("path");
+
+const APP = process.env.APP_URL || "http://localhost:3001";
+const API = process.env.API_URL || "http://localhost:8000";
+const OUT = path.join(__dirname, "..", "docs", "screenshots");
+const results = [];
+const errors = [];
+
+function check(name, ok, detail = "") {
+  results.push({ name, ok, detail });
+  console.log(`${ok ? "PASS" : "FAIL"}  ${name}${detail ? "  " + detail : ""}`);
+}
+
+async function waitOutcome(page, outcome, timeout = 15000) {
+  await page.waitForFunction((o) => document.body.innerText.includes(o), { timeout }, outcome);
+  await new Promise((r) => setTimeout(r, 1800)); // let the graph camera + animations settle
+}
+
+async function clickText(page, text, selector = "button") {
+  const ok = await page.evaluate((t, sel) => {
+    const b = [...document.querySelectorAll(sel)].find((x) => x.innerText.trim().startsWith(t));
+    if (b) b.click();
+    return !!b;
+  }, text, selector);
+  if (!ok) throw new Error(`button not found: ${text}`);
+}
+
+async function ask(page, q) {
+  await page.click("input[aria-label='Ask PatientZero']", { clickCount: 3 });
+  await page.type("input[aria-label='Ask PatientZero']", q);
+  await page.keyboard.press("Enter");
+}
+
+async function setDepth(page, d) {
+  await page.evaluate((v) => {
+    const el = document.querySelector("input[aria-label='depth']");
+    const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, "value").set;
+    setter.call(el, String(v));
+    el.dispatchEvent(new Event("input", { bubbles: true }));
+    el.dispatchEvent(new Event("change", { bubbles: true }));
+  }, d);
+}
+
+const exposedCount = (page) =>
+  page.evaluate(() => {
+    const m = document.body.innerText.match(/Exposed \((\d+)\)/);
+    return m ? Number(m[1]) : -1;
+  });
+
+(async () => {
+  await fetch(`${API}/api/memory/reset`, { method: "POST" });
+  const browser = await puppeteer.launch({
+    executablePath: process.env.CHROME || "/usr/bin/google-chrome",
+    headless: "new",
+    args: ["--no-sandbox", "--disable-dev-shm-usage", "--window-size=1600,1000"],
+    defaultViewport: { width: 1600, height: 1000, deviceScaleFactor: 1 },
+  });
+  const page = await browser.newPage();
+  page.on("console", (m) => m.type() === "error" && errors.push(m.text()));
+  page.on("pageerror", (e) => errors.push(String(e)));
+
+  await page.goto(APP, { waitUntil: "networkidle2", timeout: 60000 });
+  await page.waitForFunction(() => document.body.innerText.includes("versions"), { timeout: 30000 });
+  await new Promise((r) => setTimeout(r, 4000));
+  await page.screenshot({ path: `${OUT}/01-home-fleet-graph.png` });
+  check("home renders fleet graph + empty state", await page.evaluate(() => document.body.innerText.includes("Replay the qix compromise")));
+
+  // AC4: qix
+  await clickText(page, "maintainer qix was phished");
+  await waitOutcome(page, "answered_with_path");
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await new Promise((r) => setTimeout(r, 1500));
+  await page.screenshot({ path: `${OUT}/02-qix-blast-radius-graph.png` });
+  const n4 = await exposedCount(page);
+  check("AC4 qix answered_with_path, >=5 exposed", n4 >= 5, `exposed=${n4}`);
+  const traceOk = await page.evaluate(() => ["resolve_entity", "incident_scope", "exposure", "who_to_wake"].every((t) => document.body.innerText.includes(t)));
+  check("AC4 trace lists resolve_entity, incident_scope, exposure, who_to_wake", traceOk);
+  await page.evaluate(() => window.scrollTo(0, 700));
+  await new Promise((r) => setTimeout(r, 800));
+  await page.screenshot({ path: `${OUT}/03-qix-results-trace-wake.png` });
+
+  // AC5: depth 1 vs 4
+  await setDepth(page, 1);
+  await page.waitForFunction(() => document.body.innerText.includes("at depth 1"), { timeout: 15000 });
+  await new Promise((r) => setTimeout(r, 1500));
+  const n1 = await exposedCount(page);
+  const exposedNames = (pg) => pg.evaluate(() => [...document.querySelectorAll("button span.truncate")].map((x) => x.innerText));
+  const img1 = (await exposedNames(page)).includes("img-service");
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await page.screenshot({ path: `${OUT}/04-depth-1.png` });
+  await setDepth(page, 4);
+  await page.waitForFunction(() => document.body.innerText.includes("at depth 4"), { timeout: 15000 });
+  await new Promise((r) => setTimeout(r, 1500));
+  const n4b = await exposedCount(page);
+  const img4 = (await exposedNames(page)).includes("img-service");
+  check("AC5 depth 4 > depth 1, img-service only at depth >= 3", n4b > n1 && !img1 && img4, `depth1=${n1} depth4=${n4b}`);
+
+  // AC9: generate fix
+  await clickText(page, "Generate fix");
+  await page.waitForFunction(() => document.body.innerText.includes("EXPOSED edges written"), { timeout: 20000 });
+  await new Promise((r) => setTimeout(r, 1200));
+  await page.evaluate(() => {
+    const el = [...document.querySelectorAll("h3")].find((h) => h.innerText === "Remediation");
+    el && el.scrollIntoView({ block: "start" });
+  });
+  await new Promise((r) => setTimeout(r, 600));
+  await page.screenshot({ path: `${OUT}/05-generate-fix.png` });
+  const fixOk = await page.evaluate(() => document.body.innerText.includes('"debug": "4.4.3"'));
+  check("AC9 overrides JSON with clean versions + incident written", fixOk);
+
+  // AC6: debug@4.4.2 honest negative (fresh session to avoid memory: use the Run fresh button if recalled)
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await ask(page, "debug@4.4.2");
+  await page.waitForFunction(() => /answered_(with_path|from_memory)/.test(document.body.innerText), { timeout: 15000 });
+  if (await page.evaluate(() => document.body.innerText.includes("Run a fresh traversal"))) {
+    await clickText(page, "Run a fresh traversal");
+    await waitOutcome(page, "Not exposed, with reason");
+  }
+  await clickText(page, "Not exposed, with reason");
+  await new Promise((r) => setTimeout(r, 800));
+  const ac6 = await page.evaluate(() => document.body.innerText.includes("debug 2.6.9 (exact) does not satisfy 4.4.2"));
+  check("AC6 checkout-api safe with reason", ac6);
+  await page.evaluate(() => window.scrollTo(0, 650));
+  await new Promise((r) => setTimeout(r, 600));
+  await page.screenshot({ path: `${OUT}/06-debug-honest-negatives.png` });
+
+  // AC10 (memory, new session)
+  const p2 = await browser.newPage();
+  p2.on("pageerror", (e) => errors.push(String(e)));
+  await p2.goto(APP, { waitUntil: "networkidle2" });
+  await p2.waitForFunction(() => document.body.innerText.includes("versions"), { timeout: 30000 });
+  await ask(p2, "qix");
+  await waitOutcome(p2, "answered_from_memory");
+  check("AC10 new session: qix answered_from_memory", true);
+  await p2.screenshot({ path: `${OUT}/07-memory-recall.png`, fullPage: true });
+
+  // AC11 SPOF
+  await ask(p2, "who is our single point of failure?");
+  await waitOutcome(p2, "Single points of failure");
+  check("AC11 SPOF ranking shown", await p2.evaluate(() => document.body.innerText.includes("qix")));
+  await p2.evaluate(() => window.scrollTo(0, 650));
+  await new Promise((r) => setTimeout(r, 900));
+  await p2.screenshot({ path: `${OUT}/08-single-point-of-failure.png` });
+
+  // AC12 path
+  await p2.evaluate(() => window.scrollTo(0, 0));
+  await ask(p2, "why is img-service connected to is-arrayish?");
+  await waitOutcome(p2, "Shortest path via algo.SPpaths");
+  await p2.screenshot({ path: `${OUT}/09-path-between.png` });
+  check("AC12 path_between drawn", await p2.evaluate(() => document.body.innerText.includes("simple-swizzle")));
+
+  // AC7 unknown
+  await ask(p2, "left-pad@1.3.0");
+  await waitOutcome(p2, "unknown_entity");
+  await p2.evaluate(() => window.scrollTo(0, 650));
+  await new Promise((r) => setTimeout(r, 600));
+  await p2.screenshot({ path: `${OUT}/10-unknown-entity.png` });
+  check("AC7 unknown_entity", true);
+
+  // AC8 not_in_graph
+  await p2.evaluate(() => window.scrollTo(0, 0));
+  await ask(p2, "ansi-regex@6.2.1");
+  await p2.waitForFunction(() => /answered_from_memory|not_in_graph/.test(document.body.innerText), { timeout: 15000 });
+  if (await p2.evaluate(() => document.body.innerText.includes("Run a fresh traversal"))) {
+    await clickText(p2, "Run a fresh traversal"); // the qix incident in memory covers ansi-regex; re-traverse
+  }
+  await waitOutcome(p2, "No fleet path admits this version at depth 4");
+  check("AC8 not_in_graph sentence", true);
+
+  check("no browser console errors", errors.length === 0, errors.slice(0, 3).join(" | "));
+  await browser.close();
+  await fetch(`${API}/api/memory/reset`, { method: "POST" });
+  const failed = results.filter((r) => !r.ok);
+  console.log(`\n${results.length - failed.length}/${results.length} browser checks passed`);
+  process.exit(failed.length ? 1 : 0);
+})().catch((e) => {
+  console.error("E2E ERROR", e);
+  process.exit(2);
+});
