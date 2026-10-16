@@ -15,8 +15,11 @@ receive nothing from each other except an AgentRun id. Zero LLM calls.
 from __future__ import annotations
 
 import asyncio
+import concurrent.futures
+import contextvars
 import itertools
 import json
+import os
 import re
 import time
 import uuid
@@ -41,6 +44,17 @@ Emit = Callable[[str, dict], None]
 
 class NoIncident(Exception):
     """Triage could not anchor the question on an incident (unknown entity or nothing recorded)."""
+
+
+# Crew work runs on its own bounded pool, so a burst of runs (which keep going after their client leaves) cannot
+# starve the default executor that other async routes use.
+_POOL = concurrent.futures.ThreadPoolExecutor(max_workers=int(os.getenv("CREW_THREADS", "16")), thread_name_prefix="crew")
+
+
+async def _bg(fn, *args):
+    """asyncio.to_thread on the crew pool (the request context, e.g. the tenant, carries over)."""
+    ctx = contextvars.copy_context()
+    return await asyncio.get_running_loop().run_in_executor(_POOL, lambda: ctx.run(fn, *args))
 
 
 def _ms(t0: float) -> float:
@@ -386,7 +400,33 @@ class Crew:
 
     # ------------------------------------------------------------------ orchestration
     async def run(self) -> dict:
+        """Orchestrate the four agents. Every graph call runs in a worker thread: a blocking FalkorDB call on the
+        event loop (a write waiting behind other writes, a busy retry) would freeze every other request and stream."""
         tenants.set_current(self.tenant)
+        await _bg(self._start)
+        status, message = "done", ""
+        try:
+            st = await _bg(self._run_agent, "triage", self.triage)
+            if st != "done":
+                status, message = "no_incident", self._summary("triage")
+            else:
+                await _bg(self._fan_out)
+                await asyncio.gather(_bg(self._branch, "investigator", self.investigator,
+                                                       "paths and negatives ready: order the fix"),
+                                     _bg(self._branch, "responder", self.responder,
+                                                       "owners and page drafts ready: attach the patch"))
+                await _bg(self._run_agent, "fixer", self.fixer)
+                message = self._summary("triage")
+        except Exception as e:  # noqa: BLE001
+            status, message = "error", f"{type(e).__name__}: {e}"
+            self.emit("error", {"message": message})
+        await _bg(self._finish, status, message)
+        result = await _bg(get_run, self.run_id, self.tenant)
+        result["trace"] = self.trace
+        self.emit("done", result)
+        return result
+
+    def _start(self) -> None:
         tr = self._tr()
         tr.run("crew", "crew_create_run", dict(
             id=self.run_id, query=self.query[:500], tenant=self.tenant, depth=self.depth,
@@ -398,34 +438,19 @@ class Crew:
                           "agents": [{"agent": a, "title": TITLES[a], "role": ROLES[a],
                                       "agent_run_id": self.agent_ids[a]} for a in AGENTS],
                           "dag": [list(e) for e in DAG]})
-        status, message = "done", ""
-        try:
-            st = await asyncio.to_thread(self._run_agent, "triage", self.triage)
-            if st != "done":
-                status, message = "no_incident", self._summary("triage")
-            else:
-                tr = self._tr()
-                self.handoff(tr, "triage", "investigator", "blast radius ready: explain the paths")
-                self.handoff(tr, "triage", "responder", "exposed services ready: decide who to wake")
-                self._keep(tr, "crew")
-                await asyncio.gather(asyncio.to_thread(self._branch, "investigator", self.investigator,
-                                                       "paths and negatives ready: order the fix"),
-                                     asyncio.to_thread(self._branch, "responder", self.responder,
-                                                       "owners and page drafts ready: attach the patch"))
-                await asyncio.to_thread(self._run_agent, "fixer", self.fixer)
-                message = self._summary("triage")
-        except Exception as e:  # noqa: BLE001
-            status, message = "error", f"{type(e).__name__}: {e}"
-            self.emit("error", {"message": message})
+
+    def _fan_out(self) -> None:
+        tr = self._tr()
+        self.handoff(tr, "triage", "investigator", "blast radius ready: explain the paths")
+        self.handoff(tr, "triage", "responder", "exposed services ready: decide who to wake")
+        self._keep(tr, "crew")
+
+    def _finish(self, status: str, message: str) -> None:
         tr = self._tr()
         tr.run("crew", "crew_finish", dict(id=self.run_id, status=status, finished=tools.now_iso(),
                                            ms=_ms(self.t0), incident=self.incident_id, message=message[:600]),
                write=True)
         self._keep(tr, "crew")
-        result = await asyncio.to_thread(get_run, self.run_id, self.tenant)
-        result["trace"] = self.trace
-        self.emit("done", result)
-        return result
 
     def _branch(self, agent: str, fn, reason: str) -> None:
         self._run_agent(agent, fn)

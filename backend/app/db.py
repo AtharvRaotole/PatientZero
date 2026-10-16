@@ -1,6 +1,7 @@
 """FalkorDB access + the parameterised Cypher catalogue + the tool trace."""
 from __future__ import annotations
 
+import os
 import re
 import time
 from dataclasses import dataclass, field
@@ -64,20 +65,36 @@ def with_busy_retry(fn):
 _db: FalkorDB | None = None
 
 
+POOL_MAX = int(os.getenv("FALKORDB_POOL_MAX", "64"))      # connections per process (FalkorDB queues the rest)
+POOL_WAIT_S = float(os.getenv("FALKORDB_POOL_WAIT_S", "5"))  # wait for a free connection, then GraphUnavailable
+
+
 def client() -> FalkorDB:
+    """One bounded, blocking connection pool per process: a burst never opens unbounded sockets, a caller waits
+    up to POOL_WAIT_S for a free connection, and every socket has connect and read timeouts."""
     global _db
-    if _db is None and config.FALKORDB_URL:
-        _db = FalkorDB.from_url(config.FALKORDB_URL)
-    if _db is None:
-        kw: dict[str, Any] = dict(host=config.FALKORDB_HOST, port=config.FALKORDB_PORT,
-                                  socket_timeout=5, socket_connect_timeout=2)
+    if _db is not None:
+        return _db
+    import redis
+    common = dict(decode_responses=True, max_connections=POOL_MAX, timeout=POOL_WAIT_S,
+                  socket_timeout=5, socket_connect_timeout=2)
+    if config.FALKORDB_URL:
+        url = config.FALKORDB_URL
+        if url.startswith("falkor://"):
+            url = "redis://" + url[len("falkor://"):]
+        elif url.startswith("falkors://"):
+            url = "rediss://" + url[len("falkors://"):]
+        pool = redis.BlockingConnectionPool.from_url(url, **common)
+    else:
+        kw: dict[str, Any] = dict(host=config.FALKORDB_HOST, port=config.FALKORDB_PORT, **common)
         if config.FALKORDB_USERNAME:
             kw["username"] = config.FALKORDB_USERNAME
         if config.FALKORDB_PASSWORD:
             kw["password"] = config.FALKORDB_PASSWORD
         if config.FALKORDB_SSL:
-            kw["ssl"] = True
-        _db = FalkorDB(**kw)
+            kw["connection_class"] = redis.SSLConnection
+        pool = redis.BlockingConnectionPool(**kw)
+    _db = FalkorDB(connection_pool=pool)
     return _db
 
 

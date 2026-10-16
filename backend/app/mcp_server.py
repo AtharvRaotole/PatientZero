@@ -78,9 +78,15 @@ async def crew_run(query: str, depth: int = 4, tenant: str | None = None, sessio
         with tenants.use(t):
             return sessions.resolve_followup(sid, query, int(depth))
     q, d, fu = await asyncio.to_thread(_prep)
-    crew = Crew(q, d or int(depth), t, sid)
-    result = await crew.run()
-    await asyncio.to_thread(_record, crew, result, sid, query, fu)
+    from .crew.api import RUNS
+    if RUNS.acquire("mcp"):
+        raise RuntimeError("too many crew runs in progress, retry shortly")
+    try:
+        crew = Crew(q, d or int(depth), t, sid)
+        result = await crew.run()
+        await asyncio.to_thread(_record, crew, result, sid, query, fu)
+    finally:
+        RUNS.release("mcp")
     result.pop("trace", None)
     result.pop("replay_trace", None)
     return result

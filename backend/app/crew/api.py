@@ -4,7 +4,9 @@ POST /api/crew/run        {query, depth?, session_id?, tenant?}   text/event-str
                           request sends `Accept: application/json` or `?stream=false`.
 GET  /api/crew/{run_id}   replay a finished run from the graph.
 GET  /api/crew            recent runs in the tenant.
-Rate limit: CREW_PER_IP_PER_MIN (default 6) runs per client IP per minute. Deterministic: zero LLM calls.
+Rate limit: CREW_PER_IP_PER_MIN (default 6) runs per client IP per minute; at most CREW_MAX_CONCURRENT (6) runs at
+once, CREW_MAX_CONCURRENT_PER_IP (2) per client (429/503 beyond). Streams send `: ping` every 15 s while waiting.
+Deterministic: zero LLM calls.
 """
 from __future__ import annotations
 
@@ -20,10 +22,14 @@ from pydantic import BaseModel, Field
 from .. import config, sessions, tenants
 from ..byo.ratelimit import RateLimiter, client_ip
 from ..db import GraphUnavailable
+from ..streamguard import Slots
 from .engine import RUN_RE, Crew, get_run
 
 router = APIRouter(tags=["crew"])
 limiter = RateLimiter(int(os.getenv("CREW_PER_IP_PER_MIN", "6")), 60.0)
+# Runs keep going (and writing) after the client disconnects, so concurrency is capped on the run, not the stream.
+RUNS = Slots("crew", int(os.getenv("CREW_MAX_CONCURRENT", "6")), int(os.getenv("CREW_MAX_CONCURRENT_PER_IP", "2")))
+PING_S = float(os.getenv("CREW_PING_S", "15"))
 
 
 class CrewRequest(BaseModel):
@@ -75,15 +81,28 @@ def _record(crew: Crew, result: dict, sid: str | None, original: str, fu: dict |
         result["session"]["followup"] = {k: v for k, v in (fu or {}).items() if k != "trace"} or None
 
 
+def busy_response(why: str) -> JSONResponse:
+    return JSONResponse(status_code=503 if why == "global" else 429, headers={"Retry-After": "15"},
+                        content={"error": "crew_busy", "scope": why, "detail": "too many crew runs in progress"
+                                 + (" from this client" if why == "per_client" else "") + ", retry shortly"})
+
+
 @router.post("/api/crew/run")
 async def crew_run(req: CrewRequest, request: Request, stream: bool = True):
+    ip = client_ip(request)
     tenant, sid, q, depth, fu = await asyncio.to_thread(_prepare, req, request)
+    why = RUNS.acquire(ip)
+    if why:
+        return busy_response(why)
     depth = depth or config.DEFAULT_DEPTH
     wants_json = (not stream) or "application/json" in request.headers.get("accept", "")
     if wants_json:
-        crew = Crew(q, depth, tenant, sid)
-        result = await crew.run()
-        await asyncio.to_thread(_record, crew, result, sid, req.query, fu)
+        try:
+            crew = Crew(q, depth, tenant, sid)
+            result = await crew.run()
+            await asyncio.to_thread(_record, crew, result, sid, req.query, fu)
+        finally:
+            RUNS.release(ip)
         return JSONResponse(json.loads(json.dumps(result, default=str)))
 
     loop = asyncio.get_running_loop()
@@ -104,23 +123,32 @@ async def crew_run(req: CrewRequest, request: Request, stream: bool = True):
         except Exception as e:  # noqa: BLE001
             emit("error", {"run_id": crew.run_id, "message": f"{type(e).__name__}: {e}"})
         finally:
+            RUNS.release(ip)
             emit("__end__", {})
 
     task = asyncio.create_task(work())  # keeps running (and writing consistently) even if the client leaves
+    _TASKS.add(task)
+    task.add_done_callback(_TASKS.discard)
 
     async def gen():
         if fu:
             yield _sse("followup", {k: v for k, v in fu.items() if k != "trace"})
         while True:
-            event, data = await queue.get()
+            try:
+                event, data = await asyncio.wait_for(queue.get(), timeout=PING_S)
+            except asyncio.TimeoutError:
+                yield b": ping\n\n"  # heartbeat: keeps proxies from cutting a quiet stream, surfaces dead clients
+                continue
             if event == "__end__":
                 break
             yield _sse(event, data)
-        await task
 
     return StreamingResponse(gen(), media_type="text/event-stream",
                              headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no",
                                       "X-Crew-Run": crew.run_id})
+
+
+_TASKS: set[asyncio.Task] = set()  # strong refs so a detached run is never garbage collected mid-flight
 
 
 @router.get("/api/crew")

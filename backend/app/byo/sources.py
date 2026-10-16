@@ -58,8 +58,19 @@ def parse_github_url(url: str) -> tuple[str, str, str | None]:
     return m.group("owner"), repo, ref
 
 
+ALLOWED_HOSTS = {"raw.githubusercontent.com", "api.deps.dev"}  # every outbound BYO request, redirects included
+MAX_DEPSDEV = 5_000_000             # bytes per deps.dev response
+
+
+def _only_allowed_hosts(request: httpx.Request) -> None:
+    """SSRF guard: user input only ever picks a path on these two HTTPS hosts; a redirect elsewhere is refused."""
+    if request.url.scheme != "https" or request.url.host not in ALLOWED_HOSTS:
+        raise ByoError(502, "blocked_host", f"refused to fetch from {request.url.host or 'an unknown host'}")
+
+
 def _client() -> httpx.Client:
-    return httpx.Client(timeout=HTTP_TIMEOUT, headers=UA, follow_redirects=True)
+    return httpx.Client(timeout=HTTP_TIMEOUT, headers=UA, follow_redirects=True, max_redirects=3,
+                        event_hooks={"request": [_only_allowed_hosts]})
 
 
 def _fresh(p: Path, ttl: float) -> bool:
@@ -171,12 +182,17 @@ def _cached_json(paths: list[Path], write: Path, url: str, c: httpx.Client, ttl:
         if p.exists() and (ttl is None or _fresh(p, ttl)):
             return json.loads(p.read_text())
     try:
-        r = c.get(url)
-        if r.status_code == 404:
-            data = {"_status": 404}
-        else:
-            r.raise_for_status()
-            data = r.json()
+        with c.stream("GET", url) as r:
+            if r.status_code == 404:
+                data = {"_status": 404}
+            else:
+                r.raise_for_status()
+                buf = bytearray()
+                for chunk in r.iter_bytes():
+                    buf.extend(chunk)
+                    if len(buf) > MAX_DEPSDEV:
+                        raise ByoError(413, "upstream_too_large", "a deps.dev response exceeded 5 MB")
+                data = json.loads(buf)
     except httpx.HTTPError:
         for p in paths:  # network trouble: a stale cache entry beats failing the scan
             if p.exists():

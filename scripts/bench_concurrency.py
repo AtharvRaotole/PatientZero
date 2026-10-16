@@ -19,6 +19,7 @@ from __future__ import annotations
 import argparse
 import asyncio
 import json
+import os
 import random
 import sys
 import time
@@ -53,7 +54,10 @@ async def http_bench(url: str, clients: int, duration: float, seed: int | None) 
     samples: list[str] = []
     rnd = random.Random(seed)
     limits = httpx.Limits(max_connections=clients, max_keepalive_connections=clients)
-    async with httpx.AsyncClient(timeout=30, limits=limits, headers={"User-Agent": "PatientZero-bench/1.0"}) as c:
+    hdrs = {"User-Agent": "PatientZero-bench/1.0"}
+    if os.getenv("ADMIN_TOKEN"):  # the per-IP ask rate limit exempts the admin token (never printed)
+        hdrs["X-Admin-Token"] = os.environ["ADMIN_TOKEN"]
+    async with httpx.AsyncClient(timeout=30, limits=limits, headers=hdrs) as c:
         h = await c.get(url + "/health")
         health = h.json() if h.status_code == 200 else {"status": h.status_code}
         stop = time.perf_counter() + duration

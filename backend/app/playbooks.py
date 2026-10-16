@@ -11,11 +11,12 @@ import uuid
 from datetime import datetime, timezone
 from typing import Any
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Query
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 
 from .admin import require_admin
+from .ratelimits import approve_limit
 from .db import Trace
 from .tools import spec_package
 
@@ -136,7 +137,7 @@ def _err(status: int, code: str, message: str) -> JSONResponse:
     return JSONResponse(status_code=status, content={"error": code, "message": message})
 
 
-@router.post("/api/incidents/{incident_id}/approve")
+@router.post("/api/incidents/{incident_id}/approve", dependencies=[Depends(approve_limit)])
 def api_approve(incident_id: str, req: ApproveRequest | None = None) -> Any:
     if not ID_RE.match(incident_id):
         return _err(400, "bad_request", "invalid incident id")
@@ -158,7 +159,7 @@ def api_playbooks(limit: int = 50) -> dict[str, Any]:
 
 
 @router.get("/api/playbooks/match")
-def api_playbooks_match(packages: str) -> dict[str, Any]:
+def api_playbooks_match(packages: str = Query(..., max_length=4000)) -> dict[str, Any]:
     pk = [p.strip() for p in packages.split(",") if p.strip()][:100]
     tr = Trace()
     return {"packages": pk, "playbooks": matching(tr, pk), "trace": tr.steps}

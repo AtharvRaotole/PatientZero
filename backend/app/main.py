@@ -1,7 +1,9 @@
 """PatientZero API: FastAPI over FalkorDB. Every answer comes from queries/*.cypher run against the graph."""
 from __future__ import annotations
 
+import contextlib
 import logging
+import os
 from typing import Any
 
 from fastapi import Depends, FastAPI, HTTPException, Request
@@ -9,6 +11,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
 from . import admin, catalog, config, db, sessions, tenants, tools
+from .ratelimits import ask_limit
 from .core import agent
 from .domains.patientzero import DOMAIN
 from .mcp_agent import wrap_domain
@@ -16,12 +19,23 @@ from .db import GraphUnavailable, Trace
 from .models import AskRequest, AskResponse, ErrorResponse, FixRequest, SummaryRequest, SummaryResponse
 
 log = logging.getLogger("patientzero")
-app = FastAPI(title="PatientZero API", version="1.0.0",
+@contextlib.asynccontextmanager
+async def _lifespan(_app):
+    """Sync routes run on AnyIO's worker threads (40 by default). Size it to the DB pool so slow traversals under a
+    burst cannot leave /health and quick reads queued behind them; the DB pool bounds real concurrency."""
+    import anyio.to_thread
+    anyio.to_thread.current_default_thread_limiter().total_tokens = int(os.getenv("API_THREADS", "64"))
+    yield
+
+
+app = FastAPI(title="PatientZero API", version="1.0.0", lifespan=_lifespan,
               description="Supply-chain incident agent on FalkorDB. Deterministic tools, no generated Cypher.")
 app.add_middleware(tenants.TenantMiddleware)  # ?tenant= or X-Tenant, validated against the allowlist (inner)
 app.add_middleware(CORSMiddleware, allow_origins=config.CORS_ORIGINS, allow_origin_regex=config.CORS_ORIGIN_REGEX,
-                   allow_credentials=True,
-                   allow_methods=["*"], allow_headers=["*"])
+                   allow_credentials=False,  # no cookies: the admin token is an explicit header
+                   allow_methods=["GET", "POST", "DELETE", "OPTIONS"],
+                   allow_headers=["Content-Type", "Accept", "X-Tenant", "X-Admin-Token", "Last-Event-ID"],
+                   expose_headers=["X-Crew-Run", "Retry-After"])
 
 # The agent selects and runs its tools through our own MCP server (MCP_AGENT=off for direct calls).
 AGENT_DOMAIN = wrap_domain(DOMAIN)
@@ -104,13 +118,15 @@ def _ask(query: str, depth: int | None, fresh: bool, session: str, fix: bool, mo
     return AskResponse.model_validate(r)
 
 
-@app.post("/api/ask", response_model=AskResponse, responses={503: {"model": ErrorResponse}})
+@app.post("/api/ask", response_model=AskResponse, responses={503: {"model": ErrorResponse}},
+          dependencies=[Depends(ask_limit)])
 def api_ask(req: AskRequest, request: Request) -> AskResponse:
     return _ask(req.query, req.depth, req.fresh, req.session, False, req.mode, client_ip(request),
                 req.session_id, req.tenant)
 
 
-@app.post("/api/fix", response_model=AskResponse, responses={503: {"model": ErrorResponse}})
+@app.post("/api/fix", response_model=AskResponse, responses={503: {"model": ErrorResponse}},
+          dependencies=[Depends(ask_limit)])
 def api_fix(req: FixRequest) -> AskResponse:
     """Generate fix: re-runs the investigation, builds overrides + drafts, writes the Incident to the graph."""
     r = _ask(req.query, req.depth, True, req.session, True, session_id=req.session_id, tenant=req.tenant)
@@ -128,7 +144,7 @@ def api_tenants() -> dict[str, Any]:
             "tenants": [{**t, "loaded": bool(loaded.get(t["id"]))} for t in tenants.listing()]}
 
 
-@app.post("/api/summary", response_model=SummaryResponse)
+@app.post("/api/summary", response_model=SummaryResponse, dependencies=[Depends(ask_limit)])
 def api_summary(req: SummaryRequest, request: Request) -> SummaryResponse:
     """Optional AI incident summary (one paragraph) of the deterministic result, name-checked against it."""
     if req.tenant:
@@ -181,6 +197,8 @@ def api_timeline() -> dict[str, Any]:
 
 @app.get("/api/incidents/{incident_id}/check")
 def api_incident_check(incident_id: str) -> dict[str, Any]:
+    if len(incident_id) > 80:
+        raise ValueError("invalid incident id")
     tr = Trace()
     rows = tr.run("recall", "incident_exposed_count", {"id": incident_id})
     return {"id": incident_id, "exposed_edges": rows[0]["exposed_edges"] if rows else 0}
@@ -202,11 +220,14 @@ def api_tools() -> dict[str, Any]:
             "queries": {k: v["file"] for k, v in db.CATALOGUE.items()}}
 
 
-@app.post("/api/tools/{name}")
+@app.post("/api/tools/{name}", dependencies=[Depends(ask_limit)])
 def api_tool(name: str, args: dict[str, Any]) -> dict[str, Any]:
     fn = catalog.TOOLS.get(name)
     if not fn:
-        raise HTTPException(status_code=404, detail=f"unknown tool '{name}'")
+        raise HTTPException(status_code=404, detail=f"unknown tool '{name[:40]}'")
+    if len(args) > 10 or any(isinstance(v, str) and len(v) > 500 or isinstance(v, (list, dict)) and len(v) > 100
+                             for v in args.values()):
+        raise ValueError("tool arguments too large (max 10 arguments, strings up to 500 characters, lists up to 100)")
     try:
         return fn(**args)
     except TypeError as e:
@@ -250,3 +271,4 @@ try:
     _watch_core.start_background()
 except Exception as _e:  # noqa: BLE001
     log.warning("watch loop not started: %s", _e)
+
