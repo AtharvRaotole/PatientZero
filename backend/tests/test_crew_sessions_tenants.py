@@ -356,6 +356,17 @@ def test_session_validation():
     assert client.get(f"/api/sessions/{sid()}").status_code == 404
 
 
+
+def test_session_missing_ok_probe():
+    s = sid()
+    r = client.get(f"/api/sessions/{s}", params={"tenant": "acme", "missing_ok": 1})
+    assert r.status_code == 200
+    body = r.json()
+    assert body["exists"] is False and body["history"] == [] and body["id"] == s
+    assert client.post("/api/ask", json={"query": "qix", "session_id": s, "tenant": "acme"}).status_code == 200
+    h = client.get(f"/api/sessions/{s}", params={"tenant": "acme", "missing_ok": 1}).json()
+    assert h.get("exists", True) is not False and len(h["history"]) >= 1
+
 def test_crew_turn_feeds_followups():
     s = sid()
     run = crew(SHAI, "globex", session_id=s)

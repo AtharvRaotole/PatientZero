@@ -55,15 +55,39 @@ export async function handle<T>(res: Response): Promise<T> {
   throw new ApiError(msg, res.status, kind);
 }
 
-export async function apiGet<T>(path: string, tenant: string = getTenant()): Promise<T> {
-  let res: Response;
-  try {
-    res = await fetch(`${API_URL}${withTenant(path, tenant)}`, { cache: "no-store", headers: { "X-Tenant": tenant } });
-  } catch {
-    throw new ApiError(`API unreachable at ${API_URL}. Is the backend running?`, 0, "network");
+export type GetOptions = { timeoutMs?: number; retries?: number };
+
+/** GET with an optional per-attempt timeout and retries. A retry only follows a timeout, a network error or a 5xx
+ *  other than database_unavailable (a real outage is reported at once, not hidden behind a second wait). */
+export async function apiGet<T>(path: string, tenant: string = getTenant(), opts: GetOptions = {}): Promise<T> {
+  const { timeoutMs, retries = 0 } = opts;
+  for (let attempt = 0; ; attempt++) {
+    const last = attempt >= retries;
+    const ctl = timeoutMs ? new AbortController() : null;
+    const timer = ctl ? setTimeout(() => ctl.abort(), timeoutMs) : null;
+    let res: Response;
+    try {
+      res = await fetch(`${API_URL}${withTenant(path, tenant)}`, { cache: "no-store", headers: { "X-Tenant": tenant }, signal: ctl?.signal });
+    } catch {
+      if (timer) clearTimeout(timer);
+      if (!last) continue;
+      if (ctl?.signal.aborted) throw new ApiError(`The API did not answer within ${Math.round((timeoutMs ?? 0) / 1000)} s`, 0, "timeout");
+      throw new ApiError(`API unreachable at ${API_URL}. Is the backend running?`, 0, "network");
+    }
+    try {
+      return await handle<T>(res);
+    } catch (e) {
+      const ae = e as ApiError;
+      if (!last && ae.status >= 500 && !isDbDown(ae.kind)) continue;
+      throw e;
+    } finally {
+      if (timer) clearTimeout(timer);
+    }
   }
-  return handle<T>(res);
 }
+
+/** Startup loads (health, fleet graph, incidents): about 8 s per attempt, one retry. */
+export const LOAD_OPTS: GetOptions = { timeoutMs: 8000, retries: 1 };
 
 export async function apiPost<T>(path: string, body: unknown, signal?: AbortSignal): Promise<T> {
   let res: Response;

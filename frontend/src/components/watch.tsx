@@ -19,11 +19,16 @@ const fmtMs = (ms: number) => (ms >= 1000 ? `${(ms / 1000).toFixed(1)} s` : `${m
 const nf = new Intl.NumberFormat("en-US");
 const day = (s: string) => new Date(s).toLocaleDateString([], { month: "short", day: "numeric", year: "numeric" });
 
-function ago(ts: string, now: number) {
+function ago(ts: string | number, now: number) {
   const s = Math.max(0, Math.round((now - new Date(ts).getTime()) / 1000));
-  if (s < 60) return `${s}s ago`;
-  if (s < 3600) return `${Math.round(s / 60)} min ago`;
-  return `${Math.round(s / 3600)} h ago`;
+  if (s < 60) return "just now";
+  if (s < 3600) return `${Math.floor(s / 60)}m ago`;
+  if (s < 86400) return `${Math.floor(s / 3600)}h ago`;
+  return `${Math.floor(s / 86400)}d ago`;
+}
+function until(ts: number, now: number) {
+  const m = Math.max(0, Math.round((ts - now) / 60000));
+  return m < 1 ? "in under a minute" : `in ${m}m`;
 }
 
 function VerdictChip({ e }: { e: Pick<WatchEvent, "verdict" | "exposed_count" | "fleet_size"> }) {
@@ -153,13 +158,13 @@ export function LiveWatch({ tenant, tenants }: { tenant: string; tenants: Tenant
               </span>
               <span className="h-3 w-px bg-line" />
               <span className="inline-flex items-center gap-1.5"><Radar className="h-3.5 w-3.5" />OSV npm index, every {Math.round((feed.loop?.interval_s ?? 600) / 60)} min</span>
-              {lastPoll && <><span className="h-3 w-px bg-line" /><span data-testid="watch-last-poll" title={lastPoll.note}>Last poll {clock(lastPoll.ts)} ({ago(lastPoll.ts, now)}), {fmtMs(lastPoll.ms)}</span></>}
-              {feed.loop?.enabled && feed.loop.next_at && <><span className="h-3 w-px bg-line" /><span>Next {clock(feed.loop.next_at * 1000)}</span></>}
+              {lastPoll && <><span className="h-3 w-px bg-line" /><span data-testid="watch-last-poll" title={`${clock(lastPoll.ts)}${lastPoll.note ? `. ${lastPoll.note}` : ""}`}>Last poll {ago(lastPoll.ts, now)}, {fmtMs(lastPoll.ms)}</span></>}
+              {feed.loop?.enabled && feed.loop.next_at && <><span className="h-3 w-px bg-line" /><span title={clock(feed.loop.next_at * 1000)}>Next poll {until(feed.loop.next_at * 1000, now)}</span></>}
               {feed.running && <span className="inline-flex items-center gap-1 text-ink-2"><Loader2 className="h-3 w-3 animate-spin" />Polling</span>}
             </div>
             <p className="mt-3 text-[20px] font-semibold leading-snug tracking-[-0.015em] text-ink" data-testid="watch-headline">
               {lastChecked
-                ? <>Checked {nf.format(lastChecked.n)} npm malware advisories first seen by the watch in {fmtMs(lastChecked.ms)}{lastChecked.what}<span className="font-normal text-ink-3">, {stamp(lastChecked.ts)}</span></>
+                ? <>Checked {nf.format(lastChecked.n)} npm malware advisories first seen by the watch in {fmtMs(lastChecked.ms)}{lastChecked.what}<span className="font-normal text-ink-3" title={stamp(lastChecked.ts)} data-testid="watch-checked-age">, {ago(lastChecked.ts, now)}</span></>
                 : <>Watching OSV for npm malware advisories.</>}
             </p>
             {lastChecked?.from && lastChecked.to && (

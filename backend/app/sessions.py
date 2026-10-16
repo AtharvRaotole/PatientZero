@@ -200,12 +200,14 @@ def record(sid: str, *, query: str, resolved: str, r: dict, kind: str = "ask", c
 
 
 @api.get("/api/sessions/{session_id}")
-def api_session(session_id: str, limit: int = 50) -> dict[str, Any]:
+def api_session(session_id: str, limit: int = 50, missing_ok: bool = False) -> dict[str, Any]:
     try:
         sid = validate(session_id)
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e)) from e
     h = history(sid, max(1, min(200, limit)))
     if h is None:
+        if missing_ok:  # the UI probes its stored id on load; a missing session is an answer, not an error
+            return {"id": sid, "tenant": tenants.current(), "exists": False, "turns": 0, "history": []}
         raise HTTPException(status_code=404, detail=f"no session {sid} in tenant {tenants.current()}")
     return h

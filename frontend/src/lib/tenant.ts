@@ -83,3 +83,8 @@ export function markSessionUsed(t: string = getTenant()) {
 export function sessionUsed(t: string = getTenant()): boolean {
   try { return localStorage.getItem(usedKey(sessionIdFor(t))) === "1"; } catch { return true; }
 }
+/** Drop a session the server no longer knows (after a reset): clear its "used" flag and start a new id. */
+export function forgetSession(t: string = getTenant()): string {
+  try { localStorage.removeItem(usedKey(sessionIdFor(t))); } catch { /* storage off */ }
+  return newSessionId(t);
+}

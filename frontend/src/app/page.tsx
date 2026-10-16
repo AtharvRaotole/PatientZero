@@ -3,13 +3,13 @@ import dynamic from "next/dynamic";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, Info, Loader2, Play, Users } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { API_URL, ApiError, adminToken, apiGet, apiPost, isDbDown } from "@/lib/api";
+import { API_URL, ApiError, adminToken, apiGet, apiPost, isDbDown, LOAD_OPTS } from "@/lib/api";
 import type { AskResponse, FleetGraph, GraphElem, Health, Incident, Playbook } from "@/lib/types";
 import { NotHitView, ResponderView, isNotHit } from "@/components/answers";
 import { CrewView, type CrewSpec } from "@/components/crew";
 import { BenchPanel, LiveWatch } from "@/components/watch";
 import { SessionRail, TenantSwitcher } from "@/components/session";
-import { getTenant, initTenant, markSessionUsed, newSessionId, sessionUsed, sessionIdFor, setTenant as storeTenant, type TenantInfo } from "@/lib/tenant";
+import { forgetSession, getTenant, initTenant, markSessionUsed, newSessionId, sessionUsed, sessionIdFor, setTenant as storeTenant, type TenantInfo } from "@/lib/tenant";
 import type { SessionHistory, SessionTurn } from "@/lib/types";
 import {
   ErrorCard, ExposurePanel, FixPanel, InsightsPanel, MemoryDetail, MemoryPanel, OutcomeBanner, PathPanel, ScopeStrip, SpofPanel,
@@ -106,7 +106,7 @@ export default function Home() {
 
   const loadMeta = useCallback(async () => {
     try {
-      const h = await apiGet<Health>("/health");
+      const h = await apiGet<Health>("/health", getTenant(), LOAD_OPTS);
       setHealth(h);
       setHealthErr(null);
       if (h.falkordb === "up" && h.graph_loaded) {
@@ -114,8 +114,8 @@ export default function Home() {
         const cached = fleetCache.current[t];
         if (cached) setFleet(cached);
         const [g, inc] = await Promise.all([
-          cached ? Promise.resolve(cached) : apiGet<FleetGraph>("/api/fleet/graph"),
-          apiGet<{ incidents: Incident[] }>("/api/incidents"),
+          cached ? Promise.resolve(cached) : apiGet<FleetGraph>("/api/fleet/graph", t, LOAD_OPTS),
+          apiGet<{ incidents: Incident[] }>("/api/incidents", t, LOAD_OPTS),
         ]);
         if (t !== getTenant()) return; // switched again while loading
         fleetCache.current[t] = g;
@@ -146,8 +146,15 @@ export default function Home() {
     const id = sessionIdFor(t);
     if (!sessionUsed()) { setHistory(null); setHistErr(null); return; }
     try {
-      const h = await apiGet<SessionHistory>(`/api/sessions/${encodeURIComponent(id)}?limit=50`, t);
+      const h = await apiGet<SessionHistory & { exists?: boolean }>(`/api/sessions/${encodeURIComponent(id)}?limit=50&missing_ok=1`, t);
       if (my !== histSeq.current || t !== getTenant() || id !== sessionIdFor(t)) return;
+      if (h.exists === false) {
+        // The server no longer has this session (a reset, or another deploy): start a fresh one quietly.
+        forgetSession(t);
+        setHistory(null);
+        setHistErr(null);
+        return;
+      }
       setHistory((cur) => (cur && cur.id === h.id && cur.history.length > h.history.length ? cur : h));
       setHistErr(null);
     } catch (e) {
