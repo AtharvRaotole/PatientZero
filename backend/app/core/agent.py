@@ -167,10 +167,13 @@ def _run_llm(domain: Domain, text: str, **opts) -> dict:
     # Ground the model first: if the deterministic router understood the question, its investigation is handed
     # to the model as an already-made `investigate` call. The model then only phrases the answer or asks for a
     # follow-up tool, which saves a round trip and stops it from picking a weaker tool.
+    det: dict | None = None      # the deterministic pre-run, reused instead of being traversed twice
+    pre_used = False
     if "investigate" in domain.registry.tools:
         det = domain.route(text, **opts)
         if domain.confident(det) and det.get("outcome") != "unknown_entity":
             structured = det
+            pre_used = True
             trace.append(_step("agent", "deterministic router pre-ran investigate; LLM phrases the answer"))
             trace.extend(det.get("trace", []))
             dig = getattr(domain, "digest", None)
@@ -197,6 +200,15 @@ def _run_llm(domain: Domain, text: str, **opts) -> dict:
             name = c["function"]["name"]
             try:
                 args = json.loads(c["function"].get("arguments") or "{}")
+                if pre_used and name == "investigate" and _same_investigation(args, text, det, opts):
+                    # The model asked for exactly what the pre-run already answered: no second traversal, and a
+                    # short pointer instead of the same digest again (fewer prompt tokens on the next turn).
+                    structured = det
+                    trace.append(_step("investigate", "reused the deterministic pre-run (same question and depth): "
+                                                      "no second traversal", reused=True))
+                    messages.append({"role": "tool", "tool_call_id": c["id"], "content": json.dumps(
+                        {"same_as_tool_call": "pre", "note": "identical to the investigate result above"})})
+                    continue
                 out = domain.registry.call(name, args, ctx=opts)
                 trace.extend(out.get("trace", []))
                 if isinstance(out.get("response"), dict):
@@ -220,7 +232,11 @@ def _run_llm(domain: Domain, text: str, **opts) -> dict:
                 content = json.dumps({"error": str(e)[:300]})
             messages.append({"role": "tool", "tool_call_id": c["id"], "content": content})
     from_tool = structured is not None
-    if structured is None:
+    if structured is None and det is not None:
+        structured = det  # the pre-run already traversed this question: reuse it, do not run it again
+        trace.append(_step("agent", "structured panels filled by the deterministic pre-run (reused)"))
+        trace.extend(det.get("trace", []))
+    elif structured is None:
         structured = domain.route(text, **opts)
         trace.append(_step("agent", "structured panels filled by the deterministic router"))
         trace.extend(structured["trace"])
@@ -251,6 +267,17 @@ def _run_llm(domain: Domain, text: str, **opts) -> dict:
                  llm_unverified=unverified, llm_rejected=True)
     r["total_ms"] = round((time.perf_counter() - t0) * 1000, 2)
     return r
+
+
+def _same_investigation(args: dict, text: str, det: dict | None, opts: dict) -> bool:
+    """Is this `investigate` call the same as the deterministic pre-run (question and depth)?"""
+    if det is None:
+        return False
+    q = args.get("question")
+    if q is not None and _norm(str(q)) != _norm(text):
+        return False
+    d = args.get("depth")
+    return d is None or int(d) == int(det.get("depth") or opts.get("depth") or 0)
 
 
 def _summarize_for_llm(payload: Any) -> Any:

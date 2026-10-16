@@ -322,3 +322,40 @@ def test_byo_graph_names_are_per_tenant():
         assert all(s["graph"].startswith("byo:acme:") for s in acme)
     finally:
         db.client().select_graph(name).delete()
+
+
+# ------------------------------------------------------------------------------------------------ pre-run reuse
+@live
+def test_llm_investigate_after_prerun_is_reused_not_repeated(monkeypatch):
+    from app.mcp_agent.domain import McpDomain, McpRegistry
+    counts = {"route": 0, "investigate": 0}
+    real_route, real_call = McpDomain.route, McpRegistry.call
+
+    def route(self, *a, **k):
+        counts["route"] += 1
+        return real_route(self, *a, **k)
+
+    def call(self, name, *a, **k):
+        counts[name] = counts.get(name, 0) + 1
+        return real_call(self, name, *a, **k)
+    monkeypatch.setattr(McpDomain, "route", route)
+    monkeypatch.setattr(McpRegistry, "call", call)
+    seen = []
+    script = [{"role": "assistant", "content": None, "tool_calls": [{"id": "c0", "type": "function", "function": {
+        "name": "investigate", "arguments": json.dumps({"question": QIX})}}]},
+              {"role": "assistant", "content": "13 services are exposed."}]
+    monkeypatch.setattr(config, "OPENAI_API_KEY", "sk-test-not-real")
+    monkeypatch.setattr(config, "AGENT_MODE", "auto")
+    monkeypatch.setattr(agent, "_chat", lambda m, t, n, **k: (seen.append(json.loads(json.dumps(m))) or
+                                                              script[len(seen) - 1], {"total_tokens": 7}))
+    d = llm_ask(QIX)
+    assert counts["route"] == 1 and counts["investigate"] == 0, counts  # one traversal in total
+    assert d["outcome"] == "answered_with_path" and d["exposed_count"] == 13 and d["llm_tokens"] == 14
+    assert any(s.get("reused") for s in d["trace"])
+    pointer = seen[1][-1]
+    assert pointer["role"] == "tool" and "same_as_tool_call" in pointer["content"] and len(pointer["content"]) < 120
+    # A different question still runs investigate for real.
+    script[0]["tool_calls"][0]["function"]["arguments"] = json.dumps({"question": "debug@4.4.2"})
+    seen.clear()
+    llm_ask("maintainer qix was phished, what now")
+    assert counts["investigate"] == 1
