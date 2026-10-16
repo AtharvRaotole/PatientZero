@@ -250,6 +250,16 @@ def _incident(out, tr, ent, depth, fresh, session, generate_fix):
         out["message"] = (f"The {ent['campaign'][1]} campaign is not loaded in this graph (no advisories tagged "
                           f"{key}). Reload with INCIDENTS=qix,shai-hulud to trace it.")
         return
+    if not scope:  # a watched advisory where every published version is malicious (no single bad version)
+        from .watch.answers import all_versions_scope
+        scope, av = all_versions_scope(tr, ent, kind, key, depth)
+        if av:
+            out["all_versions"] = av
+            out["scope"] = scope
+            if not scope:
+                out["outcome"] = "not_in_graph"
+                out["message"] = av["message"]
+                return
     if not scope:
         out["outcome"] = "not_in_graph"
         out["message"] = (f"{trigger} is in the graph, but no compromised version is recorded for it, so there "
@@ -294,6 +304,8 @@ def _incident(out, tr, ent, depth, fresh, session, generate_fix):
                           + f"No fleet path admits this version at depth {depth} ({bad}). "
                           + (f"{plural(len(res['safe']), 'service')} reach the package, but every range excludes it."
                              if res["safe"] else "No fleet service reaches the affected package at this depth."))
+    if out.get("all_versions"):
+        out["message"] = out["all_versions"]["lead"] + " " + out["message"]
     if mem:
         m = mem[0]
         sb = seen_before(m, key, [e["service"] for e in res["exposed"]])

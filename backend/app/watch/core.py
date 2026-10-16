@@ -102,7 +102,7 @@ class GraphRun:
 def _ensure_indexes(gr: GraphRun) -> None:
     if gr.graph_name in _indexed:
         return
-    for q in ("watch_index_event_ts", "watch_index_event_id"):
+    for q in ("watch_index_event_ts", "watch_index_event_id", "watch_index_event_poll"):
         try:
             gr.run(q, write=True)
         except GraphUnavailable:

@@ -167,7 +167,8 @@ def test_timeline_events_from_graph():
     kinds = {e["kind"] for e in ev}
     # Advisories tagged with a campaign (qix: 19, Shai-Hulud: 203) collapse into one 'campaign' event each; only
     # untagged advisories appear one by one. Every kind is one the UI renders (frontend TimelineEvent).
-    assert kinds <= {"compromise", "advisory", "campaign", "incident", "playbook"}
+    assert kinds <= {"compromise", "advisory", "campaign", "incident", "playbook", "watch", "watch_replay"}
+    assert not any(e["title"] == "osv-watch" for e in ev)  # live-watch advisories are watch events, not a campaign
     assert {"compromise", "campaign"} <= kinds
     qix = next(e for e in ev if e["kind"] == "campaign" and e["title"] == "2025-09-08-qix")
     assert qix["count"] == 19 and str(qix["at"]).startswith("2025-09-08") and len(qix["items"]) <= 12

@@ -107,3 +107,14 @@ CREATE INDEX FOR (w:WatchEvent) ON (w.ts)
 
 // @query watch_index_event_id
 CREATE INDEX FOR (w:WatchEvent) ON (w.id)
+
+// @query watch_all_versions
+// Params: $advisory (id or ''), $pkgs. Watched advisories where EVERY published version is malicious
+// (OSV range introduced 0, no fix), linked to the package with AFFECTS_PACKAGE.
+MATCH (a:Advisory {all_versions: true})-[:AFFECTS_PACKAGE]->(p:Package)
+WHERE a.id = $advisory OR p.name IN $pkgs
+RETURN a.id AS advisory, a.ghsa AS ghsa, a.aliases AS aliases, a.url AS url, a.published AS published, p.name AS pkg
+ORDER BY pkg, advisory
+
+// @query watch_index_event_poll
+CREATE INDEX FOR (w:WatchEvent) ON (w.poll_id)

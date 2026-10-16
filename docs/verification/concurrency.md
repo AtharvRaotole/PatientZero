@@ -32,7 +32,7 @@ Reads hit the tenant graph `fleet:acme`; writes only touch the scratch graph, wh
 Reads and writes in the 32-client default run: 1,422 reads/s (p99 56.8 ms) alongside 352 writes/s (p99 43.4 ms).
 
 ### Live-like FalkorDB settings (local, same graph, Railway's module arguments)
-The live database runs with `THREAD_COUNT 2 MAX_QUEUED_QUERIES 25` (DEPLOY.md). A second local FalkorDB was started
+The live database ran with `THREAD_COUNT 2 MAX_QUEUED_QUERIES 25` (DEPLOY.md) when these numbers were taken; it now runs `MAX_QUEUED_QUERIES 200`. A second local FalkorDB was started
 with exactly those arguments:
 
 | Run | Clients | Throughput | p50 | p95 | p99 | Errors |
@@ -44,6 +44,7 @@ with exactly those arguments:
 | Target | Clients | Requests in 20 s | Throughput | p50 | p95 | p99 | Errors |
 |---|---|---|---|---|---|---|---|
 | Live Railway deploy (code before this change) | 30 | 1,104 | 53.8 req/s | 559 ms | 886 ms | 997 ms | **4 HTTP 500** |
+| Live Railway deploy, FalkorDB `MAX_QUEUED_QUERIES 200` (2026-10-16) | 30 | 1,009 | 49.4 req/s | 615 ms | 1,011 ms | 1,150 ms | **0** |
 | Local, one uvicorn process, agent via MCP (default) | 30 | 1,911 | 94.5 req/s | 313 ms | 509 ms | 586 ms | 0 |
 | Local, one uvicorn process, `MCP_AGENT=off` | 30 | 2,804 | 139.3 req/s | 210 ms | 342 ms | 439 ms | 0 |
 
@@ -57,8 +58,10 @@ Unloaded single request locally: about 15 ms with the agent going through MCP vs
   reproduced locally with live's settings (305 in 20 s at 30 clients). Fix (commit 877820a): `db.with_busy_retry`
   retries a rejected query with jittered backoff (20 ms doubling, up to 5 retries, `FALKORDB_BUSY_RETRIES`); a
   rejected query never ran, so the retry is safe for writes. With it: 0 errors and slightly higher throughput. The fix
-  reaches live with the next redeploy; raising `MAX_QUEUED_QUERIES` (for example to 200) on the live FalkorDB service
-  is an extra safety margin.
+  reaches live with the next redeploy. On 2026-10-16 the live FalkorDB service was changed to `MAX_QUEUED_QUERIES 200`
+  (`THREAD_COUNT` stays 2: the service is limited to 2 vCPU); the same 30-client live run then had 0 errors
+  (docs/verification/bench/live-http-c30-queue200.json). The volume persisted across the DB restart (same incident,
+  playbook and node counts).
 - **MCP tool selection costs about 4 ms per request.** Under saturation of one Python process that is about 32% fewer
   requests per second (139 vs 94.5 req/s at 30 clients). It stays on by default, because routing the agent through
   MCP is the product; `MCP_AGENT=off` restores direct calls.

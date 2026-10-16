@@ -1,0 +1,50 @@
+{
+ "target": "http",
+ "url": "https://patientzero-production-2cb3.up.railway.app",
+ "at": "2026-10-16T15:32:16+00:00",
+ "clients": 30,
+ "duration_s": 20.44,
+ "overall": {
+  "ops": 1009,
+  "errors": 0,
+  "throughput_ops_s": 49.4,
+  "p50_ms": 615.31,
+  "p95_ms": 1010.53,
+  "p99_ms": 1149.64,
+  "max_ms": 1333.12,
+  "mean_ms": 601.31
+ },
+ "by_op": {
+  "ask": {
+   "ops": 827,
+   "errors": 0,
+   "throughput_ops_s": 40.5,
+   "p50_ms": 669.9,
+   "p95_ms": 1029.78,
+   "p99_ms": 1162.05,
+   "max_ms": 1333.12,
+   "mean_ms": 656.65
+  },
+  "fleet": {
+   "ops": 182,
+   "errors": 0,
+   "throughput_ops_s": 8.9,
+   "p50_ms": 328.37,
+   "p95_ms": 644.61,
+   "p99_ms": 770.44,
+   "max_ms": 805.47,
+   "mean_ms": 349.87
+  }
+ },
+ "status_counts": {
+  "200": 1009
+ },
+ "error_samples": [],
+ "health": {
+  "status": "ok",
+  "falkordb": "up",
+  "graph": "fleet:acme",
+  "agent_mode": "llm"
+ },
+ "writes": "none (read-only HTTP load; server-side mixed runs use POST /api/bench/run)"
+}

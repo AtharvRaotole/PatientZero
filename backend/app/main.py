@@ -170,7 +170,7 @@ def api_timeline() -> dict[str, Any]:
     tr = Trace()
     rows = tr.run("timeline", "timeline_events")
     # UI-safe shape whatever the graph holds: known kind, string title, int count, list of non-null items.
-    kinds = {"compromise", "advisory", "campaign", "incident", "playbook"}
+    kinds = {"compromise", "advisory", "campaign", "incident", "playbook", "watch", "watch_replay"}
     rows = [{"kind": r["kind"], "at": str(r["at"]), "title": str(r.get("title") or r["kind"]),
              "count": int(r.get("count") or 0), "items": [str(i) for i in (r.get("items") or []) if i is not None],
              "ref": r.get("ref")}

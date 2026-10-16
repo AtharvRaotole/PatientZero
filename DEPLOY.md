@@ -41,7 +41,7 @@ BYO scans, playbooks and ingest never call an LLM.
      - `FALKORDB_DATA_PATH` = `/data` (required: the image's `run.sh` appends `--dir $FALKORDB_DATA_PATH`
        after `REDIS_ARGS`, so a `--dir` inside `REDIS_ARGS` is ignored and data would land outside the volume)
      - `REDIS_ARGS` = `--requirepass ${{FALKORDB_PASSWORD}} --appendonly yes --appendfsync everysec --save 60 1 --maxmemory 256mb`
-     - `FALKORDB_ARGS` = `TIMEOUT_DEFAULT 10000 TIMEOUT_MAX 30000 THREAD_COUNT 2 MAX_QUEUED_QUERIES 25`
+     - `FALKORDB_ARGS` = `TIMEOUT_DEFAULT 10000 TIMEOUT_MAX 30000 THREAD_COUNT 2 MAX_QUEUED_QUERIES 200` (raised from 25 on 2026-10-16; THREAD_COUNT stays 2 because the service is limited to 2 vCPU)
    - Don't add a public domain. The app reaches it over private networking.
 3. **Set variables on the `patientzero` service:**
    ```

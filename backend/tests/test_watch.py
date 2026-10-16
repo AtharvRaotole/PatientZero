@@ -92,7 +92,8 @@ pytestmark_live = pytest.mark.skipif(not LIVE, reason="FalkorDB not running")
 def tiny_graph():
     name = f"watchtest:{uuid.uuid4().hex[:8]}"
     g = db.client().select_graph(name)
-    g.query("""CREATE (t:Team {name:'core'}),
+    g.query("""CREATE (t:Team {name:'core', display:'Core', slack:'#core', pager:'pd-core'}),
+                      (:Person {name:'Ann', handle:'@ann', email:'ann@example.com', role:'eng'})-[:ONCALL_FOR]->(t),
                       (a:Service {name:'svc-a', tier:1}), (b:Service {name:'svc-b', tier:2}), (c:Service {name:'svc-c', tier:3}),
                       (t)-[:OWNS]->(a), (t)-[:OWNS]->(b), (t)-[:OWNS]->(c),
                       (d1:Version {key:'debug@4.4.1', name:'debug@4.4.1', pkg:'debug', version:'4.4.1', unpublished:false, malicious:false}),
@@ -267,3 +268,48 @@ def test_watcher_covers_every_tenant_graph():
     if {"acme", "globex"} <= set(tenants.TENANTS) and {"fleet:acme", "fleet:globex"} <= have:
         assert core.tenant_graphs() == {"acme": "fleet:acme", "globex": "fleet:globex"} | {
             t: g for t, g in core.tenant_graphs().items() if t not in ("acme", "globex")}
+
+
+@pytestmark_live
+def test_timeline_shows_watch_polls_not_a_fake_campaign(monkeypatch, tiny_graph):
+    key = f"patientzero:watch:test:{uuid.uuid4().hex[:6]}"
+    entries = [("2026-10-16T10:00:00Z", "MAL-2026-90011"), ("2026-10-16T10:01:00Z", "MAL-2026-90012")]
+    records = {"MAL-2026-90011": rec("MAL-2026-90011", "debug", versions=["4.4.2"]),
+               "MAL-2026-90012": rec("MAL-2026-90012", "nobody-uses-this", versions=["1.0.0"])}
+    fake_osv(monkeypatch, entries, records)
+    try:
+        core.poll(source="test", graphs=tiny_graph, state_key=key)
+    finally:
+        db.client().connection.delete(key)
+    rows = core.GraphRun(tiny_graph["t1"]).run("timeline_events")
+    assert not any(r["kind"] == "campaign" and r["title"] == "osv-watch" for r in rows)
+    w = [r for r in rows if r["kind"] == "watch"]
+    assert len(w) == 1 and w[0]["count"] == 2 and w[0]["title"].startswith("hit: 1 of 2")
+    assert "debug (MAL-2026-90011): hit" in w[0]["items"] and "nobody-uses-this (MAL-2026-90012): not hit" in w[0]["items"]
+
+
+@pytestmark_live
+def test_ask_about_all_versions_malware(monkeypatch, tiny_graph):
+    """'Every published version is malicious': clear answer whether or not a fleet service depends on it."""
+    tenants = pytest.importorskip("app.tenants")
+    key = f"patientzero:watch:test:{uuid.uuid4().hex[:6]}"
+    entries = [("2026-10-16T10:00:00Z", "MAL-2026-90021"), ("2026-10-16T10:01:00Z", "MAL-2026-90022")]
+    records = {"MAL-2026-90021": rec("MAL-2026-90021", "evil-all", intro_zero=True),
+               "MAL-2026-90022": rec("MAL-2026-90022", "lonely-evil", intro_zero=True)}
+    fake_osv(monkeypatch, entries, records)
+    try:
+        core.poll(source="test", graphs=tiny_graph, state_key=key)
+    finally:
+        db.client().connection.delete(key)
+    monkeypatch.setitem(tenants.TENANTS, "wtest", tiny_graph["t1"])
+    from app.router import ask
+    with tenants.use("wtest"):
+        hit = ask("evil-all", depth=4)
+        by_id = ask("MAL-2026-90021", depth=4)
+        miss = ask("lonely-evil", depth=4)
+    assert hit["outcome"] == "answered_with_path" and [e["service"] for e in hit["exposed"]] == ["svc-c"]
+    assert hit["message"].startswith("Every published version of evil-all is malicious (MAL-2026-90021, OSV)")
+    assert "1 of 3 services" in hit["message"] and hit["wake"]
+    assert by_id["outcome"] == "answered_with_path"
+    assert miss["outcome"] == "not_in_graph" and "No fleet service depends on lonely-evil" in miss["message"]
+    assert "no compromised version is recorded" not in miss["message"]

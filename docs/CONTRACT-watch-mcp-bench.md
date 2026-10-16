@@ -96,6 +96,32 @@ Runs one poll now; returns the poll summary (plus `watermark`, `remaining`, `fet
 ### POST /api/bench/run (admin) body `{"clients": 30, "duration_s": 20, "write_pct": 20, "retry_busy": true}`
 202 `{"status": "started", ...}`; capped at 50 clients and 30 s; 409 while one runs. Poll /api/bench/last.
 
-## Timeline note
-Watched advisories share `campaign = 'osv-watch'`, so `/api/timeline` shows them as one `campaign` event titled
-`osv-watch` (label it "Live OSV watch").
+## Timeline note (event kinds `watch` and `watch_replay`)
+Watched advisories are no longer one `campaign` event: the timeline query excludes `campaign = 'osv-watch'` from the
+campaign union, and `/api/timeline` (per tenant) emits two new kinds. The full set of kinds is now
+`compromise | advisory | campaign | incident | playbook | watch | watch_replay`; update `TimelineEvent["kind"]`.
+
+- `watch`: one event per watch poll that checked at least one new advisory. `count` = advisories checked in that poll,
+  `title` carries this tenant's verdict, `items` = up to 8 `"package (MAL id): hit|not hit|no data"`, `ref` null.
+  ```jsonc
+  {"kind": "watch", "at": "2026-10-16T14:10:00Z", "count": 25,
+   "title": "not hit: 25 new advisories checked, none reach this fleet",   // or "hit: 2 of 25 new advisories reach this fleet"
+   "items": ["bungoma (MAL-2026-17389): not hit", "..."], "ref": null}
+  ```
+  Suggested label: "Live OSV watch". Treat a title starting with `hit:` as an alert.
+- `watch_replay`: the latest 3 replays of a past advisory (`POST /api/watch/replay`), always labelled as a replay.
+  `count` is 1, `items` = `["debug@4.4.2"]`, `ref` = the OSV URL.
+  ```jsonc
+  {"kind": "watch_replay", "at": "2026-10-16T13:02:11Z", "count": 1,
+   "title": "replay of MAL-2025-46974 (debug): 10 of 22 services hit", "items": ["debug@4.4.2"],
+   "ref": "https://osv.dev/vulnerability/MAL-2025-46974"}
+  ```
+  Do not render it as "N new advisories"; it is a replay of a historical advisory, not new malware.
+
+## Asking about all-versions malware
+`/api/ask` about a watched package or MAL id where every published version is malicious (no single bad version) now
+answers directly instead of "no compromised version recorded". The response gains `all_versions`
+(`{packages: [..], advisories: [MAL ids], lead, message, services: [..], ...}`) and the message starts with
+"Every published version of <pkg> is malicious (<MAL id>, OSV), so any dependency path is exposed." followed by the
+usual exposure result (exposed services with paths, or "No fleet service depends on <pkg> within N hops, so none of
+the M services is hit." with outcome `not_in_graph`).
