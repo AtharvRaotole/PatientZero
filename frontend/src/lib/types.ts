@@ -363,15 +363,18 @@ export interface WatchEvent {
   package: string; bad_versions: string[]; all_versions: boolean; verdict: WatchVerdict;
   exposed_services: string[]; exposed_count: number; reachable_services: string[]; fleet_size: number; depth: number;
   replay: boolean; published?: string; summary?: string; url?: string; reason?: string; check_ms?: number; paths?: WatchPath[];
+  modified?: string; first_seen_by_watch?: string | null; published_age_s?: number; published_ago?: string; age_label?: string;
+  replay_count?: number; first_replayed?: string; last_replayed?: string;
 }
 export interface WatchPoll {
   id: string; ts: string; source: string; checked: number; new_advisories: number; already_known: number;
   index_entries: number; hits: number; ms: number; errors: number; note?: string; replay?: boolean;
+  published_oldest?: string; published_newest?: string;
 }
 export interface WatchLoop { enabled: boolean; interval_s: number; next_at: number | null }
 export interface WatchFeed {
   tenant: string; graph: string; events: WatchEvent[]; polls: WatchPoll[]; last_poll: WatchPoll | null;
-  counts: { events: number; hits: number; replays: number }; running: boolean; loop: WatchLoop;
+  counts: { events: number; hits: number; replays: number; replayed_advisories?: number }; running: boolean; loop: WatchLoop;
 }
 export interface WatchReplay {
   id: string; replay: true; advisory: string; query: string; checked: number; hits: number; ms: number;
@@ -383,10 +386,17 @@ export interface BenchRun {
   read_graph?: string; scratch_deleted?: boolean; overall: BenchStats; reads?: BenchStats; writes?: BenchStats;
   by_op?: Record<string, BenchStats>; events_written?: number; mix?: Record<string, number>;
   falkordb?: { redis_version?: string; modules?: string[] };
+  scope?: { kind: string; summary: string; transport?: string; writes?: string; retry_busy?: boolean };
+}
+export interface BenchHttp {
+  throughput_req_s: number; clients: number; duration_s?: number; requests?: number; errors?: number;
+  p50_ms?: number; p95_ms?: number; p99_ms?: number; at?: string; target?: string; what?: string; source?: string;
 }
 export interface BenchLast {
   last: BenchRun | null; history: Pick<BenchRun, "id" | "label" | "at" | "clients" | "duration_s" | "overall">[];
   running: unknown; last_error: string | null;
+  http?: BenchHttp | null;
+  numbers?: { in_process_ops_s?: number; in_process_clients?: number; http_req_s?: number; http_clients?: number };
 }
-export interface McpInfo { via: "mcp" | "direct"; transport?: string; tool: string; intent?: string; args?: Record<string, unknown>; ms?: number; tools_listed?: number; fallback?: string; chosen_by?: string }
+export interface McpInfo { via: "mcp" | "direct"; transport?: string; tool: string; intent?: string; args?: Record<string, unknown>; ms?: number; tools_listed?: number; fallback?: string; chosen_by?: string; tools?: string[]; calls?: number; wall_ms?: number }
 export interface AllVersions { packages: string[]; advisories: string[]; lead: string; message: string; services: string[]; fleet_size: number }

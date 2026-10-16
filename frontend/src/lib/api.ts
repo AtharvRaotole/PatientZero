@@ -3,6 +3,9 @@ import { getTenant } from "./tenant";
 export const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
 /** Every call names its tenant: ?tenant= on the URL and an X-Tenant header (the body field, where sent, wins server-side). */
+/** The backend reports a FalkorDB outage as database_unavailable (older builds: graph_unavailable). */
+export const isDbDown = (kind?: string | null) => kind === "database_unavailable" || kind === "graph_unavailable";
+
 export function withTenant(path: string, tenant = getTenant()): string {
   if (/[?&]tenant=/.test(path)) return path; // an explicit tenant wins
   return `${path}${path.includes("?") ? "&" : "?"}tenant=${encodeURIComponent(tenant)}`;

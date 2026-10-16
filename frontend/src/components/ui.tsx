@@ -26,9 +26,10 @@ export function CountUp({ value, className, duration = 0.8 }: { value: number; c
   return <motion.span className={clsx("tabular", className)}>{text}</motion.span>;
 }
 
-export function Card({ className, children, delay = 0 }: { className?: string; children: React.ReactNode; delay?: number }) {
+export function Card({ className, children, delay = 0, testid }: { className?: string; children: React.ReactNode; delay?: number; testid?: string }) {
   return (
     <motion.section
+      data-testid={testid}
       initial={{ opacity: 0, y: 6 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.25, delay, ease: EASE }}

@@ -17,6 +17,7 @@ const stamp = (s: string) =>
   new Date(s).toLocaleString([], { month: "short", day: "numeric", hour: "numeric", minute: "2-digit", timeZoneName: "short" });
 const fmtMs = (ms: number) => (ms >= 1000 ? `${(ms / 1000).toFixed(1)} s` : `${ms < 10 ? ms.toFixed(1) : Math.round(ms)} ms`);
 const nf = new Intl.NumberFormat("en-US");
+const day = (s: string) => new Date(s).toLocaleDateString([], { month: "short", day: "numeric", year: "numeric" });
 
 function ago(ts: string, now: number) {
   const s = Math.max(0, Math.round((now - new Date(ts).getTime()) / 1000));
@@ -91,7 +92,9 @@ export function LiveWatch({ tenant, tenants }: { tenant: string; tenants: Tenant
         setFeeds((f) => {
           const cur = f[e.tenant];
           if (!cur || cur.events.some((x) => x.id === e.id)) return f;
-          return { ...f, [e.tenant]: { ...cur, events: [e, ...cur.events] } };
+          // A replay updates the one row for that advisory and package (replay_count, last replayed) instead of stacking a copy.
+          const rest = e.replay ? cur.events.filter((x) => !(x.replay && x.advisory === e.advisory && x.package === e.package)) : cur.events;
+          return { ...f, [e.tenant]: { ...cur, events: [e, ...rest] } };
         });
         setFresh((s) => new Set(s).add(e.id));
       } catch { /* malformed frame */ }
@@ -124,10 +127,11 @@ export function LiveWatch({ tenant, tenants }: { tenant: string; tenants: Tenant
   // The newest batch of real advisories: from the poll summary when it is still in the list, else from its events.
   const lastChecked = useMemo(() => {
     const p = feed?.polls.find((x) => x.checked > 0 && !x.replay && x.source !== "replay");
-    if (p) return { n: p.checked, ms: p.ms, ts: p.ts, what: "" };
+    if (p) return { n: p.checked, ms: p.ms, ts: p.ts, what: "", from: p.published_oldest, to: p.published_newest };
     if (!real.length) return null;
     const batch = real.filter((e) => e.poll_id === real[0].poll_id);
-    return { n: batch.length, ms: batch.reduce((a, e) => a + (e.check_ms ?? 0), 0), ts: batch[batch.length - 1].ts, what: " of graph checks" };
+    const pub = batch.map((e) => e.published).filter(Boolean).sort() as string[];
+    return { n: batch.length, ms: batch.reduce((a, e) => a + (e.check_ms ?? 0), 0), ts: batch[batch.length - 1].ts, what: " of graph checks", from: pub[0], to: pub[pub.length - 1] };
   }, [feed, real]);
 
   return (
@@ -155,10 +159,13 @@ export function LiveWatch({ tenant, tenants }: { tenant: string; tenants: Tenant
             </div>
             <p className="mt-3 text-[20px] font-semibold leading-snug tracking-[-0.015em] text-ink" data-testid="watch-headline">
               {lastChecked
-                ? <>Checked {nf.format(lastChecked.n)} new npm malware advisories from OSV in {fmtMs(lastChecked.ms)}{lastChecked.what}<span className="font-normal text-ink-3">, {stamp(lastChecked.ts)}</span></>
-                : <>Watching OSV for new npm malware advisories.</>}
+                ? <>Checked {nf.format(lastChecked.n)} npm malware advisories first seen by the watch in {fmtMs(lastChecked.ms)}{lastChecked.what}<span className="font-normal text-ink-3">, {stamp(lastChecked.ts)}</span></>
+                : <>Watching OSV for npm malware advisories.</>}
             </p>
-            {lastPoll && lastPoll.checked === 0 && <p className="mt-1 text-[13px] text-ink-3">{lastPoll.note ?? "No new advisories since the previous poll."}</p>}
+            {lastChecked?.from && lastChecked.to && (
+              <p className="mt-1 text-[13px] text-ink-3" data-testid="watch-published-range">OSV published {day(lastChecked.from)}{day(lastChecked.from) !== day(lastChecked.to) ? ` to ${day(lastChecked.to)}` : ""}. OSV lists an advisory when it is added or modified, so many are days old.</p>
+            )}
+            {lastPoll && lastPoll.checked === 0 && <p className="mt-1 text-[13px] text-ink-3">{lastPoll.note ?? "Nothing first seen since the previous poll."}</p>}
             <div className="mt-4 grid gap-2 sm:grid-cols-2" data-testid="watch-verdicts">
               {ids.map((id) => {
                 const evs = (feeds[id]?.events ?? []).filter((e) => !e.replay);
@@ -183,24 +190,27 @@ export function LiveWatch({ tenant, tenants }: { tenant: string; tenants: Tenant
             <p className="text-[13px] font-medium text-ink">{company(tenant)} feed</p>
             <Segmented size="sm" value={tab} onChange={setTab} options={[
               { value: "real", label: `Real advisories ${real.length}` },
-              { value: "replay", label: `Replays ${replays.length}` },
+              { value: "replay", label: `Replays ${replays.length}` }, // one row per replayed advisory
             ]} />
           </div>
           <ul className="scroll-thin max-h-[380px] divide-y divide-line overflow-y-auto" data-testid="watch-feed">
             {(tab === "real" ? real : replays).slice(0, 60).map((e) => (
               <motion.li key={e.id} layout="position" initial={fresh.has(e.id) ? { opacity: 0, y: -6, backgroundColor: "rgba(229,72,77,0.06)" } : false}
                 animate={{ opacity: 1, y: 0, backgroundColor: "rgba(255,255,255,0)" }} transition={{ duration: 0.6, ease: EASE }}
-                className="grid grid-cols-[64px_minmax(0,1fr)_auto] items-center gap-3 px-6 py-2.5 text-[13px]" data-verdict={e.verdict} data-replay={e.replay}>
+                className="grid grid-cols-[64px_minmax(0,1fr)_auto] items-center gap-3 px-6 py-2.5 text-[13px]" data-verdict={e.verdict} data-replay={e.replay} data-key={`${e.advisory}|${e.package}`}>
                 <span className="font-mono text-[12px] text-ink-3 tabular" title={stamp(e.ts)}>{clock(e.ts).replace(/\s?[A-Z]{2,4}$/, "")}</span>
                 <div className="min-w-0">
                   <p className="flex min-w-0 items-baseline gap-2">
                     <span className="truncate font-mono text-ink">{e.package}<span className="text-ink-3">@{e.all_versions ? "*" : e.bad_versions.slice(0, 2).join(", ")}{!e.all_versions && e.bad_versions.length > 2 ? ` +${e.bad_versions.length - 2}` : ""}</span></span>
-                    {e.replay && <span className="shrink-0 rounded border border-line-strong px-1 text-[10.5px] font-semibold uppercase tracking-[0.06em] text-ink-2">Replay</span>}
+                    {e.replay && <span className="shrink-0 rounded border border-line-strong px-1 text-[10.5px] font-semibold uppercase tracking-[0.06em] text-ink-2">Replay{e.replay_count && e.replay_count > 1 ? ` ×${e.replay_count}` : ""}</span>}
                   </p>
                   <p className="truncate text-[12px] text-ink-3">
                     {e.url ? <a href={e.url} target="_blank" rel="noreferrer" className="font-mono hover:text-ink">{e.advisory}</a> : <span className="font-mono">{e.advisory}</span>}
                     {e.reason && <> · {e.reason}</>}
                   </p>
+                  {(e.age_label || e.published_ago) && (
+                    <p className="truncate text-[11.5px] text-ink-3" data-testid="watch-age" title={e.age_label}>{e.age_label ?? `published ${e.published_ago}`}</p>
+                  )}
                 </div>
                 <span className="flex items-center gap-3">
                   {typeof e.check_ms === "number" && <span className="hidden font-mono text-[11.5px] text-ink-4 tabular sm:inline">{fmtMs(e.check_ms)}</span>}
@@ -209,7 +219,7 @@ export function LiveWatch({ tenant, tenants }: { tenant: string; tenants: Tenant
               </motion.li>
             ))}
             {(tab === "real" ? real : replays).length === 0 && (
-              <li className="px-6 py-10 text-center text-[13px] text-ink-3">{tab === "real" ? "No new advisories have arrived since the watch started." : "No replays yet. Replay a past advisory to see a hit."}</li>
+              <li className="px-6 py-10 text-center text-[13px] text-ink-3">{tab === "real" ? "No advisories have reached the watch since it started." : "No replays yet. Replay a past advisory to see a hit."}</li>
             )}
           </ul>
         </div>
@@ -299,8 +309,14 @@ export function BenchPanel() {
           <p className="flex items-center gap-2 text-[12.5px] text-ink-3"><Gauge className="h-3.5 w-3.5" />Last saved run · {stamp(b.at)}</p>
           <p className="mt-3 flex items-baseline gap-2">
             <span className="text-[40px] font-semibold leading-none tracking-[-0.03em] text-ink tabular" data-testid="bench-throughput">{nf.format(Math.round(o.throughput_ops_s))}</span>
-            <span className="text-[14px] text-ink-2">queries per second</span>
+            <span className="text-[14px] text-ink-2">queries per second, in process</span>
           </p>
+          {d.http && (
+            <p className="mt-2 flex items-baseline gap-2" data-testid="bench-http" title={d.http.what}>
+              <span className="text-[22px] font-semibold leading-none tracking-[-0.02em] text-ink tabular">{d.http.throughput_req_s.toFixed(1)}</span>
+              <span className="text-[13px] text-ink-2">req/s end to end over HTTP at {d.http.clients} clients{d.http.p95_ms ? `, p95 ${Math.round(d.http.p95_ms)} ms` : ""}</span>
+            </p>
+          )}
           <p className="mt-2 text-[13px] text-ink-2 tabular">
             {nf.format(o.ops)} queries, <span className={o.errors ? "font-medium text-signal-ink" : "font-medium text-safe"}>{nf.format(o.errors)} error{o.errors === 1 ? "" : "s"}</span>
           </p>
@@ -341,6 +357,7 @@ export function BenchPanel() {
             {b.retry_busy ? " Busy replies were retried, as the app does." : " Busy replies count as errors."}
             {" "}This is a stored result from that run, not measured while this page loads.
           </p>
+          {b.scope?.summary && <p className="mt-3 rounded-lg border border-line bg-subtle/60 px-3 py-2 text-[12.5px] leading-relaxed text-ink-2" data-testid="bench-scope">{b.scope.summary}</p>}
           {d.history.length > 1 && (
             <p className="mt-3 text-[12px] text-ink-3">
               Earlier runs: {d.history.slice(1, 4).map((h) => `${h.label} ${nf.format(Math.round(h.overall.throughput_ops_s))}/s, p95 ${h.overall.p95_ms.toFixed(0)} ms (${h.clients} clients)`).join("; ")}

@@ -1,10 +1,11 @@
 "use client";
 import { AnimatePresence, motion } from "framer-motion";
 import clsx from "clsx";
-import { Activity, AlertTriangle, BellRing, ChevronDown, Crown, GitBranch, History, Loader2, RotateCcw, Terminal, Users, Wand2 } from "lucide-react";
+import { Activity, AlertTriangle, BellRing, ChevronDown, ChevronRight, Crown, GitBranch, History, Loader2, RotateCcw, Terminal, Users, Wand2 } from "lucide-react";
 import { useState } from "react";
 import type { AskResponse, Fix, Incident, ServiceExposure, TraceStep, WakeEntry } from "@/lib/types";
 import { Button, Card, CardHeader, CopyButton, CountUp, PathChain, Segmented, ShowMore, Skeleton } from "./ui";
+import { isDbDown } from "@/lib/api";
 import { ApproveBar } from "./agentui";
 import { checkedName, isNotHit } from "./answers";
 import { FollowupLine } from "./session";
@@ -25,7 +26,10 @@ export function OutcomeBanner({ r: raw, onFresh, onCrew }: { r: AskResponse; onF
   const hit = r.outcome === "answered_with_path" && r.exposed.length > 0;
   const notHit = isNotHit(r);
   const wake = !hit && !r.safe.length && r.wake.length > 0 ? r.wake : null;
-  const label = r.outcome === "answered_from_memory" ? "Graph memory" : r.exposed.length || r.safe.length ? "Incident report"
+  // "Who should I wake for that?" over an incident: lead with the teams to page, keep the exposure count as detail.
+  const wakeLed = hit && r.intent === "who_to_wake" && r.wake.length > 0;
+  const teams = wakeLed ? groupWake(r.wake) : [];
+  const label = wakeLed ? "Who to wake" : r.outcome === "answered_from_memory" ? "Graph memory" : r.exposed.length || r.safe.length ? "Incident report"
     : notHit ? (r.entity_kind === "campaign" ? "Campaign check" : "Exposure check") : wake ? "Who to wake" : "Answer";
   const meta = [
     r.trigger ? `Trigger: ${r.trigger}` : null,
@@ -50,7 +54,11 @@ export function OutcomeBanner({ r: raw, onFresh, onCrew }: { r: AskResponse; onF
               </span>
             </p>
           )}
-          {hit ? (
+          {wakeLed ? (
+            <h2 data-testid="wake-headline" className="text-[28px] font-semibold leading-tight tracking-[-0.02em] text-ink">
+              Wake <CountUp value={teams.length} className="text-signal" /> team{teams.length === 1 ? "" : "s"} for {r.exposed.length} exposed service{r.exposed.length === 1 ? "" : "s"}.
+            </h2>
+          ) : hit ? (
             <h2 className="text-[28px] font-semibold leading-tight tracking-[-0.02em] text-ink">
               <CountUp value={r.exposed.length} className="text-signal" /> of {r.fleet_size} services can install a malicious version.
             </h2>
@@ -70,7 +78,12 @@ export function OutcomeBanner({ r: raw, onFresh, onCrew }: { r: AskResponse; onF
           )}
           {r.outcome === "answered_from_memory" && <MemoryLine r={r} />}
           <FollowupLine f={r.followup} campaignName={r.entity_kind === "campaign" ? checkedName(r) : undefined} />
-          {detail(r, hit) && <p className="mt-3 text-[15px] leading-relaxed text-ink-2">{detail(r, hit)}</p>}
+          {wakeLed ? (
+            <p className="mt-3 text-[15px] leading-relaxed text-ink-2">
+              Start with {teams.slice(0, 3).map((t, i) => <span key={t.team}>{i > 0 && (i === Math.min(teams.length, 3) - 1 ? " and " : ", ")}<span className="font-medium text-ink">{t.oncall[0]?.name ?? t.team_display}</span></span>)}{teams.length > 3 ? `, then ${teams.length - 3} more` : ""}.
+              {" "}{r.exposed.length} of {r.fleet_size} services can install a malicious version at depth {r.depth}.
+            </p>
+          ) : detail(r, hit) && <p className="mt-3 text-[15px] leading-relaxed text-ink-2">{detail(r, hit)}</p>}
         </div>
         {onCrew && r.outcome !== "answered_from_memory" && (
           <button onClick={onCrew} data-testid="answer-crew" className="press inline-flex h-9 items-center gap-2 rounded-lg bg-ink px-3.5 text-[13px] font-medium text-paper hover:bg-ink/85">
@@ -248,10 +261,11 @@ export function TracePanel({ trace, loading }: { trace: TraceStep[]; loading: bo
     <Card>
       <CardHeader icon={<Terminal />} title="Agent trace" sub={trace.some((s) => s.tool === "mcp" && s.via !== "direct") ? "Called through our MCP server, then parameterised Cypher from queries/*.cypher, never generated from your text." : "A fixed catalogue of tools: parameterised Cypher from queries/*.cypher, never generated from your text."}
         right={<span className="font-mono text-[12px] text-ink-3 tabular">{trace.length} steps · {total.toFixed(1)} ms</span>} />
+      {!loading && <McpChain trace={trace} />}
       <div className="divide-y divide-line">
         {loading && <div className="space-y-2 p-4">{[0, 1, 2, 3].map((i) => <Skeleton key={i} className="h-8" />)}</div>}
         {!loading && trace.length === 0 && <p className="py-6 text-center text-[13px] text-ink-3">Tool calls appear here.</p>}
-        {!loading && <ShowMore limit={10} noun="steps">{trace.map((s, i) => s.tool === "mcp" ? (
+        {!loading && <ShowMore limit={12} noun="steps">{trace.map((s, i) => s.tool === "mcp" ? (
           <motion.div key={i} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: i * 0.03, duration: 0.2 }}>
             <McpStep s={s} n={i + 1} open={open === i} onToggle={() => setOpen(open === i ? null : i)} />
           </motion.div>
@@ -295,6 +309,33 @@ export function TracePanel({ trace, loading }: { trace: TraceStep[]; loading: bo
         ))}</ShowMore>}
       </div>
     </Card>
+  );
+}
+
+/** Every graph tool the router picked is its own tools/call on one shared MCP session: show them as one chain. */
+function McpChain({ trace }: { trace: TraceStep[] }) {
+  const calls = trace.filter((s) => s.tool === "mcp");
+  if (calls.length < 2) return null;
+  const viaMcp = calls.filter((s) => s.via !== "direct").length;
+  const ms = calls.reduce((a, s) => a + (s.ms || 0), 0);
+  const llm = calls.some((s) => /chosen by the LLM/.test(s.note ?? ""));
+  return (
+    <div data-testid="mcp-chain" data-calls={calls.length} className="border-b border-line px-5 py-3.5">
+      <p className="text-[13px] text-ink-2">
+        <span className="font-medium text-ink">{calls.length} MCP tool calls in one session</span>
+        <span className="text-ink-3"> · {viaMcp === calls.length ? `all via MCP over ${calls[0].transport ?? "memory"}` : `${viaMcp} via MCP, ${calls.length - viaMcp} direct fallback`}{llm ? " · picked by the LLM" : ""} · {ms.toFixed(1)} ms</span>
+      </p>
+      <ol className="mt-2 flex flex-wrap items-center gap-y-1.5">
+        {calls.map((s, i) => (
+          <li key={i} className="flex items-center">
+            {i > 0 && <ChevronRight className="mx-1 h-3.5 w-3.5 text-ink-4" aria-hidden />}
+            <span className={clsx("rounded-md px-1.5 py-0.5 font-mono text-[12px]", s.via === "direct" ? "border border-dashed border-line-strong text-ink-2" : "border border-line bg-subtle text-ink")}>
+              {s.mcp_tool ?? "tool"}
+            </span>
+          </li>
+        ))}
+      </ol>
+    </div>
   );
 }
 
@@ -349,28 +390,54 @@ function Params({ params }: { params: unknown }) {
 
 const initials = (n: string) => n.split(" ").map((p) => p[0]).join("").slice(0, 2);
 
+export interface WakeTeam { team: string; team_display: string; slack: string; pager: string; oncall: WakeEntry["oncall"]; services: { name: string; tier: number }[]; topTier: number }
+
+/** One row per owning team, highest tier first, then the team with the most exposed services. */
+export function groupWake(wake: WakeEntry[]): WakeTeam[] {
+  const by = new Map<string, WakeTeam>();
+  for (const w of wake) {
+    const t = by.get(w.team) ?? { team: w.team, team_display: w.team_display, slack: w.slack, pager: w.pager, oncall: [], services: [], topTier: w.tier };
+    for (const o of w.oncall) if (!t.oncall.some((x) => x.handle === o.handle)) t.oncall.push(o);
+    if (!t.services.some((x) => x.name === w.service)) t.services.push({ name: w.service, tier: w.tier });
+    t.topTier = Math.min(t.topTier, w.tier);
+    by.set(w.team, t);
+  }
+  const out = [...by.values()];
+  out.forEach((t) => t.services.sort((a, b) => a.tier - b.tier || a.name.localeCompare(b.name)));
+  return out.sort((a, b) => a.topTier - b.topTier || b.services.length - a.services.length || a.team_display.localeCompare(b.team_display));
+}
+
 export function WakeCard({ wake }: { wake: WakeEntry[] }) {
   if (!wake.length) return null;
+  const teams = groupWake(wake);
+  const nSvc = new Set(wake.map((w) => w.service)).size;
   return (
     <Card>
-      <CardHeader icon={<BellRing />} title={`${wake.length} owning team${wake.length > 1 ? "s" : ""}`} sub="Synthetic Acme org. Page the on-call, then the team channel." />
-      <div className="divide-y divide-line">
-        <ShowMore limit={6} noun="teams to page">
-        {wake.map((w) => (
-          <div key={w.service} className="grid grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)_auto] items-center gap-4 px-5 py-3">
+      <CardHeader icon={<BellRing />} title={`${teams.length} team${teams.length > 1 ? "s" : ""} to page for ${nSvc} service${nSvc > 1 ? "s" : ""}`} sub="Synthetic org. Page the on-call, then the team channel. Highest tier first." />
+      <div className="divide-y divide-line" data-testid="wake-card">
+        <ShowMore limit={6} noun="teams">
+        {teams.map((t) => (
+          <div key={t.team} data-team={t.team} className="grid gap-x-6 gap-y-2 px-5 py-3.5 md:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]">
             <div className="min-w-0">
-              <p className="truncate text-[14px] font-medium text-ink">{w.service}</p>
-              <p className="truncate text-[12.5px] text-ink-3">{w.team_display} · <span className="font-mono">{w.slack}</span></p>
-            </div>
-            <div className="min-w-0 space-y-1">
-              {w.oncall.length ? w.oncall.map((o) => (
-                <div key={o.handle} className="flex min-w-0 items-center gap-2">
-                  <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-subtle text-[10.5px] font-semibold text-ink-2 ring-1 ring-line">{initials(o.name)}</span>
-                  <span className="truncate text-[13px] text-ink">{o.name} <span className="text-ink-3">{o.handle}</span></span>
+              <div className="flex items-center gap-2">
+                {t.oncall.length ? (
+                  <span className="grid h-7 w-7 shrink-0 place-items-center rounded-full bg-subtle text-[11px] font-semibold text-ink-2 ring-1 ring-line">{initials(t.oncall[0].name)}</span>
+                ) : <span className="h-7 w-7 shrink-0 rounded-full border border-dashed border-line-strong" />}
+                <div className="min-w-0">
+                  <p className="truncate text-[14px] font-medium text-ink">{t.oncall.length ? t.oncall.map((o) => o.name).join(", ") : "No on-call"} <span className="font-normal text-ink-3">{t.oncall.map((o) => o.handle).join(" ")}</span></p>
+                  <p className="truncate text-[12.5px] text-ink-3">{t.team_display} · <span className="font-mono">{t.slack}</span><span className="hidden md:inline"> · {t.pager}</span></p>
                 </div>
-              )) : <span className="text-[13px] text-ink-3">No on-call</span>}
+              </div>
             </div>
-            <span className="text-right text-[12.5px] text-ink-3">Tier {w.tier}<span className="hidden md:inline"> · {w.pager}</span></span>
+            <div className="flex min-w-0 flex-wrap items-center gap-1.5 md:justify-end">
+              {t.services.map((sv) => (
+                <span key={sv.name} className="inline-flex items-center gap-1.5 rounded-md border border-line bg-surface px-1.5 py-0.5 text-[12px]">
+                  <span className={clsx("h-1.5 w-1.5 rounded-full", sv.tier === 1 ? "bg-signal" : sv.tier === 2 ? "bg-risk" : "bg-ink-4")} />
+                  <span className="font-mono text-ink">{sv.name}</span>
+                  <span className="text-ink-3">T{sv.tier}</span>
+                </span>
+              ))}
+            </div>
           </div>
         ))}
         </ShowMore>
@@ -487,7 +554,7 @@ export function SpofPanel({ r }: { r: AskResponse }) {
   if (!r.spof) return null;
   const max = Math.max(...r.spof.maintainers.map((m) => m.reach), 1);
   return (
-    <Card>
+    <Card testid="spof-panel">
       <CardHeader icon={<Crown />} title="Single points of failure" sub="npm accounts ranked by how many fleet services they reach, ties broken by algo.pageRank." />
       <div className="grid gap-8 p-5 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)]">
         <div>
@@ -537,7 +604,7 @@ export function PathPanel({ r }: { r: AskResponse }) {
   if (!r.path) return null;
   const n = r.path.via.length;
   return (
-    <Card>
+    <Card testid="path-panel">
       <CardHeader icon={<GitBranch />} title={`Why is ${r.path.service} connected to ${r.path.package}?`} sub={`Shortest path with algo.SPpaths, ${r.path.hops} hops. The declared range is shown on every edge.`} />
       <ol className="p-5">
         {r.path.via.map((node, i) => (
@@ -558,7 +625,7 @@ export function PathPanel({ r }: { r: AskResponse }) {
 export function WakeOnly({ r }: { r: AskResponse }) {
   if (!r.maintainers) return null;
   return (
-    <Card>
+    <Card testid="maintainers-panel">
       <CardHeader icon={<Activity />} title={`Who maintains ${r.maintainers.pkg}`} sub="The npm registry today, plus curated publish rights at incident time." />
       <div className="flex flex-wrap gap-x-5 gap-y-2 p-5 text-[13.5px]">
         {r.maintainers.maintainers.map((m) => (
@@ -573,11 +640,11 @@ export function WakeOnly({ r }: { r: AskResponse }) {
 
 export function ErrorCard({ message, kind, onRetry }: { message: string; kind: string; onRetry: () => void }) {
   return (
-    <Card className="border-signal/30 p-5">
+    <Card className="border-signal/30 p-5" testid="error-card">
       <div className="flex items-start gap-3">
         <AlertTriangle className="mt-0.5 h-[18px] w-[18px] shrink-0 text-signal" />
         <div className="flex-1">
-          <p className="text-[14px] font-medium text-ink">{kind === "graph_unavailable" ? "Graph unavailable" : kind === "network" ? "API unreachable" : "Something went wrong"}</p>
+          <p className="text-[14px] font-medium text-ink">{isDbDown(kind) ? "Graph unavailable" : kind === "network" ? "API unreachable" : "Something went wrong"}</p>
           <p className="mt-1 text-[13.5px] text-ink-2">{message}</p>
         </div>
         <Button onClick={onRetry}>Retry</Button>

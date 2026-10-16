@@ -1,0 +1,212 @@
+{
+ "query": "who gets paged if auth-service breaks?",
+ "intent": "who_to_wake",
+ "outcome": "answered_with_path",
+ "message": "Wake 1 team: Identity & Access (#team-identity, on-call Amara Okafor @amara) for auth-service.",
+ "depth": 4,
+ "trigger": null,
+ "entity_kind": null,
+ "entity_key": null,
+ "exposed_count": 0,
+ "entity": {
+  "advisories": [],
+  "package_versions": [],
+  "maintainers": [],
+  "services": [
+   "auth-service"
+  ],
+  "packages": [],
+  "unresolved": [],
+  "incident_packages": [],
+  "unmatched": [],
+  "found": true
+ },
+ "trace": [
+  {
+   "tool": "agent",
+   "query": null,
+   "file": null,
+   "cypher": null,
+   "params": {},
+   "ms": 0.0,
+   "rows": 0,
+   "write": false,
+   "note": "deterministic router pre-ran investigate; LLM phrases the answer",
+   "error": null
+  },
+  {
+   "tool": "mcp",
+   "query": null,
+   "file": null,
+   "cypher": null,
+   "params": {
+    "text": "who gets paged if auth-service breaks?"
+   },
+   "ms": 6.03,
+   "rows": 0,
+   "write": false,
+   "note": "router intent 'exposure': MCP tools/call resolve_entity over the memory transport (1 Cypher step server side)",
+   "error": null,
+   "via": "mcp",
+   "mcp_tool": "resolve_entity",
+   "transport": "memory",
+   "tools_listed": 13,
+   "list_ms": 0.0,
+   "intent": "exposure"
+  },
+  {
+   "tool": "resolve_entity",
+   "query": "resolve_entity",
+   "file": "queries/resolve_entity.cypher",
+   "cypher": "MATCH (m:Maintainer) WHERE toLower(m.npm) = toLower($text)\nRETURN 'Maintainer' AS kind, m.npm AS key, m.npm AS label, size([(m)-[:HAD_PUBLISH_RIGHTS]->(x) | x]) > 0 AS in_incident\nUNION ALL\nMATCH (a:Advisory) WHERE toUpper($text) IN a.ids\nRETURN 'Advisory' AS kind, a.id AS key, a.id + ' (' + a.pkg + '@' + a.bad_version + ')' AS label, true AS in_incident\nUNION ALL\nMATCH (v:Version {pkg: $pkg, version: $version})\nRETURN 'Version' AS kind, v.key AS key, v.key AS label, v.malicious AS in_incident\nUNION ALL\nMATCH (p:Package {name: toLower($text)})\nRETURN 'Package' AS kind, p.name AS key, p.name AS label, size([(x:Maintainer)-[:HAD_PUBLISH_RIGHTS]->(p) | x]) > 0 AS in_incident\nUNION ALL\nMATCH (s:Service {name: toLower($text)})\nRETURN 'Service' AS kind, s.name AS key, s.name AS label, false AS in_incident",
+   "params": {
+    "calls": [
+     {
+      "text": "gets",
+      "pkg": "",
+      "version": ""
+     },
+     {
+      "text": "paged",
+      "pkg": "",
+      "version": ""
+     },
+     {
+      "text": "auth-service",
+      "pkg": "",
+      "version": ""
+     },
+     {
+      "text": "breaks",
+      "pkg": "",
+      "version": ""
+     }
+    ]
+   },
+   "ms": 4.82,
+   "rows": 1,
+   "write": false,
+   "note": "4 calls",
+   "error": null
+  },
+  {
+   "tool": "mcp",
+   "query": null,
+   "file": null,
+   "cypher": null,
+   "params": {
+    "services": [
+     "auth-service"
+    ]
+   },
+   "ms": 1.91,
+   "rows": 0,
+   "write": false,
+   "note": "router intent 'exposure': MCP tools/call who_to_wake over the memory transport (1 Cypher step server side)",
+   "error": null,
+   "via": "mcp",
+   "mcp_tool": "who_to_wake",
+   "transport": "memory",
+   "tools_listed": 13,
+   "list_ms": 0.0,
+   "intent": "exposure"
+  },
+  {
+   "tool": "who_to_wake",
+   "query": "who_to_wake",
+   "file": "queries/who_to_wake.cypher",
+   "cypher": "MATCH (t:Team)-[:OWNS]->(s:Service)\nWHERE s.name IN $services\nOPTIONAL MATCH (oc:Person)-[:ONCALL_FOR]->(t)\nOPTIONAL MATCH (mem:Person)-[:MEMBER_OF]->(t)\nWITH s, t,\n     collect(DISTINCT {name: oc.name, handle: oc.handle, email: oc.email}) AS oncall,\n     collect(DISTINCT {name: mem.name, handle: mem.handle, role: mem.role}) AS members\nRETURN s.name AS service, s.tier AS tier, s.env AS env, s.runtime AS runtime, s.repo AS repo,\n       t.name AS team, coalesce(t.display, t.name) AS team_display, coalesce(t.slack, '#team-' + t.name) AS slack,\n       coalesce(t.pager, t.name) AS pager, oncall, members\nORDER BY tier, service",
+   "params": {
+    "services": [
+     "auth-service"
+    ]
+   },
+   "ms": 1.36,
+   "rows": 1,
+   "write": false,
+   "note": null,
+   "error": null
+  },
+  {
+   "tool": "llm",
+   "query": null,
+   "file": null,
+   "cypher": null,
+   "params": {},
+   "ms": 6.33,
+   "rows": 0,
+   "write": false,
+   "note": "gpt-4o-mini chose to answer (42 tokens)",
+   "error": null,
+   "llm_used": true,
+   "tokens": 42
+  }
+ ],
+ "scope": [],
+ "exposed": [],
+ "safe": [],
+ "clean": [],
+ "fleet_size": null,
+ "wake": [
+  {
+   "service": "auth-service",
+   "tier": 1,
+   "env": "prod",
+   "repo": "acme/auth-service",
+   "team": "identity",
+   "team_display": "Identity & Access",
+   "slack": "#team-identity",
+   "pager": "acme-identity",
+   "oncall": [
+    {
+     "name": "Amara Okafor",
+     "handle": "@amara",
+     "email": "amara.okafor@acme.example"
+    }
+   ],
+   "members": [
+    {
+     "name": "Amara Okafor",
+     "handle": "@amara",
+     "role": "Security Engineer"
+    },
+    {
+     "name": "Lukas Becker",
+     "handle": "@lukas",
+     "role": "Engineering Manager"
+    }
+   ]
+  }
+ ],
+ "fix": null,
+ "memory": null,
+ "spof": null,
+ "path": null,
+ "maintainers": null,
+ "graph": {
+  "nodes": [],
+  "edges": []
+ },
+ "total_ms": 16.74,
+ "llm_summary": "Page the auth-service owners first.",
+ "llm_unverified": [],
+ "mode": "llm",
+ "llm_model": "gpt-4o-mini",
+ "llm_tokens": 42,
+ "tool_via": "mcp",
+ "mcp": {
+  "via": "mcp",
+  "transport": "memory",
+  "intent": "who_to_wake",
+  "tool": "who_to_wake",
+  "tools": [
+   "resolve_entity",
+   "who_to_wake"
+  ],
+  "calls": 2,
+  "ms": 7.94,
+  "wall_ms": 10.22
+ },
+ "tenant": "acme",
+ "company": "Acme"
+}

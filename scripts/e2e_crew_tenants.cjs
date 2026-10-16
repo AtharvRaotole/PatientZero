@@ -93,6 +93,17 @@ const waitText = (page, re, timeout = 20000) =>
   const wakeTop = await page.evaluate(() => document.getElementById("who-to-wake")?.getBoundingClientRect().top ?? 9999);
   check("follow-up: 'who should I wake for that?' resolves to debug@4.4.2 from turn 1", true, (await text(page, "[data-testid=followup-line]")).replace(/\s+/g, " "));
   check("follow-up: who-to-wake section scrolled into view", wakeTop > -200 && wakeTop < 700, `top=${Math.round(wakeTop)}`);
+  // The wake follow-up leads with the teams to page, not the exposure count, and the wake card is report section 1.
+  const wh = await text(page, "[data-testid=wake-headline]");
+  check("wake follow-up: headline leads with teams (Wake N teams for M exposed services)", /^Wake \d+ teams? for \d+ exposed services?\.$/.test(wh.trim()), wh.trim());
+  const wake = await page.evaluate(() => {
+    const sec = document.getElementById("who-to-wake");
+    const first = [...document.querySelectorAll("[id=who-to-wake], section h2, section h3")].find((e) => e.closest("main"));
+    const teams = [...document.querySelectorAll("[data-testid=wake-card] [data-team]")].map((e) => e.dataset.team);
+    const allSecs = [...document.querySelectorAll("[data-report-section]")].map((e) => e.dataset.reportSection);
+    return { teams, unique: new Set(teams).size === teams.length, n: sec?.innerText.match(/^\s*0?(\d)/)?.[1], title: sec?.innerText.split("\n").slice(0, 6).join(" | "), allSecs, first: !!first };
+  });
+  check("wake follow-up: wake card grouped one row per team, shown first", wake.teams.length > 1 && wake.unique && /1/.test(wake.n || ""), `${wake.teams.length} teams; ${wake.title}`);
   await (await page.$("[data-testid=followup-line]")).evaluate((e) => e.scrollIntoView({ block: "center" }));
   await sleep(400);
   await page.screenshot({ path: `${OUT}/02-followup-resolution.png` });
@@ -175,16 +186,88 @@ const waitText = (page, re, timeout = 20000) =>
   await page.click("[data-testid=watch-replay]");
   await page.waitForSelector("[data-testid=watch-replay-result]", { timeout: 20000 });
   const rep = await text(page, "[data-testid=watch-replay-result]");
+  // Replays collapse to one row per advisory and package; every row carries its age label, never a "new" badge.
+  await sleep(1500);
+  const rows = await page.$$eval("[data-testid=watch-feed] li[data-replay=true]", (els) => els.map((e) => ({ key: e.dataset.key, age: e.querySelector("[data-testid=watch-age]")?.textContent || "" })));
+  const keys = rows.map((r) => r.key);
+  check("watch: replay rows are one per advisory, each with its age label", rows.length >= 1 && new Set(keys).size === keys.length && rows.every((r) => /replay of a past advisory published/.test(r.age)), `${rows.length} rows; ${rows[0]?.age.slice(0, 80)}`);
+  const feedText = await text(page, "[data-testid=live-watch]");
+  check("watch: no 'new' badge or 'new advisories' copy", !/\bnew advisor|\bNEW\b/.test(feedText), (feedText.match(/.{0,30}\bnew\b.{0,30}/i) || [""])[0]);
+  await (await page.$("[data-testid=live-watch]")).evaluate((e) => e.scrollIntoView({ block: "start" }));
+  await sleep(500);
+  await page.screenshot({ path: `${OUT}/13-watch-age.png` });
   check("watch: replay of debug@4.4.2 is labelled and hits both tenants", /REPLAY/i.test(rep) && /Acme[\s\S]*of 22 exposed/.test(rep) && /Globex[\s\S]*of 12 exposed/.test(rep), rep.replace(/\n/g, " ").slice(0, 120));
   await page.evaluate(() => window.scrollTo(0, 0));
   await ask(page, "who to wake for auth-service");
   await page.waitForSelector("[data-testid=trace-mcp]", { timeout: 20000 });
   const mcp = await page.$eval("[data-testid=trace-mcp]", (e) => ({ via: e.dataset.via, t: e.innerText }));
   check("trace: first step is an MCP tools/call", mcp.via === "mcp" && /via MCP/.test(mcp.t) && /tools listed/.test(mcp.t), mcp.t.replace(/\n/g, " ").slice(0, 100));
+  const chain = await page.$eval("[data-testid=mcp-chain]", (e) => ({ n: +e.dataset.calls, t: e.innerText })).catch(() => ({ n: 0, t: "" }));
+  check("trace: MCP calls shown as a chain (resolve_entity then who_to_wake)", chain.n >= 2 && /MCP tool calls in one session/.test(chain.t) && /resolve_entity[\s\S]*who_to_wake/.test(chain.t), chain.t.replace(/\n/g, " ").slice(0, 120));
+  await page.evaluate(() => window.scrollTo(0, 0));
+  await ask(page, "debug@4.4.2");
+  await page.waitForFunction(() => +(document.querySelector("[data-testid=mcp-chain]")?.dataset.calls || 0) >= 5, { timeout: 20000 }).catch(() => {});
+  const chain5 = await page.$eval("[data-testid=mcp-chain]", (e) => ({ n: +e.dataset.calls, t: e.innerText })).catch(() => ({ n: 0, t: "" }));
+  check("trace: an exposure answer shows its 5-call MCP chain", chain5.n >= 5 && /5 MCP tool calls in one session/.test(chain5.t) && /incident_scope[\s\S]*exposure[\s\S]*who_to_wake/.test(chain5.t), chain5.t.replace(/\n/g, " ").slice(0, 140));
+  await (await page.$("[data-testid=mcp-chain]")).evaluate((e) => e.scrollIntoView({ block: "center" }));
+  await sleep(500);
+  await page.screenshot({ path: `${OUT}/11-mcp-chain.png` });
   await page.$eval("#performance", (e) => e.scrollIntoView());
   await page.waitForSelector("[data-testid=bench]", { timeout: 15000 });
   const bench = await text(page, "[data-testid=bench]");
   check("bench: throughput, p50/p95/p99, errors and which run it was", /queries per second/.test(bench) && /p95/.test(bench) && /p99/.test(bench) && /error/.test(bench) && /stored result/.test(bench));
+  const http = await text(page, "[data-testid=bench-http]");
+  const scope = await text(page, "[data-testid=bench-scope]");
+  check("bench: HTTP req/s next to the in-process number, plus the scope summary", /in process/.test(bench) && /req\/s end to end over HTTP at \d+ clients/.test(http) && /in process/.test(scope), `${http} / ${scope.slice(0, 60)}`);
+  await (await page.$("[data-testid=bench]")).evaluate((e) => e.scrollIntoView({ block: "center" }));
+  await sleep(700);
+  await page.screenshot({ path: `${OUT}/12-bench-http.png` });
+
+  // DB outage: the backend now answers 503 database_unavailable (older builds graph_unavailable). Both show the Graph unavailable state.
+  for (const code of ["database_unavailable", "graph_unavailable"]) {
+    const before = errors.length;
+    const on503 = (req) => {
+      if (req.method() === "POST" && /\/api\/ask/.test(req.url())) req.respond({ status: 503, headers: { "Access-Control-Allow-Origin": "*" }, contentType: "application/json", body: JSON.stringify({ error: code, message: "FalkorDB is not reachable." }) });
+      else req.continue().catch(() => {});
+    };
+    await page.setRequestInterception(true);
+    page.on("request", on503);
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await ask(page, "debug@4.4.2");
+    await page.waitForSelector("[data-testid=error-card]", { timeout: 10000 }).catch(() => {});
+    const ec = await text(page, "[data-testid=error-card]");
+    check(`mocked 503 ${code}: UI shows Graph unavailable`, /Graph unavailable/.test(ec) && !/Something went wrong/.test(ec), ec.replace(/\n/g, " ").slice(0, 90));
+    if (code === "database_unavailable") await page.screenshot({ path: `${OUT}/09-database-unavailable.png` });
+    page.off("request", on503);
+    await page.setRequestInterception(false);
+    errors.splice(before, errors.length - before, ...errors.slice(before).filter((e) => !/503|Service Unavailable/.test(e)));
+  }
+
+  // LLM mode: real backend LLM-path responses captured against a scripted fake chat-completions server (scripts/fixtures/llm-*.json),
+  // served here by interception. No OpenAI call is made.
+  const fx = (n) => JSON.parse(require("fs").readFileSync(require("path").join(__dirname, "fixtures", `llm-${n}.json`), "utf8"));
+  const fixtures = { spof: fx("spof"), wake: fx("wake"), path: fx("path") };
+  const onLlm = (req) => {
+    if (req.method() === "POST" && /\/api\/ask/.test(req.url())) {
+      const q = JSON.parse(req.postData() || "{}").query || "";
+      const f = Object.values(fixtures).find((x) => x.query === q);
+      if (f) return req.respond({ status: 200, headers: { "Access-Control-Allow-Origin": "*" }, contentType: "application/json", body: JSON.stringify(f) });
+    }
+    req.continue().catch(() => {});
+  };
+  await page.setRequestInterception(true);
+  page.on("request", onLlm);
+  for (const [n, sel, re] of [["spof", "[data-testid=spof-panel]", /Single points of failure/], ["wake", "[data-testid=responder]", /auth-service/], ["path", "[data-testid=path-panel]", /img-service[\s\S]*is-arrayish/]]) {
+    await page.evaluate(() => window.scrollTo(0, 0));
+    await ask(page, fixtures[n].query);
+    const ok = await page.waitForSelector(sel, { timeout: 10000 }).then(() => true).catch(() => false);
+    const body = ok ? await text(page, sel) : "";
+    const sum = await text(page, "[data-testid=llm-summary]");
+    check(`LLM mode (mocked): ${n} answer renders its panel and the agent summary`, ok && re.test(body) && sum.includes(fixtures[n].llm_summary), `${body.replace(/\n/g, " ").slice(0, 60)} / ${sum.replace(/\n/g, " ").slice(0, 60)}`);
+    if (n === "spof") { await (await page.$(sel)).evaluate((e) => e.scrollIntoView({ block: "start" })); await sleep(500); await page.screenshot({ path: `${OUT}/10-llm-spof.png` }); }
+  }
+  page.off("request", onLlm);
+  await page.setRequestInterception(false);
 
   check("no browser console errors", errors.length === 0, errors.slice(0, 3).join(" | "));
   await browser.close();

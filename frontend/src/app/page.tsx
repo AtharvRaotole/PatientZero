@@ -3,7 +3,7 @@ import dynamic from "next/dynamic";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, Info, Loader2, Play, Users } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { API_URL, ApiError, adminToken, apiGet, apiPost } from "@/lib/api";
+import { API_URL, ApiError, adminToken, apiGet, apiPost, isDbDown } from "@/lib/api";
 import type { AskResponse, FleetGraph, GraphElem, Health, Incident, Playbook } from "@/lib/types";
 import { NotHitView, ResponderView, isNotHit } from "@/components/answers";
 import { CrewView, type CrewSpec } from "@/components/crew";
@@ -279,7 +279,7 @@ export default function Home() {
         const a = e as ApiError;
         setErr({ message: a.message, kind: a.kind ?? "error" });
         setResult(null);
-        if (a.kind === "graph_unavailable" || a.kind === "network") loadMeta();
+        if (isDbDown(a.kind) || a.kind === "network") loadMeta();
       } finally {
         if (my === seq.current) setLoading(false);
       }
@@ -383,6 +383,7 @@ export default function Home() {
   const svcCount = fleet?.nodes.filter((n) => n.kind === "Service").length ?? 0;
   const pkgCount = fleet ? fleet.nodes.length - svcCount : 0;
   const isIncident = result && (result.exposed.length > 0 || result.safe.length > 0);
+  const wakeFirst = !!result && result.intent === "who_to_wake" && result.exposed.length > 0 && result.wake.length > 0;
   // What the fleet graph emphasizes. Answers without their own subgraph still say something on it:
   // a clean check paints every service clean, who-to-wake marks the service asked about.
   const graphHl = useMemo<GraphElem | null>(() => {
@@ -545,16 +546,24 @@ export default function Home() {
 
               {isIncident ? (
                 <div className="mt-8">
-                  <ReportSection n={1} title="Scope" sub="Malicious versions in this incident and the clean version to pin." delay={0.02}>
+                  {/* "Who should I wake?" leads with the people; otherwise the report reads scope, exposure, then owners. */}
+                  {wakeFirst && (
+                    <ReportSection n={1} id="who-to-wake" title="Who to wake" sub="Owning teams and on-call for every exposed service, highest tier first." delay={0.02}>
+                      <WakeCard wake={result.wake} />
+                    </ReportSection>
+                  )}
+                  <ReportSection n={wakeFirst ? 2 : 1} title="Scope" sub="Malicious versions in this incident and the clean version to pin." delay={0.04}>
                     <ScopeStrip r={result} />
                   </ReportSection>
-                  <ReportSection n={2} title="Exposure" sub="A service is exposed only if the range on the last edge admits the malicious version." delay={0.06}>
+                  <ReportSection n={wakeFirst ? 3 : 2} title="Exposure" sub="A service is exposed only if the range on the last edge admits the malicious version." delay={0.06}>
                     <ExposurePanel r={result} depth={depth} onDepth={onDepth} onSelect={() => {}} />
                     <InsightsPanel r={result} />
                   </ReportSection>
-                  <ReportSection n={3} id="who-to-wake" title="Who to wake" sub="Owning team and on-call for every exposed service." delay={0.1}>
-                    <WakeCard wake={result.wake} />
-                  </ReportSection>
+                  {!wakeFirst && (
+                    <ReportSection n={3} id="who-to-wake" title="Who to wake" sub="Owning team and on-call for every exposed service." delay={0.1}>
+                      <WakeCard wake={result.wake} />
+                    </ReportSection>
+                  )}
                   <ReportSection n={4} title="Fix" sub="Overrides pinned to clean versions, drafts for each team. Approve it to remember it as a playbook." delay={0.14}>
                     {(result.exposed.length > 0 || result.fix) ? (
                       <FixPanel canFix={result.exposed.length > 0} fix={result.fix} loading={fixLoading} onFix={onFix} onApproved={() => { refreshPlaybooks(); refreshTimeline(); }} />

@@ -1,0 +1,291 @@
+{
+ "query": "which npm account would hurt us most if it got phished?",
+ "intent": "single_points_of_failure",
+ "outcome": "answered_with_path",
+ "message": "If one of these npm accounts were phished, it would reach the most Acme services: qix (17 services), matteo.collina (17 services), sindresorhus (16 services). Ranked by fleet reach, tie-broken by algo.pageRank.",
+ "depth": 4,
+ "trigger": null,
+ "entity_kind": null,
+ "entity_key": null,
+ "exposed_count": 0,
+ "entity": null,
+ "trace": [
+  {
+   "tool": "llm",
+   "query": null,
+   "file": null,
+   "cypher": null,
+   "params": {},
+   "ms": 29.84,
+   "rows": 0,
+   "write": false,
+   "note": "gpt-4o-mini chose single_points_of_failure (42 tokens)",
+   "error": null,
+   "llm_used": true,
+   "tokens": 42
+  },
+  {
+   "tool": "mcp",
+   "query": null,
+   "file": null,
+   "cypher": null,
+   "params": {},
+   "ms": 119.36,
+   "rows": 0,
+   "write": false,
+   "note": "MCP tools/call single_points_of_failure chosen by the LLM from 13 MCP tools",
+   "error": null,
+   "via": "mcp",
+   "mcp_tool": "single_points_of_failure",
+   "transport": "memory",
+   "tools_listed": 13,
+   "list_ms": 0.0
+  },
+  {
+   "tool": "single_points_of_failure",
+   "query": "single_points_of_failure",
+   "file": "queries/single_points_of_failure.cypher",
+   "cypher": "MATCH (m:Maintainer)-[:MAINTAINS|HAD_PUBLISH_RIGHTS]->(:Package)-[:HAS_VERSION]->(:Version)<-[:DEPENDS_ON|REQUIRES*1..6]-(s:Service)\nWITH m, count(DISTINCT s) AS reach ORDER BY reach DESC LIMIT $limit\nCALL algo.pageRank('Version', 'REQUIRES') YIELD node, score\nWITH m, reach, node, score\nMATCH (m)-[:MAINTAINS|HAD_PUBLISH_RIGHTS]->(pk:Package)-[:HAS_VERSION]->(node)\nWITH m, reach, sum(score) AS pagerank, count(DISTINCT pk) AS packages_in_fleet\nRETURN m.npm AS maintainer, reach, pagerank, packages_in_fleet,\n       size([(m)-[:HAD_PUBLISH_RIGHTS]->(x) | x]) > 0 AS compromised_in_incident\nORDER BY reach DESC, pagerank DESC",
+   "params": {
+    "limit": 10
+   },
+   "ms": 109.16,
+   "rows": 10,
+   "write": false,
+   "note": "reach over DEPENDS_ON|REQUIRES*1..6 plus algo.pageRank('Version','REQUIRES')",
+   "error": null
+  },
+  {
+   "tool": "single_points_of_failure",
+   "query": "package_reach",
+   "file": "queries/single_points_of_failure.cypher",
+   "cypher": "MATCH (s:Service)-[:DEPENDS_ON|REQUIRES*1..6]->(v:Version)\nRETURN v.pkg AS pkg, count(DISTINCT s) AS reach\nORDER BY reach DESC LIMIT $limit",
+   "params": {
+    "limit": 10
+   },
+   "ms": 6.32,
+   "rows": 10,
+   "write": false,
+   "note": null,
+   "error": null
+  },
+  {
+   "tool": "single_points_of_failure",
+   "query": "top_packages_pagerank",
+   "file": "queries/single_points_of_failure.cypher",
+   "cypher": "CALL algo.pageRank('Version', 'REQUIRES') YIELD node, score\nRETURN node.pkg AS pkg, node.version AS version, score\nORDER BY score DESC LIMIT $limit",
+   "params": {
+    "limit": 10
+   },
+   "ms": 2.3,
+   "rows": 10,
+   "write": false,
+   "note": null,
+   "error": null
+  },
+  {
+   "tool": "llm",
+   "query": null,
+   "file": null,
+   "cypher": null,
+   "params": {},
+   "ms": 7.43,
+   "rows": 0,
+   "write": false,
+   "note": "gpt-4o-mini chose to answer (42 tokens)",
+   "error": null,
+   "llm_used": true,
+   "tokens": 42
+  }
+ ],
+ "scope": [],
+ "exposed": [],
+ "safe": [],
+ "clean": [],
+ "fleet_size": null,
+ "wake": [],
+ "fix": null,
+ "memory": null,
+ "spof": {
+  "maintainers": [
+   {
+    "maintainer": "qix",
+    "reach": 17,
+    "pagerank": 0.0393711525539402,
+    "packages_in_fleet": 19,
+    "compromised_in_incident": true
+   },
+   {
+    "maintainer": "matteo.collina",
+    "reach": 17,
+    "pagerank": 0.0277841455827001,
+    "packages_in_fleet": 31,
+    "compromised_in_incident": false
+   },
+   {
+    "maintainer": "sindresorhus",
+    "reach": 16,
+    "pagerank": 0.0872467726003379,
+    "packages_in_fleet": 90,
+    "compromised_in_incident": false
+   },
+   {
+    "maintainer": "isaacs",
+    "reach": 16,
+    "pagerank": 0.0172220133827068,
+    "packages_in_fleet": 14,
+    "compromised_in_incident": false
+   },
+   {
+    "maintainer": "rauchg",
+    "reach": 16,
+    "pagerank": 0.010026611504145,
+    "packages_in_fleet": 10,
+    "compromised_in_incident": false
+   },
+   {
+    "maintainer": "timneutkens",
+    "reach": 16,
+    "pagerank": 0.00747868462349288,
+    "packages_in_fleet": 4,
+    "compromised_in_incident": false
+   },
+   {
+    "maintainer": "guybedford",
+    "reach": 16,
+    "pagerank": 0.00746854729368351,
+    "packages_in_fleet": 4,
+    "compromised_in_incident": false
+   },
+   {
+    "maintainer": "timer",
+    "reach": 16,
+    "pagerank": 0.00706329019158147,
+    "packages_in_fleet": 3,
+    "compromised_in_incident": false
+   },
+   {
+    "maintainer": "matheuss",
+    "reach": 16,
+    "pagerank": 0.00704233549186029,
+    "packages_in_fleet": 3,
+    "compromised_in_incident": false
+   },
+   {
+    "maintainer": "zeit-bot",
+    "reach": 16,
+    "pagerank": 0.00704233549186029,
+    "packages_in_fleet": 3,
+    "compromised_in_incident": false
+   }
+  ],
+  "packages": [
+   {
+    "pkg": "ms",
+    "reach": 15
+   },
+   {
+    "pkg": "debug",
+    "reach": 14
+   },
+   {
+    "pkg": "safe-buffer",
+    "reach": 11
+   },
+   {
+    "pkg": "cookie",
+    "reach": 10
+   },
+   {
+    "pkg": "mime-db",
+    "reach": 10
+   },
+   {
+    "pkg": "mime-types",
+    "reach": 10
+   },
+   {
+    "pkg": "@types/node",
+    "reach": 9
+   },
+   {
+    "pkg": "es-errors",
+    "reach": 9
+   },
+   {
+    "pkg": "forwarded",
+    "reach": 9
+   },
+   {
+    "pkg": "hasown",
+    "reach": 9
+   }
+  ],
+  "pagerank": [
+   {
+    "pkg": "@types/node",
+    "version": "26.6.5",
+    "score": 0.00815229583531618
+   },
+   {
+    "pkg": "es-errors",
+    "version": "1.3.0",
+    "score": 0.00769774755463004
+   },
+   {
+    "pkg": "undici-types",
+    "version": "8.9.0",
+    "score": 0.00732313329353929
+   },
+   {
+    "pkg": "@babel/helper-plugin-utils",
+    "version": "7.29.7",
+    "score": 0.0066819628700614
+   },
+   {
+    "pkg": "call-bound",
+    "version": "1.0.4",
+    "score": 0.00593605590984225
+   },
+   {
+    "pkg": "ms",
+    "version": "2.1.3",
+    "score": 0.00530322641134262
+   },
+   {
+    "pkg": "get-intrinsic",
+    "version": "1.3.1",
+    "score": 0.00486755510792136
+   },
+   {
+    "pkg": "function-bind",
+    "version": "1.1.2",
+    "score": 0.00405541900545359
+   },
+   {
+    "pkg": "debug",
+    "version": "4.4.3",
+    "score": 0.00404903246089816
+   },
+   {
+    "pkg": "call-bind-apply-helpers",
+    "version": "1.0.2",
+    "score": 0.00398367876186967
+   }
+  ]
+ },
+ "path": null,
+ "maintainers": null,
+ "graph": {
+  "nodes": [],
+  "edges": []
+ },
+ "total_ms": 186.09,
+ "llm_summary": "qix has the widest fleet reach.",
+ "llm_unverified": [],
+ "mode": "llm",
+ "llm_model": "gpt-4o-mini",
+ "llm_tokens": 84,
+ "tenant": "acme",
+ "company": "Acme"
+}

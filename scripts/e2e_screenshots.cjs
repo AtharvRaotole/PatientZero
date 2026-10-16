@@ -69,6 +69,7 @@ const exposedCount = (page) =>
   const page = await browser.newPage();
   page.on("console", (m) => m.type() === "error" && errors.push(m.text()));
   page.on("pageerror", (e) => errors.push(String(e)));
+  page.on("response", (r) => { if (r.status() >= 400) errors.push(`${r.status()} ${r.request().method()} ${r.url()}`); });
 
   await page.goto(APP, { waitUntil: "networkidle2", timeout: 60000 });
   await page.waitForFunction(() => document.body.innerText.includes("versions"), { timeout: 30000 });

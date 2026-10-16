@@ -58,7 +58,7 @@ export function AgentAnswer({ r, llmAvailable }: { r: AskResponse; llmAvailable:
   return (
     <div className="space-y-3">
       {r.llm_summary && (
-        <div className="rounded-xl border border-line bg-surface p-5">
+        <div className="rounded-xl border border-line bg-surface p-5" data-testid="llm-summary">
           <div className="mb-2 flex flex-wrap items-center gap-x-3 gap-y-1">
             <span className="text-[13px] font-medium text-ink">Agent answer</span>
             <ModePill mode={r.mode} model={r.llm_model} />

@@ -1,0 +1,286 @@
+{
+ "query": "how does img-service end up pulling in is-arrayish?",
+ "intent": "path_between",
+ "outcome": "answered_with_path",
+ "message": "img-service reaches is-arrayish in 5 hops: img-service \u2192 sharp@0.33.5 \u2192 color@4.2.3 \u2192 color-string@1.9.1 \u2192 simple-swizzle@0.2.4 \u2192 is-arrayish@0.3.4",
+ "depth": 4,
+ "trigger": null,
+ "entity_kind": null,
+ "entity_key": null,
+ "exposed_count": 0,
+ "entity": {
+  "advisories": [],
+  "package_versions": [],
+  "maintainers": [],
+  "services": [
+   "img-service"
+  ],
+  "packages": [
+   "is-arrayish"
+  ],
+  "unresolved": [],
+  "incident_packages": [
+   "is-arrayish"
+  ],
+  "unmatched": [],
+  "found": true
+ },
+ "trace": [
+  {
+   "tool": "agent",
+   "query": null,
+   "file": null,
+   "cypher": null,
+   "params": {},
+   "ms": 0.0,
+   "rows": 0,
+   "write": false,
+   "note": "deterministic router pre-ran investigate; LLM phrases the answer",
+   "error": null
+  },
+  {
+   "tool": "mcp",
+   "query": null,
+   "file": null,
+   "cypher": null,
+   "params": {
+    "text": "how does img-service end up pulling in is-arrayish?"
+   },
+   "ms": 6.76,
+   "rows": 0,
+   "write": false,
+   "note": "router intent 'path_between': MCP tools/call resolve_entity over the memory transport (1 Cypher step server side)",
+   "error": null,
+   "via": "mcp",
+   "mcp_tool": "resolve_entity",
+   "transport": "memory",
+   "tools_listed": 13,
+   "list_ms": 0.0,
+   "intent": "path_between"
+  },
+  {
+   "tool": "resolve_entity",
+   "query": "resolve_entity",
+   "file": "queries/resolve_entity.cypher",
+   "cypher": "MATCH (m:Maintainer) WHERE toLower(m.npm) = toLower($text)\nRETURN 'Maintainer' AS kind, m.npm AS key, m.npm AS label, size([(m)-[:HAD_PUBLISH_RIGHTS]->(x) | x]) > 0 AS in_incident\nUNION ALL\nMATCH (a:Advisory) WHERE toUpper($text) IN a.ids\nRETURN 'Advisory' AS kind, a.id AS key, a.id + ' (' + a.pkg + '@' + a.bad_version + ')' AS label, true AS in_incident\nUNION ALL\nMATCH (v:Version {pkg: $pkg, version: $version})\nRETURN 'Version' AS kind, v.key AS key, v.key AS label, v.malicious AS in_incident\nUNION ALL\nMATCH (p:Package {name: toLower($text)})\nRETURN 'Package' AS kind, p.name AS key, p.name AS label, size([(x:Maintainer)-[:HAD_PUBLISH_RIGHTS]->(p) | x]) > 0 AS in_incident\nUNION ALL\nMATCH (s:Service {name: toLower($text)})\nRETURN 'Service' AS kind, s.name AS key, s.name AS label, false AS in_incident",
+   "params": {
+    "calls": [
+     {
+      "text": "img-service",
+      "pkg": "",
+      "version": ""
+     },
+     {
+      "text": "end",
+      "pkg": "",
+      "version": ""
+     },
+     {
+      "text": "up",
+      "pkg": "",
+      "version": ""
+     },
+     {
+      "text": "pulling",
+      "pkg": "",
+      "version": ""
+     },
+     {
+      "text": "is-arrayish",
+      "pkg": "",
+      "version": ""
+     }
+    ]
+   },
+   "ms": 5.65,
+   "rows": 2,
+   "write": false,
+   "note": "5 calls",
+   "error": null
+  },
+  {
+   "tool": "mcp",
+   "query": null,
+   "file": null,
+   "cypher": null,
+   "params": {
+    "service": "img-service",
+    "package": "is-arrayish"
+   },
+   "ms": 1.43,
+   "rows": 0,
+   "write": false,
+   "note": "router intent 'path_between': MCP tools/call path_between over the memory transport (1 Cypher step server side)",
+   "error": null,
+   "via": "mcp",
+   "mcp_tool": "path_between",
+   "transport": "memory",
+   "tools_listed": 13,
+   "list_ms": 0.0,
+   "intent": "path_between"
+  },
+  {
+   "tool": "path_between",
+   "query": "path_between",
+   "file": "queries/path_between.cypher",
+   "cypher": "MATCH (s:Service {name: $service}), (v:Version)\nWHERE v.pkg = $pkg\nCALL algo.SPpaths({sourceNode: s, targetNode: v, relTypes: ['DEPENDS_ON', 'REQUIRES'],\n                   maxLen: 8, weightProp: 'weight', pathCount: 1}) YIELD path, pathWeight\nRETURN [n IN nodes(path) | n.name] AS via, [e IN relationships(path) | e.requirement] AS requirements,\n       pathWeight AS hops\nORDER BY hops LIMIT 1",
+   "params": {
+    "service": "img-service",
+    "pkg": "is-arrayish"
+   },
+   "ms": 1.02,
+   "rows": 1,
+   "write": false,
+   "note": "algo.SPpaths",
+   "error": null
+  },
+  {
+   "tool": "llm",
+   "query": null,
+   "file": null,
+   "cypher": null,
+   "params": {},
+   "ms": 6.63,
+   "rows": 0,
+   "write": false,
+   "note": "gpt-4o-mini chose to answer (42 tokens)",
+   "error": null,
+   "llm_used": true,
+   "tokens": 42
+  }
+ ],
+ "scope": [],
+ "exposed": [],
+ "safe": [],
+ "clean": [],
+ "fleet_size": null,
+ "wake": [],
+ "fix": null,
+ "memory": null,
+ "spof": null,
+ "path": {
+  "service": "img-service",
+  "package": "is-arrayish",
+  "via": [
+   "img-service",
+   "sharp@0.33.5",
+   "color@4.2.3",
+   "color-string@1.9.1",
+   "simple-swizzle@0.2.4",
+   "is-arrayish@0.3.4"
+  ],
+  "requirements": [
+   "0.33.5",
+   "^4.2.3",
+   "^1.9.0",
+   "^0.2.2",
+   "^0.3.1"
+  ],
+  "hops": 5
+ },
+ "maintainers": null,
+ "graph": {
+  "nodes": [
+   {
+    "id": "img-service",
+    "label": "img-service",
+    "type": "service",
+    "status": "path"
+   },
+   {
+    "id": "sharp@0.33.5",
+    "label": "sharp@0.33.5",
+    "type": "package",
+    "status": "path"
+   },
+   {
+    "id": "color@4.2.3",
+    "label": "color@4.2.3",
+    "type": "package",
+    "status": "path"
+   },
+   {
+    "id": "color-string@1.9.1",
+    "label": "color-string@1.9.1",
+    "type": "package",
+    "status": "path"
+   },
+   {
+    "id": "simple-swizzle@0.2.4",
+    "label": "simple-swizzle@0.2.4",
+    "type": "package",
+    "status": "path"
+   },
+   {
+    "id": "is-arrayish@0.3.4",
+    "label": "is-arrayish@0.3.4",
+    "type": "affected",
+    "status": "path"
+   }
+  ],
+  "edges": [
+   {
+    "id": "img-service->sharp@0.33.5",
+    "source": "img-service",
+    "target": "sharp@0.33.5",
+    "requirement": "0.33.5",
+    "status": "path",
+    "last": false
+   },
+   {
+    "id": "sharp@0.33.5->color@4.2.3",
+    "source": "sharp@0.33.5",
+    "target": "color@4.2.3",
+    "requirement": "^4.2.3",
+    "status": "path",
+    "last": false
+   },
+   {
+    "id": "color@4.2.3->color-string@1.9.1",
+    "source": "color@4.2.3",
+    "target": "color-string@1.9.1",
+    "requirement": "^1.9.0",
+    "status": "path",
+    "last": false
+   },
+   {
+    "id": "color-string@1.9.1->simple-swizzle@0.2.4",
+    "source": "color-string@1.9.1",
+    "target": "simple-swizzle@0.2.4",
+    "requirement": "^0.2.2",
+    "status": "path",
+    "last": false
+   },
+   {
+    "id": "simple-swizzle@0.2.4->is-arrayish@0.3.4",
+    "source": "simple-swizzle@0.2.4",
+    "target": "is-arrayish@0.3.4",
+    "requirement": "^0.3.1",
+    "status": "path",
+    "last": true
+   }
+  ]
+ },
+ "total_ms": 16.89,
+ "llm_summary": "img-service reaches is-arrayish through its dependency chain.",
+ "llm_unverified": [],
+ "mode": "llm",
+ "llm_model": "gpt-4o-mini",
+ "llm_tokens": 42,
+ "tool_via": "mcp",
+ "mcp": {
+  "via": "mcp",
+  "transport": "memory",
+  "intent": "path_between",
+  "tool": "path_between",
+  "tools": [
+   "resolve_entity",
+   "path_between"
+  ],
+  "calls": 2,
+  "ms": 8.19,
+  "wall_ms": 10.11
+ },
+ "tenant": "acme",
+ "company": "Acme"
+}
