@@ -8,15 +8,17 @@ from fastapi import FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-from . import catalog, config, db, llm, tools
+from . import catalog, config, db, tools
+from .core import agent
+from .domains.patientzero import DOMAIN
 from .db import GraphUnavailable, Trace
-from .models import AskRequest, AskResponse, ErrorResponse, FixRequest
-from .router import ask
+from .models import AskRequest, AskResponse, ErrorResponse, FixRequest, SummaryRequest, SummaryResponse
 
 log = logging.getLogger("patientzero")
 app = FastAPI(title="PatientZero API", version="1.0.0",
               description="Supply-chain incident agent on FalkorDB. Deterministic tools, no generated Cypher.")
-app.add_middleware(CORSMiddleware, allow_origins=config.CORS_ORIGINS, allow_credentials=True,
+app.add_middleware(CORSMiddleware, allow_origins=config.CORS_ORIGINS, allow_origin_regex=config.CORS_ORIGIN_REGEX,
+                   allow_credentials=True,
                    allow_methods=["*"], allow_headers=["*"])
 
 GRAPH_DOWN = ("graph unavailable: FalkorDB is not reachable, so PatientZero cannot answer. "
@@ -41,19 +43,6 @@ async def _internal(_: Request, exc: Exception):
         error="internal_error", message=f"{type(exc).__name__}: {exc}").model_dump())
 
 
-_known: set[str] | None = None
-
-
-def known_names() -> set[str]:
-    """Package + service names in the graph (for validating the optional LLM sentence)."""
-    global _known
-    if _known is None:
-        tr = Trace()
-        g = fleet_graph_rows(tr)
-        _known = {n["id"].split("@")[0].lower() for n in g["nodes"]}
-    return _known
-
-
 def fleet_graph_rows(tr: Trace) -> dict:
     nodes = tr.run("fleet_graph", "fleet_graph_nodes")
     edges = tr.run("fleet_graph", "fleet_graph_edges")
@@ -66,20 +55,20 @@ def health() -> dict[str, Any]:
     return {"status": "ok" if p["ok"] and p.get("graph_loaded") else "degraded",
             "falkordb": "up" if p["ok"] else "down", "graph": config.GRAPH_NAME,
             "graph_loaded": p.get("graph_loaded", False), "error": p.get("error"),
-            "llm": "on" if (config.LLM_ENABLED and config.LLM_API_KEY) else "off",
+            "agent_mode": "llm" if agent.llm_available() else "deterministic",
+            "llm_model": config.LLM_MODEL if agent.llm_available() else None,
+            "domain": DOMAIN.name, "tools": DOMAIN.registry.names(),
             "queries": len(db.CATALOGUE)}
 
 
-def _ask(query: str, depth: int | None, fresh: bool, session: str, fix: bool) -> AskResponse:
-    r = ask(query, depth=depth, fresh=fresh, session=session, generate_fix=fix)
-    if r["outcome"] in ("answered_with_path", "not_in_graph") and r["exposed"]:
-        r["llm_summary"] = llm.summarize(r, known_names()) if config.LLM_ENABLED else None
+def _ask(query: str, depth: int | None, fresh: bool, session: str, fix: bool, mode: str = "auto") -> AskResponse:
+    r = agent.run(DOMAIN, query, mode=mode, depth=depth, fresh=fresh, session=session, generate_fix=fix)
     return AskResponse.model_validate(r)
 
 
 @app.post("/api/ask", response_model=AskResponse, responses={503: {"model": ErrorResponse}})
 def api_ask(req: AskRequest) -> AskResponse:
-    return _ask(req.query, req.depth, req.fresh, req.session, False)
+    return _ask(req.query, req.depth, req.fresh, req.session, False, req.mode)
 
 
 @app.post("/api/fix", response_model=AskResponse, responses={503: {"model": ErrorResponse}})
@@ -89,6 +78,16 @@ def api_fix(req: FixRequest) -> AskResponse:
     if r.fix is None:
         raise HTTPException(status_code=409, detail=f"Nothing to fix: {r.message}")
     return r
+
+
+@app.post("/api/summary", response_model=SummaryResponse)
+def api_summary(req: SummaryRequest) -> SummaryResponse:
+    """Optional AI incident summary (one paragraph) of the deterministic result, name-checked against it."""
+    r = DOMAIN.route(req.query, depth=req.depth, fresh=req.fresh)
+    try:
+        return SummaryResponse(**agent.summarize(DOMAIN, r))
+    except Exception as e:  # noqa: BLE001 - optional feature
+        return SummaryResponse(summary=None, error=f"LLM error: {type(e).__name__}")
 
 
 @app.get("/api/fleet")
@@ -129,7 +128,9 @@ def api_reset() -> dict[str, Any]:
 
 @app.get("/api/tools")
 def api_tools() -> dict[str, Any]:
-    return {"tools": [{"name": n, "description": d} for n, d in catalog.TOOL_DOCS.items()],
+    return {"domain": DOMAIN.name,
+            "tools": [{"name": t.name, "description": t.description, "parameters": t.parameters}
+                      for t in DOMAIN.registry.tools.values()],
             "queries": {k: v["file"] for k, v in db.CATALOGUE.items()}}
 
 

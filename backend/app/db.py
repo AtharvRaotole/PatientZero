@@ -46,6 +46,8 @@ _db: FalkorDB | None = None
 
 def client() -> FalkorDB:
     global _db
+    if _db is None and config.FALKORDB_URL:
+        _db = FalkorDB.from_url(config.FALKORDB_URL)
     if _db is None:
         kw: dict[str, Any] = dict(host=config.FALKORDB_HOST, port=config.FALKORDB_PORT,
                                   socket_timeout=5, socket_connect_timeout=2)
@@ -53,6 +55,8 @@ def client() -> FalkorDB:
             kw["username"] = config.FALKORDB_USERNAME
         if config.FALKORDB_PASSWORD:
             kw["password"] = config.FALKORDB_PASSWORD
+        if config.FALKORDB_SSL:
+            kw["ssl"] = True
         _db = FalkorDB(**kw)
     return _db
 

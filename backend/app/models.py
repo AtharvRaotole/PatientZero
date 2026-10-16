@@ -14,6 +14,7 @@ class Loose(BaseModel):
 
 class AskRequest(BaseModel):
     query: str = Field(..., min_length=1, max_length=500)
+    mode: Literal["auto", "llm", "deterministic"] = "auto"
     depth: int | None = Field(None, ge=1, le=6)
     fresh: bool = False
     session: str = Field("", max_length=64)
@@ -99,8 +100,25 @@ class AskResponse(Loose):
     graph: GraphView
     total_ms: float
     llm_summary: str | None = None
+    llm_unverified: list[str] = []
+    mode: Literal["llm", "deterministic"] = "deterministic"
+    llm_model: str | None = None
 
 
 class ErrorResponse(BaseModel):
     error: Literal["graph_unavailable", "bad_request", "internal_error"]
     message: str
+
+
+class SummaryRequest(BaseModel):
+    query: str = Field(..., min_length=1, max_length=500)
+    depth: int | None = Field(None, ge=1, le=6)
+    fresh: bool = True
+
+
+class SummaryResponse(BaseModel):
+    summary: str | None
+    unverified: list[str] = []
+    model: str | None = None
+    ms: float | None = None
+    error: str | None = None
