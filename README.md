@@ -336,8 +336,6 @@ Each focus point of both tracks, the feature that covers it, and where it lives.
 | High-concurrency reads and writes | 20 concurrent crews in a test with exact counts; in-process database benchmark through `/api/bench/run` on the deployed FalkorDB 4.22.1: 30 clients for 20 s with 20% synthetic writes into a scratch graph (deleted afterwards) and retry on busy, **740.6 ops/s, p50 36 ms, p95 84 ms, p99 112 ms, 0 errors** (14,813 ops; reads 593/s, writes 147/s). This is not end-to-end HTTP throughput: through the public API it is about 50 req/s at 30 clients. Local in-process: 64 clients 2,292 ops/s (p99 70 ms). Full numbers: [docs/verification/concurrency.md](docs/verification/concurrency.md) | `backend/app/bench/`, `scripts/bench_concurrency.py`, `backend/tests/test_crew_sessions_tenants.py` |
 | Staying up under load | The crew never blocks the event loop; capped crew runs and SSE streams (global and per IP); bounded DB pool; stress test | `backend/app/streamguard.py`, `scripts/stress_streams.py`, `docs/verification/security.md` |
 
-## Demo script
-See [docs/DEMO.md](docs/DEMO.md).
 
 ## AI assistance disclosure
 - **Building:** the code was written with **Cursor** as the AI coding assistant, using AI agents (Grok Bot) for
