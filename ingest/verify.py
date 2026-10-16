@@ -32,7 +32,7 @@ def check(cond, msg):
 print(f"queries loaded: {sorted(Q)}")
 print("\nAC1-3 graph sanity")
 check(g.ro_query("MATCH (s:Service) RETURN count(s)").result_set[0][0] >= 15, "AC1 >=15 services")
-check(g.ro_query("MATCH (a:Advisory)-[:AFFECTS]->(v:Version) WHERE a.campaign IS NULL RETURN count(DISTINCT v)").result_set[0][0] == 19, "AC2 19 affected versions")
+check(g.ro_query("MATCH (a:Advisory)-[:AFFECTS]->(v:Version) WHERE a.campaign IS NULL OR a.campaign = '2025-09-08-qix' RETURN count(DISTINCT v)").result_set[0][0] == 19, "AC2 19 affected versions")
 r = g.ro_query("MATCH (:Maintainer {npm:'qix'})-[h:HAD_PUBLISH_RIGHTS]->(p) RETURN count(p), sum(CASE WHEN h.source IS NULL THEN 1 ELSE 0 END)").result_set[0]
 check(r[0] == 19 and r[1] == 0, "AC3 19 HAD_PUBLISH_RIGHTS edges with source")
 
