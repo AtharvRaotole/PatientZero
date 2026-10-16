@@ -33,7 +33,8 @@ async function click(page, text, exact = true) {
 // Scroll so the report section (h2) or card (h3) titled `text` sits just under the sticky top bar.
 async function scrollTo(page, text, offset = 88) {
   const ok = await page.evaluate((t, off) => {
-    const el = [...document.querySelectorAll("h2,h3,p,span,button")].find((e) => e.innerText && e.innerText.trim() === t);
+    const match = (sel) => [...document.querySelectorAll(sel)].find((e) => e.innerText && e.innerText.trim() === t);
+    const el = match("h2,h3") || match("p,span,button"); // headings first: "Trace" is also the command bar button
     if (!el) return false;
     const box = el.tagName === "H3" ? el.closest(".surface") || el : el.closest("section") || el;
     window.scrollTo(0, box.getBoundingClientRect().top + window.scrollY - off);
@@ -48,6 +49,13 @@ async function scrollToId(page, id, offset = 72) {
     window.scrollTo(0, el.getBoundingClientRect().top + window.scrollY - off);
   }, id, offset);
   await sleep(900);
+}
+async function setDepth(page, d) {
+  await page.evaluate((v) => {
+    const el = document.querySelector("input[aria-label='graph depth']");
+    Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, "value").set.call(el, String(v));
+    el.dispatchEvent(new Event("input", { bubbles: true }));
+  }, d);
 }
 async function settle(page) {
   await sleep(3200); // results auto-scroll to the graph, then exposed paths draw in hop by hop
@@ -73,11 +81,37 @@ const shot = async (page, name) => {
   await sleep(3500);
   await shot(page, "01-home-fleet-graph.png");
 
+  // The first screen a judge sees on a 1280x800 laptop: the Replay action must be above the fold.
+  const small = await browser.newPage();
+  await small.setViewport({ width: 1280, height: 800, deviceScaleFactor: 2 });
+  await small.goto(APP, { waitUntil: "load", timeout: 90000 });
+  await sleep(3500);
+  await shot(small, "00-first-screen-1280x800.png");
+  await click(small, "Replay the qix compromise");
+  await waitText(small, /services can install/);
+  await settle(small);
+  await small.evaluate(() => window.scrollTo(0, 0));
+  await small.mouse.move(0, 0);
+  await sleep(600);
+  await shot(small, "00b-first-screen-after-replay-1280x800.png");
+  await small.close();
+
   await ask(page, "maintainer qix was phished");
   await waitText(page, /services can install/);
   await settle(page);
   await page.mouse.move(0, 0);
   await shot(page, "02-qix-blast-radius-graph.png");
+
+  // Depth 1: only direct dependencies admit a bad version. Everything else stays visible and named.
+  await setDepth(page, 1);
+  await waitText(page, /services at depth 1/);
+  await settle(page);
+  await scrollToId(page, "graph");
+  await page.mouse.move(0, 0);
+  await shot(page, "02b-depth-1-graph.png");
+  await setDepth(page, 4);
+  await waitText(page, /services at depth 4/);
+  await settle(page);
 
   await scrollTo(page, "Exposure");
   await shot(page, "03-qix-results-exposure.png");
@@ -144,16 +178,16 @@ const shot = async (page, name) => {
 
   await scrollTo(p2, "Would you have been hit on Sept 8, 2025?", 72);
   await click(p2, "axios/axios");
-  await waitText(p2, /Yes\. A fresh install could have pulled malware/, 120000);
+  await waitText(p2, /Runtime exposed\. A fresh install could have pulled malware/, 120000);
   await sleep(6000);
-  await scrollTo(p2, "Yes. A fresh install could have pulled malware.", 120);
+  await scrollTo(p2, "Runtime exposed. A fresh install could have pulled malware.", 120);
   await p2.mouse.move(0, 0);
   await shot(p2, "14-byo-axios-exposed.png");
   await scrollTo(p2, "Would you have been hit on Sept 8, 2025?", 72);
   await click(p2, "expressjs/express@4.x (runtime only)");
-  await waitText(p2, /No\. Every range excluded the malicious versions/, 120000);
+  await waitText(p2, /Runtime clean\./, 120000);
   await sleep(4500);
-  await scrollTo(p2, "No. Every range excluded the malicious versions.", 120);
+  await scrollTo(p2, "Runtime clean.", 120);
   await shot(p2, "15-byo-express-clean.png");
 
   await ask(p2, "left-pad@1.3.0");

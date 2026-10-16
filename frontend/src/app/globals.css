@@ -14,7 +14,8 @@
   --color-line-strong: #d6d3d1;
   --color-ink: #0c0a09;
   --color-ink-2: #57534e;
-  --color-ink-3: #a8a29e;
+  --color-ink-3: #736c67; /* 4.7:1 on paper, WCAG AA for small text */
+  --color-ink-4: #a8a29e; /* decorative only: rules, disabled marks */
 
   --color-signal: #e5484d;
   --color-signal-ink: #c4282d;
@@ -152,6 +153,10 @@ input[type="range"].depth::-webkit-slider-thumb:hover {
 }
 
 /* force-graph hover tooltip: our own white card is the whole tooltip */
+/* The graph tooltip only exists while the pointer is really over a node (see GraphCanvas data-hovering). */
+[data-hovering="0"] .float-tooltip-kap {
+  visibility: hidden !important;
+}
 .float-tooltip-kap,
 .graph-tooltip {
   background: transparent !important;

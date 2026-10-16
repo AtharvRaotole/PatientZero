@@ -149,14 +149,21 @@ export function ReportSection({ n, title, sub, children, delay = 0, id }: { n: n
 }
 
 /** A dependency chain rendered as mono text, with the decisive last edge called out. */
-export function PathChain({ via, requirement, bad, exposed, compact }: { via: string[]; requirement: string | null; bad?: string; exposed: boolean | null; compact?: boolean }) {
+/**
+ * A dependency chain, with the range on the last edge and whether it admits the malicious version.
+ * `omitRoot` drops the first node when the row already names the service above the chain.
+ */
+export function PathChain({ via: raw, requirement, bad, exposed, compact, omitRoot }: { via: string[]; requirement: string | null; bad?: string; exposed: boolean | null; compact?: boolean; omitRoot?: boolean }) {
+  const via = raw.filter((n, i) => i === 0 || n !== raw[i - 1]); // never print a node twice in a row
   const last = via[via.length - 1] ?? "";
   const pkg = last.startsWith("@") ? "@" + last.slice(1).split("@")[0] : last.split("@")[0];
+  const mids = via.slice(omitRoot ? 1 : 0, -1);
   return (
     <div className={clsx("flex flex-wrap items-center gap-x-1.5 gap-y-1 font-mono", compact ? "text-[12px]" : "text-[12.5px]")}>
-      {via.slice(0, -1).map((n, i) => (
+      {omitRoot && <span className="font-sans text-ink-3">{mids.length ? "via" : "direct"}</span>}
+      {mids.map((n, i) => (
         <span key={i} className="flex items-center gap-1.5">
-          <span className={i === 0 ? "font-medium text-ink" : "text-ink-2"}>{n}</span>
+          <span className={i === 0 && !omitRoot ? "font-medium text-ink" : "text-ink-2"}>{n}</span>
           <span className="text-ink-3">→</span>
         </span>
       ))}

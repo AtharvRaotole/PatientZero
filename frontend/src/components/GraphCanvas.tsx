@@ -23,6 +23,7 @@ const C = {
   ink: "#0C0A09",
   ink2: "#57534E",
   stone: "#A8A29E",
+  muted: "#736C67",
   bg: "#D6D3D1",
   signal: "#E5484D",
   signalInk: "#C4282D",
@@ -94,9 +95,26 @@ export default function GraphCanvas({ fleet, highlight, onNodeClick, leftInset, 
     const nodes = new Map<string, { type: string; status?: string; bad?: string }>();
     const links = new Map<string, { status: string; last: boolean; requirement: string | null }>();
     highlight?.nodes.forEach((n) => nodes.set(n.id, n));
-    highlight?.edges.forEach((e) => links.set(`${e.source}->${e.target}`, e));
-    return { nodes, links, active: nodes.size > 0 };
+    const via = new Map<string, string[]>(); // affected node -> ranges on its exposed incoming edges
+    highlight?.edges.forEach((e) => {
+      links.set(`${e.source}->${e.target}`, e);
+      if (e.status === "exposed" && e.requirement && nodes.get(e.target)?.type === "affected") {
+        const r = via.get(e.target) ?? [];
+        if (!r.includes(e.requirement)) r.push(e.requirement);
+        via.set(e.target, r);
+      }
+    });
+    return { nodes, links, via, active: nodes.size > 0 };
   }, [highlight]);
+
+  // Hover is only real while the pointer is over the canvas. A re-trace, a page scroll that moves the canvas under a still
+  // pointer, or leaving the canvas must never leave a stale focus (which dims everything) or a stale tooltip behind.
+  useEffect(() => setHover(null), [highlight]);
+  useEffect(() => {
+    const clear = () => setHover(null);
+    window.addEventListener("scroll", clear, { passive: true });
+    return () => window.removeEventListener("scroll", clear);
+  }, []);
 
   // physics tuning
   useEffect(() => {
@@ -139,6 +157,16 @@ export default function GraphCanvas({ fleet, highlight, onNodeClick, leftInset, 
     const t = setTimeout(() => fit(), radial ? 0 : hl.active ? 150 : 1800);
     return () => clearTimeout(t);
   }, [fit, hl.active, radial]);
+
+  /** Exposed compromised nodes are labelled with the malicious version the range admits, not the clean version installed today. */
+  const labelOf = (id: string): string => {
+    const h = hl.nodes.get(id);
+    if (h?.type === "affected" && h.status === "exposed" && h.bad) {
+      const r = hl.via.get(id) ?? [];
+      return r.length === 0 ? h.bad : r.length <= 2 ? `${h.bad} (via ${r.join(", ")})` : `${h.bad} (via ${r.length} ranges)`;
+    }
+    return id;
+  };
 
   const colorOf = (n: N): string => {
     const h = hl.nodes.get(n.id);
@@ -274,7 +302,7 @@ export default function GraphCanvas({ fleet, highlight, onNodeClick, leftInset, 
           const ip = introProgress(now);
           const fm = focusMix(now);
           if (focus?.edges.has(l.key)) return `rgba(12,10,9,${(0.12 + 0.43 * fm) * ip})`;
-          const base = hl.active ? 0.06 : radial ? 0.3 : 0.16;
+          const base = hl.active ? 0.13 : radial ? 0.3 : 0.16;
           let boost = 0, span = 1;
           if (radial && typeof l.source === "object") {
             // long chords across the rings fade out, so each service's own sector reads as a tree
@@ -331,7 +359,9 @@ export default function GraphCanvas({ fleet, highlight, onNodeClick, leftInset, 
       else if (focus?.nodes.has(n.id)) prio = isSvc ? 1 : 2;
       else if (hl.active) {
         if (h && isSvc) prio = h.status === "exposed" ? 3 : 5;
+        else if (h && h.type === "affected" && h.status === "exposed") prio = 3;
         else if (h && (h.type === "affected" || h.status === "path")) prio = 4;
+        else if (isSvc && radial) prio = 6; // services off every chain stay named, quietly
       } else if (isSvc) prio = 3;
       if (prio >= 0) cands.push({ n, prio });
     }
@@ -340,23 +370,42 @@ export default function GraphCanvas({ fleet, highlight, onNodeClick, leftInset, 
     const ip = introProgress(now);
     let count = 0;
     for (const { n, prio } of cands) {
-      if (count >= 48) break;
+      if (count >= 60) break;
       const isSvc = n.kind === "Service";
+      const full = labelOf(n.id);
+      const short = hl.nodes.get(n.id)?.bad && full !== n.id ? hl.nodes.get(n.id)!.bad! : full;
+      const must = prio <= 3; // hovered, focused and exposed chains are always named
       const fs = (prio === 0 ? 12.5 : 11.5) / scale;
       ctx.font = `${isSvc || prio === 0 ? 550 : 450} ${fs}px ${font}`;
-      const w = ctx.measureText(n.id).width;
       const padX = 4 / scale, padY = 2 / scale;
       const r = isSvc ? 4.5 : 3;
-      const bw = w + padX * 2, bh = fs * 1.15 + padY * 2;
-      let x0 = n.x - bw / 2, y0 = n.y + r + 3 / scale;
-      if (radial && isSvc) {
-        // outer ring: labels sit radially outside their service
-        const c = Math.cos(n.ang ?? 0), sn = Math.sin(n.ang ?? 0), off = r + 5 / scale;
-        const ax = n.x + c * off, ay = n.y + sn * off;
-        x0 = c > 0.25 ? ax : c < -0.25 ? ax - bw : ax - bw / 2;
-        y0 = Math.abs(c) <= 0.25 ? (sn < 0 ? ay - bh : ay) : ay - bh / 2;
+      const bh = fs * 1.15 + padY * 2;
+      const hits = (ax: number, ay: number, ww: number) => placed.some(([x, y, pw, ph]) => ax < x + pw && ax + ww > x && ay < y + ph && ay + bh > y);
+      // Positions to try, in order: the natural spot, then the other sides of the node. The full label
+      // ("debug@4.4.2 (via ^4.3.4)") first, then just the malicious version where the core is crowded.
+      const spots = (bw: number): [number, number][] => {
+        if (radial && isSvc) {
+          const c = Math.cos(n.ang ?? 0), sn = Math.sin(n.ang ?? 0), off = r + 5 / scale;
+          const ax = n.x + c * off, ay = n.y + sn * off;
+          const x0 = c > 0.25 ? ax : c < -0.25 ? ax - bw : ax - bw / 2;
+          const y0 = Math.abs(c) <= 0.25 ? (sn < 0 ? ay - bh : ay) : ay - bh / 2;
+          return [[x0, y0], [x0, y0 - bh * 0.9], [x0, y0 + bh * 0.9]];
+        }
+        const g = 3 / scale;
+        return [[n.x - bw / 2, n.y + r + g], [n.x - bw / 2, n.y - r - g - bh], [n.x + r + g, n.y - bh / 2], [n.x - r - g - bw, n.y - bh / 2],
+          [n.x + r, n.y + r], [n.x - r - bw, n.y - r - bh], [n.x + r, n.y - r - bh], [n.x - r - bw, n.y + r]];
+      };
+      let text = full, bw = 0, x0 = 0, y0 = 0, found = false;
+      for (const t of full === short ? [full] : [full, short]) {
+        const tw = ctx.measureText(t).width + padX * 2;
+        const ss = spots(tw);
+        const ok = prio === 0 ? ss[0] : ss.find(([ax, ay]) => !hits(ax, ay, tw));
+        if (ok) { text = t; bw = tw; [x0, y0] = ok; found = true; break; }
       }
-      if (prio > 0 && placed.some(([x, y, ww, hh]) => x0 < x + ww && x0 + bw > x && y0 < y + hh && y0 + bh > y)) continue;
+      if (!found) {
+        if (!must) continue;
+        text = short; bw = ctx.measureText(short).width + padX * 2; [x0, y0] = spots(bw)[0];
+      }
       placed.push([x0, y0, bw, bh]);
       count++;
       const inFocus = !focus || focus.nodes.has(n.id);
@@ -367,11 +416,24 @@ export default function GraphCanvas({ fleet, highlight, onNodeClick, leftInset, 
       else ctx.rect(x0, y0, bw, bh);
       ctx.fill();
       const h = hl.nodes.get(n.id);
-      ctx.fillStyle = h?.status === "exposed" && (isSvc || h.type === "affected") ? C.signalInk : isSvc || prio <= 1 ? C.ink : C.ink2;
+      ctx.fillStyle = h?.status === "exposed" && (isSvc || h.type === "affected") ? C.signalInk : prio === 6 ? C.muted : isSvc || prio <= 1 ? C.ink : C.ink2;
       ctx.textAlign = "left";
       ctx.textBaseline = "top";
-      ctx.fillText(n.id, x0 + padX, y0 + padY);
+      ctx.fillText(text, x0 + padX, y0 + padY);
       ctx.globalAlpha = 1;
+    }
+    // State for the browser checks (labels drawn, nodes, zoom). Cheap: only written when it changes.
+    const el = wrap.current;
+    if (el) {
+      const z = (fg.current?.zoom?.() ?? 1).toFixed(2);
+      const sig = `${count}|${data.nodes.length}|${z}|${hover ?? ""}`;
+      if (el.dataset.sig !== sig) {
+        el.dataset.sig = sig;
+        el.dataset.labels = String(count);
+        el.dataset.nodes = String(data.nodes.length);
+        el.dataset.zoom = z;
+        el.dataset.hover = hover ?? "";
+      }
     }
     if (radial && !hl.active) {
       const a = introProgress(now) * (focus ? 1 - 0.7 * fm : 1);
@@ -385,7 +447,7 @@ export default function GraphCanvas({ fleet, highlight, onNodeClick, leftInset, 
         const w = ctx.measureText(t).width + 8 / scale;
         ctx.fillStyle = "rgba(255,255,255,0.92)";
         ctx.fillRect(-w / 2, y - 7 / scale, w, 14 / scale);
-        ctx.fillStyle = C.stone;
+        ctx.fillStyle = C.muted;
         ctx.fillText(t, 0, y);
       }
       ctx.globalAlpha = 1;
@@ -393,7 +455,7 @@ export default function GraphCanvas({ fleet, highlight, onNodeClick, leftInset, 
   }, [data, hl, hover, focus, font, reduced, radial, rx, ry]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
-    <div ref={wrap} className="absolute inset-0">
+    <div ref={wrap} data-graph="" data-hovering={hover ? "1" : "0"} onPointerLeave={() => setHover(null)} className="absolute inset-0">
       <ForceGraph2D
         ref={fg}
         width={size.w}
@@ -404,21 +466,25 @@ export default function GraphCanvas({ fleet, highlight, onNodeClick, leftInset, 
         cooldownTicks={radial ? 0 : 220}
         onEngineStop={() => isStandalone && fit(600)}
         autoPauseRedraw={false}
-        enableNodeDrag
+        enableNodeDrag={!radial}
+        enableZoomInteraction={!radial}
+        enablePanInteraction={!radial}
         minZoom={0.3}
         maxZoom={12}
         nodeRelSize={1}
         onRenderFramePre={onFramePre}
         onRenderFramePost={onFramePost}
         nodeVal={(n: any) => (n.kind === "Service" ? 20 : hl.nodes.has(n.id) ? 9 : 2.2)}
-        nodeLabel={(n: any) => tooltip(n, hl.nodes.get(n.id))}
+        nodeLabel={(n: any) => tooltip(n, hl.nodes.get(n.id), hl.via.get(n.id))}
         onNodeHover={(n: any) => {
           setHover(n?.id ?? null);
           if (wrap.current) wrap.current.style.cursor = n ? "pointer" : "";
         }}
         onNodeClick={(n: any) => {
-          fg.current?.centerAt(n.x, n.y, 700);
-          fg.current?.zoom(4, 700);
+          if (!radial) {
+            fg.current?.centerAt(n.x, n.y, 700);
+            fg.current?.zoom(4, 700);
+          }
           onNodeClick?.(n.id);
         }}
         linkColor={(l: any) => bgColor(l)}
@@ -484,7 +550,7 @@ export default function GraphCanvas({ fleet, highlight, onNodeClick, leftInset, 
           if (!isSvc && !h && !inFocus) {
             // cheap path for the ~2,700 background versions
             const boost = sweepOn ? sweepAt(n.ang ?? 0, now) : 0;
-            ctx.globalAlpha = reveal * (faded ? 0.4 : 0.8 + 0.2 * boost) * dimByFocus;
+            ctx.globalAlpha = reveal * (faded ? 0.6 : 0.8 + 0.2 * boost) * dimByFocus;
             ctx.fillStyle = boost > 0.35 ? C.stone : C.bg;
             ctx.fillRect(n.x - 1.4, n.y - 1.4, 2.8, 2.8);
             ctx.globalAlpha = 1;
@@ -496,7 +562,7 @@ export default function GraphCanvas({ fleet, highlight, onNodeClick, leftInset, 
             const d = wave.dist.get(n.id);
             if (d !== undefined && d > 0) arrive = smooth((now - drawStart.current - d * HOP_MS + 40) / 160);
           }
-          ctx.globalAlpha = reveal * dimByFocus * (faded ? (isSvc ? 0.45 : 0.3) : 1) * (h?.status === "exposed" ? 0.25 + 0.75 * arrive : 1);
+          ctx.globalAlpha = reveal * dimByFocus * (faded ? (isSvc ? 0.75 : 0.5) : 1) * (h?.status === "exposed" ? 0.25 + 0.75 * arrive : 1);
           const hovered = hover === n.id;
           const r = (isSvc ? 4.5 : h || inFocus ? 2.8 : 2) * (hovered ? 1.25 : 1);
           const hollow = isSvc && h?.status === "safe";
@@ -546,10 +612,13 @@ function esc(s: string) {
   return s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!);
 }
 
-function tooltip(n: N, h?: { type: string; status?: string; bad?: string }): string {
+function tooltip(n: N, h?: { type: string; status?: string; bad?: string }, via?: string[]): string {
   const kind = n.kind === "Service" ? `Service, tier ${n.tier ?? "?"}${n.team ? `, ${esc(n.team)}` : ""}` : "Package version";
-  const st = h?.status === "exposed" ? `<div style="color:#C4282D;margin-top:4px">Exposed${h.bad ? `: ${esc(h.bad)}` : ""}</div>`
+  const admits = h?.type === "affected" && h.status === "exposed" && h.bad
+    ? `<div style="color:#C4282D;margin-top:4px">${via?.length ? `${esc(via.join(", "))} admits ` : "Admits "}${esc(h.bad)}</div><div style="color:#57534E;margin-top:2px">Resolves to ${esc(n.id)} today</div>`
+    : "";
+  const st = admits || (h?.status === "exposed" ? `<div style="color:#C4282D;margin-top:4px">Exposed${h.bad ? `: ${esc(h.bad)}` : ""}</div>`
     : h?.status === "safe" ? `<div style="color:#57534E;margin-top:4px">Range excludes the bad version</div>`
-    : h?.status === "path" ? `<div style="color:#0C0A09;margin-top:4px">On the shortest path</div>` : "";
-  return `<div style="font-family:inherit;background:#FFFFFF;border:1px solid #E7E5E4;padding:8px 10px;border-radius:8px;font-size:12px;color:#0C0A09;box-shadow:0 4px 16px rgba(12,10,9,.08)"><div style="font-weight:600;font-family:var(--font-geist-mono),ui-monospace,monospace">${esc(n.id)}</div><div style="color:#A8A29E;font-size:11.5px;margin-top:2px">${kind}</div>${st}</div>`;
+    : h?.status === "path" ? `<div style="color:#0C0A09;margin-top:4px">On the shortest path</div>` : "");
+  return `<div style="font-family:inherit;background:#FFFFFF;border:1px solid #E7E5E4;padding:8px 10px;border-radius:8px;font-size:12px;color:#0C0A09;box-shadow:0 4px 16px rgba(12,10,9,.08)"><div style="font-weight:600;font-family:var(--font-geist-mono),ui-monospace,monospace">${esc(n.id)}</div><div style="color:#736C67;font-size:11.5px;margin-top:2px">${kind}</div>${st}</div>`;
 }

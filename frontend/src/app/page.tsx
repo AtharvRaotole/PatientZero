@@ -1,7 +1,7 @@
 "use client";
 import dynamic from "next/dynamic";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, Loader2 } from "lucide-react";
+import { ArrowRight, Info, Loader2, Play } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { ApiError, adminToken, apiGet, apiPost } from "@/lib/api";
 import type { AskResponse, FleetGraph, Health, Incident, Playbook } from "@/lib/types";
@@ -18,6 +18,7 @@ import { Logo } from "@/components/Logo";
 import { CommandBar, type Suggestion } from "@/components/CommandBar";
 import { QIX_DOWNLOADS_SOURCE, QIX_PACKAGES, QIX_WEEK_DOWNLOADS } from "@/lib/facts";
 
+const REPLAY = "maintainer qix was phished";
 const GraphCanvas = dynamic(() => import("@/components/GraphCanvas"), { ssr: false });
 
 const PRESETS: Suggestion[] = [
@@ -130,33 +131,42 @@ export default function Home() {
     }
   }, []);
 
+  // Only the latest request may land: a slow answer for an older depth must never overwrite a newer one.
+  const seq = useRef(0);
   const run = useCallback(
     async (q: string, opts: { depth?: number; fresh?: boolean } = {}) => {
       const text = q.trim();
       if (!text) return;
+      const my = ++seq.current;
       setQuery(text);
       setLastQuery(text);
       setLoading(true);
       setErr(null);
       try {
         const r = await apiPost<AskResponse>("/api/ask", { query: text, depth: opts.depth ?? depth, fresh: !!opts.fresh, session: sessionId(), mode });
+        if (my !== seq.current) return;
         setResult(r);
         setTimeout(() => graphRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 120);
       } catch (e) {
+        if (my !== seq.current) return;
         const a = e as ApiError;
         setErr({ message: a.message, kind: a.kind ?? "error" });
         setResult(null);
         if (a.kind === "graph_unavailable" || a.kind === "network") loadMeta();
       } finally {
-        setLoading(false);
+        if (my === seq.current) setLoading(false);
       }
     },
     [depth, loadMeta, mode],
   );
 
+  // Dragging the slider re-traces once it settles, not once per step.
+  const depthTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const onDepth = (d: number) => {
     setDepth(d);
-    if (lastQuery) run(lastQuery, { depth: d, fresh: true });
+    if (!lastQuery) return;
+    if (depthTimer.current) clearTimeout(depthTimer.current);
+    depthTimer.current = setTimeout(() => run(lastQuery, { depth: d, fresh: true }), 220);
   };
 
   const onFix = async () => {
@@ -212,8 +222,15 @@ export default function Home() {
           <nav className="flex items-center gap-2">
             <a href="#byo" className="press hidden h-8 items-center rounded-lg px-3 text-[13px] font-medium text-ink-2 hover:bg-subtle hover:text-ink md:inline-flex">Scan your repo</a>
             {health?.agent_mode === "llm" ? (
-              <span title="Auto: the deterministic router answers first; the LLM only picks tools when the router is unsure.">
+              <span className="group relative flex items-center gap-1.5">
                 <Segmented size="sm" value={mode} onChange={setMode} options={[{ value: "auto", label: "Auto" }, { value: "deterministic", label: "Deterministic" }]} />
+                <button type="button" aria-label="What Auto and Deterministic mean" className="grid h-7 w-7 place-items-center rounded-md text-ink-3 hover:bg-subtle hover:text-ink focus:outline-none focus-visible:ring-2 focus-visible:ring-line-strong">
+                  <Info className="h-3.5 w-3.5" />
+                </button>
+                <span role="tooltip" className="pointer-events-none invisible absolute right-0 top-[calc(100%+8px)] z-40 w-[300px] rounded-lg border border-line bg-surface p-3 text-[12.5px] leading-relaxed text-ink-2 opacity-0 shadow-md transition-opacity duration-150 group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
+                  <b className="font-medium text-ink">Auto:</b> the rule router answers first. When it is unsure, GPT picks a tool, and every name it uses is verified against the graph.
+                  <span className="mt-1.5 block"><b className="font-medium text-ink">Deterministic:</b> rule router only, no LLM.</span>
+                </span>
               </span>
             ) : health ? <span className="text-[12px] text-ink-3">Deterministic</span> : null}
           </nav>
@@ -222,28 +239,34 @@ export default function Home() {
 
       <main className="mx-auto max-w-[1240px] px-6 pb-24">
         {/* Hero */}
-        <section className="pb-7 pt-10 md:pt-14">
+        <section className="pb-6 pt-8 md:pt-10">
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
             <p className="flex items-center gap-2 text-[13px] text-ink-2" title={`Source: ${QIX_DOWNLOADS_SOURCE}`}>
               <span className="h-1.5 w-1.5 rounded-full bg-signal" />
               Sept 8, 2025. One phished maintainer, {QIX_PACKAGES} packages, {(QIX_WEEK_DOWNLOADS / 1e9).toFixed(2)} billion downloads the week before.
             </p>
-            <h1 className="mt-5 text-[34px] font-semibold leading-[1.1] tracking-[-0.025em] text-ink md:text-[44px]">
+            <h1 className="mt-4 text-[34px] font-semibold leading-[1.1] tracking-[-0.025em] text-ink md:text-[44px]">
               Know your blast radius <span className="font-serif text-[1.08em] font-normal italic tracking-[-0.01em] text-ink-2">before the postmortem.</span>
             </h1>
-            <p className="mt-5 max-w-[620px] text-[16px] leading-relaxed text-ink-2">
+            <p className="mt-3 max-w-[620px] text-[16px] leading-relaxed text-ink-2">
               PatientZero walks every dependency chain in your fleet, checks the npm semver range on the last edge, and tells you who to wake and what to pin.
             </p>
           </motion.div>
-          <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0.08 }} className="mt-7 max-w-[760px]">
+          <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0.08 }} className="mt-6 max-w-[760px]">
             <CommandBar inputRef={inputRef} value={query} onChange={setQuery} suggestions={PRESETS} disabled={!up} loading={loading}
               onRun={(q, fromSuggestion) => run(q, { fresh: fromSuggestion && q.includes("phished") })} />
-            <LastTraversal result={result} loading={loading} queries={health?.queries} />
+            <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
+              <button onClick={() => run(REPLAY, { fresh: true })} disabled={!up || loading}
+                className="press inline-flex h-9 items-center gap-2 rounded-lg bg-ink px-3.5 text-[13.5px] font-medium text-paper transition-colors hover:bg-ink/85 disabled:opacity-40">
+                <Play className="h-3.5 w-3.5 fill-current" /> Replay the qix compromise
+              </button>
+              <LastTraversal result={result} loading={loading} queries={health?.queries} />
+            </div>
           </motion.div>
         </section>
 
         {/* Graph */}
-        <motion.section ref={graphRef} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4, delay: 0.12 }}
+        <motion.section ref={graphRef} id="graph" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4, delay: 0.12 }}
           className="scroll-mt-[72px] overflow-hidden rounded-xl border border-line bg-surface shadow-sm">
           <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line px-4 py-2.5">
             <div className="flex items-center gap-4 text-[13px] text-ink-2">
@@ -459,11 +482,11 @@ function LastTraversal({ result, loading, queries }: { result: AskResponse | nul
     </>
   );
   else if (queries) body = <><span className="h-1.5 w-1.5 rounded-full bg-line-strong" />{queries} hand-written Cypher queries, no generated Cypher</>;
-  else return <div className="mt-3 h-5" />;
+  else return <div className="h-5" />;
   return (
     <AnimatePresence mode="wait" initial={false}>
       <motion.p key={loading ? "l" : result ? result.query + result.total_ms : "idle"} initial={{ opacity: 0, y: 2 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.18 }}
-        className="mt-3 flex h-5 items-center gap-2 text-[12.5px] text-ink-3">
+        className="flex h-5 items-center gap-2 text-[12.5px] text-ink-3">
         {body}
       </motion.p>
     </AnimatePresence>

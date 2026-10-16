@@ -19,7 +19,7 @@ export function OutcomeBanner({ r, onFresh }: { r: AskResponse; onFresh: () => v
   const tokens = r.trace.reduce((a, s) => a + (Number((s as { tokens?: number }).tokens) || 0), 0);
   const hit = r.outcome === "answered_with_path" && r.exposed.length > 0;
   const meta = [
-    r.trigger ? `Trigger: ${r.trigger}` : `Intent: ${r.intent.replaceAll("_", " ")}`,
+    r.trigger ? `Trigger: ${r.trigger}` : null,
     r.exposed.length || r.safe.length ? `depth ${r.depth}` : null,
     `${r.total_ms.toFixed(0)} ms`,
     r.mode === "llm" ? `LLM${r.llm_model ? ` ${r.llm_model}` : ""}, ${tokens} tokens` : "Deterministic",
@@ -27,7 +27,7 @@ export function OutcomeBanner({ r, onFresh }: { r: AskResponse; onFresh: () => v
   return (
     <motion.header initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
       <p className="flex flex-wrap items-center gap-x-2 text-[13px] text-ink-3">
-        <span className="font-medium text-ink-2">Incident report</span>
+        <span className="font-medium text-ink-2">{r.outcome === "answered_from_memory" ? "Graph memory" : r.exposed.length || r.safe.length ? "Incident report" : "Answer"}</span>
         {meta.map((m) => <span key={m} className="flex items-center gap-2"><span className="text-line-strong">/</span>{m}</span>)}
       </p>
       <div className="mt-4 flex flex-wrap items-end justify-between gap-6">
@@ -39,6 +39,7 @@ export function OutcomeBanner({ r, onFresh }: { r: AskResponse; onFresh: () => v
           ) : (
             <h2 className="text-[24px] font-semibold leading-tight tracking-[-0.02em] text-ink md:text-[28px]">{HEADLINE[r.outcome] ?? split(r.message)[0]}</h2>
           )}
+          {r.outcome === "answered_from_memory" && <MemoryLine r={r} />}
           {detail(r, hit) && <p className="mt-3 text-[15px] leading-relaxed text-ink-2">{detail(r, hit)}</p>}
         </div>
         {r.outcome === "answered_from_memory" && (
@@ -52,6 +53,22 @@ export function OutcomeBanner({ r, onFresh }: { r: AskResponse; onFresh: () => v
   );
 }
 
+/** Which stored incident answered, and when: the demo points at this line. */
+function MemoryLine({ r }: { r: AskResponse }) {
+  const sb = r.memory?.seen_before;
+  const inc = r.memory?.incidents?.[0];
+  const id = sb?.id ?? inc?.id;
+  if (!id) return null;
+  const when = sb?.at_local ?? (inc?.at ? new Date(inc.at).toLocaleString([], { month: "short", day: "numeric", year: "numeric", hour: "numeric", minute: "2-digit" }) : "");
+  return (
+    <p data-testid="memory-line" className="mt-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-[14px] text-ink-2">
+      <History className="h-4 w-4 text-ink-3" />
+      Incident <span className="font-mono text-[13px] text-ink">{id}</span>
+      {when && <><span className="text-line-strong">/</span><span className="tabular">{when}</span></>}
+    </p>
+  );
+}
+
 /** First sentence (or the clause before a colon) as the headline, the rest as detail. Version dots never split. */
 function split(msg: string): [string, string] {
   const m = msg.match(/^(.+?)(?::\s+|\.\s+(?=[A-Z])|\.$)([\s\S]*)$/);
@@ -62,6 +79,11 @@ function split(msg: string): [string, string] {
 /** The backend message minus what the headline and the Seen-before row already say. */
 function detail(r: AskResponse, hit: boolean): string {
   let m = r.message;
+  if (r.outcome === "answered_from_memory") {
+    const sb = r.memory?.seen_before, inc = r.memory?.incidents?.[0];
+    const n = sb?.exposed_count ?? inc?.exposed_count, d = sb?.depth ?? inc?.depth, t = sb?.trigger ?? inc?.trigger;
+    if (n !== undefined) return `${n} service${n === 1 ? " was" : "s were"} exposed at depth ${d}${t ? ` for "${t}"` : ""}.${sb?.has_patch || inc?.patch ? " The patch is on file." : ""} Run a fresh traversal to re-check against today's graph.`;
+  }
   if (hit) m = m.replace(/^\s*\d+ of \d+ services can install a malicious version[^.]*\.\s*/, "");
   else if (!HEADLINE[r.outcome]) m = split(m)[1];
   if (r.memory?.seen_before && r.outcome !== "answered_from_memory") m = m.replace(/\s*Seen before:[\s\S]*$/, "");
@@ -112,7 +134,7 @@ function ServiceRow({ e, exposed, open, onToggle }: { e: ServiceExposure; expose
             </div>
           </div>
           <div className="mt-1.5">
-            <PathChain via={main[0].path.via} requirement={main[0].path.requirement} bad={main[0].bad_version} exposed={main[0].path.exposed} compact />
+            <PathChain via={main[0].path.via} requirement={main[0].path.requirement} bad={main[0].bad_version} exposed={main[0].path.exposed} compact omitRoot />
             {!exposed && main[0].path.reason && <p className="mt-1 text-[12.5px] text-ink-3">{main[0].path.reason}</p>}
           </div>
         </div>
@@ -197,11 +219,12 @@ export function TracePanel({ trace, loading }: { trace: TraceStep[]; loading: bo
             <button onClick={() => setOpen(open === i ? null : i)} aria-expanded={open === i} className="flex w-full items-center gap-3 px-5 py-2.5 text-left text-[13px] transition-colors hover:bg-subtle/70">
               <span className="w-5 font-mono text-[12px] text-ink-3 tabular">{String(i + 1).padStart(2, "0")}</span>
               <span className="font-mono font-medium text-ink">{s.tool}</span>
-              {s.query && s.query !== s.tool && <span className="hidden truncate font-mono text-[12px] text-ink-3 sm:inline">{s.query}</span>}
+              {s.tool === "memory lookup" && s.note ? <span className="truncate text-[12.5px] text-ink-2">{s.note}</span>
+                : s.query && s.query !== s.tool && <span className="hidden truncate font-mono text-[12px] text-ink-3 sm:inline">{s.query}</span>}
               {s.write && <span className="text-[12px] font-medium text-risk">write</span>}
               {s.error && <span className="text-[12px] font-medium text-signal-ink">error</span>}
               <span className="ml-auto flex shrink-0 items-center gap-4 font-mono text-[12px] tabular">
-                <span className="w-16 text-right text-ink-3">{s.rows} rows</span>
+                <span className="w-16 text-right text-ink-3">{s.tool === "memory lookup" ? "" : `${s.rows} row${s.rows === 1 ? "" : "s"}`}</span>
                 <span className="w-16 text-right text-ink-2">{s.ms.toFixed(1)} ms</span>
               </span>
               <ChevronDown className={clsx("h-3.5 w-3.5 text-ink-3 transition-transform duration-200", open === i && "rotate-180")} />
@@ -213,7 +236,7 @@ export function TracePanel({ trace, loading }: { trace: TraceStep[]; loading: bo
                     {s.note && <p className="text-[12.5px] text-ink-2">{s.note}</p>}
                     {s.error && <p className="text-[12.5px] text-signal-ink">{s.error}</p>}
                     <pre className="scroll-thin overflow-x-auto rounded-lg border border-line bg-subtle p-3 font-mono text-[12px] leading-relaxed text-ink">{s.cypher}</pre>
-                    <pre className="scroll-thin overflow-x-auto font-mono text-[11.5px] text-ink-3">params {JSON.stringify(s.params)}</pre>
+                    <Params params={s.params} />
                     {s.file && <p className="font-mono text-[11.5px] text-ink-3">{s.file}</p>}
                   </div>
                 </motion.div>
@@ -223,6 +246,21 @@ export function TracePanel({ trace, loading }: { trace: TraceStep[]; loading: bo
         ))}</ShowMore>}
       </div>
     </Card>
+  );
+}
+
+/** Query parameters on one line, ellipsized, with an expand toggle when they do not fit. */
+function Params({ params }: { params: unknown }) {
+  const [open, setOpen] = useState(false);
+  const text = JSON.stringify(params ?? {});
+  if (text === "{}") return null;
+  const long = text.length > 110;
+  return (
+    <div className="flex items-start gap-2 font-mono text-[12px] text-ink-3">
+      <span className="shrink-0">params</span>
+      <span className={clsx("min-w-0 flex-1 text-ink-2", open ? "whitespace-pre-wrap break-all" : "truncate")}>{open ? JSON.stringify(params, null, 2) : text}</span>
+      {long && <button onClick={() => setOpen(!open)} className="shrink-0 font-sans text-[12px] font-medium text-ink-2 underline decoration-line-strong underline-offset-4 hover:text-ink">{open ? "Collapse" : "Expand"}</button>}
+    </div>
   );
 }
 
@@ -350,7 +388,7 @@ export function MemoryDetail({ r }: { r: AskResponse }) {
           {(inc.exposed || []).map((x) => (
             <div key={x.service} className="px-3.5 py-2.5">
               <p className="mb-1 text-[13px] font-medium text-ink">{x.service} <span className="font-mono text-[12px] font-normal text-ink-3">{x.advisory}</span></p>
-              <PathChain via={x.path} requirement={x.requirement} exposed compact />
+              <PathChain via={x.path} requirement={x.requirement} exposed compact omitRoot />
             </div>
           ))}
           </ShowMore>
@@ -489,16 +527,21 @@ export function ScopeStrip({ r }: { r: AskResponse }) {
 
 export function InsightsPanel({ r }: { r: AskResponse }) {
   const [tab, setTab] = useState<"rings" | "matrix">("rings");
+  const reach = new Set([...r.exposed, ...r.safe].flatMap((e) => e.findings.map((f) => f.package))).size;
+  const total = new Set((r.scope ?? []).map((s) => s.package)).size;
   return (
     <Card>
       <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line px-5 py-3">
         <div>
           <h3 className="text-[14px] font-semibold tracking-[-0.01em] text-ink">Insights</h3>
-          <p className="mt-0.5 text-[12.5px] text-ink-3">From the dependency paths of {r.exposed.length + r.safe.length} services at depth {r.depth}</p>
+          <p className="mt-0.5 text-[13px] text-ink-2">
+            <b className="font-semibold text-ink tabular">{reach}</b>{total > reach ? <> of <b className="font-semibold text-ink tabular">{total}</b></> : null} compromised package{(total || reach) === 1 ? "" : "s"} reachable from the fleet
+            <span className="text-ink-3"> · {r.exposed.length + r.safe.length} services at depth {r.depth}</span>
+          </p>
         </div>
         <Segmented value={tab} onChange={setTab} options={[{ value: "rings", label: "Blast radius" }, { value: "matrix", label: "Exposure matrix" }]} />
       </div>
-      <div className="p-5">{tab === "rings" ? <BlastRings r={r} /> : <ExposureMatrix r={r} />}</div>
+      <div className="p-5">{tab === "rings" ? <BlastRings r={r} total={total} /> : <ExposureMatrix r={r} />}</div>
     </Card>
   );
 }

@@ -87,7 +87,10 @@ export default function ByoSection() {
 
   const rawOv = scan?.overrides ? ("overrides" in scan.overrides ? scan.overrides : { overrides: scan.overrides }) : null;
   const overrides = rawOv && Object.keys((rawOv as { overrides: object }).overrides ?? {}).length ? rawOv : null;
-  const hit = (scan?.exposed.length ?? 0) > 0;
+  // Runtime decides the headline (the payload targeted shipped code); dev tooling is a quieter second line.
+  const vr = scan?.details?.verdict_runtime, vd = scan?.details?.verdict_dev;
+  const anyHit = (scan?.exposed.length ?? 0) > 0;
+  const hit = scan?.details?.runtime_hit ?? (vr ? vr.status === "exposed" : anyHit);
 
   return (
     <section id="byo" className="scroll-mt-20 pt-24">
@@ -147,14 +150,25 @@ export default function ByoSection() {
         <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }} className="mt-10">
           <p className="flex flex-wrap items-center gap-x-2 text-[13px] text-ink-3">
             <span className="font-medium text-ink-2">Scan</span>
-            {scan.source && <><span className="text-line-strong">/</span><span className="font-mono">{scan.source.label}</span></>}
-            <span className="text-line-strong">/</span><span className="font-mono">{scan.scan_id}</span>
+            {scan.source && <><span className="text-line-strong">/</span><span className="font-mono" title={`Isolated graph ${scan.scan_id}`}>{scan.source.label}</span></>}
           </p>
           <h3 className="mt-3 flex items-center gap-3 text-[26px] font-semibold tracking-[-0.02em] text-ink">
             <span className={clsx("h-2.5 w-2.5 shrink-0 rounded-full", hit ? "bg-signal" : "bg-safe")} />
-            {hit ? "Yes. A fresh install could have pulled malware." : "No. Every range excluded the malicious versions."}
+            {hit ? "Runtime exposed. A fresh install could have pulled malware." : vr ? "Runtime clean." : "No. Every range excluded the malicious versions."}
           </h3>
-          <p className="mt-2 max-w-[820px] text-[15px] leading-relaxed text-ink-2">{tidy(scan.summary)}</p>
+          {vr ? (
+            <div className="mt-3 max-w-[820px] space-y-2">
+              {vr.status === "exposed" && <p className="text-[15px] leading-relaxed text-ink-2">{vr.text.replace(/^Runtime:\s*/, "").replace(/^./, (c) => c.toUpperCase())}</p>}
+              {vr.status !== "exposed" && <p className="text-[15px] leading-relaxed text-ink-2">No runtime dependency range admits any of the 19 malicious versions.</p>}
+              {vd && (
+                <p data-testid="byo-dev-verdict" className="flex items-start gap-2 text-[13.5px] leading-relaxed text-ink-2">
+                  <span className={clsx("mt-[7px] h-1.5 w-1.5 shrink-0 rounded-full", vd.status === "exposed" ? "bg-risk" : vd.status === "clean" ? "bg-safe" : "bg-line-strong")} />
+                  <span>{vd.text}</span>
+                </p>
+              )}
+              {scan.details?.payload_note && <p className="text-[12.5px] leading-relaxed text-ink-3">{scan.details.payload_note}</p>}
+            </div>
+          ) : <p className="mt-2 max-w-[820px] text-[15px] leading-relaxed text-ink-2">{tidy(scan.summary)}</p>}
 
           <div className="mt-8 grid gap-4 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
             {scan.graph && scan.graph.nodes.length > 0 && (
@@ -163,8 +177,8 @@ export default function ByoSection() {
                 <span className="pointer-events-none absolute left-4 top-3 text-[12px] text-ink-3 tabular">{scan.graph.nodes.length} nodes · {scan.graph.edges.length} edges</span>
               </Card>
             )}
-            <div className="space-y-4">
-              <Card>
+            <div className="flex flex-col gap-4">
+              <Card className={anyHit ? "" : "order-2"}>
                 <CardHeader title={`Exposed`} sub="The range on the last edge admits the malicious version." right={<span className={clsx("text-[13px] font-semibold tabular", scan.exposed.length ? "text-signal-ink" : "text-ink-3")}>{scan.exposed.length}</span>} />
                 <div className="divide-y divide-line">
                   {scan.exposed.length === 0 && <p className="px-5 py-4 text-[13px] text-ink-3">Nothing exposed.</p>}
@@ -185,7 +199,7 @@ export default function ByoSection() {
                   </ShowMore>
                 </div>
               </Card>
-              <Card>
+              <Card className={anyHit ? "" : "order-1 ring-1 ring-safe/25"}>
                 <CardHeader title="Excluded by range" sub="Reaches an affected package, but the range rules the bad version out." right={<span className="text-[13px] font-semibold text-ink-2 tabular">{scan.not_exposed.length}</span>} />
                 <div className="divide-y divide-line">
                   {scan.not_exposed.length === 0 && <p className="px-5 py-4 text-[13px] text-ink-3">No near misses.</p>}
@@ -194,8 +208,11 @@ export default function ByoSection() {
                     const p = norm(i);
                     return (
                       <div key={k} className="px-5 py-3">
-                        <PathChain via={p.via} requirement={p.requirement} bad={i.bad_version} exposed={false} compact />
-                        <p className="mt-1 text-[12.5px] text-ink-3">{p.reason}</p>
+                        <PathChain via={p.via} requirement={p.requirement} bad={i.bad_version} exposed={false} compact={anyHit} />
+                        <p className={clsx("mt-1.5 flex items-start gap-1.5 text-safe", anyHit ? "text-[12.5px]" : "text-[13.5px]")}>
+                          <CheckCircle2 className="mt-[2px] h-3.5 w-3.5 shrink-0" />
+                          <span>Excluded by range: {p.reason}{!anyHit && i.clean_version ? `. Nothing to pin.` : ""}</span>
+                        </p>
                       </div>
                     );
                   })}

@@ -185,7 +185,23 @@ export interface ByoItem {
   hops?: number;
 }
 
+export interface ByoVerdict {
+  status: "exposed" | "clean" | "not_scanned";
+  packages: string[];
+  path_count: number;
+  text: string;
+  via?: string[];
+  paths?: { package: string; via: string[]; chain: string }[];
+}
+
 export interface ByoScan {
+  details?: {
+    runtime_hit?: boolean;
+    would_have_been_hit?: boolean;
+    verdict_runtime?: ByoVerdict;
+    verdict_dev?: ByoVerdict;
+    payload_note?: string;
+  };
   scan_id: string;
   source?: { kind: string; label: string; ref?: string };
   outcome?: Outcome;

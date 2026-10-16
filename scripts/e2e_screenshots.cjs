@@ -106,6 +106,32 @@ const exposedCount = (page) =>
   const img4 = (await exposedNames(page)).includes("img-service");
   check("AC5 depth 4 > depth 1, img-service only at depth >= 3", n4b > n1 && !img1 && img4, `depth1=${n1} depth4=${n4b}`);
 
+  // P0-2 regression: re-trace 5 times at different depths with the pointer resting on the graph and a wheel
+  // scroll over it. The graph must stay fitted (zoom 1), keep every node, name its labels, and hold no stale hover.
+  const graphState = () => page.evaluate(() => ({ ...document.querySelector("[data-graph]").dataset }));
+  const box = await page.evaluate(() => { const r = document.querySelector("[data-graph]").getBoundingClientRect(); return { x: r.x, y: r.y, w: r.width, h: r.height }; });
+  const base = await graphState();
+  const retrace = [];
+  for (const d of [1, 3, 6, 2, 5]) {
+    await page.mouse.move(box.x + box.w * 0.5, box.y + box.h * 0.25);
+    await page.mouse.wheel({ deltaY: 500 });
+    await setDepth(page, d);
+    await page.waitForFunction((v) => document.body.innerText.includes(`services at depth ${v}`), { timeout: 15000 }, d);
+    await new Promise((r) => setTimeout(r, 1800));
+    await page.mouse.move(5, 5);
+    await new Promise((r) => setTimeout(r, 300));
+    const st = await graphState();
+    const exposed = await exposedCount(page);
+    retrace.push({ d, exposed, ...st });
+  }
+  const stable = retrace.every((s) => s.nodes === base.nodes && s.zoom === "1.00" && !s.hover && Number(s.labels) >= Math.max(1, s.exposed) + 1);
+  check("P0-2 five re-traces keep the graph fitted and labelled", stable, retrace.map((s) => `d${s.d}:${s.labels}lbl/${s.nodes}n/z${s.zoom}${s.hover ? "/hover" : ""}`).join(" "));
+  // Dragging the slider fires one change per step; only the last depth may land, whatever order answers arrive in.
+  for (const v of [6, 5, 4, 3, 2, 1, 2, 3, 4]) { await setDepth(page, v); await new Promise((r) => setTimeout(r, 35)); }
+  await new Promise((r) => setTimeout(r, 2500));
+  const settled = await page.evaluate(() => ({ slider: document.querySelector("input[aria-label='graph depth']").value, text: document.body.innerText.match(/services at depth (\d)/)?.[1] }));
+  check("P0-2 slider drag lands on the last depth", settled.slider === "4" && settled.text === "4", JSON.stringify(settled));
+
   // AC9: generate fix
   await clickText(page, "Generate fix");
   await page.waitForFunction(() => document.body.innerText.includes("written to the graph"), { timeout: 20000 });
@@ -143,7 +169,8 @@ const exposedCount = (page) =>
   await p2.waitForFunction(() => document.body.innerText.includes("versions"), { timeout: 30000 });
   await ask(p2, "qix");
   await waitOutcome(p2, "Answered from graph memory");
-  check("AC10 new session: qix answered_from_memory", true);
+  const memLine = await p2.evaluate(() => document.querySelector("[data-testid='memory-line']")?.innerText ?? "");
+  check("AC10 new session: qix answered from graph memory, with incident id and date", /INC-\S+/.test(memLine) && /\d{4}|\d:\d\d/.test(memLine), memLine.replace(/\s+/g, " "));
   await p2.screenshot({ path: `${OUT}/07-memory-recall.png`, fullPage: true });
 
   // AC11 SPOF

@@ -7,11 +7,12 @@ import { useMemo, useState } from "react";
 import type { AskResponse, ServiceExposure, Spof } from "@/lib/types";
 
 /* Light paper palette. One signal color; amber marks the exposure chain. */
-const INK = "#0C0A09", INK2 = "#57534E", STONE = "#A8A29E", LINE = "#E7E5E4", PAPER = "#FAFAF9", SIG = "#E5484D", RISK = "#B45309";
+const TAU = Math.PI * 2;
+const INK = "#0C0A09", INK2 = "#57534E", STONE = "#A8A29E", MUTED = "#736C67", LINE = "#E7E5E4", PAPER = "#FAFAF9", SIG = "#E5484D", RISK = "#B45309";
 
 
 /* ------------------------------------------------------------------ Blast radius rings */
-export function BlastRings({ r }: { r: AskResponse }) {
+export function BlastRings({ r, total = 0 }: { r: AskResponse; total?: number }) {
   const [hover, setHover] = useState<string | null>(null);
   const [coreOpen, setCoreOpen] = useState(false);
   const model = useMemo(() => buildRings([...r.exposed, ...r.safe]), [r.exposed, r.safe]);
@@ -32,6 +33,44 @@ export function BlastRings({ r }: { r: AskResponse }) {
     return [C + ringR(n.d) * Math.cos(n.angle), C + ringR(n.d) * Math.sin(n.angle)];
   };
   const active = hover ? model.chainOf.get(hover) : null;
+  // Service labels: radially outside their node, nudged along the ring when two would overlap.
+  const svcLabel = new Map<string, { x: number; y: number; anchor: "start" | "end" | "middle" }>();
+  {
+    const boxes: [number, number, number, number][] = [];
+    const svcs = model.nodes.filter((n) => n.d > 0 && n.service).sort((a, b) => a.angle - b.angle);
+    for (const n of svcs) {
+      const c = Math.cos(n.angle);
+      const anchor = c > 0.2 ? "start" : c < -0.2 ? "end" : "middle";
+      const w = n.id.length * 6.1, h = 13;
+      let x = C + (ringR(n.d) + 10) * Math.cos(n.angle), y = C + (ringR(n.d) + 10) * Math.sin(n.angle);
+      const box = (yy: number): [number, number, number, number] => [anchor === "start" ? x : anchor === "end" ? x - w : x - w / 2, yy - h / 2, w, h];
+      const hit = (b: [number, number, number, number]) => boxes.some(([bx, by, bw, bh]) => b[0] < bx + bw && b[0] + b[2] > bx && b[1] < by + bh && b[1] + b[3] > by);
+      for (const dy of [0, 12, -12, 22, -22]) if (!hit(box(y + dy))) { y += dy; break; }
+      boxes.push(box(y));
+      if (anchor === "middle") x = Math.max(w / 2, Math.min(S - w / 2, x));
+      svcLabel.set(n.id, { x, y, anchor });
+    }
+  }
+  // Hop labels go on the one spoke where they collide with nothing: no service label, no node.
+  let gapAt = (3 * Math.PI) / 4;
+  {
+    const boxes = [...svcLabel.entries()].map(([id, l]) => {
+      const w = id.length * 6.1;
+      return [l.anchor === "start" ? l.x : l.anchor === "end" ? l.x - w : l.x - w / 2, l.y - 7, w, 14];
+    });
+    const pts = model.nodes.map((n) => pos(n.id));
+    let best = Infinity;
+    for (let k = 0; k < 72; k++) {
+      const a = (k / 72) * TAU;
+      let cost = Math.abs(Math.atan2(Math.sin(a - gapAt), Math.cos(a - gapAt))) * 0.01;
+      for (let d = 1; d <= model.maxD; d++) {
+        const cx = C + ringR(d) * Math.cos(a), cy = C + ringR(d) * Math.sin(a);
+        for (const [bx, by, bw, bh] of boxes) if (cx - 24 < bx + bw && cx + 24 > bx && cy - 9 < by + bh && cy + 9 > by) cost += 1;
+        for (const [px, py] of pts) if (Math.abs(px - cx) < 28 && Math.abs(py - cy) < 12) cost += 1;
+      }
+      if (cost < best) { best = cost; gapAt = a; }
+    }
+  }
   const spring = { type: "spring", stiffness: 260, damping: 30 } as const;
   return (
     <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_220px]">
@@ -39,8 +78,8 @@ export function BlastRings({ r }: { r: AskResponse }) {
         {Array.from({ length: model.maxD }, (_, i) => i + 1).map((d) => (
           <g key={d}>
             <circle cx={C} cy={C} r={ringR(d)} fill="none" stroke={LINE} strokeWidth={1} />
-            <rect x={C - ringR(d) * 0.7071 - 20} y={C + ringR(d) * 0.7071 - 8} width={40} height={16} rx={4} fill="#FFFFFF" />
-            <text x={C - ringR(d) * 0.7071} y={C + ringR(d) * 0.7071 + 0.5} fill={STONE} fontSize="10" textAnchor="middle" dominantBaseline="middle" style={{ fontVariantNumeric: "tabular-nums" }}>{d} hop{d > 1 ? "s" : ""}</text>
+            <rect x={C + ringR(d) * Math.cos(gapAt) - 21} y={C + ringR(d) * Math.sin(gapAt) - 8} width={42} height={16} rx={4} fill="#FFFFFF" />
+            <text x={C + ringR(d) * Math.cos(gapAt)} y={C + ringR(d) * Math.sin(gapAt) + 0.5} fill={MUTED} fontSize="10" textAnchor="middle" dominantBaseline="middle" style={{ fontVariantNumeric: "tabular-nums" }}>{d} hop{d > 1 ? "s" : ""}</text>
           </g>
         ))}
         {model.edges.map((e) => {
@@ -59,15 +98,16 @@ export function BlastRings({ r }: { r: AskResponse }) {
           const col = n.service ? (n.exposed ? SIG : INK) : n.exposed ? RISK : STONE;
           const hollow = n.service && !n.exposed;
           const size = n.service ? 5.5 : 3;
-          const lx = n.service ? C + (ringR(n.d) + 10) * Math.cos(n.angle) : x;
-          const ly = n.service ? C + (ringR(n.d) + 10) * Math.sin(n.angle) : y - 8;
+          const sl = svcLabel.get(n.id);
+          const lx = sl ? sl.x : x;
+          const ly = sl ? sl.y : y - 8;
           return (
             <g key={n.id} opacity={on ? 1 : 0.15} onMouseEnter={() => setHover(n.id)} onMouseLeave={() => setHover(null)} className="cursor-pointer" style={{ transition: "opacity 180ms ease-out" }}>
               <circle cx={x} cy={y} r={size + 8} fill="transparent" />
               <circle cx={x} cy={y} r={size} fill={hollow ? "#FFFFFF" : col} stroke={hollow ? INK : PAPER} strokeWidth={1.5} />
               {(n.service || hover === n.id) && (
                 <text x={lx} y={ly} fill={INK2} fontSize={10.5} fontWeight={500} paintOrder="stroke" stroke="#FFFFFF" strokeWidth={3} strokeLinejoin="round"
-                  textAnchor={n.service ? (Math.cos(n.angle) > 0.2 ? "start" : Math.cos(n.angle) < -0.2 ? "end" : "middle") : "middle"} dominantBaseline="middle">
+                  textAnchor={sl ? sl.anchor : "middle"} dominantBaseline="middle">
                   {n.id}
                 </text>
               )}
@@ -97,13 +137,13 @@ export function BlastRings({ r }: { r: AskResponse }) {
           })()}
           {!coreOpen && (
             <text x={C} y={C + 32} fill={INK} fontSize={11} fontWeight={600} textAnchor="middle" paintOrder="stroke" stroke="#FFFFFF" strokeWidth={3.5} strokeLinejoin="round" style={{ pointerEvents: "none" }}>
-              {core.length === 1 ? core[0].label : `${core.length} compromised packages`}
+              {core.length === 1 ? core[0].label : total > core.length ? `${core.length} of ${total} compromised packages` : `${core.length} compromised packages`}
             </text>
           )}
         </g>
       </svg>
       <div className="space-y-4 text-[13px] leading-relaxed text-ink-2">
-        <p>Rings count hops outward from the <span className="font-medium text-ink">{core.length} compromised package{core.length === 1 ? "" : "s"}</span> at the core to the services that pull them. Hover the core to fan them out.</p>
+        <p>Rings count hops outward from the <span className="font-medium text-ink">{core.length}{total > core.length ? ` of ${total}` : ""} compromised package{(total || core.length) === 1 ? "" : "s"}</span> the fleet can reach, at the core, to the services that pull them. Hover the core to fan them out.</p>
         <p><span className="font-medium text-signal-ink">Vermilion chains</span> end in a range that admits the malicious version. <span className="font-medium text-ink">Grey chains</span> reach the package, but their range excludes it.</p>
         {coreOpen ? (
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.15 }} className="border-y border-line py-2">
@@ -205,32 +245,32 @@ export function ExposureMatrix({ r }: { r: AskResponse }) {
     return { rows, cols, cell };
   }, [r]);
   if (!cols.length) return <Empty text="No service reaches an affected package at this depth." />;
-  const maxN = Math.max(...[...cell.values()].map((c) => c.n), 1);
+  const many = cols.length > 8;
   return (
     <div className="relative">
       <div className="scroll-thin flex justify-center overflow-x-auto">
-        <table className="border-separate border-spacing-[3px] text-[12px]">
+        <table className="border-separate border-spacing-[3px] text-[13px]">
           <thead>
             <tr>
               <th />
               {cols.map((c) => (
-                <th key={c} className={clsx("align-bottom font-mono font-normal text-ink-2", cols.length > 8 && "h-24")}>{cols.length <= 8 ? <div className="pb-1 text-center">{c}</div> : <div className="w-6 origin-bottom-left translate-x-3 -rotate-45 whitespace-nowrap">{c}</div>}</th>
+                <th key={c} className={clsx("align-bottom font-mono text-[12.5px] font-medium text-ink", many && "h-32")}>{!many ? <div className="pb-1.5 text-center">{c}</div> : <div className="w-8 origin-bottom-left translate-x-4 -rotate-[55deg] whitespace-nowrap pb-1 text-left">{c}</div>}</th>
               ))}
             </tr>
           </thead>
           <tbody>
             {rows.map((s) => (
               <tr key={s}>
-                <td className="whitespace-nowrap pr-3 text-right text-ink-2">{s}</td>
+                <td className="whitespace-nowrap pr-3 text-right text-ink">{s}</td>
                 {cols.map((c) => {
                   const v = cell.get(`${s}|${c}`);
-                  const op = v ? 0.25 + 0.75 * Math.sqrt(v.n / maxN) : 0;
+                  const op = v ? HEAT[heatStep(v.n)] : 0;
                   return (
                     <td key={c} className="p-0">
                       <motion.div initial={{ scale: 0.6, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ delay: 0.002 * (rows.indexOf(s) * cols.length + cols.indexOf(c)) }}
                         onMouseMove={(ev) => v && setTip({ x: ev.clientX, y: ev.clientY, text: v.display, sub: `${v.reason} · ${v.n} path${v.n > 1 ? "s" : ""}` })}
                         onMouseLeave={() => setTip(null)}
-                        className={clsx("h-6 rounded-[4px] transition-transform duration-150 ease-out hover:scale-110", cols.length <= 8 ? "w-14" : "w-6", !v && "bg-subtle", v && !v.exposed && "bg-surface ring-1 ring-inset ring-line-strong")}
+                        className={clsx("h-8 rounded-[5px] transition-transform duration-150 ease-out hover:scale-110", !many ? "w-16" : "w-8", !v && "bg-subtle", v && !v.exposed && "bg-surface ring-1 ring-inset ring-line-strong")}
                         style={v && v.exposed ? { background: `rgba(229,72,77,${op})` } : undefined} />
                     </td>
                   );
@@ -240,8 +280,11 @@ export function ExposureMatrix({ r }: { r: AskResponse }) {
           </tbody>
         </table>
       </div>
-      <div className="mt-4 flex flex-wrap items-center gap-5 text-[12px] text-ink-3">
-        <span className="flex items-center gap-1.5"><span className="h-3 w-3 rounded-[3px] bg-signal" />exposed, shade is the number of admitting paths</span>
+      <div className="mt-5 flex flex-wrap items-center gap-x-6 gap-y-2 text-[13px] text-ink-2">
+        <span className="flex items-center gap-2">
+          <span className="flex gap-0.5">{HEAT.map((o, i) => <span key={i} className="h-3.5 w-3.5 rounded-[3px]" style={{ background: `rgba(229,72,77,${o})` }} />)}</span>
+          exposed: 1, 2 to 3, 4 to 7, 8+ admitting paths
+        </span>
         <span className="flex items-center gap-1.5"><span className="h-3 w-3 rounded-[3px] ring-1 ring-inset ring-line-strong" />reaches the package, range excludes it</span>
         <span className="flex items-center gap-1.5"><span className="h-3 w-3 rounded-[3px] bg-subtle" />no path at this depth</span>
       </div>
@@ -254,6 +297,10 @@ export function ExposureMatrix({ r }: { r: AskResponse }) {
     </div>
   );
 }
+
+/** Four clear heat steps instead of a continuous ramp, so cells read at video size. */
+const HEAT = [0.42, 0.64, 0.84, 1];
+const heatStep = (n: number) => (n >= 8 ? 3 : n >= 4 ? 2 : n >= 2 ? 1 : 0);
 
 /* ------------------------------------------------------------------ SPOF scatter: reach x PageRank */
 export function SpofScatter({ spof }: { spof: Spof }) {
