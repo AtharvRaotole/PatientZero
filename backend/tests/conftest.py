@@ -15,3 +15,18 @@ def _clear_llm_cache():
     agent.budget.reset_for_tests()
     yield
     agent._cache.clear()
+
+
+@pytest.fixture(autouse=True, scope="session")
+def _no_leftover_graphs():
+    """Tests clean up after themselves: BYO scan graphs created during the run are deleted at the end."""
+    from app import db
+    try:
+        before = set(db.client().list_graphs())
+    except Exception:  # noqa: BLE001 - FalkorDB down: live tests are skipped anyway
+        yield
+        return
+    yield
+    for g in set(db.client().list_graphs()) - before:
+        if g.startswith("byo:"):
+            db.client().select_graph(g).delete()

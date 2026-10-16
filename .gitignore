@@ -24,3 +24,6 @@ backend/.venv/
 frontend/node_modules/
 frontend/.next/
 .cache/
+# BYO scan cache: only the committed demo set (axios, express 4.x, express v5, vercel/ms and a few more) is
+# tracked; new scans write here at runtime and stay local.
+data/raw/byo/**
