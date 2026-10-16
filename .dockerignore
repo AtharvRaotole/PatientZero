@@ -1,0 +1,12 @@
+**/node_modules
+**/.next
+frontend/out
+**/.venv
+**/__pycache__
+**/*.pyc
+.falkordb
+.git
+.env
+.env.*
+!.env.example
+docs/screenshots

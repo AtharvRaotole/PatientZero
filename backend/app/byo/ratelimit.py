@@ -33,8 +33,9 @@ class RateLimiter:
 
 
 def client_ip(request) -> str:
-    """First X-Forwarded-For hop when behind a proxy (Railway), else the socket peer."""
+    """Client IP behind a proxy (Railway): the RIGHTMOST X-Forwarded-For entry is the one the edge proxy added,
+    so a client cannot dodge the limit by sending its own X-Forwarded-For. Else the socket peer."""
     xff = request.headers.get("x-forwarded-for")
     if xff:
-        return xff.split(",")[0].strip()
+        return xff.split(",")[-1].strip()
     return request.client.host if request.client else "unknown"

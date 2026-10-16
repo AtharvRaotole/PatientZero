@@ -113,9 +113,11 @@ def build():
     return fleet, incident, versions, requires, svc_deps, advisories, maint, pkgs
 
 
-def load():
+def load(db=None):
     fleet, incident, versions, requires, svc_deps, advisories, maint, pkgs = build()
-    db = connect()
+    if db is None:
+        url = os.getenv("FALKORDB_URL")
+        db = FalkorDB.from_url(url) if url else connect()
     g = db.select_graph(GRAPH)
     t0 = time.time()
     try:
