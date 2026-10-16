@@ -5,10 +5,10 @@
 ## ⏰ Deadline, freeze, artifacts (read first)
 | | Time |
 |---|---|
-| **Submissions close** | **Sat Oct 18, 11:59 PM IST = Sat Oct 18, 2:29 PM ET (18:29 UTC)** |
-| **Code freeze (internal)** | **Sat Oct 18, 8:00 AM ET**. After this, only bug fixes, README, video, and deploy |
-| Video recorded by | Sat Oct 18, 11:00 AM ET |
-| Submitted by | Sat Oct 18, 1:30 PM ET (one hour of buffer) |
+| **Submissions close** | **Sun Oct 18, 11:59 PM IST = Sun Oct 18, 2:29 PM ET (18:29 UTC)** |
+| **Code freeze (internal)** | **Sun Oct 18, 8:00 AM ET**. After this, only bug fixes, README, video, and deploy |
+| Video recorded by | Sun Oct 18, 11:00 AM ET |
+| Submitted by | Sun Oct 18, 1:30 PM ET (one hour of buffer) |
 
 **Required submission artifacts** (rule 10, https://www.wemakedevs.org/hackathons/falkordb/rules):
 1. Public source-code repository
@@ -232,7 +232,7 @@ Run them against a freshly seeded graph `fleet:acme`. Each AC has an id for the 
 | 1:40–1:52 | Restart, new session, ask `qix` and get `answered_from_memory`. Then ask `left-pad@1.3.0` and get `unknown_entity` | "It remembers the incident across sessions, and it tells you honestly when something isn't in the graph." |
 | 1:52–2:00 | The same `exposure` tool called from Claude Desktop or Cursor over MCP, then the repo URL | "The same tools work over MCP. PatientZero: FalkorDB as the context your security agent acts on." |
 
-## 12. Submission checklist (complete by Sat Oct 18, 1:30 PM ET)
+## 12. Submission checklist (complete by Sun Oct 18, 1:30 PM ET)
 - [ ] Repo is public, with a clean commit history (no secrets, no `.venv`, no `.falkordb/*.so`, no dump files)
 - [ ] README: pitch, screenshot/GIF, setup (no-Docker script plus Cloud), graph model, `queries/*.cypher` link, algorithms used, the exposure-by-range assumption, data sources with URLs, track(s), AI-assistant disclosure, video link, live URL
 - [ ] `queries/` holds every Cypher query the tools use, one file per tool

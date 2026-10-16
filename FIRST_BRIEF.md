@@ -1,8 +1,8 @@
 # FIRST BRIEF: "PatientZero", a supply-chain incident agent on FalkorDB
 Owner: Research/Product. Builder (FullStack) owns code and final scope calls. The full SPEC.md comes next; this brief is enough to start now.
 
-## ⏰ DEADLINE: Sat Oct 18, 11:59 PM IST = **Sat Oct 18, 2:29 PM ET** (18:29 UTC)
-About 63 h from brief time (Thu Oct 15, 11:40 PM ET). **Internal code freeze: Sat Oct 18, 8:00 AM ET.** After that it's only video, README, and deploy.
+## ⏰ DEADLINE: Sun Oct 18, 11:59 PM IST = **Sun Oct 18, 2:29 PM ET** (18:29 UTC)
+About 63 h from brief time (Thu Oct 15, 11:40 PM ET). **Internal code freeze: Sun Oct 18, 8:00 AM ET.** After that it's only video, README, and deploy.
 
 ## 📦 REQUIRED SUBMISSION ARTIFACTS (rule 10, https://www.wemakedevs.org/hackathons/falkordb/rules)
 1. Public GitHub repo

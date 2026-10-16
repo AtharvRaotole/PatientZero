@@ -258,6 +258,9 @@ See [docs/DEMO.md](docs/DEMO.md).
 - **Building:** this project was built with AI coding assistants (Grok Bot agents for research, spec, code, tests
   and review). Every Cypher query in `queries/` is parameterised and was written for this project, never generated from user text; all
   acceptance checks are reproducible with the test commands above.
+- **Atharv's own contribution:** Atharv Raotole chose the problem, the tracks and the product direction, set the
+  design and quality bar, reviewed the builds and the demo, and approved security decisions such as rotating the
+  live database password.
 - **At runtime:** the product works fully without any LLM. With `OPENAI_API_KEY` set, OpenAI `gpt-4o-mini` (via
   `OPENAI_MODEL`) is used only to pick among the fixed tools when the deterministic router is not confident,
   to phrase answers, and for the optional click-to-run summary. It never writes Cypher, every name it outputs is
