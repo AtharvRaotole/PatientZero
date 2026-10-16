@@ -36,6 +36,21 @@ def campaign_of(text: str) -> tuple[str, str] | None:
     return None
 
 
+# "X was phished / compromised / hacked": an incident report, so the graph is always traversed fresh.
+COMPROMISE_RE = re.compile(
+    r"phish|compromis|hack|pwn|hijack|take\s?over|breach|malicious|malware|poison|backdoor|attack|got owned", re.I)
+# Talking about a person behind a package ("the guy who maintains chalk got phished").
+PERSON_RE = re.compile(r"\b(maintainer|maintains|maintained|author|guy|dev|developer|publisher|account|owner|"
+                       r"person|someone|whoever|he|she|they)\b", re.I)
+# Plain-English names for the incidents loaded in the graph -> maintainer key. Router first, LLM never needed.
+INCIDENT_SYNONYMS = [
+    (re.compile(r"(npm|chalk|debug)\s+(phishing|phish|supply.chain)|phishing (attack|campaign|email)|"
+                r"sep(t|tember)?\.?\s*8(th)?,?\s*(2025)?|september 2025|"
+                r"chalk\W+(and|&|/)\W*debug\s+(attack|compromise|hack|incident|takeover)|"
+                r"npmjs\.help|josh junon", re.I), "qix"),
+]
+
+
 def local_date(iso: str | None) -> str:
     try:
         return datetime.fromisoformat(iso).astimezone().strftime("%b %d %Y, %I:%M %p %Z")
@@ -95,6 +110,44 @@ def base(text: str, intent: str, depth: int) -> dict:
                 trigger=None, entity_kind=None, entity_key=None, exposed_count=0, llm_summary=None)
 
 
+def must_traverse(text: str, ent: dict) -> str | None:
+    """Why an incident question must be answered by a fresh traversal (never replaced by memory), or None.
+
+    Memory may answer on its own only for a bare entity recall ("qix") at the depth it was stored with."""
+    if ent.get("advisories"):
+        return "advisory id"
+    if ent.get("package_versions"):
+        return "package@version"
+    if ent.get("campaign"):
+        return "named campaign"
+    if COMPROMISE_RE.search(text or ""):
+        return "compromise report"
+    return None
+
+
+def infer_maintainer(tr: Trace, text: str, ent: dict) -> None:
+    """Router synonyms: map natural phrasing of a loaded incident to its maintainer, before any LLM."""
+    if ent["maintainers"] or ent["advisories"] or ent["package_versions"] or ent["services"]:
+        return
+    for rx, npm in INCIDENT_SYNONYMS:
+        if rx.search(text):
+            rows = [r for r in tools._resolve(tr, npm) if r["kind"] == "Maintainer"]
+            if rows:
+                ent["maintainers"] = [rows[0]["key"]]
+                ent["found"] = True
+                ent["inferred"] = f"'{rx.search(text).group(0)}' -> maintainer {rows[0]['key']}"
+                tr.compact("resolve_entity")
+                return
+    if ent["packages"] and COMPROMISE_RE.search(text) and PERSON_RE.search(text):
+        for pkg in ent["packages"]:
+            pm = tools.package_maintainers(tr, pkg) or {}
+            hp = pm.get("had_publish_rights") or []
+            if hp:
+                ent["maintainers"] = [hp[0]]
+                ent["inferred"] = f"the maintainer of {pkg} with publish rights at the time -> {hp[0]}"
+                return
+
+
 def ask(text: str, depth: int | None = None, fresh: bool = False, session: str = "",
         generate_fix: bool = False, client_ip: str = "") -> dict:
     t0 = time.perf_counter()
@@ -106,6 +159,14 @@ def ask(text: str, depth: int | None = None, fresh: bool = False, session: str =
     try:
         ent = tools.resolve_entity(text, tr)
         out["entity"] = ent
+        infer_maintainer(tr, text, ent)
+        if ent.get("inferred"):
+            tr.add("resolve_entity", f"router synonym: {ent['inferred']}")
+            if intent in ("who_to_wake", "path_between"):
+                intent = out["intent"] = "exposure"
+        elif intent == "who_to_wake" and COMPROMISE_RE.search(text) and not ent["services"] and (
+                ent["maintainers"] or ent["advisories"] or ent["package_versions"]):
+            intent = out["intent"] = "exposure"  # "who do I wake, debug@4.4.2 was hacked": an incident
         camp = campaign_of(text)
         if camp and intent in ("exposure", "recall", "who_to_wake") and not ent["services"]:
             ent["campaign"] = list(camp)
@@ -122,6 +183,11 @@ def ask(text: str, depth: int | None = None, fresh: bool = False, session: str =
             _unknown(out, ent)
         elif intent == "path_between" and ent["services"] and (ent["packages"] or ent["package_versions"]):
             _path(out, tr, ent)
+        elif intent == "path_between" and ent["services"] and ent.get("unmatched"):
+            ent["unresolved"] = ent["unresolved"] + ent["unmatched"]
+            _unknown(out, ent)
+            out["message"] = (f"{', '.join(ent['services'])} is in the graph, but {', '.join(ent['unmatched'])} "
+                              f"is not, so no path was traced. " + out["message"].split(", so no traversal was run. ")[-1])
         elif intent == "recall":
             _recall(out, tr, ent)
         elif intent == "who_to_wake" and (ent["services"] or (
@@ -157,18 +223,24 @@ def _unknown(out: dict, ent: dict):
 def _incident(out, tr, ent, depth, fresh, session, generate_fix):
     trigger, kind, key = trigger_of(ent)
     out.update(trigger=trigger, entity_kind=kind, entity_key=key)
-    if not fresh and not generate_fix and kind != "packages":
-        mem = tools.recall(tr, key)
-        if mem:
-            m = mem[0]
-            out["outcome"] = "answered_from_memory"
-            out["memory"] = {"incidents": [m]}
-            out["exposed_count"] = m["exposed_count"] or 0
-            out["graph"] = graph_elements_memory(m["exposed"])
-            out["message"] = (f"Answered from graph memory: incident {m['id']} on {local_date(m['at'])} "
-                              f"({m['trigger']}) found {m['exposed_count']} exposed services at depth "
-                              f"{m['depth']}. The patch is on file. Run a fresh traversal to re-check.")
-            return
+    mem = tools.recall(tr, key) if kind != "packages" else []
+    why = must_traverse(out["query"], ent)
+    # Memory answers on its own ONLY for a bare recall of the exact stored trigger at the stored depth.
+    exact = [m for m in mem if m.get("entity_key") == key and int(m.get("depth") or 0) == depth]
+    if not fresh and not generate_fix and not why and exact:
+        m = exact[0]
+        out["outcome"] = "answered_from_memory"
+        out["memory"] = {"incidents": [m], "seen_before": seen_before(m, key, None)}
+        out["exposed_count"] = m["exposed_count"] or 0
+        out["graph"] = graph_elements_memory(m["exposed"])
+        out["message"] = (f"Answered from graph memory: incident {m['id']} on {local_date(m['at'])} "
+                          f"({m['trigger']}) found {m['exposed_count']} exposed services at depth "
+                          f"{m['depth']}. The patch is on file. Run a fresh traversal to re-check.")
+        return
+    if mem:
+        tr.add("recall", "memory shown alongside a fresh traversal ("
+               + (f"{why} in the question" if why else "fresh requested" if fresh or generate_fix
+                  else "different trigger or depth") + ")")
     scope = scope_for(tr, ent)
     out["scope"] = scope
     if not scope and kind == "campaign":
@@ -181,6 +253,8 @@ def _incident(out, tr, ent, depth, fresh, session, generate_fix):
         out["message"] = (f"{trigger} is in the graph, but no compromised version is recorded for it, so there "
                           f"is nothing to trace. Ask with an explicit version, for example package@x.y.z.")
         return
+    hypothetical = all(sc.get("source") == "user report" for sc in scope)
+    out["hypothetical"] = hypothetical
     fleet = tools.fleet_overview(tr)
     res = tools.exposure(tr, scope, depth, fleet)
     out.update(exposed=res["exposed"], safe=res["safe"], clean=res["clean"], fleet_size=res["fleet_size"])
@@ -193,18 +267,54 @@ def _incident(out, tr, ent, depth, fresh, session, generate_fix):
     if res["exposed"]:
         out["wake"] = tools.who_to_wake(tr, [e["service"] for e in res["exposed"]])
         out["outcome"] = "answered_with_path"
-        out["message"] = (f"{len(res['exposed'])} of {res['fleet_size']} services can install a malicious version "
-                          f"({trigger}) at depth {depth}. {len(res['safe'])} more reach an affected package, "
-                          f"but their ranges exclude the bad version.")
+        n_safe = len(res["safe"])
+        tail = (f" {plural(n_safe, 'more service')} reach{'es' if n_safe == 1 else ''} an affected package, "
+                f"but {'its range excludes' if n_safe == 1 else 'their ranges exclude'} the bad version."
+                if n_safe else "")
+        if hypothetical:
+            out["message"] = (f"No advisory on file for {bad}. If it were compromised, "
+                              f"{len(res['exposed'])} of {res['fleet_size']} services could install it at depth "
+                              f"{depth}.{tail}")
+        else:
+            out["message"] = (f"{len(res['exposed'])} of {res['fleet_size']} services can install a malicious "
+                              f"version ({trigger}) at depth {depth}.{tail}")
     else:
         out["outcome"] = "not_in_graph"
-        out["message"] = (f"No fleet path admits this version at depth {depth} ({bad}). "
-                          + (f"{len(res['safe'])} services reach the package, but every range excludes it."
+        out["message"] = ((f"No advisory on file for {bad}. " if hypothetical else "")
+                          + f"No fleet path admits this version at depth {depth} ({bad}). "
+                          + (f"{plural(len(res['safe']), 'service')} reach the package, but every range excludes it."
                              if res["safe"] else "No fleet service reaches the affected package at this depth."))
+    if mem:
+        m = mem[0]
+        sb = seen_before(m, key, [e["service"] for e in res["exposed"]])
+        out["memory"] = {"incidents": mem[:5], "seen_before": sb}
+        out["message"] += " " + sb["text"]
     if generate_fix and res["exposed"]:
         out["fix"] = tools.remediation_plan(tr, trigger=out["query"] or trigger, entity_kind=kind, entity_key=key,
                                             depth=depth, result=res, wake=out["wake"], session=session)
         out["message"] += f" Incident {out['fix']['incident_id']} written to the graph."
+
+
+def seen_before(m: dict, key: str, fresh_services: list[str] | None) -> dict:
+    """A compact 'Seen before' record for a remembered Incident, with a diff against the fresh result."""
+    before = sorted({x["service"] for x in m.get("exposed") or [] if x.get("service")})
+    same = m.get("entity_key") == key
+    d = dict(id=m["id"], at=m["at"], at_local=local_date(m["at"]), trigger=m.get("trigger"),
+             entity_key=m.get("entity_key"), depth=m.get("depth"), exposed_count=m.get("exposed_count") or 0,
+             same_trigger=same, has_patch=bool(m.get("patch")), playbooks=[p["id"] for p in m.get("playbooks") or []
+                                                                         if p and p.get("id")])
+    rel = "" if same else f" (related: {m.get('trigger')})"
+    d["text"] = (f"Seen before: {m['id']} on {d['at_local']}{rel}, {plural(d['exposed_count'], 'service')} "
+                 f"exposed at depth {m.get('depth')}" + (", patch on file." if d["has_patch"] else "."))
+    if fresh_services is not None and same:
+        now = set(fresh_services)
+        d["new_since"] = sorted(now - set(before))
+        d["no_longer_exposed"] = sorted(set(before) - now)
+    return d
+
+
+def plural(n: int, word: str) -> str:
+    return f"{n} {word}" + ("" if n == 1 else "s")
 
 
 def _wake(out, tr, ent):

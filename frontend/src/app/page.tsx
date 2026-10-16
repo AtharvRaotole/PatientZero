@@ -17,6 +17,7 @@ import { Timeline, type TimelineEvent } from "@/components/viz";
 import { CalendarRange } from "lucide-react";
 import { CardHeader } from "@/components/ui";
 import type { Playbook } from "@/lib/types";
+import { SeenBefore } from "@/components/SeenBefore";
 import { QIX_DOWNLOADS_SOURCE, QIX_PACKAGES, QIX_WEEK_DOWNLOADS } from "@/lib/facts";
 
 const GraphCanvas = dynamic(() => import("@/components/GraphCanvas"), { ssr: false });
@@ -360,6 +361,7 @@ export default function Home() {
           {result && (
             <div className={clsx("space-y-4 transition-opacity", loading && "opacity-50")}>
               <OutcomeBanner r={result} onFresh={() => run(lastQuery, { fresh: true })} />
+              {result.memory?.seen_before && result.outcome !== "answered_from_memory" && <SeenBefore sb={result.memory.seen_before} />}
               <AgentAnswer key={result.query + result.total_ms} r={result} llmAvailable={health?.agent_mode === "llm"} />
               <ScopeStrip r={result} />
               <div className="grid gap-4 lg:grid-cols-[minmax(0,1.65fr)_minmax(0,1fr)]">

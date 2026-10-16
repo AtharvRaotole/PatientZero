@@ -138,7 +138,8 @@ export interface AskResponse {
   fleet_size: number | null;
   wake: WakeEntry[];
   fix: Fix | null;
-  memory: { incidents: Incident[] } | null;
+  memory: { incidents: Incident[]; seen_before?: SeenBefore } | null;
+  hypothetical?: boolean;
   spof: Spof | null;
   path: { service: string; package: string; via: string[]; requirements: string[]; hops: number } | null;
   maintainers: { pkg: string; maintainers: string[]; had_publish_rights: string[]; as_of: string[] } | null;
@@ -211,4 +212,20 @@ export interface Health {
   agent_mode: "llm" | "deterministic";
   llm_model: string | null;
   queries: number;
+}
+
+export interface SeenBefore {
+  id: string;
+  at: string;
+  at_local: string;
+  trigger: string | null;
+  entity_key: string | null;
+  depth: number | null;
+  exposed_count: number;
+  same_trigger: boolean;
+  has_patch: boolean;
+  playbooks: string[];
+  text: string;
+  new_since?: string[];
+  no_longer_exposed?: string[];
 }

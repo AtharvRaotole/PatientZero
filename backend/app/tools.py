@@ -75,8 +75,12 @@ def resolve_entity(text: str, tr: Trace) -> dict:
         if len(t) < 2 or t in STOPWORDS or t.isdigit():
             continue
         tokens.append(t)
+    out["unmatched"] = []
     for t in list(dict.fromkeys(tokens))[:MAX_TOKENS]:
-        for r in _resolve(tr, t):
+        rows = _resolve(tr, t)
+        if not rows and ("-" in t or "/" in t or "." in t):  # package-shaped token that is not in the graph
+            out["unmatched"].append(t)
+        for r in rows:
             if r["kind"] == "Maintainer":
                 out["maintainers"].append(r["key"])
             elif r["kind"] == "Service":
