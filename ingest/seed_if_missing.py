@@ -20,6 +20,20 @@ def connect():
     return FalkorDB.from_url(url) if url else load.connect()
 
 
+def ensure_qix_campaign(g) -> None:
+    """Graphs loaded before advisories carried a campaign tag have the 19 qix advisories untagged, so the timeline
+    lists them one by one instead of as one campaign event (and campaign scope misses them). Tag them like a fresh
+    load does: only advisories on packages the qix maintainer had publish rights to. Idempotent, never fails."""
+    try:
+        n = g.query("MATCH (:Maintainer)-[h:HAD_PUBLISH_RIGHTS]->(:Package)-[:HAS_VERSION]->(:Version)<-[:AFFECTS]-(a:Advisory) "
+                    "WHERE a.campaign IS NULL AND h.incident IS NOT NULL SET a.campaign = h.incident "
+                    "RETURN count(DISTINCT a)").result_set[0][0]
+        if n:
+            print(f"seed: tagged {n} untagged incident advisories with their campaign")
+    except Exception as e:  # noqa: BLE001
+        print(f"seed: campaign backfill skipped: {e}", file=sys.stderr)
+
+
 def ensure_incidents(g, tenant: str = load.TENANT) -> None:
     """Optional incidents (INCIDENTS=qix,shai-hulud) added to an EXISTING graph with MERGE only, so a redeploy
     can switch them on without wiping incident or playbook memory. Never fails the start."""
@@ -55,6 +69,7 @@ def main(wait_s: int = 90) -> int:
             n = db.select_graph(graph).ro_query("MATCH (s:Service) RETURN count(s)").result_set[0][0]
             if n:
                 print(f"seed: graph '{graph}' already loaded ({n} services); leaving it (and its memory) alone")
+                ensure_qix_campaign(db.select_graph(graph))
                 ensure_incidents(db.select_graph(graph), tenant)
                 continue
         if not load.fleet_file(tenant).exists():

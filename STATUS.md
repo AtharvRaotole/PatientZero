@@ -37,6 +37,12 @@ _Last updated: Fri Oct 16 2026, 12:40 AM ET_
 - Contract for the frontend: docs/CONTRACT-crew-sessions-tenants.md
 - Live needs one redeploy; the container seeds fleet:globex on start without touching fleet:acme
 
+## Follow-ups: timeline, Campaign nodes, safe reset (Fri Oct 16 2026, about 11:55 AM ET)
+- [x] Timeline: qix advisories collapsing into one `campaign` event (2025-09-08-qix, 19) is correct product behavior; the old test assumed graphs loaded before advisories were campaign-tagged. Startup backfill (`seed_if_missing.ensure_qix_campaign`) tags untagged incident advisories on older graphs (live) so timeline and campaign scope match a fresh load. `/api/timeline` normalises every event (known kind, string title, int count, non-null items).
+- [x] Session turns about a campaign link to `(:Campaign)-[:GROUPS]->(:Advisory)`; follow-ups read it from the ABOUT edge (`anchor.via = graph`).
+- [x] `POST /api/admin/reset` keeps BYO scan graphs unless `?include_byo=true` (`INCLUDE_BYO=true scripts/reset-live.sh`).
+- [x] 185 tests green on FalkorDB 6.0.1 and 4.22.1 (acme with Shai-Hulud loaded, plus an old-format acme graph to exercise the backfill).
+
 ## Next actions
 - Final polish pass on screenshots for the README
 - Redeploy after pushing UI changes: `sh scripts/redeploy-railway.sh` (ships origin/main; no GitHub auto-deploy)

@@ -16,6 +16,6 @@ RETURN count(e) AS exposed_edges
 // @query reset_memory
 // WRITE. Deletes app-written memory (Incident, Finding, crew runs, sessions) so a demo can start clean, in the
 // current tenant's graph only. Data graph untouched.
-MATCH (n) WHERE n:Incident OR n:Finding OR n:CrewRun OR n:AgentRun OR n:Session OR n:Turn
+MATCH (n) WHERE n:Incident OR n:Finding OR n:CrewRun OR n:AgentRun OR n:Session OR n:Turn OR n:Campaign
 DETACH DELETE n
 RETURN count(*) AS deleted

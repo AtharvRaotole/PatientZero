@@ -113,7 +113,7 @@ NODE_PATH=/path/to/node_modules node scripts/e2e_screenshots.cjs           # 12 
 | GET | `/api/incidents` | Incidents in graph memory |
 | GET | `/api/timeline` | Dated events: compromise, advisories, incidents, playbooks |
 | POST | `/api/memory/reset` | Clear incidents (admin) |
-| POST | `/api/admin/reset` | Demo reset: incidents, findings, playbooks and every BYO scan graph (admin) |
+| POST | `/api/admin/reset` | Demo reset for one tenant: incidents, findings, crew runs, sessions, playbooks. BYO scan graphs are kept unless `?include_byo=true` (admin) |
 | GET | `/api/tools`, POST `/api/tools/{name}` | The tool catalogue, callable directly |
 | POST | `/api/byo/scan` | `{github_url \| package_json, include_dev?, depth?}`: scan your repo in an isolated graph |
 | POST | `/api/incidents/{id}/approve`, GET `/api/playbooks` | Approve-then-remember (DELETE `/api/playbooks` is admin) |

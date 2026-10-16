@@ -1,7 +1,8 @@
 // Tool: sessions (persistent conversation history, per tenant graph)
 // (:Session {id, tenant, created, updated, turns})-[:HAS_TURN]->(:Turn {i, query, resolved_query, intent, outcome,
 //            ts, depth, entity_kind, entity_key, message, kind, crew_run, followup_from, exposed_count})
-// (:Turn)-[:ABOUT]->(Maintainer | Package | Service | Version | Advisory | Incident)
+// (:Turn)-[:ABOUT]->(Maintainer | Package | Service | Version | Advisory | Incident | Campaign)
+// (:Campaign {id, label, advisories})-[:GROUPS]->(:Advisory {campaign: id})   (created on first mention)
 // (:Turn)-[:NEXT]->(:Turn)
 // Follow-ups ("who should I wake for that?") read the last Turn and the nodes it is ABOUT from here, never from
 // process memory, so a session survives restarts and is visible to every agent and replica.
@@ -71,6 +72,22 @@ UNWIND $keys AS k
 MATCH (n:Incident {id: k})
 MERGE (t)-[:ABOUT]->(n)
 RETURN count(n) AS linked
+
+// @query session_about_campaigns
+// WRITE. A campaign (e.g. the Shai-Hulud worm) becomes a real node the turn points at, grouping its advisories when
+// they are loaded (advisories = 0 when not: the follow-up still resolves and stays honest). Params: $sid, $i,
+// $keys (list of {id, label})
+MATCH (:Session {id: $sid})-[:HAS_TURN]->(t:Turn {i: $i})
+UNWIND $keys AS k
+MERGE (c:Campaign {id: k.id})
+ON CREATE SET c.label = k.label
+WITH t, c
+OPTIONAL MATCH (a:Advisory {campaign: c.id})
+WITH t, c, collect(a) AS advs
+FOREACH (a IN advs | MERGE (c)-[:GROUPS]->(a))
+SET c.advisories = size(advs)
+MERGE (t)-[:ABOUT]->(c)
+RETURN count(c) AS linked
 
 // @query session_get
 // Read. Params: $sid

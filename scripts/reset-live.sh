@@ -17,7 +17,7 @@ TOKEN="${ADMIN_TOKEN:-$(cat "$TOKEN_FILE" 2>/dev/null || true)}"
 [ -n "$TOKEN" ] || { echo "no admin token: set ADMIN_TOKEN or create $TOKEN_FILE" >&2; exit 1; }
 command -v jq >/dev/null || { echo "jq is required" >&2; exit 1; }
 
-code=$(curl -sS -o /tmp/pz-reset.json -w '%{http_code}' -X POST "$BASE_URL/api/admin/reset?tenant=$TENANT" -H "X-Admin-Token: $TOKEN")
+code=$(curl -sS -o /tmp/pz-reset.json -w '%{http_code}' -X POST "$BASE_URL/api/admin/reset?tenant=$TENANT&include_byo=${INCLUDE_BYO:-false}" -H "X-Admin-Token: $TOKEN")
 [ "$code" = 200 ] || { echo "reset failed: HTTP $code $(cat /tmp/pz-reset.json)" >&2; exit 1; }
 jq -r '"reset \(env.BASE_URL // "") tenant \(env.TENANT): deleted \(.incidents_and_findings) incident/finding node(s), \(.playbooks) playbook(s), \(.byo_graphs|length) BYO graph(s)"' /tmp/pz-reset.json
 

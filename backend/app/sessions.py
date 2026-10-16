@@ -63,11 +63,15 @@ def parse_depth(text: str) -> int | None:
 
 
 def _anchor(turn: dict) -> dict | None:
-    """What 'that' refers to: the last turn's trigger, else the most specific node it was ABOUT."""
+    """What 'that' refers to: a Campaign node the last turn is ABOUT (read from the graph), else the turn's trigger,
+    else the most specific node it was ABOUT."""
+    about = turn.get("about") or []
+    camp = [a["key"] for a in about if a.get("kind") == "Campaign" and a.get("key")]
+    if camp:
+        return {"kind": "campaign", "key": camp[0], "via": "graph"}
     kind, key = turn.get("entity_kind"), turn.get("entity_key")
     if kind and key:
         return {"kind": kind, "key": key}
-    about = turn.get("about") or []
     for want in ("Incident", "Advisory", "Version", "Maintainer", "Service", "Package"):
         hit = [a["key"] for a in about if a["kind"] == want]
         if hit:
@@ -77,6 +81,8 @@ def _anchor(turn: dict) -> dict | None:
 
 def _wake_question(anchor: dict, turn: dict) -> str:
     kind, key = anchor["kind"], anchor["key"]
+    if kind == "campaign":
+        return f"who should I wake for {CAMPAIGN_LABEL.get(key, key)}"
     services = [a["key"] for a in turn.get("about") or [] if a["kind"] == "Service"]
     if kind == "service" or (not turn.get("entity_kind") and services):
         return f"who should I wake for {', '.join(services or [key])}"
@@ -84,8 +90,6 @@ def _wake_question(anchor: dict, turn: dict) -> str:
         return f"who should I wake, maintainer {key} was compromised"
     if kind == "version":
         return f"who should I wake, {key} was compromised"
-    if kind == "campaign":
-        return f"who should I wake for {CAMPAIGN_LABEL.get(key, key)}"
     if kind in ("package", "packages"):
         return f"who should I wake, {key.replace(',', ' and ')} compromised"
     return f"who should I wake for {key}"
@@ -135,7 +139,8 @@ def about_refs(r: dict) -> dict[str, list[str]]:
                                   "advisories": [a["id"] for a in ent.get("advisories") or [] if a.get("id")],
                                   "versions": [pv["key"] for pv in ent.get("package_versions") or []
                                                if pv.get("in_graph")],
-                                  "incidents": []}
+                                  "incidents": [],
+                                  "campaigns": [r["entity_key"]] if r.get("entity_kind") == "campaign" else []}
     refs["services"] += [e["service"] for e in (r.get("exposed") or [])[:25] if e.get("service")]
     if (r.get("path") or {}).get("package"):
         refs["packages"].append(r["path"]["package"])
@@ -168,6 +173,8 @@ def record(sid: str, *, query: str, resolved: str, r: dict, kind: str = "ask", c
     linked = 0
     for label, keys in about_refs(r).items():
         if keys:
+            if label == "campaigns":
+                keys = [{"id": k, "label": CAMPAIGN_LABEL.get(k, k)} for k in keys]
             res = tr.run("sessions", f"session_about_{label}", {"sid": sid, "i": i, "keys": keys}, write=True)
             linked += res[0]["linked"] if res else 0
     return {"id": sid, "turn": i, "about_linked": linked, "trace": tr.steps}

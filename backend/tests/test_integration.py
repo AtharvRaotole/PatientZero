@@ -165,7 +165,15 @@ def test_timeline_events_from_graph():
     assert r.status_code == 200
     ev = r.json()["events"]
     kinds = {e["kind"] for e in ev}
-    assert {"compromise", "advisory"} <= kinds
+    # Advisories tagged with a campaign (qix: 19, Shai-Hulud: 203) collapse into one 'campaign' event each; only
+    # untagged advisories appear one by one. Every kind is one the UI renders (frontend TimelineEvent).
+    assert kinds <= {"compromise", "advisory", "campaign", "incident", "playbook"}
+    assert {"compromise", "campaign"} <= kinds
+    qix = next(e for e in ev if e["kind"] == "campaign" and e["title"] == "2025-09-08-qix")
+    assert qix["count"] == 19 and str(qix["at"]).startswith("2025-09-08") and len(qix["items"]) <= 12
+    assert not any(e["kind"] == "advisory" and e["items"][0] in qix["items"] for e in ev)
+    assert all(isinstance(e["title"], str) and isinstance(e["count"], int) and isinstance(e["items"], list)
+               for e in ev)
     comp = next(e for e in ev if e["kind"] == "compromise")
     assert comp["title"] == "qix" and comp["count"] == 19 and str(comp["at"]).startswith("2025-09-08")
     assert [str(e["at"]) for e in ev] == sorted(str(e["at"]) for e in ev)

@@ -169,8 +169,13 @@ def api_timeline() -> dict[str, Any]:
     """Dated events from the graph (compromise, advisories, incidents, playbooks), oldest first."""
     tr = Trace()
     rows = tr.run("timeline", "timeline_events")
-    rows = [r for r in rows if r.get("at")]
-    rows.sort(key=lambda r: str(r["at"]))
+    # UI-safe shape whatever the graph holds: known kind, string title, int count, list of non-null items.
+    kinds = {"compromise", "advisory", "campaign", "incident", "playbook"}
+    rows = [{"kind": r["kind"], "at": str(r["at"]), "title": str(r.get("title") or r["kind"]),
+             "count": int(r.get("count") or 0), "items": [str(i) for i in (r.get("items") or []) if i is not None],
+             "ref": r.get("ref")}
+            for r in rows if r.get("at") and r.get("kind") in kinds]
+    rows.sort(key=lambda r: r["at"])
     return {"events": rows, "trace": tr.steps}
 
 

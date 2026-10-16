@@ -41,7 +41,7 @@ def tenant_copies():
         c.connection.execute_command("GRAPH.COPY", orig[t], copy)
         g = c.select_graph(copy)
         g.query("MATCH (n) WHERE n:Incident OR n:Finding OR n:CrewRun OR n:AgentRun OR n:Session OR n:Turn "
-                "OR n:Playbook DETACH DELETE n")
+                "OR n:Playbook OR n:Campaign DETACH DELETE n")
         tenants.TENANTS[t] = copy
     crew_api.limiter.limit = 10_000
     yield
@@ -429,6 +429,58 @@ def test_mcp_tools_and_cross_tenant_guard():
         assert tenants.for_tool("acme") == "acme"
         with pytest.raises(ValueError):
             tenants.for_tool("globex")
+
+
+def test_campaign_turn_links_campaign_node_and_followup_reads_it():
+    """'Shai-Hulud' becomes a (:Campaign) node grouping its advisories; the follow-up resolves from the Turn's ABOUT
+    edge to it, even with the turn's own trigger properties erased."""
+    s = sid()
+    t1 = ask("Were we hit by the Shai-Hulud worm?", "globex", session_id=s)
+    assert t1["entity_kind"] == "campaign" and t1["session"]["about_linked"] >= 1
+    rows = g("globex").ro_query(
+        "MATCH (:Session {id:$s})-[:HAS_TURN]->(:Turn {i:1})-[:ABOUT]->(c:Campaign) "
+        "OPTIONAL MATCH (c)-[:GROUPS]->(a:Advisory) RETURN c.id, c.label, c.advisories, count(a)", {"s": s}).result_set
+    assert rows == [["2025-09-15-shai-hulud", "Shai-Hulud", 203, 203]]
+    # Erase the trigger stored on the turn: only the graph edge is left to resolve 'that'.
+    g("globex").query("MATCH (:Session {id:$s})-[:HAS_TURN]->(t:Turn {i:1}) SET t.entity_kind = null, t.entity_key = null",
+                      {"s": s})
+    t2 = ask("who should I wake for that?", "globex", session_id=s)
+    assert t2["followup"]["resolved"] and t2["followup"]["anchor"] == {
+        "kind": "campaign", "key": "2025-09-15-shai-hulud", "via": "graph"}
+    assert t2["resolved_query"] == "who should I wake for Shai-Hulud"
+    assert {w["service"] for w in t2["wake"]} == GLOBEX_SHAI_EXPOSED
+    # Second mention reuses the same node (MERGE), no duplicate campaigns.
+    ask("Shai-Hulud worm exposure?", "globex", session_id=sid())
+    assert g("globex").ro_query("MATCH (c:Campaign) RETURN count(c)").result_set[0][0] == 1
+
+
+def test_campaign_not_loaded_still_links_and_resolves():
+    s = sid()
+    ask("Were we hit by the Shai-Hulud worm?", "acme", session_id=s)
+    n = g("acme").ro_query("MATCH (:Session {id:$s})-[:HAS_TURN]->(:Turn)-[:ABOUT]->(c:Campaign) "
+                           "RETURN c.id, c.advisories", {"s": s}).result_set
+    assert n and n[0][0] == "2025-09-15-shai-hulud"
+    t2 = ask("who should I wake for that?", "acme", session_id=s)
+    assert t2["followup"]["resolved"] and t2["resolved_query"] == "who should I wake for Shai-Hulud"
+
+
+def test_admin_reset_keeps_byo_graphs_unless_flagged(monkeypatch):
+    from app.byo import scan
+    name = f"byo:test-reset-{uuid.uuid4().hex[:8]}"
+    db.client().select_graph(name).query("CREATE (:Service {name:'x'})")
+    exists = lambda: name in db.client().list_graphs()  # noqa: E731
+    try:
+        r = client.post("/api/admin/reset", params={"tenant": "globex"})
+        assert r.status_code == 200 and r.json()["byo_graphs"] == [] and r.json()["byo_deleted"] is False
+        assert exists()
+        # Explicit flag: deletes BYO graphs (scoped to ours so a parallel visitor's scan is not touched).
+        monkeypatch.setattr(scan, "list_byo_graphs", lambda: [name])
+        r = client.post("/api/admin/reset", params={"tenant": "globex", "include_byo": "true"})
+        assert r.status_code == 200 and r.json()["byo_graphs"] == [name] and r.json()["byo_deleted"] is True
+        assert not exists()
+    finally:
+        if exists():
+            db.client().select_graph(name).delete()
 
 
 def test_reset_memory_is_per_tenant():

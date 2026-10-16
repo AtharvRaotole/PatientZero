@@ -217,6 +217,15 @@ These are added to `python -m app.mcp_server`:
 
 ## Admin and scripts
 
-- **`POST /api/admin/reset?tenant=globex`** (X-Admin-Token) resets one tenant's graph. It deletes the Incidents, Findings, crew runs, sessions and Playbooks there, plus all BYO scan graphs. Other tenants are untouched.
+- **`POST /api/admin/reset?tenant=globex`** (X-Admin-Token) resets one tenant's graph. It deletes the Incidents, Findings, crew runs, sessions, Campaign nodes and Playbooks there. BYO scan graphs are kept unless `include_byo=true` is passed explicitly. Other tenants are untouched.
 - **Reset and seed scripts take a tenant:** `TENANT=globex sh scripts/reset-live.sh` and `TENANT=globex sh scripts/seed-demo-memory.sh`. The default is acme.
 - **Startup seeding:** `ingest/seed_if_missing.py` seeds every tenant in `TENANTS` (default `acme,globex`) on container start and never wipes an existing graph. Locally: `TENANT=globex python ingest/load.py`.
+
+## Campaign nodes (session follow-ups)
+
+A turn about a campaign (for example "Were we hit by the Shai-Hulud worm?") is linked to a real node:
+`(:Turn)-[:ABOUT]->(:Campaign {id: '2025-09-15-shai-hulud', label: 'Shai-Hulud', advisories})-[:GROUPS]->(:Advisory)`.
+The node is MERGEd on first mention (one per campaign per tenant graph). When the campaign is not loaded in a
+tenant, `advisories` is 0 and the follow-up still resolves honestly. "who should I wake for that?" reads the
+Campaign from the ABOUT edge first (`followup.anchor.via = "graph"`), so it works even without the turn's stored
+trigger.
