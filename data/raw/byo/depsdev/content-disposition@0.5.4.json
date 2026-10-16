@@ -1,0 +1,1 @@
+{"edges": [{"fromNode": 0, "requirement": "5.2.1", "toNode": 1}], "error": "", "nodes": [{"bundled": false, "errors": [], "relation": "SELF", "versionKey": {"name": "content-disposition", "system": "NPM", "version": "0.5.4"}}, {"bundled": false, "errors": [], "relation": "DIRECT", "versionKey": {"name": "safe-buffer", "system": "NPM", "version": "5.2.1"}}]}

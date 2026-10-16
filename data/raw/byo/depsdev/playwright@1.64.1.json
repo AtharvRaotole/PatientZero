@@ -1,0 +1,1 @@
+{"edges": [{"fromNode": 0, "requirement": "1.64.1", "toNode": 1}], "error": "", "nodes": [{"bundled": false, "errors": [], "relation": "SELF", "versionKey": {"name": "playwright", "system": "NPM", "version": "1.64.1"}}, {"bundled": false, "errors": [], "relation": "DIRECT", "versionKey": {"name": "playwright-core", "system": "NPM", "version": "1.64.1"}}]}

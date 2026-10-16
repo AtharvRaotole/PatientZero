@@ -1,0 +1,1 @@
+{"edges": [{"fromNode": 0, "requirement": "^1.54.0", "toNode": 1}], "error": "", "nodes": [{"bundled": false, "errors": [], "relation": "SELF", "versionKey": {"name": "mime-types", "system": "NPM", "version": "3.0.1"}}, {"bundled": false, "errors": [], "relation": "DIRECT", "versionKey": {"name": "mime-db", "system": "NPM", "version": "1.54.0"}}]}

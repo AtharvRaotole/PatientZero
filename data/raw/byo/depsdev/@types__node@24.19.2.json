@@ -1,0 +1,1 @@
+{"edges": [{"fromNode": 0, "requirement": ">=7.24.0 <7.24.7", "toNode": 1}], "error": "", "nodes": [{"bundled": false, "errors": [], "relation": "SELF", "versionKey": {"name": "@types/node", "system": "NPM", "version": "24.19.2"}}, {"bundled": false, "errors": [], "relation": "DIRECT", "versionKey": {"name": "undici-types", "system": "NPM", "version": "7.24.6"}}]}

@@ -1,0 +1,1 @@
+{"edges": [{"fromNode": 0, "requirement": "1", "toNode": 1}], "error": "", "nodes": [{"bundled": false, "errors": [], "relation": "SELF", "versionKey": {"name": "once", "system": "NPM", "version": "1.4.0"}}, {"bundled": false, "errors": [], "relation": "DIRECT", "versionKey": {"name": "wrappy", "system": "NPM", "version": "1.0.2"}}]}
