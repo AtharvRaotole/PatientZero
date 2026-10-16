@@ -19,7 +19,7 @@ Do not type free-form LLM questions on camera. Every input below is answered by 
 | 1:52 | Close | Same screen. | Stop. | "Deterministic first, every answer traced, memory in the graph. PatientZero." |
 
 Notes
-- "who should I wake for that?" is left out until it leads with the people (Review 3 P1-2).
+- Optional at 0:50, if time allows: "who should I wake for that?" now leads with the teams and on-call people (Review 3 P1-2 fixed in 26b396d). Check it on the recording deploy first.
 - The 2.71 billion figure is the npm downloads API total for the 19 packages, Sept 1 to 7, 2025 (hover the kicker for the source).
 - Counts (13, 1 and 14 of 22 for qix at depth 4, 1 and 6; Globex 4 of 12 for Shai-Hulud) are for the synthetic fleets as loaded.
 - The Performance card shows the last saved run on that deploy. Say the qualifiers above; do not present it as end-to-end HTTP throughput.

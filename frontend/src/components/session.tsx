@@ -53,7 +53,7 @@ export function TenantSwitcher({ tenants, value, onChange, services }: {
                 {t.id === value && <Check className="h-4 w-4 text-ink" />}
               </button>
             ))}
-            <p className="flex items-center gap-1.5 border-t border-line px-2.5 pb-1.5 pt-2 text-[11.5px] text-ink-3"><Building2 className="h-3 w-3" />Fleets, memory and sessions never cross tenants. Repo scans are shared.</p>
+            <p className="flex items-center gap-1.5 border-t border-line px-2.5 pb-1.5 pt-2 text-[11.5px] text-ink-3"><Building2 className="h-3 w-3" />Fleets, memory, sessions and repo scans never cross tenants.</p>
           </motion.div>
         )}
       </AnimatePresence>
