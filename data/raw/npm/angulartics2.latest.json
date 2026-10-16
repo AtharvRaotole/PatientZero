@@ -1,0 +1,109 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "angulartics2@14.1.0",
+ "_nodeVersion": "20.16.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/angulartics2_14.1.0_1722884137500_0.6701501381610242"
+ },
+ "_npmUser": {
+  "email": "scttcper@gmail.com",
+  "name": "scttcper"
+ },
+ "_npmVersion": "10.8.2",
+ "author": {
+  "email": "jonnybgod@gmail.com",
+  "name": "Jo\u00e3o Ribeiro",
+  "url": "http://github.com/JonnyBGod"
+ },
+ "bugs": {
+  "url": "https://github.com/angulartics/angulartics2/issues"
+ },
+ "dependencies": {
+  "tslib": "^2.3.0"
+ },
+ "description": "Vendor-agnostic web analytics for Angular2 applications",
+ "directories": {},
+ "dist": {
+  "fileCount": 81,
+  "integrity": "sha512-7DzKIUX6a3HzkEJjx4euDZiRbuZpU7HRF38slz5iTMthGsCdUXNNetHSRybFx4soi2uybd5lx7tE0bFAjuh48A==",
+  "shasum": "639aeb19e5df1160f02a66d769cd167ffd3592c6",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEYCIQCmp9Famz0XdSAfEWQDNYcDEdvU9Mvn0jGKtSKhd847sQIhAO6Twa1Vnh7MKdBS90UI5jX4n++oZUO4DlGzJ3lKfKdw"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/angulartics2/-/angulartics2-14.1.0.tgz",
+  "unpackedSize": 925871
+ },
+ "es2020": "fesm2020/angulartics2.mjs",
+ "esm2020": "esm2020/angulartics2.mjs",
+ "exports": {
+  ".": {
+   "default": "./fesm2020/angulartics2.mjs",
+   "es2015": "./fesm2015/angulartics2.mjs",
+   "es2020": "./fesm2020/angulartics2.mjs",
+   "esm2020": "./esm2020/angulartics2.mjs",
+   "node": "./fesm2015/angulartics2.mjs",
+   "types": "./index.d.ts"
+  },
+  "./package.json": {
+   "default": "./package.json"
+  }
+ },
+ "fesm2015": "fesm2015/angulartics2.mjs",
+ "fesm2020": "fesm2020/angulartics2.mjs",
+ "gitHead": "d1d5038ff8ffc1c6c150956a1243a9ceabf949ce",
+ "homepage": "https://angulartics.github.io/angulartics2/",
+ "keywords": [
+  "angular",
+  "angular2",
+  "ng2",
+  "ngx",
+  "analytics",
+  "tracking",
+  "google analytics",
+  "google tag manager",
+  "gtag",
+  "woopra",
+  "splunk",
+  "matomo",
+  "inspectlet",
+  "hubspot",
+  "interecom",
+  "kissmetrics",
+  "segment",
+  "amplitude",
+  "baidu",
+  "pyze"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "jonnybgod@gmail.com",
+   "name": "jonnybgod"
+  },
+  {
+   "email": "scttcper@gmail.com",
+   "name": "scttcper"
+  }
+ ],
+ "module": "fesm2015/angulartics2.mjs",
+ "name": "angulartics2",
+ "peerDependencies": {
+  "@angular/common": ">=15.0.0-0",
+  "@angular/core": ">=15.0.0-0",
+  "rxjs": "^7.4.0"
+ },
+ "release": {
+  "branch": "master"
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/angulartics/angulartics2.git"
+ },
+ "sideEffects": false,
+ "typings": "index.d.ts",
+ "version": "14.1.0"
+}

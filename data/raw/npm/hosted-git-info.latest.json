@@ -1,0 +1,110 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "hosted-git-info@10.1.1",
+ "_nodeVersion": "26.1.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/hosted-git-info_10.1.1_1779120246541_0.9200796136711538"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:f9c9ac11-fd64-489b-baba-cdd583d96676"
+  }
+ },
+ "_npmVersion": "11.13.0",
+ "author": {
+  "name": "GitHub Inc."
+ },
+ "bugs": {
+  "url": "https://github.com/npm/hosted-git-info/issues"
+ },
+ "dependencies": {
+  "lru-cache": "^11.1.0"
+ },
+ "description": "Provides metadata and conversions from repository urls for GitHub, Bitbucket and GitLab",
+ "devDependencies": {
+  "@npmcli/eslint-config": "^6.0.0",
+  "@npmcli/template-oss": "5.1.0"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/hosted-git-info@10.1.1"
+  },
+  "fileCount": 7,
+  "integrity": "sha512-DeOnSPAvOndYKfw075gt8yZzQ7S2hNztw34zBTfhIzLhmBTswIBg5/y+pqu/VD5cYWm5goAFTusDmUEmKZ0PEQ==",
+  "shasum": "50d93ed3ab3b81002122814cd56d5595f550d32c",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQDUontKIHURgmoclmziSgVDzaGjk0dhmRmd1vyhI1xXfwIhAKFXZMqUIw3dHeGG2ggoVE2DbBGnKhanq4gtuO3zoV67"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/hosted-git-info/-/hosted-git-info-10.1.1.tgz",
+  "unpackedSize": 28402
+ },
+ "engines": {
+  "node": "^22.22.2 || ^24.15.0 || >=26.0.0"
+ },
+ "gitHead": "d4cadbcb6743a605a7e77998f826cc917033507a",
+ "homepage": "https://github.com/npm/hosted-git-info",
+ "keywords": [
+  "git",
+  "github",
+  "bitbucket",
+  "gitlab"
+ ],
+ "license": "ISC",
+ "main": "./lib/index.js",
+ "maintainers": [
+  {
+   "email": "saquibkhan@github.com",
+   "name": "saquibkhan"
+  },
+  {
+   "email": "npm-cli+bot@github.com",
+   "name": "npm-cli-ops"
+  },
+  {
+   "email": "reggi@github.com",
+   "name": "reggi"
+  },
+  {
+   "email": "owlstronaut@github.com",
+   "name": "owlstronaut"
+  }
+ ],
+ "name": "hosted-git-info",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/npm/hosted-git-info.git"
+ },
+ "scripts": {
+  "eslint": "eslint \"**/*.{js,cjs,ts,mjs,jsx,tsx}\"",
+  "lint": "npm run eslint",
+  "lintfix": "npm run eslint -- --fix",
+  "postlint": "template-oss-check",
+  "posttest": "npm run lint",
+  "snap": "node --test --test-update-snapshots './test/**/*.js'",
+  "template-oss-apply": "template-oss-apply --force",
+  "test": "node --test './test/**/*.js'",
+  "test:cover": "node --test --experimental-test-coverage --test-timeout=3000 --test-coverage-lines=100 --test-coverage-functions=100 --test-coverage-branches=100 './test/**/*.js'",
+  "test:coverage": "tap --coverage-report=html",
+  "test:node20": "node --test test"
+ },
+ "templateOSS": {
+  "//@npmcli/template-oss": "This file is partially managed by @npmcli/template-oss. Edits may be overwritten.",
+  "latestCiVersion": 24,
+  "publish": "true",
+  "testRunner": "node:test",
+  "updateNpm": false,
+  "version": "5.1.0"
+ },
+ "version": "10.1.1"
+}

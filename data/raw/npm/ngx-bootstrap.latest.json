@@ -1,0 +1,198 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "ngx-bootstrap@22.0.0",
+ "_nodeVersion": "22.23.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/ngx-bootstrap_22.0.0_1786524527284_0.2948708090837424"
+ },
+ "_npmUser": {
+  "email": "sergey.melnik@valor-software.com",
+  "name": "sergey.melnik"
+ },
+ "_npmVersion": "10.9.8",
+ "author": {
+  "email": "valorkin@gmail.com",
+  "name": "Dmitriy Shekhovtsov"
+ },
+ "bugs": {
+  "url": "https://github.com/valor-software/ngx-bootstrap/issues"
+ },
+ "dependencies": {
+  "tslib": "^2.3.0"
+ },
+ "description": "Angular Bootstrap",
+ "directories": {},
+ "dist": {
+  "fileCount": 145,
+  "integrity": "sha512-WEqSIjx1DT6aQsXlRQyYx9jZH0RMRTKbLgGHNu66EegxxKaECiK7RdOsvUZfYT6rmH4CVp/cW+BR9HHFsSM63Q==",
+  "shasum": "4dfd36eb2d49f570cc80993fcbf9367f39222a9d",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCICJP1D/p0GQtVly4s4t0pgP9hWN/PnL3Ly8z8F4A60uPAiEAh4HmKKmguxAprDLZSIgnbViprLp2G1Nq+REitQ3PvTw="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIBEQ4kNU3e/ntGeFOD0oiv/xsh7NudbVY3JE6F+UasASAiAKO/tqGDMGI30WQwvZoKhbl74b0hyn88waVNHNCPMNqA=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/ngx-bootstrap/-/ngx-bootstrap-22.0.0.tgz",
+  "unpackedSize": 2959445
+ },
+ "exports": {
+  ".": {
+   "default": "./fesm2022/ngx-bootstrap.mjs",
+   "types": "./types/ngx-bootstrap.d.ts"
+  },
+  "./accordion": {
+   "default": "./accordion/fesm2022/ngx-bootstrap-accordion.mjs",
+   "types": "./accordion/types/ngx-bootstrap-accordion.d.ts"
+  },
+  "./alert": {
+   "default": "./alert/fesm2022/ngx-bootstrap-alert.mjs",
+   "types": "./alert/types/ngx-bootstrap-alert.d.ts"
+  },
+  "./buttons": {
+   "default": "./buttons/fesm2022/ngx-bootstrap-buttons.mjs",
+   "types": "./buttons/types/ngx-bootstrap-buttons.d.ts"
+  },
+  "./carousel": {
+   "default": "./carousel/fesm2022/ngx-bootstrap-carousel.mjs",
+   "types": "./carousel/types/ngx-bootstrap-carousel.d.ts"
+  },
+  "./chronos": {
+   "default": "./chronos/fesm2022/ngx-bootstrap-chronos.mjs",
+   "types": "./chronos/types/ngx-bootstrap-chronos.d.ts"
+  },
+  "./collapse": {
+   "default": "./collapse/fesm2022/ngx-bootstrap-collapse.mjs",
+   "types": "./collapse/types/ngx-bootstrap-collapse.d.ts"
+  },
+  "./component-loader": {
+   "default": "./component-loader/fesm2022/ngx-bootstrap-component-loader.mjs",
+   "types": "./component-loader/types/ngx-bootstrap-component-loader.d.ts"
+  },
+  "./datepicker": {
+   "default": "./datepicker/fesm2022/ngx-bootstrap-datepicker.mjs",
+   "types": "./datepicker/types/ngx-bootstrap-datepicker.d.ts"
+  },
+  "./datepicker/bs-datepicker.css": {
+   "style": "./datepicker/bs-datepicker.css"
+  },
+  "./dropdown": {
+   "default": "./dropdown/fesm2022/ngx-bootstrap-dropdown.mjs",
+   "types": "./dropdown/types/ngx-bootstrap-dropdown.d.ts"
+  },
+  "./focus-trap": {
+   "default": "./focus-trap/fesm2022/ngx-bootstrap-focus-trap.mjs",
+   "types": "./focus-trap/types/ngx-bootstrap-focus-trap.d.ts"
+  },
+  "./locale": {
+   "default": "./locale/fesm2022/ngx-bootstrap-locale.mjs",
+   "types": "./locale/types/ngx-bootstrap-locale.d.ts"
+  },
+  "./mini-ngrx": {
+   "default": "./mini-ngrx/fesm2022/ngx-bootstrap-mini-ngrx.mjs",
+   "types": "./mini-ngrx/types/ngx-bootstrap-mini-ngrx.d.ts"
+  },
+  "./modal": {
+   "default": "./modal/fesm2022/ngx-bootstrap-modal.mjs",
+   "types": "./modal/types/ngx-bootstrap-modal.d.ts"
+  },
+  "./package.json": {
+   "default": "./package.json"
+  },
+  "./pagination": {
+   "default": "./pagination/fesm2022/ngx-bootstrap-pagination.mjs",
+   "types": "./pagination/types/ngx-bootstrap-pagination.d.ts"
+  },
+  "./popover": {
+   "default": "./popover/fesm2022/ngx-bootstrap-popover.mjs",
+   "types": "./popover/types/ngx-bootstrap-popover.d.ts"
+  },
+  "./positioning": {
+   "default": "./positioning/fesm2022/ngx-bootstrap-positioning.mjs",
+   "types": "./positioning/types/ngx-bootstrap-positioning.d.ts"
+  },
+  "./progressbar": {
+   "default": "./progressbar/fesm2022/ngx-bootstrap-progressbar.mjs",
+   "types": "./progressbar/types/ngx-bootstrap-progressbar.d.ts"
+  },
+  "./rating": {
+   "default": "./rating/fesm2022/ngx-bootstrap-rating.mjs",
+   "types": "./rating/types/ngx-bootstrap-rating.d.ts"
+  },
+  "./sortable": {
+   "default": "./sortable/fesm2022/ngx-bootstrap-sortable.mjs",
+   "types": "./sortable/types/ngx-bootstrap-sortable.d.ts"
+  },
+  "./tabs": {
+   "default": "./tabs/fesm2022/ngx-bootstrap-tabs.mjs",
+   "types": "./tabs/types/ngx-bootstrap-tabs.d.ts"
+  },
+  "./timepicker": {
+   "default": "./timepicker/fesm2022/ngx-bootstrap-timepicker.mjs",
+   "types": "./timepicker/types/ngx-bootstrap-timepicker.d.ts"
+  },
+  "./tooltip": {
+   "default": "./tooltip/fesm2022/ngx-bootstrap-tooltip.mjs",
+   "types": "./tooltip/types/ngx-bootstrap-tooltip.d.ts"
+  },
+  "./typeahead": {
+   "default": "./typeahead/fesm2022/ngx-bootstrap-typeahead.mjs",
+   "types": "./typeahead/types/ngx-bootstrap-typeahead.d.ts"
+  },
+  "./utils": {
+   "default": "./utils/fesm2022/ngx-bootstrap-utils.mjs",
+   "types": "./utils/types/ngx-bootstrap-utils.d.ts"
+  }
+ },
+ "gitHead": "fdeaccefb6344cb544971d6d2953f8534e7a2235",
+ "homepage": "https://github.com/valor-software/ngx-bootstrap#readme",
+ "keywords": [
+  "angular",
+  "bootstap",
+  "ng",
+  "ng2",
+  "angular2",
+  "twitter-bootstrap"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "valorkin@gmail.com",
+   "name": "valorkin"
+  },
+  {
+   "email": "sergey.melnik@valor-software.com",
+   "name": "sergey.melnik"
+  },
+  {
+   "email": "valorkin+ngxbs@gmail.com",
+   "name": "ngxbs"
+  }
+ ],
+ "module": "fesm2022/ngx-bootstrap.mjs",
+ "name": "ngx-bootstrap",
+ "peerDependencies": {
+  "@angular/common": "^22.0.0",
+  "@angular/core": "^22.0.0",
+  "@angular/forms": "^22.0.0",
+  "rxjs": "^6.5.3 || ^7.4.0"
+ },
+ "publishConfig": {
+  "registry": "https://registry.npmjs.org/",
+  "tag": "next"
+ },
+ "readmeFilename": "README.md",
+ "repository": {
+  "type": "git",
+  "url": "git+ssh://git@github.com/valor-software/ngx-bootstrap.git"
+ },
+ "schematics": "./schematics/collection.json",
+ "sideEffects": false,
+ "type": "module",
+ "typings": "types/ngx-bootstrap.d.ts",
+ "version": "22.0.0"
+}

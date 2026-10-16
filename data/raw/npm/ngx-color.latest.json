@@ -1,0 +1,151 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "ngx-color@10.1.0",
+ "_nodeVersion": "22.19.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/ngx-color_10.1.0_1758009314659_0.15780613525590437"
+ },
+ "_npmUser": {
+  "email": "scttcper@gmail.com",
+  "name": "scttcper"
+ },
+ "_npmVersion": "10.9.3",
+ "bugs": {
+  "url": "https://github.com/scttcper/ngx-color/issues"
+ },
+ "dependencies": {
+  "@ctrl/tinycolor": "^4.1.0",
+  "material-colors": "^1.2.6",
+  "tslib": "^2.3.0"
+ },
+ "description": "A Collection of Color Pickers from Sketch, Photoshop, Chrome & more",
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/ngx-color@10.1.0"
+  },
+  "fileCount": 105,
+  "integrity": "sha512-yuxlE1LfN+PABIO4hv0Gw5ksq8g9XkMJKrGPn2SWbrre/gsH+kkyyn3rwSCurinnLCnw7czqenwQUtnBJm8yww==",
+  "shasum": "a3083548fba9fd9e02c2e7e0a954eb6cf17e010f",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIFuhhro8tfenS4xP6irG8pG9JpUeXvM4h8TcXW43DwLAAiAED58NKkwzjlB0JUMFVnPRInU62Q3zHXRu+KWMlnJf5A=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/ngx-color/-/ngx-color-10.1.0.tgz",
+  "unpackedSize": 555364
+ },
+ "exports": {
+  ".": {
+   "default": "./fesm2022/ngx-color.mjs",
+   "types": "./index.d.ts"
+  },
+  "./alpha": {
+   "default": "./fesm2022/ngx-color-alpha.mjs",
+   "types": "./alpha/index.d.ts"
+  },
+  "./block": {
+   "default": "./fesm2022/ngx-color-block.mjs",
+   "types": "./block/index.d.ts"
+  },
+  "./chrome": {
+   "default": "./fesm2022/ngx-color-chrome.mjs",
+   "types": "./chrome/index.d.ts"
+  },
+  "./circle": {
+   "default": "./fesm2022/ngx-color-circle.mjs",
+   "types": "./circle/index.d.ts"
+  },
+  "./compact": {
+   "default": "./fesm2022/ngx-color-compact.mjs",
+   "types": "./compact/index.d.ts"
+  },
+  "./github": {
+   "default": "./fesm2022/ngx-color-github.mjs",
+   "types": "./github/index.d.ts"
+  },
+  "./hue": {
+   "default": "./fesm2022/ngx-color-hue.mjs",
+   "types": "./hue/index.d.ts"
+  },
+  "./material": {
+   "default": "./fesm2022/ngx-color-material.mjs",
+   "types": "./material/index.d.ts"
+  },
+  "./package.json": {
+   "default": "./package.json"
+  },
+  "./photoshop": {
+   "default": "./fesm2022/ngx-color-photoshop.mjs",
+   "types": "./photoshop/index.d.ts"
+  },
+  "./shade": {
+   "default": "./fesm2022/ngx-color-shade.mjs",
+   "types": "./shade/index.d.ts"
+  },
+  "./sketch": {
+   "default": "./fesm2022/ngx-color-sketch.mjs",
+   "types": "./sketch/index.d.ts"
+  },
+  "./slider": {
+   "default": "./fesm2022/ngx-color-slider.mjs",
+   "types": "./slider/index.d.ts"
+  },
+  "./swatches": {
+   "default": "./fesm2022/ngx-color-swatches.mjs",
+   "types": "./swatches/index.d.ts"
+  },
+  "./twitter": {
+   "default": "./fesm2022/ngx-color-twitter.mjs",
+   "types": "./twitter/index.d.ts"
+  }
+ },
+ "gitHead": "af80d6418fed7697efa74921ff24531f7acb391f",
+ "homepage": "https://github.com/scttcper/ngx-color",
+ "keywords": [
+  "angular",
+  "color picker",
+  "angular-component",
+  "colorpicker",
+  "picker",
+  "sketch",
+  "chrome",
+  "photoshop",
+  "material design",
+  "popup"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "scttcper@gmail.com",
+   "name": "scttcper"
+  }
+ ],
+ "module": "fesm2022/ngx-color.mjs",
+ "name": "ngx-color",
+ "peerDependencies": {
+  "@angular/common": ">=19.0.0-0",
+  "@angular/core": ">=19.0.0-0"
+ },
+ "publishConfig": {
+  "access": "public",
+  "provenance": true
+ },
+ "release": {
+  "branches": [
+   "master"
+  ]
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/scttcper/ngx-color.git"
+ },
+ "sideEffects": false,
+ "typings": "index.d.ts",
+ "version": "10.1.0"
+}

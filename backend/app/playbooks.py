@@ -103,7 +103,7 @@ def matching(tr: Trace, packages: list[str]) -> list[dict]:
         return []
     rows = tr.run("playbook", "playbook_match", {"pkgs": sorted(set(packages))})
     return [_shape(r["playbook"], matched=r["matched"], source_incident=r["source_incident"],
-                   source_at=r["source_at"]) for r in rows]
+                   source_at=r["source_at"], uses_count=r.get("uses_count") or 0) for r in rows]
 
 
 def apply_matching(tr: Trace, incident_id: str, specs: dict[str, str]) -> list[dict]:
@@ -118,6 +118,10 @@ def apply_matching(tr: Trace, incident_id: str, specs: dict[str, str]) -> list[d
         agree = bool(shared) and all(specs[m["spec"]] == m["pin"] for m in shared)
         tr.run("playbook", "playbook_apply", {"incident_id": incident_id, "playbook_id": pb["id"], "at": _now()},
                write=True)
+        if agree:  # procedural memory: count successful reuses
+            used = tr.run("playbook", "playbook_use", {"playbook_id": pb["id"], "at": _now()}, write=True)
+            if used:
+                pb["uses_count"], pb["last_used"] = used[0]["uses_count"], used[0]["last_used"]
         pb["agrees_with_proposed_fix"] = agree
         pb["message"] = (f"Applying approved playbook {pb['id']} from incident {pb.get('source_incident')} "
                          f"(approved by {pb.get('approved_by')} at {pb.get('approved_at')}): covers "

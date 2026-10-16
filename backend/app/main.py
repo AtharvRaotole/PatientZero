@@ -8,7 +8,7 @@ from fastapi import Depends, FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-from . import admin, catalog, config, db, tools
+from . import admin, catalog, config, db, sessions, tenants, tools
 from .core import agent
 from .domains.patientzero import DOMAIN
 from .mcp_agent import wrap_domain
@@ -18,6 +18,7 @@ from .models import AskRequest, AskResponse, ErrorResponse, FixRequest, SummaryR
 log = logging.getLogger("patientzero")
 app = FastAPI(title="PatientZero API", version="1.0.0",
               description="Supply-chain incident agent on FalkorDB. Deterministic tools, no generated Cypher.")
+app.add_middleware(tenants.TenantMiddleware)  # ?tenant= or X-Tenant, validated against the allowlist (inner)
 app.add_middleware(CORSMiddleware, allow_origins=config.CORS_ORIGINS, allow_origin_regex=config.CORS_ORIGIN_REGEX,
                    allow_credentials=True,
                    allow_methods=["*"], allow_headers=["*"])
@@ -57,7 +58,8 @@ def fleet_graph_rows(tr: Trace) -> dict:
 def health() -> dict[str, Any]:
     p = db.ping()
     return {"status": "ok" if p["ok"] and p.get("graph_loaded") else "degraded",
-            "falkordb": "up" if p["ok"] else "down", "graph": config.GRAPH_NAME,
+            "falkordb": "up" if p["ok"] else "down", "graph": p.get("graph"), "tenant": tenants.current(),
+            "tenants": p.get("tenants_loaded"),
             "graph_loaded": p.get("graph_loaded", False), "error": p.get("error"),
             "agent_mode": "llm" if agent.llm_available() else "deterministic",
             "llm_model": config.OPENAI_MODEL if agent.llm_available() else None,
@@ -78,29 +80,59 @@ def client_ip(request: Request) -> str:
 
 
 def _ask(query: str, depth: int | None, fresh: bool, session: str, fix: bool, mode: str = "auto",
-         ip: str = "") -> AskResponse:
-    r = agent.run(AGENT_DOMAIN, query, mode=mode, depth=depth, fresh=fresh, session=session, generate_fix=fix,
-                  client_ip=ip)
+         ip: str = "", session_id: str | None = None, tenant: str | None = None) -> AskResponse:
+    """One question, in one tenant's graph. With session_id, follow-ups are resolved from the last turn stored in
+    the graph and the turn is appended to the session's history."""
+    t = tenants.validate(tenant or tenants.current())
+    sid = sessions.validate(session_id)
+    with tenants.use(t):
+        q, depth, fu = sessions.resolve_followup(sid, query, depth)
+        r = agent.run(AGENT_DOMAIN, q, mode=mode, depth=depth, fresh=fresh, session=session or (sid or ""),
+                      generate_fix=fix, client_ip=ip)
+        r["tenant"] = t
+        r["company"] = tenants.company(t)
+        if fu:
+            r["trace"] = (fu.pop("trace", None) or []) + r["trace"]
+            r["followup"] = fu
+            if fu.get("resolved"):
+                r["query"] = query
+                r["resolved_query"] = q
+        if sid:
+            rec = sessions.record(sid, query=query, resolved=q, r=r, kind="fix" if fix else "ask", followup=fu)
+            r["trace"] = r["trace"] + rec.pop("trace")
+            r["session"] = rec
     return AskResponse.model_validate(r)
 
 
 @app.post("/api/ask", response_model=AskResponse, responses={503: {"model": ErrorResponse}})
 def api_ask(req: AskRequest, request: Request) -> AskResponse:
-    return _ask(req.query, req.depth, req.fresh, req.session, False, req.mode, client_ip(request))
+    return _ask(req.query, req.depth, req.fresh, req.session, False, req.mode, client_ip(request),
+                req.session_id, req.tenant)
 
 
 @app.post("/api/fix", response_model=AskResponse, responses={503: {"model": ErrorResponse}})
 def api_fix(req: FixRequest) -> AskResponse:
     """Generate fix: re-runs the investigation, builds overrides + drafts, writes the Incident to the graph."""
-    r = _ask(req.query, req.depth, True, req.session, True)
+    r = _ask(req.query, req.depth, True, req.session, True, session_id=req.session_id, tenant=req.tenant)
     if r.fix is None:
         raise HTTPException(status_code=409, detail=f"Nothing to fix: {r.message}")
     return r
 
 
+@app.get("/api/tenants")
+def api_tenants() -> dict[str, Any]:
+    """Tenants on this deploy. Each one is a separate FalkorDB graph with its own memory."""
+    p = db.ping()
+    loaded = p.get("tenants_loaded") or {}
+    return {"default": tenants.DEFAULT, "current": tenants.current(),
+            "tenants": [{**t, "loaded": bool(loaded.get(t["id"]))} for t in tenants.listing()]}
+
+
 @app.post("/api/summary", response_model=SummaryResponse)
 def api_summary(req: SummaryRequest, request: Request) -> SummaryResponse:
     """Optional AI incident summary (one paragraph) of the deterministic result, name-checked against it."""
+    if req.tenant:
+        tenants.set_current(req.tenant)
     r = DOMAIN.route(req.query, depth=req.depth, fresh=req.fresh)
     try:
         return SummaryResponse(**agent.summarize(DOMAIN, r, client_ip(request)))
@@ -115,7 +147,8 @@ def api_fleet() -> dict[str, Any]:
     tr = Trace()
     services = tools.fleet_overview(tr)
     stats = tr.run("fleet_overview", "graph_stats")
-    return {"graph": config.GRAPH_NAME, "synthetic": True, "services": services, "stats": stats, "trace": tr.steps}
+    return {"graph": tenants.graph_name(), "tenant": tenants.current(), "company": tenants.company(),
+            "synthetic": True, "services": services, "stats": stats, "trace": tr.steps}
 
 
 @app.get("/api/fleet/graph")
@@ -183,6 +216,10 @@ def graph_demo() -> dict[str, Any]:
 
 
 app.include_router(admin.router)
+app.include_router(sessions.api)
+from .crew.api import router as _crew_router  # noqa: E402
+
+app.include_router(_crew_router)
 
 # Routers owned by other modules (BYO scans, playbooks). Included when importable; see
 # docs/CONTRACT-byo-playbooks.md. A missing or broken module never takes the core API down.

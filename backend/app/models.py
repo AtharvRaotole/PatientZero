@@ -18,12 +18,16 @@ class AskRequest(BaseModel):
     depth: int | None = Field(None, ge=1, le=6)
     fresh: bool = False
     session: str = Field("", max_length=64)
+    session_id: str | None = Field(None, max_length=64)  # conversation history in the graph (sessions.py)
+    tenant: str | None = Field(None, max_length=32)       # default: ?tenant= / X-Tenant / acme
 
 
 class FixRequest(BaseModel):
     query: str = Field(..., min_length=1, max_length=500)
     depth: int | None = Field(None, ge=1, le=6)
     session: str = Field("", max_length=64)
+    session_id: str | None = Field(None, max_length=64)
+    tenant: str | None = Field(None, max_length=32)
 
 
 class TraceStep(Loose):
@@ -115,6 +119,7 @@ class SummaryRequest(BaseModel):
     query: str = Field(..., min_length=1, max_length=500)
     depth: int | None = Field(None, ge=1, le=6)
     fresh: bool = True
+    tenant: str | None = Field(None, max_length=32)
 
 
 class SummaryResponse(BaseModel):

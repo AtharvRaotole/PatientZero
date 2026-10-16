@@ -394,7 +394,9 @@ def _spof(out, tr):
     out["spof"] = r
     out["outcome"] = "answered_with_path" if (r["maintainers"] or r["packages"]) else "not_in_graph"
     top = ", ".join(f"{m['maintainer']} ({m['reach']} services)" for m in r["maintainers"][:3])
-    out["message"] = (f"If one of these npm accounts were phished, it would reach the most Acme services: {top}. "
+    from . import tenants
+    out["message"] = (f"If one of these npm accounts were phished, it would reach the most {tenants.company()} "
+                      f"services: {top}. "
                       f"Ranked by fleet reach, tie-broken by algo.pageRank.")
 
 

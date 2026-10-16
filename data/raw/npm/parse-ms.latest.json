@@ -1,0 +1,84 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "parse-ms@4.0.0",
+ "_nodeVersion": "18.19.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/parse-ms_4.0.0_1704636849415_0.12881764044246058"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "9.2.0",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/parse-ms/issues"
+ },
+ "description": "Parse milliseconds into an object",
+ "devDependencies": {
+  "ava": "^6.0.1",
+  "tsd": "^0.30.3",
+  "xo": "^0.56.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-TXfryirbmq34y8QBwgqCVLi+8oA3oWx2eAnSn62ITyEhEYaWRlVZ2DvMM9eZbMs/RfxPu/PK/aBLyGj4IrqMHw==",
+  "shasum": "c0c058edd47c2a590151a718990533fd62803df4",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEYCIQCLP9duIr3AIyYC4OIUCIEPV45FtvHTA1Qwx/VdWzaF8gIhAMf2CEUaJM/EzppxJL2JZ7fQTUfHmsqQAKGBEf9qqJSj"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/parse-ms/-/parse-ms-4.0.0.tgz",
+  "unpackedSize": 4311
+ },
+ "engines": {
+  "node": ">=18"
+ },
+ "exports": {
+  "default": "./index.js",
+  "types": "./index.d.ts"
+ },
+ "funding": "https://github.com/sponsors/sindresorhus",
+ "gitHead": "265f81cac937a9720a04bb754b6e739d8c6a5130",
+ "homepage": "https://github.com/sindresorhus/parse-ms#readme",
+ "keywords": [
+  "browser",
+  "parse",
+  "time",
+  "ms",
+  "milliseconds",
+  "microseconds",
+  "nanoseconds",
+  "duration",
+  "period",
+  "range",
+  "interval"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "parse-ms",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/parse-ms.git"
+ },
+ "scripts": {
+  "test": "xo && ava && tsd"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "4.0.0"
+}

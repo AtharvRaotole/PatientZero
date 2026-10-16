@@ -1,0 +1,93 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "ngx-toastr@20.0.5",
+ "_nodeVersion": "24.13.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/ngx-toastr_20.0.5_1770397239161_0.5429027587924542"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:f09fa74a-67d1-4a1e-9d78-089664f9e5b2"
+  }
+ },
+ "_npmVersion": "11.9.0",
+ "bugs": {
+  "url": "https://github.com/scttcper/ngx-toastr/issues"
+ },
+ "dependencies": {
+  "tslib": "^2.8.1"
+ },
+ "description": "<div align=\"center\">   <img src=\"https://raw.githubusercontent.com/scttcper/ngx-toastr/master/misc/documentation-assets/ngx-toastr-example.png\" width=\"300\" alt=\"Angular Toastr\">   <br>   <h1>ngx-toastr</h1>   <br>   <a href=\"https://www.npmjs.org/package/",
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/ngx-toastr@20.0.5"
+  },
+  "fileCount": 11,
+  "integrity": "sha512-JcGu1Cbl+0SovPhxma72ygGeZHtpHWWKwBCyiabb+MSWYtXu/SOwEZ2HTWtZ4wcEYOOiy9tDQZgiEKWXpibpRw==",
+  "shasum": "8e7c1855f637e49a4513f74cdfc46808a3bb3084",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIGwC4jKUjmbrPWWYhstKzUNcUI+jodp4H0VXnidbul4GAiEA2J749S1f89KJKVBdjftEaVQZnONl4zVqVgo9ejOK25o="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/ngx-toastr/-/ngx-toastr-20.0.5.tgz",
+  "unpackedSize": 174813
+ },
+ "exports": {
+  ".": {
+   "default": "./fesm2022/ngx-toastr.mjs",
+   "types": "./types/ngx-toastr.d.ts"
+  },
+  "./package.json": {
+   "default": "./package.json"
+  },
+  "./toastr": {
+   "default": "./toastr.css"
+  },
+  "./toastr-bs4-alert": {
+   "default": "./toastr-bs4-alert.scss"
+  },
+  "./toastr-bs5-alert": {
+   "default": "./toastr-bs5-alert.scss"
+  },
+  "./toastr-old": {
+   "default": "./toastr-old.css"
+  }
+ },
+ "gitHead": "346ab91405fc82fb64b3a22d0a0f3523b2ff2dae",
+ "homepage": "https://github.com/scttcper/ngx-toastr#readme",
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "scttcper@gmail.com",
+   "name": "scttcper"
+  }
+ ],
+ "module": "fesm2022/ngx-toastr.mjs",
+ "name": "ngx-toastr",
+ "peerDependencies": {
+  "@angular/common": "^21.0.0",
+  "@angular/core": "^21.0.0",
+  "rxjs": "^7.8.2"
+ },
+ "publishConfig": {
+  "access": "public",
+  "provenance": true
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/scttcper/ngx-toastr.git"
+ },
+ "sideEffects": false,
+ "typings": "types/ngx-toastr.d.ts",
+ "version": "20.0.5"
+}

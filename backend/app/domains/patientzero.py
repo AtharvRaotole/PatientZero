@@ -58,7 +58,7 @@ class PatientZero:
         "the most critical exposed services and their chains, mention honest negatives if any, who is on call, "
         "and the fix (overrides to clean versions). Use ONLY names and numbers present in the JSON. Do not use "
         "em dashes.")
-    _known: set[str] | None = None
+    _known: dict[str, set[str]] = {}
 
     def route(self, text: str, **opts) -> dict:
         return ask(text, **opts)
@@ -146,11 +146,13 @@ class PatientZero:
         return names
 
     def known_names(self) -> set[str]:
-        if self._known is None:
+        from .. import tenants
+        g = tenants.graph_name()
+        if g not in self._known:
             tr = Trace()
             nodes = tr.run("fleet_graph", "fleet_graph_nodes")
-            PatientZero._known = {n["id"].rsplit("@", 1)[0].lower() for n in nodes if n["id"]}
-        return self._known
+            PatientZero._known[g] = {n["id"].rsplit("@", 1)[0].lower() for n in nodes if n["id"]}
+        return self._known[g]
 
 
 DOMAIN = PatientZero()

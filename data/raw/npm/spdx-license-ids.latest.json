@@ -1,0 +1,76 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "spdx-license-ids@3.0.24",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/spdx-license-ids_3.0.24_1789617039564_0.6520043906479216"
+ },
+ "_npmUser": {
+  "email": "kyle@kemitchell.com",
+  "name": "kemitchell"
+ },
+ "_npmVersion": "12.0.2",
+ "author": {
+  "name": "Shinnosuke Watanabe",
+  "url": "https://github.com/shinnn"
+ },
+ "bugs": {
+  "url": "https://github.com/jslicense/spdx-license-ids/issues"
+ },
+ "description": "A list of SPDX license identifiers",
+ "directories": {},
+ "dist": {
+  "fileCount": 4,
+  "integrity": "sha512-cLS9TtWkIQFyLkJ3/5aFQAOHOSKTlOs/7WDut/XPSdjom1fJhUdkepeJAKXa9Y05+FabHd0sti+Et559vDtkpQ==",
+  "shasum": "550436df9dc7dcf5c29832ceda40256a9b00de3a",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIGNEf8fG04cw9vqtfevNr0KyUID6sRD+EaVI58IVEiznAiEApCmXxPMWf4jdJZfzCJ5486SOH4KtbY9HnyjtdfNAh50="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDuTd9kyGq+BTNXlb0x2aVnhihualzBZjb8Fw/nB0XBpAIgQ+JUwfaCFJB35+0k/6MB56yYbUfEcC8Cwxo40wDq4NQ="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/spdx-license-ids/-/spdx-license-ids-3.0.24.tgz",
+  "unpackedSize": 14029
+ },
+ "gitHead": "dc0dd99cfb7b38c9159f3baa2804a4d3fd2632e1",
+ "homepage": "https://github.com/jslicense/spdx-license-ids#readme",
+ "keywords": [
+  "spdx",
+  "license",
+  "licenses",
+  "id",
+  "identifier",
+  "identifiers",
+  "json",
+  "array",
+  "oss"
+ ],
+ "license": "CC0-1.0",
+ "maintainers": [
+  {
+   "email": "kyle@kemitchell.com",
+   "name": "kemitchell"
+  },
+  {
+   "email": "snnskwtnb@gmail.com",
+   "name": "shinnn"
+  }
+ ],
+ "name": "spdx-license-ids",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/jslicense/spdx-license-ids.git"
+ },
+ "scripts": {
+  "build": "node build.js",
+  "latest": "node latest.js",
+  "pretest": "npm run build",
+  "test": "node test.js"
+ },
+ "version": "3.0.24"
+}

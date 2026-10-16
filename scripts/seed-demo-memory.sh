@@ -6,11 +6,14 @@
 #   4. verify a bare "qix" ask answers from graph memory and carries the playbook
 #   sh scripts/seed-demo-memory.sh                    # live Railway app
 #   BASE_URL=http://localhost:8000 sh scripts/seed-demo-memory.sh
+#   TENANT=globex sh scripts/seed-demo-memory.sh      # seed one tenant's graph (default acme); others untouched
 # Every step runs deterministically (mode=deterministic), so the seed costs no LLM tokens.
 set -eu
 BASE_URL="${BASE_URL:-https://patientzero-production-2cb3.up.railway.app}"
 BASE_URL="${BASE_URL%/}"
-export BASE_URL
+TENANT="${TENANT:-acme}"
+case "$TENANT" in *[!a-z0-9-]*|"") echo "bad TENANT: $TENANT" >&2; exit 1 ;; esac
+export BASE_URL TENANT
 HERE="$(cd "$(dirname "$0")" && pwd)"
 TRIGGER="${TRIGGER:-maintainer qix was phished}"
 APPROVER="${APPROVER:-atharv}"
@@ -18,7 +21,7 @@ APPROVER="${APPROVER:-atharv}"
 sh "$HERE/reset-live.sh"
 
 post() { # path, json body -> body on stdout, fail on non-2xx
-  code=$(curl -sS -o /tmp/pz-seed.json -w '%{http_code}' -X POST "$BASE_URL$1" -H 'content-type: application/json' -d "$2")
+  code=$(curl -sS -o /tmp/pz-seed.json -w '%{http_code}' -X POST "$BASE_URL$1" -H 'content-type: application/json' -H "X-Tenant: $TENANT" -d "$2")
   case "$code" in 2*) cat /tmp/pz-seed.json ;; *) echo "POST $1 failed: HTTP $code $(cat /tmp/pz-seed.json)" >&2; exit 1 ;; esac
 }
 
@@ -40,4 +43,4 @@ echo "bare 'qix': outcome=$outcome memory=$mem_inc playbook=$mem_pb"
 [ "$outcome" = answered_from_memory ] || { echo "expected answered_from_memory" >&2; exit 1; }
 [ "$mem_inc" = "$inc" ] || { echo "expected memory to cite $inc" >&2; exit 1; }
 [ "$mem_pb" = "$pb" ] || { echo "expected playbook $pb in the memory answer" >&2; exit 1; }
-echo "ok: $BASE_URL seeded with $inc and $pb"
+echo "ok: $BASE_URL tenant $TENANT seeded with $inc and $pb"

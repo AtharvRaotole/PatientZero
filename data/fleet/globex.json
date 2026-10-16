@@ -1,0 +1,287 @@
+{
+ "_notice": "SYNTHETIC DATA. 'Globex' is a fictional company (second tenant). Services, teams, people, handles and repos are invented for the PatientZero demo. Only the npm package names, versions and ranges are real; their dependency trees come from deps.dev (cached in data/raw/depsdev).",
+ "company": "Globex",
+ "tenant": "globex",
+ "teams": [
+  {
+   "name": "commerce",
+   "display": "Commerce",
+   "slack": "#globex-commerce",
+   "pager": "globex-commerce"
+  },
+  {
+   "name": "logistics",
+   "display": "Logistics",
+   "slack": "#globex-logistics",
+   "pager": "globex-logistics"
+  },
+  {
+   "name": "ops-tooling",
+   "display": "Ops Tooling",
+   "slack": "#globex-ops-tooling",
+   "pager": "globex-ops-tooling"
+  },
+  {
+   "name": "partner-platform",
+   "display": "Partner Platform",
+   "slack": "#globex-partners",
+   "pager": "globex-partner-platform"
+  },
+  {
+   "name": "design-systems",
+   "display": "Design Systems",
+   "slack": "#globex-design",
+   "pager": "globex-design-systems"
+  }
+ ],
+ "people": [
+  {
+   "name": "Hank Scorpio",
+   "handle": "@hank",
+   "email": "hank@globex.example",
+   "team": "commerce",
+   "role": "Engineering Director",
+   "oncall": false
+  },
+  {
+   "name": "Lena Ortiz",
+   "handle": "@lena",
+   "email": "lena@globex.example",
+   "team": "commerce",
+   "role": "Senior Engineer",
+   "oncall": true
+  },
+  {
+   "name": "Tomasz Wolny",
+   "handle": "@tomasz",
+   "email": "tomasz@globex.example",
+   "team": "logistics",
+   "role": "Staff Engineer",
+   "oncall": true
+  },
+  {
+   "name": "Aiko Tanaka",
+   "handle": "@aiko",
+   "email": "aiko@globex.example",
+   "team": "logistics",
+   "role": "Engineer",
+   "oncall": false
+  },
+  {
+   "name": "Ravi Menon",
+   "handle": "@ravi",
+   "email": "ravi@globex.example",
+   "team": "ops-tooling",
+   "role": "SRE Lead",
+   "oncall": true
+  },
+  {
+   "name": "Grace Adeyemi",
+   "handle": "@grace",
+   "email": "grace@globex.example",
+   "team": "ops-tooling",
+   "role": "SRE",
+   "oncall": false
+  },
+  {
+   "name": "Mateo Silva",
+   "handle": "@mateo",
+   "email": "mateo@globex.example",
+   "team": "partner-platform",
+   "role": "Senior Engineer",
+   "oncall": true
+  },
+  {
+   "name": "Noor Haddad",
+   "handle": "@noor",
+   "email": "noor@globex.example",
+   "team": "partner-platform",
+   "role": "Engineering Manager",
+   "oncall": false
+  },
+  {
+   "name": "Ingrid Holm",
+   "handle": "@ingrid",
+   "email": "ingrid@globex.example",
+   "team": "design-systems",
+   "role": "Design Engineer",
+   "oncall": true
+  },
+  {
+   "name": "Felix Brandt",
+   "handle": "@felix",
+   "email": "felix@globex.example",
+   "team": "design-systems",
+   "role": "Frontend Engineer",
+   "oncall": false
+  }
+ ],
+ "services": [
+  {
+   "name": "globex-storefront",
+   "team": "commerce",
+   "tier": 1,
+   "env": "prod",
+   "runtime": "browser",
+   "repo": "globex/globex-storefront",
+   "description": "Customer storefront (Angular)",
+   "dependencies": {
+    "ngx-bootstrap": "^20.0.2",
+    "ngx-toastr": "^19.0.0",
+    "angulartics2": "14.1.0",
+    "axios": "^1.7.7"
+   }
+  },
+  {
+   "name": "order-gateway",
+   "team": "commerce",
+   "tier": 1,
+   "env": "prod",
+   "runtime": "server",
+   "repo": "globex/order-gateway",
+   "description": "Order intake API",
+   "dependencies": {
+    "express": "4.21.2",
+    "pg": "^8.12.0",
+    "zod": "^3.23.8"
+   }
+  },
+  {
+   "name": "billing-worker",
+   "team": "commerce",
+   "tier": 2,
+   "env": "prod",
+   "runtime": "worker",
+   "repo": "globex/billing-worker",
+   "description": "Invoice and payment reconciliation jobs",
+   "dependencies": {
+    "stripe": "^16.12.0",
+    "debug": "^4.3.7",
+    "winston": "^3.14.2"
+   }
+  },
+  {
+   "name": "fleet-tracker",
+   "team": "logistics",
+   "tier": 1,
+   "env": "prod",
+   "runtime": "server",
+   "repo": "globex/fleet-tracker",
+   "description": "Live truck telemetry ingest",
+   "dependencies": {
+    "fastify": "^4.28.1",
+    "ioredis": "^5.4.1",
+    "debug": "^4.3.7"
+   }
+  },
+  {
+   "name": "route-planner",
+   "team": "logistics",
+   "tier": 2,
+   "env": "prod",
+   "runtime": "server",
+   "repo": "globex/route-planner",
+   "description": "Delivery route optimisation API",
+   "dependencies": {
+    "koa": "^2.15.3",
+    "@koa/router": "^13.1.0",
+    "kafkajs": "^2.2.4"
+   }
+  },
+  {
+   "name": "partner-api",
+   "team": "partner-platform",
+   "tier": 1,
+   "env": "prod",
+   "runtime": "server",
+   "repo": "globex/partner-api",
+   "description": "Public partner REST API with Swagger docs",
+   "dependencies": {
+    "koa": "^2.15.3",
+    "koa2-swagger-ui": "^5.11.0",
+    "jsonwebtoken": "^9.0.2"
+   }
+  },
+  {
+   "name": "webhook-relay",
+   "team": "partner-platform",
+   "tier": 2,
+   "env": "prod",
+   "runtime": "worker",
+   "repo": "globex/webhook-relay",
+   "description": "Outbound partner webhooks with retries",
+   "dependencies": {
+    "got": "^11.8.6",
+    "bullmq": "^5.13.2",
+    "pino": "^9.4.0"
+   }
+  },
+  {
+   "name": "ops-console",
+   "team": "ops-tooling",
+   "tier": 2,
+   "env": "internal",
+   "runtime": "browser",
+   "repo": "globex/ops-console",
+   "description": "Internal operations console (Angular)",
+   "dependencies": {
+    "ngx-toastr": "19.0.0",
+    "ngx-color": "^10.0.0"
+   }
+  },
+  {
+   "name": "notify-service",
+   "team": "ops-tooling",
+   "tier": 3,
+   "env": "prod",
+   "runtime": "server",
+   "repo": "globex/notify-service",
+   "description": "Email and SMS notifications",
+   "dependencies": {
+    "nodemailer": "^6.9.15",
+    "handlebars": "^4.7.8"
+   }
+  },
+  {
+   "name": "ci-toolkit",
+   "team": "ops-tooling",
+   "tier": 3,
+   "env": "internal",
+   "runtime": "build",
+   "repo": "globex/ci-toolkit",
+   "description": "Shared CI scripts and release tooling",
+   "dependencies": {
+    "ora": "^8.1.0",
+    "execa": "^9.4.0",
+    "eslint": "9.11.1"
+   }
+  },
+  {
+   "name": "brand-studio",
+   "team": "design-systems",
+   "tier": 3,
+   "env": "internal",
+   "runtime": "browser",
+   "repo": "globex/brand-studio",
+   "description": "Brand colour and theme editor",
+   "dependencies": {
+    "@ctrl/tinycolor": "^4.1.0",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
+   }
+  },
+  {
+   "name": "design-tokens",
+   "team": "design-systems",
+   "tier": 3,
+   "env": "internal",
+   "runtime": "build",
+   "repo": "globex/design-tokens",
+   "description": "Design token build pipeline",
+   "dependencies": {
+    "@ctrl/tinycolor": "4.1.0",
+    "commander": "^12.1.0"
+   }
+  }
+ ]
+}

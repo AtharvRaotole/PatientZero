@@ -1,0 +1,87 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "read-pkg@10.1.0",
+ "_nodeVersion": "25.6.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/read-pkg_10.1.0_1770561034778_0.6143302387278453"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "11.8.0",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/read-pkg/issues"
+ },
+ "dependencies": {
+  "@types/normalize-package-data": "^2.4.4",
+  "normalize-package-data": "^8.0.0",
+  "parse-json": "^8.3.0",
+  "type-fest": "^5.4.4",
+  "unicorn-magic": "^0.4.0"
+ },
+ "description": "Read a package.json file",
+ "devDependencies": {
+  "xo": "^1.2.3"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-I8g2lArQiP78ll51UeMZojewtYgIRCKCWqZEgOO8c/uefTI+XDXvCSXu3+YNUaTNvZzobrL5+SqHjBrByRRTdg==",
+  "shasum": "eff31c7e505a4995a85c5af017b3dc413745431c",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCICDxXM0rSNlBQ70tCp850X/UBpWCjwHU9VIA9Q+4trxWAiBEZbokvAZAiBE6W+UVs6Lru8uGFxPcUrgan9R79FpEcw=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/read-pkg/-/read-pkg-10.1.0.tgz",
+  "unpackedSize": 6893
+ },
+ "engines": {
+  "node": ">=20"
+ },
+ "exports": {
+  "default": "./index.js",
+  "types": "./index.d.ts"
+ },
+ "funding": "https://github.com/sponsors/sindresorhus",
+ "gitHead": "ae4bbc6588ba8707f931fc141d2b1d3bf0c8c703",
+ "homepage": "https://github.com/sindresorhus/read-pkg#readme",
+ "keywords": [
+  "json",
+  "read",
+  "parse",
+  "file",
+  "fs",
+  "graceful",
+  "load",
+  "package",
+  "normalize"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "read-pkg",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/read-pkg.git"
+ },
+ "scripts": {
+  "test": "xo && cd test && node --test test.js"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "10.1.0"
+}

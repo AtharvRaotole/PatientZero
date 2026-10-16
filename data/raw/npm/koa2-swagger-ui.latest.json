@@ -1,0 +1,107 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "koa2-swagger-ui@5.12.0",
+ "_nodeVersion": "22.19.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/koa2-swagger-ui_5.12.0_1758008516123_0.5686566203479362"
+ },
+ "_npmUser": {
+  "email": "scttcper@gmail.com",
+  "name": "scttcper"
+ },
+ "_npmVersion": "10.9.3",
+ "bugs": {
+  "url": "https://github.com/scttcper/koa2-swagger-ui/issues"
+ },
+ "dependencies": {
+  "handlebars": "^4.7.8",
+  "lodash": "^4.17.21",
+  "read-pkg-up": "7.0.1"
+ },
+ "description": "Swagger UI middleware for koa",
+ "devDependencies": {
+  "@ctrl/eslint-config": "4.0.14",
+  "@types/koa": "^2.15.0",
+  "@types/koa-router": "7.4.8",
+  "@types/lodash": "4.17.13",
+  "@types/node": "22.9.0",
+  "@types/supertest": "6.0.2",
+  "@vitest/coverage-v8": "2.1.5",
+  "koa": "2.15.3",
+  "koa-router": "13.0.1",
+  "supertest": "7.0.0",
+  "swagger-ui-dist": "5.18.2",
+  "ts-node": "10.9.2",
+  "typescript": "5.6.3",
+  "vitest": "2.1.5"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/koa2-swagger-ui@5.12.0"
+  },
+  "fileCount": 8,
+  "integrity": "sha512-F7nRhiFbGcKq5OwhGMRGZdEckNW9ldreaZifDIv/bZYghtR632wo25rLBbsLHQHVb89V4vu/drLiCIJIWQIw+w==",
+  "shasum": "084d42571356c858dbaeea04b30be9c5787dce95",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIBNFfFVu8/obncvzZu81fIrapD4fVvC4wN0f+mQSZomHAiEA3SXyxZBeqKUftQ99g4KFI+ZFAYwes598TzwhmnfY2CI="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/koa2-swagger-ui/-/koa2-swagger-ui-5.12.0.tgz",
+  "unpackedSize": 21332
+ },
+ "gitHead": "c27957c4b0eccd250769e15b591d651dfbb898b3",
+ "homepage": "https://github.com/scttcper/koa2-swagger-ui",
+ "keywords": [
+  "swagger",
+  "docs",
+  "swagger-ui",
+  "koa",
+  "koa2",
+  "middleware"
+ ],
+ "license": "MIT",
+ "main": "dist/index.js",
+ "maintainers": [
+  {
+   "email": "scttcper@gmail.com",
+   "name": "scttcper"
+  }
+ ],
+ "name": "koa2-swagger-ui",
+ "peerDependencies": {
+  "@types/koa": "*"
+ },
+ "publishConfig": {
+  "access": "public",
+  "provenance": true
+ },
+ "release": {
+  "branches": [
+   "master"
+  ]
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/scttcper/koa2-swagger-ui.git"
+ },
+ "scripts": {
+  "build": "tsc -p tsconfig.build.json",
+  "lint": "eslint --ext .ts,.js .",
+  "lint:fix": "eslint --ext .ts,.js --fix .",
+  "postbuild": "cp lib/index.hbs dist && cp lib/favicon.png dist",
+  "prepare": "npm run build",
+  "start": "ts-node test/example.ts",
+  "test": "vitest run",
+  "test:ci": "vitest run --coverage --reporter=default --reporter=junit --outputFile=./junit.xml",
+  "test:watch": "vitest"
+ },
+ "types": "dist/index.d.ts",
+ "version": "5.12.0"
+}

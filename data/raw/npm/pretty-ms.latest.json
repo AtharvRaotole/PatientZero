@@ -1,0 +1,104 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "pretty-ms@10.0.0",
+ "_nodeVersion": "26.11.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/pretty-ms_10.0.0_1791956041030_0.44317621291132325"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "12.2.0",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/pretty-ms/issues"
+ },
+ "description": "Convert milliseconds to a human readable string: `1337000000` \u2192 `15d 11h 23m 20s`",
+ "devDependencies": {
+  "@typescript/native": "npm:typescript@^7.0.2",
+  "nz": "^0.1.0",
+  "xo": "^5.0.1"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-6BWuxY2dCNgT45VnGzZcfNy7WeLqXiZqhhy4aHThTE6KI56R2ZBw9HQ7spPFKYchDizvJbPxTEknIpmW4FSmQA==",
+  "shasum": "3a223bfea7625711955557f1a58389b80d9ed00c",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIAQA9Y4giiIubgvggjTSIX2CEx2D61S8q1BSciBsLQuXAiAy7TM1USrixf/WiPtQE9KRKWAkYQ5hgpPWLmrTRpiMKg=="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIH7MX9d5Y2hbvCiJNuUKEemiB+rPUrmJSivPFREtP6/tAiEAhptPXGAnhctbIuZRXT4LGY9KVZvheawgMClc4+9uhC4="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/pretty-ms/-/pretty-ms-10.0.0.tgz",
+  "unpackedSize": 24413
+ },
+ "engines": {
+  "node": ">=22"
+ },
+ "exports": {
+  "default": "./index.js",
+  "types": "./index.d.ts"
+ },
+ "funding": "https://github.com/sponsors/sindresorhus",
+ "gitHead": "a0410bb189906b25000fc118ce06ba84c07971c6",
+ "homepage": "https://github.com/sindresorhus/pretty-ms#readme",
+ "keywords": [
+  "pretty",
+  "prettify",
+  "human",
+  "humanize",
+  "humanized",
+  "readable",
+  "time",
+  "ms",
+  "milliseconds",
+  "duration",
+  "period",
+  "range",
+  "text",
+  "string",
+  "number",
+  "hrtime"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "pretty-ms",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/pretty-ms.git"
+ },
+ "scripts": {
+  "test": "xo && node --test && nz"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "10.0.0",
+ "xo": [
+  {
+   "files": [
+    "test.js"
+   ],
+   "rules": {
+    "node-test/no-conditional-assertion": "off",
+    "node-test/require-assertion": "off"
+   }
+  }
+ ]
+}

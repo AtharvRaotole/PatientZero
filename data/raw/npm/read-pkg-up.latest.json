@@ -1,0 +1,107 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "read-pkg-up@11.0.0",
+ "_nodeVersion": "18.18.2",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/read-pkg-up_11.0.0_1699041265425_0.48223189494400587"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "9.2.0",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/read-pkg-up/issues"
+ },
+ "dependencies": {
+  "find-up-simple": "^1.0.0",
+  "read-pkg": "^9.0.0",
+  "type-fest": "^4.6.0"
+ },
+ "deprecated": "Renamed to read-package-up",
+ "description": "Read the closest package.json file",
+ "devDependencies": {
+  "ava": "^5.3.1",
+  "tsd": "^0.29.0",
+  "xo": "^0.56.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-LOVbvF1Q0SZdjClSefZ0Nz5z8u+tIE7mV5NibzmE9VYmDe9CaBbAVtz1veOSZbofrdsilxuDAYnFenukZVp8/Q==",
+  "shasum": "8916ffc6af2a7538b43bcc2c6445d4450ffe5a74",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEYCIQCfrPiFRq/tuBExh1riD+eKFPCQCwEYC0SNNyG3edB3ZgIhAIOsn1K26qn7clLSyL/QDDSq8Iv74lBmmEMM1WErMMxK"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/read-pkg-up/-/read-pkg-up-11.0.0.tgz",
+  "unpackedSize": 6234
+ },
+ "engines": {
+  "node": ">=18"
+ },
+ "exports": {
+  "default": "./index.js",
+  "types": "./index.d.ts"
+ },
+ "funding": "https://github.com/sponsors/sindresorhus",
+ "gitHead": "90b6edaeeb48ab00b61efd5b5452dcc02752a24d",
+ "homepage": "https://github.com/sindresorhus/read-pkg-up#readme",
+ "keywords": [
+  "json",
+  "read",
+  "parse",
+  "file",
+  "fs",
+  "graceful",
+  "load",
+  "package",
+  "find",
+  "up",
+  "find-up",
+  "findup",
+  "look-up",
+  "look",
+  "search",
+  "match",
+  "resolve",
+  "parent",
+  "parents",
+  "folder",
+  "directory",
+  "walk",
+  "walking",
+  "path"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "read-pkg-up",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/read-pkg-up.git"
+ },
+ "scripts": {
+  "test": "xo && ava && tsd"
+ },
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "11.0.0",
+ "xo": {
+  "rules": {
+   "@typescript-eslint/no-redundant-type-constituents": "off"
+  }
+ }
+}

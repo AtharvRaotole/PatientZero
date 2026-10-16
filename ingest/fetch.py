@@ -18,7 +18,7 @@ from concurrent.futures import ThreadPoolExecutor
 
 ROOT = Path(__file__).resolve().parent.parent
 RAW = ROOT / "data" / "raw"
-FLEET = ROOT / "data" / "fleet" / "acme.json"
+FLEETS = sorted((ROOT / "data" / "fleet").glob("*.json"))  # every tenant fleet (acme, globex, ...)
 REFRESH = "--refresh" in sys.argv
 S = requests.Session()
 S.headers["User-Agent"] = "patientzero-hackathon-ingest/0.1"
@@ -120,8 +120,8 @@ def main():
         npm_packument(pkg)  # maintainers + 'time' (shows the malicious publish/unpublish)
 
     # 2. Fleet dependency graphs ------------------------------------------------
-    fleet = json.loads(FLEET.read_text())
-    direct = {(d, locked_version(r)) for s in fleet["services"] for d, r in s["dependencies"].items()}
+    direct = {(d, locked_version(r)) for f in FLEETS for s in json.loads(f.read_text())["services"]
+              for d, r in s["dependencies"].items()}
     all_pkgs = set(summary)
     failures = []
     graphs = dict(zip(sorted(direct), ThreadPoolExecutor(8).map(lambda pv: depsdev_deps(*pv), sorted(direct))))

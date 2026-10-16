@@ -1,0 +1,16 @@
+{
+ "edges": [],
+ "error": "",
+ "nodes": [
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "SELF",
+   "versionKey": {
+    "name": "@ctrl/tinycolor",
+    "system": "NPM",
+    "version": "4.1.0"
+   }
+  }
+ ]
+}

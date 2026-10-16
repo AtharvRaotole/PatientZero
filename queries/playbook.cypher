@@ -33,7 +33,8 @@ MATCH (i:Incident {id: $incident_id})
 CREATE (pb:Playbook {id: $id, name: $name, trigger_kind: $trigger_kind, trigger: $trigger,
                      approved_at: $approved_at, approved_by: $approved_by, overrides: $overrides,
                      service_patches: $service_patches,
-                     services: $services, steps: $steps, incident_id: $incident_id})-[:APPROVED_FROM]->(i)
+                     services: $services, steps: $steps, incident_id: $incident_id,
+                     uses_count: 0})-[:APPROVED_FROM]->(i)
 RETURN pb.id AS id
 
 // @query playbook_link_packages
@@ -65,8 +66,9 @@ MATCH (pb:Playbook)-[c:COVERS]->(p:Package)
 WHERE p.name IN $pkgs
 WITH pb, collect({pkg: p.name, pin: c.pin, spec: c.spec}) AS matched
 OPTIONAL MATCH (pb)-[:APPROVED_FROM]->(src:Incident)
-RETURN properties(pb) AS playbook, matched, src.id AS source_incident, src.at AS source_at
-ORDER BY size(matched) DESC, playbook.approved_at DESC
+RETURN properties(pb) AS playbook, matched, src.id AS source_incident, src.at AS source_at,
+       coalesce(pb.uses_count, 0) AS uses_count
+ORDER BY uses_count DESC, size(matched) DESC, playbook.approved_at DESC
 
 // @query playbook_apply
 // WRITE. Record that an incident reused a playbook. Params: $incident_id, $playbook_id, $at
@@ -74,6 +76,13 @@ MATCH (i:Incident {id: $incident_id}), (pb:Playbook {id: $playbook_id})
 MERGE (i)-[r:APPLIED_PLAYBOOK]->(pb)
 SET r.at = $at
 RETURN count(r) AS applied
+
+// @query playbook_use
+// WRITE. Procedural memory: a successful reuse (today's pins agree with the playbook) bumps uses_count and
+// last_used, so the Fixer prefers the most reused playbook next time. Params: $playbook_id, $at
+MATCH (pb:Playbook {id: $playbook_id})
+SET pb.uses_count = coalesce(pb.uses_count, 0) + 1, pb.last_used = $at
+RETURN pb.uses_count AS uses_count, pb.last_used AS last_used
 
 // @query playbook_reset
 // WRITE. Demo housekeeping: delete all playbooks (procedural memory). Data graph untouched.

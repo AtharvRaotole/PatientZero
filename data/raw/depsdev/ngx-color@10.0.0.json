@@ -1,0 +1,62 @@
+{
+ "edges": [
+  {
+   "fromNode": 0,
+   "requirement": "^4.1.0",
+   "toNode": 1
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^1.2.6",
+   "toNode": 2
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^2.3.0",
+   "toNode": 3
+  }
+ ],
+ "error": "",
+ "nodes": [
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "SELF",
+   "versionKey": {
+    "name": "ngx-color",
+    "system": "NPM",
+    "version": "10.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "@ctrl/tinycolor",
+    "system": "NPM",
+    "version": "4.2.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "material-colors",
+    "system": "NPM",
+    "version": "1.2.6"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "tslib",
+    "system": "NPM",
+    "version": "2.8.1"
+   }
+  }
+ ]
+}

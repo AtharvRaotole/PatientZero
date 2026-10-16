@@ -1,0 +1,118 @@
+{
+ "_from": "file:ctrl-tinycolor-4.2.1.tgz",
+ "_hasShrinkwrap": false,
+ "_id": "@ctrl/tinycolor@4.2.1",
+ "_integrity": "sha512-Vh5uy9Y1JBMId6J1f68TMXnZrTCvNdo9Fu2k0d1YnJngR+sM5kWTKl441c/3TFs+cG0NWOjRWgQ/iaWhbYx+7A==",
+ "_nodeVersion": "24.20.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/tinycolor_4.2.1_1788981627621_0.11482280399748546"
+ },
+ "_npmUser": {
+  "approver": {
+   "email": "scttcper@gmail.com",
+   "name": "scttcper"
+  },
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:ebb1f022-9ab3-48e5-87c1-31a0b8365363"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "_resolved": "/home/runner/work/tinycolor/tinycolor/ctrl-tinycolor-4.2.1.tgz",
+ "author": {
+  "email": "scttcper@gmail.com",
+  "name": "Scott Cooper"
+ },
+ "bugs": {
+  "url": "https://github.com/scttcper/tinycolor/issues"
+ },
+ "description": "Fast, small color manipulation and conversion for JavaScript",
+ "devDependencies": {
+  "@ctrl/eslint-config": "4.0.14",
+  "@rollup/plugin-terser": "0.4.4",
+  "@types/node": "24.13.3",
+  "del-cli": "5.1.0",
+  "eslint": "8.57.1",
+  "rollup": "4.9.5",
+  "ts-node": "10.9.2",
+  "typedoc": "0.25.7",
+  "typescript": "5.3.3",
+  "vitest": "5.0.0"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@ctrl%2ftinycolor@4.2.1"
+  },
+  "fileCount": 41,
+  "integrity": "sha512-Vh5uy9Y1JBMId6J1f68TMXnZrTCvNdo9Fu2k0d1YnJngR+sM5kWTKl441c/3TFs+cG0NWOjRWgQ/iaWhbYx+7A==",
+  "shasum": "a812019b163fc950eac991be4222893af5d5d021",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQC6HsCv4kuXE1YnRqSEyavkVFhxrhUBw2E9NH5jElUq+wIhAPzc2biSg/mbaRRc42budKAYDziIqc3q6MBa8xlJzKb/"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@ctrl/tinycolor/-/tinycolor-4.2.1.tgz",
+  "unpackedSize": 246848
+ },
+ "engines": {
+  "node": ">=14"
+ },
+ "homepage": "https://tinycolor.vercel.app",
+ "keywords": [
+  "typescript",
+  "color",
+  "manipulation",
+  "tinycolor",
+  "hsa",
+  "rgb"
+ ],
+ "license": "MIT",
+ "main": "dist/public_api.js",
+ "maintainers": [
+  {
+   "email": "scttcper@gmail.com",
+   "name": "scttcper"
+  }
+ ],
+ "module": "dist/module/public_api.js",
+ "name": "@ctrl/tinycolor",
+ "packageManager": "pnpm@12.3.4",
+ "publishConfig": {
+  "access": "public",
+  "provenance": true
+ },
+ "release": {
+  "branches": [
+   "master"
+  ]
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/scttcper/tinycolor.git"
+ },
+ "scripts": {
+  "bench": "vitest bench --config vitest.bench.config.mts --run --reporter=verbose",
+  "bench:watch": "vitest bench --config vitest.bench.config.mts --watch --reporter=verbose",
+  "build": "del-cli dist && tsc -p tsconfig.build.json && tsc -p tsconfig.module.json && ts-node build",
+  "demo:build": "cd demo && node --run build",
+  "demo:watch": "cd demo && node --run dev",
+  "docs:build": "typedoc --out demo/dist/docs --hideGenerator --tsconfig tsconfig.build.json src/public_api.ts",
+  "lint": "eslint --ext .js,.ts,.mts .",
+  "lint:fix": "eslint --fix --ext .js,.ts,.mts .",
+  "prepare": "node --run build",
+  "test": "vitest run",
+  "test:ci": "vitest run --reporter=default --reporter=junit --outputFile=./junit.xml",
+  "test:watch": "vitest"
+ },
+ "sideEffects": false,
+ "typings": "dist/public_api.d.ts",
+ "version": "4.2.1"
+}

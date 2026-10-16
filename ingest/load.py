@@ -5,10 +5,15 @@ Inputs  : data/fleet/acme.json            (SYNTHETIC Acme fleet: services, teams
           data/raw/depsdev/*.json          (resolved dependency graphs, deps.dev v3)
           data/raw/osv/*.json              (OSV advisories; aliases + summaries)
           data/raw/npm/*.latest.json       (current npm maintainers)
-Output  : graph $FALKORDB_GRAPH (default 'fleet:acme'), wiped and rebuilt (idempotent).
+Output  : graph $FALKORDB_GRAPH (default 'fleet:<tenant>'), wiped and rebuilt (idempotent).
 
-Run:  python ingest/load.py           (env: FALKORDB_HOST, FALKORDB_PORT, FALKORDB_USERNAME,
+Tenants : TENANT=acme (default) reads data/fleet/acme.json into fleet:acme; TENANT=globex reads
+          data/fleet/globex.json into fleet:globex. Each tenant is its own FalkorDB graph (multigraph), so
+          incidents, playbooks, sessions and crew runs never leak between tenants.
+
+Run:  python ingest/load.py           (env: TENANT, FALKORDB_HOST, FALKORDB_PORT, FALKORDB_USERNAME,
                                          FALKORDB_PASSWORD, FALKORDB_GRAPH)
+      TENANT=globex python ingest/load.py
 """
 import json, os, re, sys, time
 from pathlib import Path
@@ -17,11 +22,26 @@ from falkordb import FalkorDB
 ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 RAW = DATA / "raw"
-GRAPH = os.getenv("FALKORDB_GRAPH", "fleet:acme")
+TENANT = os.getenv("TENANT", "acme").strip().lower() or "acme"
+GRAPH = os.getenv("FALKORDB_GRAPH") or f"fleet:{TENANT}"
 # Optional extra incidents, comma separated. 'qix' is always loaded; 'shai-hulud' adds the Sept 2025 worm
-# (data/incidents/2025-09-15-shai-hulud.json, built by ingest/fetch_shai_hulud.py). Off by default so the
-# SPEC acceptance counts (19 affected versions) hold.
-INCIDENTS = {x.strip().lower() for x in os.getenv("INCIDENTS", "qix").split(",") if x.strip()}
+# (data/incidents/2025-09-15-shai-hulud.json, built by ingest/fetch_shai_hulud.py). Off by default for acme so
+# the SPEC acceptance counts (19 affected versions) hold. Globex's story is the Shai-Hulud contrast, so every
+# tenant other than acme loads it by default.
+def fleet_file(tenant: str) -> Path:
+    if not re.fullmatch(r"[a-z][a-z0-9-]{1,30}", tenant):
+        raise ValueError(f"bad tenant name {tenant!r}")
+    return DATA / "fleet" / f"{tenant}.json"
+
+
+def incidents_for(tenant: str) -> set[str]:
+    raw = os.getenv("INCIDENTS")
+    if raw is None:
+        raw = "qix" if tenant == "acme" else "qix,shai-hulud"
+    return {x.strip().lower() for x in raw.split(",") if x.strip()}
+
+
+INCIDENTS = incidents_for(TENANT)
 
 
 def connect():
@@ -50,8 +70,8 @@ def chunks(rows, n=500):
         yield rows[i:i + n]
 
 
-def build():
-    fleet = json.loads((DATA / "fleet" / "acme.json").read_text())
+def build(tenant: str = TENANT):
+    fleet = json.loads(fleet_file(tenant).read_text())
     incident = json.loads((DATA / "incidents" / "2025-09-08-qix.json").read_text())
 
     versions = {}   # key -> {pkg, version, unpublished, malicious}
@@ -117,12 +137,13 @@ def build():
     return fleet, incident, versions, requires, svc_deps, advisories, maint, pkgs
 
 
-def load(db=None):
-    fleet, incident, versions, requires, svc_deps, advisories, maint, pkgs = build()
+def load(db=None, tenant: str = TENANT, graph: str | None = None):
+    fleet, incident, versions, requires, svc_deps, advisories, maint, pkgs = build(tenant)
     if db is None:
         url = os.getenv("FALKORDB_URL")
         db = FalkorDB.from_url(url) if url else connect()
-    g = db.select_graph(GRAPH)
+    graph = graph or (GRAPH if tenant == TENANT else f"fleet:{tenant}")
+    g = db.select_graph(graph)
     t0 = time.time()
     try:
         g.delete()
@@ -184,9 +205,12 @@ def load(db=None):
              MATCH (p:Package {name:r.pkg}) CREATE (m)-[:MAINTAINS {source:'registry.npmjs.org/latest'}]->(p)""",
           {"rows": c})
 
-    if "shai-hulud" in INCIDENTS:
+    q("CREATE INDEX FOR (s:Session) ON (s.id)")
+    q("CREATE INDEX FOR (r:CrewRun) ON (r.id)")
+    q("CREATE INDEX FOR (a:AgentRun) ON (a.id)")
+    if "shai-hulud" in incidents_for(tenant):
         load_shai_hulud(g)
-    stats(g, time.time() - t0)
+    stats(g, time.time() - t0, graph)
 
 
 def load_shai_hulud(g):
@@ -223,10 +247,10 @@ def load_shai_hulud(g):
     print(f"  + shai-hulud: {len(rows)} advisories, {sum(len(r['bad_versions']) for r in rows)} bad versions")
 
 
-def stats(g, secs=None):
+def stats(g, secs=None, name=None):
     nodes = g.ro_query("MATCH (n) RETURN labels(n)[0] AS l, count(n) ORDER BY l").result_set
     rels = g.ro_query("MATCH ()-[r]->() RETURN type(r) AS t, count(r) ORDER BY t").result_set
-    print(f"graph '{GRAPH}' loaded" + (f" in {secs:.1f}s" if secs else ""))
+    print(f"graph '{name or GRAPH}' loaded" + (f" in {secs:.1f}s" if secs else ""))
     print("  nodes: " + ", ".join(f"{l}={c}" for l, c in nodes) + f"  (total {sum(c for _, c in nodes)})")
     print("  edges: " + ", ".join(f"{t}={c}" for t, c in rels) + f"  (total {sum(c for _, c in rels)})")
 

@@ -1,0 +1,55 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@types/normalize-package-data@2.4.4",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/normalize-package-data_2.4.4_1699358643414_0.20642503575816118"
+ },
+ "_npmUser": {
+  "email": "ts-npm-types@microsoft.com",
+  "name": "types"
+ },
+ "contributors": [
+  {
+   "githubUsername": "jdxcode",
+   "name": "Jeff Dickey",
+   "url": "https://github.com/jdxcode"
+  }
+ ],
+ "dependencies": {},
+ "description": "TypeScript definitions for normalize-package-data",
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-37i+OaWTh9qeK4LSHPsyRC7NahnGotNuZvjLSgcPzblpHB3rrCJxAOgI5gCdKm7coonsaX1Of0ILiTcnZjbfxA==",
+  "shasum": "56e2cc26c397c038fab0e3a917a12d5c5909e901",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEQCICejXkE6Ch6DNmuRrf6EaRtmREtI4vKILv3PzGjmeBbOAiAxF+mObfbVx4IOI2k0SVOt4Kt7QXYSEfSk50e9/h7nFw=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@types/normalize-package-data/-/normalize-package-data-2.4.4.tgz",
+  "unpackedSize": 5813
+ },
+ "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/normalize-package-data",
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "ts-npm-types@microsoft.com",
+   "name": "types"
+  }
+ ],
+ "name": "@types/normalize-package-data",
+ "repository": {
+  "directory": "types/normalize-package-data",
+  "type": "git",
+  "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+ },
+ "scripts": {},
+ "typeScriptVersion": "4.5",
+ "types": "index.d.ts",
+ "typesPublisherContentHash": "f0a1ad6fab1a44929aa98a3e4ac36a2c42c2ca36a7e49671db2109fb2acd57c9",
+ "version": "2.4.4"
+}

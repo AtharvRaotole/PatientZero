@@ -92,8 +92,13 @@ def _norm(text: str) -> str:
     return " ".join(text.lower().split()).strip(" ?!.")
 
 
+def _graph() -> str:
+    from .. import tenants
+    return tenants.graph_name()
+
+
 def _cache_key(kind: str, text: str, opts: dict) -> str:
-    raw = json.dumps([CACHE_VERSION, kind, _norm(text), config.GRAPH_NAME, config.OPENAI_MODEL, opts.get("depth"),
+    raw = json.dumps([CACHE_VERSION, kind, _norm(text), _graph(), config.OPENAI_MODEL, opts.get("depth"),
                       bool(opts.get("fresh"))])
     return hashlib.sha256(raw.encode()).hexdigest()[:24]
 

@@ -81,13 +81,16 @@ def client() -> FalkorDB:
     return _db
 
 
-def graph():
-    return client().select_graph(config.GRAPH_NAME)
+def graph(name: str | None = None):
+    """The current tenant's graph (see tenants.py), or an explicit graph name."""
+    from . import tenants
+    return client().select_graph(name or tenants.graph_name())
 
 
 @dataclass
 class Trace:
     steps: list[dict] = field(default_factory=list)
+    graph_name: str | None = None  # None: the current tenant's graph at query time
 
     def run(self, tool: str, query: str, params: dict | None = None, *, write: bool = False,
             note: str | None = None) -> list[dict]:
@@ -98,7 +101,7 @@ class Trace:
         params = params or {}
         t0 = time.perf_counter()
         try:
-            g = graph()
+            g = graph(self.graph_name)
             res = with_busy_retry(lambda: g.query(cypher, params) if write else g.ro_query(cypher, params))
         except Exception as e:  # noqa: BLE001
             ms = round((time.perf_counter() - t0) * 1000, 2)
@@ -162,11 +165,13 @@ def _is_conn_error(e: Exception) -> bool:
 
 
 def ping() -> dict:
+    from . import tenants
+    name = tenants.graph_name()
     try:
         c = client()
         c.connection.ping()
         graphs = c.list_graphs()
-        return {"ok": True, "graphs": graphs, "graph": config.GRAPH_NAME,
-                "graph_loaded": config.GRAPH_NAME in graphs}
+        return {"ok": True, "graphs": graphs, "graph": name, "graph_loaded": name in graphs,
+                "tenants_loaded": {t: g in graphs for t, g in tenants.TENANTS.items()}}
     except Exception as e:  # noqa: BLE001
-        return {"ok": False, "error": str(e), "graph": config.GRAPH_NAME}
+        return {"ok": False, "error": str(e), "graph": name}
