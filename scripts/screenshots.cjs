@@ -69,7 +69,7 @@ const shot = async (page, name) => {
     defaultViewport: { width: 1440, height: 900, deviceScaleFactor: 2 },
   });
   const page = await browser.newPage();
-  await page.goto(APP, { waitUntil: "networkidle2" });
+  await page.goto(APP, { waitUntil: "load", timeout: 90000 });
   await sleep(3500);
   await shot(page, "01-home-fleet-graph.png");
 
@@ -112,7 +112,7 @@ const shot = async (page, name) => {
 
   // Memory: a brand-new session asks again
   const p2 = await browser.newPage();
-  await p2.goto(APP, { waitUntil: "networkidle2" });
+  await p2.goto(APP, { waitUntil: "load", timeout: 90000 });
   await sleep(1500);
   await ask(p2, "qix"); // a bare recall of a stored trigger is answered from memory
   await waitText(p2, /Answered from graph memory/);
