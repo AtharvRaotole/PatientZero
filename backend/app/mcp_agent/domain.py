@@ -184,6 +184,24 @@ class McpDomain:
                     "wall_ms": round((time.perf_counter() - t0) * 1000, 2)}
         return r
 
+    def llm_meta(self, trace: list[dict]) -> dict:
+        """The tool_via/mcp block for an LLM-mode answer, built from the MCP steps in its trace (the deterministic
+        pre-run chain and every tool the model chose), so both modes report the same fields."""
+        steps = [s for s in trace if s.get("tool") == "mcp"]
+        if not steps:
+            return {"tool_via": "direct", "mcp": {"via": "none", "transport": client.TRANSPORT, "tools": [],
+                                                   "calls": 0, "chosen_by": "llm"}}
+        names = [s.get("mcp_tool") for s in steps]
+        chosen = [s.get("mcp_tool") for s in steps if "chosen by the LLM" in (s.get("note") or "")]
+        vias = {s.get("via") for s in steps}
+        via = "mcp" if vias <= {"mcp"} else ("direct" if vias == {"direct"} else "mixed")
+        intent = next((s.get("intent") for s in steps if s.get("intent")), None)
+        return {"tool_via": "mcp" if via == "mcp" else "direct",
+                "mcp": {"via": via, "transport": client.TRANSPORT, "intent": intent,
+                        "tool": chosen[-1] if chosen else (INTENT_TOOL.get(intent) or names[-1]),
+                        "tools": names, "llm_tools": chosen, "calls": len(names), "chosen_by": "llm",
+                        "ms": round(sum(float(s.get("ms") or 0) for s in steps), 2)}}
+
     def _investigate(self, text: str, opts: dict, intent: str, why: str) -> dict:
         """Fallback: the whole question through the composite `investigate` MCP tool."""
         tool = "investigate"

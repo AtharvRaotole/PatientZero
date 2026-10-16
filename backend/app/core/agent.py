@@ -265,6 +265,9 @@ def _run_llm(domain: Domain, text: str, **opts) -> dict:
                                     llm_rejected=True)] + det["trace"]
         r.update(mode="llm", llm_model=config.OPENAI_MODEL, llm_tokens=total_tokens, llm_summary=None,
                  llm_unverified=unverified, llm_rejected=True)
+    meta = getattr(domain, "llm_meta", None)  # e.g. the MCP domain: which tools ran over MCP, in order
+    if meta:
+        r.update(meta(r["trace"]))
     r["total_ms"] = round((time.perf_counter() - t0) * 1000, 2)
     return r
 

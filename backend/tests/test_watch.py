@@ -329,3 +329,58 @@ def test_ask_about_all_versions_malware(monkeypatch, tiny_graph):
     assert by_id["outcome"] == "answered_with_path"
     assert miss["outcome"] == "not_in_graph" and "No fleet service depends on lonely-evil" in miss["message"]
     assert "no compromised version is recorded" not in miss["message"]
+
+
+@pytestmark_live
+def test_backfill_checks_ingested_advisories_for_a_tenant_without_verdicts(monkeypatch, tiny_graph):
+    """A tenant loaded after a poll gets real verdicts on the next poll, even when OSV answers 304."""
+    key = f"patientzero:watch:test:{uuid.uuid4().hex[:6]}"
+    entries = [("2026-10-16T10:00:00Z", "MAL-2026-90031"), ("2026-10-16T10:01:00Z", "MAL-2026-90032")]
+    records = {"MAL-2026-90031": rec("MAL-2026-90031", "debug", versions=["4.4.2"]),
+               "MAL-2026-90032": rec("MAL-2026-90032", "nobody-uses-this", versions=["1.0.0"])}
+    fake_osv(monkeypatch, entries, records)
+    late = f"watchtest:{uuid.uuid4().hex[:8]}"
+    db.client().select_graph(late).query(
+        "CREATE (t:Team {name:'core'}), (a:Service {name:'svc-a', tier:1}), (t)-[:OWNS]->(a), "
+        "(d:Version {key:'debug@4.4.1', name:'debug@4.4.1', pkg:'debug', version:'4.4.1'}), "
+        "(a)-[:DEPENDS_ON {requirement:'^4.4.0'}]->(d)")
+    try:
+        s1 = core.poll(source="test", graphs=tiny_graph, state_key=key)
+        assert s1["checked"] == 2 and s1["backfilled"] == {}
+        monkeypatch.setattr(osv, "fetch_index_head", lambda etag=None, nbytes=0: osv.IndexHead(
+            304, [], 0, 0, etag, unchanged=True))
+        both = {**tiny_graph, "t2": late}
+        s2 = core.poll(source="test", graphs=both, state_key=key)
+        assert "unchanged" in s2["note"] and s2["backfilled"] == {"t2": 2}
+        f = core.feed("t2", graphs=both)
+        by = {e["advisory"]: e for e in f["events"]}
+        assert by["MAL-2026-90031"]["verdict"] == "hit" and by["MAL-2026-90031"]["exposed_services"] == ["svc-a"]
+        assert by["MAL-2026-90032"]["verdict"] == "not_hit" and not any(e["replay"] for e in f["events"])
+        assert any(p["source"] == "backfill" and p["checked"] == 2 for p in f["polls"])
+        tl = [r for r in core.GraphRun(late).run("timeline_events") if r["kind"] == "watch"]
+        assert len(tl) == 1 and tl[0]["title"].startswith("hit: 1 of 2")
+        assert len(core.feed("t1", graphs=both)["events"]) == 2  # t1 is not checked twice
+        s3 = core.poll(source="test", graphs=both, state_key=key)
+        assert s3["backfilled"] == {}
+    finally:
+        db.client().connection.delete(key)
+        db.client().select_graph(late).delete()
+
+
+@pytestmark_live
+def test_admin_reset_can_clear_watch_replays_only(monkeypatch):
+    if config.GRAPH_NAME not in db.client().list_graphs():
+        pytest.skip("fleet:acme not loaded")
+    from app.main import app
+    monkeypatch.setattr(config, "ADMIN_TOKEN", "secret-test-token")
+    c = TestClient(app)
+    core.replay("debug@4.4.2")
+    gr = core.GraphRun(config.GRAPH_NAME)
+    real_before = gr.run("watch_counts")[0]["events"] - gr.run("watch_counts")[0]["replays"]
+    r = c.post("/api/admin/reset?tenant=acme", headers={"X-Admin-Token": "secret-test-token"}).json()
+    assert r["watch_replays_deleted"] == 0 and gr.run("watch_counts")[0]["replays"] > 0
+    r = c.post("/api/admin/reset?tenant=acme&include_watch_replays=true",
+               headers={"X-Admin-Token": "secret-test-token"}).json()
+    assert r["watch_replays_deleted"] > 0
+    cnt = gr.run("watch_counts")[0]
+    assert int(cnt["replays"] or 0) == 0 and cnt["events"] == real_before

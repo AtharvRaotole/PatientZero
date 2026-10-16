@@ -77,6 +77,12 @@ _Last updated: Fri Oct 16 2026, 1:30 PM ET_
 - [ ] Frontend: render several MCP rows per answer (one per tools/call); show `age_label` instead of a "new" badge; replace a replay row on SSE by advisory+package instead of prepending; show `last.scope.summary` and `http.throughput_req_s` next to the bench number.
 - Not redeployed (as asked).
 
+## Polish before recording (Fri Oct 16 2026, about 2:40 PM ET; not redeployed)
+- [x] Watch per-tenant backfill: each poll (also on HTTP 304) checks advisories the watch ingested that a tenant has no real verdict for (Globex had none), with its own WatchPoll `source: backfill`.
+- [x] `POST /api/admin/reset?include_watch_replays=true` and `CLEAR_REPLAYS=1 sh scripts/reset-live.sh` delete replay rows only.
+- [x] LLM mode responses carry `tool_via` and `mcp` (tools, llm_tools, chosen_by llm) from the MCP steps in the trace (3-line hook in core/agent.py, `llm_meta` in mcp_agent/domain.py).
+- [x] 255 tests green on FalkorDB 6.0.1 and 4.22.1.
+
 ## Next actions
 - Final polish pass on screenshots for the README
 - Redeploy after pushing changes: `sh scripts/redeploy-railway.sh` (ships origin/main; no GitHub auto-deploy)

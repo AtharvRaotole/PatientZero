@@ -26,15 +26,20 @@ router = APIRouter()
 
 
 @router.post("/api/admin/reset", dependencies=[Depends(require_admin)])
-def admin_reset(include_byo: bool = False) -> dict[str, Any]:
+def admin_reset(include_byo: bool = False, include_watch_replays: bool = False) -> dict[str, Any]:
     """Start the demo clean in ONE tenant (?tenant=, default acme): delete Incident/Finding memory, crew runs,
     sessions and Playbooks in that tenant's graph. Other tenants are untouched. BYO scan graphs (a visitor's own
-    lockfile) are kept unless ?include_byo=true is passed explicitly."""
+    lockfile) are kept unless ?include_byo=true is passed explicitly. ?include_watch_replays=true also deletes the
+    watch REPLAY events in that tenant (real watch verdicts are always kept)."""
     from . import tenants
     from .byo import scan
     tr = Trace()
     inc = tr.run("recall", "reset_memory", write=True)
     pb = tr.run("playbook", "playbook_reset", write=True)
+    replays = 0
+    if include_watch_replays:
+        rows = tr.run("watch", "watch_reset_replays", write=True)
+        replays = rows[0]["deleted"] if rows else 0
     graphs: list[str] = []
     if include_byo:
         graphs = scan.list_byo_graphs()
@@ -45,4 +50,5 @@ def admin_reset(include_byo: bool = False) -> dict[str, Any]:
         tr.add("byo", "BYO scan graphs kept (pass include_byo=true to delete them)")
     return {"tenant": tenants.current(), "incidents_and_findings": inc[0]["deleted"] if inc else 0,
             "playbooks": pb[0]["deleted"] if pb else 0, "byo_graphs": graphs, "byo_deleted": bool(include_byo),
+            "watch_replays_deleted": replays,
             "trace": tr.steps}

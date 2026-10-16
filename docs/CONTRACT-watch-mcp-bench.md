@@ -37,7 +37,8 @@ Response fields:
         "ms": 20.7, "wall_ms": 23.5}
         // fallback: {"via": "mcp", "tool": "investigate", "tools": ["investigate"], "fallback": "<reason>", ...}
         // MCP down: {"via": "direct", ...} and each affected step says via "direct"
-        // LLM path (model picked investigate): "chosen_by": "llm"
+        // LLM mode: {"via", "transport", "intent", "tool", "tools": every MCP call in the trace,
+        //            "llm_tools": the ones the model chose, "calls", "chosen_by": "llm", "ms"}
 ```
 Each MCP call is its own trace row, followed by the Cypher steps that tool ran server side. The first trace step of a
 deterministic answer is always the `resolve_entity` MCP call:
@@ -116,6 +117,15 @@ Public, 6 per minute per client (429 + Retry-After). Re-plays a past real adviso
              {"tenant": "globex", "verdict": "hit", "exposed_count": 5, "fleet_size": 12, ...} ]}
 ```
 400 when the advisory is not in the graph.
+
+Per-tenant backfill: every poll (also when OSV answers 304) checks advisories the watch already ingested in any
+tenant graph that a tenant has no real verdict for (for example a tenant loaded after the poll that found them). They
+are ingested into that tenant, checked against its fleet and recorded with a WatchPoll `source: "backfill"`
+(`id` = `<poll id>-bf-<tenant>`); the poll summary has `backfilled: {tenant: n}`.
+
+Clearing replays before a recording: `POST /api/admin/reset?tenant=acme&include_watch_replays=true` (admin) deletes
+that tenant's replay WatchEvents and returns `watch_replays_deleted`; real verdicts are kept.
+`CLEAR_REPLAYS=1 TENANT=acme sh scripts/reset-live.sh` does the same.
 
 ### POST /api/watch/poll (admin, X-Admin-Token) body `{"max_batch": 200}` optional
 Runs one poll now; returns the poll summary (plus `watermark`, `remaining`, `fetch_errors`). 409 when busy.

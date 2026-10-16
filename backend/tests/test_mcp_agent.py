@@ -138,6 +138,8 @@ def test_llm_path_gets_mcp_tool_schemas_and_calls_through_mcp(llm_on, monkeypatc
     st = [s for s in mcp_steps(r) if s.get("mcp_tool") == "who_to_wake"]
     assert st and st[0]["via"] == "mcp" and st[0]["params"] == {"service": "auth-service"}
     assert any(s.get("query") == "who_to_wake" for s in r["trace"])  # the tool's own Cypher step came back too
+    assert r["tool_via"] == "mcp" and r["mcp"]["chosen_by"] == "llm" and r["mcp"]["llm_tools"] == ["who_to_wake"]
+    assert r["mcp"]["tools"][-1] == "who_to_wake" and r["mcp"]["calls"] == len(mcp_steps(r))
 
 
 def test_llm_cannot_call_write_tool():

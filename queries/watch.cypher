@@ -134,3 +134,24 @@ ORDER BY pkg, advisory
 
 // @query watch_index_event_poll
 CREATE INDEX FOR (w:WatchEvent) ON (w.poll_id)
+
+// @query watch_reset_replays
+// WRITE. Admin reset with include_watch_replays=true: deletes REPLAY WatchEvents only; real verdicts are kept.
+MATCH (w:WatchEvent) WHERE w.replay = true
+DETACH DELETE w
+RETURN count(*) AS deleted
+
+// @query watch_ingested_advisories
+// Params: $limit. Advisories this watch ingested into the graph (newest first), the source for a per-tenant backfill.
+MATCH (a:Advisory {campaign: 'osv-watch'})
+RETURN a.id AS id, a.pkg AS pkg, a.bad_versions AS bad_versions, a.all_versions AS all_versions,
+       a.aliases AS aliases, a.summary AS summary, a.published AS published, a.modified AS modified, a.url AS url,
+       a.ingested_at AS ingested_at
+ORDER BY ingested_at DESC
+LIMIT $limit
+
+// @query watch_checked_ids
+// Params: $ids. Which of these advisories already have a real (non-replay) verdict in this tenant's graph.
+MATCH (w:WatchEvent)-[:ABOUT]->(a:Advisory)
+WHERE a.id IN $ids AND coalesce(w.replay, false) = false
+RETURN DISTINCT a.id AS id

@@ -343,6 +343,13 @@ def poll(max_batch: int = MAX_BATCH, source: str = "manual", graphs: dict[str, s
             summary["note"] = (f"checked {summary['checked']} advisories first seen by the watch{span} against "
                                f"{len(graphs)} tenant fleet(s)" if advs
                                else "no npm MAL advisories added or modified in OSV since the last poll")
+        try:
+            summary["backfilled"] = _backfill(graphs, poll_id)
+        except GraphUnavailable:
+            raise
+        except Exception as e:  # noqa: BLE001 - a backfill problem never fails the poll itself
+            summary["backfilled"] = {}
+            summary["backfill_error"] = f"{type(e).__name__}: {str(e)[:160]}"
         summary["ms"] = round((time.perf_counter() - t0) * 1000, 1)
         _write_poll(graphs, summary)
         BUS.publish("poll", {"poll": summary})
@@ -352,6 +359,55 @@ def poll(max_batch: int = MAX_BATCH, source: str = "manual", graphs: dict[str, s
         LAST["running"] = False
         _release_lock(token)
         _poll_lock.release()
+
+
+def _backfill(graphs: dict[str, str], poll_id: str, limit: int = MAX_BATCH) -> dict[str, int]:
+    """Per-tenant backfill: advisories the watch already ingested (in any tenant graph) that a tenant has no real
+    verdict for, for example because the tenant was loaded after the poll that found them, are ingested into that
+    tenant and checked against its fleet. Runs on every poll, also when OSV answers 304. Records come from OSV
+    (fallback: the graph's own copy). Each backfilled tenant gets its own WatchPoll (source "backfill")."""
+    known: dict[str, dict] = {}
+    for g in graphs.values():
+        for r in GraphRun(g).run("watch_ingested_advisories", {"limit": limit}):
+            known.setdefault(r["id"], r)
+    if not known:
+        return {}
+    ids = list(known)
+    missing = {t: [i for i in ids if i not in {r["id"] for r in GraphRun(g).run("watch_checked_ids", {"ids": ids})}]
+               for t, g in graphs.items()}
+    missing = {t: m[:limit] for t, m in missing.items() if m}
+    if not missing:
+        return {}
+    need = sorted({i for m in missing.values() for i in m})
+    recs, _errs = osv.fetch_records(need, deadline_s=DEADLINE_S)
+    advs_by_id: dict[str, list[osv.Advisory]] = {}
+    for i in need:
+        advs = osv.normalize(recs[i]) if i in recs else []
+        if not advs:  # OSV unreachable: the graph's own copy of the record
+            k = known[i]
+            advs = [osv.Advisory(id=i, pkg=k["pkg"], bad_versions=sorted(k.get("bad_versions") or []),
+                                 all_versions=bool(k.get("all_versions")), aliases=k.get("aliases") or [],
+                                 summary=k.get("summary") or "", published=k.get("published"),
+                                 modified=k.get("modified"), url=k.get("url") or "")]
+        advs_by_id[i] = advs
+    out: dict[str, int] = {}
+    for t, m in missing.items():
+        advs = [a for i in m for a in advs_by_id.get(i, [])]
+        bid = f"{poll_id}-bf-{t}"
+        events, _ = _record({t: graphs[t]}, advs, poll_id=bid, replay=False, ingest=True)
+        for e in events:
+            BUS.publish("event", e)
+        pubs = sorted(a.published for a in advs if a.published)
+        gr = GraphRun(graphs[t])
+        gr.run("watch_write_poll", {"poll": {
+            "id": bid, "ts": now_iso(), "source": "backfill", "checked": len(advs), "new_advisories": 0,
+            "already_known": len(m), "index_entries": 0, "hits": sum(1 for e in events if e["verdict"] == "hit"),
+            "ms": 0, "errors": 0, "published_oldest": pubs[0] if pubs else None,
+            "published_newest": pubs[-1] if pubs else None,
+            "note": f"backfill: checked {len(advs)} advisories the watch ingested before this tenant had verdicts"}},
+            write=True)
+        out[t] = len(advs)
+    return out
 
 
 def replay(query: str = "debug@4.4.2", tenant_graphs_override: dict[str, str] | None = None) -> dict:
