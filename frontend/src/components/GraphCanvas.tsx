@@ -8,7 +8,7 @@ import { MAX_RING, RING_LABEL, RING_R, radialLayout } from "@/lib/radial";
 type Props = {
   /** Base graph (whole fleet). When null, `highlight` is rendered on its own. */
   fleet: FleetGraph | null;
-  /** Subgraph to emphasize: nodes/edges with type (service | package | affected) and status (exposed | safe | path). */
+  /** Subgraph to emphasize: nodes/edges with type (service | package | affected) and status (exposed | safe | path | clean | focus). */
   highlight: GraphElem | null;
   onNodeClick?: (id: string) => void;
   /** Reserve space on the left for an overlay panel (px). Defaults to the hero headline width on wide screens. */
@@ -28,6 +28,7 @@ const C = {
   signal: "#E5484D",
   signalInk: "#C4282D",
   risk: "#B45309",
+  safe: "#3F7D58",
 };
 
 export default function GraphCanvas({ fleet, highlight, onNodeClick, leftInset, topInset }: Props) {
@@ -171,7 +172,8 @@ export default function GraphCanvas({ fleet, highlight, onNodeClick, leftInset, 
   const colorOf = (n: N): string => {
     const h = hl.nodes.get(n.id);
     if (h) {
-      if (h.status === "path") return C.ink;
+      if (h.status === "path" || h.status === "focus") return C.ink;
+      if (h.status === "clean") return C.safe;
       if (h.type === "affected" || h.type === "service") return h.status === "exposed" ? C.signal : C.stone;
       return h.status === "exposed" ? C.risk : C.stone;
     }
@@ -358,7 +360,7 @@ export default function GraphCanvas({ fleet, highlight, onNodeClick, leftInset, 
       if (n.id === hover) prio = 0;
       else if (focus?.nodes.has(n.id)) prio = isSvc ? 1 : 2;
       else if (hl.active) {
-        if (h && isSvc) prio = h.status === "exposed" ? 3 : 5;
+        if (h && isSvc) prio = h.status === "exposed" || h.status === "clean" || h.status === "focus" ? 3 : 5;
         else if (h && h.type === "affected" && h.status === "exposed") prio = 3;
         else if (h && (h.type === "affected" || h.status === "path")) prio = 4;
         else if (isSvc && radial) prio = 6; // services off every chain stay named, quietly
@@ -623,6 +625,8 @@ function tooltip(n: N, h?: { type: string; status?: string; bad?: string }, via?
     : "";
   const st = admits || (h?.status === "exposed" ? `<div style="color:#C4282D;margin-top:4px">Exposed${h.bad ? `: ${esc(h.bad)}` : ""}</div>`
     : h?.status === "safe" ? `<div style="color:#57534E;margin-top:4px">Range excludes the bad version</div>`
-    : h?.status === "path" ? `<div style="color:#0C0A09;margin-top:4px">On the shortest path</div>` : "");
+    : h?.status === "path" ? `<div style="color:#0C0A09;margin-top:4px">On the shortest path</div>`
+    : h?.status === "clean" ? `<div style="color:#3F7D58;margin-top:4px">Clean: no path to any campaign version</div>`
+    : h?.status === "focus" ? `<div style="color:#0C0A09;margin-top:4px">The service you asked about</div>` : "");
   return `<div style="font-family:inherit;background:#FFFFFF;border:1px solid #E7E5E4;padding:8px 10px;border-radius:8px;font-size:12px;color:#0C0A09;box-shadow:0 4px 16px rgba(12,10,9,.08)"><div style="font-weight:600;font-family:var(--font-geist-mono),ui-monospace,monospace">${esc(n.id)}</div><div style="color:#69625D;font-size:11.5px;margin-top:2px">${kind}</div>${st}</div>`;
 }

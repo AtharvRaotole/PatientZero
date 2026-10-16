@@ -56,6 +56,7 @@ export interface Person {
 export interface WakeEntry {
   service: string;
   tier: number;
+  env?: string;
   repo: string;
   team: string;
   team_display: string;
@@ -143,6 +144,8 @@ export interface AskResponse {
   spof: Spof | null;
   path: { service: string; package: string; via: string[]; requirements: string[]; hops: number } | null;
   maintainers: { pkg: string; maintainers: string[]; had_publish_rights: string[]; as_of: string[] } | null;
+  /** What the router resolved; `campaign` is [key, display name] for named campaigns such as Shai-Hulud. */
+  entity?: { services?: string[]; campaign?: [string, string] | null; found?: boolean } | null;
   graph: GraphElem;
   total_ms: number;
   llm_summary: string | null;

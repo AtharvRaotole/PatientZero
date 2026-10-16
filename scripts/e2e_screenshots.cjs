@@ -194,6 +194,37 @@ const exposedCount = (page) =>
   await p2.screenshot({ path: `${OUT}/09-path-between.png` });
   check("AC12 path_between drawn", await p2.evaluate(() => document.body.innerText.includes("simple-swizzle")));
 
+  // Who to wake: a responder card (team, Slack, pager, on-call, ownership graph), scrolled into view
+  await p2.evaluate(() => window.scrollTo(0, 0));
+  await ask(p2, "who to wake for auth-service");
+  await p2.waitForSelector("[data-testid='responder']", { timeout: 15000 });
+  await new Promise((r) => setTimeout(r, 1400));
+  const wk = await p2.evaluate(() => {
+    const el = document.querySelector("[data-testid='responder']");
+    const h2 = [...document.querySelectorAll("#report h2")].map((x) => x.innerText).join(" | ");
+    return { text: el.innerText, top: el.getBoundingClientRect().top, vh: innerHeight, svg: !!el.querySelector("svg[role='img']"), h2 };
+  });
+  check("who to wake: responder card with team, Slack, pager, on-call and graph, in view",
+    /Identity & Access/.test(wk.text) && /#team-identity/.test(wk.text) && /acme-identity/.test(wk.text) && /Amara Okafor/.test(wk.text) && wk.svg && wk.top < wk.vh && /Page Amara Okafor for auth-service/.test(wk.h2),
+    `top=${Math.round(wk.top)} h2=${wk.h2}`);
+  await p2.screenshot({ path: `${OUT}/11-who-to-wake.png` });
+
+  // Campaign not hit: a confident Not hit state with stats, the 22 clean services and the trace
+  await p2.evaluate(() => window.scrollTo(0, 0));
+  await ask(p2, "Shai-Hulud");
+  await p2.waitForSelector("[data-testid='not-hit']", { timeout: 20000 });
+  await new Promise((r) => setTimeout(r, 1400));
+  const nh = await p2.evaluate(() => ({
+    clean: document.querySelectorAll("[data-testid='clean-grid'] > *").length,
+    stats: document.querySelector("[data-testid='not-hit-stats']")?.innerText.replace(/\s+/g, " ") ?? "",
+    top: document.querySelector("[data-testid='not-hit']").getBoundingClientRect().top, vh: innerHeight,
+    trace: document.body.innerText.includes("incident_scope"),
+    labels: Number(document.querySelector("[data-graph]")?.getAttribute("data-labels") ?? 0),
+  }));
+  check("Shai-Hulud: Not hit with 203 packages, 589 versions, 22 clean services and the trace, in view",
+    nh.clean === 22 && /203/.test(nh.stats) && /589/.test(nh.stats) && nh.trace && nh.top >= 0 && nh.top < nh.vh, JSON.stringify(nh));
+  await p2.screenshot({ path: `${OUT}/12-shai-hulud-not-hit.png` });
+
   // AC7 unknown
   await ask(p2, "left-pad@1.3.0");
   await waitOutcome(p2, "Not in the graph.");

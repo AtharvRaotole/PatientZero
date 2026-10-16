@@ -2,9 +2,10 @@
 import dynamic from "next/dynamic";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, Info, Loader2, Play } from "lucide-react";
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { ApiError, adminToken, apiGet, apiPost } from "@/lib/api";
-import type { AskResponse, FleetGraph, Health, Incident, Playbook } from "@/lib/types";
+import type { AskResponse, FleetGraph, GraphElem, Health, Incident, Playbook } from "@/lib/types";
+import { NotHitView, ResponderView, isNotHit } from "@/components/answers";
 import {
   ErrorCard, ExposurePanel, FixPanel, InsightsPanel, MemoryDetail, MemoryPanel, OutcomeBanner, PathPanel, ScopeStrip, SpofPanel,
   TracePanel, WakeCard, WakeOnly,
@@ -146,7 +147,13 @@ export default function Home() {
         const r = await apiPost<AskResponse>("/api/ask", { query: text, depth: opts.depth ?? depth, fresh: !!opts.fresh, session: sessionId(), mode });
         if (my !== seq.current) return;
         setResult(r);
-        setTimeout(() => graphRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 120);
+        // Incidents draw on the fleet graph; every other answer (who to wake, not hit, path, SPOF) is read in the report.
+        const toGraph = r.exposed.length > 0 || r.safe.length > 0;
+        setTimeout(() => {
+          const el = toGraph ? graphRef.current : resultsRef.current;
+          el?.scrollIntoView({ behavior: "smooth", block: "start" });
+          if (!toGraph) resultsRef.current?.focus({ preventScroll: true });
+        }, 120);
       } catch (e) {
         if (my !== seq.current) return;
         const a = e as ApiError;
@@ -203,6 +210,15 @@ export default function Home() {
   const svcCount = fleet?.nodes.filter((n) => n.kind === "Service").length ?? 0;
   const pkgCount = fleet ? fleet.nodes.length - svcCount : 0;
   const isIncident = result && (result.exposed.length > 0 || result.safe.length > 0);
+  // What the fleet graph emphasizes. Answers without their own subgraph still say something on it:
+  // a clean check paints every service clean, who-to-wake marks the service asked about.
+  const graphHl = useMemo<GraphElem | null>(() => {
+    if (!result) return null;
+    if (result.graph.nodes.length) return result.graph;
+    if (isNotHit(result)) return { nodes: result.clean.map((id) => ({ id, type: "service", status: "clean" })), edges: [] };
+    if (result.wake.length) return { nodes: result.wake.map((w) => ({ id: w.service, type: "service", status: "focus" })), edges: [] };
+    return result.graph;
+  }, [result]);
 
 
   return (
@@ -298,7 +314,7 @@ export default function Home() {
           </div>
           <div className="relative h-[460px] md:h-[540px]">
             {fleet ? (
-              <GraphCanvas fleet={fleet} highlight={result?.graph ?? null} onNodeClick={() => {}} leftInset={0} topInset={0} />
+              <GraphCanvas fleet={fleet} highlight={graphHl} onNodeClick={() => {}} leftInset={0} topInset={0} />
             ) : (
               <div className="absolute inset-0 grid place-items-center">
                 {healthErr || (health && !up) ? <p className="text-[13px] text-ink-3">The graph is unavailable.</p> : (
@@ -320,7 +336,7 @@ export default function Home() {
         </motion.section>
 
         {/* Report */}
-        <div ref={resultsRef} id="report" className="scroll-mt-20 pt-10">
+        <div ref={resultsRef} id="report" tabIndex={-1} className="scroll-mt-20 pt-10 outline-none">
           {healthErr && <ErrorCard kind="network" message={`${healthErr}. Start the backend: cd backend && uv run uvicorn app.main:app --port 8000`} onRetry={loadMeta} />}
           {health && !up && !healthErr && (
             <ErrorCard kind="graph_unavailable" message={health.falkordb === "down" ? "Graph unavailable: FalkorDB is not reachable. Run scripts/start-falkordb.sh. PatientZero never answers from anywhere else." : `Graph ${health.graph} is empty. Load it with ingest/load.py.`} onRetry={loadMeta} />
@@ -362,8 +378,12 @@ export default function Home() {
                 </div>
               ) : (
                 <div className="mt-8">
-                  <ReportSection n={1} title="Answer" sub={result.outcome === "unknown_entity" ? "No traversal ran." : "From the graph, with every hop shown."}>
+                  <ReportSection n={1} title="Answer" sub={result.outcome === "unknown_entity" ? "No traversal ran."
+                    : isNotHit(result) ? "Every version checked against every service. Nothing to fix."
+                    : result.wake.length ? "Ownership, channels and on-call, read from the graph." : "From the graph, with every hop shown."}>
                     {result.outcome === "answered_from_memory" && <MemoryDetail r={result} />}
+                    <NotHitView r={result} fleet={fleet} />
+                    <ResponderView wake={result.wake} />
                     <SpofPanel r={result} />
                     <PathPanel r={result} />
                     <WakeOnly r={result} />

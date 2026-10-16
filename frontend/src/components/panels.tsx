@@ -6,6 +6,7 @@ import { useState } from "react";
 import type { AskResponse, Fix, Incident, ServiceExposure, TraceStep, WakeEntry } from "@/lib/types";
 import { Button, Card, CardHeader, CopyButton, CountUp, PathChain, Segmented, ShowMore, Skeleton } from "./ui";
 import { ApproveBar } from "./agentui";
+import { isNotHit } from "./answers";
 import { BlastRings, ExposureMatrix, SpofScatter } from "./viz";
 import type { Playbook } from "@/lib/types";
 
@@ -18,16 +19,20 @@ const HEADLINE: Record<string, string> = {
 export function OutcomeBanner({ r, onFresh }: { r: AskResponse; onFresh: () => void }) {
   const tokens = r.trace.reduce((a, s) => a + (Number((s as { tokens?: number }).tokens) || 0), 0);
   const hit = r.outcome === "answered_with_path" && r.exposed.length > 0;
+  const notHit = isNotHit(r);
+  const wake = !hit && !r.safe.length && r.wake.length > 0 ? r.wake : null;
+  const label = r.outcome === "answered_from_memory" ? "Graph memory" : r.exposed.length || r.safe.length ? "Incident report"
+    : notHit ? (r.entity_kind === "campaign" ? "Campaign check" : "Exposure check") : wake ? "Who to wake" : "Answer";
   const meta = [
     r.trigger ? `Trigger: ${r.trigger}` : null,
-    r.exposed.length || r.safe.length ? `depth ${r.depth}` : null,
+    r.exposed.length || r.safe.length || notHit ? `depth ${r.depth}` : null,
     `${r.total_ms.toFixed(0)} ms`,
     r.mode === "llm" ? `LLM${r.llm_model ? ` ${r.llm_model}` : ""}, ${tokens} tokens` : "Deterministic",
   ].filter(Boolean) as string[];
   return (
     <motion.header initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
       <p className="flex flex-wrap items-center gap-x-2 text-[13px] text-ink-3">
-        <span className="font-medium text-ink-2">{r.outcome === "answered_from_memory" ? "Graph memory" : r.exposed.length || r.safe.length ? "Incident report" : "Answer"}</span>
+        <span className="font-medium text-ink-2">{label}</span>
         {meta.map((m) => <span key={m} className="flex items-center gap-2"><span className="text-line-strong">/</span>{m}</span>)}
       </p>
       <div className="mt-4 flex flex-wrap items-end justify-between gap-6">
@@ -35,6 +40,17 @@ export function OutcomeBanner({ r, onFresh }: { r: AskResponse; onFresh: () => v
           {hit ? (
             <h2 className="text-[28px] font-semibold leading-tight tracking-[-0.02em] text-ink">
               <CountUp value={r.exposed.length} className="text-signal" /> of {r.fleet_size} services can install a malicious version.
+            </h2>
+          ) : notHit ? (
+            <h2 data-testid="not-hit" className="flex items-center gap-3 text-[28px] font-semibold leading-tight tracking-[-0.02em] text-ink">
+              <span className="grid h-7 w-7 place-items-center rounded-full bg-safe-soft ring-1 ring-safe/20"><span className="h-2.5 w-2.5 rounded-full bg-safe" /></span>
+              Not hit.
+            </h2>
+          ) : wake ? (
+            <h2 className="text-[24px] font-semibold leading-tight tracking-[-0.02em] text-ink md:text-[28px]">
+              {wake.length === 1
+                ? <>Page {wake[0].oncall.length ? wake[0].oncall.map((o) => o.name).join(" and ") : wake[0].team_display} for {wake[0].service}.</>
+                : <>{wake.length} services, {new Set(wake.map((w) => w.team)).size} teams to page.</>}
             </h2>
           ) : (
             <h2 className="text-[24px] font-semibold leading-tight tracking-[-0.02em] text-ink md:text-[28px]">{HEADLINE[r.outcome] ?? split(r.message)[0]}</h2>
@@ -79,6 +95,14 @@ function split(msg: string): [string, string] {
 /** The backend message minus what the headline and the Seen-before row already say. */
 function detail(r: AskResponse, hit: boolean): string {
   let m = r.message;
+  if (isNotHit(r)) {
+    m = m.replace(/^\s*Not hit:\s*/i, "");
+    return m.charAt(0).toUpperCase() + m.slice(1);
+  }
+  if (!hit && !r.safe.length && r.wake.length === 1) {
+    const w = r.wake[0];
+    return `${w.team_display} owns it. Channel ${w.slack}, pager ${w.pager}${w.oncall.length ? `, on-call ${w.oncall.map((o) => o.handle).join(", ")}` : ""}.`;
+  }
   if (r.outcome === "answered_from_memory") {
     const sb = r.memory?.seen_before, inc = r.memory?.incidents?.[0];
     const n = sb?.exposed_count ?? inc?.exposed_count, d = sb?.depth ?? inc?.depth, t = sb?.trigger ?? inc?.trigger;
