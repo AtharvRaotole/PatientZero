@@ -87,3 +87,16 @@ def test_natural_phrasing_routes_to_qix_without_llm():
     for q in ["the guy who maintains chalk got phished", "are we safe from that npm phishing attack last september?"]:
         r = agent.run(DOMAIN, q, fresh=True)
         assert r["mode"] == "deterministic" and r["entity_key"] == "qix" and r["exposed_count"] == 13
+
+
+
+def test_unknown_package_name_skips_the_llm(llm_on, monkeypatch):
+    """P5: a package-shaped name that resolve_entity cannot find is a confident unknown: no API call."""
+    def boom(*a, **k):
+        raise AssertionError("LLM must not be called")
+    monkeypatch.setattr(agent.httpx, "post", boom)
+    if not (ping["ok"] and ping.get("graph_loaded")):
+        pytest.skip("FalkorDB not available")
+    r = agent.run(DOMAIN, "is left-pad affected?")
+    assert r["outcome"] == "unknown_entity" and r["mode"] == "deterministic"
+    assert r["message"].startswith("left-pad is not in the graph")

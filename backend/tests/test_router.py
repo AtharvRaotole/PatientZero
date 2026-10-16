@@ -48,3 +48,13 @@ def test_trigger_priority():
 def test_display_path():
     s = display_path(["img-service", "sharp@0.33.5", "simple-swizzle@0.2.4"], "^0.2.2", "simple-swizzle", "0.2.3", True)
     assert s == "img-service → sharp@0.33.5 → simple-swizzle ^0.2.2 ⚠ 0.2.3"
+
+
+def test_memory_lookup_label_when_empty():
+    from app import db
+    if not db.ping().get("graph_loaded"):
+        return
+    from app.router import ask
+    r = ask("chalk@5.6.1", fresh=True)
+    ml = [s for s in r["trace"] if s["tool"] == "memory lookup"]
+    assert ml and ml[0]["note"] in ("no prior incidents",) or "prior incident" in ml[0]["note"]

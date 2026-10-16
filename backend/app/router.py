@@ -214,7 +214,8 @@ def ask(text: str, depth: int | None = None, fresh: bool = False, session: str =
 def _unknown(out: dict, ent: dict):
     out["intent"] = "resolve"
     out["outcome"] = "unknown_entity"
-    what = (", ".join(ent["unresolved"]) + " is not in the graph") if ent["unresolved"] else \
+    missing = list(dict.fromkeys(ent["unresolved"] + (ent.get("unmatched") or [])))
+    what = (", ".join(missing) + (" is" if len(missing) == 1 else " are") + " not in the graph") if missing else \
         "Nothing in your question matches a node in the graph"
     out["message"] = (f"{what}, so no traversal was run. PatientZero only answers from "
                       f"FalkorDB: try a maintainer (qix), an advisory (GHSA-4x49-vf9v-38px), a package@version "
@@ -239,7 +240,7 @@ def _incident(out, tr, ent, depth, fresh, session, generate_fix):
                           f"{m['depth']}. The patch is on file. Run a fresh traversal to re-check.")
         return
     if mem:
-        tr.add("recall", "memory shown alongside a fresh traversal ("
+        tr.add("memory lookup", "memory shown alongside a fresh traversal ("
                + (f"{why} in the question" if why else "fresh requested" if fresh or generate_fix
                   else "different trigger or depth") + ")")
     scope = scope_for(tr, ent)

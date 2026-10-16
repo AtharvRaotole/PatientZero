@@ -211,6 +211,49 @@ def _is_dev(path: dict, dev_keys: set) -> bool:
     return len(path["via"]) > 1 and path["via"][1] in dev_keys
 
 
+def _name(node: str) -> str:
+    """'https-proxy-agent@5.0.1' -> 'https-proxy-agent', '@commitlint/cli@19.0.0' -> '@commitlint/cli'."""
+    return node.rsplit("@", 1)[0] if "@" in node[1:] else node
+
+
+PAYLOAD_NOTE = ("The Sept 2025 payload hooked browser crypto-wallet APIs, so runtime and bundled code matter most; "
+                "dev-only exposure hits developer and CI machines.")
+
+
+def verdicts(exposed: list[dict], include_dev: bool) -> tuple[dict, dict]:
+    """Runtime first: structured verdicts the UI renders, runtime and dev tooling kept apart."""
+    run_items = [x for x in exposed if x.get("runtime_vias")]
+    dev_items = [x for x in exposed if x.get("dev_path_count")]
+    run_pkgs = sorted({f"{x['package']}@{x['bad_version']}" for x in run_items})
+    run_paths = [dict(package=f"{x['package']}@{x['bad_version']}", via=v,
+                      chain=" → ".join(_name(n) for n in v)) for x in run_items for v in x["runtime_vias"]]
+    run_paths.sort(key=lambda p: (len(p["via"]), p["package"]))
+    vr = dict(status="exposed" if run_items else "clean", packages=run_pkgs, path_count=len(run_paths),
+              paths=run_paths[:20])
+    if run_items:
+        first = run_paths[0]
+        more = len(run_paths) - 1
+        vr["text"] = (f"Runtime: exposed via {first['chain']} ({', '.join(run_pkgs)})"
+                      + (f", plus {more} more runtime path{'s' if more != 1 else ''}" if more else "") + ".")
+    else:
+        vr["text"] = "Runtime clean."
+    dev_pkgs = sorted({f"{x['package']}@{x['bad_version']}" for x in dev_items})
+    dev_paths = sum(x.get("dev_path_count", 0) for x in dev_items)
+    entries = sorted({e for x in dev_items for e in x.get("dev_entries", [])})
+    if not include_dev:
+        vd = dict(status="not_scanned", packages=[], path_count=0, via=[],
+                  text="Dev tooling: not scanned (devDependencies excluded).")
+    elif dev_items:
+        via = ", ".join(entries[:4]) + (f" and {len(entries) - 4} more" if len(entries) > 4 else "")
+        lead = "Dev tooling" if run_items else "Dev tooling only"
+        vd = dict(status="exposed", packages=dev_pkgs, path_count=dev_paths, via=entries,
+                  text=f"{lead}: {dev_paths}{' more' if run_items else ''} path{'s' if dev_paths != 1 else ''} to "
+                       f"{', '.join(dev_pkgs)} via {via}.")
+    else:
+        vd = dict(status="clean", packages=[], path_count=0, via=[], text="Dev tooling clean.")
+    return vr, vd
+
+
 def _dev_only(f: dict, dev_keys: set) -> bool:
     """Dev-only exposure means EVERY exposed path enters through a devDependency (one runtime path is enough)."""
     paths = f.get("exposed_paths") or [f["path"], *f.get("alternatives", [])]
@@ -234,6 +277,8 @@ def _flatten(result: dict, locked: dict[str, list[str]], has_lock: bool, dev_key
                     eps = f.get("exposed_paths") or [p]
                     item["runtime_paths"] = [x["display"] for x in eps if not _is_dev(x, dev_keys)]
                     devp = [x["display"] for x in eps if _is_dev(x, dev_keys)]
+                    item["runtime_vias"] = [x["via"] for x in eps if not _is_dev(x, dev_keys)]
+                    item["dev_entries"] = sorted({_name(x["via"][1]) for x in eps if _is_dev(x, dev_keys)})
                     item["dev_paths"], item["dev_path_count"] = devp[:10], len(devp)
                 if has_lock:
                     lv = locked.get(f["package"], [])
@@ -320,11 +365,10 @@ def run_scan(*, github_url: str | None = None, package_json: str | None = None, 
     unresolved = [dict(package=r.name, requirement=r.requirement, error=r.error) for r in resolved if r.error]
     prod_hit = sorted({f"{x['package']}@{x['bad_version']}" for x in exposed if not x["via_dev_dependency"]})
     runtime_paths = [p for x in exposed for p in x.get("runtime_paths", [])]
+    v_run, v_dev = verdicts(exposed, include_dev)
     if exposed:
-        headline = (f"Yes: on Sept 8 2025 a fresh install of {repo or service} could have pulled "
-                    f"{len(bad_pkgs)} malicious version(s): {', '.join(bad_pkgs)}. "
-                    + (f"Through runtime dependencies: {', '.join(prod_hit)}." if prod_hit else
-                       "All through devDependencies (developer and CI machines, build bundles)."))
+        headline = (f"{v_run['text']} {v_dev['text']}" if v_run["status"] == "exposed"
+                    else f"Runtime clean. {v_dev['text']}")
     elif not_exposed:
         headline = (f"No: {repo or service} depends on {len({x['package'] for x in not_exposed})} of the affected "
                     f"packages, but no declared range admits a malicious version.")
@@ -338,7 +382,8 @@ def run_scan(*, github_url: str | None = None, package_json: str | None = None, 
         hit = sorted({x["package"] for x in exposed if x.get("lockfile_has_bad_version")})
         lock_line = ("package-lock.json contains a malicious version: " + ", ".join(hit)) if hit else \
             "package-lock.json was read: it does not pin any of the malicious versions."
-    summary = dict(headline=headline, would_have_been_hit=bool(exposed), runtime_exposed=prod_hit,
+    summary = dict(headline=headline, would_have_been_hit=bool(exposed), runtime_hit=v_run["status"] == "exposed",
+                   verdict_runtime=v_run, verdict_dev=v_dev, payload_note=PAYLOAD_NOTE, runtime_exposed=prod_hit,
                    runtime_paths=runtime_paths, exposed_count=len(exposed),
                    not_exposed_count=len(not_exposed), malicious_versions=bad_pkgs, depth=depth,
                    direct_dependencies=len(deps), skipped_direct=len(skipped), resolved_direct=counts["direct"], lockfile=lock_line,

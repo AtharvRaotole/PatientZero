@@ -409,7 +409,10 @@ def entity_keys_for_link(kind: str, key: str) -> list[str]:
 
 # --------------------------------------------------------------------------- recall
 def recall(tr: Trace, entity_key: str) -> list[dict]:
-    rows = tr.run("recall", "recall", {"entity_key": entity_key})
+    rows = tr.run("memory lookup", "recall", {"entity_key": entity_key})
+    n = len({r["id"] for r in rows})
+    tr.steps[-1]["note"] = (f"{n} prior incident{'s' if n != 1 else ''} found in graph memory" if n
+                            else "no prior incidents")
     for r in rows:
         r["exposed"] = [x for x in (r.get("exposed") or []) if x and x.get("service")]
         try:

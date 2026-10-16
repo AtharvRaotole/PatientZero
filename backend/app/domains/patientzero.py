@@ -69,7 +69,9 @@ class PatientZero:
         if r["outcome"] != "unknown_entity":
             return True
         ent = r.get("entity") or {}
-        return bool(ent.get("unresolved"))
+        # A package-shaped name (left-pad, colors.js, @scope/x) that resolve_entity could not find is a confident,
+        # honest unknown: asking the LLM would only add latency (about 1.9 s) and cost.
+        return bool(ent.get("unresolved") or ent.get("unmatched"))
 
     def digest(self, payload) -> dict:
         """Compact tool result for the LLM (a few hundred tokens instead of the full response)."""

@@ -42,6 +42,8 @@ def test_debug_442_is_its_own_answer_after_fix(incident):
     sb = d["memory"]["seen_before"]
     assert incident in [i["id"] for i in d["memory"]["incidents"]] and sb["same_trigger"] is False
     assert sb["text"].startswith("Seen before: INC-")
+    ml = [st for st in d["trace"] if st["tool"] == "memory lookup" and st.get("query") == "recall"]
+    assert ml and "prior incident" in ml[0]["note"] and "found in graph memory" in ml[0]["note"]
 
 
 @pytest.mark.parametrize("q", ["maintainer qix was phished", "chalk@5.6.1", "GHSA-4x49-vf9v-38px",

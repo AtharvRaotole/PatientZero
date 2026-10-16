@@ -237,5 +237,33 @@ def test_dev_only_when_every_exposed_path_is_dev(monkeypatch):
 def test_axios_reports_runtime_exposure_through_https_proxy_agent():
     d = _scan(github_url="https://github.com/axios/axios")
     assert d["details"]["runtime_exposed"] == ["debug@4.4.2"]
-    assert "Through runtime dependencies: debug@4.4.2" in d["summary"]
+    assert d["summary"].startswith("Runtime: exposed via axios/axios → https-proxy-agent → debug (debug@4.4.2)")
+    vr, vd = d["details"]["verdict_runtime"], d["details"]["verdict_dev"]
+    assert vr["status"] == "exposed" and vr["packages"] == ["debug@4.4.2"]
+    assert vr["paths"][0]["via"][1] == "https-proxy-agent@5.0.1"
+    assert vd["status"] == "exposed" and "Dev tooling:" in vd["text"] and "@commitlint/cli" in vd["via"]
+    assert "wallet" in d["details"]["payload_note"]
     assert any("https-proxy-agent@5.0.1 → debug 4" in p for p in d["details"]["runtime_paths"])
+
+
+
+@live
+def test_runtime_clean_dev_only_and_not_scanned_verdicts():
+    d = _scan(github_url="https://github.com/expressjs/express/tree/4.x")
+    assert d["summary"].startswith("Runtime clean. Dev tooling only:")
+    assert d["details"]["verdict_runtime"]["status"] == "clean" and d["details"]["verdict_dev"]["status"] == "exposed"
+    d = _scan(github_url="https://github.com/expressjs/express/tree/4.x", include_dev=False)
+    assert d["details"]["verdict_runtime"]["status"] == "clean"
+    assert d["details"]["verdict_dev"]["status"] == "not_scanned"
+
+
+def test_verdict_texts_unit():
+    from app.byo.scan import verdicts
+    run = dict(package="debug", bad_version="4.4.2", runtime_vias=[["app", "https-proxy-agent@5.0.1", "debug@4.4.3"]],
+               dev_path_count=4, dev_entries=["@commitlint/cli"])
+    vr, vd = verdicts([run], True)
+    assert vr["text"] == "Runtime: exposed via app → https-proxy-agent → debug (debug@4.4.2)."
+    assert vd["text"] == "Dev tooling: 4 more paths to debug@4.4.2 via @commitlint/cli."
+    dev = dict(package="chalk", bad_version="5.6.1", runtime_vias=[], dev_path_count=1, dev_entries=["xo"])
+    vr, vd = verdicts([dev], True)
+    assert vr["text"] == "Runtime clean." and vd["text"] == "Dev tooling only: 1 path to chalk@5.6.1 via xo."
