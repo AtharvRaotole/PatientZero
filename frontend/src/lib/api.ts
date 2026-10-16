@@ -1,4 +1,11 @@
+import { getTenant } from "./tenant";
+
 export const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
+
+/** Every call names its tenant: ?tenant= on the URL and an X-Tenant header (the body field, where sent, wins server-side). */
+export function withTenant(path: string, tenant = getTenant()): string {
+  return `${path}${path.includes("?") ? "&" : "?"}tenant=${encodeURIComponent(tenant)}`;
+}
 
 /** Admin token for guarded endpoints (reset, cleanup, DELETE). Set once with ?admin=<token>; kept for the tab session only. */
 const ADMIN_KEY = "pz-admin-token";
@@ -28,7 +35,7 @@ export class ApiError extends Error {
   }
 }
 
-async function handle<T>(res: Response): Promise<T> {
+export async function handle<T>(res: Response): Promise<T> {
   if (res.ok) return res.json() as Promise<T>;
   let msg = `${res.status} ${res.statusText}`;
   let kind = "error";
@@ -47,7 +54,7 @@ async function handle<T>(res: Response): Promise<T> {
 export async function apiGet<T>(path: string): Promise<T> {
   let res: Response;
   try {
-    res = await fetch(`${API_URL}${path}`, { cache: "no-store" });
+    res = await fetch(`${API_URL}${withTenant(path)}`, { cache: "no-store", headers: { "X-Tenant": getTenant() } });
   } catch {
     throw new ApiError(`API unreachable at ${API_URL}. Is the backend running?`, 0, "network");
   }
@@ -56,11 +63,11 @@ export async function apiGet<T>(path: string): Promise<T> {
 
 export async function apiPost<T>(path: string, body: unknown): Promise<T> {
   let res: Response;
-  const headers: Record<string, string> = { "content-type": "application/json" };
+  const headers: Record<string, string> = { "content-type": "application/json", "X-Tenant": getTenant() };
   const admin = adminToken();
   if (admin) headers["X-Admin-Token"] = admin;
   try {
-    res = await fetch(`${API_URL}${path}`, {
+    res = await fetch(`${API_URL}${withTenant(path)}`, {
       method: "POST",
       headers,
       body: JSON.stringify(body),

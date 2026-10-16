@@ -144,6 +144,12 @@ export interface AskResponse {
   spof: Spof | null;
   path: { service: string; package: string; via: string[]; requirements: string[]; hops: number } | null;
   maintainers: { pkg: string; maintainers: string[]; had_publish_rights: string[]; as_of: string[] } | null;
+  tenant?: string;
+  company?: string;
+  /** Present when the question looked like a follow-up (see docs/CONTRACT-crew-sessions-tenants.md). */
+  followup?: Followup | null;
+  resolved_query?: string;
+  session?: { id: string; turn: number; about_linked: number } | null;
   /** What the router resolved; `campaign` is [key, display name] for named campaigns such as Shai-Hulud. */
   entity?: { services?: string[]; campaign?: [string, string] | null; found?: boolean } | null;
   graph: GraphElem;
@@ -252,4 +258,88 @@ export interface SeenBefore {
   text: string;
   new_since?: string[];
   no_longer_exposed?: string[];
+}
+
+export interface Followup {
+  resolved: boolean;
+  from_turn?: number;
+  anchor?: { kind: string; key: string };
+  rewritten?: string;
+  depth?: number;
+  original?: string;
+  reason?: string;
+}
+
+export interface SessionTurn {
+  i: number;
+  query: string;
+  resolved_query: string;
+  intent: string;
+  outcome: string;
+  ts: string;
+  depth: number;
+  entity_kind: string | null;
+  entity_key: string | null;
+  message: string;
+  kind: "ask" | "fix" | "crew";
+  crew_run: string | null;
+  followup_from: number | null;
+  exposed_count: number | null;
+  about?: { kind: string; key: string }[];
+}
+
+export interface SessionHistory {
+  id: string;
+  tenant: string;
+  created: string;
+  updated: string;
+  turns: number;
+  history: SessionTurn[];
+}
+
+export type CrewAgentKey = "triage" | "investigator" | "responder" | "fixer";
+
+export interface CrewFinding {
+  id: string;
+  agent?: CrewAgentKey;
+  kind: string;
+  title: string;
+  text: string;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  data: any;
+  seq?: number;
+  at?: string;
+}
+
+export interface CrewAgentRun {
+  id: string;
+  agent: CrewAgentKey;
+  title: string;
+  role: string;
+  status: string;
+  started?: string;
+  finished?: string;
+  ms: number;
+  error: string | null;
+  summary: string;
+  findings: CrewFinding[];
+}
+
+export interface CrewRun {
+  run_id: string;
+  tenant: string;
+  company: string;
+  query: string;
+  depth: number;
+  session_id: string | null;
+  status: string;
+  started: string;
+  finished: string;
+  ms: number;
+  message: string;
+  incident: { id: string; triage_count: number; first_seen: string; last_seen: string; delta: Record<string, unknown> } | null;
+  agents: CrewAgentRun[];
+  handoffs: { from_agent: CrewAgentKey; to_agent: CrewAgentKey; reason: string; at: string; seq: number }[];
+  dag: [CrewAgentKey, CrewAgentKey][];
+  session?: { id: string; turn: number; about_linked: number; followup?: Followup | null };
 }

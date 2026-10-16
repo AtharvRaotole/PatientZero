@@ -1,12 +1,13 @@
 "use client";
 import { AnimatePresence, motion } from "framer-motion";
 import clsx from "clsx";
-import { Activity, AlertTriangle, BellRing, ChevronDown, Crown, GitBranch, History, Loader2, RotateCcw, Terminal, Wand2 } from "lucide-react";
+import { Activity, AlertTriangle, BellRing, ChevronDown, Crown, GitBranch, History, Loader2, RotateCcw, Terminal, Users, Wand2 } from "lucide-react";
 import { useState } from "react";
 import type { AskResponse, Fix, Incident, ServiceExposure, TraceStep, WakeEntry } from "@/lib/types";
 import { Button, Card, CardHeader, CopyButton, CountUp, PathChain, Segmented, ShowMore, Skeleton } from "./ui";
 import { ApproveBar } from "./agentui";
-import { isNotHit } from "./answers";
+import { checkedName, isNotHit } from "./answers";
+import { FollowupLine } from "./session";
 import { BlastRings, ExposureMatrix, SpofScatter } from "./viz";
 import type { Playbook } from "@/lib/types";
 
@@ -16,7 +17,7 @@ const HEADLINE: Record<string, string> = {
   unknown_entity: "Not in the graph.",
 };
 
-export function OutcomeBanner({ r, onFresh }: { r: AskResponse; onFresh: () => void }) {
+export function OutcomeBanner({ r, onFresh, onCrew }: { r: AskResponse; onFresh: () => void; onCrew?: () => void }) {
   const tokens = r.trace.reduce((a, s) => a + (Number((s as { tokens?: number }).tokens) || 0), 0);
   const hit = r.outcome === "answered_with_path" && r.exposed.length > 0;
   const notHit = isNotHit(r);
@@ -56,8 +57,14 @@ export function OutcomeBanner({ r, onFresh }: { r: AskResponse; onFresh: () => v
             <h2 className="text-[24px] font-semibold leading-tight tracking-[-0.02em] text-ink md:text-[28px]">{HEADLINE[r.outcome] ?? split(r.message)[0]}</h2>
           )}
           {r.outcome === "answered_from_memory" && <MemoryLine r={r} />}
+          <FollowupLine f={r.followup} campaignName={r.entity_kind === "campaign" ? checkedName(r) : undefined} />
           {detail(r, hit) && <p className="mt-3 text-[15px] leading-relaxed text-ink-2">{detail(r, hit)}</p>}
         </div>
+        {onCrew && r.outcome !== "answered_from_memory" && (
+          <button onClick={onCrew} data-testid="answer-crew" className="press inline-flex h-9 items-center gap-2 rounded-lg bg-ink px-3.5 text-[13px] font-medium text-paper hover:bg-ink/85">
+            <Users className="h-4 w-4" /> Run the response crew
+          </button>
+        )}
         {r.outcome === "answered_from_memory" && (
           <button onClick={onFresh} className="press inline-flex h-9 items-center gap-2 rounded-lg bg-ink px-3.5 text-[13px] font-medium text-paper hover:bg-ink/85">
             <RotateCcw className="h-4 w-4" /> Run a fresh traversal
@@ -151,8 +158,10 @@ function ServiceRow({ e, exposed, open, onToggle }: { e: ServiceExposure; expose
               <span className="truncate text-[14px] font-medium text-ink">{e.service}</span>
               <span className="hidden text-[12.5px] text-ink-3 sm:inline">Tier {e.tier} · {e.team}</span>
             </div>
-            <div className="flex shrink-0 items-center gap-3 text-[12.5px]">
-              <span className={clsx("font-mono", exposed ? "text-signal-ink" : "text-ink-2")}>{exposed ? e.exposed_packages.join(", ") : "excluded by range"}</span>
+            <div className="flex min-w-0 shrink items-center gap-3 text-[12.5px]">
+              <span title={exposed ? e.exposed_packages.join(", ") : undefined} className={clsx("max-w-[150px] truncate font-mono sm:max-w-[320px]", exposed ? "text-signal-ink" : "text-ink-2")}>
+                {exposed ? (e.exposed_packages.length > 2 ? `${e.exposed_packages.slice(0, 2).join(", ")} +${e.exposed_packages.length - 2}` : e.exposed_packages.join(", ")) : "excluded by range"}
+              </span>
               <span className="w-12 text-right text-ink-3 tabular">{main[0].path.hops} hop{main[0].path.hops > 1 ? "s" : ""}</span>
               <ChevronDown className={clsx("h-4 w-4 text-ink-3 transition-transform duration-200", open && "rotate-180")} />
             </div>

@@ -1,11 +1,15 @@
 "use client";
 import dynamic from "next/dynamic";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowRight, Info, Loader2, Play } from "lucide-react";
+import { ArrowRight, Info, Loader2, Play, Users } from "lucide-react";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { ApiError, adminToken, apiGet, apiPost } from "@/lib/api";
+import { API_URL, ApiError, adminToken, apiGet, apiPost } from "@/lib/api";
 import type { AskResponse, FleetGraph, GraphElem, Health, Incident, Playbook } from "@/lib/types";
 import { NotHitView, ResponderView, isNotHit } from "@/components/answers";
+import { CrewView, type CrewSpec } from "@/components/crew";
+import { SessionRail, TenantSwitcher } from "@/components/session";
+import { getTenant, initTenant, markSessionUsed, newSessionId, sessionUsed, sessionIdFor, setTenant as storeTenant, type TenantInfo } from "@/lib/tenant";
+import type { SessionHistory } from "@/lib/types";
 import {
   ErrorCard, ExposurePanel, FixPanel, InsightsPanel, MemoryDetail, MemoryPanel, OutcomeBanner, PathPanel, ScopeStrip, SpofPanel,
   TracePanel, WakeCard, WakeOnly,
@@ -32,6 +36,20 @@ const PRESETS: Suggestion[] = [
   { q: "ansi-regex@6.2.1", hint: "Reached, but every range excludes it", group: "Edge cases" },
   { q: "left-pad@1.3.0", hint: "Not in the graph, so nothing is invented", group: "Edge cases" },
 ];
+
+const GLOBEX_PRESETS: Suggestion[] = [
+  { q: "Shai-Hulud", hint: "The Sept 15, 2025 worm: Globex is hit", group: "Incidents" },
+  { q: "maintainer qix was phished", hint: "Replay the Sept 8, 2025 compromise", group: "Incidents" },
+  { q: "who should I wake for that?", hint: "A follow-up, resolved against this session", group: "Follow-ups" },
+  { q: "and at depth 6?", hint: "Rerun the last question deeper", group: "Follow-ups" },
+  { q: "who is our single point of failure?", hint: "Maintainer reach and algo.pageRank", group: "Fleet" },
+];
+const FOLLOWUP_PRESETS: Suggestion[] = [
+  { q: "who should I wake for that?", hint: "A follow-up, resolved against this session", group: "Follow-ups" },
+  { q: "and at depth 6?", hint: "Rerun the last question deeper", group: "Follow-ups" },
+];
+const presetsFor = (t: string) => (t === "globex" ? GLOBEX_PRESETS : [...PRESETS, ...FOLLOWUP_PRESETS]);
+const wantsWake = (q: string) => /\b(wake|page|on-?call|who should)\b/i.test(q);
 
 type Err = { message: string; kind: string };
 
@@ -61,6 +79,14 @@ export default function Home() {
   const [playbooks, setPlaybooks] = useState<Playbook[] | null>(null);
   const [pbErr, setPbErr] = useState<string | null>(null);
   const [timeline, setTimeline] = useState<TimelineEvent[] | null>(null);
+  const [tenant, setTenantState] = useState("acme");
+  const [tenants, setTenants] = useState<TenantInfo[]>([]);
+  const [svcByTenant, setSvcByTenant] = useState<Record<string, number>>({});
+  const [history, setHistory] = useState<SessionHistory | null>(null);
+  const [histErr, setHistErr] = useState<string | null>(null);
+  const [crew, setCrew] = useState<CrewSpec | null>(null);
+  const crewRef = useRef<HTMLDivElement>(null);
+  const fleetCache = useRef<Record<string, FleetGraph>>({});
 
   const refreshTimeline = useCallback(async () => {
     try {
@@ -79,11 +105,17 @@ export default function Home() {
       setHealth(h);
       setHealthErr(null);
       if (h.falkordb === "up" && h.graph_loaded) {
+        const t = getTenant();
+        const cached = fleetCache.current[t];
+        if (cached) setFleet(cached);
         const [g, inc] = await Promise.all([
-          apiGet<FleetGraph>("/api/fleet/graph"),
+          cached ? Promise.resolve(cached) : apiGet<FleetGraph>("/api/fleet/graph"),
           apiGet<{ incidents: Incident[] }>("/api/incidents"),
         ]);
+        if (t !== getTenant()) return; // switched again while loading
+        fleetCache.current[t] = g;
         setFleet(g);
+        setSvcByTenant((m) => ({ ...m, [t]: g.nodes.filter((n) => n.kind === "Service").length }));
         setIncidents(inc.incidents);
       }
     } catch (e) {
@@ -92,9 +124,45 @@ export default function Home() {
     }
   }, []);
 
+  // Tenant: read once from the URL or localStorage, then everything below reloads per tenant.
+  useEffect(() => {
+    setTenantState(initTenant());
+    apiGet<{ tenants: TenantInfo[] }>("/api/tenants").then((r) => setTenants(r.tenants), () => setTenants([]));
+    const run = new URL(window.location.href).searchParams.get("run");
+    if (run) setCrew({ key: Date.now(), mode: "replay", runId: run });
+  }, []);
+
+  const refreshHistory = useCallback(async () => {
+    const id = sessionIdFor(getTenant());
+    if (!sessionUsed()) { setHistory(null); setHistErr(null); return; }
+    try {
+      setHistory(await apiGet<SessionHistory>(`/api/sessions/${encodeURIComponent(id)}?limit=50`));
+      setHistErr(null);
+    } catch (e) {
+      setHistory(null);
+      setHistErr((e as ApiError).status === 404 ? null : (e as Error).message);
+    }
+  }, []);
+
   useEffect(() => {
     loadMeta();
-  }, [loadMeta]);
+    refreshHistory();
+  }, [loadMeta, refreshHistory, tenant]);
+
+  // Warm the other tenants' fleet graphs so a switch paints instantly.
+  useEffect(() => {
+    if (!tenants.length) return;
+    const t = setTimeout(() => {
+      tenants.filter((x) => x.loaded && !fleetCache.current[x.id]).forEach((x) => {
+        fetch(`${API_URL}/api/fleet/graph?tenant=${x.id}`, { headers: { "X-Tenant": x.id } }).then((r) => (r.ok ? r.json() : null)).then((g: FleetGraph | null) => {
+          if (!g) return;
+          fleetCache.current[x.id] = g;
+          setSvcByTenant((m) => ({ ...m, [x.id]: g.nodes.filter((n) => n.kind === "Service").length }));
+        }, () => {});
+      });
+    }, 1200);
+    return () => clearTimeout(t);
+  }, [tenants]);
 
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
@@ -121,7 +189,7 @@ export default function Home() {
   useEffect(() => {
     refreshPlaybooks();
     refreshTimeline();
-  }, [refreshPlaybooks, refreshTimeline]);
+  }, [refreshPlaybooks, refreshTimeline, tenant]);
 
   const refreshIncidents = useCallback(async () => {
     try {
@@ -144,13 +212,18 @@ export default function Home() {
       setLoading(true);
       setErr(null);
       try {
-        const r = await apiPost<AskResponse>("/api/ask", { query: text, depth: opts.depth ?? depth, fresh: !!opts.fresh, session: sessionId(), mode });
+        const t = getTenant();
+        const r = await apiPost<AskResponse>("/api/ask", { query: text, depth: opts.depth ?? depth, fresh: !!opts.fresh, session: sessionId(), mode, tenant: t, session_id: sessionIdFor(t) });
         if (my !== seq.current) return;
         setResult(r);
+        if (r.depth && r.depth !== (opts.depth ?? depth)) setDepth(r.depth); // "and at depth 6?" moves the slider too
+        markSessionUsed(t);
+        refreshHistory();
         // Incidents draw on the fleet graph; every other answer (who to wake, not hit, path, SPOF) is read in the report.
         const toGraph = r.exposed.length > 0 || r.safe.length > 0;
+        const wakeSection = toGraph && wantsWake(text) && r.wake.length > 0;
         setTimeout(() => {
-          const el = toGraph ? graphRef.current : resultsRef.current;
+          const el = wakeSection ? document.getElementById("who-to-wake") : toGraph ? graphRef.current : resultsRef.current;
           el?.scrollIntoView({ behavior: "smooth", block: "start" });
           if (!toGraph) resultsRef.current?.focus({ preventScroll: true });
         }, 120);
@@ -164,8 +237,56 @@ export default function Home() {
         if (my === seq.current) setLoading(false);
       }
     },
-    [depth, loadMeta, mode],
+    [depth, loadMeta, mode, refreshHistory],
   );
+
+  const switchTenant = useCallback((t: string) => {
+    if (t === getTenant()) return;
+    seq.current++; // drop any answer still in flight for the old tenant
+    storeTenant(t);
+    setTenantState(t);
+    setResult(null);
+    setErr(null);
+    setQuery("");
+    setLastQuery("");
+    setCrew(null);
+    setHistory(null);
+    setIncidents(null);
+    setFleet(fleetCache.current[t] ?? null);
+    const url = new URL(window.location.href);
+    if (url.searchParams.has("run")) { url.searchParams.delete("run"); window.history.replaceState(null, "", url.toString()); }
+  }, []);
+
+  // The response crew: four agents over SSE, opened under the hero and replayable from ?run=.
+  const startCrew = useCallback((q: string) => {
+    const text = q.trim();
+    if (!text) return;
+    setCrew({ key: Date.now(), mode: "live", query: text, depth, sessionId: sessionIdFor() });
+    setTimeout(() => crewRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 80);
+  }, [depth]);
+  const onCrewRunId = useCallback((id: string) => {
+    const url = new URL(window.location.href);
+    url.searchParams.set("run", id);
+    window.history.replaceState(null, "", url.toString());
+  }, []);
+  const closeCrew = useCallback(() => {
+    setCrew(null);
+    const url = new URL(window.location.href);
+    url.searchParams.delete("run");
+    window.history.replaceState(null, "", url.toString());
+  }, []);
+  const onCrewFinished = useCallback(() => {
+    markSessionUsed();
+    refreshHistory();
+    refreshIncidents();
+    refreshTimeline();
+    refreshPlaybooks();
+  }, [refreshHistory, refreshIncidents, refreshTimeline, refreshPlaybooks]);
+  const onNewSession = useCallback(() => {
+    newSessionId();
+    setHistory(null);
+    setHistErr(null);
+  }, []);
 
   // Dragging the slider re-traces once it settles, not once per step.
   const depthTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
@@ -180,7 +301,7 @@ export default function Home() {
     if (!lastQuery) return;
     setFixLoading(true);
     try {
-      const r = await apiPost<AskResponse>("/api/fix", { query: lastQuery, depth, session: sessionId() });
+      const r = await apiPost<AskResponse>("/api/fix", { query: lastQuery, depth, session: sessionId(), tenant: getTenant(), session_id: sessionIdFor() });
       setResult(r);
       refreshIncidents();
       refreshTimeline();
@@ -229,9 +350,10 @@ export default function Home() {
           <div className="flex items-center gap-5">
             <Logo />
             <span className="hidden h-4 w-px bg-line md:block" />
+            {tenants.length > 1 && <TenantSwitcher tenants={tenants} value={tenant} onChange={switchTenant} services={svcByTenant} />}
             {health ? (
               <Status tone={up ? "safe" : "danger"}>
-                {up ? <>Connected to FalkorDB <span className="hidden font-mono text-[12px] text-ink-3 md:inline">{health.graph}</span></> : `FalkorDB ${health.falkordb}`}
+                {up ? <>Connected to FalkorDB <motion.span key={health.graph} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.2 }} data-testid="graph-name" className="hidden font-mono text-[12px] text-ink-3 md:inline">{health.graph}</motion.span></> : `FalkorDB ${health.falkordb}`}
               </Status>
             ) : healthErr ? <Status tone="danger">API offline</Status> : <Skeleton className="h-4 w-36" />}
           </div>
@@ -255,12 +377,15 @@ export default function Home() {
 
       <main className="mx-auto max-w-[1240px] px-6 pb-24">
         {/* Hero */}
-        <section className="pb-6 pt-8 md:pt-10">
+        <section className="grid gap-6 pb-6 pt-8 md:pt-10 xl:grid-cols-[minmax(0,1fr)_300px] xl:items-end">
+          <div className="min-w-0">
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
-            <p className="flex items-center gap-2 text-[13px] text-ink-2" title={`Source: ${QIX_DOWNLOADS_SOURCE}`}>
+            <motion.p key={tenant} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.25 }} className="flex items-center gap-2 text-[13px] text-ink-2" title={tenant === "globex" ? undefined : `Source: ${QIX_DOWNLOADS_SOURCE}`}>
               <span className="h-1.5 w-1.5 rounded-full bg-signal" />
-              Sept 8, 2025. One phished maintainer, {QIX_PACKAGES} packages, {(QIX_WEEK_DOWNLOADS / 1e9).toFixed(2)} billion downloads the week before.
-            </p>
+              {tenant === "globex"
+                ? <>Sept 2025. Shai-Hulud, a self-replicating npm worm. Try it on the Globex fleet.</>
+                : <>Sept 8, 2025. One phished maintainer, {QIX_PACKAGES} packages, {(QIX_WEEK_DOWNLOADS / 1e9).toFixed(2)} billion downloads the week before.</>}
+            </motion.p>
             <h1 className="mt-4 text-[34px] font-semibold leading-[1.1] tracking-[-0.025em] text-ink md:text-[44px]">
               Know your blast radius <span className="font-serif text-[1.08em] font-normal italic tracking-[-0.01em] text-ink-2">before the postmortem.</span>
             </h1>
@@ -269,7 +394,7 @@ export default function Home() {
             </p>
           </motion.div>
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0.08 }} className="mt-6 max-w-[760px]">
-            <CommandBar inputRef={inputRef} value={query} onChange={setQuery} suggestions={PRESETS} disabled={!up} loading={loading}
+            <CommandBar inputRef={inputRef} value={query} onChange={setQuery} suggestions={presetsFor(tenant)} disabled={!up} loading={loading}
               onRun={(q, fromSuggestion) => run(q, { fresh: fromSuggestion && q.includes("phished") })} />
             <Interpreted result={loading ? null : result} asked={lastQuery} />
             <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
@@ -277,10 +402,23 @@ export default function Home() {
                 className="press inline-flex h-9 items-center gap-2 rounded-lg bg-ink px-3.5 text-[13.5px] font-medium text-paper transition-colors hover:bg-ink/85 disabled:opacity-40">
                 <Play className="h-3.5 w-3.5 fill-current" /> Replay the qix compromise
               </button>
+              <button onClick={() => startCrew(tenant === "globex" ? "Shai-Hulud" : REPLAY)} disabled={!up} data-testid="hero-crew"
+                className="press inline-flex h-9 items-center gap-2 rounded-lg bg-surface px-3.5 text-[13.5px] font-medium text-ink ring-1 ring-inset ring-line-strong transition-colors hover:bg-subtle disabled:opacity-40">
+                <Users className="h-3.5 w-3.5" /> Run the response crew
+              </button>
               <LastTraversal result={result} loading={loading} queries={health?.queries} />
             </div>
           </motion.div>
+          </div>
+          {up && <SessionRail history={history} error={histErr} onPick={(q) => run(q)} onNew={onNewSession} busy={loading} />}
         </section>
+
+        {crew && (
+          <div ref={crewRef} className="scroll-mt-[72px] pb-8">
+            <CrewView key={crew.key} spec={crew} onClose={closeCrew} onRunId={onCrewRunId} onFinished={onCrewFinished}
+              onRestart={() => crew.mode === "live" ? startCrew(crew.query) : setCrew({ ...crew, key: Date.now() })} />
+          </div>
+        )}
 
         {/* Graph */}
         <motion.section ref={graphRef} id="graph" initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4, delay: 0.12 }}
@@ -349,7 +487,7 @@ export default function Home() {
 
           {result && (
             <div className={loading ? "opacity-50 transition-opacity" : "transition-opacity"}>
-              <OutcomeBanner r={result} onFresh={() => run(lastQuery, { fresh: true })} />
+              <OutcomeBanner r={result} onFresh={() => run(lastQuery, { fresh: true })} onCrew={isIncident && result.exposed.length > 0 ? () => startCrew(result.resolved_query ?? lastQuery) : undefined} />
               {result.memory?.seen_before && result.outcome !== "answered_from_memory" && <div className="mt-4"><SeenBefore sb={result.memory.seen_before} /></div>}
               <div className="mt-4"><AgentAnswer key={result.query + result.total_ms} r={result} llmAvailable={health?.agent_mode === "llm"} /></div>
 
@@ -362,7 +500,7 @@ export default function Home() {
                     <ExposurePanel r={result} depth={depth} onDepth={onDepth} onSelect={() => {}} />
                     <InsightsPanel r={result} />
                   </ReportSection>
-                  <ReportSection n={3} title="Who to wake" sub="Owning team and on-call for every exposed service." delay={0.1}>
+                  <ReportSection n={3} id="who-to-wake" title="Who to wake" sub="Owning team and on-call for every exposed service." delay={0.1}>
                     <WakeCard wake={result.wake} />
                   </ReportSection>
                   <ReportSection n={4} title="Fix" sub="Overrides pinned to clean versions, drafts for each team. Approve it to remember it as a playbook." delay={0.14}>
@@ -418,7 +556,7 @@ export default function Home() {
         {up && <ByoSection />}
 
         <footer className="mt-24 flex flex-wrap items-center justify-between gap-3 border-t border-line pt-6 text-[12.5px] text-ink-3">
-          <span>The Acme fleet, its teams and people are synthetic. npm packages, versions, ranges (deps.dev) and advisories (OSV) are real.</span>
+          <span>The {tenants.find((x) => x.id === tenant)?.company ?? "Acme"} fleet, its teams and people are synthetic. npm packages, versions, ranges (deps.dev) and advisories (OSV) are real.</span>
           <span>Every answer is a Cypher query or algo call against FalkorDB.</span>
         </footer>
       </main>
