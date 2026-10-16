@@ -10,7 +10,7 @@ import { CrewView, type CrewSpec } from "@/components/crew";
 import { BenchPanel, LiveWatch } from "@/components/watch";
 import { SessionRail, TenantSwitcher } from "@/components/session";
 import { getTenant, initTenant, markSessionUsed, newSessionId, sessionUsed, sessionIdFor, setTenant as storeTenant, type TenantInfo } from "@/lib/tenant";
-import type { SessionHistory } from "@/lib/types";
+import type { SessionHistory, SessionTurn } from "@/lib/types";
 import {
   ErrorCard, ExposurePanel, FixPanel, InsightsPanel, MemoryDetail, MemoryPanel, OutcomeBanner, PathPanel, ScopeStrip, SpofPanel,
   TracePanel, WakeCard, WakeOnly,
@@ -133,16 +133,43 @@ export default function Home() {
     if (run) setCrew({ key: Date.now(), mode: "replay", runId: run });
   }, []);
 
+  // Only the newest history request may land; a slower, older response is dropped. A fetched history never
+  // replaces a longer one for the same session (the optimistic turn from the answer is already on screen).
+  const histSeq = useRef(0);
   const refreshHistory = useCallback(async () => {
-    const id = sessionIdFor(getTenant());
+    const my = ++histSeq.current;
+    const t = getTenant();
+    const id = sessionIdFor(t);
     if (!sessionUsed()) { setHistory(null); setHistErr(null); return; }
     try {
-      setHistory(await apiGet<SessionHistory>(`/api/sessions/${encodeURIComponent(id)}?limit=50`));
+      const h = await apiGet<SessionHistory>(`/api/sessions/${encodeURIComponent(id)}?limit=50`, t);
+      if (my !== histSeq.current || t !== getTenant() || id !== sessionIdFor(t)) return;
+      setHistory((cur) => (cur && cur.id === h.id && cur.history.length > h.history.length ? cur : h));
       setHistErr(null);
     } catch (e) {
+      if (my !== histSeq.current) return;
       setHistory(null);
       setHistErr((e as ApiError).status === 404 ? null : (e as Error).message);
     }
+  }, []);
+  const appendTurn = useCallback((t: string, text: string, r: AskResponse) => {
+    if (!r.session?.id || !r.session.turn) return;
+    const turn: SessionTurn = {
+      i: r.session.turn, query: text, resolved_query: r.resolved_query ?? text, intent: r.intent ?? "", outcome: r.outcome,
+      ts: new Date().toISOString(), depth: r.depth, entity_kind: r.entity_kind, entity_key: null, message: r.message,
+      kind: "ask", crew_run: null, followup_from: r.followup?.resolved ? r.followup.from_turn ?? null : null,
+      exposed_count: r.exposed.length,
+    };
+    histSeq.current++; // anything fetched before this answer is older than it
+    setHistory((cur) => {
+      if (t !== getTenant()) return cur;
+      const base: SessionHistory = cur && cur.id === r.session!.id ? cur
+        : { id: r.session!.id, tenant: t, created: turn.ts, updated: turn.ts, turns: 0, history: [] };
+      const rest = base.history.filter((x) => x.i !== turn.i);
+      const history = [...rest, turn].sort((a, b) => a.i - b.i);
+      return { ...base, updated: turn.ts, turns: Math.max(base.turns, history.length), history };
+    });
+    setHistErr(null);
   }, []);
 
   useEffect(() => {
@@ -219,6 +246,7 @@ export default function Home() {
         setResult(r);
         if (r.depth && r.depth !== (opts.depth ?? depth)) setDepth(r.depth); // "and at depth 6?" moves the slider too
         markSessionUsed(t);
+        appendTurn(t, text, r);
         refreshHistory();
         // Incidents draw on the fleet graph; every other answer (who to wake, not hit, path, SPOF) is read in the report.
         const toGraph = r.exposed.length > 0 || r.safe.length > 0;
@@ -238,12 +266,13 @@ export default function Home() {
         if (my === seq.current) setLoading(false);
       }
     },
-    [depth, loadMeta, mode, refreshHistory],
+    [depth, loadMeta, mode, refreshHistory, appendTurn],
   );
 
   const switchTenant = useCallback((t: string) => {
     if (t === getTenant()) return;
     seq.current++; // drop any answer still in flight for the old tenant
+    histSeq.current++; // and any history request
     storeTenant(t);
     setTenantState(t);
     setResult(null);
@@ -285,6 +314,7 @@ export default function Home() {
   }, [refreshHistory, refreshIncidents, refreshTimeline, refreshPlaybooks]);
   const onNewSession = useCallback(() => {
     newSessionId();
+    histSeq.current++;
     setHistory(null);
     setHistErr(null);
   }, []);

@@ -75,8 +75,18 @@ const waitText = (page, re, timeout = 20000) =>
   await ask(page, "debug@4.4.2");
   await waitText(page, /services can install a malicious version/);
   await sleep(1200);
+  // Hold back the next session-history GET by 4 s so it lands after the following turn's: a stale, out-of-order response.
+  let held = false;
+  const onReq = (req) => {
+    if (!held && req.method() === "GET" && /\/api\/sessions\//.test(req.url())) { held = true; setTimeout(() => req.continue().catch(() => {}), 4000); }
+    else req.continue().catch(() => {});
+  };
+  await page.setRequestInterception(true);
+  page.on("request", onReq);
   await ask(page, "who should I wake for that?");
   await page.waitForFunction(() => /Resolved\s+that\s+to\s+debug@4\.4\.2\s+from turn 1/.test(document.querySelector("[data-testid=followup-line]")?.innerText || ""), { timeout: 20000 });
+  const railNow = await text(page, "[data-testid=session-rail]");
+  check("session rail shows the new turn as soon as the answer lands (history GET still held)", held && /2 turns/.test(railNow) && /who should I wake for that\?/.test(railNow), railNow.replace(/\n/g, " | ").slice(0, 90));
   await sleep(1500);
   const wakeTop = await page.evaluate(() => document.getElementById("who-to-wake")?.getBoundingClientRect().top ?? 9999);
   check("follow-up: 'who should I wake for that?' resolves to debug@4.4.2 from turn 1", true, (await text(page, "[data-testid=followup-line]")).replace(/\s+/g, " "));
@@ -86,6 +96,11 @@ const waitText = (page, re, timeout = 20000) =>
   await page.screenshot({ path: `${OUT}/02-followup-resolution.png` });
   await ask(page, "and at depth 6?");
   await page.waitForFunction(() => /at depth 6/.test(document.querySelector("[data-testid=followup-line]")?.innerText || ""), { timeout: 20000 });
+  await sleep(4500); // the held, older GET (2 turns) lands now, after turn 3's
+  const railAfter = await text(page, "[data-testid=session-rail]");
+  check("session rail ignores the stale out-of-order history response", /3 turns/.test(railAfter), railAfter.replace(/\n/g, " | ").slice(0, 60));
+  page.off("request", onReq);
+  await page.setRequestInterception(false);
   const slider = await page.$eval("input[aria-label='graph depth']", (e) => e.value);
   check("follow-up: 'and at depth 6?' reruns at depth 6 and moves the slider", slider === "6", `slider=${slider}`);
   // The rail refetches the session after each answer; on a remote deploy that GET lands a moment after the answer.
