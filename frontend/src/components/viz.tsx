@@ -2,7 +2,7 @@
 /* Insight views. Every mark is derived from graph results (paths, findings, ranks, dated events). */
 import { motion } from "framer-motion";
 import clsx from "clsx";
-import { BookCheck, Brain, CalendarDays, FileWarning, Skull } from "lucide-react";
+import { BookCheck, Brain, CalendarDays, FileWarning, History, Radar, Skull } from "lucide-react";
 import { useMemo, useState } from "react";
 import type { AskResponse, ServiceExposure, Spof } from "@/lib/types";
 
@@ -341,7 +341,7 @@ export function SpofScatter({ spof }: { spof: Spof }) {
 }
 
 /* ------------------------------------------------------------------ Incident timeline */
-export type TimelineEvent = { kind: "compromise" | "advisory" | "campaign" | "incident" | "playbook"; at: string; title: string; count: number; items: string[]; ref: string | null };
+export type TimelineEvent = { kind: "compromise" | "advisory" | "campaign" | "incident" | "playbook" | "watch" | "watch_replay"; at: string; title: string; count: number; items: string[]; ref: string | null };
 
 const KIND = {
   compromise: { icon: Skull, color: "text-signal", ring: "ring-signal/40 bg-surface", label: "Account compromised" },
@@ -349,7 +349,11 @@ const KIND = {
   campaign: { icon: Skull, color: "text-risk", ring: "ring-line-strong bg-surface", label: "Malicious-package advisories published" },
   incident: { icon: Brain, color: "text-ink-2", ring: "ring-line-strong bg-surface", label: "Incident written to graph" },
   playbook: { icon: BookCheck, color: "text-safe", ring: "ring-line-strong bg-surface", label: "Playbook approved" },
+  watch: { icon: Radar, color: "text-ink-2", ring: "ring-line-strong bg-surface", label: "Live OSV watch" },
+  watch_replay: { icon: History, color: "text-ink-3", ring: "ring-line bg-surface", label: "Watch replay" },
 } as const;
+const isWatch = (e: TimelineEvent) => e.kind === "watch" || (e.kind === "campaign" && e.title === "osv-watch"); // older graphs
+const verdictTone = (t: string) => (/^not hit/i.test(t) ? "text-safe" : /hit/i.test(t) ? "text-signal-ink" : "text-ink-2");
 
 export function Timeline({ events }: { events: TimelineEvent[] }) {
   const groups = useMemo(() => {
@@ -366,7 +370,9 @@ export function Timeline({ events }: { events: TimelineEvent[] }) {
   return (
     <ol className="relative ml-3 border-l border-line">
       {groups.map((g, i) => {
-        const k = KIND[g.kind] ?? KIND.advisory;
+        const watch = isWatch(g.items[0]);
+        const replay = g.kind === "watch_replay";
+        const k = watch ? KIND.watch : (KIND[g.kind] ?? KIND.advisory);
         const Icon = k.icon;
         const first = g.items[0];
         const fmt = (s: string) => (s.length > 10 ? new Date(s).toLocaleString([], { month: "short", day: "numeric", year: "numeric", hour: "numeric", minute: "2-digit" }) : new Date(s + "T12:00:00Z").toLocaleDateString([], { month: "short", day: "numeric", year: "numeric" }));
@@ -374,16 +380,35 @@ export function Timeline({ events }: { events: TimelineEvent[] }) {
           <motion.li key={i} initial={{ opacity: 0, x: -6 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: Math.min(i * 0.05, 0.4), duration: 0.25, ease: "easeOut" }} className="mb-7 ml-7">
             <span className={clsx("absolute -left-[13px] grid h-6 w-6 place-items-center rounded-full ring-1", k.ring)}><Icon className={clsx("h-3.5 w-3.5", k.color)} /></span>
             <div className="flex flex-wrap items-baseline gap-2">
-              <p className="text-[14px] font-medium text-ink">{g.kind === "advisory" ? `${g.items.length} advisor${g.items.length > 1 ? "ies" : "y"} published` : k.label}</p>
+              <p className="text-[14px] font-medium text-ink">{watch || replay ? k.label : g.kind === "advisory" ? `${g.items.length} advisor${g.items.length > 1 ? "ies" : "y"} published` : k.label}</p>
               <span className="text-[12.5px] text-ink-3 tabular"><CalendarDays className="mr-1 inline h-3 w-3 -translate-y-px" />{fmt(first.at)}{g.items.length > 1 ? ` to ${fmt(g.items[g.items.length - 1].at).split(",").slice(-1)[0]}` : ""}</span>
             </div>
             {g.kind === "compromise" && <p className="mt-1 text-[13.5px] leading-relaxed text-ink-2">npm account <span className="font-mono text-ink">{first.title}</span> had publish rights on {first.count} packages that shipped malicious versions.</p>}
-            {g.kind === "campaign" && <p className="mt-1 text-[13.5px] leading-relaxed text-ink-2"><span className="font-mono text-ink">{first.title}</span>: {first.count} OSV malicious-package advisories, first published this day. Sample:</p>}
+            {watch && g.items.map((e, j) => e.kind === "watch" ? (
+              <div key={j} className="mt-1">
+                <p className="text-[13.5px] leading-relaxed text-ink-2"><span className={clsx("font-medium", verdictTone(e.title))}>{e.title.split(":")[0]}</span>{e.title.includes(":") ? `: ${e.title.split(":").slice(1).join(":").trim()}` : ""}</p>
+                {e.items.length > 0 && <div className="mt-2 flex flex-wrap gap-1.5">{[...new Set(e.items)].slice(0, 8).map((t) => <span key={t} className="rounded border border-line bg-surface px-1.5 py-0.5 font-mono text-[11.5px] text-ink-2">{t}</span>)}</div>}
+              </div>
+            ) : (
+              <div key={j} className="mt-1">
+                <p className="text-[13.5px] leading-relaxed text-ink-2">{e.count} npm malware advisories from the OSV watch, written to the graph and checked against the fleet. Sample:</p>
+                <div className="mt-2.5 flex flex-wrap gap-1.5">{[...new Set(e.items)].slice(0, 12).map((t) => <span key={t} className="rounded border border-line bg-surface px-1.5 py-0.5 font-mono text-[11.5px] text-ink-2">{t}</span>)}</div>
+              </div>
+            ))}
+            {replay && g.items.length > 3 && <p className="mt-1 text-[12.5px] text-ink-3">{g.items.length} replays of past advisories; the latest 3:</p>}
+            {replay && g.items.slice(-3).map((e, j) => (
+              <p key={j} className="mt-1 flex flex-wrap items-baseline gap-x-2 text-[13.5px] leading-relaxed text-ink-2">
+                <span className="rounded border border-line-strong px-1 text-[10.5px] font-semibold uppercase tracking-[0.06em] text-ink-2">Replay</span>
+                <span>{e.title.replace(/^replay of /i, "")}</span>
+                {e.ref && <a href={e.ref} target="_blank" rel="noreferrer" className="text-[12.5px] text-ink-3 underline decoration-line-strong underline-offset-4 hover:text-ink">OSV</a>}
+              </p>
+            ))}
+            {!watch && g.kind === "campaign" && <p className="mt-1 text-[13.5px] leading-relaxed text-ink-2"><span className="font-mono text-ink">{first.title}</span>: {first.count} OSV malicious-package advisories, first published this day. Sample:</p>}
             {g.kind === "incident" && g.items.map((e) => <p key={e.title} className="mt-1 text-[13.5px] leading-relaxed text-ink-2"><span className="font-mono text-ink-2">{e.title}</span>: {e.count} exposed services, trigger {e.items[0]}</p>)}
             {g.kind === "playbook" && g.items.map((e) => <p key={e.title + e.at} className="mt-1 text-[13.5px] leading-relaxed text-ink-2">{e.title}</p>)}
-            {(g.kind === "advisory" || g.kind === "compromise" || g.kind === "campaign") && (
+            {!watch && (g.kind === "advisory" || g.kind === "compromise" || g.kind === "campaign") && (
               <div className="mt-2.5 flex flex-wrap gap-1.5">
-                {(g.kind === "advisory" ? g.items.map((e) => e.items[0]) : first.items).map((t) => (
+                {[...new Set(g.kind === "advisory" ? g.items.map((e) => e.items[0]) : first.items)].map((t) => (
                   <span key={t} className="rounded border border-line bg-surface px-1.5 py-0.5 font-mono text-[11.5px] text-ink-2">{t}</span>
                 ))}
               </div>

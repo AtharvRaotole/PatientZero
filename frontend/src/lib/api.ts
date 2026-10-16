@@ -4,6 +4,7 @@ export const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000
 
 /** Every call names its tenant: ?tenant= on the URL and an X-Tenant header (the body field, where sent, wins server-side). */
 export function withTenant(path: string, tenant = getTenant()): string {
+  if (/[?&]tenant=/.test(path)) return path; // an explicit tenant wins
   return `${path}${path.includes("?") ? "&" : "?"}tenant=${encodeURIComponent(tenant)}`;
 }
 
@@ -51,10 +52,10 @@ export async function handle<T>(res: Response): Promise<T> {
   throw new ApiError(msg, res.status, kind);
 }
 
-export async function apiGet<T>(path: string): Promise<T> {
+export async function apiGet<T>(path: string, tenant: string = getTenant()): Promise<T> {
   let res: Response;
   try {
-    res = await fetch(`${API_URL}${withTenant(path)}`, { cache: "no-store", headers: { "X-Tenant": getTenant() } });
+    res = await fetch(`${API_URL}${withTenant(path, tenant)}`, { cache: "no-store", headers: { "X-Tenant": tenant } });
   } catch {
     throw new ApiError(`API unreachable at ${API_URL}. Is the backend running?`, 0, "network");
   }

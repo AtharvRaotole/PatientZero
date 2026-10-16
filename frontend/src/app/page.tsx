@@ -7,6 +7,7 @@ import { API_URL, ApiError, adminToken, apiGet, apiPost } from "@/lib/api";
 import type { AskResponse, FleetGraph, GraphElem, Health, Incident, Playbook } from "@/lib/types";
 import { NotHitView, ResponderView, isNotHit } from "@/components/answers";
 import { CrewView, type CrewSpec } from "@/components/crew";
+import { BenchPanel, LiveWatch } from "@/components/watch";
 import { SessionRail, TenantSwitcher } from "@/components/session";
 import { getTenant, initTenant, markSessionUsed, newSessionId, sessionUsed, sessionIdFor, setTenant as storeTenant, type TenantInfo } from "@/lib/tenant";
 import type { SessionHistory } from "@/lib/types";
@@ -547,9 +548,23 @@ export default function Home() {
         </div>
 
         {up && (
+          <PageSection id="watch" eyebrow="Live watch" title="New npm malware, checked as it lands"
+            sub="PatientZero polls the OSV npm index for new malicious-package advisories, writes each one into every tenant's graph and traces it through the dependency chains at depth 6, with npm semver on the last edge.">
+            <LiveWatch tenant={tenant} tenants={tenants} />
+          </PageSection>
+        )}
+
+        {up && (
           <PageSection id="timeline" eyebrow="Timeline" title="From compromise to remediation"
             sub="Every dated event in the graph: the compromise, the OSV advisories, incidents written back by the agent, and playbooks a human approved.">
             <Card className="scroll-thin max-h-[560px] overflow-y-auto p-6">{timeline ? <Timeline events={timeline} /> : <Skeleton className="h-40" />}</Card>
+          </PageSection>
+        )}
+
+        {up && (
+          <PageSection id="performance" eyebrow="Performance" title="Under concurrent load"
+            sub="Many clients at once running the same exposure, who-to-wake and write queries the app runs, against FalkorDB. The numbers are from the last saved benchmark run.">
+            <BenchPanel />
           </PageSection>
         )}
 

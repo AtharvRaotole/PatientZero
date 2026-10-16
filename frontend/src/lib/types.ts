@@ -11,6 +11,13 @@ export interface TraceStep {
   write?: boolean;
   note?: string | null;
   error?: string | null;
+  via?: "mcp" | "direct";
+  mcp_tool?: string;
+  transport?: string;
+  tools_listed?: number;
+  list_ms?: number;
+  intent?: string;
+  mcp_fallback?: string;
 }
 
 export interface PathInfo {
@@ -148,6 +155,10 @@ export interface AskResponse {
   company?: string;
   /** Present when the question looked like a follow-up (see docs/CONTRACT-crew-sessions-tenants.md). */
   followup?: Followup | null;
+  /** A watched advisory where every published version of the package is malicious. */
+  all_versions?: AllVersions | null;
+  tool_via?: "mcp" | "direct";
+  mcp?: McpInfo;
   resolved_query?: string;
   session?: { id: string; turn: number; about_linked: number } | null;
   /** What the router resolved; `campaign` is [key, display name] for named campaigns such as Shai-Hulud. */
@@ -343,3 +354,39 @@ export interface CrewRun {
   dag: [CrewAgentKey, CrewAgentKey][];
   session?: { id: string; turn: number; about_linked: number; followup?: Followup | null };
 }
+
+// Live OSV watch, MCP and bench (docs/CONTRACT-watch-mcp-bench.md)
+export type WatchVerdict = "hit" | "reachable_not_admitted" | "not_hit";
+export interface WatchPath { service: string; via: string[]; requirement: string | null; reason?: string }
+export interface WatchEvent {
+  id: string; ts: string; poll_id: string; tenant: string; advisory: string; aliases?: string[];
+  package: string; bad_versions: string[]; all_versions: boolean; verdict: WatchVerdict;
+  exposed_services: string[]; exposed_count: number; reachable_services: string[]; fleet_size: number; depth: number;
+  replay: boolean; published?: string; summary?: string; url?: string; reason?: string; check_ms?: number; paths?: WatchPath[];
+}
+export interface WatchPoll {
+  id: string; ts: string; source: string; checked: number; new_advisories: number; already_known: number;
+  index_entries: number; hits: number; ms: number; errors: number; note?: string; replay?: boolean;
+}
+export interface WatchLoop { enabled: boolean; interval_s: number; next_at: number | null }
+export interface WatchFeed {
+  tenant: string; graph: string; events: WatchEvent[]; polls: WatchPoll[]; last_poll: WatchPoll | null;
+  counts: { events: number; hits: number; replays: number }; running: boolean; loop: WatchLoop;
+}
+export interface WatchReplay {
+  id: string; replay: true; advisory: string; query: string; checked: number; hits: number; ms: number;
+  note: string; record_source?: string; events: WatchEvent[];
+}
+export interface BenchStats { ops: number; errors: number; throughput_ops_s: number; p50_ms: number; p95_ms: number; p99_ms: number; max_ms: number; mean_ms: number }
+export interface BenchRun {
+  id: string; label: string; at: string; clients: number; procs?: number; retry_busy?: boolean; duration_s: number;
+  read_graph?: string; scratch_deleted?: boolean; overall: BenchStats; reads?: BenchStats; writes?: BenchStats;
+  by_op?: Record<string, BenchStats>; events_written?: number; mix?: Record<string, number>;
+  falkordb?: { redis_version?: string; modules?: string[] };
+}
+export interface BenchLast {
+  last: BenchRun | null; history: Pick<BenchRun, "id" | "label" | "at" | "clients" | "duration_s" | "overall">[];
+  running: unknown; last_error: string | null;
+}
+export interface McpInfo { via: "mcp" | "direct"; transport?: string; tool: string; intent?: string; args?: Record<string, unknown>; ms?: number; tools_listed?: number; fallback?: string; chosen_by?: string }
+export interface AllVersions { packages: string[]; advisories: string[]; lead: string; message: string; services: string[]; fleet_size: number }

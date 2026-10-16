@@ -145,7 +145,7 @@ export function CrewView({ spec, onClose, onRunId, onFinished, onRestart }: {
   useEffect(() => {
     queue.current = []; setPlayed([]); setReceived(0); setStreamDone(false); setFatal(null); setFast(false); finished.current = false;
     const ctl = new AbortController();
-    const push = (e: Ev) => { queue.current.push(e); setReceived((n) => n + 1); if (e.event === "run") onRunId(e.data.run_id); };
+    const push = (e: Ev) => { if (ctl.signal.aborted) return; queue.current.push(e); setReceived((n) => n + 1); if (e.event === "run") onRunId(e.data.run_id); };
     (async () => {
       try {
         if (spec.mode === "live") {
@@ -188,7 +188,8 @@ export function CrewView({ spec, onClose, onRunId, onFinished, onRestart }: {
   const skip = () => {
     if (timer.current) { clearTimeout(timer.current); timer.current = null; }
     setFast(true);
-    setPlayed((p) => [...p, ...queue.current.splice(0)]);
+    const rest = queue.current.splice(0); // outside the updater: StrictMode may call updaters twice
+    setPlayed((p) => [...p, ...rest]);
   };
 
   const parallel = v.lanes.investigator.status === "running" && v.lanes.responder.status === "running";

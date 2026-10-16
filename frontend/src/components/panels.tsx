@@ -17,7 +17,10 @@ const HEADLINE: Record<string, string> = {
   unknown_entity: "Not in the graph.",
 };
 
-export function OutcomeBanner({ r, onFresh, onCrew }: { r: AskResponse; onFresh: () => void; onCrew?: () => void }) {
+export function OutcomeBanner({ r: raw, onFresh, onCrew }: { r: AskResponse; onFresh: () => void; onCrew?: () => void }) {
+  const av = raw.all_versions ?? null;
+  // The all-versions lead gets its own line, so the detail text does not repeat it.
+  const r = av && raw.message.startsWith(av.lead) ? { ...raw, message: raw.message.slice(av.lead.length).trim() } : raw;
   const tokens = r.trace.reduce((a, s) => a + (Number((s as { tokens?: number }).tokens) || 0), 0);
   const hit = r.outcome === "answered_with_path" && r.exposed.length > 0;
   const notHit = isNotHit(r);
@@ -38,6 +41,15 @@ export function OutcomeBanner({ r, onFresh, onCrew }: { r: AskResponse; onFresh:
       </p>
       <div className="mt-4 flex flex-wrap items-end justify-between gap-6">
         <div className="min-w-0 max-w-[820px]">
+          {av && (
+            <p data-testid="all-versions" className="mb-3 flex flex-wrap items-center gap-x-2 gap-y-1 text-[13.5px] text-ink-2">
+              <span className="inline-flex items-center gap-1.5 rounded-md bg-signal-soft px-2 py-0.5 text-[12.5px] font-medium text-signal-ink"><span className="h-1.5 w-1.5 rounded-full bg-signal" />Every version is malware</span>
+              <span>
+                No safe version of <span className="font-mono text-ink">{av.packages.join(", ")}</span> exists, so any dependency path counts.
+                {av.advisories.map((id) => <a key={id} href={`https://osv.dev/vulnerability/${id}`} target="_blank" rel="noreferrer" className="ml-1.5 font-mono text-[12.5px] text-ink-3 underline decoration-line-strong underline-offset-4 hover:text-ink">{id}</a>)}
+              </span>
+            </p>
+          )}
           {hit ? (
             <h2 className="text-[28px] font-semibold leading-tight tracking-[-0.02em] text-ink">
               <CountUp value={r.exposed.length} className="text-signal" /> of {r.fleet_size} services can install a malicious version.
@@ -115,7 +127,7 @@ function detail(r: AskResponse, hit: boolean): string {
     const n = sb?.exposed_count ?? inc?.exposed_count, d = sb?.depth ?? inc?.depth, t = sb?.trigger ?? inc?.trigger;
     if (n !== undefined) return `${n} service${n === 1 ? " was" : "s were"} exposed at depth ${d}${t ? ` for "${t}"` : ""}.${sb?.has_patch || inc?.patch ? " The patch is on file." : ""} Run a fresh traversal to re-check against today's graph.`;
   }
-  if (hit) m = m.replace(/^\s*\d+ of \d+ services can install a malicious version[^.]*\.\s*/, "");
+  if (hit) m = m.replace(/^\s*\d+ of \d+ services can install a malicious version(?:[^.]|\.(?=\S))*\.\s*/, ""); // a dot inside debug@4.4.2 is not a sentence end
   else if (!HEADLINE[r.outcome]) m = split(m)[1];
   if (r.memory?.seen_before && r.outcome !== "answered_from_memory") m = m.replace(/\s*Seen before:[\s\S]*$/, "");
   return m.trim();
@@ -231,15 +243,19 @@ export function ExposurePanel({ r, depth, onSelect }: { r: AskResponse; depth: n
 
 export function TracePanel({ trace, loading }: { trace: TraceStep[]; loading: boolean }) {
   const [open, setOpen] = useState<number | null>(null);
-  const total = trace.reduce((a, s) => a + (s.ms || 0), 0);
+  const total = trace.reduce((a, s) => a + (s.tool === "mcp" ? 0 : s.ms || 0), 0); // the MCP call wraps the steps after it
   return (
     <Card>
-      <CardHeader icon={<Terminal />} title="Agent trace" sub="A fixed catalogue of tools. Human-written Cypher from queries/*.cypher."
+      <CardHeader icon={<Terminal />} title="Agent trace" sub={trace[0]?.tool === "mcp" && trace[0].via !== "direct" ? "Called through our MCP server, then human-written Cypher from queries/*.cypher." : "A fixed catalogue of tools. Human-written Cypher from queries/*.cypher."}
         right={<span className="font-mono text-[12px] text-ink-3 tabular">{trace.length} steps · {total.toFixed(1)} ms</span>} />
       <div className="divide-y divide-line">
         {loading && <div className="space-y-2 p-4">{[0, 1, 2, 3].map((i) => <Skeleton key={i} className="h-8" />)}</div>}
         {!loading && trace.length === 0 && <p className="py-6 text-center text-[13px] text-ink-3">Tool calls appear here.</p>}
-        {!loading && <ShowMore limit={10} noun="steps">{trace.map((s, i) => !s.cypher ? (
+        {!loading && <ShowMore limit={10} noun="steps">{trace.map((s, i) => s.tool === "mcp" ? (
+          <motion.div key={i} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: i * 0.03, duration: 0.2 }}>
+            <McpStep s={s} n={i + 1} open={open === i} onToggle={() => setOpen(open === i ? null : i)} />
+          </motion.div>
+        ) : !s.cypher ? (
           <motion.div key={i} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: i * 0.03, duration: 0.2 }}
             className="flex items-center gap-3 px-5 py-2.5 text-[13px]">
             <span className="w-5 font-mono text-[12px] text-ink-3 tabular">{String(i + 1).padStart(2, "0")}</span>
@@ -279,6 +295,40 @@ export function TracePanel({ trace, loading }: { trace: TraceStep[]; loading: bo
         ))}</ShowMore>}
       </div>
     </Card>
+  );
+}
+
+/** The MCP tools/call that opened this answer: the agent is an MCP client of our own server. */
+function McpStep({ s, n, open, onToggle }: { s: TraceStep; n: number; open: boolean; onToggle: () => void }) {
+  const viaMcp = s.via !== "direct";
+  return (
+    <div data-testid="trace-mcp" data-via={s.via ?? "mcp"}>
+      <button onClick={onToggle} aria-expanded={open} className="flex w-full items-center gap-3 px-5 py-2.5 text-left text-[13px] transition-colors hover:bg-subtle/70">
+        <span className="w-5 font-mono text-[12px] text-ink-3 tabular">{String(n).padStart(2, "0")}</span>
+        <span className={clsx("rounded px-1.5 py-px font-mono text-[10.5px] font-semibold tracking-[0.04em]", viaMcp ? "bg-ink text-paper" : "border border-line-strong text-ink-2")}>{viaMcp ? "via MCP" : "direct"}</span>
+        <span className="font-mono font-medium text-ink">{s.mcp_tool ?? "tool"}</span>
+        <span className="hidden truncate text-[12.5px] text-ink-3 sm:inline">
+          {viaMcp ? `tools/call over ${s.transport ?? "memory"}` : `fallback: ${s.mcp_fallback ?? "MCP unavailable"}`}
+          {typeof s.tools_listed === "number" && ` · ${s.tools_listed} tools listed`}
+          {s.intent && ` · intent ${s.intent}`}
+        </span>
+        <span className="ml-auto flex shrink-0 items-center gap-4 font-mono text-[12px] tabular">
+          <span className="w-16 text-right text-ink-2">{s.ms.toFixed(1)} ms</span>
+        </span>
+        <ChevronDown className={clsx("h-3.5 w-3.5 text-ink-3 transition-transform duration-200", open && "rotate-180")} />
+      </button>
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.2 }} className="overflow-hidden">
+            <div className="space-y-2 px-5 pb-4 pl-[52px]">
+              {s.note && <p className="text-[12.5px] text-ink-2">{s.note}</p>}
+              <p className="font-mono text-[12px] text-ink-3">tools/list {typeof s.list_ms === "number" && s.list_ms >= 0.05 ? `${s.list_ms.toFixed(1)} ms` : "served from cache (5 min)"}, tools/call {s.mcp_tool} {s.ms.toFixed(1)} ms. The steps below ran inside that call.</p>
+              <Params params={s.params} />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </div>
   );
 }
 
