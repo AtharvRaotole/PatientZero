@@ -1,6 +1,8 @@
 spawn MCP server over stdio: python -m app.mcp_server
 connected: patientzero (protocol 2025-11-25)
 tools/list -> 8 tools: exposure, incident_scope, path_between, recall, remediation_plan, resolve_entity, single_points_of_failure, who_to_wake
-tools/call exposure {"package": "debug", "bad_version": "4.4.2", "depth": 4}
-<- 10 exposed services in 9 ms: analytics-ingest, auth-service, inventory-service, lint-service, pdf-invoices, realtime-gateway, search-api, shipping-tracker, support-bot, test-harness
-<- e.g. analytics-ingest -> express@5.1.0 -> debug@4.4.3  [debug ^4.4.0 (caret) admits 4.4.2]
+tools/call remediation_plan {"trigger": "maintainer qix was phished", "depth": 4}
+<- 12 graph steps in 127 ms (resolve_entity, memory lookup, incident_scope, fleet_overview, exposure, who_to_wake, remediation_plan, playbook)
+<- 13 of 22 services can install a malicious version (maintainer qix) at depth 4.
+<- exposed: auth-service, inventory-service, shipping-tracker, analytics-ingest, img-service, search-api, realtime-gateway, ci-runner, cli-tools, lint-service, test-harness, pdf-invoices, support-bot
+<- incident INC-2026-10-16-qix-1d097f written to the graph, 13 per-service patches drafted

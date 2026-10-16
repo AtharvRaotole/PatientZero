@@ -5,7 +5,7 @@
 //   NODE_PATH=<dir with playwright-core>/node_modules node scripts/record_demo.cjs
 //   sh scripts/reset-live.sh && sh scripts/seed-demo-memory.sh       # leave exactly one approved incident
 //
-// Output: demo/patientzero-demo-draft.mp4 (1920x1080 H.264, captions burned in, no audio) and
+// Output: demo/patientzero-demo.mp4 (NAME=patientzero-demo-draft for the draft) (1920x1080 H.264, captions burned in, no audio) and
 // demo/patientzero-demo-draft.srt. Env: APP_URL, CHROME (/usr/bin/google-chrome), KEEP_RAW=1.
 // The app runs in Auto mode, but every beat here is answered by the deterministic router: no LLM calls.
 const { chromium } = require("playwright-core");
@@ -17,7 +17,9 @@ const APP = process.env.APP_URL || "https://patientzero-production-2cb3.up.railw
 const ROOT = path.join(__dirname, "..");
 const OUT = path.join(ROOT, "demo");
 const RAW = path.join(OUT, "raw");
-const W = 1600, H = 900; // recorded viewport (16:9), scaled to 1920x1080 on encode
+const W = 1600, H = 830; // recorded viewport, scaled to 1920x996 on encode
+const STRIP = 84; // caption strip under the page (1080 - 996): captions never cover the UI
+const NAME = process.env.NAME || "patientzero-demo";
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 
 // ---------------------------------------------------------------- visible cursor (headless video has none)
@@ -135,14 +137,14 @@ async function hoverNode(id, fx, fy, ms = 1000) {
 }
 
 // Depth slider: drag the thumb like a person would.
-async function dragDepth(from, to) {
+async function dragDepth(from, to, t1 = 600, t2 = 700) {
   const s = page.locator("input[aria-label='graph depth']");
   const { b } = await box(s);
   const xAt = (v) => b.x + 8 + ((v - 1) / 5) * (b.width - 16);
   const y = b.y + b.height / 2;
-  await moveTo(xAt(from), y, 600);
+  await moveTo(xAt(from), y, t1);
   await page.mouse.down();
-  await moveTo(xAt(to), y, 700);
+  await moveTo(xAt(to), y, t2);
   await page.mouse.up();
 }
 
@@ -162,16 +164,16 @@ function mcpHtml(lines) {
   .p{color:#A8A29E}.o{color:#FAFAF9}.r{color:#F2A7A9}
   .note{font-size:13px;color:#69625D}
   </style></head><body><div class="wrap">
-  <div class="kicker"><b>The same tools over MCP.</b> Real output, replayed: an MCP client calling PatientZero's <code>exposure</code> tool.</div>
+  <div class="kicker"><b>The same tools over MCP.</b> Real output, replayed: an MCP client calling <code>remediation_plan</code>, the entry point behind the qix replay.</div>
   <div class="term"><div class="bar"><i></i><i></i><i></i><span>backend, local</span></div><pre id="t"></pre></div>
-  <div class="note">Captured from <code>scripts/mcp_demo_client.py</code>: the MCP server (backend/app/mcp_server.py) over stdio, run locally against the same fleet graph.</div>
+  <div class="note">Captured from <code>scripts/mcp_demo_client.py</code>: the MCP server (backend/app/mcp_server.py) over stdio, run locally against the same fleet graph. The incident it wrote went to the local dev graph, not the live site.</div>
   </div><script>
   const cmd = "uv run python ../scripts/mcp_demo_client.py";
   const lines = ${JSON.stringify(lines.map(esc))};
   const t = document.getElementById("t");
   let i = 0;
-  function typeCmd(){ if(i<=cmd.length){ t.innerHTML='<span class="p">$ </span><span class="o">'+cmd.slice(0,i)+'</span>'; i++; setTimeout(typeCmd, 28); } else { setTimeout(()=>out(0), 350); } }
-  function out(k){ if(k>=lines.length) return; const l=lines[k]; t.innerHTML += '\\n<span class="'+(l.startsWith('&lt;-')?'r':'o')+'">'+l+'</span>'; setTimeout(()=>out(k+1), 420); }
+  function typeCmd(){ if(i<=cmd.length){ t.innerHTML='<span class="p">$ </span><span class="o">'+cmd.slice(0,i)+'</span>'; i++; setTimeout(typeCmd, 20); } else { setTimeout(()=>out(0), 300); } }
+  function out(k){ if(k>=lines.length) return; const l=lines[k]; t.innerHTML += '\\n<span class="'+(l.startsWith('&lt;-')?'r':'o')+'">'+l+'</span>'; setTimeout(()=>out(k+1), 260); }
   setTimeout(typeCmd, 300);
   </script></body></html>`;
 }
@@ -256,15 +258,14 @@ function srtTime(s) {
 
   // 0:44 Depth
   beat("depth");
-  await scrollToEl(page.locator("#graph"), 70, 1100);
-  await sleep(300);
-  await dragDepth(4, 1);
+  await scrollToEl(page.locator("#graph"), 70, 800);
+  await dragDepth(4, 1, 350, 450);
   await waitText(/1 of 22 services can install/);
-  caption("Direct dependencies only: 1 service. Transitive depth is the whole story.", 4.4);
-  await sleep(3000);
-  await dragDepth(1, 4);
+  caption("Direct dependencies only: 1 service. Transitive depth is the whole story.", 3.6);
+  await sleep(1900);
+  await dragDepth(1, 4, 300, 450);
   await waitText(/13 of 22 services can install/);
-  await sleep(1200);
+  await sleep(700);
 
   // 0:55 Insights
   beat("insights");
@@ -327,16 +328,15 @@ function srtTime(s) {
 
   // 1:40 Bring your own repo
   beat("byo axios");
-  await scrollToEl(page.locator("#byo"), 70, 1300);
-  caption("Bring your own repo: its real dependency graph, in a separate FalkorDB graph.", 4.4);
-  await sleep(300);
-  await click(page.getByRole("button", { name: "axios/axios" }), 900);
+  await scrollToEl(page.locator("#byo"), 70, 900);
+  caption("Bring your own repo: its real dependency graph, in a separate FalkorDB graph.", 2.6);
+  await click(page.getByRole("button", { name: "axios/axios" }), 650);
   await waitText(/Runtime exposed\. A fresh install could have pulled malware/, 120000);
-  await sleep(700);
-  await scrollToEl(page.getByText("Runtime exposed. A fresh install could have pulled malware.", { exact: true }), 110, 1100);
-  caption("axios: exposed at runtime through https-proxy-agent, then debug.", 4.4);
-  await hover(page.getByText("debug@4.4.2", { exact: true }).last(), 800);
-  await sleep(2400);
+  await sleep(300);
+  await scrollToEl(page.getByText("Runtime exposed. A fresh install could have pulled malware.", { exact: true }), 110, 800);
+  caption("axios: exposed at runtime through https-proxy-agent, then debug.", 3.4);
+  await hover(page.getByText("debug@4.4.2", { exact: true }).last(), 600);
+  await sleep(1500);
   beat("byo express");
   await scrollToEl(page.locator("#byo"), 70, 1000);
   await click(page.getByRole("button", { name: "expressjs/express@4.x (runtime only)" }), 900);
@@ -351,8 +351,8 @@ function srtTime(s) {
   beat("mcp");
   await page.setContent(mcpHtml(mcpLines), { waitUntil: "load" });
   await page.mouse.move(-50, -50);
-  caption("The same tools over MCP: a real client calling exposure.", 5.6);
-  await sleep(6200);
+  caption("The same tools over MCP: a real client gets the same 13 of 22.", 6.6);
+  await sleep(7100);
   beat("close");
   await page.setContent(`<!doctype html><html><body style="margin:0;height:100vh;display:flex;align-items:center;justify-content:center;background:#FAFAF9;font-family:Inter,sans-serif">
     <div style="text-align:center"><div style="display:flex;align-items:center;gap:14px;justify-content:center">
@@ -371,15 +371,15 @@ function srtTime(s) {
 
   // captions relative to the trimmed start
   const srt = caps.map((c, i) => `${i + 1}\n${srtTime(c.start - trim)} --> ${srtTime(Math.min(c.end, end) - trim)}\n${c.text}\n`).join("\n");
-  const srtPath = path.join(OUT, "patientzero-demo-draft.srt");
+  const srtPath = path.join(OUT, `${NAME}.srt`);
   fs.writeFileSync(srtPath, srt);
   fs.writeFileSync(path.join(OUT, "beats.json"), JSON.stringify(beats.map((b) => ({ ...b, t: +(b.t - trim).toFixed(1) })), null, 1));
 
-  const mp4 = path.join(OUT, "patientzero-demo-draft.mp4");
-  const style = "FontName=Inter,FontSize=10,PrimaryColour=&H00FFFFFF,OutlineColour=&H50141210,BackColour=&H50141210,BorderStyle=3,Outline=8,Shadow=0,MarginV=16,Bold=0";
+  const mp4 = path.join(OUT, `${NAME}.mp4`);
+  const style = "FontName=Inter,FontSize=7.5,PrimaryColour=&H00FFFFFF,OutlineColour=&H30141210,BackColour=&H30141210,BorderStyle=3,Outline=4,Shadow=0,MarginV=${process.env.MARGINV || 7},Bold=0";
   const fontsdir = "/usr/share/fonts/truetype/sand-box/google/Inter";
   execFileSync("ffmpeg", ["-y", "-loglevel", "error", "-ss", String(trim), "-i", raw, "-t", String(end - trim),
-    "-vf", `fps=30,scale=1920:1080:flags=lanczos,subtitles=${srtPath}:fontsdir=${fontsdir}:force_style='${style}'`,
+    "-vf", `fps=30,scale=1920:${Math.round(H * 1920 / W)}:flags=lanczos,pad=1920:1080:0:0:color=0xFAFAF9,subtitles=${srtPath}:fontsdir=${fontsdir}:force_style='${style}'`,
     "-c:v", "libx264", "-preset", "slow", "-crf", process.env.CRF || "24", "-pix_fmt", "yuv420p", "-movflags", "+faststart", "-an", mp4], { stdio: "inherit" });
   if (!process.env.KEEP_RAW) fs.rmSync(RAW, { recursive: true, force: true });
   console.log(`wrote ${path.relative(ROOT, mp4)} (${(fs.statSync(mp4).size / 1e6).toFixed(1)} MB, ${(end - trim).toFixed(1)} s) and ${path.relative(ROOT, srtPath)}`);
