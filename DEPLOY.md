@@ -7,8 +7,9 @@
 sh scripts/redeploy-railway.sh
 ```
 It fetches, `git archive`s `origin/main` into a temp dir (so uncommitted local edits never ship) and runs
-`railway up --service patientzero --detach` with a Railway project token (`$RAILWAY_TOKEN`, or
-`~/.config/patientzero/railway-project-token` on the dev box). Push first, then run it. Pass another ref as
+`railway up --service patientzero --detach` with a Railway project token (`$RAILWAY_PROJECT_TOKEN`, or
+`~/.config/patientzero/railway-project-token` on the dev box; the account token in `$RAILWAY_TOKEN` does not
+work with the CLI). Push first, then run it. Pass another ref as
 the first argument to ship something else, e.g. `sh scripts/redeploy-railway.sh HEAD`. The FalkorDB service
 is never touched, so the graph, incidents and playbooks survive. A build plus deploy takes about 1 to 2 minutes;
 check `curl -s https://patientzero-production-2cb3.up.railway.app/health`.

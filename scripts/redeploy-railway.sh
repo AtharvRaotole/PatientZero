@@ -1,15 +1,19 @@
 #!/bin/sh
 # Redeploy the PatientZero app service on Railway from the pushed origin/main.
 # Deploys a clean `git archive` of origin/main, so uncommitted local edits never ship.
-# Needs a Railway project token in $RAILWAY_TOKEN or in ~/.config/patientzero/railway-project-token.
+# Needs a Railway project token: $RAILWAY_PROJECT_TOKEN, else ~/.config/patientzero/railway-project-token,
+# else $RAILWAY_TOKEN (only if that is itself a project token; account tokens fail with "Not signed in").
 # The FalkorDB service and its /data volume are not touched; the graph and memory survive.
 set -eu
 REF="${1:-origin/main}"
 ROOT="$(cd "$(dirname "$0")/.." && pwd)"
 TOKEN_FILE="${HOME}/.config/patientzero/railway-project-token"
-if [ -z "${RAILWAY_TOKEN:-}" ] && [ -f "$TOKEN_FILE" ]; then
+if [ -n "${RAILWAY_PROJECT_TOKEN:-}" ]; then
+  RAILWAY_TOKEN="$RAILWAY_PROJECT_TOKEN"
+elif [ -f "$TOKEN_FILE" ]; then
   RAILWAY_TOKEN="$(cat "$TOKEN_FILE")"
 fi
+unset RAILWAY_API_TOKEN
 [ -n "${RAILWAY_TOKEN:-}" ] || { echo "set RAILWAY_TOKEN (project token) first" >&2; exit 1; }
 export RAILWAY_TOKEN
 command -v railway >/dev/null 2>&1 || PATH="$(npm prefix -g)/bin:$PATH"
