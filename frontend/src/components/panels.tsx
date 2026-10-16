@@ -9,6 +9,7 @@ import { useState } from "react";
 import type { AskResponse, Fix, Incident, ServiceExposure, TraceStep, WakeEntry } from "@/lib/types";
 import { Card, CardHeader, CopyButton, PathChain, Pill, Skeleton } from "./ui";
 import { ApproveBar, ModePill } from "./agentui";
+import { BlastRings, ExposureMatrix, SpofScatter } from "./viz";
 import type { Playbook } from "@/lib/types";
 
 const OUTCOME: Record<string, { label: string; tone: "danger" | "safe" | "violet" | "warn"; icon: React.ReactNode }> = {
@@ -240,6 +241,12 @@ export function FixPanel({ canFix, fix, loading, onFix, onApproved }: { canFix: 
             <Pill tone="violet"><Brain className="h-3 w-3" /> {fix.incident_id}</Pill>
             <Pill tone="safe">{fix.exposed_edges} EXPOSED edges written</Pill>
           </div>
+          {(fix.playbooks ?? []).map((pb) => (
+            <div key={pb.id} className={clsx("rounded-xl border px-3.5 py-2.5 text-[12.5px]", pb.agrees_with_proposed_fix ? "border-emerald-400/25 bg-emerald-500/[0.07] text-emerald-100/90" : "border-amber-400/25 bg-amber-500/[0.07] text-amber-100/90")}>
+              <p className="mb-0.5 text-[10.5px] font-semibold uppercase tracking-wider opacity-70">Procedural memory: approved playbook reused</p>
+              {pb.message}
+            </div>
+          ))}
           <ApproveBar key={fix.incident_id} incidentId={fix.incident_id} onApproved={onApproved} />
           <div>
             <div className="mb-1.5 flex items-center justify-between">
@@ -337,15 +344,17 @@ export function SpofPanel({ r }: { r: AskResponse }) {
               <div className="relative h-6 flex-1 overflow-hidden rounded-lg bg-white/[0.04]">
                 <motion.div initial={{ width: 0 }} animate={{ width: `${(m.reach / max) * 100}%` }} transition={{ duration: 0.8, delay: i * 0.05 }}
                   className={clsx("h-full rounded-lg", m.compromised_in_incident ? "bg-gradient-to-r from-rose-500/70 to-fuchsia-500/60" : "bg-gradient-to-r from-indigo-500/60 to-violet-500/50")} />
-                <span className="absolute inset-y-0 left-2 flex items-center text-[11px] font-medium text-white/90">{m.reach} services</span>
+                <span className="absolute inset-y-0 left-2 flex items-center whitespace-nowrap text-[11px] font-medium text-white/90">{m.reach} services</span>
+                {m.compromised_in_incident && <span className="absolute inset-y-0 right-2 flex items-center whitespace-nowrap text-[10.5px] font-semibold text-white">phished 2025-09-08</span>}
               </div>
-              <span className="w-20 text-right font-mono text-[10.5px] text-white/40">pr {m.pagerank.toFixed(2)}</span>
-              {m.compromised_in_incident && <Pill tone="danger">phished 2025-09-08</Pill>}
+              <span className="w-16 shrink-0 text-right font-mono text-[10.5px] text-white/40">pr {m.pagerank.toFixed(2)}</span>
             </motion.div>
           ))}
         </div>
         <div>
-          <p className="mb-2 text-[11px] font-medium uppercase tracking-wider text-white/40">Most load-bearing packages (algo.pageRank)</p>
+          <p className="mb-1 text-[11px] font-medium uppercase tracking-wider text-white/40">Reach vs PageRank</p>
+          <SpofScatter spof={r.spof} />
+          <p className="mb-2 mt-4 text-[11px] font-medium uppercase tracking-wider text-white/40">Most load-bearing packages (algo.pageRank)</p>
           <div className="space-y-1">
             {r.spof.pagerank.map((p) => (
               <div key={p.pkg + p.version} className="flex items-center justify-between rounded-lg bg-white/[0.03] px-3 py-1.5 font-mono text-[11.5px]">
@@ -426,3 +435,21 @@ export function ScopeStrip({ r }: { r: AskResponse }) {
 }
 
 export { CircleCheck };
+
+
+export function InsightsPanel({ r }: { r: AskResponse }) {
+  const [tab, setTab] = useState<"rings" | "matrix">("rings");
+  return (
+    <Card delay={0.08}>
+      <CardHeader icon={<Activity className="h-4 w-4" />} title="Insights" sub={`Derived from ${r.exposed.length + r.safe.length} services' dependency paths at depth ${r.depth}`}
+        right={
+          <div className="flex rounded-lg bg-white/[0.04] p-0.5 text-[11px]">
+            {([["rings", "Blast radius rings"], ["matrix", "Exposure matrix"]] as const).map(([k, l]) => (
+              <button key={k} onClick={() => setTab(k)} className={clsx("rounded-md px-2.5 py-1 font-medium transition", tab === k ? "bg-white/12 text-white" : "text-white/50 hover:text-white/80")}>{l}</button>
+            ))}
+          </div>
+        } />
+      <div className="p-5">{tab === "rings" ? <BlastRings r={r} /> : <ExposureMatrix r={r} />}</div>
+    </Card>
+  );
+}

@@ -120,6 +120,16 @@ def api_incidents(limit: int = 20) -> dict[str, Any]:
     return {"incidents": tools.list_incidents(tr, max(1, min(100, limit))), "trace": tr.steps}
 
 
+@app.get("/api/timeline")
+def api_timeline() -> dict[str, Any]:
+    """Dated events from the graph (compromise, advisories, incidents, playbooks), oldest first."""
+    tr = Trace()
+    rows = tr.run("timeline", "timeline_events")
+    rows = [r for r in rows if r.get("at")]
+    rows.sort(key=lambda r: str(r["at"]))
+    return {"events": rows, "trace": tr.steps}
+
+
 @app.get("/api/incidents/{incident_id}/check")
 def api_incident_check(incident_id: str) -> dict[str, Any]:
     tr = Trace()

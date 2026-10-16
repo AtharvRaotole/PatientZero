@@ -93,6 +93,7 @@ export interface Fix {
   incident_id: string;
   at: string;
   exposed_edges: number;
+  playbooks?: { id: string; name?: string; message: string; agrees_with_proposed_fix: boolean }[];
 }
 
 export interface Incident {

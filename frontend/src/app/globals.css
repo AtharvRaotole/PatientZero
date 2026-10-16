@@ -115,3 +115,9 @@ input[type="range"].depth::-webkit-slider-thumb {
   box-shadow: 0 0 0 4px rgba(124, 156, 255, 0.25), 0 0 18px rgba(124, 156, 255, 0.6);
   cursor: pointer;
 }
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: -16;
+  }
+}

@@ -7,12 +7,15 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import { ApiError, apiGet, apiPost } from "@/lib/api";
 import type { AskResponse, FleetGraph, Health, Incident } from "@/lib/types";
 import {
-  ErrorCard, ExposurePanel, FixPanel, MemoryDetail, MemoryPanel, OutcomeBanner, PathPanel, ScopeStrip, SpofPanel,
+  ErrorCard, ExposurePanel, FixPanel, InsightsPanel, MemoryDetail, MemoryPanel, OutcomeBanner, PathPanel, ScopeStrip, SpofPanel,
   TracePanel, WakeCard, WakeOnly,
 } from "@/components/panels";
 import { Card, Pill, Skeleton } from "@/components/ui";
 import { AgentAnswer, PlaybooksPanel } from "@/components/agentui";
 import ByoSection from "@/components/ByoSection";
+import { Timeline, type TimelineEvent } from "@/components/viz";
+import { CalendarRange } from "lucide-react";
+import { CardHeader } from "@/components/ui";
 import type { Playbook } from "@/lib/types";
 
 const GraphCanvas = dynamic(() => import("@/components/GraphCanvas"), { ssr: false });
@@ -55,6 +58,15 @@ export default function Home() {
   const [mode, setMode] = useState<"auto" | "deterministic">("auto");
   const [playbooks, setPlaybooks] = useState<Playbook[] | null>(null);
   const [pbErr, setPbErr] = useState<string | null>(null);
+  const [timeline, setTimeline] = useState<TimelineEvent[] | null>(null);
+
+  const refreshTimeline = useCallback(async () => {
+    try {
+      setTimeline((await apiGet<{ events: TimelineEvent[] }>("/api/timeline")).events);
+    } catch {
+      setTimeline([]);
+    }
+  }, []);
   const inputRef = useRef<HTMLInputElement>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
 
@@ -105,7 +117,8 @@ export default function Home() {
 
   useEffect(() => {
     refreshPlaybooks();
-  }, [refreshPlaybooks]);
+    refreshTimeline();
+  }, [refreshPlaybooks, refreshTimeline]);
 
   const refreshIncidents = useCallback(async () => {
     try {
@@ -152,6 +165,7 @@ export default function Home() {
       const r = await apiPost<AskResponse>("/api/fix", { query: lastQuery, depth, session: sessionId() });
       setResult(r);
       refreshIncidents();
+      refreshTimeline();
     } catch (e) {
       const a = e as ApiError;
       setErr({ message: a.message, kind: a.kind ?? "error" });
@@ -335,6 +349,7 @@ export default function Home() {
               <div className="grid gap-4 lg:grid-cols-[minmax(0,1.65fr)_minmax(0,1fr)]">
                 <div className="space-y-4">
                   {isIncident && <ExposurePanel r={result} depth={depth} onDepth={onDepth} onSelect={() => {}} />}
+                  {isIncident && <InsightsPanel r={result} />}
                   {result.outcome === "answered_from_memory" && <MemoryDetail r={result} />}
                   <SpofPanel r={result} />
                   <PathPanel r={result} />
@@ -349,7 +364,7 @@ export default function Home() {
                       </div>
                     </Card>
                   )}
-                  {(result.exposed.length > 0 || result.fix) && <FixPanel canFix={result.exposed.length > 0} fix={result.fix} loading={fixLoading} onFix={onFix} onApproved={() => refreshPlaybooks()} />}
+                  {(result.exposed.length > 0 || result.fix) && <FixPanel canFix={result.exposed.length > 0} fix={result.fix} loading={fixLoading} onFix={onFix} onApproved={() => { refreshPlaybooks(); refreshTimeline(); }} />}
                 </div>
                 <div className="space-y-4">
                   <TracePanel trace={result.trace} loading={false} />
@@ -361,6 +376,15 @@ export default function Home() {
             </div>
           )}
         </div>
+
+        {up && (
+          <section className="mt-14">
+            <Card>
+              <CardHeader icon={<CalendarRange className="h-4 w-4" />} title="From compromise to remediation" sub="Every dated event in the graph: the curated compromise, OSV advisories, incidents and approved playbooks" />
+              <div className="scroll-thin max-h-[520px] overflow-y-auto p-6">{timeline ? <Timeline events={timeline} /> : <Skeleton className="h-40" />}</div>
+            </Card>
+          </section>
+        )}
 
         {up && <ByoSection />}
 

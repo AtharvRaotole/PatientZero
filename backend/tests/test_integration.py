@@ -153,3 +153,19 @@ def test_validation_errors():
     assert client.post("/api/ask", json={"query": "qix", "depth": 9}).status_code == 422
     assert client.post("/api/tools/nope", json={}).status_code == 404
     assert client.post("/api/tools/exposure", json={"package": "debug"}).status_code == 400
+
+
+def test_timeline_events_from_graph():
+    r = client.get("/api/timeline")
+    assert r.status_code == 200
+    ev = r.json()["events"]
+    kinds = {e["kind"] for e in ev}
+    assert {"compromise", "advisory"} <= kinds
+    comp = next(e for e in ev if e["kind"] == "compromise")
+    assert comp["title"] == "qix" and comp["count"] == 19 and str(comp["at"]).startswith("2025-09-08")
+    assert [str(e["at"]) for e in ev] == sorted(str(e["at"]) for e in ev)
+
+
+def test_health_reports_llm_budget():
+    b = client.get("/health").json()["llm_budget"]
+    assert b["daily_cap"] >= 1 and b["per_ip_per_min"] >= 1 and "calls" in b

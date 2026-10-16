@@ -31,7 +31,10 @@ async function clickText(page, text, selector = "button") {
 }
 
 async function ask(page, q) {
-  await page.click("input[aria-label='Ask PatientZero']", { clickCount: 3 });
+  const sel = "input[aria-label='Ask PatientZero']";
+  await page.focus(sel);
+  await page.keyboard.down("Control"); await page.keyboard.press("A"); await page.keyboard.up("Control");
+  await page.keyboard.press("Backspace");
   await page.type("input[aria-label='Ask PatientZero']", q);
   await page.keyboard.press("Enter");
 }
@@ -131,6 +134,7 @@ const exposedCount = (page) =>
 
   // AC10 (memory, new session)
   const p2 = await browser.newPage();
+  globalThis.__page = p2;
   p2.on("pageerror", (e) => errors.push(String(e)));
   await p2.goto(APP, { waitUntil: "networkidle2" });
   await p2.waitForFunction(() => document.body.innerText.includes("versions"), { timeout: 30000 });
@@ -165,7 +169,8 @@ const exposedCount = (page) =>
   // AC8 not_in_graph
   await p2.evaluate(() => window.scrollTo(0, 0));
   await ask(p2, "ansi-regex@6.2.1");
-  await p2.waitForFunction(() => /answered_from_memory|not_in_graph/.test(document.body.innerText), { timeout: 15000 });
+  // Previous screen (unknown_entity) shows neither sentence, so either one means the new answer has rendered.
+  await p2.waitForFunction(() => /No fleet path admits this version|Answered from graph memory/.test(document.body.innerText), { timeout: 20000 });
   if (await p2.evaluate(() => document.body.innerText.includes("Run a fresh traversal"))) {
     await clickText(p2, "Run a fresh traversal"); // the qix incident in memory covers ansi-regex; re-traverse
   }
@@ -178,7 +183,8 @@ const exposedCount = (page) =>
   const failed = results.filter((r) => !r.ok);
   console.log(`\n${results.length - failed.length}/${results.length} browser checks passed`);
   process.exit(failed.length ? 1 : 0);
-})().catch((e) => {
+})().catch(async (e) => {
   console.error("E2E ERROR", e);
+  if (globalThis.__page) await globalThis.__page.screenshot({ path: "/tmp/e2e-fail.png" }).catch(() => {});
   process.exit(2);
 });
