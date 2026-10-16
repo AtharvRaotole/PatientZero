@@ -2,9 +2,18 @@
 
 > When an npm maintainer gets phished, PatientZero tells you in seconds which of your services are hit, the exact dependency chain, who to wake, and the fix. Built on FalkorDB.
 
-- **Live demo:** https://patientzero-production-2cb3.up.railway.app
-- **Demo video:** VIDEO_LINK_TBD (added at submission)
-- **Tracks:** FalkorDB Hackathon, Track 1 (Agents That Act on Connected Data) and Track 2 (Agent Memory and Coordination); see [Tracks](#tracks)
+**Tracks entered: Track 1 (Agents That Act on Connected Data) and Track 2 (Agent Memory and Coordination)**, FalkorDB Graph Hacks. See [Tracks](#tracks) for how each focus point is covered.
+
+| Submission item | Where |
+|---|---|
+| Live deployment | https://patientzero-production-2cb3.up.railway.app (health: [/health](https://patientzero-production-2cb3.up.railway.app/health)) |
+| Demo video | [Demo video](#demo-video) |
+| Setup instructions (local) | [Setup and run (local)](#setup-and-run-local), env vars in [.env.example](.env.example), deploy in [DEPLOY.md](DEPLOY.md) |
+| Graph data model | [Graph data model](#graph-data-model) (diagram and tables) |
+| Cypher queries and graph algorithms | [Cypher queries and algorithms](#cypher-queries-and-algorithms), files in [`queries/`](queries/) |
+| Tracks | [Tracks](#tracks): Track 1 and Track 2 |
+| AI assistance disclosure | [AI assistance disclosure](#ai-assistance-disclosure) |
+| License | [MIT](LICENSE) |
 
 PatientZero replays the real September 8, 2025 npm compromise (maintainer `qix` phished, 19 malicious versions of
 `debug`, `chalk`, `ansi-styles` and friends) against a fleet graph in FalkorDB. Every answer is a Cypher traversal
@@ -25,6 +34,10 @@ plus an npm semver check on the last edge, shown with its trace. Nothing is gues
 | ![Blast radius rings by hop distance](docs/screenshots/04-insight-blast-rings.png) | ![Fix: overrides, team drafts, approved playbook](docs/screenshots/08-fix-and-approve-playbook.png) | ![Bring your own repo: axios replayed against Sept 8, 2025](docs/screenshots/14-byo-axios-exposed.png) |
 
 More in [docs/screenshots](docs/screenshots).
+
+## Demo video
+**Watch:** VIDEO_LINK_TBD (2-minute voiced walkthrough, recorded against the live deployment; link added at submission).
+The shot list and narration are in [docs/DEMO.md](docs/DEMO.md).
 
 ## Try it yourself
 On the [live app](https://patientzero-production-2cb3.up.railway.app), type into the bar (all checked on live, Oct 16, 2026):
@@ -85,20 +98,32 @@ Then scroll to **Would you have been hit on Sept 8, 2025?** and scan a public re
 - **Frontend:** Next.js 15, TypeScript, Tailwind v4, framer-motion, react-force-graph-2d (`frontend/`)
 
 ## Prerequisites
-- Linux x86_64 with `redis-server` 7+ (`sudo apt-get install -y redis-server libgomp1`), or Docker for the production image
 - Python 3.13 + [uv](https://docs.astral.sh/uv/), Node 20+
+- FalkorDB on `localhost:6379`, either way:
+  - **Docker:** `docker run -d --name falkordb -p 6379:6379 falkordb/falkordb:v4.22.1` (the version the live deploy runs), or
+  - **No Docker (Linux x86_64):** `redis-server` 7+ (`sudo apt-get install -y redis-server libgomp1`); `scripts/start-falkordb.sh` downloads the FalkorDB module and starts it.
 
 ## Setup and run (local)
 ```bash
-cp .env.example .env                 # defaults work locally; OPENAI_API_KEY is optional
-./scripts/start-falkordb.sh          # downloads falkordb.so (v6.0.1) on first run, starts redis-server on :6379 (AOF on)
+git clone https://github.com/AtharvRaotole/FalkorDB.git && cd FalkorDB
+cp .env.example .env                 # defaults work locally; every key is optional (OPENAI_API_KEY, ADMIN_TOKEN, ...)
+./scripts/start-falkordb.sh          # skip if you started the Docker container; else downloads falkordb.so (v6.0.1) and starts it on :6379
 python3 -m venv ingest/.venv && ingest/.venv/bin/pip install -r ingest/requirements.txt
-ingest/.venv/bin/python ingest/load.py          # builds graph fleet:acme from data/ (under 1 s, idempotent)
+ingest/.venv/bin/python ingest/load.py          # builds graph fleet:acme from the committed data/ (under 1 s, no network)
 TENANT=globex ingest/.venv/bin/python ingest/load.py   # second tenant: graph fleet:globex (Globex, hit by Shai-Hulud)
 (cd backend && uv sync)
 (cd frontend && npm install)
-./scripts/dev.sh                     # backend :8000, frontend http://localhost:3001
+./scripts/dev.sh                     # backend :8000, frontend http://localhost:3001 (logs in /tmp)
+curl -s localhost:8000/health        # {"status":"ok","falkordb":"up",...}
 ```
+Then open http://localhost:3001 and type `qix`. The backend also seeds any missing tenant graph on start
+(`SEED_ON_START=true`), so the two `load.py` lines are only needed to rebuild a graph from scratch.
+
+**Environment.** Every variable is listed with its default in [.env.example](.env.example). The ones you may want:
+`FALKORDB_HOST`/`FALKORDB_PORT` (or `FALKORDB_URL` for FalkorDB Cloud), `OPENAI_API_KEY` (optional; without it the
+deterministic router answers everything), `ADMIN_TOKEN` (protects the admin endpoints; empty means open, for local
+use only) and `NEXT_PUBLIC_API_URL` (where the frontend finds the API, default `http://localhost:8000`). `ingest/load.py`
+reads the `FALKORDB_*` variables from the shell, not from `.env`.
 
 Single-origin production build (what the Dockerfile and Railway run): see [DEPLOY.md](DEPLOY.md).
 
@@ -110,7 +135,7 @@ NODE_PATH=/path/to/node_modules node scripts/e2e_screenshots.cjs           # 17 
 NODE_PATH=/path/to/node_modules node scripts/e2e_crew_tenants.cjs          # 25 checks: tenants, crew, follow-ups, watch, MCP, bench
 python scripts/stress_streams.py --base http://127.0.0.1:8000 --seconds 120  # SSE + crew + ask load; fails if /health stalls
 ```
-The backend suite (198 tests) passes on FalkorDB 6.0.1 and on 4.22.1 (the live version); both browser suites pass
+The backend suite (256 tests) passes on FalkorDB 6.0.1 and on 4.22.1 (the live version); both browser suites pass
 locally and against the live deploy. Security audit: [docs/verification/security.md](docs/verification/security.md).
 
 ## API
@@ -158,8 +183,47 @@ The same 8 tools over stdio, plus `investigate`, `crew_run`, `session_history` a
 ```
 
 ## Graph data model
-One graph per tenant: `fleet:acme` for the demo fleet, and an isolated `byo:<hash>` graph per bring-your-own scan
+One graph per tenant: `fleet:acme` and `fleet:globex`, plus an isolated `byo:...` graph per bring-your-own scan
 (FalkorDB multi-graph, same schema). Full details, sources and the exposure rule: [ingest/README.md](ingest/README.md).
+
+```mermaid
+flowchart TB
+  subgraph org["Organisation (synthetic)"]
+    Team; Person; Service
+  end
+  subgraph supply["npm supply chain (real data)"]
+    Package; Version; Advisory; Campaign; Maintainer
+  end
+  subgraph memory["Memory and coordination (written by the agents)"]
+    Incident; Finding; Playbook; CrewRun; AgentRun; Session; Turn; WatchEvent
+  end
+  Person -->|MEMBER_OF, ONCALL_FOR| Team
+  Team -->|OWNS| Service
+  Service -->|"DEPENDS_ON {requirement}"| Version
+  Version -->|"REQUIRES {requirement}"| Version
+  Package -->|HAS_VERSION| Version
+  Advisory -->|AFFECTS| Version
+  Advisory -->|AFFECTS_PACKAGE| Package
+  Campaign -->|GROUPS| Advisory
+  Maintainer -->|"MAINTAINS, HAD_PUBLISH_RIGHTS"| Package
+  Incident -->|ABOUT| Maintainer
+  Incident -->|"EXPOSED {path}"| Service
+  Incident -->|HAS_FINDING| Finding
+  Incident -->|APPLIED_PLAYBOOK| Playbook
+  Playbook -->|APPROVED_FROM| Incident
+  Playbook -->|"COVERS {pin}"| Package
+  Playbook -->|MITIGATES| Advisory
+  CrewRun -->|RAN| AgentRun
+  CrewRun -->|TRIAGED| Incident
+  AgentRun -->|"HANDED_OFF_TO {reason}"| AgentRun
+  AgentRun -->|PRODUCED| Finding
+  Session -->|HAS_TURN| Turn
+  Turn -->|NEXT| Turn
+  Turn -->|ABOUT| Campaign
+  WatchEvent -->|HITS| Service
+```
+`Incident` and `Turn` link with `ABOUT` to whatever the question was about (a Maintainer, Advisory, Version,
+Package, Service, Campaign or Incident); the diagram shows one of each to stay readable.
 
 | Node | Key properties | Source |
 |---|---|---|
@@ -171,7 +235,12 @@ One graph per tenant: `fleet:acme` for the demo fleet, and an isolated `byo:<has
 | `Advisory` | id (OSV MAL id), ids, aliases (GHSA, CVE), bad_version, fixed_version, campaign | OSV, GitHub advisories |
 | `Maintainer` | npm | npm registry, curated incident data |
 | `Incident`, `Finding` | id, at, trigger, entity_key, depth, exposed_count, patch | written by the agent (memory) |
-| `Playbook` | id, approved_at, approved_by, overrides, steps | written when a human approves a fix |
+| `Playbook` | id, approved_at, approved_by, overrides, steps, uses_count, last_used | written when a human approves a fix |
+| `Campaign` | id (for example `2025-09-15-shai-hulud`), groups a campaign's advisories | OSV, curated |
+| `CrewRun`, `AgentRun` | id, query, tenant, depth, status, ms; agent (Triage, Investigator, Responder, Fixer) | written by the incident crew |
+| `Session`, `Turn` | id; i, query, resolved_query, intent | conversation history, written per question |
+| `WatchEvent`, `WatchPoll` | id, ts, tenant, advisory, verdict; poll id, source, checked | written by the live OSV watch |
+| `BenchRun`, `BenchEvent` | id, client, ts | scratch graph for the concurrency benchmark, deleted afterwards |
 
 | Relationship | Meaning |
 |---|---|
@@ -185,6 +254,10 @@ One graph per tenant: `fleet:acme` for the demo fleet, and an isolated `byo:<has
 | `(:Maintainer {npm:'qix'})-[:HAD_PUBLISH_RIGHTS {asOf}]->(:Package)` | curated, 19 edges |
 | `(:Incident)-[:ABOUT]->(...)`, `-[:EXPOSED {path}]->(:Service)`, `-[:HAS_FINDING]->(:Finding)` | episodic memory |
 | `(:Playbook)-[:APPROVED_FROM]->(:Incident)`, `-[:COVERS {pin}]->(:Package)`, `-[:MITIGATES]->(:Advisory)`, `(:Incident)-[:APPLIED_PLAYBOOK]->(:Playbook)` | procedural memory |
+| `(:Campaign)-[:GROUPS]->(:Advisory)`, `(:Advisory)-[:AFFECTS_PACKAGE]->(:Package)` | campaigns, and packages where every version is malicious |
+| `(:CrewRun)-[:RAN]->(:AgentRun)`, `(:AgentRun)-[:HANDED_OFF_TO {reason, seq}]->(:AgentRun)`, `(:AgentRun)-[:PRODUCED]->(:Finding)`, `(:CrewRun)-[:TRIAGED]->(:Incident)` | multi-agent shared state and handoffs |
+| `(:Session)-[:HAS_TURN]->(:Turn)`, `(:Turn)-[:NEXT]->(:Turn)`, `(:Turn)-[:ABOUT]->(...)` | conversation history; follow-ups resolve "that" from here |
+| `(:WatchEvent)-[:HITS]->(:Service)` | live watch verdicts per tenant |
 
 **Exposure rule.** The malicious versions were unpublished within hours, so they never appear in today's resolved
 trees. A path is exposed when the semver range on its last edge admits the malicious version (what a fresh install
@@ -211,7 +284,19 @@ user text or by the LLM. Each file marks its statements with `// @query <name>`.
 | [timeline.cypher](queries/timeline.cypher) | `timeline_events` | Every dated event: compromise, advisories, incidents, playbooks |
 | [fleet_overview.cypher](queries/fleet_overview.cypher) | `fleet_overview`, `graph_stats` | Home screen fleet list and counts |
 | [fleet_graph.cypher](queries/fleet_graph.cypher) | `fleet_graph_nodes`, `fleet_graph_edges` | The whole fleet dependency graph for the hero visualization |
-| [byo.cypher](queries/byo.cypher) | `byo_create_*`, `byo_export_incident`, ... | Builds an isolated `byo:<hash>` graph per scanned repo; the unchanged `exposure` query then runs on it |
+| [byo.cypher](queries/byo.cypher) | `byo_create_*`, `byo_export_incident`, ... | Builds an isolated `byo:...` graph per scanned repo; the unchanged `exposure` query then runs on it |
+| [crew.cypher](queries/crew.cypher) | `crew_create_run`, `crew_handoff`, `crew_add_finding`, `crew_read_upstream`, `crew_upsert_incident`, ... | The incident crew's shared state: runs, agent runs, `HANDED_OFF_TO` edges, findings; each agent reads upstream findings back with `HANDED_OFF_TO*1..3`; one incident per trigger, updated in place |
+| [sessions.cypher](queries/sessions.cypher) | `session_add_turn`, `session_about_*`, `session_turns`, ... | Stores each question as a `Turn` linked `ABOUT` the graph nodes it resolved to; follow-ups read the last turn back |
+| [watch.cypher](queries/watch.cypher) | `watch_ingest_advisories`, `watch_write_events`, `watch_link_hits`, `watch_feed`, ... | Live OSV watch: ingests new malicious advisories, records a per-tenant `WatchEvent` and links it to every exposed service |
+| [bench.cypher](queries/bench.cypher) | `bench_setup`, `bench_write_event`, `bench_read_scratch`, `bench_count` | Synthetic writes and reads on a scratch graph for the concurrency benchmark |
+
+**Where the traversals run.** The query files are loaded by name in [backend/app/tools.py](backend/app/tools.py) (the
+agent tools behind `/api/ask`, `/api/fix` and the MCP server in [backend/app/mcp_server.py](backend/app/mcp_server.py)),
+[backend/app/crew/engine.py](backend/app/crew/engine.py) (crew), [backend/app/sessions.py](backend/app/sessions.py)
+(follow-ups), [backend/app/playbooks.py](backend/app/playbooks.py) (playbooks), [backend/app/watch/core.py](backend/app/watch/core.py)
+(live watch), [backend/app/byo/scan.py](backend/app/byo/scan.py) (bring your own repo) and
+[backend/app/bench/runner.py](backend/app/bench/runner.py) (benchmark). [ingest/verify.py](ingest/verify.py) runs the
+read queries against the loaded graph as data-level acceptance checks.
 
 FalkorDB features used: multi-graph tenancy, variable-length paths, `algo.SPpaths`, `algo.pageRank`,
 `shortestPath()`, pattern comprehensions, `UNWIND` batch writes, indexes on every lookup key, and parameterised
@@ -255,8 +340,8 @@ Each focus point of both tracks, the feature that covers it, and where it lives.
 See [docs/DEMO.md](docs/DEMO.md).
 
 ## AI assistance disclosure
-- **Building:** this project was built with AI coding assistants (Grok Bot agents for research, spec, code, tests
-  and review). Every Cypher query in `queries/` is parameterised and was written for this project, never generated from user text; all
+- **Building:** the code was written with **Cursor** as the AI coding assistant, using AI agents (Grok Bot) for
+  research, spec, code, tests and review. Every Cypher query in `queries/` is parameterised and was written for this project, never generated from user text; all
   acceptance checks are reproducible with the test commands above.
 - **Atharv's own contribution:** Atharv Raotole chose the problem, the tracks and the product direction, set the
   design and quality bar, reviewed the builds and the demo, and approved security decisions such as rotating the

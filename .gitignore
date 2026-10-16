@@ -1,7 +1,11 @@
-# env / secrets
+# env / secrets (only .env.example is tracked)
 .env
-.env.local
+.env.*
+!.env.example
 *.env.local
+*.pem
+*.key
+*.p12
 # local FalkorDB runtime (module binary downloaded by scripts/start-falkordb.sh, data, logs)
 .falkordb/
 *.rdb
@@ -18,9 +22,14 @@ next-env.d.ts
 *.tsbuildinfo
 # misc
 .DS_Store
+Thumbs.db
 *.log
+*.swp
+.idea/
+.vscode/
 # explicit (also covered by patterns above / frontend/.gitignore)
 backend/.venv/
+ingest/.venv/
 frontend/node_modules/
 frontend/.next/
 .cache/

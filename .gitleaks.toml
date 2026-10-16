@@ -1,0 +1,8 @@
+# gitleaks config: the default rules, plus one allowlisted data key.
+# "2025-09-15-shai-hulud" is the id of the Shai-Hulud campaign node, not a credential.
+[extend]
+useDefault = true
+
+[allowlist]
+description = "Campaign ids are graph data keys, not secrets"
+regexes = ['''^2025-09-15-shai-hulud$''']
