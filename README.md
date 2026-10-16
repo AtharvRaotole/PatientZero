@@ -206,6 +206,13 @@ FalkorDB features used: multi-graph tenancy, variable-length paths, `algo.SPpath
 `shortestPath()`, pattern comprehensions, `UNWIND` batch writes, indexes on every lookup key, and parameterised
 `ro_query` for every read.
 
+**Hardened against a known FalkorDB 6.x crash.** On 6.0.x, a `RETURN` that mixes an aggregate with a null
+column can panic the server ([FalkorDB#3150](https://github.com/FalkorDB/FalkorDB/issues/3150), fix pending in
+#3229). We hit it during testing, so every affected query now aggregates in `WITH` and only projects in `RETURN`,
+Team fields get defaults at load time, and
+[`tests/test_query_safety.py`](backend/tests/test_query_safety.py) fails the build if that query shape comes
+back. The suite passes on both 6.0.1 and 4.22.1 (the version live runs).
+
 ## Tracks
 - **Track 1: Agents That Act on Connected Data.** The agent resolves an incident against the graph, traverses
   multi-hop dependency paths, decides exposure, finds who to wake, proposes an install-safe fix and writes the
