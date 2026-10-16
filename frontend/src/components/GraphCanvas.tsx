@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import ForceGraph2D from "react-force-graph-2d";
 import type { FleetGraph, GraphElem } from "@/lib/types";
+import { MAX_RING, RING_LABEL, RING_R, radialLayout } from "@/lib/radial";
 
 type Props = {
   /** Base graph (whole fleet). When null, `highlight` is rendered on its own. */
@@ -16,7 +17,7 @@ type Props = {
   topInset?: number;
 };
 
-type N = { id: string; kind: "Service" | "Version"; tier?: number | null; team?: string | null; x?: number; y?: number };
+type N = { id: string; kind: "Service" | "Version"; tier?: number | null; team?: string | null; x?: number; y?: number; fx?: number; fy?: number; ang?: number; rr?: number; depth?: number };
 
 const C = {
   ink: "#0C0A09",
@@ -42,6 +43,15 @@ export default function GraphCanvas({ fleet, highlight, onNodeClick, leftInset, 
     return () => ro.disconnect();
   }, []);
 
+  // The fleet uses a fixed radial layered layout (services outside, deeper packages toward the core); a standalone
+  // subgraph (BYO scan) keeps the force layout.
+  const radial = !!fleet;
+  const placement = useMemo(() => (fleet ? radialLayout(fleet.nodes, fleet.edges) : null), [fleet]);
+  const ry = Math.max(80, size.h / 2 - 34);
+  const rx = Math.max(80, Math.min(size.w / 2 - 130, ry * 2.3));
+  const geom = useRef({ rx, ry });
+  geom.current = { rx, ry };
+
   // Only depend on `highlight` in standalone mode, so highlighting never resets the fleet simulation.
   const standalone = fleet ? null : highlight;
   const data = useMemo(() => {
@@ -56,13 +66,29 @@ export default function GraphCanvas({ fleet, highlight, onNodeClick, leftInset, 
       return { nodes, links };
     }
     if (!fleet) return { nodes: [] as N[], links: [] as any[] };
-    const nodes: N[] = fleet.nodes.map((n) => ({ id: n.id, kind: n.kind, tier: n.tier, team: n.team }));
+    const { rx: gx, ry: gy } = geom.current;
+    const nodes: N[] = fleet.nodes.map((n) => {
+      const p = placement?.get(n.id);
+      const x = p ? gx * p.r * Math.cos(p.ang) : 0, y = p ? gy * p.r * Math.sin(p.ang) : 0;
+      return { id: n.id, kind: n.kind, tier: n.tier, team: n.team, x, y, fx: x, fy: y, ang: p?.ang ?? 0, rr: p?.r ?? 0, depth: p?.depth ?? 0 } as N;
+    });
     const ids = new Set(nodes.map((n) => n.id));
     const links = fleet.edges
       .filter((e) => ids.has(e.source) && ids.has(e.target))
       .map((e) => ({ source: e.source, target: e.target, requirement: e.requirement, key: `${e.source}->${e.target}` }));
     return { nodes, links };
-  }, [fleet, standalone]);
+  }, [fleet, standalone, placement]);
+
+  // keep the radial layout fitted to the canvas when it resizes
+  useEffect(() => {
+    if (!radial || !placement) return;
+    for (const n of data.nodes as any[]) {
+      const p = placement.get(n.id);
+      if (!p) continue;
+      n.x = n.fx = rx * p.r * Math.cos(p.ang);
+      n.y = n.fy = ry * p.r * Math.sin(p.ang);
+    }
+  }, [radial, placement, data, rx, ry]);
 
   const hl = useMemo(() => {
     const nodes = new Map<string, { type: string; status?: string; bad?: string }>();
@@ -75,10 +101,10 @@ export default function GraphCanvas({ fleet, highlight, onNodeClick, leftInset, 
   // physics tuning
   useEffect(() => {
     const g = fg.current;
-    if (!g) return;
+    if (!g || radial) return;
     g.d3Force("charge")?.strength(-22).distanceMax(260);
     g.d3Force("link")?.distance((l: any) => (l.source?.kind === "Service" ? 34 : 16));
-  }, [data]);
+  }, [data, radial]);
 
   // camera: frame the highlighted subgraph (or the whole fleet) in the area right of the headline panel.
   // Standalone subgraphs (BYO scans) have no overlay, so they use the full canvas and refit when the layout settles.
@@ -86,6 +112,12 @@ export default function GraphCanvas({ fleet, highlight, onNodeClick, leftInset, 
   const fit = useCallback((ms = 900) => {
     const g = fg.current;
     if (!g || !data.nodes.length) return;
+    if (radial) {
+      // the radial layout is already sized to the canvas: the whole fleet stays in view, highlights included
+      g.centerAt(0, 0, ms);
+      g.zoom(1, ms);
+      return;
+    }
     const filter = hl.active && !isStandalone ? (n: N) => hl.nodes.has(n.id) : () => true;
     const bb = g.getGraphBbox(filter);
     if (!bb) return;
@@ -101,12 +133,12 @@ export default function GraphCanvas({ fleet, highlight, onNodeClick, leftInset, 
     const cy = (bb.y[0] + bb.y[1]) / 2 - overlay / 2 / z;
     g.centerAt(cx, cy, ms);
     g.zoom(z, ms);
-  }, [hl, data, size.w, size.h, leftInset, topInset, isStandalone]);
+  }, [hl, data, size.w, size.h, leftInset, topInset, isStandalone, radial]);
 
   useEffect(() => {
-    const t = setTimeout(() => fit(), hl.active ? 150 : 1800);
+    const t = setTimeout(() => fit(), radial ? 0 : hl.active ? 150 : 1800);
     return () => clearTimeout(t);
-  }, [fit, hl.active]);
+  }, [fit, hl.active, radial]);
 
   const colorOf = (n: N): string => {
     const h = hl.nodes.get(n.id);
@@ -226,7 +258,54 @@ export default function GraphCanvas({ fleet, highlight, onNodeClick, leftInset, 
   };
   const focusMix = (now: number) => (focus ? (reduced ? 1 : smooth((now - focus.at) / 180)) : 0);
 
-  const onFramePre = useCallback(() => {
+  // Ambient idle state: a slow, soft sweep around the rings brightens the edges it passes. Off when highlighting,
+  // hovering, or when the user prefers reduced motion.
+  const SWEEP_MS = 18000;
+  const sweepOn = radial && !hl.active && !focus && !reduced;
+  const sweepAt = (ang: number, now: number) => {
+    const theta = wrapA((now / SWEEP_MS) * TAU - Math.PI / 2);
+    const behind = wrapA(theta - ang); // 0 right at the sweep line, growing behind it
+    return behind < 1.1 ? (1 - behind / 1.1) ** 2 : 0;
+  };
+
+  /** Colour of a fleet (non-highlighted) edge, including focus dimming, long-chord fade and the idle sweep. */
+  const bgColor = (l: any) => {
+          const now = performance.now();
+          const ip = introProgress(now);
+          const fm = focusMix(now);
+          if (focus?.edges.has(l.key)) return `rgba(12,10,9,${(0.12 + 0.43 * fm) * ip})`;
+          const base = hl.active ? 0.06 : radial ? 0.3 : 0.16;
+          let boost = 0, span = 1;
+          if (radial && typeof l.source === "object") {
+            // long chords across the rings fade out, so each service's own sector reads as a tree
+            const dA = Math.abs(Math.atan2(Math.sin(l.source.ang - l.target.ang), Math.cos(l.source.ang - l.target.ang)));
+            span = dA < 0.5 ? 1 : Math.max(0.12, 1 - (dA - 0.5) / 1.1);
+            if (sweepOn) boost = sweepAt(midAngle(l.source.ang ?? 0, l.target.ang ?? 0), now);
+            span *= DEPTH_FADE[Math.min(l.source.depth ?? 0, DEPTH_FADE.length - 1)]; // outer layers read first
+          }
+          return `rgba(120,113,108,${(base * span + 0.24 * boost * span) * ip * (focus ? 1 - 0.7 * fm : 1)})`;
+  };
+
+  /** Radial edges are drawn like d3.linkRadial: they leave each node along its own spoke and turn at mid-radius. */
+  const radialCurve = (from: any, to: any): number[] => {
+    const rm = ((from.rr ?? 0) + (to.rr ?? 0)) / 2;
+    return [from.x, from.y, rx * rm * Math.cos(from.ang), ry * rm * Math.sin(from.ang), rx * rm * Math.cos(to.ang), ry * rm * Math.sin(to.ang), to.x, to.y];
+  };
+
+  const onFramePre = useCallback((ctx: CanvasRenderingContext2D, scale: number) => {
+    if (radial) {
+      // ring guides
+      const a = introProgress(performance.now());
+      ctx.globalAlpha = a;
+      ctx.strokeStyle = "#EFEDEB";
+      ctx.lineWidth = 1 / scale;
+      for (let d = 1; d <= MAX_RING; d++) {
+        ctx.beginPath();
+        ctx.ellipse(0, 0, rx * RING_R[d], ry * RING_R[d], 0, 0, TAU);
+        ctx.stroke();
+      }
+      ctx.globalAlpha = 1;
+    }
     if (intro.current || !data.nodes.length) return;
     const ns = data.nodes as any[];
     let cx = 0, cy = 0;
@@ -236,7 +315,7 @@ export default function GraphCanvas({ fleet, highlight, onNodeClick, leftInset, 
     for (const n of ns) span = Math.max(span, Math.hypot((n.x ?? 0) - cx, (n.y ?? 0) - cy));
     intro.current = { start: performance.now(), cx, cy, span };
     fit(0); // frame the graph instantly on the first frame, so the reveal happens where it will stay
-  }, [data, fit]);
+  }, [data, fit, radial, rx, ry]); // eslint-disable-line react-hooks/exhaustive-deps
 
   // Labels: services, focused paths and the hover chain only. Collision-checked, on a paper plate.
   const onFramePost = useCallback((ctx: CanvasRenderingContext2D, scale: number) => {
@@ -268,7 +347,15 @@ export default function GraphCanvas({ fleet, highlight, onNodeClick, leftInset, 
       const w = ctx.measureText(n.id).width;
       const padX = 4 / scale, padY = 2 / scale;
       const r = isSvc ? 4.5 : 3;
-      const x0 = n.x - w / 2 - padX, y0 = n.y + r + 3 / scale, bw = w + padX * 2, bh = fs * 1.15 + padY * 2;
+      const bw = w + padX * 2, bh = fs * 1.15 + padY * 2;
+      let x0 = n.x - bw / 2, y0 = n.y + r + 3 / scale;
+      if (radial && isSvc) {
+        // outer ring: labels sit radially outside their service
+        const c = Math.cos(n.ang ?? 0), sn = Math.sin(n.ang ?? 0), off = r + 5 / scale;
+        const ax = n.x + c * off, ay = n.y + sn * off;
+        x0 = c > 0.25 ? ax : c < -0.25 ? ax - bw : ax - bw / 2;
+        y0 = Math.abs(c) <= 0.25 ? (sn < 0 ? ay - bh : ay) : ay - bh / 2;
+      }
       if (prio > 0 && placed.some(([x, y, ww, hh]) => x0 < x + ww && x0 + bw > x && y0 < y + hh && y0 + bh > y)) continue;
       placed.push([x0, y0, bw, bh]);
       count++;
@@ -281,12 +368,29 @@ export default function GraphCanvas({ fleet, highlight, onNodeClick, leftInset, 
       ctx.fill();
       const h = hl.nodes.get(n.id);
       ctx.fillStyle = h?.status === "exposed" && (isSvc || h.type === "affected") ? C.signalInk : isSvc || prio <= 1 ? C.ink : C.ink2;
-      ctx.textAlign = "center";
+      ctx.textAlign = "left";
       ctx.textBaseline = "top";
-      ctx.fillText(n.id, n.x, y0 + padY);
+      ctx.fillText(n.id, x0 + padX, y0 + padY);
       ctx.globalAlpha = 1;
     }
-  }, [data, hl, hover, focus, font, reduced]); // eslint-disable-line react-hooks/exhaustive-deps
+    if (radial && !hl.active) {
+      const a = introProgress(now) * (focus ? 1 - 0.7 * fm : 1);
+      ctx.globalAlpha = a;
+      ctx.font = `450 ${10.5 / scale}px ${font}`;
+      ctx.textAlign = "center";
+      ctx.textBaseline = "middle";
+      for (let d = 1; d <= MAX_RING; d++) {
+        const y = ry * RING_R[d];
+        const t = RING_LABEL[d];
+        const w = ctx.measureText(t).width + 8 / scale;
+        ctx.fillStyle = "rgba(255,255,255,0.92)";
+        ctx.fillRect(-w / 2, y - 7 / scale, w, 14 / scale);
+        ctx.fillStyle = C.stone;
+        ctx.fillText(t, 0, y);
+      }
+      ctx.globalAlpha = 1;
+    }
+  }, [data, hl, hover, focus, font, reduced, radial, rx, ry]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div ref={wrap} className="absolute inset-0">
@@ -296,8 +400,8 @@ export default function GraphCanvas({ fleet, highlight, onNodeClick, leftInset, 
         height={size.h}
         graphData={data}
         backgroundColor="rgba(0,0,0,0)"
-        warmupTicks={60}
-        cooldownTicks={220}
+        warmupTicks={radial ? 0 : 60}
+        cooldownTicks={radial ? 0 : 220}
         onEngineStop={() => isStandalone && fit(600)}
         autoPauseRedraw={false}
         enableNodeDrag
@@ -317,19 +421,23 @@ export default function GraphCanvas({ fleet, highlight, onNodeClick, leftInset, 
           fg.current?.zoom(4, 700);
           onNodeClick?.(n.id);
         }}
-        linkColor={(l: any) => {
-          const now = performance.now();
-          const ip = introProgress(now);
-          const fm = focusMix(now);
-          if (focus?.edges.has(l.key)) return `rgba(12,10,9,${(0.12 + 0.43 * fm) * ip})`;
-          const base = hl.active ? 0.05 : 0.16;
-          return `rgba(120,113,108,${base * ip * (focus ? 1 - 0.7 * fm : 1)})`;
-        }}
-        linkWidth={(l: any) => (focus?.edges.has(l.key) ? 0.9 : 0.5)}
-        linkCanvasObjectMode={(l: any) => (hl.links.has(l.key) ? "replace" : undefined)}
+        linkColor={(l: any) => bgColor(l)}
+        linkWidth={(l: any) => (focus?.edges.has(l.key) ? 0.9 : radial ? 0.6 : 0.5)}
+        linkCanvasObjectMode={(l: any) => (radial || hl.links.has(l.key) ? "replace" : undefined)}
         linkCanvasObject={(l: any, ctx: CanvasRenderingContext2D, scale: number) => {
           const h = hl.links.get(l.key);
-          if (!h || typeof l.source !== "object") return;
+          if (typeof l.source !== "object") return;
+          if (!h) {
+            // radial fleet edge
+            const [x0, y0, c1x, c1y, c2x, c2y, x1, y1] = radialCurve(l.source, l.target);
+            ctx.strokeStyle = bgColor(l);
+            ctx.lineWidth = (focus?.edges.has(l.key) ? 0.9 : 0.6) / scale;
+            ctx.beginPath();
+            ctx.moveTo(x0, y0);
+            ctx.bezierCurveTo(c1x, c1y, c2x, c2y, x1, y1);
+            ctx.stroke();
+            return;
+          }
           const now = performance.now();
           const p = edgeProgress(l.key, l.source.id, now, h.status);
           if (p <= 0) return;
@@ -347,8 +455,18 @@ export default function GraphCanvas({ fleet, highlight, onNodeClick, leftInset, 
           ctx.lineWidth = (exposed ? 1.6 : 1) / Math.max(scale * 0.55, 0.7);
           ctx.lineCap = "round";
           ctx.beginPath();
-          ctx.moveTo(tx, ty);
-          ctx.lineTo(hx, hy);
+          if (radial) {
+            // the same radial curve, drawn from the dependency outward and cut at p (de Casteljau)
+            const q = radialCurve(l.target, l.source);
+            const lerp = (a: number, b: number) => a + (b - a) * p;
+            const ax = lerp(q[0], q[2]), ay = lerp(q[1], q[3]), bx = lerp(q[2], q[4]), by = lerp(q[3], q[5]), cx = lerp(q[4], q[6]), cy = lerp(q[5], q[7]);
+            const dx = lerp(ax, bx), dy = lerp(ay, by), ex = lerp(bx, cx), ey = lerp(by, cy);
+            ctx.moveTo(q[0], q[1]);
+            ctx.bezierCurveTo(ax, ay, dx, dy, lerp(dx, ex), lerp(dy, ey));
+          } else {
+            ctx.moveTo(tx, ty);
+            ctx.lineTo(hx, hy);
+          }
           ctx.stroke();
           ctx.globalAlpha = 1;
         }}
@@ -365,8 +483,9 @@ export default function GraphCanvas({ fleet, highlight, onNodeClick, leftInset, 
           const col = colorOf(n);
           if (!isSvc && !h && !inFocus) {
             // cheap path for the ~2,700 background versions
-            ctx.globalAlpha = reveal * (faded ? 0.4 : 1) * dimByFocus;
-            ctx.fillStyle = C.bg;
+            const boost = sweepOn ? sweepAt(n.ang ?? 0, now) : 0;
+            ctx.globalAlpha = reveal * (faded ? 0.4 : 0.8 + 0.2 * boost) * dimByFocus;
+            ctx.fillStyle = boost > 0.35 ? C.stone : C.bg;
             ctx.fillRect(n.x - 1.4, n.y - 1.4, 2.8, 2.8);
             ctx.globalAlpha = 1;
             return;
@@ -417,6 +536,10 @@ export default function GraphCanvas({ fleet, highlight, onNodeClick, leftInset, 
   );
 }
 
+const TAU = Math.PI * 2;
+const DEPTH_FADE = [1, 0.8, 0.62, 0.5, 0.42, 0.38];
+const wrapA = (a: number) => ((a % TAU) + TAU) % TAU;
+const midAngle = (a: number, b: number) => Math.atan2(Math.sin(a) + Math.sin(b), Math.cos(a) + Math.cos(b));
 const smooth = (x: number) => (x <= 0 ? 0 : x >= 1 ? 1 : x * x * (3 - 2 * x));
 
 function esc(s: string) {

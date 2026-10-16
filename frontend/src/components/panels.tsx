@@ -4,7 +4,7 @@ import clsx from "clsx";
 import { Activity, AlertTriangle, BellRing, ChevronDown, Crown, GitBranch, History, Loader2, RotateCcw, Terminal, Wand2 } from "lucide-react";
 import { useState } from "react";
 import type { AskResponse, Fix, Incident, ServiceExposure, TraceStep, WakeEntry } from "@/lib/types";
-import { Button, Card, CardHeader, CopyButton, CountUp, PathChain, Segmented, Skeleton } from "./ui";
+import { Button, Card, CardHeader, CopyButton, CountUp, PathChain, Segmented, ShowMore, Skeleton } from "./ui";
 import { ApproveBar } from "./agentui";
 import { BlastRings, ExposureMatrix, SpofScatter } from "./viz";
 import type { Playbook } from "@/lib/types";
@@ -157,16 +157,18 @@ export function ExposurePanel({ r, depth, onSelect }: { r: AskResponse; depth: n
         ]} />
         <span className="text-[12.5px] text-ink-3">{r.clean.length} services never reach an affected package</span>
       </div>
-      <div className="scroll-thin max-h-[560px] divide-y divide-line overflow-y-auto">
+      <div className="divide-y divide-line">
         {list.length === 0 && (
           <p className="px-5 py-10 text-center text-[14px] text-ink-3">
             {tab === "exposed" ? `No fleet path admits a malicious version at depth ${depth}.` : "No service reaches an affected package with a range that excludes it."}
           </p>
         )}
-        {list.map((e) => (
-          <ServiceRow key={e.service} e={e} exposed={tab === "exposed"} open={open === e.service}
-            onToggle={() => { setOpen(open === e.service ? null : e.service); onSelect(e.service); }} />
-        ))}
+        <ShowMore key={tab} limit={6} noun="services">
+          {list.map((e) => (
+            <ServiceRow key={e.service} e={e} exposed={tab === "exposed"} open={open === e.service}
+              onToggle={() => { setOpen(open === e.service ? null : e.service); onSelect(e.service); }} />
+          ))}
+        </ShowMore>
       </div>
     </Card>
   );
@@ -179,10 +181,10 @@ export function TracePanel({ trace, loading }: { trace: TraceStep[]; loading: bo
     <Card>
       <CardHeader icon={<Terminal />} title="Agent trace" sub="A fixed catalogue of tools. Human-written Cypher from queries/*.cypher."
         right={<span className="font-mono text-[12px] text-ink-3 tabular">{trace.length} steps · {total.toFixed(1)} ms</span>} />
-      <div className="scroll-thin max-h-[480px] divide-y divide-line overflow-y-auto">
+      <div className="divide-y divide-line">
         {loading && <div className="space-y-2 p-4">{[0, 1, 2, 3].map((i) => <Skeleton key={i} className="h-8" />)}</div>}
         {!loading && trace.length === 0 && <p className="py-6 text-center text-[13px] text-ink-3">Tool calls appear here.</p>}
-        {!loading && trace.map((s, i) => !s.cypher ? (
+        {!loading && <ShowMore limit={10} noun="steps">{trace.map((s, i) => !s.cypher ? (
           <motion.div key={i} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: i * 0.03, duration: 0.2 }}
             className="flex items-center gap-3 px-5 py-2.5 text-[13px]">
             <span className="w-5 font-mono text-[12px] text-ink-3 tabular">{String(i + 1).padStart(2, "0")}</span>
@@ -218,7 +220,7 @@ export function TracePanel({ trace, loading }: { trace: TraceStep[]; loading: bo
               )}
             </AnimatePresence>
           </motion.div>
-        ))}
+        ))}</ShowMore>}
       </div>
     </Card>
   );
@@ -231,7 +233,8 @@ export function WakeCard({ wake }: { wake: WakeEntry[] }) {
   return (
     <Card>
       <CardHeader icon={<BellRing />} title={`${wake.length} owning team${wake.length > 1 ? "s" : ""}`} sub="Synthetic Acme org. Page the on-call, then the team channel." />
-      <div className="scroll-thin max-h-[420px] divide-y divide-line overflow-y-auto">
+      <div className="divide-y divide-line">
+        <ShowMore limit={6} noun="teams to page">
         {wake.map((w) => (
           <div key={w.service} className="grid grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)_auto] items-center gap-4 px-5 py-3">
             <div className="min-w-0">
@@ -249,6 +252,7 @@ export function WakeCard({ wake }: { wake: WakeEntry[] }) {
             <span className="text-right text-[12.5px] text-ink-3">Tier {w.tier}<span className="hidden md:inline"> · {w.pager}</span></span>
           </div>
         ))}
+        </ShowMore>
       </div>
     </Card>
   );
@@ -341,13 +345,15 @@ export function MemoryDetail({ r }: { r: AskResponse }) {
     <Card>
       <CardHeader icon={<History />} title={`Recalled ${inc.id}`} sub={`${new Date(inc.at).toLocaleString()} · depth ${inc.depth} · ${inc.exposed_count} exposed services`} />
       <div className="grid gap-5 p-5 md:grid-cols-2">
-        <div className="scroll-thin max-h-80 divide-y divide-line overflow-y-auto rounded-lg border border-line">
+        <div className="divide-y divide-line self-start rounded-lg border border-line">
+          <ShowMore limit={5} noun="services">
           {(inc.exposed || []).map((x) => (
             <div key={x.service} className="px-3.5 py-2.5">
               <p className="mb-1 text-[13px] font-medium text-ink">{x.service} <span className="font-mono text-[12px] font-normal text-ink-3">{x.advisory}</span></p>
               <PathChain via={x.path} requirement={x.requirement} exposed compact />
             </div>
           ))}
+          </ShowMore>
           {!inc.exposed?.length && inc.services && <p className="p-3 text-[13px] text-ink-2">{inc.services.join(", ")}</p>}
         </div>
         {patch && <CodeBlock label="Patch on file, per service" text={patch} maxH="max-h-72" />}
@@ -466,7 +472,8 @@ export function ScopeStrip({ r }: { r: AskResponse }) {
       <div className="grid grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)_minmax(0,1.2fr)] gap-4 border-b border-line px-5 py-2.5 text-[12px] text-ink-3">
         <span>Package</span><span>Malicious, pin to</span><span className="hidden sm:block">Advisory</span>
       </div>
-      <div className="scroll-thin max-h-[360px] divide-y divide-line overflow-y-auto">
+      <div className="divide-y divide-line">
+        <ShowMore limit={8} noun="malicious versions">
         {r.scope.map((s) => (
           <div key={s.package + s.bad_version} className="grid grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)_minmax(0,1.2fr)] items-center gap-4 px-5 py-2 font-mono text-[12.5px]">
             <span className="truncate text-ink">{s.package}</span>
@@ -474,6 +481,7 @@ export function ScopeStrip({ r }: { r: AskResponse }) {
             <span className="hidden truncate text-ink-3 sm:block">{s.advisory_id ?? "user report"}</span>
           </div>
         ))}
+        </ShowMore>
       </div>
     </Card>
   );

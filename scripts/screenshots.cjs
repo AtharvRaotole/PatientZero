@@ -59,7 +59,7 @@ const shot = async (page, name) => {
 
 (async () => {
   fs.mkdirSync(OUT, { recursive: true });
-  for (const f of fs.readdirSync(OUT)) if (f.endsWith(".png")) fs.unlinkSync(path.join(OUT, f));
+  for (const f of fs.readdirSync(OUT)) if (/^\d.*\.png$/.test(f)) fs.unlinkSync(path.join(OUT, f)); // keeps logo-variants.png
   await fetch(`${API}/api/memory/reset`, { method: "POST" });
   await fetch(`${API}/api/playbooks`, { method: "DELETE" }).catch(() => {});
 

@@ -6,7 +6,7 @@ import { CheckCircle2, FileJson, GitFork as Github, Loader2, ScanSearch } from "
 import { useEffect, useState } from "react";
 import { ApiError, apiPost } from "@/lib/api";
 import type { ByoItem, ByoScan } from "@/lib/types";
-import { Button, Card, CardHeader, CopyButton, PathChain, Segmented } from "./ui";
+import { Button, Card, CardHeader, CopyButton, PathChain, Segmented, ShowMore } from "./ui";
 import { TracePanel } from "./panels";
 
 const GraphCanvas = dynamic(() => import("./GraphCanvas"), { ssr: false });
@@ -166,8 +166,9 @@ export default function ByoSection() {
             <div className="space-y-4">
               <Card>
                 <CardHeader title={`Exposed`} sub="The range on the last edge admits the malicious version." right={<span className={clsx("text-[13px] font-semibold tabular", scan.exposed.length ? "text-signal-ink" : "text-ink-3")}>{scan.exposed.length}</span>} />
-                <div className="scroll-thin max-h-72 divide-y divide-line overflow-y-auto">
+                <div className="divide-y divide-line">
                   {scan.exposed.length === 0 && <p className="px-5 py-4 text-[13px] text-ink-3">Nothing exposed.</p>}
+                  <ShowMore key={scan.scan_id} limit={4} noun="exposed versions">
                   {scan.exposed.map((i, k) => {
                     const p = norm(i);
                     return (
@@ -181,12 +182,14 @@ export default function ByoSection() {
                       </div>
                     );
                   })}
+                  </ShowMore>
                 </div>
               </Card>
               <Card>
                 <CardHeader title="Excluded by range" sub="Reaches an affected package, but the range rules the bad version out." right={<span className="text-[13px] font-semibold text-ink-2 tabular">{scan.not_exposed.length}</span>} />
-                <div className="scroll-thin max-h-56 divide-y divide-line overflow-y-auto">
+                <div className="divide-y divide-line">
                   {scan.not_exposed.length === 0 && <p className="px-5 py-4 text-[13px] text-ink-3">No near misses.</p>}
+                  <ShowMore key={scan.scan_id} limit={3} noun="near misses">
                   {scan.not_exposed.map((i, k) => {
                     const p = norm(i);
                     return (
@@ -196,6 +199,7 @@ export default function ByoSection() {
                       </div>
                     );
                   })}
+                  </ShowMore>
                 </div>
               </Card>
             </div>

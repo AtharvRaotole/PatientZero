@@ -1,7 +1,7 @@
 "use client";
-import { animate, motion, useMotionValue, useTransform } from "framer-motion";
-import { Check, Copy } from "lucide-react";
-import { useEffect, useState } from "react";
+import { AnimatePresence, animate, motion, useMotionValue, useTransform } from "framer-motion";
+import { Check, ChevronDown, Copy } from "lucide-react";
+import React, { useEffect, useState } from "react";
 import clsx from "clsx";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
@@ -165,5 +165,30 @@ export function PathChain({ via, requirement, bad, exposed, compact }: { via: st
         {bad && <span className={clsx("ml-1.5 font-semibold", exposed ? "text-signal-ink" : "text-safe")}>{exposed ? `admits ${bad}` : `excludes ${bad}`}</span>}
       </span>
     </div>
+  );
+}
+
+/** A long list that shows its first `limit` rows and expands in place, instead of a clipped inner scroll. Place it inside a divide-y container. */
+export function ShowMore({ children, limit = 6, noun = "rows" }: { children: React.ReactNode; limit?: number; noun?: string }) {
+  const [open, setOpen] = useState(false);
+  const items = React.Children.toArray(children);
+  if (items.length <= limit + 1) return <>{items}</>;
+  return (
+    <>
+      {items.slice(0, limit)}
+      <AnimatePresence initial={false}>
+        {open && (
+          <motion.div key="more" initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.25, ease: EASE }} className="divide-y divide-line overflow-hidden">
+            {items.slice(limit)}
+          </motion.div>
+        )}
+      </AnimatePresence>
+      <button onClick={() => setOpen((o) => !o)} aria-expanded={open}
+        className="flex w-full items-center justify-center gap-1.5 py-2.5 text-[13px] font-medium text-ink-2 transition-colors hover:bg-subtle/70 hover:text-ink">
+        {open ? "Show fewer" : `Show all ${items.length} ${noun}`}
+        <ChevronDown className={clsx("h-3.5 w-3.5 transition-transform duration-200", open && "rotate-180")} />
+      </button>
+    </>
   );
 }

@@ -13,16 +13,26 @@ const INK = "#0C0A09", INK2 = "#57534E", STONE = "#A8A29E", LINE = "#E7E5E4", PA
 /* ------------------------------------------------------------------ Blast radius rings */
 export function BlastRings({ r }: { r: AskResponse }) {
   const [hover, setHover] = useState<string | null>(null);
+  const [coreOpen, setCoreOpen] = useState(false);
   const model = useMemo(() => buildRings([...r.exposed, ...r.safe]), [r.exposed, r.safe]);
+  const core = useMemo(() => model.nodes.filter((n) => n.d === 0).sort((a, b) => a.angle - b.angle), [model]);
   const S = 560, C = S / 2, R = S / 2 - 46;
   if (!model.nodes.length) return <Empty text="No dependency chains reach an affected package at this depth." />;
-  const ringR = (d: number) => (d === 0 ? 0 : 52 + ((R - 52) * d) / model.maxD);
+  const ringR = (d: number) => (d === 0 ? 0 : 58 + ((R - 58) * d) / model.maxD);
+  // The compromised packages collapse into one core node; hovering it fans them out on a small inner circle.
+  const coreR = Math.min(ringR(1) - 22, Math.max(26, (core.length * 15) / (2 * Math.PI)));
+  const coreSlot = new Map(core.map((n, i) => [n.id, -Math.PI / 2 + (i / core.length) * 2 * Math.PI]));
   const pos = (id: string) => {
     const n = model.byId.get(id)!;
-    const rad = n.d === 0 ? 26 : ringR(n.d);
-    return [C + rad * Math.cos(n.angle), C + rad * Math.sin(n.angle)];
+    if (n.d === 0) {
+      if (!coreOpen || core.length === 1) return [C, C];
+      const a = coreSlot.get(id)!;
+      return [C + coreR * Math.cos(a), C + coreR * Math.sin(a)];
+    }
+    return [C + ringR(n.d) * Math.cos(n.angle), C + ringR(n.d) * Math.sin(n.angle)];
   };
   const active = hover ? model.chainOf.get(hover) : null;
+  const spring = { type: "spring", stiffness: 260, damping: 30 } as const;
   return (
     <div className="grid gap-4 lg:grid-cols-[minmax(0,1fr)_220px]">
       <svg viewBox={`0 0 ${S} ${S}`} className="mx-auto w-full max-w-[560px] overflow-visible">
@@ -36,50 +46,85 @@ export function BlastRings({ r }: { r: AskResponse }) {
         {model.edges.map((e) => {
           const [x1, y1] = pos(e.a), [x2, y2] = pos(e.b);
           const on = !active || (active.has(e.a) && active.has(e.b));
+          const d = `M${x1},${y1} Q${(x1 + x2) / 2 + (C - (x1 + x2) / 2) * 0.15},${(y1 + y2) / 2 + (C - (y1 + y2) / 2) * 0.15} ${x2},${y2}`;
           return (
-            <path key={e.a + e.b} d={`M${x1},${y1} Q${(x1 + x2) / 2 + (C - (x1 + x2) / 2) * 0.15},${(y1 + y2) / 2 + (C - (y1 + y2) / 2) * 0.15} ${x2},${y2}`}
+            <motion.path key={e.a + e.b} initial={false} animate={{ d }} transition={spring}
               fill="none" stroke={e.exposed ? SIG : STONE} strokeOpacity={on ? (e.exposed ? 0.9 : 0.55) : 0.08} strokeWidth={e.exposed ? 1.4 : 1}
               style={{ transition: "stroke-opacity 180ms ease-out" }} />
           );
         })}
-        {model.nodes.map((n) => {
+        {model.nodes.filter((n) => n.d > 0).map((n) => {
           const [x, y] = pos(n.id);
           const on = !active || active.has(n.id);
-          const col = n.d === 0 ? SIG : n.service ? (n.exposed ? SIG : INK) : n.exposed ? RISK : STONE;
+          const col = n.service ? (n.exposed ? SIG : INK) : n.exposed ? RISK : STONE;
           const hollow = n.service && !n.exposed;
-          const size = n.d === 0 ? 4.5 : n.service ? 5.5 : 3;
-          const outer = n.service;
-          const lx = outer ? C + (ringR(n.d) + 10) * Math.cos(n.angle) : x;
-          const ly = outer ? C + (ringR(n.d) + 10) * Math.sin(n.angle) : y - 8;
+          const size = n.service ? 5.5 : 3;
+          const lx = n.service ? C + (ringR(n.d) + 10) * Math.cos(n.angle) : x;
+          const ly = n.service ? C + (ringR(n.d) + 10) * Math.sin(n.angle) : y - 8;
           return (
             <g key={n.id} opacity={on ? 1 : 0.15} onMouseEnter={() => setHover(n.id)} onMouseLeave={() => setHover(null)} className="cursor-pointer" style={{ transition: "opacity 180ms ease-out" }}>
               <circle cx={x} cy={y} r={size + 8} fill="transparent" />
-              {n.d === 0 && <circle cx={x} cy={y} r={size + 5} fill="none" stroke={SIG} strokeOpacity={0.35} />}
-              <circle cx={x} cy={y} r={size} fill={hollow ? "#FFFFFF" : col} stroke={hollow ? INK : PAPER} strokeWidth={hollow ? 1.5 : 1.5} />
+              <circle cx={x} cy={y} r={size} fill={hollow ? "#FFFFFF" : col} stroke={hollow ? INK : PAPER} strokeWidth={1.5} />
               {(n.service || hover === n.id) && (
-                <text x={lx} y={ly} fill={n.d === 0 ? INK : n.service ? INK2 : INK2} fontSize={n.d === 0 ? 12 : 10.5} fontWeight={n.d === 0 ? 600 : 500} paintOrder="stroke" stroke="#FFFFFF" strokeWidth={3} strokeLinejoin="round"
-                  textAnchor={outer ? (Math.cos(n.angle) > 0.2 ? "start" : Math.cos(n.angle) < -0.2 ? "end" : "middle") : "middle"} dominantBaseline="middle">
-                  {n.d === 0 ? n.label : n.id}
+                <text x={lx} y={ly} fill={INK2} fontSize={10.5} fontWeight={500} paintOrder="stroke" stroke="#FFFFFF" strokeWidth={3} strokeLinejoin="round"
+                  textAnchor={n.service ? (Math.cos(n.angle) > 0.2 ? "start" : Math.cos(n.angle) < -0.2 ? "end" : "middle") : "middle"} dominantBaseline="middle">
+                  {n.id}
                 </text>
               )}
             </g>
           );
         })}
+        {/* core: the compromised packages */}
+        <g onMouseEnter={() => setCoreOpen(true)} onMouseLeave={() => { setCoreOpen(false); setHover(null); }} className="cursor-pointer">
+          <circle cx={C} cy={C} r={coreOpen ? coreR + 14 : 22} fill="transparent" />
+          <motion.circle cx={C} cy={C} initial={false} animate={{ r: coreOpen ? coreR + 9 : 15, opacity: coreOpen ? 0.5 : 0.35 }} transition={spring} fill="#FFFFFF" stroke={SIG} strokeWidth={1} />
+          {core.map((n) => {
+            const [x, y] = pos(n.id);
+            const on = !active || active.has(n.id);
+            return (
+              <motion.g key={n.id} initial={false} animate={{ x: x - C, y: y - C, opacity: on ? 1 : 0.15 }} transition={spring}
+                onMouseEnter={() => coreOpen && setHover(n.id)} onMouseLeave={() => setHover(null)}>
+                <circle cx={C} cy={C} r={coreOpen ? 4 : 9} fill={SIG} stroke="#FFFFFF" strokeWidth={1.5} style={{ transition: "r 200ms ease-out" }} />
+              </motion.g>
+            );
+          })}
+          {!coreOpen && core.length > 1 && (
+            <text x={C} y={C + 0.5} fill="#FFFFFF" fontSize="10" fontWeight={600} textAnchor="middle" dominantBaseline="middle" style={{ fontVariantNumeric: "tabular-nums", pointerEvents: "none" }}>{core.length}</text>
+          )}
+          {hover && model.byId.get(hover)?.d === 0 && (() => {
+            const [x, y] = pos(hover);
+            return <text x={x} y={y - 10} fill={INK} fontSize={11.5} fontWeight={600} textAnchor="middle" paintOrder="stroke" stroke="#FFFFFF" strokeWidth={3} strokeLinejoin="round" style={{ pointerEvents: "none" }}>{model.byId.get(hover)!.label}</text>;
+          })()}
+          {!coreOpen && (
+            <text x={C} y={C + 32} fill={INK} fontSize={11} fontWeight={600} textAnchor="middle" paintOrder="stroke" stroke="#FFFFFF" strokeWidth={3.5} strokeLinejoin="round" style={{ pointerEvents: "none" }}>
+              {core.length === 1 ? core[0].label : `${core.length} compromised packages`}
+            </text>
+          )}
+        </g>
       </svg>
       <div className="space-y-4 text-[13px] leading-relaxed text-ink-2">
-        <p>Rings count hops outward from the <span className="font-medium text-ink">{model.nodes.filter((n) => n.d === 0).length} compromised packages</span> at the center to the services that pull them.</p>
+        <p>Rings count hops outward from the <span className="font-medium text-ink">{core.length} compromised package{core.length === 1 ? "" : "s"}</span> at the core to the services that pull them. Hover the core to fan them out.</p>
         <p><span className="font-medium text-signal-ink">Vermilion chains</span> end in a range that admits the malicious version. <span className="font-medium text-ink">Grey chains</span> reach the package, but their range excludes it.</p>
-        <div className="divide-y divide-line border-y border-line">
-          {Array.from({ length: model.maxD }, (_, i) => i + 1).map((d) => {
-            const svcs = model.nodes.filter((n) => n.service && n.d === d);
-            return svcs.length ? (
-              <div key={d} className="flex items-center justify-between py-1.5 tabular">
-                <span className="text-ink-3">{d} hop{d > 1 ? "s" : ""}</span>
-                <span><b className="font-semibold text-signal-ink">{svcs.filter((s) => s.exposed).length}</b> exposed, <b className="font-semibold text-ink">{svcs.filter((s) => !s.exposed).length}</b> safe</span>
-              </div>
-            ) : null;
-          })}
-        </div>
+        {coreOpen ? (
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.15 }} className="border-y border-line py-2">
+            <p className="mb-1.5 text-[12px] text-ink-3">At the core</p>
+            <div className="grid grid-cols-2 gap-x-3 gap-y-0.5 font-mono text-[12px]">
+              {core.map((n) => <span key={n.id} className={clsx("truncate", hover === n.id ? "text-signal-ink" : "text-ink")}>{n.label}</span>)}
+            </div>
+          </motion.div>
+        ) : (
+          <div className="divide-y divide-line border-y border-line">
+            {Array.from({ length: model.maxD }, (_, i) => i + 1).map((d) => {
+              const svcs = model.nodes.filter((n) => n.service && n.d === d);
+              return svcs.length ? (
+                <div key={d} className="flex items-center justify-between py-1.5 tabular">
+                  <span className="text-ink-3">{d} hop{d > 1 ? "s" : ""}</span>
+                  <span><b className="font-semibold text-signal-ink">{svcs.filter((s) => s.exposed).length}</b> exposed, <b className="font-semibold text-ink">{svcs.filter((s) => !s.exposed).length}</b> safe</span>
+                </div>
+              ) : null;
+            })}
+          </div>
+        )}
         <p className="text-[12px] text-ink-3">Hover a node to isolate its chain. One representative path per service and package.</p>
       </div>
     </div>

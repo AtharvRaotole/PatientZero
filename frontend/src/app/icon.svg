@@ -1,6 +1,7 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none">
-  <circle cx="10" cy="14" r="7" stroke="#0C0A09" stroke-width="2"/>
-  <path d="M15 9 L21.25 2.75" stroke="#0C0A09" stroke-width="1.25" stroke-linecap="round"/>
-  <circle cx="21.25" cy="2.75" r="1.25" fill="#0C0A09"/>
-  <circle cx="15" cy="9" r="3" fill="#E5484D" stroke="#FAFAF9" stroke-width="1.25"/>
+  <style>.i{stroke:#0C0A09}.f{fill:#0C0A09}.h{stroke:#FAFAF9}@media (prefers-color-scheme: dark){.i{stroke:#FAFAF9}.f{fill:#FAFAF9}.h{stroke:#0C0A09}}</style>
+  <ellipse class="i" cx="10.5" cy="13.25" rx="6.1" ry="8.25" stroke-width="2.5"/>
+  <path class="i" d="M15.6 7.4 L20.9 2.6" stroke-width="1.75" stroke-linecap="round"/>
+  <circle class="f" cx="20.9" cy="2.6" r="1.6"/>
+  <circle class="h" cx="15.1" cy="7.75" r="3.5" fill="#E5484D" stroke-width="1.6"/>
 </svg>

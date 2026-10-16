@@ -222,7 +222,7 @@ export default function Home() {
 
       <main className="mx-auto max-w-[1240px] px-6 pb-24">
         {/* Hero */}
-        <section className="pb-8 pt-12 md:pt-16">
+        <section className="pb-7 pt-10 md:pt-14">
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
             <p className="flex items-center gap-2 text-[13px] text-ink-2" title={`Source: ${QIX_DOWNLOADS_SOURCE}`}>
               <span className="h-1.5 w-1.5 rounded-full bg-signal" />
@@ -235,9 +235,10 @@ export default function Home() {
               PatientZero walks every dependency chain in your fleet, checks the npm semver range on the last edge, and tells you who to wake and what to pin.
             </p>
           </motion.div>
-          <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0.08 }} className="mt-8 max-w-[760px]">
+          <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0.08 }} className="mt-7 max-w-[760px]">
             <CommandBar inputRef={inputRef} value={query} onChange={setQuery} suggestions={PRESETS} disabled={!up} loading={loading}
               onRun={(q, fromSuggestion) => run(q, { fresh: fromSuggestion && q.includes("phished") })} />
+            <LastTraversal result={result} loading={loading} queries={health?.queries} />
           </motion.div>
         </section>
 
@@ -441,3 +442,30 @@ function EmptyState({ onPick }: { onPick: (q: string) => void }) {
   );
 }
 
+/** Real numbers from the last answer's trace: wall time, Cypher queries run and rows read. Nothing estimated. */
+function LastTraversal({ result, loading, queries }: { result: AskResponse | null; loading: boolean; queries?: number }) {
+  const steps = result?.trace.filter((t) => t.cypher) ?? [];
+  const rows = steps.reduce((a, t) => a + (t.rows || 0), 0);
+  let body: React.ReactNode;
+  if (loading) body = <><span className="h-1.5 w-1.5 animate-pulse rounded-full bg-ink-3" />Traversing the graph</>;
+  else if (result) body = (
+    <>
+      <span className="h-1.5 w-1.5 rounded-full bg-safe" />
+      Last traversal <span className="font-mono text-ink-2">{result.total_ms.toFixed(0)} ms</span>
+      <span className="text-line-strong">/</span>
+      <span className="tabular">{steps.length} Cypher quer{steps.length === 1 ? "y" : "ies"}</span>
+      <span className="text-line-strong">/</span>
+      <span className="tabular">{rows.toLocaleString()} rows read</span>
+    </>
+  );
+  else if (queries) body = <><span className="h-1.5 w-1.5 rounded-full bg-line-strong" />{queries} hand-written Cypher queries, no generated Cypher</>;
+  else return <div className="mt-3 h-5" />;
+  return (
+    <AnimatePresence mode="wait" initial={false}>
+      <motion.p key={loading ? "l" : result ? result.query + result.total_ms : "idle"} initial={{ opacity: 0, y: 2 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.18 }}
+        className="mt-3 flex h-5 items-center gap-2 text-[12.5px] text-ink-3">
+        {body}
+      </motion.p>
+    </AnimatePresence>
+  );
+}
