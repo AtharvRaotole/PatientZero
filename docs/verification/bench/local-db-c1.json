@@ -1,0 +1,110 @@
+{
+ "id": "B-20261016T152411-e35d",
+ "label": "local-single",
+ "at": "2026-10-16T15:24:19+00:00",
+ "clients": 1,
+ "procs": 1,
+ "retry_busy": false,
+ "duration_s": 8.0,
+ "read_graph": "fleet:acme",
+ "scratch_graph": "bench:B-20261016T152411-e35d",
+ "scratch_deleted": true,
+ "mix": {
+  "read_exposure_incident": 40,
+  "read_exposure_deep": 20,
+  "read_who_to_wake": 15,
+  "write_event": 20,
+  "read_scratch": 5
+ },
+ "overall": {
+  "ops": 2239,
+  "errors": 0,
+  "throughput_ops_s": 279.9,
+  "p50_ms": 3.87,
+  "p95_ms": 6.96,
+  "p99_ms": 10.12,
+  "max_ms": 23.18,
+  "mean_ms": 3.57
+ },
+ "reads": {
+  "ops": 1800,
+  "errors": 0,
+  "throughput_ops_s": 225.0,
+  "p50_ms": 4.96,
+  "p95_ms": 7.27,
+  "p99_ms": 10.49,
+  "max_ms": 23.18,
+  "mean_ms": 4.26
+ },
+ "writes": {
+  "ops": 439,
+  "errors": 0,
+  "throughput_ops_s": 54.9,
+  "p50_ms": 0.54,
+  "p95_ms": 1.27,
+  "p99_ms": 3.98,
+  "max_ms": 8.93,
+  "mean_ms": 0.7
+ },
+ "by_op": {
+  "read_exposure_incident": {
+   "ops": 937,
+   "errors": 0,
+   "throughput_ops_s": 117.1,
+   "p50_ms": 5.6,
+   "p95_ms": 8.27,
+   "p99_ms": 12.85,
+   "max_ms": 23.18,
+   "mean_ms": 5.93
+  },
+  "read_exposure_deep": {
+   "ops": 446,
+   "errors": 0,
+   "throughput_ops_s": 55.8,
+   "p50_ms": 3.78,
+   "p95_ms": 5.56,
+   "p99_ms": 9.26,
+   "max_ms": 13.57,
+   "mean_ms": 3.99
+  },
+  "read_who_to_wake": {
+   "ops": 319,
+   "errors": 0,
+   "throughput_ops_s": 39.9,
+   "p50_ms": 0.7,
+   "p95_ms": 1.47,
+   "p99_ms": 3.26,
+   "max_ms": 7.08,
+   "mean_ms": 0.84
+  },
+  "write_event": {
+   "ops": 439,
+   "errors": 0,
+   "throughput_ops_s": 54.9,
+   "p50_ms": 0.54,
+   "p95_ms": 1.27,
+   "p99_ms": 3.98,
+   "max_ms": 8.93,
+   "mean_ms": 0.7
+  },
+  "read_scratch": {
+   "ops": 98,
+   "errors": 0,
+   "throughput_ops_s": 12.2,
+   "p50_ms": 0.48,
+   "p95_ms": 1.17,
+   "p99_ms": 5.33,
+   "max_ms": 8.43,
+   "mean_ms": 0.75
+  }
+ },
+ "events_written": 439,
+ "error_samples": [],
+ "falkordb": {
+  "redis_version": "8.0.2",
+  "modules": [
+   "graph@60001"
+  ]
+ },
+ "target": "db"
+}

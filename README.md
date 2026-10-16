@@ -66,6 +66,7 @@ Then scroll to **Would you have been hit on Sept 8, 2025?** and scan a public re
 
 ## Agent design
 - A **deterministic intent router** picks among 8 hand-written tools (`queries/*.cypher`). It is the default path, the fallback and the test oracle.
+- **Tool selection through MCP.** The agent is an MCP client of PatientZero's own MCP server (the same server Claude Desktop or Cursor use), over the official `mcp` SDK's in-memory transport: it lists the tools (`tools/list`) and runs the chosen one with `tools/call`. The router maps its intent to an MCP tool; in LLM mode the model's function schemas are built from the MCP tool list (write tools such as `remediation_plan` and `crew_run` are never offered). Every answer's trace starts with the MCP call (`via: mcp`, tool, arguments, latency); if MCP itself fails the agent calls the same function directly and the trace says `via: direct`. Cost: about 4 ms per question. `MCP_AGENT=off` disables it.
 - With `OPENAI_API_KEY` set, the **LLM is used only when the router is not confident** (or the user picks LLM mode). It can only call the same tools; it never writes Cypher. Plain-English phrasings of the loaded incident ("that npm phishing attack last September", "the guy who maintains chalk got phished") are mapped to maintainer `qix` by router synonyms first, so they never need the LLM.
 - **Name check on every LLM answer**: any service, package, person or @handle in the model's sentence that is not in the tool result (including names the graph has never heard of, like an invented service) is flagged. If anything is flagged, the model's sentence is dropped, the templated deterministic answer is shown instead, and the trace says "LLM answer rejected".
 - The **AI incident summary** runs only when the user clicks for it, and is withheld under the same rule.
@@ -121,6 +122,10 @@ NODE_PATH=/path/to/node_modules node scripts/e2e_screenshots.cjs           # 12 
 | GET | `/api/crew/{run_id}`, `/api/crew` | Replay a crew run from the graph; recent runs |
 | GET | `/api/sessions/{id}` | Conversation history (turns and the graph nodes each was ABOUT) |
 | GET | `/api/tenants` | Tenants, each a separate FalkorDB graph. Every endpoint takes `?tenant=` or `X-Tenant` (default acme) |
+| GET | `/api/watch/feed`, `/api/watch/stream` | Live OSV npm malware watch: recent checks with verdicts per tenant; SSE stream of new checks and polls |
+| POST | `/api/watch/replay` | `{advisory}`: re-play a past real advisory (default `debug@4.4.2`) through the watcher, labelled as a replay |
+| POST | `/api/watch/poll` | Poll OSV now (admin); the background poll runs every 10 min |
+| GET | `/api/bench/last`, POST `/api/bench/run` | Latest concurrency benchmark; start a bounded server-side run (admin) |
 
 Admin endpoints need the `X-Admin-Token` header when `ADMIN_TOKEN` is set (always on the public deploy):
 `curl -XPOST "$URL/api/admin/reset?tenant=acme" -H "X-Admin-Token: $ADMIN_TOKEN"` (one tenant per call). Locally, with
@@ -220,6 +225,14 @@ FalkorDB features used: multi-graph tenancy, variable-length paths, `algo.SPpath
     not hit, Globex has 4 of 12 services exposed. An incident approved in Acme is never recalled in Globex.
   - *High-concurrency reads and writes:* a test runs 20 crews at once (10 per tenant) with exact node and edge
     counts and one atomically updated Incident per tenant.
+    Benchmark ([docs/verification/concurrency.md](docs/verification/concurrency.md)): 32 clients with their own
+    FalkorDB connections mixing multi-hop exposure traversals and writes sustain 1,774 ops/s (p99 55 ms, 0 errors);
+    64 clients 2,292 ops/s (p99 70 ms); a 50% write mix 2,573 ops/s. Reproduce with `scripts/bench_concurrency.py`.
+- **Track 1, acting on live data: the OSV malware watch.** Every 10 minutes the watcher reads the head of OSV's npm index, fetches new
+  `MAL-*` advisories, writes them into every tenant graph in the same schema, runs the exposure traversal against
+  each fleet and stores a `(:WatchEvent)` with its verdict, "not hit" included ("checked 25 new advisories in 807 ms").
+  The demo can re-play the real Sept 8, 2025 `debug@4.4.2` advisory through the same pipeline: Acme 10 of 22
+  services hit, Globex 5 of 12, clearly labelled as a replay. Contract: [docs/CONTRACT-watch-mcp-bench.md](docs/CONTRACT-watch-mcp-bench.md).
 
 ## Demo script
 See [docs/DEMO.md](docs/DEMO.md).
