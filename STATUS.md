@@ -16,10 +16,12 @@ _Last updated: Fri Oct 16 2026, 12:40 AM ET_
 - [x] BYO scan UI (GitHub URL or package.json, include devDependencies toggle, axios and express 4.x presets) and Approve, Playbooks UI, playbook reuse shown in the fix panel
 - [x] Shai-Hulud campaign routing (incident_scope_by_campaign); honest message when the campaign is not loaded
 - [x] Static export (NEXT_OUTPUT=export, NEXT_PUBLIC_API_URL=.) verified served by app.serve on one origin, browser smoke test clean
+- [x] Deployed on Railway: **https://patientzero-production-2cb3.up.railway.app** (services `patientzero` from the Dockerfile, `falkordb` v4.22.1 with a `/data` volume, password auth, AOF). Live checks passed: /health up, UI, qix depth 4 gives 13 exposed, BYO axios, approve then recall shows the playbook, data survives app and DB redeploys. Details in DEPLOY.md
 - [x] Verification: backend pytest 89 passed; browser e2e 12/12; BYO presets checked in browser (axios exposed, express 4.x runtime clean)
 
 ## Next actions
-- Final polish pass on screenshots for the README; deploy preview URL (DEPLOY.md, Railway) once credentials are available
+- Final polish pass on screenshots for the README
+- Redeploy after pushing UI changes: `sh scripts/redeploy-railway.sh` (ships origin/main; no GitHub auto-deploy)
 - Optional: load Shai-Hulud (INCIDENTS=qix,shai-hulud) in the demo graph and add a preset chip
 
 ## Assumptions
@@ -40,4 +42,5 @@ cd frontend && npm run dev                         # http://localhost:3001
 cd frontend && npm run build
 cd backend && uv run python ../scripts/verify_falkordb.py
 curl localhost:8000/health
+sh scripts/redeploy-railway.sh                      # push first; deploys origin/main to Railway
 ```
