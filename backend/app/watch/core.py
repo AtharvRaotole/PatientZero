@@ -86,7 +86,7 @@ class GraphRun:
         t0 = time.perf_counter()
         try:
             g = db.client().select_graph(self.graph_name)
-            res = g.query(cypher, params or {}) if write else g.ro_query(cypher, params or {})
+            res = db.with_busy_retry(lambda: g.query(cypher, params or {}) if write else g.ro_query(cypher, params or {}))
         except Exception as e:  # noqa: BLE001
             if db._is_conn_error(e):
                 raise GraphUnavailable(f"graph unavailable: {e}") from e

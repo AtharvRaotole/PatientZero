@@ -41,6 +41,9 @@ class CallResult:
     meta: dict = field(default_factory=dict)
 
 
+_tls = threading.local()
+
+
 def _server():
     from ..mcp_server import mcp
     return mcp
@@ -51,7 +54,12 @@ def _run(coro_fn, *a):
     try:
         asyncio.get_running_loop()
     except RuntimeError:
-        return asyncio.run(coro_fn(*a))
+        # One event loop per worker thread, reused across calls (asyncio.run would build and tear down a loop
+        # and its executor on every request). The task copies the caller's context, so the tenant carries over.
+        loop = getattr(_tls, "loop", None)
+        if loop is None or loop.is_closed():
+            loop = _tls.loop = asyncio.new_event_loop()
+        return loop.run_until_complete(coro_fn(*a))
     ctx = contextvars.copy_context()  # keep request context (tenant) in the helper thread
     with concurrent.futures.ThreadPoolExecutor(1) as ex:  # called from inside a running loop: use a thread
         return ex.submit(ctx.run, asyncio.run, coro_fn(*a)).result()
@@ -98,7 +106,10 @@ def _parse(res) -> Any:
         raise McpCallError(text or "MCP tool error")
     if res.structuredContent is not None:
         sc = res.structuredContent
-        return sc.get("result", sc) if isinstance(sc, dict) and set(sc) == {"result"} else sc
+        val = sc.get("result", sc) if isinstance(sc, dict) and set(sc) == {"result"} else sc
+        if not (isinstance(val, str) and val[:1] in "{["):
+            return val
+        text = val  # a tool that returns pre-serialised JSON text
     try:
         return json.loads(text) if text else None
     except ValueError:

@@ -7,6 +7,7 @@ request context (depth, fresh, session) that the model never controls.
 from __future__ import annotations
 
 import inspect
+import json
 from typing import Any
 
 INVESTIGATE_DOC = (
@@ -19,7 +20,7 @@ CONTEXT_ARGS = ("fresh", "session", "generate_fix", "options")
 
 
 def investigate(question: str, depth: int | None = None, fresh: bool = False, session: str = "",
-                generate_fix: bool = False, options: dict[str, Any] | None = None) -> dict:
+                generate_fix: bool = False, options: dict[str, Any] | None = None) -> str:
     from ..domains.patientzero import DOMAIN
     from ..router import ask
     opts: dict[str, Any] = {"depth": depth, "fresh": bool(fresh), "session": session or "",
@@ -31,11 +32,13 @@ def investigate(question: str, depth: int | None = None, fresh: bool = False, se
     for k, v in (options or {}).items():
         if k in accepted:
             opts[k] = v
-    return DOMAIN.route(question, **opts)
+    # Compact JSON text (the full structured response). FastMCP would pretty-print a dict with indent=2, which
+    # costs about a third more bytes and CPU on every agent call; clients json-parse the text either way.
+    return json.dumps(DOMAIN.route(question, **opts), separators=(",", ":"), default=str)
 
 
 def register(mcp) -> None:
     """Idempotently add the agent tools to a FastMCP server instance."""
     existing = {t.name for t in mcp._tool_manager.list_tools()}
     if "investigate" not in existing:
-        mcp.add_tool(investigate, name="investigate", description=INVESTIGATE_DOC)
+        mcp.add_tool(investigate, name="investigate", description=INVESTIGATE_DOC, structured_output=False)

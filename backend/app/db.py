@@ -41,6 +41,26 @@ def _load_catalogue(directory: Path = QUERIES_DIR) -> dict[str, dict]:
 CATALOGUE = _load_catalogue()
 
 
+# FalkorDB rejects a query outright when its queue is full ("Max pending queries exceeded", MAX_QUEUED_QUERIES).
+# The query never ran, so retrying after a short jittered backoff is safe for reads and writes alike.
+BUSY_RETRIES = int(__import__("os").getenv("FALKORDB_BUSY_RETRIES", "5"))
+
+
+def is_busy(e: Exception) -> bool:
+    return "max pending queries" in str(e).lower()
+
+
+def with_busy_retry(fn):
+    import random
+    for i in range(BUSY_RETRIES + 1):
+        try:
+            return fn()
+        except Exception as e:  # noqa: BLE001
+            if not is_busy(e) or i == BUSY_RETRIES:
+                raise
+            time.sleep(min(0.5, 0.02 * 2 ** i) * (0.5 + random.random()))
+
+
 _db: FalkorDB | None = None
 
 
@@ -79,7 +99,7 @@ class Trace:
         t0 = time.perf_counter()
         try:
             g = graph()
-            res = g.query(cypher, params) if write else g.ro_query(cypher, params)
+            res = with_busy_retry(lambda: g.query(cypher, params) if write else g.ro_query(cypher, params))
         except Exception as e:  # noqa: BLE001
             ms = round((time.perf_counter() - t0) * 1000, 2)
             self.steps.append(dict(tool=tool, query=query, cypher=cypher, params=_short(params), ms=ms,
