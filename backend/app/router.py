@@ -183,11 +183,12 @@ def ask(text: str, depth: int | None = None, fresh: bool = False, session: str =
             _unknown(out, ent)
         elif intent == "path_between" and ent["services"] and (ent["packages"] or ent["package_versions"]):
             _path(out, tr, ent)
-        elif intent == "path_between" and ent["services"] and ent.get("unmatched"):
+        elif ent["services"] and ent.get("unmatched") and not trigger_of(ent) and (
+                intent == "path_between" or COMPROMISE_RE.search(text) or re.search(r"\bexposed\b", text, re.I)):
             ent["unresolved"] = ent["unresolved"] + ent["unmatched"]
             _unknown(out, ent)
             out["message"] = (f"{', '.join(ent['services'])} is in the graph, but {', '.join(ent['unmatched'])} "
-                              f"is not, so no path was traced. " + out["message"].split(", so no traversal was run. ")[-1])
+                              f"is not, so nothing was traced. " + out["message"].split(", so no traversal was run. ")[-1])
         elif intent == "recall":
             _recall(out, tr, ent)
         elif intent == "who_to_wake" and (ent["services"] or (

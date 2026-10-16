@@ -47,6 +47,8 @@ class PatientZero:
     system_prompt = (
         "You are PatientZero, a supply-chain incident agent for the Acme fleet (synthetic company, real npm data). "
         "Answer ONLY from tool results. Never invent services, packages, people or versions. "
+        "Loaded incident: the Sept 8 2025 npm phishing of maintainer qix (chalk, debug and 17 more); for it call "
+        "`investigate` with 'maintainer qix was phished'. "
         "For incident or exposure questions (including named campaigns like the Shai-Hulud worm) call `investigate` "
         "with the user's question. Use the other tools for "
         "follow-ups. Finish with at most two plain-text sentences for an on-call engineer: no markdown, no lists.")
@@ -69,6 +71,38 @@ class PatientZero:
         ent = r.get("entity") or {}
         return bool(ent.get("unresolved"))
 
+    def digest(self, payload) -> dict:
+        """Compact tool result for the LLM (a few hundred tokens instead of the full response)."""
+        if not isinstance(payload, dict) or "outcome" not in payload:
+            from ..core.agent import _summarize_for_llm
+            return _summarize_for_llm(payload)
+        r = payload
+        d = {"outcome": r.get("outcome"), "message": r.get("message"), "depth": r.get("depth")}
+        if r.get("exposed"):
+            d["exposed"] = [{"service": e["service"], "tier": e.get("tier"), "bad": e.get("exposed_packages"),
+                             "path": next((f["path"]["display"] for f in e["findings"] if f["exposed"]), None)}
+                            for e in r["exposed"][:15]]
+        if r.get("safe"):
+            d["safe"] = [{"service": e["service"], "why": e["findings"][0]["path"].get("reason")}
+                         for e in r["safe"][:8]]
+        if r.get("wake"):
+            d["wake"] = [{"service": w["service"], "team": w.get("team_display"), "slack": w.get("slack"),
+                          "oncall": [o.get("name") for o in w.get("oncall") or []]} for w in r["wake"][:15]]
+        sb = (r.get("memory") or {}).get("seen_before")
+        if sb:
+            d["seen_before"] = sb.get("text")
+        for k in ("path", "maintainers"):
+            if r.get(k):
+                d[k] = r[k]
+        if r.get("spof"):
+            d["spof"] = {"maintainers": r["spof"]["maintainers"][:5], "packages": r["spof"]["packages"][:5]}
+        import json
+        for key in ("safe", "wake", "exposed"):  # shrink long lists until the digest fits ~700 tokens
+            while key in d and len(json.dumps(d, default=str)) > 2800 and len(d[key]) > 3:
+                d[key] = d[key][:-1]
+                d[f"{key}_truncated"] = True
+        return d
+
     def allowed_names(self, r: dict) -> set[str]:
         names: set[str] = set()
         for group in ("exposed", "safe"):
@@ -78,7 +112,20 @@ class PatientZero:
                     names.add(f["package"])
                     names.update(n.rsplit("@", 1)[0] for n in f["path"]["via"])
         names.update(s["package"] for s in r.get("scope") or [])
-        names.update(w["service"] for w in r.get("wake") or [])
+        for w in r.get("wake") or []:
+            names.update(x for x in (w.get("service"), w.get("team"), w.get("team_display"), w.get("slack"),
+                                     w.get("repo")) if x)
+            for p in (w.get("oncall") or []) + (w.get("members") or []):
+                names.update(x for x in (p.get("name"), p.get("handle")) if x)
+        for sc in r.get("scope") or []:
+            names.update(x for x in (sc.get("advisory_id"), sc.get("ghsa"), sc.get("cve")) if x)
+        names.update(x for x in (r.get("entity_key"), r.get("trigger")) if x)
+        ent = r.get("entity") or {}
+        names.update(ent.get("maintainers") or [])
+        if r.get("maintainers"):
+            names.update(r["maintainers"].get("maintainers") or [])
+            names.update(r["maintainers"].get("had_publish_rights") or [])
+            names.add(r["maintainers"].get("pkg") or "")
         if r.get("path"):
             names.update(n.rsplit("@", 1)[0] for n in r["path"]["via"])
         for inc in (r.get("memory") or {}).get("incidents") or []:
@@ -86,6 +133,10 @@ class PatientZero:
                 names.add(x.get("service") or "")
                 names.update(n.rsplit("@", 1)[0] for n in x.get("path") or [])
             names.update(inc.get("services") or [])
+            names.add(inc.get("id") or "")
+        sb = (r.get("memory") or {}).get("seen_before")
+        if sb:
+            names.update(x for x in (sb.get("id"), sb.get("entity_key")) if x)
         if r.get("spof"):
             names.update(m["maintainer"] for m in r["spof"]["maintainers"])
             names.update(p["pkg"] for p in r["spof"]["packages"] + r["spof"]["pagerank"])

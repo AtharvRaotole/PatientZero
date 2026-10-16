@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import hashlib
 import json
+import re
 import threading
 import time
 from pathlib import Path
@@ -178,7 +179,8 @@ def _run_llm(domain: Domain, text: str, **opts) -> dict:
                     structured = out["response"]
                     trace.extend(structured.get("trace", []))
                 payload = out.get("result", out.get("response", {}))
-                content = json.dumps(_summarize_for_llm(payload), default=str)[:12000]
+                dig = getattr(domain, "digest", None)
+                content = json.dumps(dig(payload) if dig else _summarize_for_llm(payload), default=str)[:3000]
             except Exception as e:  # noqa: BLE001 - report the tool error back to the model
                 trace.append(_step(name, f"tool error: {e}", error=str(e)))
                 content = json.dumps({"error": str(e)})
@@ -196,7 +198,15 @@ def _run_llm(domain: Domain, text: str, **opts) -> dict:
     r["llm_summary"] = final or None
     r["llm_unverified"] = unverified
     if unverified:
-        r["trace"].append(_step("llm", f"flagged names not in the graph result: {', '.join(unverified)}"))
+        # Never show an answer that names something the tools did not return: fall back to the templated,
+        # deterministic answer for the same question, and say so in the trace.
+        det = domain.route(text, **opts)
+        r = dict(det)
+        r["trace"] = trace + [_step("llm", f"LLM answer rejected: names not in the tool result: "
+                                           f"{', '.join(unverified)}. Showing the deterministic answer.",
+                                    llm_rejected=True)] + det["trace"]
+        r.update(mode="llm", llm_model=config.OPENAI_MODEL, llm_tokens=total_tokens, llm_summary=None,
+                 llm_unverified=unverified, llm_rejected=True)
     r["total_ms"] = round((time.perf_counter() - t0) * 1000, 2)
     return r
 
@@ -210,18 +220,69 @@ def _summarize_for_llm(payload: Any) -> Any:
     return payload
 
 
+# Capitalised words that start sentences or name products, never people.
+_NOT_PEOPLE = set("""the a an you your we our us no yes it its this these those that there then wake page run use pin
+upgrade services service team teams on tier if all both only npm slack github patientzero falkordb acme cypher graph
+platform payments checkout data security infra web mobile api node express chalk debug and or but so also add apply
+update one two three four five six seven eight nine ten september sept october monday tuesday wednesday thursday
+friday saturday sunday incident playbook advisory maintainer on-call oncall shai hulud worm owner owners""".split())
+# Hyphenated or dotted English words that look like package names but are not entities.
+_ENTITY_OK = {"on-call", "oncall", "tier-1", "tier-2", "tier-3", "e-mail", "re-run", "re-check", "follow-up",
+              "end-to-end", "semver", "package.json", "node.js", "npm", "supply-chain", "single-point", "up-to-date",
+              "multi-hop", "real-time", "high-risk", "low-risk", "well-known", "pre-release", "co-maintainer",
+              "tie-broken", "algo.pagerank", "algo.sppaths", "user-facing", "customer-facing", "read-only",
+              "dev-only", "build-time", "run-time", "runtime-only", "non-critical", "re-deploy", "re-install"}
+_TOKEN = re.compile(r"(?<![\w@])@?[a-z0-9][a-z0-9._/-]*[a-z0-9](?:@\d+(?:\.\d+)*)?", re.I)
+_VERSION = re.compile(r"^[\^~v]?\d+(\.\d+)*$")
+_HANDLE = re.compile(r"(?<![\w.])@([a-z][a-z0-9._-]{1,30})\b", re.I)
+
+
 def unverified_names(text: str, allowed: set[str], known: set[str]) -> list[str]:
-    """Graph entity names (packages/services) mentioned in LLM text that are NOT in the tool results."""
-    import re
+    """Every service, package or person mentioned in LLM text that is NOT in the tool result.
+
+    Flags (1) any graph-known name that the result does not contain, (2) any package- or service-shaped token
+    (contains '-', '/', '.' or '@version') that is not in the result, even if the graph has never heard of it,
+    (3) person-like 'First Last' names and @handles that are not in the result."""
     from ..tools import STOPWORDS
-    allowed = {a.lower() for a in allowed}
+    if not text:
+        return []
+    allowed_l = {a.lower() for a in allowed if a}
+    allowed_l |= {a.lstrip("#@") for a in allowed_l}
+    allowed_parts = {w for a in allowed_l for w in re.split(r"[\s,()]+", a) if w}
     bad: list[str] = []
-    for tok in re.findall(r"@?[a-z0-9][a-z0-9._/-]*[a-z0-9]", text.lower()):
-        base = tok.rsplit("@", 1)[0] if "@" in tok[1:] else tok
-        if base in STOPWORDS or len(base) < 3:
+
+    def flag(x: str):
+        if x not in bad:
+            bad.append(x)
+
+    pairs = [(m.group(1), m.group(2)) for m in re.finditer(
+        r"(?=\b([A-Z][a-z]+(?:[-'][A-Z]?[a-z]+)?)\s+([A-Z][a-z]+(?:[-'][A-Z]?[a-z]+)?)\b)", text)]
+    for a, b in pairs:
+        if a.lower() in _NOT_PEOPLE or b.lower() in _NOT_PEOPLE:
             continue
-        if base in known and base not in allowed and base not in bad:
-            bad.append(base)
+        full = f"{a} {b}"
+        if full.lower() not in allowed_l and not (a.lower() in allowed_parts and b.lower() in allowed_parts):
+            flag(full)
+    for m in _HANDLE.finditer(text):
+        h = m.group(1).rstrip(".-_").lower()
+        if _VERSION.match(h) or h in allowed_parts or f"@{h}" in allowed_parts or h in allowed_l:
+            continue
+        if "/" in text[m.end():m.end() + 1]:
+            continue  # a scoped package (@scope/name) is handled below
+        flag("@" + h)
+    for tok in _TOKEN.findall(text):
+        t = tok.lower().rstrip(".")
+        base = t.rsplit("@", 1)[0] if "@" in t[1:] else t
+        if not base or re.fullmatch(r"[\d.:/-]+", base) or _VERSION.match(base) or base in STOPWORDS or len(base) < 3 or base in _ENTITY_OK:
+            continue
+        if base.startswith("@") and "/" not in base:
+            continue  # handles were checked above
+        if base in allowed_l:
+            continue
+        shaped = any(c in base for c in "-/") or "@" in t[1:] or (
+            "." in base and not base.endswith((".js", ".json")) and re.search(r"[a-z]\.[a-z]", base))
+        if base in known or shaped:
+            flag(base)
     return bad
 
 
@@ -241,8 +302,11 @@ def summarize(domain: Domain, response: dict, ip: str = "") -> dict:
     t = time.perf_counter()
     msg, usage = _chat(msgs, None, config.LLM_MAX_TOKENS_SUMMARY, ip=ip, kind="summary")
     text = (msg.get("content") or "").strip()
-    out = {"summary": text, "model": config.OPENAI_MODEL, "ms": round((time.perf_counter() - t) * 1000, 2),
-           "tokens": usage.get("total_tokens", 0),
-           "unverified": unverified_names(text, domain.allowed_names(response), domain.known_names())}
+    bad = unverified_names(text, domain.allowed_names(response), domain.known_names())
+    out = {"summary": None if bad else text, "model": config.OPENAI_MODEL,
+           "ms": round((time.perf_counter() - t) * 1000, 2), "tokens": usage.get("total_tokens", 0),
+           "unverified": bad,
+           "error": (f"AI summary withheld: it named {', '.join(bad)}, which the graph result does not contain."
+                     if bad else None)}
     _cache_put(key, out)
     return out

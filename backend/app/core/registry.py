@@ -43,7 +43,14 @@ class ToolRegistry:
         return list(self.tools)
 
     def openai_tools(self) -> list[dict]:
-        return [t.openai_schema() for t in self.tools.values()]
+        """Compact schemas for the LLM: first sentence of each description only (keeps the prompt small)."""
+        out = []
+        for t in self.tools.values():
+            sch = t.openai_schema()
+            d = sch["function"]["description"]
+            sch["function"]["description"] = (d.split(". ")[0].rstrip(".") + ".")[:160]
+            out.append(sch)
+        return out
 
     def call(self, name: str, args: dict | None = None, ctx: dict | None = None) -> dict:
         """Validate required args against the schema, run the tool, time it."""
