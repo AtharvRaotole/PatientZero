@@ -34,7 +34,7 @@ export function OutcomeBanner({ r, onFresh }: { r: AskResponse; onFresh: () => v
         <div className="min-w-0 max-w-[820px]">
           {hit ? (
             <h2 className="text-[28px] font-semibold leading-tight tracking-[-0.02em] text-ink">
-              <CountUp key={r.query + r.depth} value={r.exposed.length} className="text-signal" /> of {r.fleet_size} services can install a malicious version.
+              <CountUp value={r.exposed.length} className="text-signal" /> of {r.fleet_size} services can install a malicious version.
             </h2>
           ) : (
             <h2 className="text-[24px] font-semibold leading-tight tracking-[-0.02em] text-ink md:text-[28px]">{HEADLINE[r.outcome] ?? split(r.message)[0]}</h2>
@@ -357,7 +357,7 @@ export function MemoryPanel({ incidents, onRecall, onReset }: { incidents: Incid
         right={onReset && incidents && incidents.length > 0 ? <Button variant="ghost" onClick={onReset} className="h-7 text-[12px]">Reset demo memory</Button> : null} />
       <div className="scroll-thin max-h-72 divide-y divide-line overflow-y-auto">
         {incidents === null && <div className="space-y-2 p-4">{[0, 1].map((i) => <Skeleton key={i} className="h-10" />)}</div>}
-        {incidents?.length === 0 && <p className="px-5 py-5 text-[13px] text-ink-3">No incidents stored yet. Generate a fix to write one.</p>}
+        {incidents?.length === 0 && <p className="px-5 py-5 text-[13px] text-ink-3">No incidents in graph memory yet.</p>}
         {incidents?.map((i) => (
           <button key={i.id} onClick={() => onRecall(i.entity_key || i.trigger)} className="flex w-full items-center justify-between gap-4 px-5 py-3 text-left transition-colors hover:bg-subtle/70">
             <div className="min-w-0">

@@ -1,5 +1,5 @@
 "use client";
-import { Command } from "cmdk";
+import { Command, defaultFilter } from "cmdk";
 import { AnimatePresence, motion } from "framer-motion";
 import { CornerDownLeft, Loader2, Search } from "lucide-react";
 import { useEffect, useRef, useState } from "react";
@@ -33,7 +33,9 @@ export function CommandBar({ value, onChange, onRun, suggestions, disabled, load
 
   return (
     <div ref={wrap} className="relative">
+      {/* "Ask <typed text>" always ranks first, so Enter asks exactly what was typed and never swaps in an example. */}
       <Command label="Ask PatientZero" value={active} onValueChange={setActive} loop
+        filter={(v, search, keywords) => (v.startsWith("ask:") ? 1 : defaultFilter(v, search, keywords) * 0.99)}
         className="rounded-xl border border-line bg-surface shadow-sm transition-shadow focus-within:border-line-strong focus-within:shadow-md">
         <div className="flex h-14 items-center gap-3 pl-4 pr-2">
           <Search className="h-[18px] w-[18px] shrink-0 text-ink-3" />
@@ -62,11 +64,13 @@ export function CommandBar({ value, onChange, onRun, suggestions, disabled, load
               className="absolute inset-x-0 top-[calc(100%+6px)] z-40 overflow-hidden rounded-xl border border-line bg-surface shadow-lg">
               <Command.List className="scroll-thin max-h-[340px] overflow-y-auto p-1.5">
                 {typed && (
-                  <Command.Item value={`ask:${typed}`} forceMount onSelect={() => run(typed, false)}
-                    className="flex cursor-pointer items-center gap-3 rounded-lg px-3 py-2.5 text-[14px] text-ink data-[selected=true]:bg-subtle">
-                    <CornerDownLeft className="h-4 w-4 text-ink-3" />
-                    <span className="truncate">Ask <span className="font-medium">{typed}</span></span>
-                  </Command.Item>
+                  <Command.Group>
+                    <Command.Item value={`ask:${typed}`} onSelect={() => run(typed, false)}
+                      className="flex cursor-pointer items-center gap-3 rounded-lg px-3 py-2.5 text-[14px] text-ink data-[selected=true]:bg-subtle">
+                      <CornerDownLeft className="h-4 w-4 text-ink-3" />
+                      <span className="truncate">Ask <span className="font-medium">{typed}</span></span>
+                    </Command.Item>
+                  </Command.Group>
                 )}
                 <Command.Empty className="px-3 py-2.5 text-[13px] text-ink-3">No matching examples. Press Enter to ask.</Command.Empty>
                 {groups.map((g) => (

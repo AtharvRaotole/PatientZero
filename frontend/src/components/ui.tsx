@@ -1,18 +1,22 @@
 "use client";
 import { AnimatePresence, animate, motion, useMotionValue, useTransform } from "framer-motion";
 import { Check, ChevronDown, Copy } from "lucide-react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import clsx from "clsx";
 
 const EASE = [0.22, 1, 0.36, 1] as const;
 
 /** Animated number: counts up to `value` (ease-out). Respects reduced motion. */
+/** Counts up once, on first show. Later changes (a re-trace) just set the number. */
 export function CountUp({ value, className, duration = 0.8 }: { value: number; className?: string; duration?: number }) {
   const mv = useMotionValue(0);
   const text = useTransform(mv, (v) => Math.round(v).toLocaleString());
+  const shown = useRef(false);
   useEffect(() => {
     const reduce = typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches;
-    if (reduce) {
+    const first = !shown.current;
+    shown.current = true;
+    if (reduce || !first) {
       mv.set(value);
       return;
     }

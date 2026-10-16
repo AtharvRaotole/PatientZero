@@ -23,7 +23,7 @@ const C = {
   ink: "#0C0A09",
   ink2: "#57534E",
   stone: "#A8A29E",
-  muted: "#736C67",
+  muted: "#69625D",
   bg: "#D6D3D1",
   signal: "#E5484D",
   signalInk: "#C4282D",
@@ -380,7 +380,11 @@ export default function GraphCanvas({ fleet, highlight, onNodeClick, leftInset, 
       const padX = 4 / scale, padY = 2 / scale;
       const r = isSvc ? 4.5 : 3;
       const bh = fs * 1.15 + padY * 2;
-      const hits = (ax: number, ay: number, ww: number) => placed.some(([x, y, pw, ph]) => ax < x + pw && ax + ww > x && ay < y + ph && ay + bh > y);
+      const m = 3 / scale; // breathing room between plates
+      const hits = (ax: number, ay: number, ww: number) => placed.some(([x, y, pw, ph]) => ax < x + pw + m && ax + ww + m > x && ay < y + ph + m && ay + bh + m > y);
+      // Crowded core: grey context labels step aside, and red ones use the short form first.
+      const near = placed.filter(([x, y, pw, ph]) => Math.hypot(x + pw / 2 - n.x, y + ph / 2 - n.y) < 80 / scale).length;
+      if (prio === 4 && near >= 2) continue;
       // Positions to try, in order: the natural spot, then the other sides of the node. The full label
       // ("debug@4.4.2 (via ^4.3.4)") first, then just the malicious version where the core is crowded.
       const spots = (bw: number): [number, number][] => {
@@ -396,7 +400,7 @@ export default function GraphCanvas({ fleet, highlight, onNodeClick, leftInset, 
           [n.x + r, n.y + r], [n.x - r - bw, n.y - r - bh], [n.x + r, n.y - r - bh], [n.x - r - bw, n.y + r]];
       };
       let text = full, bw = 0, x0 = 0, y0 = 0, found = false;
-      for (const t of full === short ? [full] : [full, short]) {
+      for (const t of full === short ? [full] : near >= 2 ? [short, full] : [full, short]) {
         const tw = ctx.measureText(t).width + padX * 2;
         const ss = spots(tw);
         const ok = prio === 0 ? ss[0] : ss.find(([ax, ay]) => !hits(ax, ay, tw));
@@ -620,5 +624,5 @@ function tooltip(n: N, h?: { type: string; status?: string; bad?: string }, via?
   const st = admits || (h?.status === "exposed" ? `<div style="color:#C4282D;margin-top:4px">Exposed${h.bad ? `: ${esc(h.bad)}` : ""}</div>`
     : h?.status === "safe" ? `<div style="color:#57534E;margin-top:4px">Range excludes the bad version</div>`
     : h?.status === "path" ? `<div style="color:#0C0A09;margin-top:4px">On the shortest path</div>` : "");
-  return `<div style="font-family:inherit;background:#FFFFFF;border:1px solid #E7E5E4;padding:8px 10px;border-radius:8px;font-size:12px;color:#0C0A09;box-shadow:0 4px 16px rgba(12,10,9,.08)"><div style="font-weight:600;font-family:var(--font-geist-mono),ui-monospace,monospace">${esc(n.id)}</div><div style="color:#736C67;font-size:11.5px;margin-top:2px">${kind}</div>${st}</div>`;
+  return `<div style="font-family:inherit;background:#FFFFFF;border:1px solid #E7E5E4;padding:8px 10px;border-radius:8px;font-size:12px;color:#0C0A09;box-shadow:0 4px 16px rgba(12,10,9,.08)"><div style="font-weight:600;font-family:var(--font-geist-mono),ui-monospace,monospace">${esc(n.id)}</div><div style="color:#69625D;font-size:11.5px;margin-top:2px">${kind}</div>${st}</div>`;
 }

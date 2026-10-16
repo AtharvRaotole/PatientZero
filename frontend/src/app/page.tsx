@@ -255,6 +255,7 @@ export default function Home() {
           <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0.08 }} className="mt-6 max-w-[760px]">
             <CommandBar inputRef={inputRef} value={query} onChange={setQuery} suggestions={PRESETS} disabled={!up} loading={loading}
               onRun={(q, fromSuggestion) => run(q, { fresh: fromSuggestion && q.includes("phished") })} />
+            <Interpreted result={loading ? null : result} asked={lastQuery} />
             <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
               <button onClick={() => run(REPLAY, { fresh: true })} disabled={!up || loading}
                 className="press inline-flex h-9 items-center gap-2 rounded-lg bg-ink px-3.5 text-[13.5px] font-medium text-paper transition-colors hover:bg-ink/85 disabled:opacity-40">
@@ -462,6 +463,22 @@ function EmptyState({ onPick }: { onPick: (q: string) => void }) {
         </motion.button>
       ))}
     </div>
+  );
+}
+
+/** The user's words stay in the bar; when the graph read them as something more specific, say so underneath. */
+function Interpreted({ result, asked }: { result: AskResponse | null; asked: string }) {
+  if (!result) return null;
+  const canon = result.outcome === "answered_from_memory"
+    ? result.memory?.seen_before?.trigger ?? result.memory?.incidents?.[0]?.trigger ?? result.trigger
+    : result.trigger;
+  const norm = (t: string) => t.toLowerCase().replace(/\s+/g, " ").trim();
+  if (!canon || !asked || norm(asked).includes(norm(canon))) return null;
+  return (
+    <motion.p initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.2 }} data-testid="interpreted"
+      className="mt-2 pl-1 text-[12.5px] text-ink-3">
+      Interpreted as: <span className="font-mono text-ink-2">{canon}</span>
+    </motion.p>
   );
 }
 

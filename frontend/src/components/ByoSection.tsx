@@ -37,6 +37,12 @@ function norm(i: ByoItem) {
   };
 }
 
+/** Every exposed path of this finding enters through a devDependency (no runtime path). */
+function devOnly(i: ByoItem) {
+  if (i.via_dev_dependency !== undefined) return i.via_dev_dependency;
+  return !i.runtime_vias?.length && !!i.dev_entries?.length;
+}
+
 /** Drop the leading "Yes:"/"No:" (the headline says it) and capitalize, unless the sentence starts with a host or path. */
 function tidy(summary: string) {
   const t = summary.replace(/^(Yes|No)[:.]\s*/, "");
@@ -189,6 +195,10 @@ export default function ByoSection() {
                       <div key={k} className="px-5 py-3">
                         <div className="mb-1.5 flex flex-wrap items-baseline gap-x-3 text-[12.5px]">
                           <span className="font-mono font-medium text-ink">{i.package}@{i.bad_version}</span>
+                          {devOnly(i) && (
+                            <span title={`Only through devDependencies${i.dev_entries?.length ? `: ${i.dev_entries.join(", ")}` : ""}`}
+                              className="rounded px-1.5 py-px font-sans text-[11.5px] font-medium text-risk ring-1 ring-inset ring-risk/30">dev</span>
+                          )}
                           {i.clean_version && <span className="text-ink-2">pin {i.clean_version}</span>}
                           {i.advisory_id && <span className="font-mono text-ink-3">{i.advisory_id}</span>}
                         </div>

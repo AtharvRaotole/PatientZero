@@ -167,8 +167,14 @@ const exposedCount = (page) =>
   p2.on("pageerror", (e) => errors.push(String(e)));
   await p2.goto(APP, { waitUntil: "networkidle2" });
   await p2.waitForFunction(() => document.body.innerText.includes("versions"), { timeout: 30000 });
-  await ask(p2, "qix");
+  // Plain typing then Enter, suggestions open: the bar must ask exactly "qix", not swap in an example.
+  await p2.focus("input[aria-label='Ask PatientZero']");
+  await p2.type("input[aria-label='Ask PatientZero']", "qix", { delay: 40 });
+  await new Promise((r) => setTimeout(r, 300));
+  await p2.keyboard.press("Enter");
   await waitOutcome(p2, "Answered from graph memory");
+  const kept = await p2.evaluate(() => ({ v: document.querySelector("input[aria-label='Ask PatientZero']").value, i: document.querySelector("[data-testid='interpreted']")?.innerText ?? "" }));
+  check("bare qix keeps the typed text, shows the interpretation", kept.v === "qix" && /maintainer qix was phished/.test(kept.i), JSON.stringify(kept));
   const memLine = await p2.evaluate(() => document.querySelector("[data-testid='memory-line']")?.innerText ?? "");
   check("AC10 new session: qix answered from graph memory, with incident id and date", /INC-\S+/.test(memLine) && /\d{4}|\d:\d\d/.test(memLine), memLine.replace(/\s+/g, " "));
   await p2.screenshot({ path: `${OUT}/07-memory-recall.png`, fullPage: true });

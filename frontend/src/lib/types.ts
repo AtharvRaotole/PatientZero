@@ -183,6 +183,9 @@ export interface ByoItem {
   requirement?: string | null;
   reason?: string;
   hops?: number;
+  via_dev_dependency?: boolean;
+  runtime_vias?: string[][];
+  dev_entries?: string[];
 }
 
 export interface ByoVerdict {

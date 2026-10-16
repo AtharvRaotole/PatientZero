@@ -8,7 +8,7 @@ import type { AskResponse, ServiceExposure, Spof } from "@/lib/types";
 
 /* Light paper palette. One signal color; amber marks the exposure chain. */
 const TAU = Math.PI * 2;
-const INK = "#0C0A09", INK2 = "#57534E", STONE = "#A8A29E", MUTED = "#736C67", LINE = "#E7E5E4", PAPER = "#FAFAF9", SIG = "#E5484D", RISK = "#B45309";
+const INK = "#0C0A09", INK2 = "#57534E", STONE = "#A8A29E", MUTED = "#69625D", LINE = "#E7E5E4", PAPER = "#FAFAF9", SIG = "#E5484D", RISK = "#B45309";
 
 
 /* ------------------------------------------------------------------ Blast radius rings */
