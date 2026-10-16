@@ -75,3 +75,26 @@ FalkorDB v6.0.1 notes: a variable-length bound can't be a parameter, so `exposur
 `length(p) <= $depth`. `exists(<pattern>)` isn't supported, so the queries use pattern predicates or
 `size([pattern | x])`. Verified procedures: `algo.pageRank('Version','REQUIRES')` and
 `algo.SPpaths({sourceNode, targetNode, relTypes, maxLen, weightProp, pathCount})`, which yields `path, pathWeight`.
+
+## Optional second incident: Shai-Hulud (Sept 15 2025 npm worm)
+
+`ingest/fetch_shai_hulud.py` scans OSV ids MAL-2025-46986 through 48599. It keeps the npm records whose
+references or details name the campaign and caches them in `data/raw/osv/shai-hulud/`. The result is
+`data/incidents/2025-09-15-shai-hulud.json`: 203 packages and 589 bad versions (MAL-2025-47131 through
+47450, e.g. `@ctrl/tinycolor@4.1.1, 4.1.2`, `ngx-bootstrap`).
+
+Public write-ups cite roughly 500 packages, so treat 203 as a **lower bound**. Some OSV records don't link
+a campaign write-up and are missed by the filter.
+
+To load it: `INCIDENTS=qix,shai-hulud python ingest/load.py`. It is off by default because SPEC AC2 counts
+19 affected versions.
+- Advisories carry `campaign` (`2025-09-08-qix` or `2025-09-15-shai-hulud`), and
+  `incident_scope_by_campaign` scopes by it.
+- Shai-Hulud has no single maintainer, so there are no HAD_PUBLISH_RIGHTS edges, and there are no curated
+  clean versions (`fixed_version` is null).
+- The demo Acme fleet has **no** exposure to it at depth 6. That's an honest negative, and BYO scans are
+  where it would show up.
+
+## Deploy helpers
+`ingest/seed_if_missing.py` loads the graph only when it's absent. The container runs it on start, so
+redeploys keep incident and playbook memory. `load.load(db)` accepts a client, and `FALKORDB_URL` is honoured.

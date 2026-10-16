@@ -18,6 +18,10 @@ ROOT = Path(__file__).resolve().parent.parent
 DATA = ROOT / "data"
 RAW = DATA / "raw"
 GRAPH = os.getenv("FALKORDB_GRAPH", "fleet:acme")
+# Optional extra incidents, comma separated. 'qix' is always loaded; 'shai-hulud' adds the Sept 2025 worm
+# (data/incidents/2025-09-15-shai-hulud.json, built by ingest/fetch_shai_hulud.py). Off by default so the
+# SPEC acceptance counts (19 affected versions) hold.
+INCIDENTS = {x.strip().lower() for x in os.getenv("INCIDENTS", "qix").split(",") if x.strip()}
 
 
 def connect():
@@ -95,7 +99,7 @@ def build():
         advisories.append({
             "id": c["mal_id"], "aliases": aliases, "ids": [x.upper() for x in [c["mal_id"], *aliases]], "ghsa": ghsa[0] if ghsa else None,
             "cve": cve[0] if cve else None, "summary": summary,
-            "published": osv.get("published"), "url": c["osv_url"], "pkg": c["package"],
+            "published": osv.get("published"), "url": c["osv_url"], "pkg": c["package"], "campaign": incident["id"],
             "bad_version": c["bad_version"], "fixed_version": c["clean_version"],
             "key": k, "source": c["source"]})
 
@@ -169,7 +173,7 @@ def load(db=None):
     q("""UNWIND $rows AS r MATCH (v:Version {key:r.key})
          CREATE (a:Advisory {id:r.id, aliases:r.aliases, ids:r.ids, ghsa:r.ghsa, cve:r.cve, summary:r.summary,
                              published:r.published, url:r.url, pkg:r.pkg, bad_version:r.bad_version,
-                             fixed_version:r.fixed_version})-[:AFFECTS]->(v)""", {"rows": advisories})
+                             fixed_version:r.fixed_version, campaign:r.campaign})-[:AFFECTS]->(v)""", {"rows": advisories})
     m = incident["maintainer"]
     q("CREATE (:Maintainer {npm:$npm, name:$name, github:$gh})", {"npm": m["npm"], "name": m["name"], "gh": m["github"]})
     q("""UNWIND $rows AS r MATCH (m:Maintainer {npm:$npm}), (p:Package {name:r.package})
@@ -180,7 +184,40 @@ def load(db=None):
              MATCH (p:Package {name:r.pkg}) CREATE (m)-[:MAINTAINS {source:'registry.npmjs.org/latest'}]->(p)""",
           {"rows": c})
 
+    if "shai-hulud" in INCIDENTS:
+        load_shai_hulud(g)
     stats(g, time.time() - t0)
+
+
+def load_shai_hulud(g):
+    """One Advisory per OSV MAL record, AFFECTS every listed bad version (unpublished). No clean versions and
+    no single maintainer, so no HAD_PUBLISH_RIGHTS edge; scope it by Advisory.campaign."""
+    f = DATA / "incidents" / "2025-09-15-shai-hulud.json"
+    if not f.exists():
+        print("WARN INCIDENTS includes shai-hulud but the incident file is missing; run ingest/fetch_shai_hulud.py",
+              file=sys.stderr)
+        return
+    inc = json.loads(f.read_text())
+    rows = []
+    for c in inc["compromised"]:
+        aliases = c.get("aliases") or []
+        rows.append(dict(id=c["mal_id"], ids=[x.upper() for x in [c["mal_id"], *aliases]], aliases=aliases,
+                         ghsa=next((a for a in aliases if a.startswith("GHSA-")), None), pkg=c["package"],
+                         bad_versions=c["bad_versions"], published=c.get("published"), url=c["osv_url"],
+                         summary=f"Malicious code in {c['package']} (npm), Shai-Hulud worm", campaign=inc["id"]))
+    g.query("""UNWIND $rows AS r MERGE (p:Package {name:r.pkg})
+               CREATE (a:Advisory {id:r.id, ids:r.ids, aliases:r.aliases, ghsa:r.ghsa, cve:null, summary:r.summary,
+                                   published:r.published, url:r.url, pkg:r.pkg,
+                                   bad_version:r.bad_versions[size(r.bad_versions)-1], bad_versions:r.bad_versions,
+                                   fixed_version:null, campaign:r.campaign})
+               WITH a, p, r UNWIND r.bad_versions AS bv
+               MERGE (v:Version {key: r.pkg + '@' + bv})
+                 ON CREATE SET v.name = r.pkg + '@' + bv, v.pkg = r.pkg, v.version = bv, v.unpublished = true,
+                               v.malicious = true
+                 ON MATCH SET v.malicious = true
+               MERGE (p)-[:HAS_VERSION]->(v)
+               CREATE (a)-[:AFFECTS]->(v)""", {"rows": rows})
+    print(f"  + shai-hulud: {len(rows)} advisories, {sum(len(r['bad_versions']) for r in rows)} bad versions")
 
 
 def stats(g, secs=None):

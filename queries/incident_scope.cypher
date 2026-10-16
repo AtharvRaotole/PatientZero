@@ -23,3 +23,11 @@ RETURN v.pkg AS pkg, v.version AS bad_version, a.fixed_version AS clean_version,
 MATCH (a:Advisory)-[:AFFECTS]->(v:Version {pkg: $pkg, version: $version})
 RETURN v.pkg AS pkg, v.version AS bad_version, a.fixed_version AS clean_version, a.id AS advisory,
        a.ghsa AS ghsa, a.cve AS cve, a.aliases AS aliases, a.url AS url, a.published AS as_of, a.url AS source
+
+// @query incident_scope_by_campaign
+// Params: $campaign (e.g. '2025-09-08-qix', or '2025-09-15-shai-hulud' when loaded with INCIDENTS=qix,shai-hulud).
+// One row per bad version; clean_version is null for Shai-Hulud (no curated fixes).
+MATCH (a:Advisory {campaign: $campaign})-[:AFFECTS]->(v:Version)
+RETURN v.pkg AS pkg, v.version AS bad_version, a.fixed_version AS clean_version, a.id AS advisory,
+       a.ghsa AS ghsa, a.cve AS cve, a.aliases AS aliases, a.url AS url, a.published AS as_of, a.url AS source
+ORDER BY pkg, bad_version

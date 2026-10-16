@@ -1,0 +1,3034 @@
+{
+ "id": "2025-09-15-shai-hulud",
+ "title": "Shai-Hulud self-replicating npm worm",
+ "date": "2025-09-15",
+ "maintainer": null,
+ "attack_vector": "Stolen npm tokens; a postinstall payload harvests secrets and republishes the victim maintainer's other packages",
+ "sources": [
+  "https://api.osv.dev/v1/vulns/{MAL id}",
+  "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack",
+  "https://www.stepsecurity.io/blog/ctrl-tinycolor-and-40-npm-packages-compromised"
+ ],
+ "notes": [
+  "Discovered by scanning OSV MAL-2025-46986..48599 for records whose references name the campaign. Many maintainers, so no single HAD_PUBLISH_RIGHTS edge; no curated clean versions.",
+  "Unlike the qix incident, most packages have several bad versions."
+ ],
+ "compromised": [
+  {
+   "package": "@ctrl/deluge",
+   "bad_versions": [
+    "7.2.1",
+    "7.2.2"
+   ],
+   "mal_id": "MAL-2025-47131",
+   "aliases": [
+    "GHSA-wv45-cmjw-6456"
+   ],
+   "published": "2025-09-15T23:47:50Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47131",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@ctrl/golang-template",
+   "bad_versions": [
+    "1.4.2",
+    "1.4.3"
+   ],
+   "mal_id": "MAL-2025-47132",
+   "aliases": [
+    "GHSA-3xq6-jchq-ph3r"
+   ],
+   "published": "2025-09-15T23:49:30Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47132",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@ctrl/magnet-link",
+   "bad_versions": [
+    "4.0.3",
+    "4.0.4"
+   ],
+   "mal_id": "MAL-2025-47133",
+   "aliases": [
+    "GHSA-487x-8rm3-h5j5"
+   ],
+   "published": "2025-09-15T23:50:55Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47133",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@ctrl/ngx-codemirror",
+   "bad_versions": [
+    "7.0.1",
+    "7.0.2"
+   ],
+   "mal_id": "MAL-2025-47134",
+   "aliases": [
+    "GHSA-5rr9-pf78-f78v"
+   ],
+   "published": "2025-09-15T23:51:56Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47134",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@ctrl/ngx-csv",
+   "bad_versions": [
+    "6.0.1",
+    "6.0.2"
+   ],
+   "mal_id": "MAL-2025-47135",
+   "aliases": [
+    "GHSA-5c44-ff9h-4c48"
+   ],
+   "published": "2025-09-15T23:52:31Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47135",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@ctrl/ngx-emoji-mart",
+   "bad_versions": [
+    "9.2.1",
+    "9.2.2"
+   ],
+   "mal_id": "MAL-2025-47136",
+   "aliases": [
+    "GHSA-v863-pqmj-5g7j"
+   ],
+   "published": "2025-09-15T23:53:36Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47136",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@ctrl/ngx-rightclick",
+   "bad_versions": [
+    "4.0.1",
+    "4.0.2"
+   ],
+   "mal_id": "MAL-2025-47137",
+   "aliases": [
+    "GHSA-vm28-3ghv-77vr"
+   ],
+   "published": "2025-09-15T23:52:21Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47137",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@ctrl/qbittorrent",
+   "bad_versions": [
+    "9.7.1",
+    "9.7.2"
+   ],
+   "mal_id": "MAL-2025-47138",
+   "aliases": [
+    "GHSA-c4cx-7q75-vjq5"
+   ],
+   "published": "2025-09-15T23:51:46Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47138",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@ctrl/react-adsense",
+   "bad_versions": [
+    "2.0.1",
+    "2.0.2"
+   ],
+   "mal_id": "MAL-2025-47139",
+   "aliases": [
+    "GHSA-jp47-gpwm-42h8"
+   ],
+   "published": "2025-09-15T23:45:31Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47139",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@ctrl/shared-torrent",
+   "bad_versions": [
+    "6.3.1",
+    "6.3.2"
+   ],
+   "mal_id": "MAL-2025-47140",
+   "aliases": [
+    "GHSA-hpv8-23qx-wp7m"
+   ],
+   "published": "2025-09-15T23:46:05Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47140",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@ctrl/tinycolor",
+   "bad_versions": [
+    "4.1.1",
+    "4.1.2"
+   ],
+   "mal_id": "MAL-2025-47141",
+   "aliases": [
+    "GHSA-qjqf-7j6f-82c4"
+   ],
+   "published": "2025-09-15T23:42:49Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47141",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@ctrl/torrent-file",
+   "bad_versions": [
+    "4.1.1",
+    "4.1.2"
+   ],
+   "mal_id": "MAL-2025-47142",
+   "aliases": [
+    "GHSA-8m4r-v6wj-gxmc"
+   ],
+   "published": "2025-09-15T23:47:33Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47142",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@ctrl/transmission",
+   "bad_versions": [
+    "7.3.1"
+   ],
+   "mal_id": "MAL-2025-47143",
+   "aliases": [
+    "GHSA-8v7r-ghw6-g8gq"
+   ],
+   "published": "2025-09-15T23:48:05Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47143",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@ctrl/ts-base32",
+   "bad_versions": [
+    "4.0.1",
+    "4.0.2"
+   ],
+   "mal_id": "MAL-2025-47144",
+   "aliases": [
+    "GHSA-374x-j467-2658"
+   ],
+   "published": "2025-09-15T23:48:39Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47144",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@nativescript-community/arraybuffers",
+   "bad_versions": [
+    "1.1.6",
+    "1.1.7",
+    "1.1.8"
+   ],
+   "mal_id": "MAL-2025-47146",
+   "aliases": [
+    "GHSA-gcm2-4f3v-6xjp"
+   ],
+   "published": "2025-09-15T22:35:48Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47146",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@nativescript-community/gesturehandler",
+   "bad_versions": [
+    "2.0.35"
+   ],
+   "mal_id": "MAL-2025-47147",
+   "aliases": [
+    "GHSA-xffh-x5wf-63g4"
+   ],
+   "published": "2025-09-15T22:38:56Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47147",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@nativescript-community/perms",
+   "bad_versions": [
+    "3.0.5",
+    "3.0.6",
+    "3.0.7",
+    "3.0.8",
+    "3.0.9"
+   ],
+   "mal_id": "MAL-2025-47148",
+   "aliases": [
+    "GHSA-9xmr-j78p-r873"
+   ],
+   "published": "2025-09-15T21:58:29Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47148",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@nativescript-community/sentry",
+   "bad_versions": [
+    "4.6.43"
+   ],
+   "mal_id": "MAL-2025-47149",
+   "aliases": [
+    "GHSA-5wmf-c85p-rxv6"
+   ],
+   "published": "2025-09-15T22:49:10Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47149",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@nativescript-community/sqlite",
+   "bad_versions": [
+    "3.5.2",
+    "3.5.3",
+    "3.5.4",
+    "3.5.5"
+   ],
+   "mal_id": "MAL-2025-47150",
+   "aliases": [
+    "GHSA-ffh4-vmhf-h766"
+   ],
+   "published": "2025-09-15T22:36:23Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47150",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@nativescript-community/text",
+   "bad_versions": [
+    "1.6.10",
+    "1.6.11",
+    "1.6.12",
+    "1.6.13",
+    "1.6.9"
+   ],
+   "mal_id": "MAL-2025-47151",
+   "aliases": [
+    "GHSA-xfjw-4c5x-7r34"
+   ],
+   "published": "2025-09-15T22:28:52Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47151",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@nativescript-community/typeorm",
+   "bad_versions": [
+    "0.2.30",
+    "0.2.31",
+    "0.2.32",
+    "0.2.33"
+   ],
+   "mal_id": "MAL-2025-47152",
+   "aliases": [
+    "GHSA-6pxr-2g69-7q3v"
+   ],
+   "published": "2025-09-15T22:40:05Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47152",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@nativescript-community/ui-collectionview",
+   "bad_versions": [
+    "6.0.6"
+   ],
+   "mal_id": "MAL-2025-47153",
+   "aliases": [
+    "GHSA-92g2-4rqp-37vc"
+   ],
+   "published": "2025-09-15T22:55:45Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47153",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@nativescript-community/ui-drawer",
+   "bad_versions": [
+    "0.1.30"
+   ],
+   "mal_id": "MAL-2025-47154",
+   "aliases": [
+    "GHSA-g2f6-v3f2-p2wp"
+   ],
+   "published": "2025-09-15T22:43:32Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47154",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@nativescript-community/ui-image",
+   "bad_versions": [
+    "4.5.6"
+   ],
+   "mal_id": "MAL-2025-47155",
+   "aliases": [
+    "GHSA-vc7f-wcp3-hj8f"
+   ],
+   "published": "2025-09-15T22:44:24Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47155",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@nativescript-community/ui-material-bottomsheet",
+   "bad_versions": [
+    "7.2.72"
+   ],
+   "mal_id": "MAL-2025-47156",
+   "aliases": [
+    "GHSA-fw9r-gp8f-mvxf"
+   ],
+   "published": "2025-09-15T22:56:20Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47156",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@nativescript-community/ui-material-core",
+   "bad_versions": [
+    "7.2.72",
+    "7.2.73",
+    "7.2.74",
+    "7.2.75",
+    "7.2.76"
+   ],
+   "mal_id": "MAL-2025-47157",
+   "aliases": [
+    "GHSA-v6qj-4g67-6fcg"
+   ],
+   "published": "2025-09-15T22:39:49Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47157",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@nativescript-community/ui-material-core-tabs",
+   "bad_versions": [
+    "7.2.72",
+    "7.2.73",
+    "7.2.74",
+    "7.2.75",
+    "7.2.76"
+   ],
+   "mal_id": "MAL-2025-47158",
+   "aliases": [
+    "GHSA-5cp9-jxfg-224r"
+   ],
+   "published": "2025-09-15T22:42:40Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47158",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@nativescript-community/ui-material-tabs",
+   "bad_versions": [
+    "7.2.72",
+    "7.2.73",
+    "7.2.74",
+    "7.2.75"
+   ],
+   "mal_id": "MAL-2025-47159",
+   "aliases": [
+    "GHSA-7w3j-2v86-2cqm"
+   ],
+   "published": "2025-09-15T22:39:31Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47159",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@nativescript-community/ui-pager",
+   "bad_versions": [
+    "14.1.35",
+    "14.1.36",
+    "14.1.37",
+    "14.1.38"
+   ],
+   "mal_id": "MAL-2025-47160",
+   "aliases": [
+    "GHSA-w3px-6q48-jhj5"
+   ],
+   "published": "2025-09-15T22:41:14Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47160",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@nativescript-community/ui-pulltorefresh",
+   "bad_versions": [
+    "2.5.4",
+    "2.5.5",
+    "2.5.6",
+    "2.5.7"
+   ],
+   "mal_id": "MAL-2025-47161",
+   "aliases": [
+    "GHSA-63vq-67p5-x8qh"
+   ],
+   "published": "2025-09-15T22:42:24Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47161",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@nstudio/angular",
+   "bad_versions": [
+    "20.0.4",
+    "20.0.5",
+    "20.0.6"
+   ],
+   "mal_id": "MAL-2025-47162",
+   "aliases": [
+    "GHSA-f286-5397-5vx6"
+   ],
+   "published": "2025-09-15T22:10:39Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47162",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@nstudio/focus",
+   "bad_versions": [
+    "20.0.4",
+    "20.0.5",
+    "20.0.6"
+   ],
+   "mal_id": "MAL-2025-47163",
+   "aliases": [
+    "GHSA-qwc7-9rqv-hr9p"
+   ],
+   "published": "2025-09-15T22:12:56Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47163",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@nstudio/nativescript-checkbox",
+   "bad_versions": [
+    "2.0.6",
+    "2.0.7",
+    "2.0.8",
+    "2.0.9"
+   ],
+   "mal_id": "MAL-2025-47164",
+   "aliases": [
+    "GHSA-8cm7-6wjr-9qcf"
+   ],
+   "published": "2025-09-15T22:14:42Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47164",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@nstudio/nativescript-loading-indicator",
+   "bad_versions": [
+    "5.0.1",
+    "5.0.2",
+    "5.0.3",
+    "5.0.4"
+   ],
+   "mal_id": "MAL-2025-47165",
+   "aliases": [
+    "GHSA-8mjw-h287-xh3v"
+   ],
+   "published": "2025-09-15T22:16:26Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47165",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@nstudio/ui-collectionview",
+   "bad_versions": [
+    "5.1.11",
+    "5.1.12",
+    "5.1.13",
+    "5.1.14"
+   ],
+   "mal_id": "MAL-2025-47166",
+   "aliases": [
+    "GHSA-rj55-w2rf-x8r7"
+   ],
+   "published": "2025-09-15T22:21:27Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47166",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@nstudio/web",
+   "bad_versions": [
+    "20.0.4"
+   ],
+   "mal_id": "MAL-2025-47167",
+   "aliases": [
+    "GHSA-87jp-j8wq-9p2w",
+    "GHSA-r6x6-85h3-39v6",
+    "MAL-2024-3834",
+    "SNYK-JS-VSCODEUI5LANGUAGEASSISTANT-5406406"
+   ],
+   "published": "2025-09-15T22:25:17Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47167",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@nstudio/web-angular",
+   "bad_versions": [
+    "20.0.4"
+   ],
+   "mal_id": "MAL-2025-47168",
+   "aliases": [
+    "GHSA-pmrr-9qcr-gcmp"
+   ],
+   "published": "2025-09-15T22:26:07Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47168",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@nstudio/xplat",
+   "bad_versions": [
+    "20.0.4",
+    "20.0.5",
+    "20.0.6",
+    "20.0.7"
+   ],
+   "mal_id": "MAL-2025-47169",
+   "aliases": [
+    "GHSA-7vxv-2f52-3p74"
+   ],
+   "published": "2025-09-15T22:28:48Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47169",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@nstudio/xplat-utils",
+   "bad_versions": [
+    "20.0.4",
+    "20.0.5",
+    "20.0.6",
+    "20.0.7"
+   ],
+   "mal_id": "MAL-2025-47170",
+   "aliases": [
+    "GHSA-jv5w-4grm-vc25"
+   ],
+   "published": "2025-09-15T22:32:53Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47170",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "angulartics2",
+   "bad_versions": [
+    "14.1.1",
+    "14.1.2"
+   ],
+   "mal_id": "MAL-2025-47172",
+   "aliases": [
+    "GHSA-6wgq-85c7-p729"
+   ],
+   "published": "2025-09-15T23:49:50Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47172",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "koa2-swagger-ui",
+   "bad_versions": [
+    "5.11.1",
+    "5.11.2"
+   ],
+   "mal_id": "MAL-2025-47187",
+   "aliases": [
+    "GHSA-2mph-rq7h-rc8q"
+   ],
+   "published": "2025-09-15T23:50:25Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47187",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "ng2-file-upload",
+   "bad_versions": [
+    "7.0.2",
+    "7.0.3",
+    "8.0.1",
+    "8.0.2",
+    "8.0.3",
+    "9.0.1"
+   ],
+   "mal_id": "MAL-2025-47196",
+   "aliases": [
+    "GHSA-f3v2-259r-f6jc"
+   ],
+   "published": "2025-09-15T13:17:00Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47196",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "ngx-bootstrap",
+   "bad_versions": [
+    "18.1.4",
+    "19.0.3",
+    "19.0.4",
+    "20.0.3",
+    "20.0.4",
+    "20.0.5",
+    "20.0.6"
+   ],
+   "mal_id": "MAL-2025-47197",
+   "aliases": [
+    "GHSA-6m4g-vm7c-f8w6"
+   ],
+   "published": "2025-09-15T12:12:00Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47197",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "ngx-color",
+   "bad_versions": [
+    "10.0.1",
+    "10.0.2"
+   ],
+   "mal_id": "MAL-2025-47198",
+   "aliases": [
+    "GHSA-vh32-94f7-96h8"
+   ],
+   "published": "2025-09-15T23:52:16Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47198",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "ngx-toastr",
+   "bad_versions": [
+    "19.0.1",
+    "19.0.2"
+   ],
+   "mal_id": "MAL-2025-47199",
+   "aliases": [
+    "GHSA-qp89-vf7f-22w4"
+   ],
+   "published": "2025-09-15T23:52:36Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47199",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "ngx-trend",
+   "bad_versions": [
+    "8.0.1"
+   ],
+   "mal_id": "MAL-2025-47200",
+   "aliases": [
+    "GHSA-g769-mv96-8f6f"
+   ],
+   "published": "2025-09-15T23:53:26Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47200",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "swc-plugin-component-annotate",
+   "bad_versions": [
+    "1.9.1",
+    "1.9.2"
+   ],
+   "mal_id": "MAL-2025-47210",
+   "aliases": [
+    "GHSA-9447-225q-wv2h"
+   ],
+   "published": "2025-09-15T23:53:41Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47210",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "ts-gaussian",
+   "bad_versions": [
+    "3.0.5",
+    "3.0.6"
+   ],
+   "mal_id": "MAL-2025-47213",
+   "aliases": [
+    "GHSA-ffqw-mm5j-r493"
+   ],
+   "published": "2025-09-15T23:54:32Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47213",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@crowdstrike/falcon-shoelace",
+   "bad_versions": [
+    "0.4.1",
+    "0.4.2"
+   ],
+   "mal_id": "MAL-2025-47215",
+   "aliases": [
+    "GHSA-865r-gxc5-8692"
+   ],
+   "published": "2025-09-16T07:43:09Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47215",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@crowdstrike/logscale-dashboard",
+   "bad_versions": [
+    "1.205.1",
+    "1.205.2"
+   ],
+   "mal_id": "MAL-2025-47216",
+   "aliases": [
+    "GHSA-5g96-7vq5-m3wg"
+   ],
+   "published": "2025-09-16T07:46:22Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47216",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@crowdstrike/logscale-file-editor",
+   "bad_versions": [
+    "1.205.1",
+    "1.205.2"
+   ],
+   "mal_id": "MAL-2025-47217",
+   "aliases": [
+    "GHSA-wjr6-7hj2-p3mj"
+   ],
+   "published": "2025-09-16T07:47:14Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47217",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@crowdstrike/logscale-parser-edit",
+   "bad_versions": [
+    "1.205.1",
+    "1.205.2"
+   ],
+   "mal_id": "MAL-2025-47218",
+   "aliases": [
+    "GHSA-r3mw-cmqp-rqf5"
+   ],
+   "published": "2025-09-16T07:48:06Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47218",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@operato/headroom",
+   "bad_versions": [
+    "9.0.2",
+    "9.0.35",
+    "9.0.36",
+    "9.0.37"
+   ],
+   "mal_id": "MAL-2025-47219",
+   "aliases": [
+    "GHSA-f678-h5rc-f468"
+   ],
+   "published": "2025-09-16T09:31:47Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47219",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@operato/styles",
+   "bad_versions": [
+    "9.0.2",
+    "9.0.35",
+    "9.0.36",
+    "9.0.37"
+   ],
+   "mal_id": "MAL-2025-47220",
+   "aliases": [
+    "GHSA-77fc-j5p6-jr47"
+   ],
+   "published": "2025-09-16T09:32:43Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47220",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@things-factory/email-base",
+   "bad_versions": [
+    "9.0.42",
+    "9.0.43",
+    "9.0.44",
+    "9.0.45",
+    "9.0.46",
+    "9.0.47",
+    "9.0.48",
+    "9.0.49",
+    "9.0.50",
+    "9.0.51",
+    "9.0.52",
+    "9.0.53",
+    "9.0.54",
+    "9.0.55",
+    "9.0.56",
+    "9.0.57",
+    "9.0.58",
+    "9.0.59"
+   ],
+   "mal_id": "MAL-2025-47221",
+   "aliases": [
+    "GHSA-382x-5wm4-g55m"
+   ],
+   "published": "2025-09-16T09:31:18Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47221",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@things-factory/env",
+   "bad_versions": [
+    "9.0.42",
+    "9.0.43",
+    "9.0.44",
+    "9.0.45"
+   ],
+   "mal_id": "MAL-2025-47222",
+   "aliases": [
+    "GHSA-4339-7288-v23r"
+   ],
+   "published": "2025-09-16T09:31:31Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47222",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@things-factory/integration-base",
+   "bad_versions": [
+    "9.0.42",
+    "9.0.43",
+    "9.0.44",
+    "9.0.45"
+   ],
+   "mal_id": "MAL-2025-47223",
+   "aliases": [
+    "GHSA-fwg3-7cgx-j4rg"
+   ],
+   "published": "2025-09-16T09:32:09Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47223",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@things-factory/integration-marketplace",
+   "bad_versions": [
+    "9.0.42",
+    "9.0.43",
+    "9.0.44",
+    "9.0.45"
+   ],
+   "mal_id": "MAL-2025-47224",
+   "aliases": [
+    "GHSA-2h2j-h78p-jfh8"
+   ],
+   "published": "2025-09-16T09:32:32Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47224",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@yoobic/jpeg-camera-es6",
+   "bad_versions": [
+    "1.0.13"
+   ],
+   "mal_id": "MAL-2025-47225",
+   "aliases": [
+    "GHSA-7r6r-hw2q-2gvw"
+   ],
+   "published": "2025-09-16T09:46:36Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47225",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "eslint-config-crowdstrike",
+   "bad_versions": [
+    "11.0.2",
+    "11.0.3"
+   ],
+   "mal_id": "MAL-2025-47226",
+   "aliases": [
+    "GHSA-xj7r-hpg7-cx8q"
+   ],
+   "published": "2025-09-16T07:55:01Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47226",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "eslint-config-crowdstrike-node",
+   "bad_versions": [
+    "4.0.3",
+    "4.0.4"
+   ],
+   "mal_id": "MAL-2025-47227",
+   "aliases": [
+    "GHSA-64v5-55v2-9vrf"
+   ],
+   "published": "2025-09-16T07:54:26Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47227",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "remark-preset-lint-crowdstrike",
+   "bad_versions": [
+    "4.0.1",
+    "4.0.2"
+   ],
+   "mal_id": "MAL-2025-47228",
+   "aliases": [
+    "GHSA-9r7p-jxp9-q5xf"
+   ],
+   "published": "2025-09-16T07:56:12Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47228",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "tbssnch",
+   "bad_versions": [
+    "1.0.2"
+   ],
+   "mal_id": "MAL-2025-47229",
+   "aliases": [
+    "GHSA-xcr5-8h4x-2hxc"
+   ],
+   "published": "2025-09-16T09:32:21Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47229",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "yoo-styles",
+   "bad_versions": [
+    "6.0.326"
+   ],
+   "mal_id": "MAL-2025-47230",
+   "aliases": [
+    "GHSA-cg4v-r6qg-wp2m"
+   ],
+   "published": "2025-09-16T09:33:31Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47230",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@crowdstrike/commitlint",
+   "bad_versions": [
+    "8.1.1",
+    "8.1.2"
+   ],
+   "mal_id": "MAL-2025-47233",
+   "aliases": [
+    "GHSA-w4gj-8xw5-558p"
+   ],
+   "published": "2025-09-16T07:41:22Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47233",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@crowdstrike/foundry-js",
+   "bad_versions": [
+    "0.19.1",
+    "0.19.2"
+   ],
+   "mal_id": "MAL-2025-47234",
+   "aliases": [
+    "GHSA-38h8-8w7m-69r8"
+   ],
+   "published": "2025-09-16T07:44:03Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47234",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@crowdstrike/glide-core",
+   "bad_versions": [
+    "0.34.2",
+    "0.34.3"
+   ],
+   "mal_id": "MAL-2025-47235",
+   "aliases": [
+    "GHSA-x4hf-vr8w-cqv8"
+   ],
+   "published": "2025-09-16T07:44:54Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47235",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@crowdstrike/logscale-search",
+   "bad_versions": [
+    "1.205.1",
+    "1.205.2"
+   ],
+   "mal_id": "MAL-2025-47236",
+   "aliases": [
+    "GHSA-vf8g-9pcq-qcv8"
+   ],
+   "published": "2025-09-16T07:48:59Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47236",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@crowdstrike/tailwind-toucan-base",
+   "bad_versions": [
+    "5.0.1",
+    "5.0.2"
+   ],
+   "mal_id": "MAL-2025-47237",
+   "aliases": [
+    "GHSA-f679-rpph-9qxf"
+   ],
+   "published": "2025-09-16T07:49:32Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47237",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@hestjs/core",
+   "bad_versions": [
+    "0.2.1"
+   ],
+   "mal_id": "MAL-2025-47239",
+   "aliases": [
+    "GHSA-q2gx-2wjq-695q"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47239",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@hestjs/cqrs",
+   "bad_versions": [
+    "0.1.6"
+   ],
+   "mal_id": "MAL-2025-47240",
+   "aliases": [
+    "GHSA-hv8q-9xh6-8746"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47240",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@hestjs/demo",
+   "bad_versions": [
+    "0.1.2"
+   ],
+   "mal_id": "MAL-2025-47241",
+   "aliases": [
+    "GHSA-r87w-mcm5-wr3g"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47241",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@hestjs/eslint-config",
+   "bad_versions": [
+    "0.1.2"
+   ],
+   "mal_id": "MAL-2025-47242",
+   "aliases": [
+    "GHSA-c6vh-rjp7-j4fj"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47242",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@hestjs/logger",
+   "bad_versions": [
+    "0.1.6"
+   ],
+   "mal_id": "MAL-2025-47243",
+   "aliases": [
+    "GHSA-r9f5-r3j5-96jq"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47243",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@hestjs/scalar",
+   "bad_versions": [
+    "0.1.7"
+   ],
+   "mal_id": "MAL-2025-47244",
+   "aliases": [
+    "GHSA-h7vq-p7fm-h5cc"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47244",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@hestjs/validation",
+   "bad_versions": [
+    "0.1.6"
+   ],
+   "mal_id": "MAL-2025-47245",
+   "aliases": [
+    "GHSA-x8h4-hpf7-vchm"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47245",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@nexe/config-manager",
+   "bad_versions": [
+    "0.1.1"
+   ],
+   "mal_id": "MAL-2025-47247",
+   "aliases": [
+    "GHSA-jwm4-j66f-7wc3"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47247",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@nexe/eslint-config",
+   "bad_versions": [
+    "0.1.1"
+   ],
+   "mal_id": "MAL-2025-47248",
+   "aliases": [
+    "GHSA-j8q6-gh9j-rrq3"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47248",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@nexe/logger",
+   "bad_versions": [
+    "0.1.3"
+   ],
+   "mal_id": "MAL-2025-47249",
+   "aliases": [
+    "GHSA-m558-59x3-vgj9"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47249",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@operato/board",
+   "bad_versions": [
+    "9.0.35",
+    "9.0.36",
+    "9.0.37",
+    "9.0.38",
+    "9.0.39",
+    "9.0.40",
+    "9.0.41",
+    "9.0.42",
+    "9.0.43",
+    "9.0.44",
+    "9.0.45",
+    "9.0.46",
+    "9.0.47",
+    "9.0.48",
+    "9.0.49",
+    "9.0.50",
+    "9.0.51"
+   ],
+   "mal_id": "MAL-2025-47253",
+   "aliases": [
+    "GHSA-cx6v-wx3x-2cvm"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47253",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@operato/data-grist",
+   "bad_versions": [
+    "9.0.29",
+    "9.0.35",
+    "9.0.36",
+    "9.0.37"
+   ],
+   "mal_id": "MAL-2025-47254",
+   "aliases": [
+    "GHSA-93g7-gvph-37qm"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47254",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@operato/graphql",
+   "bad_versions": [
+    "9.0.22",
+    "9.0.35",
+    "9.0.36",
+    "9.0.37",
+    "9.0.38",
+    "9.0.39",
+    "9.0.40",
+    "9.0.41",
+    "9.0.42",
+    "9.0.43",
+    "9.0.44",
+    "9.0.45",
+    "9.0.46",
+    "9.0.47",
+    "9.0.48",
+    "9.0.49",
+    "9.0.50",
+    "9.0.51"
+   ],
+   "mal_id": "MAL-2025-47255",
+   "aliases": [
+    "GHSA-m5xh-76qc-73v3"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47255",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@operato/help",
+   "bad_versions": [
+    "9.0.35",
+    "9.0.36",
+    "9.0.37",
+    "9.0.38",
+    "9.0.39",
+    "9.0.40",
+    "9.0.41",
+    "9.0.42",
+    "9.0.43",
+    "9.0.44",
+    "9.0.45",
+    "9.0.46",
+    "9.0.47",
+    "9.0.48",
+    "9.0.49",
+    "9.0.50",
+    "9.0.51"
+   ],
+   "mal_id": "MAL-2025-47256",
+   "aliases": [
+    "GHSA-2pjr-w8h7-fpxf"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47256",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@operato/i18n",
+   "bad_versions": [
+    "9.0.35",
+    "9.0.36",
+    "9.0.37"
+   ],
+   "mal_id": "MAL-2025-47257",
+   "aliases": [
+    "GHSA-vc38-9887-355j"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47257",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@operato/input",
+   "bad_versions": [
+    "9.0.27",
+    "9.0.35",
+    "9.0.36",
+    "9.0.37",
+    "9.0.38",
+    "9.0.39",
+    "9.0.40",
+    "9.0.41",
+    "9.0.42",
+    "9.0.43",
+    "9.0.44",
+    "9.0.45",
+    "9.0.46",
+    "9.0.47",
+    "9.0.48"
+   ],
+   "mal_id": "MAL-2025-47258",
+   "aliases": [
+    "GHSA-627g-67mh-982c"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47258",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@operato/layout",
+   "bad_versions": [
+    "9.0.35",
+    "9.0.36",
+    "9.0.37"
+   ],
+   "mal_id": "MAL-2025-47259",
+   "aliases": [
+    "GHSA-9wch-qhqf-xjqh"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47259",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@operato/popup",
+   "bad_versions": [
+    "9.0.22",
+    "9.0.35",
+    "9.0.36",
+    "9.0.37",
+    "9.0.38",
+    "9.0.39",
+    "9.0.40",
+    "9.0.41",
+    "9.0.42",
+    "9.0.43",
+    "9.0.44",
+    "9.0.45",
+    "9.0.46",
+    "9.0.47",
+    "9.0.48",
+    "9.0.49",
+    "9.0.50",
+    "9.0.51"
+   ],
+   "mal_id": "MAL-2025-47260",
+   "aliases": [
+    "GHSA-7rj6-3gqj-qcrr"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47260",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@operato/pull-to-refresh",
+   "bad_versions": [
+    "9.0.35",
+    "9.0.36",
+    "9.0.37",
+    "9.0.38",
+    "9.0.39",
+    "9.0.40",
+    "9.0.41",
+    "9.0.42",
+    "9.0.43",
+    "9.0.44",
+    "9.0.45",
+    "9.0.46",
+    "9.0.47"
+   ],
+   "mal_id": "MAL-2025-47261",
+   "aliases": [
+    "GHSA-h9gw-g27g-c6j5"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47261",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@operato/shell",
+   "bad_versions": [
+    "9.0.22",
+    "9.0.35",
+    "9.0.36",
+    "9.0.37",
+    "9.0.38",
+    "9.0.39"
+   ],
+   "mal_id": "MAL-2025-47262",
+   "aliases": [
+    "GHSA-p68g-742v-99rx"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47262",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@operato/utils",
+   "bad_versions": [
+    "9.0.22",
+    "9.0.35",
+    "9.0.36",
+    "9.0.37",
+    "9.0.38",
+    "9.0.39",
+    "9.0.40",
+    "9.0.41",
+    "9.0.42",
+    "9.0.43",
+    "9.0.44",
+    "9.0.45",
+    "9.0.46",
+    "9.0.47",
+    "9.0.48",
+    "9.0.49",
+    "9.0.50",
+    "9.0.51"
+   ],
+   "mal_id": "MAL-2025-47263",
+   "aliases": [
+    "GHSA-95w2-jhfv-fmv4"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47263",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@teselagen/bio-parsers",
+   "bad_versions": [
+    "0.4.29",
+    "0.4.30"
+   ],
+   "mal_id": "MAL-2025-47271",
+   "aliases": [
+    "GHSA-6p8w-v5mx-9f9w"
+   ],
+   "published": "2025-09-16T04:10:40Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47271",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@teselagen/bounce-loader",
+   "bad_versions": [
+    "0.3.16",
+    "0.3.17"
+   ],
+   "mal_id": "MAL-2025-47272",
+   "aliases": [
+    "GHSA-3364-gxx6-2j97"
+   ],
+   "published": "2025-09-16T04:10:56Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47272",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@teselagen/file-utils",
+   "bad_versions": [
+    "0.3.21",
+    "0.3.22"
+   ],
+   "mal_id": "MAL-2025-47273",
+   "aliases": [
+    "GHSA-6j7p-4c77-4rvh"
+   ],
+   "published": "2025-09-16T04:11:14Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47273",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@teselagen/liquibase-tools",
+   "bad_versions": [
+    "0.4.1"
+   ],
+   "mal_id": "MAL-2025-47274",
+   "aliases": [
+    "GHSA-g8x4-mrfh-qrg7"
+   ],
+   "published": "2025-09-16T04:11:31Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47274",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@teselagen/ove",
+   "bad_versions": [
+    "0.7.39",
+    "0.7.40"
+   ],
+   "mal_id": "MAL-2025-47275",
+   "aliases": [
+    "GHSA-fff6-qwgw-fwm6"
+   ],
+   "published": "2025-09-16T04:11:49Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47275",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@teselagen/range-utils",
+   "bad_versions": [
+    "0.3.14",
+    "0.3.15"
+   ],
+   "mal_id": "MAL-2025-47276",
+   "aliases": [
+    "GHSA-phvv-v6rp-jv5q"
+   ],
+   "published": "2025-09-16T04:12:05Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47276",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@teselagen/react-list",
+   "bad_versions": [
+    "0.8.19",
+    "0.8.20"
+   ],
+   "mal_id": "MAL-2025-47277",
+   "aliases": [
+    "GHSA-f7ch-cggj-qh93"
+   ],
+   "published": "2025-09-16T04:12:22Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47277",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@teselagen/react-table",
+   "bad_versions": [
+    "6.10.19",
+    "6.10.20",
+    "6.10.21",
+    "6.10.22"
+   ],
+   "mal_id": "MAL-2025-47278",
+   "aliases": [
+    "GHSA-m46j-8g4g-f7hg"
+   ],
+   "published": "2025-09-16T04:12:39Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47278",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@teselagen/sequence-utils",
+   "bad_versions": [
+    "0.3.33",
+    "0.3.34"
+   ],
+   "mal_id": "MAL-2025-47279",
+   "aliases": [
+    "GHSA-qc65-xrx5-vw36"
+   ],
+   "published": "2025-09-16T04:13:50Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47279",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@teselagen/ui",
+   "bad_versions": [
+    "0.9.10",
+    "0.9.9"
+   ],
+   "mal_id": "MAL-2025-47280",
+   "aliases": [
+    "GHSA-9wxv-jx8j-5f7q"
+   ],
+   "published": "2025-09-16T04:14:05Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47280",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@thangved/callback-window",
+   "bad_versions": [
+    "1.1.4",
+    "1.1.4-0",
+    "1.1.5",
+    "1.1.5-0"
+   ],
+   "mal_id": "MAL-2025-47281",
+   "aliases": [
+    "GHSA-25vf-ff9j-37cq"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47281",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@things-factory/attachment-base",
+   "bad_versions": [
+    "9.0.42",
+    "9.0.43",
+    "9.0.44",
+    "9.0.45",
+    "9.0.46",
+    "9.0.47",
+    "9.0.48",
+    "9.0.49",
+    "9.0.50",
+    "9.0.51",
+    "9.0.52",
+    "9.0.53",
+    "9.0.54",
+    "9.0.55"
+   ],
+   "mal_id": "MAL-2025-47282",
+   "aliases": [
+    "GHSA-4fh8-rrm5-7r5q"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47282",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@things-factory/auth-base",
+   "bad_versions": [
+    "9.0.42",
+    "9.0.43",
+    "9.0.44",
+    "9.0.45"
+   ],
+   "mal_id": "MAL-2025-47283",
+   "aliases": [
+    "GHSA-ghwp-xwjh-x46f"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47283",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@tnf-dev/api",
+   "bad_versions": [
+    "1.0.10",
+    "1.0.10-0",
+    "1.0.8",
+    "1.0.8-0",
+    "1.0.9-0"
+   ],
+   "mal_id": "MAL-2025-47284",
+   "aliases": [
+    "GHSA-x8qh-82wg-v39h"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47284",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@tnf-dev/core",
+   "bad_versions": [
+    "1.0.10",
+    "1.0.10-0",
+    "1.0.8",
+    "1.0.8-0",
+    "1.0.9-0"
+   ],
+   "mal_id": "MAL-2025-47285",
+   "aliases": [
+    "GHSA-fccp-6p72-89cj"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47285",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@tnf-dev/js",
+   "bad_versions": [
+    "1.0.10",
+    "1.0.10-0",
+    "1.0.8",
+    "1.0.8-0",
+    "1.0.9-0"
+   ],
+   "mal_id": "MAL-2025-47286",
+   "aliases": [
+    "GHSA-pjww-c7cq-8jg4"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47286",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@tnf-dev/mui",
+   "bad_versions": [
+    "1.0.10",
+    "1.0.10-0",
+    "1.0.8",
+    "1.0.8-0",
+    "1.0.9-0"
+   ],
+   "mal_id": "MAL-2025-47287",
+   "aliases": [
+    "GHSA-wc8w-m8h4-9pc7"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47287",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@tnf-dev/react",
+   "bad_versions": [
+    "1.0.10",
+    "1.0.10-0",
+    "1.0.8",
+    "1.0.8-0",
+    "1.0.9-0"
+   ],
+   "mal_id": "MAL-2025-47288",
+   "aliases": [
+    "GHSA-9xjw-4x9f-vm4x"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47288",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@ui-ux-gang/devextreme-angular-rpk",
+   "bad_versions": [
+    "24.1.7"
+   ],
+   "mal_id": "MAL-2025-47289",
+   "aliases": [
+    "GHSA-gfmr-m5h5-m2fw"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47289",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@ui-ux-gang/devextreme-rpk",
+   "bad_versions": [
+    "24.1.7"
+   ],
+   "mal_id": "MAL-2025-47290",
+   "aliases": [
+    "GHSA-vjgm-frph-9cfj"
+   ],
+   "published": "2025-09-16T22:09:30Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47290",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@yoobic/design-system",
+   "bad_versions": [
+    "6.5.17"
+   ],
+   "mal_id": "MAL-2025-47291",
+   "aliases": [
+    "GHSA-38pf-54w4-c886"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47291",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@yoobic/yobi",
+   "bad_versions": [
+    "8.7.53"
+   ],
+   "mal_id": "MAL-2025-47292",
+   "aliases": [
+    "GHSA-gv3g-57f5-jh3c"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47292",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "ace-colorpicker-rpk",
+   "bad_versions": [
+    "0.0.14"
+   ],
+   "mal_id": "MAL-2025-47293",
+   "aliases": [
+    "GHSA-xpmc-j889-8fh4"
+   ],
+   "published": "2025-09-16T22:09:33Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47293",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "airchief",
+   "bad_versions": [
+    "0.3.1"
+   ],
+   "mal_id": "MAL-2025-47294",
+   "aliases": [
+    "GHSA-hfgp-2j7c-x2vm"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47294",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "airpilot",
+   "bad_versions": [
+    "0.8.8"
+   ],
+   "mal_id": "MAL-2025-47295",
+   "aliases": [
+    "GHSA-c3ww-26mj-5qg3"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47295",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "browser-webdriver-downloader",
+   "bad_versions": [
+    "3.0.8"
+   ],
+   "mal_id": "MAL-2025-47298",
+   "aliases": [
+    "GHSA-cjq2-vw8m-2c29"
+   ],
+   "published": "2025-09-16T07:50:07Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47298",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "config-cordova",
+   "bad_versions": [
+    "0.8.5"
+   ],
+   "mal_id": "MAL-2025-47300",
+   "aliases": [
+    "GHSA-x242-rrpx-fp7g"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47300",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "cordova-plugin-voxeet2",
+   "bad_versions": [
+    "1.0.24"
+   ],
+   "mal_id": "MAL-2025-47301",
+   "aliases": [
+    "GHSA-38v6-fq44-h9mr"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47301",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "cordova-voxeet",
+   "bad_versions": [
+    "1.0.32"
+   ],
+   "mal_id": "MAL-2025-47302",
+   "aliases": [
+    "GHSA-jmx7-m73h-jj6w"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47302",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "create-hest-app",
+   "bad_versions": [
+    "0.1.9"
+   ],
+   "mal_id": "MAL-2025-47303",
+   "aliases": [
+    "GHSA-9x97-7fgj-53xq"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47303",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "devextreme-angular-rpk",
+   "bad_versions": [
+    "21.2.8"
+   ],
+   "mal_id": "MAL-2025-47305",
+   "aliases": [
+    "GHSA-46m6-c3w3-fw8g"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47305",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "ember-browser-services",
+   "bad_versions": [
+    "5.0.2",
+    "5.0.3"
+   ],
+   "mal_id": "MAL-2025-47306",
+   "aliases": [
+    "GHSA-7qrg-7gpf-jf9v"
+   ],
+   "published": "2025-09-16T07:51:00Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47306",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "ember-headless-form",
+   "bad_versions": [
+    "1.1.2",
+    "1.1.3"
+   ],
+   "mal_id": "MAL-2025-47307",
+   "aliases": [
+    "GHSA-8gpq-5c79-h8h4"
+   ],
+   "published": "2025-09-16T07:51:51Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47307",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "ember-headless-form-yup",
+   "bad_versions": [
+    "1.0.1"
+   ],
+   "mal_id": "MAL-2025-47308",
+   "aliases": [
+    "GHSA-4wfh-h4hf-h6rv"
+   ],
+   "published": "2025-09-16T07:51:34Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47308",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "ember-headless-table",
+   "bad_versions": [
+    "2.1.5",
+    "2.1.6"
+   ],
+   "mal_id": "MAL-2025-47309",
+   "aliases": [
+    "GHSA-v33p-wq4g-66jc"
+   ],
+   "published": "2025-09-16T07:52:25Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47309",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "ember-url-hash-polyfill",
+   "bad_versions": [
+    "1.0.12",
+    "1.0.13"
+   ],
+   "mal_id": "MAL-2025-47310",
+   "aliases": [
+    "GHSA-wxvv-c37v-jfmc"
+   ],
+   "published": "2025-09-16T07:53:00Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47310",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "ember-velcro",
+   "bad_versions": [
+    "2.2.1",
+    "2.2.2"
+   ],
+   "mal_id": "MAL-2025-47311",
+   "aliases": [
+    "GHSA-c7v6-3628-q6w2"
+   ],
+   "published": "2025-09-16T07:53:51Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47311",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "encounter-playground",
+   "bad_versions": [
+    "0.0.2",
+    "0.0.3",
+    "0.0.4",
+    "0.0.5"
+   ],
+   "mal_id": "MAL-2025-47312",
+   "aliases": [
+    "GHSA-6hv4-r5mw-55vr"
+   ],
+   "published": "2025-09-16T01:21:17Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47312",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "eslint-config-teselagen",
+   "bad_versions": [
+    "6.1.7",
+    "6.1.8"
+   ],
+   "mal_id": "MAL-2025-47313",
+   "aliases": [
+    "GHSA-wgpp-h75x-jgf3"
+   ],
+   "published": "2025-09-16T04:46:10Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47313",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "globalize-rpk",
+   "bad_versions": [
+    "1.7.4"
+   ],
+   "mal_id": "MAL-2025-47315",
+   "aliases": [
+    "GHSA-pg5g-c7h9-3fg4"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47315",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "graphql-sequelize-teselagen",
+   "bad_versions": [
+    "5.3.8",
+    "5.3.9"
+   ],
+   "mal_id": "MAL-2025-47316",
+   "aliases": [
+    "GHSA-x3f9-gghf-5wrw"
+   ],
+   "published": "2025-09-16T04:46:48Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47316",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "html-to-base64-image",
+   "bad_versions": [
+    "1.0.2"
+   ],
+   "mal_id": "MAL-2025-47317",
+   "aliases": [
+    "GHSA-wc2m-xq5r-98mg"
+   ],
+   "published": "2025-09-16T04:57:21Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47317",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "json-rules-engine-simplified",
+   "bad_versions": [
+    "0.2.1",
+    "0.2.2",
+    "0.2.3",
+    "0.2.4"
+   ],
+   "mal_id": "MAL-2025-47318",
+   "aliases": [
+    "GHSA-62vf-3wj8-h2mj"
+   ],
+   "published": "2025-09-16T00:39:02Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47318",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "jumpgate",
+   "bad_versions": [
+    "0.0.2"
+   ],
+   "mal_id": "MAL-2025-47320",
+   "aliases": [
+    "GHSA-mwg4-9rf5-6w2r"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47320",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "mcfly-semantic-release",
+   "bad_versions": [
+    "1.3.1",
+    "1.3.4"
+   ],
+   "mal_id": "MAL-2025-47325",
+   "aliases": [
+    "GHSA-mpj9-fjvr-r52h"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47325",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "mcp-knowledge-base",
+   "bad_versions": [
+    "0.0.2"
+   ],
+   "mal_id": "MAL-2025-47326",
+   "aliases": [
+    "GHSA-f8qw-968c-jxpq"
+   ],
+   "published": "2025-09-16T04:57:01Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47326",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "mcp-knowledge-graph",
+   "bad_versions": [
+    "1.2.1"
+   ],
+   "mal_id": "MAL-2025-47327",
+   "aliases": [
+    "GHSA-qq74-6323-3h57"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47327",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "monorepo-next",
+   "bad_versions": [
+    "13.0.1",
+    "13.0.2"
+   ],
+   "mal_id": "MAL-2025-47328",
+   "aliases": [
+    "GHSA-96cf-4p6g-v387"
+   ],
+   "published": "2025-09-16T07:55:37Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47328",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "mstate-cli",
+   "bad_versions": [
+    "0.4.7"
+   ],
+   "mal_id": "MAL-2025-47329",
+   "aliases": [
+    "GHSA-pc38-9fmp-hj85"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47329",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "mstate-dev-react",
+   "bad_versions": [
+    "1.1.1"
+   ],
+   "mal_id": "MAL-2025-47330",
+   "aliases": [
+    "GHSA-qcvp-29gq-wmhf"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47330",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "mstate-react",
+   "bad_versions": [
+    "1.6.5"
+   ],
+   "mal_id": "MAL-2025-47331",
+   "aliases": [
+    "GHSA-rxxc-8h69-j2gh"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47331",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "ngx-ws",
+   "bad_versions": [
+    "1.1.5",
+    "1.1.6"
+   ],
+   "mal_id": "MAL-2025-47332",
+   "aliases": [
+    "GHSA-xc73-jc6p-238f"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47332",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "oradm-to-gql",
+   "bad_versions": [
+    "35.0.14",
+    "35.0.15"
+   ],
+   "mal_id": "MAL-2025-47336",
+   "aliases": [
+    "GHSA-x636-pr2j-v5j5"
+   ],
+   "published": "2025-09-16T04:48:14Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47336",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "oradm-to-sqlz",
+   "bad_versions": [
+    "1.1.2",
+    "1.1.3",
+    "1.1.4",
+    "1.1.5"
+   ],
+   "mal_id": "MAL-2025-47337",
+   "aliases": [
+    "GHSA-49qx-cpf3-69g6"
+   ],
+   "published": "2025-09-16T04:48:29Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47337",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "ove-auto-annotate",
+   "bad_versions": [
+    "0.0.10",
+    "0.0.9"
+   ],
+   "mal_id": "MAL-2025-47338",
+   "aliases": [
+    "GHSA-j4g6-7vh6-xcw9"
+   ],
+   "published": "2025-09-16T04:49:20Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47338",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "pm2-gelf-json",
+   "bad_versions": [
+    "1.0.4",
+    "1.0.5"
+   ],
+   "mal_id": "MAL-2025-47339",
+   "aliases": [
+    "GHSA-v5f5-66fw-94cg"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47339",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "printjs-rpk",
+   "bad_versions": [
+    "1.6.1"
+   ],
+   "mal_id": "MAL-2025-47340",
+   "aliases": [
+    "GHSA-6mh5-vf87-88w6"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47340",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "react-complaint-image",
+   "bad_versions": [
+    "0.0.32",
+    "0.0.33",
+    "0.0.34",
+    "0.0.35"
+   ],
+   "mal_id": "MAL-2025-47341",
+   "aliases": [
+    "GHSA-4mjq-q4rv-f4xx"
+   ],
+   "published": "2025-09-16T01:18:21Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47341",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "react-jsonschema-form-conditionals",
+   "bad_versions": [
+    "0.3.18",
+    "0.3.19",
+    "0.3.20",
+    "0.3.21"
+   ],
+   "mal_id": "MAL-2025-47342",
+   "aliases": [
+    "GHSA-gvf2-57rf-gwxj"
+   ],
+   "published": "2025-09-16T01:19:31Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47342",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "react-jsonschema-form-extras",
+   "bad_versions": [
+    "1.0.1",
+    "1.0.2",
+    "1.0.3",
+    "1.0.4"
+   ],
+   "mal_id": "MAL-2025-47343",
+   "aliases": [
+    "GHSA-72vw-7phf-87g2"
+   ],
+   "published": "2025-09-16T01:21:52Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47343",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "react-jsonschema-rxnt-extras",
+   "bad_versions": [
+    "0.4.6",
+    "0.4.7",
+    "0.4.8",
+    "0.4.9"
+   ],
+   "mal_id": "MAL-2025-47344",
+   "aliases": [
+    "GHSA-hhcp-2gq6-3g3p"
+   ],
+   "published": "2025-09-16T01:20:06Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47344",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "rxnt-authentication",
+   "bad_versions": [
+    "0.0.3",
+    "0.0.4",
+    "0.0.5",
+    "0.0.6"
+   ],
+   "mal_id": "MAL-2025-47345",
+   "aliases": [
+    "GHSA-2f8v-v92m-4q75"
+   ],
+   "published": "2025-09-16T01:20:41Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47345",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "rxnt-healthchecks-nestjs",
+   "bad_versions": [
+    "1.0.2",
+    "1.0.3",
+    "1.0.4",
+    "1.0.5"
+   ],
+   "mal_id": "MAL-2025-47346",
+   "aliases": [
+    "GHSA-c5h3-rjq7-c9pr"
+   ],
+   "published": "2025-09-16T01:22:07Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47346",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "rxnt-kue",
+   "bad_versions": [
+    "1.0.4",
+    "1.0.5",
+    "1.0.6",
+    "1.0.7"
+   ],
+   "mal_id": "MAL-2025-47347",
+   "aliases": [
+    "GHSA-gww9-289f-x73q"
+   ],
+   "published": "2025-09-16T00:46:48Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47347",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "teselagen-interval-tree",
+   "bad_versions": [
+    "1.1.2"
+   ],
+   "mal_id": "MAL-2025-47349",
+   "aliases": [
+    "GHSA-j3xr-fv4g-c26h"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47349",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "tg-client-query-builder",
+   "bad_versions": [
+    "2.14.4",
+    "2.14.5"
+   ],
+   "mal_id": "MAL-2025-47350",
+   "aliases": [
+    "GHSA-6hj4-mgcp-pmc8"
+   ],
+   "published": "2025-09-16T04:55:35Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47350",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "tg-redbird",
+   "bad_versions": [
+    "1.3.1",
+    "1.3.2"
+   ],
+   "mal_id": "MAL-2025-47351",
+   "aliases": [
+    "GHSA-4j87-9r73-3rw4"
+   ],
+   "published": "2025-09-16T04:55:55Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47351",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "tg-seq-gen",
+   "bad_versions": [
+    "1.0.10",
+    "1.0.9"
+   ],
+   "mal_id": "MAL-2025-47352",
+   "aliases": [
+    "GHSA-3qjc-58p9-rj68"
+   ],
+   "published": "2025-09-16T04:56:10Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47352",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "thangved-react-grid",
+   "bad_versions": [
+    "1.0.3"
+   ],
+   "mal_id": "MAL-2025-47353",
+   "aliases": [
+    "GHSA-pqf6-49rp-9f69"
+   ],
+   "published": "2025-09-16T04:57:36Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47353",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "ts-imports",
+   "bad_versions": [
+    "1.0.1",
+    "1.0.2"
+   ],
+   "mal_id": "MAL-2025-47355",
+   "aliases": [
+    "GHSA-gh85-gg5v-h9vw"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47355",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "tvi-cli",
+   "bad_versions": [
+    "0.1.5"
+   ],
+   "mal_id": "MAL-2025-47357",
+   "aliases": [
+    "GHSA-gqq8-f537-qm7m"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47357",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "ve-bamreader",
+   "bad_versions": [
+    "0.2.6",
+    "0.2.7"
+   ],
+   "mal_id": "MAL-2025-47358",
+   "aliases": [
+    "GHSA-rxcr-c7c8-f4cm"
+   ],
+   "published": "2025-09-16T04:56:26Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47358",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "ve-editor",
+   "bad_versions": [
+    "1.0.1",
+    "1.0.2"
+   ],
+   "mal_id": "MAL-2025-47359",
+   "aliases": [
+    "GHSA-75qc-fx45-gq6r"
+   ],
+   "published": "2025-09-16T04:56:45Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47359",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "verror-extra",
+   "bad_versions": [
+    "6.0.1"
+   ],
+   "mal_id": "MAL-2025-47360",
+   "aliases": [
+    "GHSA-qq7f-c3gc-q93g"
+   ],
+   "published": "2025-09-16T07:57:02Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47360",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "wdio-web-reporter",
+   "bad_versions": [
+    "0.1.3"
+   ],
+   "mal_id": "MAL-2025-47361",
+   "aliases": [
+    "GHSA-f3qx-p9h5-w7vg"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47361",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "yargs-help-output",
+   "bad_versions": [
+    "5.0.3"
+   ],
+   "mal_id": "MAL-2025-47366",
+   "aliases": [
+    "GHSA-5rr3-34mw-3g2q"
+   ],
+   "published": "2025-09-16T07:57:19Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47366",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@ahmedhfarag/ngx-perfect-scrollbar",
+   "bad_versions": [
+    "20.0.20"
+   ],
+   "mal_id": "MAL-2025-47369",
+   "aliases": [
+    "GHSA-qj5v-4q5p-336r"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47369",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@ahmedhfarag/ngx-virtual-scroller",
+   "bad_versions": [
+    "4.0.4"
+   ],
+   "mal_id": "MAL-2025-47370",
+   "aliases": [
+    "GHSA-qp3q-8w52-7p79"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47370",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@art-ws/common",
+   "bad_versions": [
+    "2.0.22",
+    "2.0.28"
+   ],
+   "mal_id": "MAL-2025-47371",
+   "aliases": [
+    "GHSA-q6v7-hj3f-f995"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47371",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@art-ws/config-eslint",
+   "bad_versions": [
+    "2.0.4",
+    "2.0.5"
+   ],
+   "mal_id": "MAL-2025-47372",
+   "aliases": [
+    "GHSA-x8c4-5f9v-v3ph"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47372",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@art-ws/config-ts",
+   "bad_versions": [
+    "2.0.7",
+    "2.0.8"
+   ],
+   "mal_id": "MAL-2025-47373",
+   "aliases": [
+    "GHSA-j56h-2xf9-2p9c"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47373",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@art-ws/db-context",
+   "bad_versions": [
+    "2.0.21",
+    "2.0.24"
+   ],
+   "mal_id": "MAL-2025-47374",
+   "aliases": [
+    "GHSA-hw22-4r5h-554j"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47374",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@art-ws/di",
+   "bad_versions": [
+    "2.0.28",
+    "2.0.32"
+   ],
+   "mal_id": "MAL-2025-47375",
+   "aliases": [
+    "GHSA-xgj5-hfjv-p3xf"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47375",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@art-ws/di-node",
+   "bad_versions": [
+    "2.0.13",
+    "2.0.14",
+    "2.0.15",
+    "2.0.18"
+   ],
+   "mal_id": "MAL-2025-47376",
+   "aliases": [
+    "GHSA-84w5-7qxj-xg2h"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47376",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@art-ws/eslint",
+   "bad_versions": [
+    "1.0.5",
+    "1.0.6"
+   ],
+   "mal_id": "MAL-2025-47377",
+   "aliases": [
+    "GHSA-jgxf-mp53-87pv"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47377",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@art-ws/fastify-http-server",
+   "bad_versions": [
+    "2.0.24",
+    "2.0.26",
+    "2.0.27"
+   ],
+   "mal_id": "MAL-2025-47378",
+   "aliases": [
+    "GHSA-j224-fjqx-693p"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47378",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@art-ws/http-server",
+   "bad_versions": [
+    "2.0.21",
+    "2.0.24",
+    "2.0.25"
+   ],
+   "mal_id": "MAL-2025-47379",
+   "aliases": [
+    "GHSA-m3m6-cg8g-rhvf"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47379",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@art-ws/openapi",
+   "bad_versions": [
+    "0.1.11",
+    "0.1.12",
+    "0.1.9"
+   ],
+   "mal_id": "MAL-2025-47380",
+   "aliases": [
+    "GHSA-v5cf-4rx8-2hm4"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47380",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@art-ws/package-base",
+   "bad_versions": [
+    "1.0.5",
+    "1.0.6"
+   ],
+   "mal_id": "MAL-2025-47381",
+   "aliases": [
+    "GHSA-p7wq-ff6x-vgc6"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47381",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@art-ws/prettier",
+   "bad_versions": [
+    "1.0.5",
+    "1.0.6"
+   ],
+   "mal_id": "MAL-2025-47382",
+   "aliases": [
+    "GHSA-h2qq-gf68-p92r"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47382",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@art-ws/slf",
+   "bad_versions": [
+    "2.0.15",
+    "2.0.22"
+   ],
+   "mal_id": "MAL-2025-47383",
+   "aliases": [
+    "GHSA-7q95-2pfh-4832"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47383",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@art-ws/ssl-info",
+   "bad_versions": [
+    "1.0.10",
+    "1.0.9"
+   ],
+   "mal_id": "MAL-2025-47384",
+   "aliases": [
+    "GHSA-r2mw-7vx4-mx8p"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47384",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@art-ws/web-app",
+   "bad_versions": [
+    "1.0.3",
+    "1.0.4"
+   ],
+   "mal_id": "MAL-2025-47385",
+   "aliases": [
+    "GHSA-26xx-gh8m-vxv5"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47385",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@nativescript-community/ui-document-picker",
+   "bad_versions": [
+    "1.1.27",
+    "1.1.28"
+   ],
+   "mal_id": "MAL-2025-47387",
+   "aliases": [],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47387",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@nativescript-community/ui-label",
+   "bad_versions": [
+    "1.3.35",
+    "1.3.36",
+    "1.3.37"
+   ],
+   "mal_id": "MAL-2025-47388",
+   "aliases": [],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47388",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@nativescript-community/ui-material-bottom-navigation",
+   "bad_versions": [
+    "7.2.72",
+    "7.2.73",
+    "7.2.74",
+    "7.2.75"
+   ],
+   "mal_id": "MAL-2025-47389",
+   "aliases": [],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47389",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@nativescript-community/ui-material-ripple",
+   "bad_versions": [
+    "7.2.72",
+    "7.2.73",
+    "7.2.74",
+    "7.2.75"
+   ],
+   "mal_id": "MAL-2025-47390",
+   "aliases": [],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47390",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@things-factory/shell",
+   "bad_versions": [
+    "9.0.42",
+    "9.0.43",
+    "9.0.44",
+    "9.0.45"
+   ],
+   "mal_id": "MAL-2025-47392",
+   "aliases": [
+    "GHSA-6ffm-774v-3pm4"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47392",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "capacitor-notificationhandler",
+   "bad_versions": [
+    "0.0.2",
+    "0.0.3"
+   ],
+   "mal_id": "MAL-2025-47394",
+   "aliases": [
+    "GHSA-xmrh-mcq6-h3x8"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47394",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "capacitor-plugin-healthapp",
+   "bad_versions": [
+    "0.0.2",
+    "0.0.3"
+   ],
+   "mal_id": "MAL-2025-47395",
+   "aliases": [
+    "GHSA-x24g-fm7p-623c"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47395",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "capacitor-plugin-ihealth",
+   "bad_versions": [
+    "1.1.8",
+    "1.1.9"
+   ],
+   "mal_id": "MAL-2025-47396",
+   "aliases": [
+    "GHSA-2fr2-7qmj-2q77"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47396",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "capacitor-plugin-vonage",
+   "bad_versions": [
+    "1.0.2",
+    "1.0.3"
+   ],
+   "mal_id": "MAL-2025-47397",
+   "aliases": [
+    "GHSA-2qvf-vgp3-gvmx"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47397",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "capacitorandroidpermissions",
+   "bad_versions": [
+    "0.0.4",
+    "0.0.5"
+   ],
+   "mal_id": "MAL-2025-47398",
+   "aliases": [
+    "GHSA-x9cc-wh2w-hchj"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47398",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "db-evo",
+   "bad_versions": [
+    "1.1.4",
+    "1.1.5"
+   ],
+   "mal_id": "MAL-2025-47400",
+   "aliases": [
+    "GHSA-wg2g-r699-2cxj"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47400",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "mobioffice-cli",
+   "bad_versions": [
+    "1.0.3"
+   ],
+   "mal_id": "MAL-2025-47404",
+   "aliases": [
+    "GHSA-2gjv-c6gp-82w5"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47404",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "mstate-angular",
+   "bad_versions": [
+    "0.4.4"
+   ],
+   "mal_id": "MAL-2025-47406",
+   "aliases": [
+    "GHSA-fwrp-2g24-6w68"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47406",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "voip-callkit",
+   "bad_versions": [
+    "1.0.2",
+    "1.0.3"
+   ],
+   "mal_id": "MAL-2025-47416",
+   "aliases": [
+    "GHSA-w47j-9wvm-45xr"
+   ],
+   "published": "2025-09-16T17:05:44Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47416",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@basic-ui-components-stc/basic-ui-components",
+   "bad_versions": [
+    "1.0.5"
+   ],
+   "mal_id": "MAL-2025-47420",
+   "aliases": [
+    "GHSA-73xc-v89w-vxpm"
+   ],
+   "published": "2025-09-17T05:58:45Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47420",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "@strong-energetic/test-banned-file",
+   "bad_versions": [
+    "1.0.1"
+   ],
+   "mal_id": "MAL-2025-47421",
+   "aliases": [],
+   "published": "2025-09-17T05:58:45Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47421",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "devextreme-rpk",
+   "bad_versions": [
+    "21.2.8"
+   ],
+   "mal_id": "MAL-2025-47422",
+   "aliases": [
+    "GHSA-p8c9-m952-ccj7"
+   ],
+   "published": "2025-09-17T05:58:45Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47422",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "ng-imports-checker",
+   "bad_versions": [
+    "0.0.10",
+    "0.0.9"
+   ],
+   "mal_id": "MAL-2025-47423",
+   "aliases": [
+    "GHSA-wxv8-jg28-8xmv"
+   ],
+   "published": "2025-09-17T03:01:40Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47423",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "another-shai",
+   "bad_versions": [
+    "1.0.1"
+   ],
+   "mal_id": "MAL-2025-47449",
+   "aliases": [
+    "GHSA-cxv6-24xw-w667"
+   ],
+   "published": "2025-09-18T02:41:20Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47449",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  },
+  {
+   "package": "hello-shai",
+   "bad_versions": [
+    "1.0.1"
+   ],
+   "mal_id": "MAL-2025-47450",
+   "aliases": [],
+   "published": "2025-09-18T04:34:17Z",
+   "osv_url": "https://osv.dev/vulnerability/MAL-2025-47450",
+   "source": "https://www.wiz.io/blog/shai-hulud-npm-supply-chain-attack"
+  }
+ ]
+}

@@ -70,6 +70,22 @@ docker build -t patientzero .
 docker run --rm -p 8000:8000 -e FALKORDB_HOST=host.docker.internal patientzero
 ```
 
+## Verification done (Oct 16 2026)
+- `docker build -t patientzero .` succeeds (Docker 26.1.5 on the dev box).
+- `falkordb/falkordb-server:latest` (graph module 4.22.1) ran with `REDIS_ARGS="... --dir /data --appendonly yes"`
+  on a volume, and the image ran against it:
+  - first boot seeded `fleet:acme`
+  - `/` served the UI, and `/health`, `/api/ask`, `/api/fix`, the approve flow and `/api/byo/scan` all worked
+  - after `docker restart` of the database, playbooks and incidents were still there (AOF on the volume)
+  - stopping the database gave 503 `graph_unavailable` and `/health` showed `"falkordb":"down"`; restarting it
+    recovered without restarting the app
+- `ingest/verify.py` and the full backend pytest suite (88 tests) pass against that 4.22.1 server as well as the
+  local 6.0.1 module.
+- On the dev box, Docker bridge networking between containers timed out, so the two containers were tested with
+  `--network host`. Railway private networking doesn't have this issue.
+- The image's FalkorDB defaults include `TIMEOUT 1000` ms per query. The heaviest query
+  (single_points_of_failure) takes about 100 ms, but raise it with `FALKORDB_ARGS=TIMEOUT 5000` if the instance is small.
+
 ## Limits and operations
 - BYO: 5 scans per minute per IP (in-memory, per instance), at most 60 direct dependencies, package.json up
   to 200 KB, package-lock.json up to 8 MB, 60 s per scan, 15 s per upstream call. Scan graphs `byo:<hash>`
