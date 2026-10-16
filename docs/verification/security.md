@@ -55,9 +55,13 @@ limit and admin exemption, tool argument caps, BYO host allowlist, and a real uv
 TCP resets that checks the per-IP 429, a fast `/health` and that no slots leak).
 
 ## Findings to act on
-- **Rotate the FalkorDB password.** Railway's `falkordb` service passes it in `REDIS_ARGS` (`--requirepass ...`).
-  During this audit a variables listing printed that value once into the operator's terminal (it was never committed
-  or deployed anywhere). The database has no public endpoint, so exposure is limited, but rotation is cheap: set a
-  new value in `REDIS_ARGS` and `FALKORDB_PASSWORD` on both services, then restart the DB and redeploy the app.
+- **FalkorDB password rotated (done, Fri Oct 16 2026, 1:20 PM ET).** The old value had been printed once into the
+  operator's terminal during this audit. A new 43-character random password (Python `secrets.token_urlsafe(32)`,
+  held only in process memory, never printed) was set through the Railway GraphQL API in the `falkordb` service's
+  `REDIS_ARGS --requirepass` and `FALKORDB_PASSWORD` and in the app's `FALKORDB_PASSWORD` (no other variable held
+  the old value). Then the DB restarted and the app was redeployed (76cbee7). Checked by script: all three values
+  match, the old value is gone from every variable, and no file on the ops box contains it (scan of /tmp, the home
+  directory, the workspace and the agent store). After the rotation: /health ok with both tenant graphs loaded, data
+  and memory intact (the volume persisted), e2e 27/27 and 17/17 against live.
 - `POST /api/incidents/{id}/approve` is public by design (the demo's human-in-the-loop button). It is rate limited
   and the id is validated; put it behind the admin token if the demo ends.

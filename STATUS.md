@@ -1,6 +1,6 @@
 # STATUS (PatientZero)
 
-_Last updated: Fri Oct 16 2026, 12:50 PM ET_
+_Last updated: Fri Oct 16 2026, 1:30 PM ET_
 
 ## Completed
 - [x] FalkorDB 6.0.1 running locally without Docker: `redis-server` 8.0.2 (apt) + `falkordb-x64.so` module (sha256 verified), port 6379
@@ -50,14 +50,17 @@ _Last updated: Fri Oct 16 2026, 12:50 PM ET_
 
 ## Pre-redeploy gate: hang fix, security audit, live verification (Fri Oct 16 2026, about 12:50 PM ET)
 - [x] Hang root cause: `Crew.run` (async) ran its own FalkorDB writes on the event loop; under SSE + crew + ask load a write waiting behind others froze every request (reproduced: /health 22.7 s). Fix: crew graph work on a bounded crew pool, crew runs capped (6, 2 per IP), watch streams capped (100, 8 per IP) with slots always released, SSE heartbeats, bounded FalkorDB pool (64), 64 API threads. Stress after the fix: /health p50 about 0.1 s, max 0.39 s, no leaked slots. `scripts/stress_streams.py`, `backend/tests/test_streams_hang.py`
-- [x] Security audit: docs/verification/security.md. History clean (gitleaks + regex + verbatim secret search), bundle clean, admin routes 401 without the token. Fixed: per-IP limits on ask/fix/summary/tools (120/min) and approve (10/min), tool argument caps, BYO host allowlist (redirects included) and a deps.dev size cap, tighter CORS. To do: rotate the FalkorDB password (see the doc)
+- [x] Security audit: docs/verification/security.md. History clean (gitleaks + regex + verbatim secret search), bundle clean, admin routes 401 without the token. Fixed: per-IP limits on ask/fix/summary/tools (120/min) and approve (10/min), tool argument caps, BYO host allowlist (redirects included) and a deps.dev size cap, tighter CORS. FalkorDB password rotated at 1:20 PM ET (see the doc)
 - [x] Tests: 198 green on FalkorDB 6.0.1 and 4.22.1; e2e 17/17 and 25/25 locally and against live
 - [x] Live verified after redeploying 384fd77: /health ok (mcp_agent.active, watch loop on), tenants Acme 22 / Globex 12, Globex Shai-Hulud 4 of 12, follow-ups resolved from the graph, crew run streamed (4 agents, 4 handoffs, replay), real OSV poll (index unchanged, HTTP 304), replay debug@4.4.2 (Acme 10 of 22, Globex 5 of 12), timeline `watch` and `watch_replay` (no osv-watch campaign), live bench 740.6 ops/s p99 112 ms 0 errors
 - [x] Live memory reset: acme has exactly the approved qix incident and its playbook, globex is empty, and no crew runs or sessions are left from testing
 
+## Password rotation (Fri Oct 16 2026, about 1:20 PM ET)
+- [x] Live FalkorDB password rotated (new random value set via the Railway API on both services, never printed), DB restarted, app redeployed at 76cbee7. /health ok; e2e 27/27 crew/tenants and 17/17 browser against live (the slider-drag check failed once and passed on rerun, see below). Live memory reset again: acme has exactly the approved qix incident and its playbook, globex is empty, 0 crew runs and 0 sessions
+- Known flake: "P0-2 slider drag lands on the last depth" failed in 2 of 4 live runs (the answer shown was depth 6 with the slider at 4, no 429 and no console errors), and passed on rerun and in a focused probe. Looks like a stale response winning a race in the depth handling on a remote deploy; frontend owner to check
+
 ## Next actions
 - Final polish pass on screenshots for the README
-- Rotate the FalkorDB password on Railway (REDIS_ARGS and FALKORDB_PASSWORD on both services)
 - Redeploy after pushing changes: `sh scripts/redeploy-railway.sh` (ships origin/main; no GitHub auto-deploy)
 - Optional: load Shai-Hulud (INCIDENTS=qix,shai-hulud) in the demo graph and add a preset chip
 
