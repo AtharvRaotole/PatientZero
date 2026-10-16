@@ -154,6 +154,7 @@ def ask(text: str, depth: int | None = None, fresh: bool = False, session: str =
     depth = max(1, min(config.MAX_DEPTH, int(depth or config.DEFAULT_DEPTH)))
     text = (text or "").strip()
     intent = classify(text)
+    wants_wake = intent == "who_to_wake"
     out = base(text, intent, depth)
     tr = Trace()
     try:
@@ -204,6 +205,8 @@ def ask(text: str, depth: int | None = None, fresh: bool = False, session: str =
             _wake(out, tr, ent)
         else:
             _unknown(out, ent)
+        if wants_wake and out.get("trigger") and out["outcome"] != "unknown_entity":
+            lead_with_wake(out, tr)  # an incident answer to "who should I wake ...": lead with the people
     finally:
         out["trace"] = tr.steps
         out["total_ms"] = round((time.perf_counter() - t0) * 1000, 2)
@@ -229,6 +232,7 @@ def _incident(out, tr, ent, depth, fresh, session, generate_fix):
     why = must_traverse(out["query"], ent)
     # Memory answers on its own ONLY for a bare recall of the exact stored trigger at the stored depth.
     exact = [m for m in mem if m.get("entity_key") == key and int(m.get("depth") or 0) == depth]
+    mem = [m for m in mem if not self_made(m, session)]
     if not fresh and not generate_fix and not why and exact:
         m = exact[0]
         out["outcome"] = "answered_from_memory"
@@ -317,6 +321,14 @@ def _incident(out, tr, ent, depth, fresh, session, generate_fix):
         out["message"] += f" Incident {out['fix']['incident_id']} written to the graph."
 
 
+def self_made(m: dict, session: str | None) -> bool:
+    """An incident this same session or crew run created or last updated: citing it as 'Seen before' would only
+    echo what the user just did, so it is left out of seen_before (it stays in memory and in recall)."""
+    if not session:
+        return False
+    return session in {m.get("created_session"), m.get("last_session"), m.get("created_by_run"), m.get("last_run")}
+
+
 def seen_before(m: dict, key: str, fresh_services: list[str] | None) -> dict:
     """A compact 'Seen before' record for a remembered Incident, with a diff against the fresh result."""
     before = sorted({x["service"] for x in m.get("exposed") or [] if x.get("service")})
@@ -339,14 +351,55 @@ def plural(n: int, word: str) -> str:
     return f"{n} {word}" + ("" if n == 1 else "s")
 
 
+def wake_message(wake: list[dict], max_teams: int = 6) -> str:
+    """'Wake 3 teams: Payments (#team-payments, on-call Amara Okafor @amara) for checkout-api, billing; ...'"""
+    teams: dict[str, dict] = {}
+    for w in wake:
+        t = teams.setdefault(w.get("team_display") or w.get("team") or "unowned",
+                             {"slack": w.get("slack"), "oncall": [], "services": []})
+        t["services"].append(w["service"])
+        for o in w.get("oncall") or []:
+            who = " ".join(x for x in (o.get("name"), o.get("handle")) if x)
+            if who and who not in t["oncall"]:
+                t["oncall"].append(who)
+    parts = [f"{name} ({t['slack'] + ', ' if t['slack'] else ''}on-call {', '.join(t['oncall']) or 'none listed'}) "
+             f"for {', '.join(t['services'])}" for name, t in list(teams.items())[:max_teams]]
+    more = len(teams) - max_teams
+    return (f"Wake {plural(len(teams), 'team')}: " + "; ".join(parts)
+            + (f"; and {more} more team{'s' if more != 1 else ''}" if more > 0 else "") + ".")
+
+
+def wake_answer(out: dict, wake: list[dict], services: list[str] | None = None) -> None:
+    out["intent"] = "who_to_wake"
+    out["wake"] = wake
+    if wake:
+        out["outcome"] = "answered_with_path"
+        out["message"] = wake_message(wake)
+    else:
+        out["outcome"] = "not_in_graph"
+        out["message"] = (f"No owning team is recorded for {', '.join(services)}." if services
+                          else "No owning team found in the graph.")
+
+
+def lead_with_wake(out: dict, tr: Trace) -> None:
+    """The user asked who to wake about an incident: the headline and primary payload are the people to page for
+    the exposed services; the exposure finding follows as the reason."""
+    why = out["message"]
+    if not out.get("wake") and out["outcome"] == "answered_from_memory":
+        inc = ((out.get("memory") or {}).get("incidents") or [{}])[0]
+        services = sorted({x["service"] for x in inc.get("exposed") or [] if x.get("service")})
+        out["wake"] = tools.who_to_wake(tr, services) if services else []
+    out["intent"] = "who_to_wake"
+    if out.get("wake"):
+        out["message"] = wake_message(out["wake"]) + " Why: " + why
+    else:
+        out["message"] = "Nobody to wake: " + why
+
+
 def _wake(out, tr, ent):
     out["intent"] = "who_to_wake"
     if ent["services"]:
-        out["wake"] = tools.who_to_wake(tr, ent["services"])
-        out["outcome"] = "answered_with_path"
-        out["message"] = "; ".join(
-            f"{w['service']}: {w['team_display']} ({w['slack']}), on-call "
-            + (", ".join(f"{o['name']} {o['handle']}" for o in w["oncall"]) or "none") for w in out["wake"])
+        wake_answer(out, tools.who_to_wake(tr, ent["services"]), ent["services"])
         return
     if ent["packages"] or ent["package_versions"]:
         pkg = (ent["packages"] or [ent["package_versions"][0]["package"]])[0]
@@ -373,7 +426,11 @@ def _wake(out, tr, ent):
 def _path(out, tr, ent):
     svc = ent["services"][0]
     pkg = ent["packages"][0] if ent["packages"] else ent["package_versions"][0]["package"]
-    p = tools.path_between(tr, svc, pkg)
+    path_answer(out, svc, pkg, tools.path_between(tr, svc, pkg))
+
+
+def path_answer(out: dict, svc: str, pkg: str, p: dict | None) -> None:
+    out["intent"] = "path_between"
     if p:
         out["outcome"] = "answered_with_path"
         out["path"] = dict(service=svc, package=pkg, **p)
@@ -391,6 +448,11 @@ def _recall(out, tr, ent):
     rows = tools.recall(tr, key) if key else []
     if not key:
         rows = tools.list_incidents(tr, 10)
+    recall_answer(out, rows, key)
+
+
+def recall_answer(out: dict, rows: list[dict], key: str | None) -> None:
+    out["intent"] = "recall"
     out["memory"] = {"incidents": rows}
     if rows:
         out["outcome"] = "answered_from_memory"
@@ -401,8 +463,11 @@ def _recall(out, tr, ent):
 
 
 def _spof(out, tr):
+    spof_answer(out, tools.single_points_of_failure(tr, limit=10))
+
+
+def spof_answer(out: dict, r: dict) -> None:
     out["intent"] = "single_points_of_failure"
-    r = tools.single_points_of_failure(tr, limit=10)
     out["spof"] = r
     out["outcome"] = "answered_with_path" if (r["maintainers"] or r["packages"]) else "not_in_graph"
     top = ", ".join(f"{m['maintainer']} ({m['reach']} services)" for m in r["maintainers"][:3])

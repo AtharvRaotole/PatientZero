@@ -121,7 +121,7 @@ def test_pasted_express4_is_clean_with_honest_negative():
     assert d["exposed"] == []
     neg = [x for x in d["not_exposed"] if x["package"] == "debug"]
     assert neg and "2.6.9" in neg[0]["reason"] and "does not satisfy 4.4.2" in neg[0]["reason"]
-    assert d["graph_name"] != "fleet:acme"
+    assert d["graph_name"] != "fleet:acme" and d["graph_name"].startswith("byo:acme:")
 
 
 @live
@@ -175,7 +175,7 @@ def test_scan_graph_down_is_503(monkeypatch):
     try:
         c = TestClient(app, raise_server_exceptions=False)
         r = c.post("/api/byo/scan", json={"package_json": json.dumps({"dependencies": {"express": "4.21.2"}})})
-        assert r.status_code == 503 and r.json()["error"] == "graph_unavailable"
+        assert r.status_code == 503 and r.json()["error"] == "database_unavailable"
         assert c.get("/api/byo/scans").status_code == 503
     finally:
         db._db = None

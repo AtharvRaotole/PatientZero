@@ -122,9 +122,11 @@ class Trace:
             res = with_busy_retry(lambda: g.query(cypher, params) if write else g.ro_query(cypher, params))
         except Exception as e:  # noqa: BLE001
             ms = round((time.perf_counter() - t0) * 1000, 2)
+            down = _is_conn_error(e)
             self.steps.append(dict(tool=tool, query=query, cypher=cypher, params=_short(params), ms=ms,
-                                   rows=0, error=str(e), file=CATALOGUE[query]["file"]))
-            if _is_conn_error(e):
+                                   rows=0, error=DB_DOWN if down else f"query failed ({type(e).__name__})",
+                                   file=CATALOGUE[query]["file"]))
+            if down:
                 raise GraphUnavailable(f"graph unavailable: {e}") from e
             raise
         ms = round((time.perf_counter() - t0) * 1000, 2)
@@ -174,11 +176,36 @@ def _short(params: dict) -> dict:
     return out
 
 
+DB_DOWN = "database unavailable"
+_DOWN_WORDS = ("connection", "refused", "timed out", "timeout", "noauth", "wrongpass", "authentication",
+               "invalid username-password", "user is disabled", "invalid password", "no route to host",
+               "name or service not known", "temporary failure in name resolution", "broken pipe", "reset by peer",
+               "loading the dataset in memory", "max number of clients")
+
+
 def _is_conn_error(e: Exception) -> bool:
-    name = type(e).__name__.lower()
-    msg = str(e).lower()
-    return ("connection" in name or "timeout" in name or "connection" in msg or "refused" in msg
-            or "timed out" in msg)
+    """FalkorDB cannot serve us at all: unreachable, timing out, rejecting our credentials (a rotated password),
+    still loading, or out of client slots. Every such error becomes GraphUnavailable (a clean 503)."""
+    seen = 0
+    while e is not None and seen < 5:
+        name = type(e).__name__.lower()
+        msg = str(e).lower()
+        if ("connection" in name or "timeout" in name or "authentication" in name or "busyloading" in name
+                or any(w in msg for w in _DOWN_WORDS)):
+            return True
+        e, seen = (e.__cause__ or e.__context__), seen + 1
+    return False
+
+
+def is_db_unavailable(e: BaseException) -> bool:
+    return isinstance(e, GraphUnavailable) or (isinstance(e, Exception) and _is_conn_error(e))
+
+
+def public_error(e: BaseException) -> dict:
+    """What a client may see about a failure: a stable code and a fixed sentence, never the exception text."""
+    if is_db_unavailable(e):
+        return {"error": "database_unavailable", "message": "The database is unavailable. Try again shortly."}
+    return {"error": "internal_error", "message": "Internal error. The details are in the server log."}
 
 
 def ping() -> dict:
@@ -191,4 +218,7 @@ def ping() -> dict:
         return {"ok": True, "graphs": graphs, "graph": name, "graph_loaded": name in graphs,
                 "tenants_loaded": {t: g in graphs for t, g in tenants.TENANTS.items()}}
     except Exception as e:  # noqa: BLE001
-        return {"ok": False, "error": str(e), "graph": name}
+        import logging
+        logging.getLogger("patientzero").warning("FalkorDB ping failed: %s", e)
+        return {"ok": False, "error": DB_DOWN if _is_conn_error(e) else f"ping failed ({type(e).__name__})",
+                "graph": name}

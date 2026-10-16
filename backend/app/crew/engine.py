@@ -19,6 +19,7 @@ import concurrent.futures
 import contextvars
 import itertools
 import json
+import logging
 import os
 import re
 import time
@@ -26,9 +27,11 @@ import uuid
 from collections import Counter
 from typing import Any, Callable
 
-from .. import playbooks, tenants, tools
+from .. import config, db, playbooks, tenants, tools
 from .. import router as qrouter
 from ..db import Trace
+
+log = logging.getLogger("patientzero.crew")
 
 AGENTS = ("triage", "investigator", "responder", "fixer")
 TITLES = {"triage": "Triage", "investigator": "Investigator", "responder": "Responder", "fixer": "Fixer"}
@@ -143,7 +146,9 @@ class Crew:
         except NoIncident as e:
             status, summary = "no_incident", str(e)
         except Exception as e:  # noqa: BLE001
-            status, error, summary = "error", f"{type(e).__name__}: {e}", f"failed: {type(e).__name__}"
+            log.warning("crew %s agent %s failed: %r", self.run_id, agent, e)
+            pub = db.public_error(e)
+            status, error, summary = "error", pub["error"], f"failed: {pub['message']}"
             raise
         finally:
             ms = _ms(t0)
@@ -185,22 +190,13 @@ class Crew:
         exposed = sorted(res["exposed"], key=lambda e: (e.get("tier") or 9, e["service"]))
         now_services = [e["service"] for e in exposed]
 
-        # Memory that updates over time: adopt or create the Incident for (trigger, depth) and diff against it.
-        crew_key = f"{key}|d{self.depth}"
-        tr.run("crew:triage", "crew_adopt_incident", {"crew_key": crew_key, "key": key, "depth": self.depth},
-               write=True)
-        at = tools.now_iso()
-        slug = re.sub(r"[^a-z0-9]+", "-", key.lower()).strip("-")[:40]
-        up = tr.run("crew:triage", "crew_upsert_incident", dict(
-            crew_key=crew_key, id=f"INC-{at[:10]}-{slug}-{uuid.uuid4().hex[:6]}", at=at, trigger=q, kind=kind,
-            key=key, depth=self.depth, services=now_services, run_id=self.run_id), write=True)[0]
+        # Memory that updates over time: ONE Incident per trigger in this tenant (any depth, any session); adopt or
+        # create it, update depth and exposure, and diff against what it held before.
+        up, delta = tools.upsert_incident(tr, "crew:triage", trigger=q, kind=kind, key=key, depth=self.depth,
+                                          services=now_services, run_id=self.run_id, session=self.session_id or "",
+                                          source="crew")
         self.incident_id = up["id"]
-        before = set(up.get("before") or [])
         is_new = bool(up.get("created"))
-        delta = {"first_triage": is_new, "previous_seen": up.get("prev_seen"), "triage_count": up["triage_count"],
-                 "newly_exposed": sorted(set(now_services) - before) if not is_new else [],
-                 "no_longer_exposed": sorted(before - set(now_services)) if not is_new else [],
-                 "unchanged": sorted(before & set(now_services)) if not is_new else []}
         rows = []
         for e in exposed:
             f = next(f for f in e["findings"] if f["exposed"])
@@ -239,6 +235,8 @@ class Crew:
         self.finding(tr, "triage", "blast_radius", f"Blast radius: {n} of {res['fleet_size']}", text,
                      {"exposed": slim, "safe": safe, "clean_count": len(res["clean"]), "fleet_size": res["fleet_size"],
                       "depth": self.depth, "incident_id": self.incident_id, "company": tenants.company()})
+        depth_note = (f" (depth {delta['previous_depth']} -> {self.depth})"
+                      if delta.get("previous_depth") not in (None, self.depth) else "")
         if is_new:
             dtext = f"First triage of {label} at depth {self.depth}: incident {self.incident_id} created."
         elif delta["newly_exposed"] or delta["no_longer_exposed"]:
@@ -247,10 +245,10 @@ class Crew:
                         if delta["newly_exposed"] else "none newly exposed")
                      + ", " + (f"{len(delta['no_longer_exposed'])} fixed or no longer reachable "
                                f"({', '.join(delta['no_longer_exposed'][:5])})" if delta["no_longer_exposed"]
-                               else "none fixed") + f" since {up.get('prev_seen')}.")
+                               else "none fixed") + f" since {up.get('prev_seen')}{depth_note}.")
         else:
             dtext = (f"Re-triage #{up['triage_count']} of {self.incident_id}: nothing changed since "
-                     f"{up.get('prev_seen')}, the same {n} service{'s' if n != 1 else ''} "
+                     f"{up.get('prev_seen')}{depth_note}, the same {n} service{'s' if n != 1 else ''} "
                      f"{'are' if n != 1 else 'is'} exposed.")
         self.finding(tr, "triage", "memory_delta", "What changed since last time", dtext,
                      {**delta, "incident_id": self.incident_id})
@@ -418,8 +416,10 @@ class Crew:
                 await _bg(self._run_agent, "fixer", self.fixer)
                 message = self._summary("triage")
         except Exception as e:  # noqa: BLE001
-            status, message = "error", f"{type(e).__name__}: {e}"
-            self.emit("error", {"message": message})
+            log.warning("crew %s failed: %r", self.run_id, e)
+            pub = db.public_error(e)
+            status, message = "error", pub["message"]
+            self.emit("error", {"run_id": self.run_id, **pub})
         await _bg(self._finish, status, message)
         result = await _bg(get_run, self.run_id, self.tenant)
         result["trace"] = self.trace
@@ -472,6 +472,47 @@ def _slim_finding(f: dict) -> dict:
                 direct_exposed=f.get("direct_exposed", False),
                 path={k: f["path"].get(k) for k in keep},
                 alternatives=[{k: p.get(k) for k in keep} for p in (f.get("alternatives") or [])[:3]])
+
+
+WARM: dict[str, Any] = {"status": "not_run"}
+
+
+def warm_up(trigger: str = "qix", depth: int | None = None) -> dict:
+    """Dry run of the crew's read path in every loaded tenant: resolve, scope, fleet, exposure, owners, playbook
+    match. Read-only (ro_query only; no CrewRun, Incident or Turn is written), so the first real run finds warm
+    connections, a parsed query cache and loaded graph pages instead of paying for them. Never raises."""
+    t0 = time.perf_counter()
+    out: dict[str, Any] = {"status": "ok", "tenants": {}}
+    try:
+        graphs = set(db.client().list_graphs())
+    except Exception as e:  # noqa: BLE001
+        WARM.clear()
+        WARM.update(status="database_unavailable", ms=_ms(t0), error=db.public_error(e)["error"])
+        return dict(WARM)
+    for t, g in tenants.TENANTS.items():
+        if g not in graphs:
+            out["tenants"][t] = "not_loaded"
+            continue
+        t1 = time.perf_counter()
+        try:
+            with tenants.use(t):
+                tr = Trace()
+                ent = tools.resolve_entity(trigger, tr)
+                qrouter.infer_maintainer(tr, trigger, ent)
+                scope = qrouter.scope_for(tr, ent) if qrouter.trigger_of(ent) else []
+                fleet = tools.fleet_overview(tr)
+                res = tools.exposure(tr, scope, depth or config.DEFAULT_DEPTH, fleet) if scope else {"exposed": []}
+                tools.who_to_wake(tr, [e["service"] for e in res["exposed"]][:20])
+                tr.run("crew:warm", "crew_list_runs", {"limit": 1})
+                assert not any(st.get("write") for st in tr.steps), "warm-up must not write"
+            out["tenants"][t] = {"ms": _ms(t1), "queries": len(tr.steps), "exposed": len(res["exposed"])}
+        except Exception as e:  # noqa: BLE001
+            out["status"] = "partial"
+            out["tenants"][t] = db.public_error(e)["error"]
+    out["ms"] = _ms(t0)
+    WARM.clear()
+    WARM.update(out)
+    return dict(WARM)
 
 
 def get_run(run_id: str, tenant: str | None = None) -> dict | None:

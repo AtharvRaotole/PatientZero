@@ -12,6 +12,7 @@ from fastapi.responses import JSONResponse
 
 from . import admin, catalog, config, db, sessions, tenants, tools
 from .ratelimits import ask_limit
+from .byo.ratelimit import client_ip
 from .core import agent
 from .domains.patientzero import DOMAIN
 from .mcp_agent import wrap_domain
@@ -25,6 +26,11 @@ async def _lifespan(_app):
     burst cannot leave /health and quick reads queued behind them; the DB pool bounds real concurrency."""
     import anyio.to_thread
     anyio.to_thread.current_default_thread_limiter().total_tokens = int(os.getenv("API_THREADS", "64"))
+    if os.getenv("CREW_WARMUP", "on").lower() not in ("0", "off", "false", "no"):
+        # Background, read-only crew dry run so the first visitor's crew run is not the one paying for cold caches.
+        import threading
+        from .crew.engine import warm_up
+        threading.Thread(target=warm_up, name="crew-warmup", daemon=True).start()
     yield
 
 
@@ -40,26 +46,38 @@ app.add_middleware(CORSMiddleware, allow_origins=config.CORS_ORIGINS, allow_orig
 # The agent selects and runs its tools through our own MCP server (MCP_AGENT=off for direct calls).
 AGENT_DOMAIN = wrap_domain(DOMAIN)
 
-GRAPH_DOWN = ("graph unavailable: FalkorDB is not reachable, so PatientZero cannot answer. "
-              "It never answers from anywhere else. Start it with scripts/start-falkordb.sh.")
+GRAPH_DOWN = ("The database is unavailable, so PatientZero cannot answer right now. It never answers from anywhere "
+              "else. Try again shortly.")
+INTERNAL = "Internal error. The details are in the server log."
+
+
+def db_down_response() -> JSONResponse:
+    return JSONResponse(status_code=503, headers={"Retry-After": "5"},
+                        content=ErrorResponse(error="database_unavailable", message=GRAPH_DOWN).model_dump())
 
 
 @app.exception_handler(GraphUnavailable)
 async def _graph_down(_: Request, exc: GraphUnavailable):
-    log.warning("graph unavailable: %s", exc)
-    return JSONResponse(status_code=503, content=ErrorResponse(error="graph_unavailable", message=GRAPH_DOWN).model_dump())
+    log.warning("database unavailable: %s", exc)
+    return db_down_response()
 
 
 @app.exception_handler(ValueError)
 async def _bad_request(_: Request, exc: ValueError):
-    return JSONResponse(status_code=400, content=ErrorResponse(error="bad_request", message=str(exc)).model_dump())
+    if db.is_db_unavailable(exc):
+        log.warning("database unavailable: %s", exc)
+        return db_down_response()
+    return JSONResponse(status_code=400, content=ErrorResponse(error="bad_request", message=str(exc)[:300]).model_dump())
 
 
 @app.exception_handler(Exception)
 async def _internal(_: Request, exc: Exception):
+    """Never echo exception text: a DB failure (auth, connection) is a clean 503, anything else a generic 500."""
+    if db.is_db_unavailable(exc):
+        log.warning("database unavailable: %s", exc)
+        return db_down_response()
     log.exception("unhandled error")
-    return JSONResponse(status_code=500, content=ErrorResponse(
-        error="internal_error", message=f"{type(exc).__name__}: {exc}").model_dump())
+    return JSONResponse(status_code=500, content=ErrorResponse(error="internal_error", message=INTERNAL).model_dump())
 
 
 def fleet_graph_rows(tr: Trace) -> dict:
@@ -79,18 +97,17 @@ def health() -> dict[str, Any]:
             "llm_model": config.OPENAI_MODEL if agent.llm_available() else None,
             "domain": DOMAIN.name, "tools": DOMAIN.registry.names(), "llm_budget": agent.budget.status(),
             "queries": len(db.CATALOGUE), "admin_guard": bool(config.ADMIN_TOKEN),
-            "mcp_agent": _mcp_agent_status()}
+            "mcp_agent": _mcp_agent_status(), "crew_warmup": _warm()}
+
+
+def _warm() -> dict:
+    from .crew.engine import WARM
+    return {k: WARM.get(k) for k in ("status", "ms")}
 
 
 def _mcp_agent_status() -> dict:
     from .mcp_agent import domain as _md
     return {**_md.status(), "active": AGENT_DOMAIN is not DOMAIN}
-
-
-def client_ip(request: Request) -> str:
-    """Rightmost X-Forwarded-For entry (added by the edge proxy, so clients cannot spoof it), else the socket peer."""
-    fwd = request.headers.get("x-forwarded-for", "")
-    return fwd.split(",")[-1].strip() if fwd else (request.client.host if request.client else "")
 
 
 def _ask(query: str, depth: int | None, fresh: bool, session: str, fix: bool, mode: str = "auto",

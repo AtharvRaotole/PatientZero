@@ -407,20 +407,41 @@ def build_fix(result: dict, wake: list[dict], dev_direct: set[str] | None = None
                      "package directly also need the dependency bump from their own patch.")
 
 
+def upsert_incident(tr: Trace, tool: str, *, trigger: str, kind: str, key: str, depth: int, services: list[str],
+                    run_id: str | None = None, session: str = "", patch: str | None = None,
+                    source: str = "fix") -> tuple[dict, dict]:
+    """Create or update THE Incident for this trigger in the current tenant (one per trigger, whatever the depth,
+    session or caller: crew or Generate fix). Returns (upsert row, memory delta vs. what it held before)."""
+    at = now_iso()
+    slug = re.sub(r"[^a-z0-9]+", "-", key.lower()).strip("-")[:40]
+    tr.run(tool, "crew_adopt_incident", {"crew_key": key, "key": key}, write=True)
+    hist = json.dumps({"at": at, "depth": depth, "exposed_count": len(services), "source": source,
+                       "run": run_id, "session": session or None})
+    up = tr.run(tool, "crew_upsert_incident", dict(
+        crew_key=key, id=f"INC-{at[:10]}-{slug}-{uuid.uuid4().hex[:6]}", at=at, trigger=trigger, kind=kind, key=key,
+        depth=depth, services=services, run_id=run_id, session=session or "", patch=patch, source=source,
+        hist=hist), write=True)[0]
+    before, now = set(up.get("before") or []), set(services)
+    new = bool(up.get("created"))
+    delta = {"first_triage": new, "previous_seen": up.get("prev_seen"), "triage_count": up["triage_count"],
+             "previous_depth": up.get("prev_depth"), "depth": depth, "source": source,
+             "newly_exposed": sorted(now - before) if not new else [],
+             "no_longer_exposed": sorted(before - now) if not new else [],
+             "unchanged": sorted(before & now) if not new else []}
+    return up, delta
+
+
 def remediation_plan(tr: Trace, *, trigger: str, entity_kind: str, entity_key: str, depth: int, result: dict,
                      wake: list[dict], session: str = "") -> dict:
     fix = build_fix(result, wake)
-    at = now_iso()
-    slug = re.sub(r"[^a-z0-9]+", "-", entity_key.lower()).strip("-")[:40]
-    inc_id = f"INC-{at[:10]}-{slug}-{uuid.uuid4().hex[:6]}"
     patch = {p["service"]: p["package_json"] for p in fix["per_service"]}
-    tr.run("remediation_plan", "create_incident", dict(
-        id=inc_id, at=at, trigger=trigger, entity_kind=entity_kind, entity_key=entity_key, depth=depth,
-        exposed_count=len(result["exposed"]), patch=json.dumps(patch)), write=True)
-    for key in entity_keys_for_link(entity_kind, entity_key):
-        tr.run("remediation_plan", "link_incident_entity", {"id": inc_id, "entity_key": key}, write=True)
-    tr.compact("remediation_plan", "link_incident_entity")
-    # One EXPOSED edge per exposed service (AC9: edge count == exposed services), via its primary path.
+    services = [e["service"] for e in result["exposed"]]
+    up, delta = upsert_incident(tr, "remediation_plan", trigger=trigger, kind=entity_kind, key=entity_key,
+                                depth=depth, services=services, session=session, patch=json.dumps(patch),
+                                source="fix")
+    inc_id, at = up["id"], now_iso()
+    # One EXPOSED edge per exposed service (AC9: edge count == exposed services), via its primary path; replaced on
+    # every update so the incident always shows today's exposure. The delta keeps what changed.
     exp_rows, findings = [], []
     for e in result["exposed"]:
         f = next(f for f in e["findings"] if f["exposed"])
@@ -429,11 +450,16 @@ def remediation_plan(tr: Trace, *, trigger: str, entity_kind: str, entity_key: s
         findings.append(dict(service=e["service"], text=(
             f"{e['service']} exposed to {', '.join(e['exposed_packages'])} at depth {depth}. "
             f"Patch: {json.dumps(patch.get(e['service'], {}))}")))
-    if exp_rows:
-        tr.run("remediation_plan", "link_exposed", {"id": inc_id, "rows": exp_rows}, write=True)
+    tr.run("remediation_plan", "crew_set_exposed", {"id": inc_id, "rows": exp_rows, "delta": json.dumps(delta)},
+           write=True)
+    for key in entity_keys_for_link(entity_kind, entity_key):
+        tr.run("remediation_plan", "crew_link_entity", {"id": inc_id, "entity_key": key}, write=True)
+    tr.compact("remediation_plan", "crew_link_entity")
+    if findings:
         tr.run("remediation_plan", "add_findings", {"id": inc_id, "at": at, "session": session, "rows": findings},
                write=True)
-    fix.update(incident_id=inc_id, at=at, exposed_edges=len(exp_rows))
+    fix.update(incident_id=inc_id, at=up.get("at") or at, exposed_edges=len(exp_rows),
+               incident_created=bool(up.get("created")), triage_count=up["triage_count"], memory_delta=delta)
     # Procedural memory: reuse playbooks a human approved for earlier incidents on the same packages.
     from . import playbooks
     fix["playbooks"] = playbooks.apply_matching(tr, inc_id, fix["specs"])

@@ -111,7 +111,7 @@ class AskResponse(Loose):
 
 
 class ErrorResponse(BaseModel):
-    error: Literal["graph_unavailable", "bad_request", "internal_error"]
+    error: Literal["database_unavailable", "graph_unavailable", "bad_request", "internal_error"]
     message: str
 
 

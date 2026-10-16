@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import asyncio
 import json
+import logging
 import os
 from typing import Any
 
@@ -19,11 +20,12 @@ from fastapi import APIRouter, HTTPException, Request
 from fastapi.responses import JSONResponse, StreamingResponse
 from pydantic import BaseModel, Field
 
-from .. import config, sessions, tenants
+from .. import config, db, sessions, tenants
 from ..byo.ratelimit import RateLimiter, client_ip
-from ..db import GraphUnavailable
 from ..streamguard import Slots
 from .engine import RUN_RE, Crew, get_run
+
+log = logging.getLogger("patientzero.crew")
 
 router = APIRouter(tags=["crew"])
 limiter = RateLimiter(int(os.getenv("CREW_PER_IP_PER_MIN", "6")), 60.0)
@@ -118,10 +120,9 @@ async def crew_run(req: CrewRequest, request: Request, stream: bool = True):
             result = await crew.run()
             await asyncio.to_thread(_record, crew, result, sid, req.query, fu)
             emit("done", result)
-        except GraphUnavailable as e:
-            emit("error", {"run_id": crew.run_id, "message": f"graph unavailable: {e}"})
-        except Exception as e:  # noqa: BLE001
-            emit("error", {"run_id": crew.run_id, "message": f"{type(e).__name__}: {e}"})
+        except Exception as e:  # noqa: BLE001 - the client gets a code and a fixed sentence, the log gets the rest
+            log.warning("crew stream %s failed: %r", crew.run_id, e)
+            emit("error", {"run_id": crew.run_id, **db.public_error(e)})
         finally:
             RUNS.release(ip)
             emit("__end__", {})

@@ -252,8 +252,9 @@ def test_crew_rate_limit():
 def test_retriage_updates_incident_with_delta():
     first = crew(SHAI, "globex", depth=5)
     inc = first["incident"]
-    assert findings(first)["memory_delta"]["data"]["first_triage"] is True
     gx = g("globex")
+    # One Incident per trigger in the tenant, whatever depth earlier runs used.
+    assert gx.ro_query("MATCH (i:Incident {entity_key:'2025-09-15-shai-hulud'}) RETURN count(i)").result_set[0][0] == 1
     try:
         gx.query("MATCH (:Service {name:'brand-studio'})-[d:DEPENDS_ON]->(:Version {pkg:'@ctrl/tinycolor'}) "
                  "SET d.requirement = '4.1.0'")  # brand-studio pins the clean version: fixed
@@ -370,12 +371,14 @@ def test_crew_turn_feeds_followups():
 # ------------------------------------------------------------------------------------------------ concurrency
 def test_twenty_concurrent_crew_runs():
     """20 crews at once (10 per tenant) against FalkorDB: no errors, exact node/edge counts, one Incident per
-    (tenant, trigger, depth) with triage_count incremented exactly once per run."""
+    (tenant, trigger) with triage_count incremented exactly once per run."""
     def count(tenant, key):
         rows = g(tenant).ro_query("MATCH (i:Incident {crew_key:$k}) RETURN i.id, i.triage_count", {"k": key}).result_set
         return rows
 
-    before = {t: (count(t, "qix|d3")[0][1] if count(t, "qix|d3") else 0) for t in ("acme", "globex")}
+    before = {t: (count(t, "qix")[0][1] if count(t, "qix") else 0) for t in ("acme", "globex")}
+    triaged = {t: g(t).ro_query("MATCH (r:CrewRun)-[:TRIAGED]->(:Incident {crew_key:'qix'}) RETURN count(r)")
+               .result_set[0][0] for t in ("acme", "globex")}
 
     async def main():
         crews = [Crew(QIX, 3, t) for t in ("acme", "globex") for _ in range(10)]
@@ -391,8 +394,9 @@ def test_twenty_concurrent_crew_runs():
         assert sum(len(a["findings"]) for a in r["agents"]) == 10
         assert not any(e["event"] == "error" for e in c.events)
     for t in ("acme", "globex"):
-        rows = count(t, "qix|d3")
+        rows = count(t, "qix")
         assert len(rows) == 1, rows
+        assert g(t).ro_query("MATCH (i:Incident {entity_key:'qix'}) RETURN count(i)").result_set[0][0] == 1
         assert rows[0][1] == before[t] + 10
         inc = rows[0][0]
         e = g(t).ro_query("MATCH (i:Incident {id:$id}) RETURN i.exposed_count, size([(i)-[:EXPOSED]->(s) | s])",
@@ -401,7 +405,7 @@ def test_twenty_concurrent_crew_runs():
         # Every run in this tenant triaged that same incident.
         n = g(t).ro_query("MATCH (r:CrewRun)-[:TRIAGED]->(:Incident {id:$id}) RETURN count(r)",
                           {"id": inc}).result_set[0][0]
-        assert n == before[t] + 10
+        assert n == triaged[t] + 10
 
 
 # ------------------------------------------------------------------------------------------------ MCP + guards

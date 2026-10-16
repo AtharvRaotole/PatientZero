@@ -13,8 +13,8 @@ def test_graph_unavailable_returns_503(monkeypatch):
         r = c.post("/api/ask", json={"query": "qix"})
         assert r.status_code == 503
         body = r.json()
-        assert body["error"] == "graph_unavailable"
-        assert "graph unavailable" in body["message"]
+        assert body["error"] == "database_unavailable"
+        assert "unavailable" in body["message"] and "Error" not in body["message"] and "111" not in body["message"]
         h = c.get("/health").json()
         assert h["falkordb"] == "down"
     finally:

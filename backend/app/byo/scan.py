@@ -88,9 +88,17 @@ def direct_deps(pkg: dict, include_dev: bool) -> tuple[list[tuple[str, str, bool
 
 
 # --------------------------------------------------------------------------- graph lifecycle
-def list_byo_graphs() -> list[str]:
+def tenant_prefix(tenant: str | None = None) -> str:
+    """BYO scan graphs are scoped per tenant: byo:<tenant>:<hash>. A scan made in Acme is never listed in Globex."""
+    from .. import tenants
+    return f"{PREFIX}{tenants.validate(tenant or tenants.current())}:"
+
+
+def list_byo_graphs(tenant: str | None = None, *, all_tenants: bool = False) -> list[str]:
+    """This tenant's scan graphs (default), or every BYO graph including legacy unscoped byo:<hash> ones."""
+    want = PREFIX if all_tenants else tenant_prefix(tenant)
     try:
-        return [g for g in db.client().list_graphs() if g.startswith(PREFIX)]
+        return [g for g in db.client().list_graphs() if g.startswith(want)]
     except Exception as e:  # noqa: BLE001
         if db._is_conn_error(e):
             raise GraphUnavailable(f"graph unavailable: {e}") from e
@@ -116,7 +124,7 @@ def cleanup(now: float | None = None) -> list[str]:
     """Delete expired BYO graphs, then the oldest ones beyond MAX_GRAPHS. Returns deleted names."""
     now = now or _now()
     deleted, live = [], []
-    for name in list_byo_graphs():
+    for name in list_byo_graphs(all_tenants=True):
         try:
             m = scan_meta(name)
         except GraphUnavailable:
@@ -143,10 +151,12 @@ def _scan_id(source: str, pkg: dict, lock_present: bool, include_dev: bool) -> s
 
 
 def _export_incident() -> list[dict]:
-    rows = GraphTrace(config.GRAPH_NAME).run("byo_scan", "byo_export_incident")
+    from .. import tenants
+    g = tenants.graph_name()
+    rows = GraphTrace(g).run("byo_scan", "byo_export_incident")
     if not rows:
         raise ByoError(503, "incident_not_loaded",
-                       f"The incident data is not loaded in '{config.GRAPH_NAME}'. Run ingest/load.py first.")
+                       f"The incident data is not loaded in '{g}'. Run ingest/load.py first.")
     return rows
 
 
@@ -330,7 +340,7 @@ def run_scan(*, github_url: str | None = None, package_json: str | None = None, 
         raise ByoError(422, "no_dependencies",
                        "package.json has no dependencies" + ("" if include_dev else " (devDependencies excluded)"))
     scan_id = _scan_id(source if github_url else "pasted", pkg, lock is not None, include_dev)
-    graph_name = PREFIX + scan_id
+    graph_name = tenant_prefix() + scan_id
 
     # Graph must be up before we spend time on the network (hard error, never a fallback).
     incident = _export_incident()

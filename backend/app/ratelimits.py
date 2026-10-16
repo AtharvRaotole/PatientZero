@@ -26,7 +26,8 @@ def _exempt(request: Request) -> bool:
         return True
     host = request.client.host if request.client else ""
     # "testclient" is Starlette's TestClient peer name, never a real socket address.
-    return not request.headers.get("x-forwarded-for") and host in ("127.0.0.1", "::1", "testclient")
+    proxied = request.headers.get("x-forwarded-for") or request.headers.get("x-real-ip")
+    return not proxied and host in ("127.0.0.1", "::1", "testclient")
 
 
 def _limit(limiter: RateLimiter, what: str):

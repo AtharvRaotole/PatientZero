@@ -59,6 +59,15 @@ _Last updated: Fri Oct 16 2026, 1:30 PM ET_
 - [x] Live FalkorDB password rotated (new random value set via the Railway API on both services, never printed), DB restarted, app redeployed at 76cbee7. /health ok; e2e 27/27 crew/tenants and 17/17 browser against live (the slider-drag check failed once and passed on rerun, see below). Live memory reset again: acme has exactly the approved qix incident and its playbook, globex is empty, 0 crew runs and 0 sessions
 - Known flake: "P0-2 slider drag lands on the last depth" failed in 2 of 4 live runs (the answer shown was depth 6 with the slider at 4, no 429 and no console errors), and passed on rerun and in a focused probe. Looks like a stale response winning a race in the depth handling on a remote deploy; frontend owner to check
 
+## Review 3 backend fixes (Fri Oct 16 2026, about 2:30 PM ET)
+- [x] P1-1 LLM mode: outcome and panels from the tool the model ran; mocked-LLM test per tool (spof, wake, path, exposure, incident_scope, recall, investigate, resolve, rejected sentence).
+- [x] P1-2 "who should I wake for that?" keeps intent who_to_wake and leads with teams and on-call.
+- [x] P1-3 one Incident per trigger per tenant (crew and Generate fix, any depth); Seen before excludes the same session or crew run.
+- [x] P1-5 clean 503 `database_unavailable` on every route and in crew SSE (auth and connection failures); generic 500 hides exception text; read-only crew warm-up at startup.
+- [x] BYO graphs per tenant (`byo:<tenant>:<hash>`); session turn dedupe (Replay plus crew); client IP from Railway's X-Real-IP, XFF only with TRUSTED_PROXY_HOPS.
+- [x] 252 tests green on FalkorDB 6.0.1 and 4.22.1 (throwaway instances).
+- [ ] Frontend: treat `database_unavailable` like `graph_unavailable` (page.tsx:281, panels.tsx:580).
+
 ## Next actions
 - Final polish pass on screenshots for the README
 - Redeploy after pushing changes: `sh scripts/redeploy-railway.sh` (ships origin/main; no GitHub auto-deploy)

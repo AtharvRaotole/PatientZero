@@ -8,6 +8,7 @@ from __future__ import annotations
 from .. import catalog
 from ..core.registry import ToolRegistry
 from ..db import Trace
+from .. import router as qrouter
 from ..router import ask
 
 registry = ToolRegistry()
@@ -144,6 +145,42 @@ class PatientZero:
             names.update(m["maintainer"] for m in r["spof"]["maintainers"])
             names.update(p["pkg"] for p in r["spof"]["packages"] + r["spof"]["pagerank"])
         return names
+
+    def structure(self, name: str, args: dict, out: dict, text: str, opts: dict) -> dict | None:
+        """Structured response (outcome, panels, message) built from the tool the LLM actually ran, so an LLM
+        answer is never shown next to a router verdict for a different tool. None when the tool has no panel of
+        its own (resolve_entity): the caller then keeps the previous structured result."""
+        res = out.get("result")
+        depth = max(1, min(6, int(args.get("depth") or opts.get("depth") or 4)))
+        o = qrouter.base(text, "resolve", depth)
+        if name == "single_points_of_failure" and isinstance(res, dict):
+            qrouter.spof_answer(o, res)
+        elif name == "path_between":
+            qrouter.path_answer(o, args.get("service", ""), args.get("package", ""), res or None)
+        elif name == "who_to_wake" and isinstance(res, list):
+            qrouter.wake_answer(o, res, [args.get("service", "")])
+        elif name == "recall" and isinstance(res, list):
+            qrouter.recall_answer(o, res, args.get("entity"))
+        elif name in ("exposure", "incident_scope"):
+            # The panels (paths, negatives, owners) for the same trigger the model asked about, from investigate.
+            if name == "exposure" and args.get("package") and args.get("bad_version"):
+                q = f"{args['package']}@{args['bad_version']}"
+            elif args.get("advisory_id"):
+                q = str(args["advisory_id"])
+            elif args.get("maintainer"):
+                q = f"maintainer {args['maintainer']} was compromised"
+            else:
+                return None
+            r = ask(q, depth=depth, session=opts.get("session", ""))
+            r["query"] = text
+            r["trace"].insert(0, {"tool": "agent", "query": None, "cypher": None, "params": {"question": q},
+                                  "ms": 0, "rows": 0, "note": f"panels for the model's {name} call ({q}) built by "
+                                                               f"the investigate pipeline"})
+            return r
+        else:
+            return None
+        o["trace"] = []
+        return o
 
     def known_names(self) -> set[str]:
         from .. import tenants

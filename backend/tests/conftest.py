@@ -8,6 +8,11 @@ config.AGENT_MODE = "deterministic"
 config.LLM_CACHE_FILE = ""  # no disk cache in tests
 config.LLM_USAGE_DIR = ""   # no usage log / budget file in tests
 
+# Rate-limit tests name their client with X-Forwarded-For, as if one trusted proxy (our own) sat in front of the
+# app. Production on Railway uses X-Real-IP instead (see app/byo/ratelimit.py); test_client_ip.py covers both.
+from app.byo import ratelimit as _rl  # noqa: E402
+_rl.TRUSTED_PROXY_HOPS = 1
+
 
 @pytest.fixture(autouse=True)
 def _clear_llm_cache():

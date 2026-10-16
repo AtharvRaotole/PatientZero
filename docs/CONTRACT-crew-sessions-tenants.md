@@ -229,3 +229,25 @@ The node is MERGEd on first mention (one per campaign per tenant graph). When th
 tenant, `advisories` is 0 and the follow-up still resolves honestly. "who should I wake for that?" reads the
 Campaign from the ABOUT edge first (`followup.anchor.via = "graph"`), so it works even without the turn's stored
 trigger.
+
+## Review 3 changes (Fri Oct 16 2026)
+
+- **One Incident per trigger per tenant.** `crew_key` is now the entity key (`qix`, an advisory id, a campaign id),
+  not `key|d<depth>`. The crew and Generate fix share `tools.upsert_incident`: depth, exposure, `patch` (fix only),
+  `last_session`, `last_run` and a capped `history` (last 20 triages, JSON strings) are updated in place; EXPOSED
+  edges are replaced, `last_delta` carries `previous_depth`, `newly_exposed`, `no_longer_exposed`. Legacy per-depth
+  incidents are adopted (most recently seen first) on the next triage.
+- **Seen before** never cites an incident created or last updated by the same session or crew run.
+- **Who to wake.** A who-to-wake question about an incident keeps `intent: who_to_wake`; the message starts
+  `Wake N teams: Team (#channel, on-call Name @handle) for services; ... Why: <exposure sentence>`, or
+  `Nobody to wake: ...` when nothing is exposed.
+- **LLM mode.** Outcome and panels come from the tool the model ran (spof, path, wake, memory; exposure and
+  incident_scope build the investigate panels for the same trigger). A rejected LLM sentence keeps the tool panels.
+- **Errors.** Any DB failure returns 503 `{"error": "database_unavailable", "message": <fixed sentence>}` (was
+  `graph_unavailable`); crew SSE `error` events carry `{run_id, error, message}` with the same codes. Unexpected
+  errors are 500 `internal_error` with a fixed sentence.
+- **Warm-up.** `crew.engine.warm_up()` runs at startup in a background thread (read-only); `/health.crew_warmup`.
+- **Sessions.** The same normalised question at the same depth in the same session within 8 s is one turn
+  (`session.deduped: true`, `kinds: ["ask", "crew"]`, `crew_run` attached).
+- **BYO.** Scan graphs are `byo:<tenant>:<hash>`; `/api/byo/scans` lists the current tenant's only; TTL cleanup
+  covers every BYO graph including legacy `byo:<hash>` ones.

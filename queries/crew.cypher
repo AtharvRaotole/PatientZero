@@ -58,33 +58,36 @@ RETURN src.agent AS agent, src.id AS agent_run, f.id AS id, f.kind AS kind, f.ti
 ORDER BY seq
 
 // @query crew_adopt_incident
-// WRITE. Re-triage memory: if no Incident carries this crew_key yet, adopt the newest Incident with the same
-// trigger and depth (for example one written by Generate fix) so the crew updates it instead of duplicating it.
-// Params: $crew_key, $key, $depth
+// WRITE. One Incident per (tenant graph, trigger): if none carries this memory key yet, adopt the most recently
+// seen Incident with the same trigger at ANY depth (one written by Generate fix, or a legacy per-depth one keyed
+// 'qix|d4') so the crew and Generate fix update it instead of duplicating it. Params: $crew_key, $key
 OPTIONAL MATCH (c:Incident {crew_key: $crew_key})
 WITH c WHERE c IS NULL
-MATCH (i:Incident {entity_key: $key, depth: $depth})
-WHERE i.crew_key IS NULL
-WITH i ORDER BY i.at DESC LIMIT 1
+MATCH (i:Incident {entity_key: $key})
+WITH i ORDER BY coalesce(i.last_seen, i.at) DESC LIMIT 1
 SET i.crew_key = $crew_key
 RETURN i.id AS id
 
 // @query crew_upsert_incident
-// WRITE, atomic. Creates or updates the Incident for (trigger, depth) and returns what it looked like BEFORE this
-// triage, so the crew can report what changed since last time. Params: $crew_key, $id, $at, $trigger, $kind, $key,
-// $depth, $services (exposed now), $run_id
+// WRITE, atomic. Creates or updates THE Incident for a trigger (memory key = entity key, depth is an attribute
+// that follows the latest triage) and returns what it looked like BEFORE, so the caller can report what changed.
+// Used by the crew (with $run_id) and by Generate fix ($run_id null, $patch set). History keeps the last 20
+// triages. Params: $crew_key, $id, $at, $trigger, $kind, $key, $depth, $services, $run_id, $session, $patch,
+// $source ('crew' | 'fix'), $hist (JSON string)
 MERGE (i:Incident {crew_key: $crew_key})
 ON CREATE SET i.id = $id, i.at = $at, i.trigger = $trigger, i.entity_kind = $kind, i.entity_key = $key,
-              i.depth = $depth, i.created_by_run = $run_id, i.source = 'crew'
+              i.depth = $depth, i.created_by_run = $run_id, i.created_session = $session, i.source = $source
 WITH i, coalesce(i.exposed_services, [(i)-[:EXPOSED]->(s:Service) | s.name]) AS before, i.last_seen AS prev_seen,
-     coalesce(i.triage_count, 0) AS prev_count, i.created_by_run = $run_id AS created
+     coalesce(i.triage_count, 0) AS prev_count, i.id = $id AS created, i.depth AS prev_depth
 SET i.first_seen = coalesce(i.first_seen, i.at), i.last_seen = $at, i.triage_count = prev_count + 1,
-    i.exposed_services = $services, i.exposed_count = size($services), i.last_run = $run_id
-WITH i, before, prev_seen, prev_count, created
-MATCH (r:CrewRun {id: $run_id})
-CREATE (r)-[:TRIAGED]->(i)
+    i.exposed_services = $services, i.exposed_count = size($services), i.last_run = $run_id,
+    i.last_session = $session, i.depth = $depth, i.last_trigger = $trigger, i.patch = coalesce($patch, i.patch),
+    i.history = (coalesce(i.history, []) + [$hist])[-20..]
+WITH i, before, prev_seen, prev_count, created, prev_depth
+OPTIONAL MATCH (r:CrewRun {id: $run_id})
+FOREACH (x IN CASE WHEN r IS NULL THEN [] ELSE [r] END | CREATE (x)-[:TRIAGED]->(i))
 RETURN i.id AS id, before, prev_seen, prev_count, created, i.triage_count AS triage_count, i.at AS at,
-       i.first_seen AS first_seen
+       i.first_seen AS first_seen, CASE WHEN created THEN null ELSE prev_depth END AS prev_depth
 
 // @query crew_set_exposed
 // WRITE, atomic. Replace the incident's EXPOSED edges with today's (one per exposed service, so the edge count

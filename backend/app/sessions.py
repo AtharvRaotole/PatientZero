@@ -9,6 +9,8 @@ Routes: GET /api/sessions/{id}?tenant=acme
 """
 from __future__ import annotations
 
+import time
+
 import re
 from typing import Any
 
@@ -159,17 +161,34 @@ def about_refs(r: dict) -> dict[str, list[str]]:
     return {k: sorted({x for x in v if x}) for k, v in refs.items()}
 
 
+# Replay asks the question and starts the crew on it: both land within a second or two. Same text, same depth,
+# same session inside this window is one turn (the crew run is attached to it), not two.
+DEDUPE_WINDOW_S = float(__import__("os").getenv("SESSION_DEDUPE_SECONDS", "8"))
+
+
+def normalise(text: str) -> str:
+    return " ".join((text or "").lower().split()).strip(" ?!.")
+
+
 def record(sid: str, *, query: str, resolved: str, r: dict, kind: str = "ask", crew_run: str | None = None,
            followup: dict | None = None) -> dict:
     """Append a turn to the session (creating it on first use) and link it ABOUT the graph nodes."""
     tr = Trace()
-    rows = tr.run("sessions", "session_add_turn", dict(
-        sid=sid, tenant=tenants.current(), ts=tools.now_iso(), query=query[:500], resolved=resolved[:500],
-        intent=r.get("intent"), outcome=r.get("outcome"), depth=r.get("depth"),
-        kind_entity=r.get("entity_kind"), key_entity=r.get("entity_key"), message=(r.get("message") or "")[:600],
-        turn_kind=kind, crew_run=crew_run, followup_from=(followup or {}).get("from_turn"),
-        exposed_count=int(r.get("exposed_count") or 0)), write=True)
-    i = rows[0]["i"]
+    ts, epoch, qnorm = tools.now_iso(), time.time(), normalise(resolved or query)
+    dup = tr.run("sessions", "session_dedupe_turn", dict(
+        sid=sid, qnorm=qnorm, depth=r.get("depth"), epoch=epoch, window=DEDUPE_WINDOW_S, crew_run=crew_run,
+        turn_kind=kind, ts=ts), write=True)
+    deduped = bool(dup)
+    if deduped:
+        i = dup[0]["i"]
+    else:
+        rows = tr.run("sessions", "session_add_turn", dict(
+            sid=sid, tenant=tenants.current(), ts=ts, query=query[:500], resolved=resolved[:500],
+            intent=r.get("intent"), outcome=r.get("outcome"), depth=r.get("depth"),
+            kind_entity=r.get("entity_kind"), key_entity=r.get("entity_key"), message=(r.get("message") or "")[:600],
+            turn_kind=kind, crew_run=crew_run, followup_from=(followup or {}).get("from_turn"),
+            exposed_count=int(r.get("exposed_count") or 0), qnorm=qnorm, epoch=epoch), write=True)
+        i = rows[0]["i"]
     linked = 0
     for label, keys in about_refs(r).items():
         if keys:
@@ -177,7 +196,7 @@ def record(sid: str, *, query: str, resolved: str, r: dict, kind: str = "ask", c
                 keys = [{"id": k, "label": CAMPAIGN_LABEL.get(k, k)} for k in keys]
             res = tr.run("sessions", f"session_about_{label}", {"sid": sid, "i": i, "keys": keys}, write=True)
             linked += res[0]["linked"] if res else 0
-    return {"id": sid, "turn": i, "about_linked": linked, "trace": tr.steps}
+    return {"id": sid, "turn": i, "about_linked": linked, "deduped": deduped, "trace": tr.steps}
 
 
 @api.get("/api/sessions/{session_id}")

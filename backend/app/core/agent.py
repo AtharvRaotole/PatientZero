@@ -26,7 +26,7 @@ from . import budget
 from .registry import ToolRegistry
 
 MAX_STEPS = 6
-CACHE_VERSION = 3  # bump when prompts, tools or validation change, so stale cached answers are not served
+CACHE_VERSION = 4  # bump when prompts, tools or validation change, so stale cached answers are not served
 
 
 class Domain(Protocol):
@@ -77,6 +77,9 @@ def _llm_or_fallback(domain: Domain, text: str, **opts) -> dict:
         r["mode"] = "deterministic"
         return r
     except Exception as e:  # noqa: BLE001 - never fail the user because of the LLM
+        from ..db import is_db_unavailable
+        if is_db_unavailable(e):
+            raise
         r = domain.route(text, **opts)
         r["trace"].insert(0, _step("llm", f"LLM unavailable ({type(e).__name__}); deterministic fallback"))
         r["mode"] = "deterministic"
@@ -199,13 +202,24 @@ def _run_llm(domain: Domain, text: str, **opts) -> dict:
                 if isinstance(out.get("response"), dict):
                     structured = out["response"]
                     trace.extend(structured.get("trace", []))
+                else:
+                    # Outcome and panels come from the tool the model actually ran (last one wins).
+                    build = getattr(domain, "structure", None)
+                    s = build(name, args, out, text, opts) if build else None
+                    if s is not None:
+                        structured = s
+                        trace.extend(s.get("trace") or [])
                 payload = out.get("result", out.get("response", {}))
                 dig = getattr(domain, "digest", None)
                 content = json.dumps(dig(payload) if dig else _summarize_for_llm(payload), default=str)[:3000]
             except Exception as e:  # noqa: BLE001 - report the tool error back to the model
-                trace.append(_step(name, f"tool error: {e}", error=str(e)))
-                content = json.dumps({"error": str(e)})
+                from ..db import GraphUnavailable, is_db_unavailable
+                if is_db_unavailable(e) or "graph unavailable" in str(e).lower():
+                    raise GraphUnavailable("graph unavailable") from e  # a clean 503, never a guessed answer
+                trace.append(_step(name, f"tool error: {str(e)[:200]}", error=str(e)[:200]))
+                content = json.dumps({"error": str(e)[:300]})
             messages.append({"role": "tool", "tool_call_id": c["id"], "content": content})
+    from_tool = structured is not None
     if structured is None:
         structured = domain.route(text, **opts)
         trace.append(_step("agent", "structured panels filled by the deterministic router"))
@@ -218,7 +232,14 @@ def _run_llm(domain: Domain, text: str, **opts) -> dict:
     unverified = unverified_names(final, domain.allowed_names(r), domain.known_names()) if final else []
     r["llm_summary"] = final or None
     r["llm_unverified"] = unverified
-    if unverified:
+    if unverified and from_tool:
+        # The panels and templated message already come from the tool that ran: keep them, drop the sentence.
+        r["llm_summary"] = None
+        r["llm_rejected"] = True
+        r["trace"] = trace + [_step("llm", f"LLM answer rejected: names not in the tool result: "
+                                           f"{', '.join(unverified)}. Showing the tool's own answer.",
+                                    llm_rejected=True)]
+    elif unverified:
         # Never show an answer that names something the tools did not return: fall back to the templated,
         # deterministic answer for the same question, and say so in the trace.
         det = domain.route(text, **opts)
