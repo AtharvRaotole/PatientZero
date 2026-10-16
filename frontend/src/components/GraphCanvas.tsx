@@ -19,12 +19,13 @@ type Props = {
 type N = { id: string; kind: "Service" | "Version"; tier?: number | null; team?: string | null; x?: number; y?: number };
 
 const C = {
-  service: "#7c9cff",
-  exposed: "#ff4d6d",
-  safe: "#34d399",
-  chain: "#fbbf24",
-  path: "#a78bfa",
-  dim: "rgba(148,163,184,0.45)",
+  ink: "#0C0A09",
+  ink2: "#57534E",
+  stone: "#A8A29E",
+  bg: "#D6D3D1",
+  signal: "#E5484D",
+  signalInk: "#C4282D",
+  risk: "#B45309",
 };
 
 export default function GraphCanvas({ fleet, highlight, onNodeClick, leftInset, topInset }: Props) {
@@ -110,16 +111,15 @@ export default function GraphCanvas({ fleet, highlight, onNodeClick, leftInset, 
   const colorOf = (n: N): string => {
     const h = hl.nodes.get(n.id);
     if (h) {
-      if (h.status === "path") return n.kind === "Service" ? C.service : C.path;
-      if (h.type === "affected") return h.status === "exposed" ? C.exposed : C.safe;
-      if (h.type === "service") return h.status === "exposed" ? C.exposed : C.safe;
-      return h.status === "exposed" ? C.chain : "rgba(52,211,153,0.8)";
+      if (h.status === "path") return C.ink;
+      if (h.type === "affected" || h.type === "service") return h.status === "exposed" ? C.signal : C.stone;
+      return h.status === "exposed" ? C.risk : C.stone;
     }
-    return n.kind === "Service" ? C.service : C.dim;
+    return n.kind === "Service" ? C.ink : C.bg;
   };
 
   // Neighbors (for hover) and link objects by key (force-graph mutates data.links in place).
-  const { neighbors, linkByKey } = useMemo(() => {
+  const { neighbors } = useMemo(() => {
     const neighbors = new Map<string, Set<string>>();
     const linkByKey = new Map<string, any>();
     for (const l of data.links as any[]) {
@@ -134,17 +134,15 @@ export default function GraphCanvas({ fleet, highlight, onNodeClick, leftInset, 
     return { neighbors, linkByKey };
   }, [data]);
 
-  // Propagation wave: hop distance of each highlighted node from the compromised (affected) versions.
+  // Draw order: hop distance of each exposed edge from the compromised version, so exposed paths draw in from the source outward.
   const wave = useMemo(() => {
     const dist = new Map<string, number>();
     const parents = new Map<string, string[]>(); // dependency -> dependents, exposed edges only
-    const exposedKeys: string[] = [];
     hl.links.forEach((e, k) => {
       if (e.status !== "exposed") return;
       const [src, tgt] = k.split("->");
       if (!parents.has(tgt)) parents.set(tgt, []);
       parents.get(tgt)!.push(src);
-      exposedKeys.push(k);
     });
     const q: string[] = [];
     hl.nodes.forEach((n, id) => {
@@ -163,18 +161,70 @@ export default function GraphCanvas({ fleet, highlight, onNodeClick, leftInset, 
       }
     }
     const maxD = Math.max(1, ...dist.values());
-    return { dist, exposedKeys, maxD };
+    return { dist, maxD };
   }, [hl]);
 
+  // Hover focus: a service lights up its dependency chain (within the highlight when one is shown); anything else its neighbors.
+  const focus = useMemo(() => {
+    if (!hover) return null;
+    const nodes = new Set<string>([hover]);
+    const edges = new Set<string>();
+    const node = (data.nodes as N[]).find((n) => n.id === hover);
+    if (node?.kind === "Service") {
+      const out = new Map<string, { to: string; key: string }[]>();
+      for (const l of data.links as any[]) {
+        if (hl.active && !hl.links.has(l.key)) continue;
+        const a = typeof l.source === "object" ? l.source.id : l.source;
+        const b = typeof l.target === "object" ? l.target.id : l.target;
+        if (!out.has(a)) out.set(a, []);
+        out.get(a)!.push({ to: b, key: l.key });
+      }
+      const maxHops = hl.active ? 12 : 3;
+      let frontier = [hover];
+      for (let d = 0; d < maxHops && frontier.length; d++) {
+        const next: string[] = [];
+        for (const id of frontier) for (const e of out.get(id) ?? []) {
+          edges.add(e.key);
+          if (!nodes.has(e.to)) { nodes.add(e.to); next.push(e.to); }
+        }
+        frontier = next;
+      }
+    } else {
+      for (const nb of neighbors.get(hover) ?? []) nodes.add(nb);
+      for (const l of data.links as any[]) {
+        const a = typeof l.source === "object" ? l.source.id : l.source;
+        const b = typeof l.target === "object" ? l.target.id : l.target;
+        if (a === hover || b === hover) edges.add(l.key);
+      }
+    }
+    return { nodes, edges, at: performance.now() };
+  }, [hover, data, hl, neighbors]);
+
   const reduced = useMemo(() => typeof window !== "undefined" && window.matchMedia?.("(prefers-reduced-motion: reduce)").matches, []);
+  const font = useMemo(() => (typeof window !== "undefined" ? getComputedStyle(document.body).fontFamily : "system-ui"), []);
   const intro = useRef<{ start: number; cx: number; cy: number; span: number } | null>(null);
-  const introProgress = (now: number) => (reduced || !intro.current ? 1 : Math.min(1, (now - intro.current.start) / 1600));
+  const introProgress = (now: number) => (reduced || !intro.current ? 1 : Math.min(1, (now - intro.current.start) / 1400));
   const revealOf = (n: any, now: number) => {
     const it = intro.current;
     if (reduced || !it) return 1;
-    const d = Math.min(1, Math.hypot((n.x ?? 0) - it.cx, (n.y ?? 0) - it.cy) / it.span) || 0; // 0 center .. 1 edge
-    return smooth((now - it.start - 80 - d * 900) / 420);
+    const d = Math.min(1, Math.hypot((n.x ?? 0) - it.cx, (n.y ?? 0) - it.cy) / it.span) || 0;
+    return smooth((now - it.start - 60 - d * 800) / 360);
   };
+
+  // Restart the sequential draw-in whenever the highlighted subgraph changes (after the camera has started to move).
+  const drawStart = useRef(0);
+  useEffect(() => {
+    drawStart.current = performance.now() + 250;
+  }, [hl]);
+  const HOP_MS = 260;
+  const edgeProgress = (k: string, src: string, now: number, status: string) => {
+    if (reduced) return 1;
+    const t = now - drawStart.current;
+    if (status !== "exposed") return smooth(t / 500);
+    const d = (wave.dist.get(src) ?? wave.maxD) - 1;
+    return smooth((t - Math.max(0, d) * HOP_MS) / HOP_MS);
+  };
+  const focusMix = (now: number) => (focus ? (reduced ? 1 : smooth((now - focus.at) / 180)) : 0);
 
   const onFramePre = useCallback(() => {
     if (intro.current || !data.nodes.length) return;
@@ -188,45 +238,10 @@ export default function GraphCanvas({ fleet, highlight, onNodeClick, leftInset, 
     fit(0); // frame the graph instantly on the first frame, so the reveal happens where it will stay
   }, [data, fit]);
 
+  // Labels: services, focused paths and the hover chain only. Collision-checked, on a paper plate.
   const onFramePost = useCallback((ctx: CanvasRenderingContext2D, scale: number) => {
     const now = performance.now();
-    // 1. propagation pulses on exposed edges, travelling from the compromised package toward the services
-    if (!reduced && wave.exposedKeys.length) {
-      const hop = 620;
-      const cycle = (wave.maxD + 2.2) * hop;
-      const phase = (now % cycle) / hop;
-      for (const k of wave.exposedKeys) {
-        const l = linkByKey.get(k);
-        if (!l || typeof l.source !== "object") continue;
-        const dt = wave.dist.get(l.target.id);
-        if (dt === undefined) continue;
-        const p = phase - dt;
-        if (p < 0 || p >= 1) continue;
-        const e = easeInOut(p);
-        const tx = l.target.x, ty = l.target.y, sx = l.source.x, sy = l.source.y;
-        const hx = tx + (sx - tx) * e, hy = ty + (sy - ty) * e;
-        const tail = Math.max(0, e - 0.28);
-        const bx = tx + (sx - tx) * tail, by = ty + (sy - ty) * tail;
-        const g = ctx.createLinearGradient(bx, by, hx, hy);
-        g.addColorStop(0, "rgba(255,77,109,0)");
-        g.addColorStop(1, "rgba(255,180,195,0.95)");
-        ctx.strokeStyle = g;
-        ctx.lineWidth = 2.4 / Math.max(scale, 0.8);
-        ctx.lineCap = "round";
-        ctx.beginPath();
-        ctx.moveTo(bx, by);
-        ctx.lineTo(hx, hy);
-        ctx.stroke();
-        const r = 2.2 / Math.max(scale * 0.6, 0.7);
-        ctx.drawImage(glowSprite("#ff4d6d"), hx - r * 3, hy - r * 3, r * 6, r * 6);
-        ctx.fillStyle = "#ffe4ea";
-        ctx.beginPath();
-        ctx.arc(hx, hy, r * 0.55, 0, 2 * Math.PI);
-        ctx.fill();
-      }
-    }
-    // 2. labels: prioritized, collision-checked, on a backing plate
-    const hoverSet = hover ? neighbors.get(hover) : null;
+    const fm = focusMix(now);
     const cands: { n: any; prio: number }[] = [];
     for (const n of data.nodes as any[]) {
       if (n.x === undefined) continue;
@@ -234,16 +249,11 @@ export default function GraphCanvas({ fleet, highlight, onNodeClick, leftInset, 
       const isSvc = n.kind === "Service";
       let prio = -1;
       if (n.id === hover) prio = 0;
-      else if (hoverSet?.has(n.id)) prio = 1;
+      else if (focus?.nodes.has(n.id)) prio = isSvc ? 1 : 2;
       else if (hl.active) {
-        if (h && h.status === "exposed" && (isSvc || h.type === "affected")) prio = isSvc ? 2 : 3;
-        else if (h && (isSvc || h.status === "path")) prio = 4;
-        else if (h && scale > 2.6) prio = 5;
-        else if (isSvc && scale > 1.6) prio = 7;
-      } else {
-        if (isSvc) prio = 2;
-        else if (scale > 3.6) prio = 8;
-      }
+        if (h && isSvc) prio = h.status === "exposed" ? 3 : 5;
+        else if (h && (h.type === "affected" || h.status === "path")) prio = 4;
+      } else if (isSvc) prio = 3;
       if (prio >= 0) cands.push({ n, prio });
     }
     cands.sort((a, b) => a.prio - b.prio);
@@ -251,33 +261,32 @@ export default function GraphCanvas({ fleet, highlight, onNodeClick, leftInset, 
     const ip = introProgress(now);
     let count = 0;
     for (const { n, prio } of cands) {
-      if (count >= 64) break;
+      if (count >= 48) break;
       const isSvc = n.kind === "Service";
-      const fsPx = prio <= 1 ? 12 : isSvc ? 11 : 10;
-      const fs = fsPx / scale;
-      ctx.font = `${isSvc || prio <= 3 ? 600 : 500} ${fs}px var(--font-geist-sans), system-ui, sans-serif`;
+      const fs = (prio === 0 ? 12.5 : 11.5) / scale;
+      ctx.font = `${isSvc || prio === 0 ? 550 : 450} ${fs}px ${font}`;
       const w = ctx.measureText(n.id).width;
       const padX = 4 / scale, padY = 2 / scale;
-      const r = isSvc ? 5 : hl.nodes.has(n.id) ? 3 : 1.5;
-      const x0 = n.x - w / 2 - padX, y0 = n.y + r + 3 / scale, bw = w + padX * 2, bh = fs + padY * 2;
-      if (prio > 1 && placed.some(([x, y, ww, hh]) => x0 < x + ww && x0 + bw > x && y0 < y + hh && y0 + bh > y)) continue;
+      const r = isSvc ? 4.5 : 3;
+      const x0 = n.x - w / 2 - padX, y0 = n.y + r + 3 / scale, bw = w + padX * 2, bh = fs * 1.15 + padY * 2;
+      if (prio > 0 && placed.some(([x, y, ww, hh]) => x0 < x + ww && x0 + bw > x && y0 < y + hh && y0 + bh > y)) continue;
       placed.push([x0, y0, bw, bh]);
       count++;
-      const a = revealOf(n, now) * (prio >= 7 ? 0.6 : 1) * (ip < 1 ? ip : 1);
-      ctx.globalAlpha = a;
-      ctx.fillStyle = "rgba(8,10,18,0.72)";
+      const inFocus = !focus || focus.nodes.has(n.id);
+      ctx.globalAlpha = revealOf(n, now) * ip * (inFocus ? 1 : 1 - 0.85 * fm);
+      ctx.fillStyle = "rgba(250,250,249,0.88)";
       ctx.beginPath();
-      if (ctx.roundRect) ctx.roundRect(x0, y0, bw, bh, 4 / scale);
+      if (ctx.roundRect) ctx.roundRect(x0, y0, bw, bh, 3 / scale);
       else ctx.rect(x0, y0, bw, bh);
       ctx.fill();
       const h = hl.nodes.get(n.id);
-      ctx.fillStyle = h?.status === "exposed" ? "#ffd1da" : h?.status === "safe" ? "#c7f9e3" : prio <= 1 ? "#ffffff" : isSvc ? "rgba(226,232,255,0.9)" : "rgba(203,213,225,0.8)";
+      ctx.fillStyle = h?.status === "exposed" && (isSvc || h.type === "affected") ? C.signalInk : isSvc || prio <= 1 ? C.ink : C.ink2;
       ctx.textAlign = "center";
       ctx.textBaseline = "top";
       ctx.fillText(n.id, n.x, y0 + padY);
       ctx.globalAlpha = 1;
     }
-  }, [data, hl, hover, neighbors, linkByKey, wave, reduced]); // eslint-disable-line react-hooks/exhaustive-deps
+  }, [data, hl, hover, focus, font, reduced]); // eslint-disable-line react-hooks/exhaustive-deps
 
   return (
     <div ref={wrap} className="absolute inset-0">
@@ -297,7 +306,7 @@ export default function GraphCanvas({ fleet, highlight, onNodeClick, leftInset, 
         nodeRelSize={1}
         onRenderFramePre={onFramePre}
         onRenderFramePost={onFramePost}
-        nodeVal={(n: any) => (n.kind === "Service" ? 26 : hl.nodes.has(n.id) ? 9 : 2.2)}
+        nodeVal={(n: any) => (n.kind === "Service" ? 20 : hl.nodes.has(n.id) ? 9 : 2.2)}
         nodeLabel={(n: any) => tooltip(n, hl.nodes.get(n.id))}
         onNodeHover={(n: any) => {
           setHover(n?.id ?? null);
@@ -309,53 +318,90 @@ export default function GraphCanvas({ fleet, highlight, onNodeClick, leftInset, 
           onNodeClick?.(n.id);
         }}
         linkColor={(l: any) => {
-          const ip = introProgress(performance.now());
-          const h = hl.links.get(l.key);
-          if (h) return h.status === "exposed" ? `rgba(255,77,109,${0.7 * ip})` : h.status === "path" ? `rgba(167,139,250,${0.9 * ip})` : `rgba(52,211,153,${0.5 * ip})`;
-          const a = hover && (l.source?.id === hover || l.target?.id === hover) ? 0.5 : hl.active ? 0.025 : 0.09;
-          return `rgba(148,163,184,${a * ip})`;
+          const now = performance.now();
+          const ip = introProgress(now);
+          const fm = focusMix(now);
+          if (focus?.edges.has(l.key)) return `rgba(12,10,9,${(0.12 + 0.43 * fm) * ip})`;
+          const base = hl.active ? 0.05 : 0.16;
+          return `rgba(120,113,108,${base * ip * (focus ? 1 - 0.7 * fm : 1)})`;
         }}
-        linkWidth={(l: any) => (hl.links.has(l.key) ? 1.6 : hover && (l.source?.id === hover || l.target?.id === hover) ? 1 : 0.5)}
-        linkDirectionalParticles={(l: any) => (hl.links.get(l.key)?.status === "path" ? 3 : 0)}
-        linkDirectionalParticleWidth={3}
-        linkDirectionalParticleSpeed={0.006}
-        linkDirectionalParticleColor={() => "#c4b5fd"}
+        linkWidth={(l: any) => (focus?.edges.has(l.key) ? 0.9 : 0.5)}
+        linkCanvasObjectMode={(l: any) => (hl.links.has(l.key) ? "replace" : undefined)}
+        linkCanvasObject={(l: any, ctx: CanvasRenderingContext2D, scale: number) => {
+          const h = hl.links.get(l.key);
+          if (!h || typeof l.source !== "object") return;
+          const now = performance.now();
+          const p = edgeProgress(l.key, l.source.id, now, h.status);
+          if (p <= 0) return;
+          const fm = focusMix(now);
+          const inFocus = !focus || focus.edges.has(l.key);
+          const exposed = h.status === "exposed";
+          // draw from the dependency (target) toward the dependent (source), like a stroke-dashoffset reveal
+          const tx = l.target.x, ty = l.target.y, sx = l.source.x, sy = l.source.y;
+          const hx = tx + (sx - tx) * p, hy = ty + (sy - ty) * p;
+          let a = exposed ? 0.85 : h.status === "path" ? 0.8 : 0.45;
+          if (exposed && !reduced && p >= 1) a *= 0.82 + 0.18 * Math.sin((now - drawStart.current) / 700 - (wave.dist.get(l.source.id) ?? 0) * 0.6);
+          a *= inFocus ? 1 : 1 - 0.85 * fm;
+          ctx.globalAlpha = a;
+          ctx.strokeStyle = exposed ? C.signal : h.status === "path" ? C.ink : C.stone;
+          ctx.lineWidth = (exposed ? 1.6 : 1) / Math.max(scale * 0.55, 0.7);
+          ctx.lineCap = "round";
+          ctx.beginPath();
+          ctx.moveTo(tx, ty);
+          ctx.lineTo(hx, hy);
+          ctx.stroke();
+          ctx.globalAlpha = 1;
+        }}
         nodeCanvasObject={(n: any, ctx: CanvasRenderingContext2D, scale: number) => {
           const now = performance.now();
           const h = hl.nodes.get(n.id);
           const isSvc = n.kind === "Service";
-          const r = isSvc ? 5 : h ? 3 : 1.5;
-          const col = colorOf(n);
-          const near = hover === n.id || (hover ? neighbors.get(hover)?.has(n.id) : false);
-          const faded = hl.active && !h && !near;
           const reveal = revealOf(n, now);
           if (reveal <= 0.001) return;
-          ctx.globalAlpha = reveal * (faded ? (isSvc ? 0.35 : 0.15) : 1);
-          if (!isSvc && !h && !near) {
-            ctx.fillStyle = col;
-            ctx.fillRect(n.x - r, n.y - r, r * 2, r * 2); // cheap path for the ~2,700 background versions
+          const fm = focusMix(now);
+          const inFocus = focus ? focus.nodes.has(n.id) : false;
+          const dimByFocus = focus && !inFocus ? 1 - 0.85 * fm : 1;
+          const faded = hl.active && !h && !inFocus;
+          const col = colorOf(n);
+          if (!isSvc && !h && !inFocus) {
+            // cheap path for the ~2,700 background versions
+            ctx.globalAlpha = reveal * (faded ? 0.4 : 1) * dimByFocus;
+            ctx.fillStyle = C.bg;
+            ctx.fillRect(n.x - 1.4, n.y - 1.4, 2.8, 2.8);
             ctx.globalAlpha = 1;
             return;
           }
-          const gs = (h ? 7 : 5) * r * (hover === n.id ? 1.3 : 1);
-          ctx.drawImage(glowSprite(col), n.x - gs / 2, n.y - gs / 2, gs, gs);
+          // a node on an exposed path appears once its edge has drawn in
+          let arrive = 1;
+          if (h && h.status === "exposed" && !reduced) {
+            const d = wave.dist.get(n.id);
+            if (d !== undefined && d > 0) arrive = smooth((now - drawStart.current - d * HOP_MS + 40) / 160);
+          }
+          ctx.globalAlpha = reveal * dimByFocus * (faded ? (isSvc ? 0.45 : 0.3) : 1) * (h?.status === "exposed" ? 0.25 + 0.75 * arrive : 1);
+          const hovered = hover === n.id;
+          const r = (isSvc ? 4.5 : h || inFocus ? 2.8 : 2) * (hovered ? 1.25 : 1);
+          const hollow = isSvc && h?.status === "safe";
           ctx.beginPath();
-          ctx.arc(n.x, n.y, r * (hover === n.id ? 1.25 : 1), 0, 2 * Math.PI);
-          ctx.fillStyle = col;
+          ctx.arc(n.x, n.y, r, 0, 2 * Math.PI);
+          ctx.fillStyle = hollow ? "#FFFFFF" : !h && !isSvc ? C.stone : col;
           ctx.fill();
-          if (h && h.status === "exposed" && (h.type === "service" || h.type === "affected") && !reduced) {
-            const t = (now % 1800) / 1800;
+          ctx.lineWidth = (hollow ? 1.4 : 1.2) / Math.max(scale * 0.6, 0.7);
+          ctx.strokeStyle = hollow ? C.ink : "#FAFAF9";
+          ctx.stroke();
+          // slow, subtle pulse on exposed services and the compromised version
+          if (h && h.status === "exposed" && (h.type === "service" || h.type === "affected") && !reduced && arrive >= 1) {
+            const t = ((now - drawStart.current) % 2600) / 2600;
             ctx.beginPath();
-            ctx.arc(n.x, n.y, r + 2 + t * 10, 0, 2 * Math.PI);
-            ctx.strokeStyle = `rgba(255,77,109,${0.5 * (1 - t)})`;
-            ctx.lineWidth = 1.2 / Math.max(scale * 0.5, 0.6);
+            ctx.arc(n.x, n.y, r + 1.5 + t * 7, 0, 2 * Math.PI);
+            ctx.strokeStyle = `rgba(229,72,77,${0.35 * (1 - t) * dimByFocus})`;
+            ctx.lineWidth = 1 / Math.max(scale * 0.6, 0.7);
             ctx.stroke();
           }
-          if (isSvc) {
+          if (hovered) {
             ctx.beginPath();
-            ctx.arc(n.x, n.y, r + 1.6, 0, 2 * Math.PI);
-            ctx.strokeStyle = hover === n.id ? "rgba(255,255,255,0.7)" : "rgba(255,255,255,0.22)";
-            ctx.lineWidth = 0.6;
+            ctx.arc(n.x, n.y, r + 3, 0, 2 * Math.PI);
+            ctx.strokeStyle = "rgba(12,10,9,0.35)";
+            ctx.lineWidth = 1 / Math.max(scale * 0.6, 0.7);
             ctx.stroke();
           }
           ctx.globalAlpha = 1;
@@ -372,40 +418,15 @@ export default function GraphCanvas({ fleet, highlight, onNodeClick, leftInset, 
 }
 
 const smooth = (x: number) => (x <= 0 ? 0 : x >= 1 ? 1 : x * x * (3 - 2 * x));
-const easeInOut = (x: number) => (x < 0.5 ? 2 * x * x : 1 - Math.pow(-2 * x + 2, 2) / 2);
 
-// Pre-rendered radial glow per color: drawImage is far cheaper than canvas shadowBlur at 60fps.
-const glowCache = new Map<string, HTMLCanvasElement>();
-function glowSprite(color: string): HTMLCanvasElement {
-  let c = glowCache.get(color);
-  if (c) return c;
-  c = document.createElement("canvas");
-  c.width = c.height = 64;
-  const g = c.getContext("2d")!;
-  const rgb = toRgb(color);
-  const grad = g.createRadialGradient(32, 32, 0, 32, 32, 32);
-  grad.addColorStop(0, `rgba(${rgb},0.55)`);
-  grad.addColorStop(0.35, `rgba(${rgb},0.18)`);
-  grad.addColorStop(1, `rgba(${rgb},0)`);
-  g.fillStyle = grad;
-  g.fillRect(0, 0, 64, 64);
-  glowCache.set(color, c);
-  return c;
-}
-
-function toRgb(color: string): string {
-  if (color.startsWith("#")) {
-    const v = parseInt(color.slice(1), 16);
-    return `${(v >> 16) & 255},${(v >> 8) & 255},${v & 255}`;
-  }
-  const m = color.match(/\d+(\.\d+)?/g);
-  return m ? m.slice(0, 3).join(",") : "255,255,255";
+function esc(s: string) {
+  return s.replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]!);
 }
 
 function tooltip(n: N, h?: { type: string; status?: string; bad?: string }): string {
-  const kind = n.kind === "Service" ? `Service · tier ${n.tier ?? "?"} · ${n.team ?? ""}` : "Package version";
-  const st = h?.status === "exposed" ? `<div style="color:#ff8fa3;margin-top:4px">exposed${h.bad ? `: ${h.bad}` : ""}</div>`
-    : h?.status === "safe" ? `<div style="color:#6ee7b7;margin-top:4px">range excludes the bad version</div>`
-    : h?.status === "path" ? `<div style="color:#c4b5fd;margin-top:4px">on the shortest path</div>` : "";
-  return `<div style="font-family:var(--font-geist-sans);background:rgba(12,14,22,.92);border:1px solid rgba(255,255,255,.12);padding:8px 10px;border-radius:10px;font-size:12px;color:#e5e7eb;box-shadow:0 10px 30px rgba(0,0,0,.5)"><div style="font-weight:600">${n.id}</div><div style="opacity:.6;font-size:11px">${kind}</div>${st}</div>`;
+  const kind = n.kind === "Service" ? `Service, tier ${n.tier ?? "?"}${n.team ? `, ${esc(n.team)}` : ""}` : "Package version";
+  const st = h?.status === "exposed" ? `<div style="color:#C4282D;margin-top:4px">Exposed${h.bad ? `: ${esc(h.bad)}` : ""}</div>`
+    : h?.status === "safe" ? `<div style="color:#57534E;margin-top:4px">Range excludes the bad version</div>`
+    : h?.status === "path" ? `<div style="color:#0C0A09;margin-top:4px">On the shortest path</div>` : "";
+  return `<div style="font-family:inherit;background:#FFFFFF;border:1px solid #E7E5E4;padding:8px 10px;border-radius:8px;font-size:12px;color:#0C0A09;box-shadow:0 4px 16px rgba(12,10,9,.08)"><div style="font-weight:600;font-family:var(--font-geist-mono),ui-monospace,monospace">${esc(n.id)}</div><div style="color:#A8A29E;font-size:11.5px;margin-top:2px">${kind}</div>${st}</div>`;
 }

@@ -38,12 +38,13 @@ async function ask(page, q) {
   await page.keyboard.down("Control"); await page.keyboard.press("A"); await page.keyboard.up("Control");
   await page.keyboard.press("Backspace");
   await page.type("input[aria-label='Ask PatientZero']", q);
+  await page.keyboard.press("Escape"); // close the suggestions; Enter runs the typed text
   await page.keyboard.press("Enter");
 }
 
 async function setDepth(page, d) {
   await page.evaluate((v) => {
-    const el = document.querySelector("input[aria-label='depth']");
+    const el = document.querySelector("input[aria-label='graph depth']");
     const setter = Object.getOwnPropertyDescriptor(HTMLInputElement.prototype, "value").set;
     setter.call(el, String(v));
     el.dispatchEvent(new Event("input", { bubbles: true }));
@@ -53,7 +54,7 @@ async function setDepth(page, d) {
 
 const exposedCount = (page) =>
   page.evaluate(() => {
-    const m = document.body.innerText.match(/Exposed \((\d+)\)/);
+    const m = document.body.innerText.match(/Exposed\s+(\d+)/);
     return m ? Number(m[1]) : -1;
   });
 
@@ -73,11 +74,11 @@ const exposedCount = (page) =>
   await page.waitForFunction(() => document.body.innerText.includes("versions"), { timeout: 30000 });
   await new Promise((r) => setTimeout(r, 4000));
   await page.screenshot({ path: `${OUT}/01-home-fleet-graph.png` });
-  check("home renders fleet graph + empty state", await page.evaluate(() => document.body.innerText.includes("Replay the qix compromise")));
+  check("home renders fleet graph + empty state", await page.evaluate(() => document.body.innerText.includes("Know your blast radius")));
 
   // AC4: qix
-  await clickText(page, "maintainer qix was phished");
-  await waitOutcome(page, "answered_with_path");
+  await ask(page, "maintainer qix was phished");
+  await waitOutcome(page, "services can install");
   await page.evaluate(() => window.scrollTo(0, 0));
   await new Promise((r) => setTimeout(r, 1500));
   await page.screenshot({ path: `${OUT}/02-qix-blast-radius-graph.png` });
@@ -91,7 +92,7 @@ const exposedCount = (page) =>
 
   // AC5: depth 1 vs 4
   await setDepth(page, 1);
-  await page.waitForFunction(() => document.body.innerText.includes("at depth 1"), { timeout: 15000 });
+  await page.waitForFunction(() => document.body.innerText.includes("services at depth 1"), { timeout: 15000 });
   await new Promise((r) => setTimeout(r, 1500));
   const n1 = await exposedCount(page);
   const exposedNames = (pg) => pg.evaluate(() => [...document.querySelectorAll("button span.truncate")].map((x) => x.innerText));
@@ -99,7 +100,7 @@ const exposedCount = (page) =>
   await page.evaluate(() => window.scrollTo(0, 0));
   await page.screenshot({ path: `${OUT}/04-depth-1.png` });
   await setDepth(page, 4);
-  await page.waitForFunction(() => document.body.innerText.includes("at depth 4"), { timeout: 15000 });
+  await page.waitForFunction(() => document.body.innerText.includes("services at depth 4"), { timeout: 15000 });
   await new Promise((r) => setTimeout(r, 1500));
   const n4b = await exposedCount(page);
   const img4 = (await exposedNames(page)).includes("img-service");
@@ -107,7 +108,7 @@ const exposedCount = (page) =>
 
   // AC9: generate fix
   await clickText(page, "Generate fix");
-  await page.waitForFunction(() => document.body.innerText.includes("EXPOSED edges written"), { timeout: 20000 });
+  await page.waitForFunction(() => document.body.innerText.includes("written to the graph"), { timeout: 20000 });
   await new Promise((r) => setTimeout(r, 1200));
   await page.evaluate(() => {
     const el = [...document.querySelectorAll("h3")].find((h) => h.innerText === "Remediation");
@@ -121,12 +122,12 @@ const exposedCount = (page) =>
   // AC6: debug@4.4.2 honest negative (fresh session to avoid memory: use the Run fresh button if recalled)
   await page.evaluate(() => window.scrollTo(0, 0));
   await ask(page, "debug@4.4.2");
-  await page.waitForFunction(() => /answered_(with_path|from_memory)/.test(document.body.innerText), { timeout: 15000 });
+  await page.waitForFunction(() => /services can install|Answered from graph memory/.test(document.body.innerText), { timeout: 15000 });
   if (await page.evaluate(() => document.body.innerText.includes("Run a fresh traversal"))) {
     await clickText(page, "Run a fresh traversal");
-    await waitOutcome(page, "Not exposed, with reason");
+    await waitOutcome(page, "Excluded by range");
   }
-  await clickText(page, "Not exposed, with reason");
+  await clickText(page, "Excluded by range");
   await new Promise((r) => setTimeout(r, 800));
   const ac6 = await page.evaluate(() => document.body.innerText.includes("debug 2.6.9 (exact) does not satisfy 4.4.2"));
   check("AC6 checkout-api safe with reason", ac6);
@@ -141,7 +142,7 @@ const exposedCount = (page) =>
   await p2.goto(APP, { waitUntil: "networkidle2" });
   await p2.waitForFunction(() => document.body.innerText.includes("versions"), { timeout: 30000 });
   await ask(p2, "qix");
-  await waitOutcome(p2, "answered_from_memory");
+  await waitOutcome(p2, "Answered from graph memory");
   check("AC10 new session: qix answered_from_memory", true);
   await p2.screenshot({ path: `${OUT}/07-memory-recall.png`, fullPage: true });
 
@@ -156,13 +157,13 @@ const exposedCount = (page) =>
   // AC12 path
   await p2.evaluate(() => window.scrollTo(0, 0));
   await ask(p2, "why is img-service connected to is-arrayish?");
-  await waitOutcome(p2, "Shortest path via algo.SPpaths");
+  await waitOutcome(p2, "Shortest path with algo.SPpaths");
   await p2.screenshot({ path: `${OUT}/09-path-between.png` });
   check("AC12 path_between drawn", await p2.evaluate(() => document.body.innerText.includes("simple-swizzle")));
 
   // AC7 unknown
   await ask(p2, "left-pad@1.3.0");
-  await waitOutcome(p2, "unknown_entity");
+  await waitOutcome(p2, "Not in the graph.");
   await p2.evaluate(() => window.scrollTo(0, 650));
   await new Promise((r) => setTimeout(r, 600));
   await p2.screenshot({ path: `${OUT}/10-unknown-entity.png` });

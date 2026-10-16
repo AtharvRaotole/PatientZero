@@ -1,119 +1,138 @@
 @import "tailwindcss";
 
+/* PatientZero design tokens: paper, ink and one signal color. */
 @theme inline {
-  --font-sans: var(--font-geist-sans);
+  --font-sans: var(--font-inter);
   --font-mono: var(--font-geist-mono);
-  --color-ink: #05060a;
-  --color-danger: #ff4d6d;
-  --color-safe: #34d399;
-  --color-accent: #7c9cff;
-  --color-violet: #a78bfa;
+  --font-serif: var(--font-serif);
+
+  --color-paper: #fafaf9;
+  --color-surface: #ffffff;
+  --color-subtle: #f5f5f4;
+  --color-press: #efedeb;
+  --color-line: #e7e5e4;
+  --color-line-strong: #d6d3d1;
+  --color-ink: #0c0a09;
+  --color-ink-2: #57534e;
+  --color-ink-3: #a8a29e;
+
+  --color-signal: #e5484d;
+  --color-signal-ink: #c4282d;
+  --color-signal-soft: #fdeeee;
+  --color-risk: #b45309;
+  --color-risk-soft: #fdf3e7;
+  --color-safe: #3f7d58;
+  --color-safe-soft: #eef4f0;
+
+  --shadow-xs: 0 1px 2px rgba(12, 10, 9, 0.05);
+  --shadow-sm: 0 1px 2px rgba(12, 10, 9, 0.04), 0 2px 6px rgba(12, 10, 9, 0.04);
+  --shadow-md: 0 1px 2px rgba(12, 10, 9, 0.04), 0 8px 24px -8px rgba(12, 10, 9, 0.12);
+  --shadow-lg: 0 1px 2px rgba(12, 10, 9, 0.05), 0 24px 48px -16px rgba(12, 10, 9, 0.18);
 }
 
 :root {
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 html,
 body {
-  background: #05060a;
-  color: #e7e9f0;
-  font-family: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  background: var(--color-paper);
+  color: var(--color-ink);
+  font-family: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  font-feature-settings: "cv11", "ss01", "ss03";
+  -webkit-font-smoothing: antialiased;
 }
 
-/* Soft aurora behind everything */
-.aurora {
-  position: fixed;
-  inset: -20%;
-  z-index: 0;
-  pointer-events: none;
-  background:
-    radial-gradient(40% 35% at 20% 10%, rgba(124, 156, 255, 0.16), transparent 60%),
-    radial-gradient(35% 30% at 85% 20%, rgba(167, 139, 250, 0.12), transparent 60%),
-    radial-gradient(40% 40% at 60% 90%, rgba(255, 77, 109, 0.07), transparent 60%);
-  filter: blur(20px);
+::selection {
+  background: rgba(229, 72, 77, 0.16);
 }
 
-.grid-bg {
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
-  background-size: 48px 48px;
-  mask-image: radial-gradient(ellipse at center, black 40%, transparent 80%);
+.tabular {
+  font-variant-numeric: tabular-nums;
 }
 
-.glass {
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.055), rgba(255, 255, 255, 0.02));
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(18px) saturate(140%);
-  -webkit-backdrop-filter: blur(18px) saturate(140%);
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.05) inset,
-    0 20px 60px -20px rgba(0, 0, 0, 0.6);
-}
-
-.glass-strong {
-  background: linear-gradient(180deg, rgba(18, 20, 30, 0.82), rgba(10, 11, 18, 0.72));
-  border: 1px solid rgba(255, 255, 255, 0.09);
-  backdrop-filter: blur(24px) saturate(160%);
-  -webkit-backdrop-filter: blur(24px) saturate(160%);
-}
-
-.text-gradient {
-  background: linear-gradient(120deg, #ffffff 0%, #c7d2fe 40%, #a78bfa 70%, #ff8fa3 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.ring-glow-danger {
-  box-shadow: 0 0 0 1px rgba(255, 77, 109, 0.35), 0 0 40px -8px rgba(255, 77, 109, 0.45);
+/* Surfaces: flat white, 1px hairline. (Legacy class names map here.) */
+.surface {
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
 }
 
 .shimmer {
-  position: relative;
-  overflow: hidden;
-  background: rgba(255, 255, 255, 0.04);
-}
-.shimmer::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  transform: translateX(-100%);
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.07), transparent);
-  animation: shimmer 1.4s infinite;
+  background: var(--color-subtle);
+  animation: shimmer 1.4s ease-in-out infinite;
 }
 @keyframes shimmer {
-  100% {
-    transform: translateX(100%);
+  50% {
+    background: var(--color-press);
   }
 }
 
 .scroll-thin::-webkit-scrollbar {
-  width: 6px;
-  height: 6px;
+  width: 8px;
+  height: 8px;
 }
 .scroll-thin::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--color-line);
   border-radius: 9999px;
+  border: 2px solid transparent;
+  background-clip: content-box;
 }
 
+/* Depth slider: hairline track, ink thumb */
 input[type="range"].depth {
   -webkit-appearance: none;
   appearance: none;
-  height: 4px;
+  height: 2px;
   border-radius: 9999px;
-  background: linear-gradient(90deg, #7c9cff, #ff4d6d);
+  background: var(--color-line-strong);
   outline: none;
 }
 input[type="range"].depth::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   border-radius: 9999px;
-  background: white;
-  box-shadow: 0 0 0 4px rgba(124, 156, 255, 0.25), 0 0 18px rgba(124, 156, 255, 0.6);
+  background: var(--color-surface);
+  border: 1.5px solid var(--color-ink);
+  box-shadow: var(--shadow-xs);
   cursor: pointer;
+  transition: transform 150ms ease-out;
+}
+input[type="range"].depth::-webkit-slider-thumb:hover {
+  transform: scale(1.12);
+}
+
+@layer base {
+  :where(button, a, input, textarea, select, [tabindex]):focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 2px;
+  }
+}
+
+/* Interactive surfaces: a quiet lift */
+.lift {
+  transition:
+    transform 200ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 200ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 200ms ease-out;
+}
+.lift:hover {
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--color-line-strong);
+}
+.press {
+  transition: transform 120ms ease-out, background-color 150ms ease-out, color 150ms ease-out, border-color 150ms ease-out;
+}
+.press:active {
+  transform: scale(0.98);
+}
+
+.eyebrow {
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0;
+  color: var(--color-ink-3);
 }
 
 @keyframes dash {
@@ -122,89 +141,12 @@ input[type="range"].depth::-webkit-slider-thumb {
   }
 }
 
-/* ---------- polish layer ---------- */
-body {
-  font-feature-settings: "ss01", "cv11";
-  text-rendering: optimizeLegibility;
-}
-.tabular {
-  font-variant-numeric: tabular-nums;
-}
-
-/* Slow ambient drift on the aurora (transform only: composited, no repaint) */
-.aurora {
-  will-change: transform;
-  animation: aurora-drift 28s ease-in-out infinite alternate;
-}
-@keyframes aurora-drift {
-  0% {
-    transform: translate3d(0, 0, 0) scale(1);
-  }
-  100% {
-    transform: translate3d(2%, -1.5%, 0) scale(1.05);
-  }
-}
-
-/* Film grain: a static SVG turbulence tile, very low opacity */
-.noise {
-  position: fixed;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  opacity: 0.035;
-  mix-blend-mode: overlay;
-  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-}
-
-/* Keyboard focus: visible, consistent, never on mouse click. In the base layer so utilities can opt out. */
-@layer base {
-  :where(button, a, input, textarea, select, [tabindex]):focus-visible {
-    outline: 2px solid rgba(124, 156, 255, 0.75);
-    outline-offset: 2px;
-  }
-}
-input[type="range"].depth:focus-visible::-webkit-slider-thumb {
-  box-shadow: 0 0 0 5px rgba(124, 156, 255, 0.45), 0 0 18px rgba(124, 156, 255, 0.7);
-}
-
-/* Hover lift for interactive surfaces */
-.lift {
-  transition:
-    transform 220ms cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 220ms cubic-bezier(0.22, 1, 0.36, 1),
-    border-color 220ms ease;
-}
-.lift:hover {
-  transform: translateY(-2px);
-  box-shadow:
-    0 1px 0 rgba(255, 255, 255, 0.06) inset,
-    0 24px 60px -24px rgba(124, 156, 255, 0.35);
-  border-color: rgba(255, 255, 255, 0.16);
-}
-.lift:active {
-  transform: translateY(0) scale(0.995);
-}
-.press {
-  transition: transform 140ms ease, background-color 160ms ease, color 160ms ease, border-color 160ms ease;
-}
-.press:active {
-  transform: scale(0.97);
-}
-
-.eyebrow {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.42);
-}
-
 @media (prefers-reduced-motion: reduce) {
-  .aurora,
-  .shimmer::after {
-    animation: none;
-  }
-  .lift:hover {
-    transform: none;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

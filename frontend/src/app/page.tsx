@@ -1,36 +1,34 @@
 "use client";
 import dynamic from "next/dynamic";
 import { AnimatePresence, motion } from "framer-motion";
-import clsx from "clsx";
-import { ArrowRight, Boxes, Command, CornerDownLeft, FlaskConical, GitBranch, Loader2, Radar, Search, ShieldAlert, Sparkles, Waypoints } from "lucide-react";
+import { ArrowRight, Loader2 } from "lucide-react";
 import { useCallback, useEffect, useRef, useState } from "react";
-import { ApiError, apiGet, apiPost } from "@/lib/api";
-import type { AskResponse, FleetGraph, Health, Incident } from "@/lib/types";
+import { ApiError, adminToken, apiGet, apiPost } from "@/lib/api";
+import type { AskResponse, FleetGraph, Health, Incident, Playbook } from "@/lib/types";
 import {
   ErrorCard, ExposurePanel, FixPanel, InsightsPanel, MemoryDetail, MemoryPanel, OutcomeBanner, PathPanel, ScopeStrip, SpofPanel,
   TracePanel, WakeCard, WakeOnly,
 } from "@/components/panels";
-import { Card, CountUp, Pill, Skeleton } from "@/components/ui";
+import { Card, CountUp, ReportSection, Segmented, Skeleton, Status } from "@/components/ui";
 import { AgentAnswer, PlaybooksPanel } from "@/components/agentui";
 import ByoSection from "@/components/ByoSection";
 import { Timeline, type TimelineEvent } from "@/components/viz";
-import { CalendarRange } from "lucide-react";
-import { CardHeader } from "@/components/ui";
-import type { Playbook } from "@/lib/types";
 import { SeenBefore } from "@/components/SeenBefore";
+import { Logo } from "@/components/Logo";
+import { CommandBar, type Suggestion } from "@/components/CommandBar";
 import { QIX_DOWNLOADS_SOURCE, QIX_PACKAGES, QIX_WEEK_DOWNLOADS } from "@/lib/facts";
 
 const GraphCanvas = dynamic(() => import("@/components/GraphCanvas"), { ssr: false });
 
-const PRESETS: { q: string; hint: string }[] = [
-  { q: "maintainer qix was phished", hint: "Replay Sept 8 2025" },
-  { q: "debug@4.4.2", hint: "Honest negatives" },
-  { q: "GHSA-4x49-vf9v-38px", hint: "Advisory id" },
-  { q: "who is our single point of failure?", hint: "algo.pageRank" },
-  { q: "why is img-service connected to is-arrayish?", hint: "algo.SPpaths" },
-  { q: "who do I wake for checkout-api", hint: "On-call" },
-  { q: "ansi-regex@6.2.1", hint: "not_in_graph" },
-  { q: "left-pad@1.3.0", hint: "unknown_entity" },
+const PRESETS: Suggestion[] = [
+  { q: "maintainer qix was phished", hint: "Replay the Sept 8, 2025 compromise", group: "Incidents" },
+  { q: "debug@4.4.2", hint: "One malicious version, with honest negatives", group: "Incidents" },
+  { q: "GHSA-4x49-vf9v-38px", hint: "Start from an advisory id", group: "Incidents" },
+  { q: "who is our single point of failure?", hint: "Maintainer reach and algo.pageRank", group: "Fleet" },
+  { q: "why is img-service connected to is-arrayish?", hint: "Shortest path with algo.SPpaths", group: "Fleet" },
+  { q: "who do I wake for checkout-api", hint: "Owning team and on-call", group: "Fleet" },
+  { q: "ansi-regex@6.2.1", hint: "Reached, but every range excludes it", group: "Edge cases" },
+  { q: "left-pad@1.3.0", hint: "Not in the graph, so nothing is invented", group: "Edge cases" },
 ];
 
 type Err = { message: string; kind: string };
@@ -70,16 +68,8 @@ export default function Home() {
     }
   }, []);
   const inputRef = useRef<HTMLInputElement>(null);
-  const overlayRef = useRef<HTMLDivElement>(null);
-  const [overlayH, setOverlayH] = useState(260);
-  useEffect(() => {
-    const el = overlayRef.current;
-    if (!el) return;
-    const ro = new ResizeObserver(([e]) => setOverlayH(Math.round(e.contentRect.height) + 24));
-    ro.observe(el);
-    return () => ro.disconnect();
-  }, []);
   const resultsRef = useRef<HTMLDivElement>(null);
+  const graphRef = useRef<HTMLElement>(null);
 
   const loadMeta = useCallback(async () => {
     try {
@@ -151,7 +141,7 @@ export default function Home() {
       try {
         const r = await apiPost<AskResponse>("/api/ask", { query: text, depth: opts.depth ?? depth, fresh: !!opts.fresh, session: sessionId(), mode });
         setResult(r);
-        setTimeout(() => resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 450);
+        setTimeout(() => graphRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 120);
       } catch (e) {
         const a = e as ApiError;
         setErr({ message: a.message, kind: a.kind ?? "error" });
@@ -185,6 +175,11 @@ export default function Home() {
     }
   };
 
+  // Reset is admin-only when the server guards it (live site); locally the guard is off and the button always shows.
+  const [admin, setAdmin] = useState<string | null>(null);
+  useEffect(() => setAdmin(adminToken()), []);
+  const canReset = !!health && (!health.admin_guard || !!admin);
+
   const onReset = async () => {
     try {
       await apiPost("/api/memory/reset", {});
@@ -199,267 +194,250 @@ export default function Home() {
   const pkgCount = fleet ? fleet.nodes.length - svcCount : 0;
   const isIncident = result && (result.exposed.length > 0 || result.safe.length > 0);
 
-  return (
-    <div className="relative min-h-screen overflow-x-hidden">
-      <div className="aurora" />
-      <div className="grid-bg pointer-events-none fixed inset-0 z-0" />
-      <div className="noise" />
 
+  return (
+    <div className="min-h-screen bg-paper text-ink">
       {/* Top bar */}
-      <header className="relative z-20 mx-auto flex max-w-[1500px] items-center justify-between px-6 pt-5">
-        <div className="flex items-center gap-3">
-          <div className="relative grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-rose-500 via-fuchsia-500 to-indigo-500 shadow-[0_0_30px_-4px_rgba(255,77,109,0.7)]">
-            <Radar className="h-5 w-5 text-white" />
+      <header className="sticky top-0 z-30 border-b border-line bg-paper">
+        <div className="mx-auto flex h-14 max-w-[1240px] items-center justify-between gap-4 px-6">
+          <div className="flex items-center gap-5">
+            <Logo />
+            <span className="hidden h-4 w-px bg-line md:block" />
+            {health ? (
+              <Status tone={up ? "safe" : "danger"}>
+                {up ? <>Connected to FalkorDB <span className="hidden font-mono text-[12px] text-ink-3 md:inline">{health.graph}</span></> : `FalkorDB ${health.falkordb}`}
+              </Status>
+            ) : healthErr ? <Status tone="danger">API offline</Status> : <Skeleton className="h-4 w-36" />}
           </div>
-          <div>
-            <p className="text-[15px] font-semibold tracking-tight">PatientZero</p>
-            <p className="hidden text-[11px] text-white/45 sm:block">npm supply-chain incident agent on FalkorDB</p>
-          </div>
-        </div>
-        <div className="flex items-center gap-2">
-          <Pill tone="warn" className="whitespace-nowrap"><FlaskConical className="h-3 w-3" /><span className="hidden lg:inline">Synthetic Acme fleet, real npm data</span><span className="lg:hidden">Synthetic fleet</span></Pill>
-          {health ? (
-            <Pill tone={up ? "safe" : "danger"}>
-              <span className={clsx("h-1.5 w-1.5 rounded-full", up ? "bg-emerald-400 shadow-[0_0_8px_#34d399]" : "bg-rose-400")} />
-              <span className="whitespace-nowrap">FalkorDB {health.falkordb}<span className="hidden lg:inline"> · {health.graph}</span></span>
-            </Pill>
-          ) : healthErr ? (
-            <Pill tone="danger">API offline</Pill>
-          ) : (
-            <Skeleton className="h-5 w-40 rounded-full" />
-          )}
-          <a href="#byo" className="press hidden whitespace-nowrap rounded-full border border-white/10 px-3 py-0.5 text-[11px] text-white/70 hover:border-white/25 hover:text-white lg:inline-flex">Scan your repo</a>
-          <ModeSwitch llm={health?.agent_mode === "llm"} model={health?.llm_model ?? null} mode={mode} setMode={setMode} />
+          <nav className="flex items-center gap-2">
+            <a href="#byo" className="press hidden h-8 items-center rounded-lg px-3 text-[13px] font-medium text-ink-2 hover:bg-subtle hover:text-ink md:inline-flex">Scan your repo</a>
+            {health?.agent_mode === "llm" ? (
+              <span title="Auto: the deterministic router answers first; the LLM only picks tools when the router is unsure.">
+                <Segmented size="sm" value={mode} onChange={setMode} options={[{ value: "auto", label: "Auto" }, { value: "deterministic", label: "Deterministic" }]} />
+              </span>
+            ) : health ? <span className="text-[12px] text-ink-3">Deterministic</span> : null}
+          </nav>
         </div>
       </header>
 
-      {/* Hero: the graph */}
-      <main className="relative z-10 mx-auto max-w-[1500px] px-6 pb-24 pt-5">
-        <div className="relative h-[900px] overflow-hidden rounded-3xl md:h-[860px] xl:h-[680px] border border-white/[0.08] bg-[radial-gradient(ellipse_at_center,rgba(20,24,40,0.85),rgba(5,6,10,0.95))] shadow-[0_40px_120px_-40px_rgba(124,156,255,0.35)]">
-          {fleet ? (
-            <GraphCanvas fleet={fleet} highlight={result?.graph ?? null} onNodeClick={() => {}} topInset={overlayH} />
-          ) : (
-            <div className="absolute inset-0 grid place-items-center">
-              {healthErr || (health && !up) ? null : (
-                <div className="flex items-center gap-3 text-sm text-white/45"><Loader2 className="h-4 w-4 animate-spin" /> Loading the fleet graph from FalkorDB</div>
+      <main className="mx-auto max-w-[1240px] px-6 pb-24">
+        {/* Hero */}
+        <section className="pb-8 pt-12 md:pt-16">
+          <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3 }}>
+            <p className="flex items-center gap-2 text-[13px] text-ink-2" title={`Source: ${QIX_DOWNLOADS_SOURCE}`}>
+              <span className="h-1.5 w-1.5 rounded-full bg-signal" />
+              Sept 8, 2025. One phished maintainer, {QIX_PACKAGES} packages, {(QIX_WEEK_DOWNLOADS / 1e9).toFixed(2)} billion downloads the week before.
+            </p>
+            <h1 className="mt-5 text-[34px] font-semibold leading-[1.1] tracking-[-0.025em] text-ink md:text-[44px]">
+              Know your blast radius <span className="font-serif text-[1.08em] font-normal italic tracking-[-0.01em] text-ink-2">before the postmortem.</span>
+            </h1>
+            <p className="mt-5 max-w-[620px] text-[16px] leading-relaxed text-ink-2">
+              PatientZero walks every dependency chain in your fleet, checks the npm semver range on the last edge, and tells you who to wake and what to pin.
+            </p>
+          </motion.div>
+          <motion.div initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: 0.08 }} className="mt-8 max-w-[760px]">
+            <CommandBar inputRef={inputRef} value={query} onChange={setQuery} suggestions={PRESETS} disabled={!up} loading={loading}
+              onRun={(q, fromSuggestion) => run(q, { fresh: fromSuggestion && q.includes("phished") })} />
+          </motion.div>
+        </section>
+
+        {/* Graph */}
+        <motion.section ref={graphRef} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.4, delay: 0.12 }}
+          className="scroll-mt-[72px] overflow-hidden rounded-xl border border-line bg-surface shadow-sm">
+          <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line px-4 py-2.5">
+            <div className="flex items-center gap-4 text-[13px] text-ink-2">
+              <span className="font-medium text-ink">Fleet graph</span>
+              {fleet && (
+                <span className="hidden gap-4 sm:flex">
+                  <span><CountUp value={svcCount} className="text-ink" /> services</span>
+                  <span><CountUp value={pkgCount} duration={1.2} className="text-ink" /> package versions</span>
+                  <span><CountUp value={fleet.edges.length} duration={1.2} className="text-ink" /> edges</span>
+                </span>
               )}
             </div>
-          )}
-
-          {/* overlay: headline + command bar */}
-          <div className="pointer-events-none absolute inset-x-0 top-0 p-6 md:p-8">
-            <div ref={overlayRef} className="pointer-events-auto max-w-2xl">
-              <motion.div initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7 }}>
-                <p className="mb-3 inline-flex items-center gap-2 rounded-full border border-white/10 bg-black/30 px-3 py-1 text-[11px] text-white/60 backdrop-blur" title={`Source: ${QIX_DOWNLOADS_SOURCE}`}>
-                  <ShieldAlert className="h-3.5 w-3.5 text-rose-300" /> Sept 8 2025: one phished maintainer, {QIX_PACKAGES} packages, {(QIX_WEEK_DOWNLOADS / 1e9).toFixed(2)} billion downloads the week before
-                </p>
-                <h1 className="text-gradient text-4xl font-semibold leading-[1.05] tracking-tight md:text-[52px]">
-                  Know your blast radius
-                  <br />
-                  before the postmortem.
-                </h1>
-                <p className="mt-3 max-w-xl text-[15px] text-white/55">
-                  PatientZero traverses every dependency chain in your fleet, decides exposure with npm semver on the last edge, and tells you who to wake and what to pin.
-                </p>
-              </motion.div>
-
-              <motion.form
-                initial={{ opacity: 0, y: 12 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.7, delay: 0.15 }}
-                onSubmit={(e) => { e.preventDefault(); run(query, { fresh: false }); }}
-                className="glass-strong mt-6 flex items-center gap-3 rounded-2xl px-4 py-3 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.8)] focus-within:ring-1 focus-within:ring-indigo-400/40"
-              >
-                <Search className="h-5 w-5 text-white/40" />
-                <input
-                  ref={inputRef}
-                  value={query}
-                  onChange={(e) => setQuery(e.target.value)}
-                  placeholder="maintainer qix was phished, debug@4.4.2, GHSA-..., who do I wake?"
-                  className="flex-1 bg-transparent text-[15px] text-white placeholder:text-white/30 focus:outline-none"
-                  aria-label="Ask PatientZero"
-                />
-                <span className="hidden items-center gap-1 rounded-md border border-white/10 px-1.5 py-0.5 text-[10px] text-white/35 sm:flex"><Command className="h-3 w-3" />K</span>
-                <button type="submit" disabled={loading || !query.trim() || !up}
-                  className="press inline-flex items-center gap-2 rounded-xl bg-white px-3.5 py-2 text-sm font-semibold text-black shadow-[0_8px_24px_-8px_rgba(255,255,255,0.45)] hover:bg-white/90 disabled:opacity-40 disabled:shadow-none">
-                  {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <CornerDownLeft className="h-4 w-4" />} Trace
-                </button>
-              </motion.form>
-
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.35 }} className="mt-3 flex flex-wrap gap-1.5">
-                {PRESETS.map((p) => (
-                  <button key={p.q} onClick={() => run(p.q, { fresh: p.q.includes("phished") })} disabled={!up || loading}
-                    className="press group inline-flex items-center gap-1.5 rounded-full border border-white/10 bg-black/35 px-3 py-1 text-[12px] text-white/70 backdrop-blur hover:border-white/25 hover:bg-white/[0.06] hover:text-white disabled:opacity-40">
-                    {p.q}
-                    <span className="text-[10px] text-white/30 group-hover:text-white/50">{p.hint}</span>
-                  </button>
-                ))}
-              </motion.div>
+            <div className="flex items-center gap-4">
+              <div className="hidden items-center gap-3.5 text-[12px] text-ink-2 lg:flex">
+                <Legend kind="service" label="Service" />
+                <Legend kind="version" label="Package version" />
+                <Legend kind="exposed" label="Exposed" />
+                <Legend kind="safe" label="Excluded by range" />
+              </div>
+              {isIncident && (
+                <label className="flex items-center gap-2.5 border-l border-line pl-4 text-[12px] text-ink-2">
+                  Depth
+                  <input aria-label="graph depth" type="range" min={1} max={6} value={depth} onChange={(e) => onDepth(Number(e.target.value))} className="depth w-24" />
+                  <span className="w-3 font-mono text-[13px] text-ink tabular">{depth}</span>
+                </label>
+              )}
             </div>
           </div>
-
-          {/* legend + stats */}
-          <div className="pointer-events-none absolute bottom-5 left-6 hidden flex-wrap items-center gap-3 text-[11px] text-white/55 xl:flex">
-            <Legend color="#7c9cff" label="Service" />
-            <Legend color="#94a3b8" label="Package version" />
-            <Legend color="#ff4d6d" label="Exposed" glow />
-            <Legend color="#fbbf24" label="Exposure chain" />
-            <Legend color="#34d399" label="Safe by range" />
-            <Legend color="#a78bfa" label="Shortest path" />
-          </div>
-          <div className="absolute bottom-5 right-6 flex items-center gap-2">
-            {fleet && (
-              <div className="glass-strong flex items-center gap-4 rounded-xl px-4 py-2 text-[11px] text-white/60">
-                <span className="flex items-center gap-1.5"><Boxes className="h-3.5 w-3.5" /><b className="font-semibold text-white/90"><CountUp value={svcCount} /></b> services</span>
-                <span className="flex items-center gap-1.5"><Waypoints className="h-3.5 w-3.5" /><b className="font-semibold text-white/90"><CountUp value={pkgCount} duration={1.4} /></b> versions</span>
-                <span className="flex items-center gap-1.5"><GitBranch className="h-3.5 w-3.5" /><b className="font-semibold text-white/90"><CountUp value={fleet.edges.length} duration={1.4} /></b> edges</span>
+          <div className="relative h-[460px] md:h-[540px]">
+            {fleet ? (
+              <GraphCanvas fleet={fleet} highlight={result?.graph ?? null} onNodeClick={() => {}} leftInset={0} topInset={0} />
+            ) : (
+              <div className="absolute inset-0 grid place-items-center">
+                {healthErr || (health && !up) ? <p className="text-[13px] text-ink-3">The graph is unavailable.</p> : (
+                  <div className="flex items-center gap-2 text-[13px] text-ink-3"><Loader2 className="h-4 w-4 animate-spin" /> Loading the fleet graph from FalkorDB</div>
+                )}
               </div>
             )}
-            {isIncident && (
-              <div className="glass-strong flex items-center gap-3 rounded-xl px-4 py-2">
-                <span className="text-[11px] text-white/50">depth</span>
-                <input aria-label="graph depth" type="range" min={1} max={6} value={depth} onChange={(e) => onDepth(Number(e.target.value))} className="depth w-28" />
-                <span className="w-3 font-mono text-sm text-white/85">{depth}</span>
-              </div>
-            )}
+            <AnimatePresence>
+              {loading && (
+                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.15 }}
+                  className="pointer-events-none absolute left-1/2 top-4 -translate-x-1/2">
+                  <div className="flex items-center gap-2 rounded-full border border-line bg-surface px-3 py-1.5 text-[12px] text-ink-2 shadow-sm">
+                    <Loader2 className="h-3.5 w-3.5 animate-spin" /> Traversing the graph
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
           </div>
+        </motion.section>
 
-          <AnimatePresence>
-            {loading && (
-              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="pointer-events-none absolute inset-0 grid place-items-center bg-black/20">
-                <div className="glass-strong flex items-center gap-3 rounded-2xl px-5 py-3 text-sm text-white/80">
-                  <Loader2 className="h-4 w-4 animate-spin text-indigo-300" /> Traversing the graph
-                </div>
-              </motion.div>
-            )}
-          </AnimatePresence>
-        </div>
-
-        {/* Results */}
-        <div ref={resultsRef} className="scroll-mt-6 pt-6">
+        {/* Report */}
+        <div ref={resultsRef} id="report" className="scroll-mt-20 pt-10">
           {healthErr && <ErrorCard kind="network" message={`${healthErr}. Start the backend: cd backend && uv run uvicorn app.main:app --port 8000`} onRetry={loadMeta} />}
           {health && !up && !healthErr && (
-            <ErrorCard kind="graph_unavailable" message={health.falkordb === "down" ? "graph unavailable: FalkorDB is not reachable. Run scripts/start-falkordb.sh. PatientZero never answers from anywhere else." : `Graph ${health.graph} is empty. Load it with ingest/load.py.`} onRetry={loadMeta} />
+            <ErrorCard kind="graph_unavailable" message={health.falkordb === "down" ? "Graph unavailable: FalkorDB is not reachable. Run scripts/start-falkordb.sh. PatientZero never answers from anywhere else." : `Graph ${health.graph} is empty. Load it with ingest/load.py.`} onRetry={loadMeta} />
           )}
           {err && <div className="mb-4"><ErrorCard kind={err.kind} message={err.message} onRetry={() => (lastQuery ? run(lastQuery) : loadMeta())} /></div>}
 
           {!result && !loading && !err && up && <EmptyState onPick={(q) => run(q, { fresh: q.includes("phished") })} />}
 
-          {loading && !result && (
-            <div className="space-y-4" aria-busy="true" aria-label="Loading results">
-              <div className="glass flex items-center justify-between rounded-2xl p-5">
-                <div className="space-y-3"><div className="flex gap-2"><Skeleton className="h-5 w-32 rounded-full" /><Skeleton className="h-5 w-24 rounded-full" /><Skeleton className="h-5 w-28 rounded-full" /></div><Skeleton className="h-4 w-[520px] max-w-[60vw]" /><Skeleton className="h-4 w-[380px] max-w-[45vw]" /></div>
-                <Skeleton className="h-14 w-40" />
-              </div>
-              <div className="grid gap-4 lg:grid-cols-[minmax(0,1.65fr)_minmax(0,1fr)]">
-                <div className="glass space-y-3 rounded-2xl p-5">{[0, 1, 2, 3, 4].map((i) => <Skeleton key={i} className="h-16" />)}</div>
-                <div className="glass space-y-2 rounded-2xl p-5">{[0, 1, 2, 3, 4, 5].map((i) => <Skeleton key={i} className="h-9" />)}</div>
-              </div>
-            </div>
-          )}
+          {loading && !result && <ReportSkeleton />}
 
           {result && (
-            <div className={clsx("space-y-4 transition-opacity", loading && "opacity-50")}>
+            <div className={loading ? "opacity-50 transition-opacity" : "transition-opacity"}>
               <OutcomeBanner r={result} onFresh={() => run(lastQuery, { fresh: true })} />
-              {result.memory?.seen_before && result.outcome !== "answered_from_memory" && <SeenBefore sb={result.memory.seen_before} />}
-              <AgentAnswer key={result.query + result.total_ms} r={result} llmAvailable={health?.agent_mode === "llm"} />
-              <ScopeStrip r={result} />
-              <div className="grid gap-4 lg:grid-cols-[minmax(0,1.65fr)_minmax(0,1fr)]">
-                <div className="space-y-4">
-                  {isIncident && <ExposurePanel r={result} depth={depth} onDepth={onDepth} onSelect={() => {}} />}
-                  {isIncident && <InsightsPanel r={result} />}
-                  {result.outcome === "answered_from_memory" && <MemoryDetail r={result} />}
-                  <SpofPanel r={result} />
-                  <PathPanel r={result} />
-                  <WakeOnly r={result} />
-                  {result.outcome === "unknown_entity" && (
-                    <Card className="p-6">
-                      <p className="text-sm text-white/70">No traversal ran. Nothing was invented. Try one of these:</p>
-                      <div className="mt-3 flex flex-wrap gap-2">
-                        {PRESETS.slice(0, 4).map((p) => (
-                          <button key={p.q} onClick={() => run(p.q)} className="rounded-full border border-white/10 px-3 py-1 text-xs text-white/70 hover:border-white/25">{p.q}</button>
-                        ))}
-                      </div>
-                    </Card>
-                  )}
-                  {(result.exposed.length > 0 || result.fix) && <FixPanel canFix={result.exposed.length > 0} fix={result.fix} loading={fixLoading} onFix={onFix} onApproved={() => { refreshPlaybooks(); refreshTimeline(); }} />}
+              {result.memory?.seen_before && result.outcome !== "answered_from_memory" && <div className="mt-4"><SeenBefore sb={result.memory.seen_before} /></div>}
+              <div className="mt-4"><AgentAnswer key={result.query + result.total_ms} r={result} llmAvailable={health?.agent_mode === "llm"} /></div>
+
+              {isIncident ? (
+                <div className="mt-8">
+                  <ReportSection n={1} title="Scope" sub="Malicious versions in this incident and the clean version to pin." delay={0.02}>
+                    <ScopeStrip r={result} />
+                  </ReportSection>
+                  <ReportSection n={2} title="Exposure" sub="A service is exposed only if the range on the last edge admits the malicious version." delay={0.06}>
+                    <ExposurePanel r={result} depth={depth} onDepth={onDepth} onSelect={() => {}} />
+                    <InsightsPanel r={result} />
+                  </ReportSection>
+                  <ReportSection n={3} title="Who to wake" sub="Owning team and on-call for every exposed service." delay={0.1}>
+                    <WakeCard wake={result.wake} />
+                  </ReportSection>
+                  <ReportSection n={4} title="Fix" sub="Overrides pinned to clean versions, drafts for each team. Approve it to remember it as a playbook." delay={0.14}>
+                    {(result.exposed.length > 0 || result.fix) ? (
+                      <FixPanel canFix={result.exposed.length > 0} fix={result.fix} loading={fixLoading} onFix={onFix} onApproved={() => { refreshPlaybooks(); refreshTimeline(); }} />
+                    ) : <p className="text-[14px] text-ink-2">Nothing to fix: no service can install a malicious version at this depth.</p>}
+                    <PlaybooksPanel playbooks={playbooks} error={pbErr} />
+                  </ReportSection>
+                  <ReportSection n={5} title="Trace" sub="Every tool call, its Cypher and timing. Nothing is answered from anywhere else." delay={0.18}>
+                    <TracePanel trace={result.trace} loading={false} />
+                    <MemoryPanel incidents={incidents} onRecall={(q) => run(q)} onReset={canReset ? onReset : undefined} />
+                  </ReportSection>
                 </div>
-                <div className="space-y-4">
-                  <TracePanel trace={result.trace} loading={false} />
-                  <WakeCard wake={result.wake} />
-                  <MemoryPanel incidents={incidents} onRecall={(q) => run(q)} onReset={onReset} />
-                  <PlaybooksPanel playbooks={playbooks} error={pbErr} />
+              ) : (
+                <div className="mt-8">
+                  <ReportSection n={1} title="Answer" sub={result.outcome === "unknown_entity" ? "No traversal ran." : "From the graph, with every hop shown."}>
+                    {result.outcome === "answered_from_memory" && <MemoryDetail r={result} />}
+                    <SpofPanel r={result} />
+                    <PathPanel r={result} />
+                    <WakeOnly r={result} />
+                    {result.outcome === "unknown_entity" && (
+                      <Card className="p-5">
+                        <p className="text-[14px] text-ink-2">Nothing was invented. Try one of these:</p>
+                        <div className="mt-3 flex flex-wrap gap-2">
+                          {PRESETS.slice(0, 4).map((p) => (
+                            <button key={p.q} onClick={() => run(p.q)} className="press rounded-md px-2 py-1 font-mono text-[12.5px] text-ink ring-1 ring-inset ring-line hover:bg-subtle">{p.q}</button>
+                          ))}
+                        </div>
+                      </Card>
+                    )}
+                  </ReportSection>
+                  <ReportSection n={2} title="Trace" sub="Every tool call, its Cypher and timing.">
+                    <TracePanel trace={result.trace} loading={false} />
+                    <MemoryPanel incidents={incidents} onRecall={(q) => run(q)} onReset={canReset ? onReset : undefined} />
+                  </ReportSection>
                 </div>
-              </div>
+              )}
             </div>
           )}
         </div>
 
         {up && (
-          <section className="mt-20">
-            <div className="mb-5">
-              <p className="eyebrow mb-2">Timeline</p>
-              <h2 className="text-gradient text-3xl font-semibold tracking-[-0.02em] md:text-4xl">From compromise to remediation</h2>
-              <p className="mt-2 max-w-2xl text-[14px] leading-relaxed text-white/50">Every dated event in the graph: the curated compromise, OSV advisories, incidents written back by the agent, and playbooks approved by a human.</p>
-            </div>
-            <Card>
-              <CardHeader icon={<CalendarRange className="h-4 w-4" />} title="Event log" sub="Read from FalkorDB by queries/timeline.cypher" />
-              <div className="scroll-thin max-h-[520px] overflow-y-auto p-6">{timeline ? <Timeline events={timeline} /> : <Skeleton className="h-40" />}</div>
-            </Card>
-          </section>
+          <PageSection id="timeline" eyebrow="Timeline" title="From compromise to remediation"
+            sub="Every dated event in the graph: the compromise, the OSV advisories, incidents written back by the agent, and playbooks a human approved.">
+            <Card className="scroll-thin max-h-[560px] overflow-y-auto p-6">{timeline ? <Timeline events={timeline} /> : <Skeleton className="h-40" />}</Card>
+          </PageSection>
         )}
 
         {up && <ByoSection />}
 
-        <footer className="mt-16 flex flex-wrap items-center justify-between gap-3 border-t border-white/[0.06] pt-6 text-[11px] text-white/35">
-          <span>Acme, its services, teams and people are synthetic. npm packages, versions, dependency ranges (deps.dev) and advisories (OSV) are real.</span>
-          <span>Every answer comes from a Cypher query or algo.* call against FalkorDB. No LLM required.</span>
+        <footer className="mt-24 flex flex-wrap items-center justify-between gap-3 border-t border-line pt-6 text-[12.5px] text-ink-3">
+          <span>The Acme fleet, its teams and people are synthetic. npm packages, versions, ranges (deps.dev) and advisories (OSV) are real.</span>
+          <span>Every answer is a Cypher query or algo call against FalkorDB.</span>
         </footer>
       </main>
     </div>
   );
 }
 
-function ModeSwitch({ llm, model, mode, setMode }: { llm: boolean; model: string | null; mode: "auto" | "deterministic"; setMode: (m: "auto" | "deterministic") => void }) {
-  if (!llm) return <Pill tone="accent">Deterministic router</Pill>;
+function PageSection({ id, eyebrow, title, sub, children }: { id?: string; eyebrow: string; title: string; sub: string; children: React.ReactNode }) {
   return (
-    <div className="flex items-center rounded-full bg-white/[0.05] p-0.5 text-[11px] ring-1 ring-inset ring-white/10" title="Auto: deterministic router first, the LLM only picks tools when the router is unsure">
-      {(["auto", "deterministic"] as const).map((m) => (
-        <button key={m} onClick={() => setMode(m)} className={clsx("press whitespace-nowrap rounded-full px-2.5 py-0.5 font-medium", mode === m ? "bg-white/15 text-white" : "text-white/50 hover:text-white/80")}>
-          {m === "auto" ? <>LLM assist<span className="hidden lg:inline"> · {model ?? "gpt-4o-mini"}</span></> : "Deterministic"}
-        </button>
-      ))}
-    </div>
+    <section id={id} className="scroll-mt-20 pt-24">
+      <p className="eyebrow">{eyebrow}</p>
+      <h2 className="mt-2 text-[28px] font-semibold tracking-[-0.02em] text-ink">{title}</h2>
+      <p className="mt-2 max-w-[640px] text-[15px] leading-relaxed text-ink-2">{sub}</p>
+      <div className="mt-8">{children}</div>
+    </section>
   );
 }
 
-function Legend({ color, label, glow }: { color: string; label: string; glow?: boolean }) {
+function Legend({ kind, label }: { kind: "service" | "version" | "exposed" | "safe"; label: string }) {
+  const dot = {
+    service: "h-2 w-2 rounded-full bg-ink",
+    version: "h-1.5 w-1.5 rounded-[2px] bg-ink-3",
+    exposed: "h-2 w-2 rounded-full bg-signal",
+    safe: "h-2 w-2 rounded-full border border-ink-2 bg-surface",
+  }[kind];
+  return <span className="flex items-center gap-1.5"><span className={dot} />{label}</span>;
+}
+
+function ReportSkeleton() {
   return (
-    <span className="flex items-center gap-1.5 rounded-full bg-black/30 px-2 py-0.5 backdrop-blur">
-      <span className="h-2 w-2 rounded-full" style={{ background: color, boxShadow: glow ? `0 0 10px ${color}` : undefined }} />
-      {label}
-    </span>
+    <div aria-busy="true" aria-label="Loading results">
+      <div className="flex items-end justify-between gap-6 pb-8">
+        <div className="space-y-3"><Skeleton className="h-4 w-48" /><Skeleton className="h-10 w-[420px] max-w-[70vw]" /><Skeleton className="h-4 w-[560px] max-w-[80vw]" /></div>
+      </div>
+      {[0, 1, 2].map((i) => (
+        <div key={i} className="grid gap-10 border-t border-line py-10 lg:grid-cols-[220px_minmax(0,1fr)]">
+          <div className="space-y-2"><Skeleton className="h-3 w-6" /><Skeleton className="h-5 w-28" /><Skeleton className="h-3 w-40" /></div>
+          <div className="space-y-3">{[0, 1, 2].map((j) => <Skeleton key={j} className="h-14" />)}</div>
+        </div>
+      ))}
+    </div>
   );
 }
 
 function EmptyState({ onPick }: { onPick: (q: string) => void }) {
   const items = [
-    { icon: <ShieldAlert className="h-5 w-5 text-rose-300" />, title: "Replay the qix compromise", body: "Resolve the maintainer, scope the 19 malicious versions, traverse every chain, and page the owners.", q: "maintainer qix was phished" },
-    { icon: <Sparkles className="h-5 w-5 text-violet-300" />, title: "Find your single point of failure", body: "Rank npm accounts by how many Acme services they could reach if phished, with algo.pageRank.", q: "who is our single point of failure?" },
-    { icon: <GitBranch className="h-5 w-5 text-indigo-300" />, title: "Explain a hidden dependency", body: "Shortest path from a service to a package with algo.SPpaths, every hop's range shown.", q: "why is img-service connected to is-arrayish?" },
+    { n: "01", title: "Replay the qix compromise", body: "Resolve the maintainer, scope the 19 malicious versions, walk every chain and find the owners.", q: "maintainer qix was phished" },
+    { n: "02", title: "Find your single point of failure", body: "Rank npm accounts by how many services they could reach if phished.", q: "who is our single point of failure?" },
+    { n: "03", title: "Explain a hidden dependency", body: "The shortest path from a service to a package, every range on the way.", q: "why is img-service connected to is-arrayish?" },
   ];
   return (
-    <div className="grid gap-4 md:grid-cols-3">
+    <div className="grid gap-px overflow-hidden rounded-xl border border-line bg-line md:grid-cols-3">
       {items.map((it, i) => (
-        <Card key={it.title} delay={0.1 + i * 0.08} className="lift group cursor-pointer">
-          <button onClick={() => onPick(it.q)} className="h-full w-full p-5 text-left">
-            <span className="grid h-10 w-10 place-items-center rounded-xl bg-white/[0.06]">{it.icon}</span>
-            <h3 className="mt-4 text-[15px] font-semibold tracking-tight text-white/90">{it.title}</h3>
-            <p className="mt-1.5 text-sm leading-relaxed text-white/50">{it.body}</p>
-            <span className="mt-4 inline-flex items-center gap-1.5 font-mono text-[12px] text-white/60 group-hover:text-white">{it.q} <ArrowRight className="h-3.5 w-3.5 transition group-hover:translate-x-0.5" /></span>
-          </button>
-        </Card>
+        <motion.button key={it.title} initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25, delay: 0.1 + i * 0.05 }}
+          onClick={() => onPick(it.q)} className="group bg-surface p-6 text-left transition-colors hover:bg-subtle">
+          <p className="font-mono text-[12px] text-ink-3">{it.n}</p>
+          <h3 className="mt-3 text-[16px] font-semibold tracking-[-0.01em] text-ink">{it.title}</h3>
+          <p className="mt-1.5 text-[14px] leading-relaxed text-ink-2">{it.body}</p>
+          <span className="mt-5 inline-flex items-center gap-1.5 font-mono text-[12.5px] text-ink-2 group-hover:text-ink">
+            {it.q} <ArrowRight className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5" />
+          </span>
+        </motion.button>
       ))}
     </div>
   );
 }
+

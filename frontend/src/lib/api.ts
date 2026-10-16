@@ -1,5 +1,23 @@
 export const API_URL = process.env.NEXT_PUBLIC_API_URL || "http://localhost:8000";
 
+/** Admin token for guarded endpoints (reset, cleanup, DELETE). Set once with ?admin=<token>; kept for the tab session only. */
+const ADMIN_KEY = "pz-admin-token";
+export function adminToken(): string | null {
+  if (typeof window === "undefined") return null;
+  try {
+    const url = new URL(window.location.href);
+    const t = url.searchParams.get("admin");
+    if (t) {
+      sessionStorage.setItem(ADMIN_KEY, t);
+      url.searchParams.delete("admin"); // keep the token out of the address bar and history
+      window.history.replaceState(null, "", url.toString());
+    }
+    return sessionStorage.getItem(ADMIN_KEY);
+  } catch {
+    return null;
+  }
+}
+
 export class ApiError extends Error {
   constructor(
     message: string,
@@ -38,10 +56,13 @@ export async function apiGet<T>(path: string): Promise<T> {
 
 export async function apiPost<T>(path: string, body: unknown): Promise<T> {
   let res: Response;
+  const headers: Record<string, string> = { "content-type": "application/json" };
+  const admin = adminToken();
+  if (admin) headers["X-Admin-Token"] = admin;
   try {
     res = await fetch(`${API_URL}${path}`, {
       method: "POST",
-      headers: { "content-type": "application/json" },
+      headers,
       body: JSON.stringify(body),
     });
   } catch {

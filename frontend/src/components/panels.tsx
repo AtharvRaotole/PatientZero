@@ -1,101 +1,129 @@
 "use client";
 import { AnimatePresence, motion } from "framer-motion";
 import clsx from "clsx";
-import {
-  Activity, AlertTriangle, BellRing, Brain, ChevronDown, CircleCheck, CircleHelp, Crown, Database, FileCode2,
-  GitBranch, History, RotateCcw, ShieldAlert, ShieldCheck, Terminal, Wand2,
-} from "lucide-react";
+import { Activity, AlertTriangle, BellRing, ChevronDown, Crown, GitBranch, History, Loader2, RotateCcw, Terminal, Wand2 } from "lucide-react";
 import { useState } from "react";
 import type { AskResponse, Fix, Incident, ServiceExposure, TraceStep, WakeEntry } from "@/lib/types";
-import { Card, CardHeader, CopyButton, CountUp, PathChain, Pill, Skeleton } from "./ui";
-import { ApproveBar, ModePill } from "./agentui";
+import { Button, Card, CardHeader, CopyButton, CountUp, PathChain, Segmented, Skeleton } from "./ui";
+import { ApproveBar } from "./agentui";
 import { BlastRings, ExposureMatrix, SpofScatter } from "./viz";
 import type { Playbook } from "@/lib/types";
 
-const OUTCOME: Record<string, { label: string; tone: "danger" | "safe" | "violet" | "warn"; icon: React.ReactNode }> = {
-  answered_with_path: { label: "answered_with_path", tone: "danger", icon: <GitBranch className="h-3.5 w-3.5" /> },
-  answered_from_memory: { label: "answered_from_memory", tone: "violet", icon: <Brain className="h-3.5 w-3.5" /> },
-  not_in_graph: { label: "not_in_graph", tone: "safe", icon: <ShieldCheck className="h-3.5 w-3.5" /> },
-  unknown_entity: { label: "unknown_entity", tone: "warn", icon: <CircleHelp className="h-3.5 w-3.5" /> },
+const HEADLINE: Record<string, string> = {
+  answered_from_memory: "Answered from graph memory.",
+  not_in_graph: "No exposure found.",
+  unknown_entity: "Not in the graph.",
 };
 
 export function OutcomeBanner({ r, onFresh }: { r: AskResponse; onFresh: () => void }) {
   const tokens = r.trace.reduce((a, s) => a + (Number((s as { tokens?: number }).tokens) || 0), 0);
-  const o = OUTCOME[r.outcome];
-  const neutral = r.outcome === "answered_with_path" && !r.exposed.length;
+  const hit = r.outcome === "answered_with_path" && r.exposed.length > 0;
+  const meta = [
+    r.trigger ? `Trigger: ${r.trigger}` : `Intent: ${r.intent.replaceAll("_", " ")}`,
+    r.exposed.length || r.safe.length ? `depth ${r.depth}` : null,
+    `${r.total_ms.toFixed(0)} ms`,
+    r.mode === "llm" ? `LLM${r.llm_model ? ` ${r.llm_model}` : ""}, ${tokens} tokens` : "Deterministic",
+  ].filter(Boolean) as string[];
   return (
-    <Card className={clsx("p-5", r.outcome === "answered_with_path" && r.exposed.length > 0 && "ring-glow-danger")}>
-      <div className="flex flex-wrap items-center gap-2">
-        <Pill tone={neutral ? "accent" : o.tone}>{o.icon}{o.label}</Pill>
-        <Pill>intent: {r.intent}</Pill>
-        {r.trigger && <Pill tone="accent">trigger: {r.trigger}</Pill>}
-        <ModePill mode={r.mode} model={r.llm_model} />
-        {r.mode === "llm" && <Pill tone="violet">{tokens} tokens</Pill>}
-        <Pill>{r.total_ms.toFixed(0)} ms total</Pill>
-      </div>
-      <div className="mt-3 flex flex-wrap items-end justify-between gap-4">
-        <p className="max-w-3xl text-[15px] leading-relaxed text-white/85">{r.message}</p>
-        {r.outcome === "answered_with_path" && r.exposed.length > 0 && (
-          <div className="shrink-0 text-right">
-            <div className="flex items-baseline justify-end gap-2">
-              <CountUp key={r.query + r.depth} value={r.exposed.length} className="text-[56px] font-semibold leading-none tracking-[-0.04em] text-rose-300" />
-              <span className="text-sm text-white/45">/ <CountUp key={"f" + r.query} value={r.fleet_size ?? 0} duration={0.6} /> services exposed</span>
-            </div>
-            <div className="mt-3 h-1 w-56 overflow-hidden rounded-full bg-white/[0.06]">
-              <motion.div key={r.query + r.depth} initial={{ width: 0 }} animate={{ width: `${(100 * r.exposed.length) / Math.max(r.fleet_size ?? 1, 1)}%` }} transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-                className="h-full rounded-full bg-gradient-to-r from-rose-500 to-fuchsia-400 shadow-[0_0_12px_rgba(255,77,109,0.6)]" />
-            </div>
-          </div>
-        )}
+    <motion.header initial={{ opacity: 0, y: 6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.25 }}>
+      <p className="flex flex-wrap items-center gap-x-2 text-[13px] text-ink-3">
+        <span className="font-medium text-ink-2">Incident report</span>
+        {meta.map((m) => <span key={m} className="flex items-center gap-2"><span className="text-line-strong">/</span>{m}</span>)}
+      </p>
+      <div className="mt-4 flex flex-wrap items-end justify-between gap-6">
+        <div className="min-w-0 max-w-[820px]">
+          {hit ? (
+            <h2 className="text-[28px] font-semibold leading-tight tracking-[-0.02em] text-ink">
+              <CountUp key={r.query + r.depth} value={r.exposed.length} className="text-signal" /> of {r.fleet_size} services can install a malicious version.
+            </h2>
+          ) : (
+            <h2 className="text-[24px] font-semibold leading-tight tracking-[-0.02em] text-ink md:text-[28px]">{HEADLINE[r.outcome] ?? r.message.split(/(?<=\.)\s/)[0]}</h2>
+          )}
+          {detail(r, hit) && <p className="mt-3 text-[15px] leading-relaxed text-ink-2">{detail(r, hit)}</p>}
+        </div>
         {r.outcome === "answered_from_memory" && (
-          <button onClick={onFresh} className="inline-flex items-center gap-2 rounded-xl bg-violet-500/15 px-3.5 py-2 text-sm font-medium text-violet-100 ring-1 ring-inset ring-violet-400/30 transition hover:bg-violet-500/25">
+          <button onClick={onFresh} className="press inline-flex h-9 items-center gap-2 rounded-lg bg-ink px-3.5 text-[13px] font-medium text-paper hover:bg-ink/85">
             <RotateCcw className="h-4 w-4" /> Run a fresh traversal
           </button>
         )}
       </div>
-    </Card>
+      {(r.exposed.length > 0 || r.safe.length > 0) && r.fleet_size ? <FleetStrip r={r} /> : null}
+    </motion.header>
+  );
+}
+
+/** The backend message minus what the headline and the Seen-before row already say. */
+function detail(r: AskResponse, hit: boolean): string {
+  let m = r.message;
+  if (hit) m = m.replace(/^\s*\d+ of \d+ services can install a malicious version[^.]*\.\s*/, "");
+  else if (!HEADLINE[r.outcome]) m = m.replace(/^[^.]*\.\s*/, "");
+  if (r.memory?.seen_before && r.outcome !== "answered_from_memory") m = m.replace(/\s*Seen before:[\s\S]*$/, "");
+  return m.trim();
+}
+
+/** One cell per fleet service: exposed, reached but excluded by range, or never reached. */
+function FleetStrip({ r }: { r: AskResponse }) {
+  const cells = [
+    ...r.exposed.map((e) => ({ s: e.service, k: "exposed" as const })),
+    ...r.safe.map((e) => ({ s: e.service, k: "safe" as const })),
+    ...r.clean.map((s) => ({ s, k: "clean" as const })),
+  ];
+  return (
+    <div className="mt-6">
+      <div className="flex gap-1" role="img" aria-label={`${r.exposed.length} exposed, ${r.safe.length} excluded by range, ${r.clean.length} not reached`}>
+        {cells.map((c, i) => (
+          <motion.span key={c.s} title={`${c.s}: ${c.k === "exposed" ? "exposed" : c.k === "safe" ? "reached, range excludes it" : "never reaches an affected package"}`}
+            initial={{ opacity: 0, scaleY: 0.4 }} animate={{ opacity: 1, scaleY: 1 }} transition={{ duration: 0.2, delay: 0.15 + i * 0.015 }}
+            className={clsx("h-2.5 flex-1 rounded-[3px]", c.k === "exposed" ? "bg-signal" : c.k === "safe" ? "border border-ink-3 bg-surface" : "bg-line")} />
+        ))}
+      </div>
+      <div className="mt-2.5 flex flex-wrap gap-x-5 gap-y-1 text-[12.5px] text-ink-2">
+        <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-[2px] bg-signal" /><b className="font-medium text-ink tabular">{r.exposed.length}</b> exposed</span>
+        <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-[2px] border border-ink-3" /><b className="font-medium text-ink tabular">{r.safe.length}</b> reached, excluded by range</span>
+        <span className="flex items-center gap-1.5"><span className="h-2 w-2 rounded-[2px] bg-line" /><b className="font-medium text-ink tabular">{r.clean.length}</b> never reached</span>
+      </div>
+    </div>
   );
 }
 
 function ServiceRow({ e, exposed, open, onToggle }: { e: ServiceExposure; exposed: boolean; open: boolean; onToggle: () => void }) {
   const main = e.findings.filter((f) => f.exposed === exposed || !exposed);
   return (
-    <div className={clsx("rounded-xl border transition", exposed ? "border-rose-400/15 bg-rose-500/[0.04] hover:bg-rose-500/[0.07]" : "border-emerald-400/10 bg-emerald-500/[0.03] hover:bg-emerald-500/[0.06]")}>
-      <button onClick={onToggle} className="flex w-full items-center justify-between gap-3 px-4 py-3 text-left">
-        <div className="flex min-w-0 items-center gap-3">
-          <span className={clsx("h-2 w-2 shrink-0 rounded-full", exposed ? "bg-rose-400 shadow-[0_0_12px_#ff4d6d]" : "bg-emerald-400")} />
-          <span className="truncate font-medium text-white/90">{e.service}</span>
-          <Pill className="hidden sm:inline-flex">tier {e.tier}</Pill>
-          <span className="hidden text-xs text-white/40 md:inline">{e.team}</span>
-        </div>
-        <div className="flex items-center gap-2">
-          {exposed ? (
-            <span className="text-xs text-rose-200/80">{e.exposed_packages.join(", ")}</span>
-          ) : (
-            <span className="text-xs text-emerald-200/70">safe by range</span>
-          )}
-          <span className="text-[11px] text-white/35">{main[0].path.hops} hop{main[0].path.hops > 1 ? "s" : ""}</span>
-          <ChevronDown className={clsx("h-4 w-4 text-white/40 transition", open && "rotate-180")} />
+    <div className="group">
+      <button onClick={onToggle} aria-expanded={open} className="flex w-full items-start gap-3 px-5 py-3.5 text-left transition-colors hover:bg-subtle/70">
+        <span className={clsx("mt-[7px] h-2 w-2 shrink-0 rounded-full", exposed ? "bg-signal" : "border border-ink-3")} />
+        <div className="min-w-0 flex-1">
+          <div className="flex items-baseline justify-between gap-3">
+            <div className="flex min-w-0 items-baseline gap-2.5">
+              <span className="truncate text-[14px] font-medium text-ink">{e.service}</span>
+              <span className="hidden text-[12.5px] text-ink-3 sm:inline">Tier {e.tier} · {e.team}</span>
+            </div>
+            <div className="flex shrink-0 items-center gap-3 text-[12.5px]">
+              <span className={clsx("font-mono", exposed ? "text-signal-ink" : "text-ink-2")}>{exposed ? e.exposed_packages.join(", ") : "excluded by range"}</span>
+              <span className="w-12 text-right text-ink-3 tabular">{main[0].path.hops} hop{main[0].path.hops > 1 ? "s" : ""}</span>
+              <ChevronDown className={clsx("h-4 w-4 text-ink-3 transition-transform duration-200", open && "rotate-180")} />
+            </div>
+          </div>
+          <div className="mt-1.5">
+            <PathChain via={main[0].path.via} requirement={main[0].path.requirement} bad={main[0].bad_version} exposed={main[0].path.exposed} compact />
+            {!exposed && main[0].path.reason && <p className="mt-1 text-[12.5px] text-ink-3">{main[0].path.reason}</p>}
+          </div>
         </div>
       </button>
-      <div className="px-4 pb-3">
-        <PathChain via={main[0].path.via} requirement={main[0].path.requirement} bad={main[0].bad_version} exposed={main[0].path.exposed} compact={!open} />
-        {!exposed && <p className="mt-1.5 text-[11.5px] text-emerald-200/70">{main[0].path.reason}</p>}
-      </div>
       <AnimatePresence initial={false}>
         {open && (
-          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} className="overflow-hidden">
-            <div className="space-y-3 border-t border-white/[0.06] px-4 py-3">
+          <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.22, ease: [0.22, 1, 0.36, 1] }} className="overflow-hidden">
+            <div className="space-y-4 bg-subtle/60 py-4 pl-10 pr-5">
               {e.findings.map((f, i) => (
                 <div key={i} className="space-y-1.5">
-                  <div className="flex flex-wrap items-center gap-2 text-xs">
-                    <span className="font-mono text-white/85">{f.package}@{f.bad_version}</span>
-                    {f.advisory_id && <Pill tone={f.exposed ? "danger" : "neutral"}>{f.advisory_id}</Pill>}
-                    {f.ghsa && <Pill>{f.ghsa}</Pill>}
-                    <span className="text-white/40">{f.path_count} path{f.path_count > 1 ? "s" : ""} in graph</span>
+                  <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 text-[12.5px]">
+                    <span className="font-mono font-medium text-ink">{f.package}@{f.bad_version}</span>
+                    {f.advisory_id && <span className="font-mono text-ink-3">{f.advisory_id}{f.ghsa ? ` · ${f.ghsa}` : ""}</span>}
+                    <span className="text-ink-3">{f.path_count} path{f.path_count > 1 ? "s" : ""} in the graph</span>
                   </div>
                   <PathChain via={f.path.via} requirement={f.path.requirement} bad={f.bad_version} exposed={f.path.exposed} />
-                  <p className={clsx("text-[11.5px]", f.exposed ? "text-rose-200/70" : "text-emerald-200/70")}>{f.path.reason}</p>
+                  <p className={clsx("text-[12.5px]", f.exposed ? "text-signal-ink" : "text-ink-2")}>{f.path.reason}</p>
                   {f.alternatives.slice(0, 2).map((a, j) => (
                     <div key={j} className="opacity-60"><PathChain via={a.via} requirement={a.requirement} bad={f.bad_version} exposed={a.exposed} compact /></div>
                   ))}
@@ -109,37 +137,24 @@ function ServiceRow({ e, exposed, open, onToggle }: { e: ServiceExposure; expose
   );
 }
 
-export function ExposurePanel({ r, depth, onDepth, onSelect }: { r: AskResponse; depth: number; onDepth: (d: number) => void; onSelect: (svc: string) => void }) {
+export function ExposurePanel({ r, depth, onSelect }: { r: AskResponse; depth: number; onDepth: (d: number) => void; onSelect: (svc: string) => void }) {
   const [open, setOpen] = useState<string | null>(null);
   const [tab, setTab] = useState<"exposed" | "safe">("exposed");
   const list = tab === "exposed" ? r.exposed : r.safe;
   return (
-    <Card delay={0.05}>
-      <CardHeader
-        icon={<ShieldAlert className="h-4 w-4" />}
-        title="Blast radius"
-        sub="Exposed only if the range on the last edge admits the malicious version (npm semver)"
-        right={
-          <div className="flex items-center gap-3">
-            <span className="text-[11px] text-white/45">depth</span>
-            <input aria-label="depth" type="range" min={1} max={6} value={depth} onChange={(e) => onDepth(Number(e.target.value))} className="depth w-28" />
-            <span className="w-4 font-mono text-sm text-white/80 tabular-nums">{depth}</span>
-          </div>
-        }
-      />
-      <div className="flex gap-1 px-5 pt-3">
-        {(["exposed", "safe"] as const).map((t) => (
-          <button key={t} onClick={() => setTab(t)} className={clsx("rounded-lg px-3 py-1.5 text-xs font-medium transition", tab === t ? "bg-white/10 text-white" : "text-white/50 hover:text-white/80")}>
-            {t === "exposed" ? `Exposed (${r.exposed.length})` : `Not exposed, with reason (${r.safe.length})`}
-          </button>
-        ))}
-        <span className="ml-auto self-center text-[11px] text-white/35">{r.clean.length} services never reach an affected package</span>
+    <Card>
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line px-5 py-3">
+        <Segmented value={tab} onChange={setTab} options={[
+          { value: "exposed", label: <>Exposed <span className="ml-1 text-ink-3 tabular">{r.exposed.length}</span></> },
+          { value: "safe", label: <>Excluded by range <span className="ml-1 text-ink-3 tabular">{r.safe.length}</span></> },
+        ]} />
+        <span className="text-[12.5px] text-ink-3">{r.clean.length} services never reach an affected package</span>
       </div>
-      <div className="scroll-thin max-h-[520px] space-y-2 overflow-y-auto p-5 pt-3">
+      <div className="scroll-thin max-h-[560px] divide-y divide-line overflow-y-auto">
         {list.length === 0 && (
-          <div className="grid place-items-center rounded-xl border border-dashed border-white/10 py-10 text-center text-sm text-white/45">
-            {tab === "exposed" ? `No fleet path admits a malicious version at depth ${depth}.` : "No services reach an affected package with a non-admitting range."}
-          </div>
+          <p className="px-5 py-10 text-center text-[14px] text-ink-3">
+            {tab === "exposed" ? `No fleet path admits a malicious version at depth ${depth}.` : "No service reaches an affected package with a range that excludes it."}
+          </p>
         )}
         {list.map((e) => (
           <ServiceRow key={e.service} e={e} exposed={tab === "exposed"} open={open === e.service}
@@ -152,42 +167,45 @@ export function ExposurePanel({ r, depth, onDepth, onSelect }: { r: AskResponse;
 
 export function TracePanel({ trace, loading }: { trace: TraceStep[]; loading: boolean }) {
   const [open, setOpen] = useState<number | null>(null);
+  const total = trace.reduce((a, s) => a + (s.ms || 0), 0);
   return (
-    <Card delay={0.1}>
-      <CardHeader icon={<Terminal className="h-4 w-4" />} title="Agent trace" sub="Fixed tool catalogue. Human-written Cypher from queries/*.cypher" right={<Pill tone="accent"><Database className="h-3 w-3" />FalkorDB</Pill>} />
-      <div className="scroll-thin max-h-[440px] space-y-1.5 overflow-y-auto p-4">
-        {loading && [0, 1, 2, 3].map((i) => <Skeleton key={i} className="h-10" />)}
-        {!loading && trace.length === 0 && <p className="py-6 text-center text-sm text-white/40">Tool calls appear here.</p>}
+    <Card>
+      <CardHeader icon={<Terminal />} title="Agent trace" sub="A fixed catalogue of tools. Human-written Cypher from queries/*.cypher."
+        right={<span className="font-mono text-[12px] text-ink-3 tabular">{trace.length} steps · {total.toFixed(1)} ms</span>} />
+      <div className="scroll-thin max-h-[480px] divide-y divide-line overflow-y-auto">
+        {loading && <div className="space-y-2 p-4">{[0, 1, 2, 3].map((i) => <Skeleton key={i} className="h-8" />)}</div>}
+        {!loading && trace.length === 0 && <p className="py-6 text-center text-[13px] text-ink-3">Tool calls appear here.</p>}
         {!loading && trace.map((s, i) => !s.cypher ? (
-          <motion.div key={i} initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.07 }}
-            className={clsx("flex items-center gap-3 rounded-xl border px-3 py-2", s.tool === "llm" ? "border-violet-400/20 bg-violet-500/[0.06]" : "border-white/[0.05] bg-white/[0.02]", s.error && "border-rose-400/30")}>
-            <span className={clsx("grid h-5 w-5 place-items-center rounded-md font-mono text-[10px]", s.tool === "llm" ? "bg-violet-500/20 text-violet-200" : "bg-white/[0.06] text-white/50")}>{s.tool === "llm" ? "AI" : i + 1}</span>
-            <span className={clsx("font-mono text-[12px]", s.tool === "llm" ? "text-violet-200" : "text-white/60")}>{s.tool}</span>
-            <span className="truncate text-[11.5px] text-white/50">{s.error ? `${s.note ?? ""} ${s.error}` : s.note}</span>
-            {s.ms > 0 && <span className="ml-auto shrink-0 font-mono text-[11px] text-white/40">{s.ms.toFixed(0)} ms</span>}
+          <motion.div key={i} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: i * 0.03, duration: 0.2 }}
+            className="flex items-center gap-3 px-5 py-2.5 text-[13px]">
+            <span className="w-5 font-mono text-[12px] text-ink-3 tabular">{String(i + 1).padStart(2, "0")}</span>
+            <span className="font-mono text-ink-2">{s.tool}</span>
+            <span className={clsx("truncate", s.error ? "text-signal-ink" : "text-ink-3")}>{s.error ? `${s.note ?? ""} ${s.error}` : s.note}</span>
+            {s.ms > 0 && <span className="ml-auto shrink-0 font-mono text-[12px] text-ink-3 tabular">{s.ms.toFixed(0)} ms</span>}
           </motion.div>
         ) : (
-          <motion.div key={i} initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.07 }}
-            className={clsx("rounded-xl border bg-black/20", s.error ? "border-rose-400/30" : "border-white/[0.06]")}>
-            <button onClick={() => setOpen(open === i ? null : i)} className="flex w-full items-center gap-3 px-3 py-2 text-left">
-              <span className="grid h-5 w-5 place-items-center rounded-md bg-white/[0.06] font-mono text-[10px] text-white/60">{i + 1}</span>
-              <span className="font-mono text-[12.5px] text-indigo-200">{s.tool}</span>
-              {s.query && s.query !== s.tool && <span className="hidden truncate font-mono text-[11px] text-white/35 sm:inline">.{s.query}</span>}
-              {s.write && <Pill tone="warn">write</Pill>}
-              <span className="ml-auto flex items-center gap-3 font-mono text-[11px] tabular-nums">
-                <span className="text-white/45">{s.rows} rows</span>
-                <span className={clsx(s.ms > 100 ? "text-amber-300" : "text-emerald-300")}>{s.ms.toFixed(1)} ms</span>
+          <motion.div key={i} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: i * 0.03, duration: 0.2 }}>
+            <button onClick={() => setOpen(open === i ? null : i)} aria-expanded={open === i} className="flex w-full items-center gap-3 px-5 py-2.5 text-left text-[13px] transition-colors hover:bg-subtle/70">
+              <span className="w-5 font-mono text-[12px] text-ink-3 tabular">{String(i + 1).padStart(2, "0")}</span>
+              <span className="font-mono font-medium text-ink">{s.tool}</span>
+              {s.query && s.query !== s.tool && <span className="hidden truncate font-mono text-[12px] text-ink-3 sm:inline">{s.query}</span>}
+              {s.write && <span className="text-[12px] font-medium text-risk">write</span>}
+              {s.error && <span className="text-[12px] font-medium text-signal-ink">error</span>}
+              <span className="ml-auto flex shrink-0 items-center gap-4 font-mono text-[12px] tabular">
+                <span className="w-16 text-right text-ink-3">{s.rows} rows</span>
+                <span className="w-16 text-right text-ink-2">{s.ms.toFixed(1)} ms</span>
               </span>
+              <ChevronDown className={clsx("h-3.5 w-3.5 text-ink-3 transition-transform duration-200", open === i && "rotate-180")} />
             </button>
             <AnimatePresence initial={false}>
               {open === i && (
-                <motion.div initial={{ height: 0 }} animate={{ height: "auto" }} exit={{ height: 0 }} className="overflow-hidden">
-                  <div className="space-y-2 border-t border-white/[0.06] p-3">
-                    {s.note && <p className="text-[11px] text-white/50">{s.note}</p>}
-                    {s.error && <p className="text-[11px] text-rose-300">{s.error}</p>}
-                    {s.cypher && <pre className="scroll-thin overflow-x-auto rounded-lg bg-black/40 p-3 font-mono text-[11px] leading-relaxed text-sky-100/85">{s.cypher}</pre>}
-                    <pre className="scroll-thin overflow-x-auto rounded-lg bg-black/30 p-2 font-mono text-[10.5px] text-white/55">params: {JSON.stringify(s.params)}</pre>
-                    {s.file && <p className="font-mono text-[10.5px] text-white/35">{s.file}</p>}
+                <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }} exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.2 }} className="overflow-hidden">
+                  <div className="space-y-2 px-5 pb-4 pl-[52px]">
+                    {s.note && <p className="text-[12.5px] text-ink-2">{s.note}</p>}
+                    {s.error && <p className="text-[12.5px] text-signal-ink">{s.error}</p>}
+                    <pre className="scroll-thin overflow-x-auto rounded-lg border border-line bg-subtle p-3 font-mono text-[12px] leading-relaxed text-ink">{s.cypher}</pre>
+                    <pre className="scroll-thin overflow-x-auto font-mono text-[11.5px] text-ink-3">params {JSON.stringify(s.params)}</pre>
+                    {s.file && <p className="font-mono text-[11.5px] text-ink-3">{s.file}</p>}
                   </div>
                 </motion.div>
               )}
@@ -199,31 +217,45 @@ export function TracePanel({ trace, loading }: { trace: TraceStep[]; loading: bo
   );
 }
 
+const initials = (n: string) => n.split(" ").map((p) => p[0]).join("").slice(0, 2);
+
 export function WakeCard({ wake }: { wake: WakeEntry[] }) {
   if (!wake.length) return null;
   return (
-    <Card delay={0.15}>
-      <CardHeader icon={<BellRing className="h-4 w-4" />} title="Who to wake" sub={`${wake.length} owning team${wake.length > 1 ? "s" : ""}, synthetic Acme org`} />
-      <div className="scroll-thin max-h-[320px] divide-y divide-white/[0.05] overflow-y-auto">
+    <Card>
+      <CardHeader icon={<BellRing />} title={`${wake.length} owning team${wake.length > 1 ? "s" : ""}`} sub="Synthetic Acme org. Page the on-call, then the team channel." />
+      <div className="scroll-thin max-h-[420px] divide-y divide-line overflow-y-auto">
         {wake.map((w) => (
-          <div key={w.service} className="flex items-center justify-between gap-3 px-5 py-2.5">
+          <div key={w.service} className="grid grid-cols-[minmax(0,1.1fr)_minmax(0,1fr)_auto] items-center gap-4 px-5 py-3">
             <div className="min-w-0">
-              <p className="truncate text-sm font-medium text-white/90">{w.service}</p>
-              <p className="text-[11px] text-white/40">{w.team_display} · {w.slack}</p>
+              <p className="truncate text-[14px] font-medium text-ink">{w.service}</p>
+              <p className="truncate text-[12.5px] text-ink-3">{w.team_display} · <span className="font-mono">{w.slack}</span></p>
             </div>
-            <div className="text-right">
+            <div className="min-w-0 space-y-1">
               {w.oncall.length ? w.oncall.map((o) => (
-                <div key={o.handle} className="flex items-center gap-2">
-                  <span className="grid h-6 w-6 place-items-center rounded-full bg-gradient-to-br from-indigo-400 to-violet-500 text-[10px] font-semibold text-white">{o.name.split(" ").map((p) => p[0]).join("")}</span>
-                  <span className="text-xs text-white/80">{o.name} <span className="text-white/40">{o.handle}</span></span>
+                <div key={o.handle} className="flex min-w-0 items-center gap-2">
+                  <span className="grid h-6 w-6 shrink-0 place-items-center rounded-full bg-subtle text-[10.5px] font-semibold text-ink-2 ring-1 ring-line">{initials(o.name)}</span>
+                  <span className="truncate text-[13px] text-ink">{o.name} <span className="text-ink-3">{o.handle}</span></span>
                 </div>
-              )) : <span className="text-xs text-white/40">no on-call</span>}
-              <span className="mt-0.5 block text-[10px] uppercase tracking-wider text-white/30">tier {w.tier} · pager {w.pager}</span>
+              )) : <span className="text-[13px] text-ink-3">No on-call</span>}
             </div>
+            <span className="text-right text-[12.5px] text-ink-3">Tier {w.tier}<span className="hidden md:inline"> · {w.pager}</span></span>
           </div>
         ))}
       </div>
     </Card>
+  );
+}
+
+function CodeBlock({ label, text, copyLabel, maxH }: { label: string; text: string; copyLabel?: string; maxH?: string }) {
+  return (
+    <div className="min-w-0">
+      <div className="mb-2 flex items-center justify-between gap-3">
+        <span className="truncate text-[12.5px] font-medium text-ink-2">{label}</span>
+        <CopyButton text={text} label={copyLabel} />
+      </div>
+      <pre className={clsx("scroll-thin overflow-auto whitespace-pre-wrap rounded-lg border border-line bg-subtle p-3.5 font-mono text-[12px] leading-relaxed text-ink", maxH)}>{text}</pre>
+    </div>
   );
 }
 
@@ -232,49 +264,36 @@ export function FixPanel({ canFix, fix, loading, onFix, onApproved }: { canFix: 
   if (!canFix && !fix) return null;
   const s = fix?.per_service[sel];
   return (
-    <Card delay={0.2}>
-      <CardHeader icon={<Wand2 className="h-4 w-4" />} title="Remediation" sub="npm overrides + notification drafts. Drafts only, nothing is sent"
-        right={
-          <button onClick={onFix} disabled={loading} className="inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-rose-500 to-fuchsia-500 px-3.5 py-1.5 text-xs font-semibold text-white shadow-[0_8px_30px_-8px_rgba(255,77,109,0.7)] transition hover:brightness-110 disabled:opacity-50">
-            <Wand2 className="h-3.5 w-3.5" /> {loading ? "Generating..." : fix ? "Regenerate fix" : "Generate fix"}
-          </button>
-        } />
-      {!fix && !loading && <p className="px-5 py-6 text-sm text-white/45">Builds a per-service overrides patch with clean versions from the advisories, drafts a page to each owner, and writes the Incident back to FalkorDB as memory.</p>}
-      {loading && <div className="space-y-2 p-5"><Skeleton className="h-6 w-1/2" /><Skeleton className="h-28" /></div>}
+    <Card>
+      <CardHeader icon={<Wand2 />} title="Remediation" sub="Drafts only. Nothing is sent or merged."
+        right={<Button variant={fix ? "secondary" : "primary"} onClick={onFix} disabled={loading}>{loading ? <Loader2 className="h-3.5 w-3.5 animate-spin" /> : <Wand2 className="h-3.5 w-3.5" />}{loading ? "Generating" : fix ? "Regenerate" : "Generate fix"}</Button>} />
+      {!fix && !loading && <p className="px-5 py-5 text-[14px] leading-relaxed text-ink-2">Builds an overrides patch per service with the clean versions from the advisories, drafts a message to each owning team, and writes the incident back to FalkorDB as memory.</p>}
+      {loading && <div className="space-y-2 p-5"><Skeleton className="h-5 w-1/2" /><Skeleton className="h-28" /></div>}
       {fix && s && (
-        <div className="space-y-4 p-5">
-          <div className="flex flex-wrap items-center gap-2 text-xs">
-            <Pill tone="violet"><Brain className="h-3 w-3" /> {fix.incident_id}</Pill>
-            <Pill tone="safe">{fix.exposed_edges} EXPOSED edges written</Pill>
-          </div>
+        <div className="space-y-5 p-5">
+          <p className="text-[13px] text-ink-2">
+            Incident <span className="font-mono text-ink">{fix.incident_id}</span> written to the graph with {fix.exposed_edges} exposure edges.
+          </p>
           {(fix.playbooks ?? []).map((pb) => (
-            <div key={pb.id} className={clsx("rounded-xl border px-3.5 py-2.5 text-[12.5px]", pb.agrees_with_proposed_fix ? "border-emerald-400/25 bg-emerald-500/[0.07] text-emerald-100/90" : "border-amber-400/25 bg-amber-500/[0.07] text-amber-100/90")}>
-              <p className="mb-0.5 text-[10.5px] font-semibold uppercase tracking-wider opacity-70">Procedural memory: approved playbook reused</p>
+            <div key={pb.id} className={clsx("rounded-lg border px-4 py-3 text-[13px] leading-relaxed", pb.agrees_with_proposed_fix ? "border-line bg-subtle text-ink-2" : "border-risk/30 bg-risk-soft text-risk")}>
+              <p className="mb-0.5 font-medium text-ink">Reusing an approved playbook</p>
               {pb.message}
             </div>
           ))}
           <ApproveBar key={fix.incident_id} incidentId={fix.incident_id} onApproved={onApproved} />
+          <CodeBlock label="Fleet-wide overrides" text={fix.combined_json} />
           <div>
-            <div className="mb-1.5 flex items-center justify-between">
-              <span className="text-[11px] font-medium uppercase tracking-wider text-white/40">Fleet-wide overrides</span>
-              <CopyButton text={fix.combined_json} />
+            <p className="mb-2 text-[12.5px] font-medium text-ink-2">Per service</p>
+            <div className="scroll-thin flex gap-1 overflow-x-auto pb-1">
+              {fix.per_service.map((p, i) => (
+                <button key={p.service} onClick={() => setSel(i)}
+                  className={clsx("press shrink-0 rounded-md px-2.5 py-1 text-[12.5px] font-medium", i === sel ? "bg-ink text-paper" : "text-ink-2 ring-1 ring-inset ring-line hover:bg-subtle")}>{p.service}</button>
+              ))}
             </div>
-            <pre className="scroll-thin overflow-x-auto rounded-xl bg-black/40 p-3 font-mono text-[11.5px] text-emerald-100/90">{fix.combined_json}</pre>
           </div>
-          <div className="scroll-thin flex gap-1.5 overflow-x-auto pb-1">
-            {fix.per_service.map((p, i) => (
-              <button key={p.service} onClick={() => setSel(i)} className={clsx("shrink-0 rounded-lg px-2.5 py-1 text-[11px] font-medium transition", i === sel ? "bg-white/12 text-white ring-1 ring-white/20" : "text-white/50 hover:text-white/80")}>{p.service}</button>
-            ))}
-          </div>
-          <div className="grid gap-3 md:grid-cols-2">
-            <div>
-              <div className="mb-1.5 flex items-center justify-between"><span className="text-[11px] font-medium uppercase tracking-wider text-white/40">{s.service} package.json</span><CopyButton text={s.overrides_json} /></div>
-              <pre className="scroll-thin overflow-x-auto rounded-xl bg-black/40 p-3 font-mono text-[11.5px] text-emerald-100/90">{s.overrides_json}</pre>
-            </div>
-            <div>
-              <div className="mb-1.5 flex items-center justify-between"><span className="text-[11px] font-medium uppercase tracking-wider text-white/40">Draft to {s.slack}</span><CopyButton text={s.draft} label="Copy draft" /></div>
-              <pre className="scroll-thin max-h-56 overflow-auto whitespace-pre-wrap rounded-xl bg-black/40 p-3 font-mono text-[11px] leading-relaxed text-white/75">{s.draft}</pre>
-            </div>
+          <div className="grid gap-4 md:grid-cols-2">
+            <CodeBlock label={`${s.service}/package.json`} text={s.overrides_json} />
+            <CodeBlock label={`Draft to ${s.slack}`} text={s.draft} copyLabel="Copy draft" maxH="max-h-60" />
           </div>
         </div>
       )}
@@ -282,23 +301,23 @@ export function FixPanel({ canFix, fix, loading, onFix, onApproved }: { canFix: 
   );
 }
 
-export function MemoryPanel({ incidents, onRecall, onReset }: { incidents: Incident[] | null; onRecall: (q: string) => void; onReset: () => void }) {
+export function MemoryPanel({ incidents, onRecall, onReset }: { incidents: Incident[] | null; onRecall: (q: string) => void; onReset?: () => void }) {
   return (
-    <Card delay={0.25}>
-      <CardHeader icon={<History className="h-4 w-4" />} title="Incident memory" sub="Incident + Finding nodes read back from the graph"
-        right={incidents && incidents.length > 0 ? <button onClick={onReset} className="text-[11px] text-white/40 transition hover:text-rose-300">Reset demo memory</button> : null} />
-      <div className="scroll-thin max-h-64 space-y-1.5 overflow-y-auto p-4">
-        {incidents === null && [0, 1].map((i) => <Skeleton key={i} className="h-12" />)}
-        {incidents?.length === 0 && <p className="py-5 text-center text-sm text-white/40">No incidents stored yet. Generate a fix to write one.</p>}
+    <Card>
+      <CardHeader icon={<History />} title="Incident memory" sub="Incident and Finding nodes read back from the graph."
+        right={onReset && incidents && incidents.length > 0 ? <Button variant="ghost" onClick={onReset} className="h-7 text-[12px]">Reset demo memory</Button> : null} />
+      <div className="scroll-thin max-h-72 divide-y divide-line overflow-y-auto">
+        {incidents === null && <div className="space-y-2 p-4">{[0, 1].map((i) => <Skeleton key={i} className="h-10" />)}</div>}
+        {incidents?.length === 0 && <p className="px-5 py-5 text-[13px] text-ink-3">No incidents stored yet. Generate a fix to write one.</p>}
         {incidents?.map((i) => (
-          <button key={i.id} onClick={() => onRecall(i.entity_key || i.trigger)} className="flex w-full items-center justify-between gap-3 rounded-xl border border-white/[0.06] bg-black/20 px-3 py-2 text-left transition hover:border-violet-400/30 hover:bg-violet-500/[0.06]">
+          <button key={i.id} onClick={() => onRecall(i.entity_key || i.trigger)} className="flex w-full items-center justify-between gap-4 px-5 py-3 text-left transition-colors hover:bg-subtle/70">
             <div className="min-w-0">
-              <p className="truncate font-mono text-[11.5px] text-violet-200">{i.id}</p>
-              <p className="truncate text-[11px] text-white/45">{i.trigger}</p>
+              <p className="truncate font-mono text-[12.5px] text-ink">{i.id}</p>
+              <p className="truncate text-[12.5px] text-ink-3">{i.trigger}</p>
             </div>
-            <div className="shrink-0 text-right">
-              <p className="text-sm font-semibold text-rose-300 tabular-nums">{i.exposed_count}</p>
-              <p className="text-[10px] text-white/35">{new Date(i.at).toLocaleString([], { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })}</p>
+            <div className="shrink-0 text-right text-[12.5px]">
+              <p className="text-ink tabular"><span className="font-semibold text-signal-ink">{i.exposed_count}</span> exposed</p>
+              <p className="text-ink-3">{new Date(i.at).toLocaleString([], { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })}</p>
             </div>
           </button>
         ))}
@@ -312,24 +331,19 @@ export function MemoryDetail({ r }: { r: AskResponse }) {
   if (!inc) return null;
   const patch = typeof inc.patch === "string" ? inc.patch : JSON.stringify(inc.patch, null, 2);
   return (
-    <Card delay={0.05}>
-      <CardHeader icon={<Brain className="h-4 w-4" />} title={`Recalled: ${inc.id}`} sub={`${new Date(inc.at).toLocaleString()} · depth ${inc.depth} · ${inc.exposed_count} exposed services`} />
-      <div className="grid gap-4 p-5 md:grid-cols-2">
-        <div className="scroll-thin max-h-72 space-y-2 overflow-y-auto">
+    <Card>
+      <CardHeader icon={<History />} title={`Recalled ${inc.id}`} sub={`${new Date(inc.at).toLocaleString()} · depth ${inc.depth} · ${inc.exposed_count} exposed services`} />
+      <div className="grid gap-5 p-5 md:grid-cols-2">
+        <div className="scroll-thin max-h-80 divide-y divide-line overflow-y-auto rounded-lg border border-line">
           {(inc.exposed || []).map((x) => (
-            <div key={x.service} className="rounded-xl border border-rose-400/10 bg-rose-500/[0.03] p-2.5">
-              <p className="mb-1 text-sm font-medium text-white/85">{x.service} <span className="text-[11px] text-white/40">{x.advisory}</span></p>
+            <div key={x.service} className="px-3.5 py-2.5">
+              <p className="mb-1 text-[13px] font-medium text-ink">{x.service} <span className="font-mono text-[12px] font-normal text-ink-3">{x.advisory}</span></p>
               <PathChain via={x.path} requirement={x.requirement} exposed compact />
             </div>
           ))}
-          {!inc.exposed?.length && inc.services && <p className="text-sm text-white/60">{inc.services.join(", ")}</p>}
+          {!inc.exposed?.length && inc.services && <p className="p-3 text-[13px] text-ink-2">{inc.services.join(", ")}</p>}
         </div>
-        {patch && (
-          <div>
-            <div className="mb-1.5 flex items-center justify-between"><span className="text-[11px] font-medium uppercase tracking-wider text-white/40">Patch on file (per service)</span><CopyButton text={patch} /></div>
-            <pre className="scroll-thin max-h-64 overflow-auto rounded-xl bg-black/40 p-3 font-mono text-[11px] text-emerald-100/85">{patch}</pre>
-          </div>
-        )}
+        {patch && <CodeBlock label="Patch on file, per service" text={patch} maxH="max-h-72" />}
       </div>
     </Card>
   );
@@ -339,37 +353,47 @@ export function SpofPanel({ r }: { r: AskResponse }) {
   if (!r.spof) return null;
   const max = Math.max(...r.spof.maintainers.map((m) => m.reach), 1);
   return (
-    <Card delay={0.05}>
-      <CardHeader icon={<Crown className="h-4 w-4" />} title="Single points of failure" sub="Maintainer accounts ranked by fleet reach, tie-broken by algo.pageRank" />
-      <div className="grid gap-6 p-5 lg:grid-cols-[1.4fr_1fr]">
-        <div className="space-y-2">
-          {r.spof.maintainers.map((m, i) => (
-            <motion.div key={m.maintainer} initial={{ opacity: 0, x: -10 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.05 }} className="flex items-center gap-3">
-              <span className="w-5 text-right font-mono text-xs text-white/40">{i + 1}</span>
-              <span className="w-36 truncate font-mono text-[12.5px] text-white/85">{m.maintainer}</span>
-              <div className="relative h-6 flex-1 overflow-hidden rounded-lg bg-white/[0.04]">
-                <motion.div initial={{ width: 0 }} animate={{ width: `${(m.reach / max) * 100}%` }} transition={{ duration: 0.8, delay: i * 0.05 }}
-                  className={clsx("h-full rounded-lg", m.compromised_in_incident ? "bg-gradient-to-r from-rose-500/70 to-fuchsia-500/60" : "bg-gradient-to-r from-indigo-500/60 to-violet-500/50")} />
-                <span className="absolute inset-y-0 left-2 flex items-center whitespace-nowrap text-[11px] font-medium text-white/90">{m.reach} services</span>
-                {m.compromised_in_incident && <span className="absolute inset-y-0 right-2 flex items-center whitespace-nowrap text-[10.5px] font-semibold text-white">phished 2025-09-08</span>}
-              </div>
-              <span className="w-16 shrink-0 text-right font-mono text-[10.5px] text-white/40">pr {m.pagerank.toFixed(2)}</span>
-            </motion.div>
-          ))}
+    <Card>
+      <CardHeader icon={<Crown />} title="Single points of failure" sub="npm accounts ranked by how many fleet services they reach, ties broken by algo.pageRank." />
+      <div className="grid gap-8 p-5 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,1fr)]">
+        <div>
+          <div className="mb-2 grid grid-cols-[24px_140px_minmax(0,1fr)_56px] gap-3 text-[12px] text-ink-3"><span>#</span><span>Maintainer</span><span>Fleet reach</span><span className="text-right">PageRank</span></div>
+          <div className="space-y-1.5">
+            {r.spof.maintainers.map((m, i) => (
+              <motion.div key={m.maintainer} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: i * 0.03, duration: 0.2 }}
+                className="grid grid-cols-[24px_140px_minmax(0,1fr)_56px] items-center gap-3 text-[13px]">
+                <span className="font-mono text-[12px] text-ink-3 tabular">{i + 1}</span>
+                <span className="truncate font-mono text-ink">{m.maintainer}</span>
+                <div className="flex items-center gap-2.5">
+                  <div className="h-1.5 flex-1 overflow-hidden rounded-full bg-subtle">
+                    <motion.div initial={{ width: 0 }} animate={{ width: `${(m.reach / max) * 100}%` }} transition={{ duration: 0.6, delay: 0.1 + i * 0.03, ease: [0.22, 1, 0.36, 1] }}
+                      className={clsx("h-full rounded-full", m.compromised_in_incident ? "bg-signal" : "bg-ink")} />
+                  </div>
+                  <span className="w-20 shrink-0 text-[12.5px] text-ink-2 tabular">{m.reach} services</span>
+                </div>
+                <span className="text-right font-mono text-[12px] text-ink-2 tabular">{m.pagerank.toFixed(2)}</span>
+              </motion.div>
+            ))}
+          </div>
+          {r.spof.maintainers.some((m) => m.compromised_in_incident) && (
+            <p className="mt-4 flex items-center gap-2 text-[12.5px] text-ink-2"><span className="h-1.5 w-3 rounded-full bg-signal" />Phished on Sept 8, 2025 (curated incident data)</p>
+          )}
         </div>
         <div>
-          <p className="mb-1 text-[11px] font-medium uppercase tracking-wider text-white/40">Reach vs PageRank</p>
-          <SpofScatter spof={r.spof} />
-          <p className="mb-2 mt-4 text-[11px] font-medium uppercase tracking-wider text-white/40">Most load-bearing packages (algo.pageRank)</p>
-          <div className="space-y-1">
+          <p className="mb-2 text-[12px] text-ink-3">Most load-bearing packages, by algo.pageRank</p>
+          <div className="divide-y divide-line rounded-lg border border-line">
             {r.spof.pagerank.map((p) => (
-              <div key={p.pkg + p.version} className="flex items-center justify-between rounded-lg bg-white/[0.03] px-3 py-1.5 font-mono text-[11.5px]">
-                <span className="text-white/80">{p.pkg}<span className="text-white/35">@{p.version}</span></span>
-                <span className="text-indigo-200/80">{p.score.toFixed(3)}</span>
+              <div key={p.pkg + p.version} className="flex items-center justify-between px-3 py-1.5 font-mono text-[12px]">
+                <span className="truncate text-ink">{p.pkg}<span className="text-ink-3">@{p.version}</span></span>
+                <span className="text-ink-2 tabular">{p.score.toFixed(3)}</span>
               </div>
             ))}
           </div>
         </div>
+      </div>
+      <div className="border-t border-line p-5">
+        <p className="mb-1 text-[12.5px] font-medium text-ink-2">Reach against PageRank</p>
+        <SpofScatter spof={r.spof} />
       </div>
     </Card>
   );
@@ -377,50 +401,52 @@ export function SpofPanel({ r }: { r: AskResponse }) {
 
 export function PathPanel({ r }: { r: AskResponse }) {
   if (!r.path) return null;
+  const n = r.path.via.length;
   return (
-    <Card delay={0.05}>
-      <CardHeader icon={<GitBranch className="h-4 w-4" />} title={`Why is ${r.path.service} connected to ${r.path.package}?`} sub={`Shortest path via algo.SPpaths, ${r.path.hops} hops`} />
-      <div className="flex flex-wrap items-center gap-2 p-5">
-        {r.path.via.map((n, i) => (
-          <motion.div key={n} initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: i * 0.12 }} className="flex items-center gap-2">
-            {i > 0 && (
-              <span className="flex flex-col items-center">
-                <span className="font-mono text-[10px] text-violet-300/80">{r.path!.requirements[i - 1]}</span>
-                <span className="text-white/30">→</span>
-              </span>
-            )}
-            <span className={clsx("rounded-xl px-3 py-2 font-mono text-[12.5px] ring-1 ring-inset", i === 0 ? "bg-indigo-500/15 text-indigo-100 ring-indigo-400/30" : i === r.path!.via.length - 1 ? "bg-violet-500/20 text-violet-100 ring-violet-400/40" : "bg-white/[0.05] text-white/80 ring-white/10")}>{n}</span>
-          </motion.div>
+    <Card>
+      <CardHeader icon={<GitBranch />} title={`Why is ${r.path.service} connected to ${r.path.package}?`} sub={`Shortest path with algo.SPpaths, ${r.path.hops} hops. The declared range is shown on every edge.`} />
+      <ol className="p-5">
+        {r.path.via.map((node, i) => (
+          <motion.li key={node} initial={{ opacity: 0, x: -4 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.06, duration: 0.2 }} className="relative flex gap-4 pb-4 last:pb-0">
+            {i < n - 1 && <span className="absolute left-[5px] top-4 h-[calc(100%-8px)] w-px bg-line-strong" />}
+            <span className={clsx("relative mt-1.5 h-[11px] w-[11px] shrink-0 rounded-full", i === 0 ? "bg-ink" : i === n - 1 ? "bg-signal" : "border-2 border-ink-3 bg-surface")} />
+            <div className="min-w-0">
+              <p className={clsx("font-mono text-[13.5px]", i === 0 || i === n - 1 ? "font-medium text-ink" : "text-ink-2")}>{node}</p>
+              {i < n - 1 && <p className="mt-0.5 font-mono text-[12px] text-ink-3">requires {r.path!.requirements[i]}</p>}
+            </div>
+          </motion.li>
+        ))}
+      </ol>
+    </Card>
+  );
+}
+
+export function WakeOnly({ r }: { r: AskResponse }) {
+  if (!r.maintainers) return null;
+  return (
+    <Card>
+      <CardHeader icon={<Activity />} title={`Who maintains ${r.maintainers.pkg}`} sub="The npm registry today, plus curated publish rights at incident time." />
+      <div className="flex flex-wrap gap-x-5 gap-y-2 p-5 text-[13.5px]">
+        {r.maintainers.maintainers.map((m) => (
+          <span key={m} className="flex items-center gap-2 font-mono text-ink">
+            <span className={clsx("h-1.5 w-1.5 rounded-full", r.maintainers!.had_publish_rights.includes(m) ? "bg-signal" : "bg-ink-3")} />{m}
+          </span>
         ))}
       </div>
     </Card>
   );
 }
 
-export function WakeOnly({ r }: { r: AskResponse }) {
-  if (r.maintainers) {
-    return (
-      <Card delay={0.05}>
-        <CardHeader icon={<Activity className="h-4 w-4" />} title={`Who maintains ${r.maintainers.pkg}`} sub="npm registry today, plus curated publish rights at incident time" />
-        <div className="flex flex-wrap gap-2 p-5">
-          {r.maintainers.maintainers.map((m) => <Pill key={m} tone={r.maintainers!.had_publish_rights.includes(m) ? "danger" : "accent"}>{m}</Pill>)}
-        </div>
-      </Card>
-    );
-  }
-  return null;
-}
-
 export function ErrorCard({ message, kind, onRetry }: { message: string; kind: string; onRetry: () => void }) {
   return (
-    <Card className="border-rose-400/30 p-5">
+    <Card className="border-signal/30 p-5">
       <div className="flex items-start gap-3">
-        <AlertTriangle className="mt-0.5 h-5 w-5 shrink-0 text-rose-300" />
+        <AlertTriangle className="mt-0.5 h-[18px] w-[18px] shrink-0 text-signal" />
         <div className="flex-1">
-          <p className="font-medium text-rose-100">{kind === "graph_unavailable" ? "Graph unavailable" : kind === "network" ? "API unreachable" : "Something went wrong"}</p>
-          <p className="mt-1 text-sm text-white/60">{message}</p>
+          <p className="text-[14px] font-medium text-ink">{kind === "graph_unavailable" ? "Graph unavailable" : kind === "network" ? "API unreachable" : "Something went wrong"}</p>
+          <p className="mt-1 text-[13.5px] text-ink-2">{message}</p>
         </div>
-        <button onClick={onRetry} className="rounded-lg bg-white/[0.06] px-3 py-1.5 text-xs text-white/80 ring-1 ring-white/10 hover:bg-white/10">Retry</button>
+        <Button onClick={onRetry}>Retry</Button>
       </div>
     </Card>
   );
@@ -429,32 +455,34 @@ export function ErrorCard({ message, kind, onRetry }: { message: string; kind: s
 export function ScopeStrip({ r }: { r: AskResponse }) {
   if (!r.scope.length) return null;
   return (
-    <div className="scroll-thin flex gap-1.5 overflow-x-auto px-0.5 pb-1 [mask-image:linear-gradient(90deg,transparent,black_12px,black_calc(100%-48px),transparent)]">
-      {r.scope.map((s) => (
-        <span key={s.package + s.bad_version} className="inline-flex shrink-0 items-center gap-1.5 rounded-lg bg-rose-500/[0.07] px-2 py-1 font-mono text-[11px] text-rose-200/90 ring-1 ring-inset ring-rose-400/15">
-          <FileCode2 className="h-3 w-3 opacity-60" />{s.package}@{s.bad_version}
-          {s.clean_version && <span className="text-emerald-300/80">→ {s.clean_version}</span>}
-        </span>
-      ))}
-    </div>
+    <Card>
+      <div className="grid grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)_minmax(0,1.2fr)] gap-4 border-b border-line px-5 py-2.5 text-[12px] text-ink-3">
+        <span>Package</span><span>Malicious, pin to</span><span className="hidden sm:block">Advisory</span>
+      </div>
+      <div className="scroll-thin max-h-[360px] divide-y divide-line overflow-y-auto">
+        {r.scope.map((s) => (
+          <div key={s.package + s.bad_version} className="grid grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)_minmax(0,1.2fr)] items-center gap-4 px-5 py-2 font-mono text-[12.5px]">
+            <span className="truncate text-ink">{s.package}</span>
+            <span className="tabular"><span className="text-signal-ink line-through decoration-signal/40">{s.bad_version}</span>{s.clean_version ? <span className="text-ink-2"> → {s.clean_version}</span> : <span className="text-ink-3"> no clean version</span>}</span>
+            <span className="hidden truncate text-ink-3 sm:block">{s.advisory_id ?? "user report"}</span>
+          </div>
+        ))}
+      </div>
+    </Card>
   );
 }
-
-export { CircleCheck };
-
 
 export function InsightsPanel({ r }: { r: AskResponse }) {
   const [tab, setTab] = useState<"rings" | "matrix">("rings");
   return (
-    <Card delay={0.08}>
-      <CardHeader icon={<Activity className="h-4 w-4" />} title="Insights" sub={`Derived from ${r.exposed.length + r.safe.length} services' dependency paths at depth ${r.depth}`}
-        right={
-          <div className="flex rounded-lg bg-white/[0.04] p-0.5 text-[11px]">
-            {([["rings", "Blast radius rings"], ["matrix", "Exposure matrix"]] as const).map(([k, l]) => (
-              <button key={k} onClick={() => setTab(k)} className={clsx("rounded-md px-2.5 py-1 font-medium transition", tab === k ? "bg-white/12 text-white" : "text-white/50 hover:text-white/80")}>{l}</button>
-            ))}
-          </div>
-        } />
+    <Card>
+      <div className="flex flex-wrap items-center justify-between gap-3 border-b border-line px-5 py-3">
+        <div>
+          <h3 className="text-[14px] font-semibold tracking-[-0.01em] text-ink">Insights</h3>
+          <p className="mt-0.5 text-[12.5px] text-ink-3">From the dependency paths of {r.exposed.length + r.safe.length} services at depth {r.depth}</p>
+        </div>
+        <Segmented value={tab} onChange={setTab} options={[{ value: "rings", label: "Blast radius" }, { value: "matrix", label: "Exposure matrix" }]} />
+      </div>
       <div className="p-5">{tab === "rings" ? <BlastRings r={r} /> : <ExposureMatrix r={r} />}</div>
     </Card>
   );

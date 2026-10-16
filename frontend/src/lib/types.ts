@@ -204,6 +204,8 @@ export interface FleetGraph {
 }
 
 export interface Health {
+  /** True when the server requires X-Admin-Token on reset, cleanup and DELETE. */
+  admin_guard?: boolean;
   status: string;
   falkordb: "up" | "down";
   graph: string;

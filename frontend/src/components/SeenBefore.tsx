@@ -9,22 +9,22 @@ export function SeenBefore({ sb }: { sb: SeenBeforeT }) {
   const gone = sb.no_longer_exposed ?? [];
   return (
     <motion.div initial={{ opacity: 0, y: -6 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.35 }}
-      className="flex flex-wrap items-center gap-x-3 gap-y-1 rounded-xl bg-violet-500/[0.08] px-4 py-2.5 text-sm text-violet-100/90 ring-1 ring-inset ring-violet-400/20"
+      className="flex flex-wrap items-center gap-x-3 gap-y-1 rounded-lg border border-line bg-surface px-4 py-2.5 text-[13.5px] text-ink-2"
       data-testid="seen-before">
-      <History className="h-4 w-4 shrink-0 text-violet-300" />
+      <History className="h-4 w-4 shrink-0 text-ink-3" />
       <span>
-        <span className="font-medium text-violet-100">Seen before: {sb.id}</span>
-        <span className="text-violet-100/60"> on {sb.at_local}{sb.same_trigger ? "" : ` (related: ${sb.trigger})`}, {sb.exposed_count} service{sb.exposed_count === 1 ? "" : "s"} at depth {sb.depth}{sb.has_patch ? ", patch on file" : ""}</span>
+        <span className="font-medium text-ink">Seen before: {sb.id}</span>
+        <span className="text-ink-2"> on {sb.at_local}{sb.same_trigger ? "" : ` (related: ${sb.trigger})`}, {sb.exposed_count} service{sb.exposed_count === 1 ? "" : "s"} at depth {sb.depth}{sb.has_patch ? ", patch on file" : ""}</span>
       </span>
       {sb.same_trigger && sb.new_since && (
-        <span className="text-xs text-violet-100/60">
+        <span className="text-xs text-ink-2">
           {added.length === 0 && gone.length === 0 ? "No change since then." : [
             added.length ? `${added.length} newly exposed: ${added.join(", ")}` : "",
             gone.length ? `${gone.length} no longer exposed: ${gone.join(", ")}` : "",
           ].filter(Boolean).join(". ")}
         </span>
       )}
-      <span className="ml-auto text-[11px] uppercase tracking-wider text-violet-200/40">fresh traversal above</span>
+      <span className="ml-auto text-[12px] text-ink-3">Result above is a fresh traversal</span>
     </motion.div>
   );
 }
