@@ -125,6 +125,29 @@ docker run --rm -p 8000:8000 -e FALKORDB_HOST=host.docker.internal patientzero
   already loaded ... leaving it alone", FalkorDB loaded the AOF from `/data`, and the incident, the playbook
   and the BYO scan graph were all still there.
 
+## Before recording
+Both scripts default to the live app; point them anywhere with `BASE_URL`. The admin token comes from
+`$ADMIN_TOKEN`, else `~/.config/patientzero/admin-token`; it is sent as a header and never printed. Both need
+`curl` and `jq`, and exit non-zero (with the HTTP status) on any failure.
+
+- `sh scripts/reset-live.sh` wipes demo memory (Incident and Finding nodes, Playbooks, every BYO scan graph; the
+  fleet data is untouched), then checks that `/api/incidents` and `/api/playbooks` are empty.
+- `sh scripts/seed-demo-memory.sh` sets up the "approve, then remember" beat: it runs reset-live.sh, calls
+  `/api/fix` with "maintainer qix was phished", approves the new incident as `approved_by: atharv`, then asks a bare
+  "qix" and fails unless the answer is `answered_from_memory`, cites that incident, and carries that playbook.
+  Every call is deterministic, so seeding costs no LLM tokens. Override with `TRIGGER=...` or `APPROVER=...`.
+
+Pick one: reset only if the video shows the first-time investigation and the Approve click live; seed if it opens
+on graph memory. Verified locally on Oct 16 2026 (about 00:55 ET) against `BASE_URL=http://localhost:8000` (guard
+off) and a guarded instance on :8011 (`ADMIN_TOKEN` set: wrong token exits 1 with HTTP 401, right token seeds
+INC + PB and the bare "qix" check passes). Not yet run against live.
+
+```sh
+BASE_URL=http://localhost:8000 sh scripts/seed-demo-memory.sh   # local
+sh scripts/reset-live.sh                                         # live, clean slate
+sh scripts/seed-demo-memory.sh                                   # live, memory pre-seeded
+```
+
 ## Limits and operations
 - BYO: 5 scans per minute per IP (in-memory, per instance), at most 60 direct dependencies, package.json up
   to 200 KB, package-lock.json up to 8 MB, 60 s per scan, 15 s per upstream call. Scan graphs `byo:<hash>`
@@ -135,8 +158,6 @@ docker run --rm -p 8000:8000 -e FALKORDB_HOST=host.docker.internal patientzero
 - Admin endpoints (`POST /api/admin/reset`, `POST /api/memory/reset`, `DELETE /api/playbooks`,
   `POST /api/byo/cleanup`) need the `X-Admin-Token` header. Set `ADMIN_TOKEN` on the Railway `patientzero`
   service (a strong random value; stored locally at `~/.config/patientzero/admin-token`, chmod 600).
-- **Before recording or judging, reset the demo** so everyone starts clean (incidents, findings, playbooks and
-  BYO scan graphs; the fleet data is untouched):
-  `curl -XPOST https://patientzero-production-2cb3.up.railway.app/api/admin/reset -H "X-Admin-Token: $(cat ~/.config/patientzero/admin-token)"`
+- Before recording: see the next section.
 - `INCIDENTS=qix,shai-hulud` is set on the `patientzero` service. On start, `ingest/seed_if_missing.py` adds the
   Shai-Hulud advisories to an existing graph with MERGE only (idempotent, memory untouched).
