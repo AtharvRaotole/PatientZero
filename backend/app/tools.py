@@ -99,9 +99,11 @@ def resolve_entity(text: str, tr: Trace) -> dict:
 # --------------------------------------------------------------------------- incident_scope
 def incident_scope(tr: Trace, *, maintainer: str | None = None, advisory_id: str | None = None,
                    packages: list[str] | None = None, package: str | None = None,
-                   bad_version: str | None = None) -> list[dict]:
+                   bad_version: str | None = None, campaign: str | None = None) -> list[dict]:
     """Bad versions in scope with clean versions. pkg@ver without an advisory is treated as user-asserted."""
-    if maintainer:
+    if campaign:
+        rows = tr.run("incident_scope", "incident_scope_by_campaign", {"campaign": campaign})
+    elif maintainer:
         rows = tr.run("incident_scope", "incident_scope_by_maintainer", {"maintainer": maintainer})
     elif advisory_id:
         rows = tr.run("incident_scope", "incident_scope_by_advisory", {"advisory_id": advisory_id})

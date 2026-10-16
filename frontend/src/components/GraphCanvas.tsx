@@ -1,6 +1,6 @@
 "use client";
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import ForceGraph2D from "react-force-graph-2d";
 import type { FleetGraph, GraphElem } from "@/lib/types";
 
@@ -77,28 +77,33 @@ export default function GraphCanvas({ fleet, highlight, onNodeClick, leftInset }
     g.d3Force("link")?.distance((l: any) => (l.source?.kind === "Service" ? 34 : 16));
   }, [data]);
 
-  // camera: frame the highlighted subgraph (or the whole fleet) in the area right of the headline panel
-  useEffect(() => {
+  // camera: frame the highlighted subgraph (or the whole fleet) in the area right of the headline panel.
+  // Standalone subgraphs (BYO scans) have no overlay, so they use the full canvas and refit when the layout settles.
+  const isStandalone = !fleet;
+  const fit = useCallback((ms = 900) => {
     const g = fg.current;
     if (!g || !data.nodes.length) return;
-    const t = setTimeout(() => {
-      const filter = hl.active ? (n: N) => hl.nodes.has(n.id) : () => true;
-      const bb = g.getGraphBbox(filter);
-      if (!bb) return;
-      const leftPad = leftInset ?? (size.w >= 1100 ? Math.min(560, size.w * 0.42) : 0);
-      const pad = 70;
-      const bw = Math.max(bb.x[1] - bb.x[0], 1);
-      const bh = Math.max(bb.y[1] - bb.y[0], 1);
-      const availW = size.w - leftPad - pad * 2;
-      const availH = size.h - pad * 2 - (leftPad ? 0 : 260);
-      const z = Math.max(0.4, Math.min(hl.active ? 3.2 : 2.2, availW / bw, availH / bh));
-      const cx = (bb.x[0] + bb.x[1]) / 2 - leftPad / 2 / z;
-      const cy = (bb.y[0] + bb.y[1]) / 2 - (leftPad ? 0 : 130 / z);
-      g.centerAt(cx, cy, 900);
-      g.zoom(z, 900);
-    }, hl.active ? 150 : 1800);
+    const filter = hl.active && !isStandalone ? (n: N) => hl.nodes.has(n.id) : () => true;
+    const bb = g.getGraphBbox(filter);
+    if (!bb) return;
+    const leftPad = isStandalone ? 0 : leftInset ?? (size.w >= 1100 ? Math.min(560, size.w * 0.42) : 0);
+    const overlay = isStandalone || leftPad ? 0 : 260;
+    const pad = isStandalone ? 40 : 70;
+    const bw = Math.max(bb.x[1] - bb.x[0], 1);
+    const bh = Math.max(bb.y[1] - bb.y[0], 1);
+    const availW = size.w - leftPad - pad * 2;
+    const availH = size.h - pad * 2 - overlay;
+    const z = Math.max(0.4, Math.min(isStandalone ? 1.8 : hl.active ? 3.2 : 2.2, availW / bw, availH / bh));
+    const cx = (bb.x[0] + bb.x[1]) / 2 - leftPad / 2 / z;
+    const cy = (bb.y[0] + bb.y[1]) / 2 - overlay / 2 / z;
+    g.centerAt(cx, cy, ms);
+    g.zoom(z, ms);
+  }, [hl, data, size.w, size.h, leftInset, isStandalone]);
+
+  useEffect(() => {
+    const t = setTimeout(() => fit(), hl.active ? 150 : 1800);
     return () => clearTimeout(t);
-  }, [hl, data, size.w, size.h, leftInset]);
+  }, [fit, hl.active]);
 
   const colorOf = (n: N): string => {
     const h = hl.nodes.get(n.id);
@@ -121,6 +126,7 @@ export default function GraphCanvas({ fleet, highlight, onNodeClick, leftInset }
         backgroundColor="rgba(0,0,0,0)"
         warmupTicks={40}
         cooldownTicks={250}
+        onEngineStop={() => isStandalone && fit(600)}
         autoPauseRedraw={false}
         enableNodeDrag
         minZoom={0.3}

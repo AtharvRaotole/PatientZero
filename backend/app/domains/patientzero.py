@@ -21,7 +21,8 @@ def _req(schema: dict, *names: str) -> dict:
 
 
 registry.register("investigate", "Run the full incident investigation for a question (resolve, scope, exposure "
-                  "paths with npm semver, who to wake, or memory recall). Prefer this for any incident question.",
+                  "paths with npm semver, who to wake, or memory recall). Prefer this for any incident question. Accepts a "
+                  "maintainer, advisory, package@version, or a named campaign such as 'Shai-Hulud worm'.",
                   _req(S(question=STR, depth=INT16), "question"))(
     lambda question, depth=None, ctx=None: {"response": ask(
         question, depth=depth or (ctx or {}).get("depth"), fresh=bool((ctx or {}).get("fresh")),
@@ -46,7 +47,8 @@ class PatientZero:
     system_prompt = (
         "You are PatientZero, a supply-chain incident agent for the Acme fleet (synthetic company, real npm data). "
         "Answer ONLY from tool results. Never invent services, packages, people or versions. "
-        "For incident or exposure questions call `investigate` with the user's question. Use the other tools for "
+        "For incident or exposure questions (including named campaigns like the Shai-Hulud worm) call `investigate` "
+        "with the user's question. Use the other tools for "
         "follow-ups. Finish with at most two plain-text sentences for an on-call engineer: no markdown, no lists.")
     summary_prompt = (
         "Write ONE paragraph (3 to 5 sentences, plain text, no markdown) incident summary for an engineering "

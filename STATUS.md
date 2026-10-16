@@ -1,6 +1,6 @@
 # STATUS (PatientZero)
 
-_Last updated: Thu Oct 15 2026, 11:50 PM ET_
+_Last updated: Fri Oct 16 2026, 12:40 AM ET_
 
 ## Completed
 - [x] FalkorDB 6.0.1 running locally without Docker: `redis-server` 8.0.2 (apt) + `falkordb-x64.so` module (sha256 verified), port 6379
@@ -10,15 +10,23 @@ _Last updated: Thu Oct 15 2026, 11:50 PM ET_
 - [x] Verified in headless Chrome: homepage renders "Backend: up" from the API (CORS OK)
 - [x] `.env.example`, `.gitignore`, README skeleton, `scripts/dev.sh`
 
+- [x] Agent: deterministic router first, OpenAI tool calling only when not confident, name-checked answers, click-only AI summary, answer cache, token caps
+- [x] LLM hard spend guard: daily cap (OPENAI_DAILY_CALL_CAP=200), per-client limit (OPENAI_PER_IP_PER_MIN=10, rightmost X-Forwarded-For), deterministic fallback with a trace note, usage log .cache/llm_usage.jsonl, budget in /health
+- [x] Insights: blast radius rings, exposure matrix, maintainer reach vs PageRank scatter, incident timeline (/api/timeline over queries/timeline.cypher)
+- [x] BYO scan UI (GitHub URL or package.json, include devDependencies toggle, axios and express 4.x presets) and Approve, Playbooks UI, playbook reuse shown in the fix panel
+- [x] Shai-Hulud campaign routing (incident_scope_by_campaign); honest message when the campaign is not loaded
+- [x] Static export (NEXT_OUTPUT=export, NEXT_PUBLIC_API_URL=.) verified served by app.serve on one origin, browser smoke test clean
+- [x] Verification: backend pytest 89 passed; browser e2e 12/12; BYO presets checked in browser (axios exposed, express 4.x runtime clean)
+
 ## Next actions
-- Implement the PatientZero core journey per FIRST_BRIEF.md / SPEC.md (ingest → graph → incident query → UI paths)
-- Add `queries/*.cypher` + data-model diagram to README
-- Demo mode with fixtures; demo script; deployment (FalkorDB Cloud free tier + host)
+- Final polish pass on screenshots for the README; deploy preview URL (DEPLOY.md, Railway) once credentials are available
+- Optional: load Shai-Hulud (INCIDENTS=qix,shai-hulud) in the demo graph and add a preset chip
 
 ## Assumptions
-- Plain `redis-server` + module replaces Docker; FalkorDB Browser (port 3000) is unavailable, so the frontend runs on **3001**
-- Generic `falkordb-x64.so` (v6.0.1) works on this Debian 13 box; the rhel9 variant is an alternative
-- No LLM key: core journey must be deterministic
+- Plain `redis-server` + module replaces Docker locally; FalkorDB Browser uses port 3000, so the frontend dev server runs on **3001**
+- The Acme fleet is synthetic; npm packages, versions, ranges, advisories and maintainers are real
+- The LLM is optional: everything works deterministically without OPENAI_API_KEY
+- Per-client LLM limits key on the rightmost X-Forwarded-For entry (the edge proxy's), else the socket peer
 
 ## Blockers
 - None. (Docker is not installed; worked around.)

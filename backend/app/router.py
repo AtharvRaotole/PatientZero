@@ -23,6 +23,19 @@ INTENTS = [
 ]
 
 
+# Named campaigns (Advisory.campaign). Shai-Hulud is loaded only with INCIDENTS=qix,shai-hulud.
+CAMPAIGNS = [
+    (re.compile(r"shai[\s_-]?hulud|self[\s-]?replicating worm|\bnpm worm\b", re.I), "2025-09-15-shai-hulud", "Shai-Hulud"),
+]
+
+
+def campaign_of(text: str) -> tuple[str, str] | None:
+    for rx, cid, label in CAMPAIGNS:
+        if rx.search(text):
+            return cid, label
+    return None
+
+
 def local_date(iso: str | None) -> str:
     try:
         return datetime.fromisoformat(iso).astimezone().strftime("%b %d %Y, %I:%M %p %Z")
@@ -42,6 +55,9 @@ def trigger_of(ent: dict) -> tuple[str, str, str] | None:
 
     Returns (label, entity_kind, entity_key); entity_key matches what queries/recall.cypher expects.
     """
+    if ent.get("campaign"):
+        cid, label = ent["campaign"]
+        return f"campaign {label}", "campaign", cid
     if ent["advisories"]:
         a = ent["advisories"][0]
         return f"advisory {a['query']}", "advisory", a["id"]
@@ -58,6 +74,8 @@ def trigger_of(ent: dict) -> tuple[str, str, str] | None:
 
 
 def scope_for(tr: Trace, ent: dict) -> list[dict]:
+    if ent.get("campaign"):
+        return tools.incident_scope(tr, campaign=ent["campaign"][0])
     if ent["advisories"]:
         return tools.incident_scope(tr, advisory_id=ent["advisories"][0]["id"])
     if ent["package_versions"]:
@@ -88,7 +106,15 @@ def ask(text: str, depth: int | None = None, fresh: bool = False, session: str =
     try:
         ent = tools.resolve_entity(text, tr)
         out["entity"] = ent
-        if intent == "single_points_of_failure":
+        camp = campaign_of(text)
+        if camp and intent in ("exposure", "recall", "who_to_wake") and not ent["services"]:
+            ent["campaign"] = list(camp)
+            ent["found"] = True
+            if intent == "recall":
+                _recall(out, tr, ent)
+            else:
+                _incident(out, tr, ent, depth, fresh, session, generate_fix)
+        elif intent == "single_points_of_failure":
             _spof(out, tr)
         elif intent == "recall" and not ent["unresolved"]:
             _recall(out, tr, ent)
@@ -145,6 +171,11 @@ def _incident(out, tr, ent, depth, fresh, session, generate_fix):
             return
     scope = scope_for(tr, ent)
     out["scope"] = scope
+    if not scope and kind == "campaign":
+        out["outcome"] = "not_in_graph"
+        out["message"] = (f"The {ent['campaign'][1]} campaign is not loaded in this graph (no advisories tagged "
+                          f"{key}). Reload with INCIDENTS=qix,shai-hulud to trace it.")
+        return
     if not scope:
         out["outcome"] = "not_in_graph"
         out["message"] = (f"{trigger} is in the graph, but no compromised version is recorded for it, so there "
@@ -155,7 +186,10 @@ def _incident(out, tr, ent, depth, fresh, session, generate_fix):
     out.update(exposed=res["exposed"], safe=res["safe"], clean=res["clean"], fleet_size=res["fleet_size"])
     out["exposed_count"] = len(res["exposed"])
     out["graph"] = graph_elements(res["exposed"], res["safe"])
-    bad = ", ".join(sorted({f"{s['package']}@{s['bad_version']}" for s in scope}))
+    bad_all = sorted({f"{s['package']}@{s['bad_version']}" for s in scope})
+    bad = ", ".join(bad_all) if len(bad_all) <= 6 else (
+        f"{len(bad_all)} bad versions across {len({s['package'] for s in scope})} packages, e.g. "
+        + ", ".join(bad_all[:3]))
     if res["exposed"]:
         out["wake"] = tools.who_to_wake(tr, [e["service"] for e in res["exposed"]])
         out["outcome"] = "answered_with_path"

@@ -11,6 +11,11 @@ import { TracePanel } from "./panels";
 
 const GraphCanvas = dynamic(() => import("./GraphCanvas"), { ssr: false });
 
+const PRESETS = [
+  { label: "axios/axios", url: "https://github.com/axios/axios", dev: true },
+  { label: "expressjs/express@4.x (runtime only)", url: "https://github.com/expressjs/express/tree/4.x", dev: false },
+];
+
 const STEPS = ["Fetching package.json", "Resolving the dependency graph (deps.dev)", "Loading an isolated graph into FalkorDB", "Traversing every chain against the 19 malicious versions"];
 const SAMPLE = `{
   "name": "my-app",
@@ -40,6 +45,7 @@ export default function ByoSection() {
   const [step, setStep] = useState(0);
   const [scan, setScan] = useState<ByoScan | null>(null);
   const [err, setErr] = useState<string | null>(null);
+  const [includeDev, setIncludeDev] = useState(true);
 
   useEffect(() => {
     if (!loading) return;
@@ -48,9 +54,9 @@ export default function ByoSection() {
     return () => clearInterval(t);
   }, [loading]);
 
-  const submit = async () => {
+  const submit = async (preset?: { url: string; dev: boolean }) => {
     setErr(null);
-    if (tab === "json") {
+    if (!preset && tab === "json") {
       try {
         JSON.parse(json);
       } catch {
@@ -60,7 +66,9 @@ export default function ByoSection() {
     }
     setLoading(true);
     try {
-      const body = tab === "github" ? { github_url: url.trim() } : { package_json: json };
+      const ghUrl = (preset?.url ?? url).trim();
+      const dev = preset ? preset.dev : includeDev;
+      const body = preset || tab === "github" ? { github_url: ghUrl, include_dev: dev } : { package_json: json, include_dev: dev };
       setScan(await apiPost<ByoScan>("/api/byo/scan", body));
     } catch (e) {
       const a = e as ApiError;
@@ -71,7 +79,8 @@ export default function ByoSection() {
     }
   };
 
-  const overrides = scan?.overrides ? ("overrides" in scan.overrides ? scan.overrides : { overrides: scan.overrides }) : null;
+  const rawOv = scan?.overrides ? ("overrides" in scan.overrides ? scan.overrides : { overrides: scan.overrides }) : null;
+  const overrides = rawOv && Object.keys((rawOv as { overrides: object }).overrides ?? {}).length ? rawOv : null;
   const hit = (scan?.exposed.length ?? 0) > 0;
 
   return (
@@ -103,6 +112,19 @@ export default function ByoSection() {
             {loading ? <Loader2 className="h-4 w-4 animate-spin" /> : <ScanSearch className="h-4 w-4" />} Scan
           </button>
         </form>
+        <div className="mt-3 flex flex-wrap items-center gap-2 text-[12px]">
+          <label className="mr-2 inline-flex cursor-pointer items-center gap-2 text-white/55">
+            <input type="checkbox" checked={includeDev} onChange={(e) => setIncludeDev(e.target.checked)} className="accent-amber-400" />
+            Include devDependencies
+          </label>
+          <span className="text-white/30">Try:</span>
+          {PRESETS.map((p) => (
+            <button key={p.label} disabled={loading} onClick={() => { setTab("github"); setUrl(p.url); setIncludeDev(p.dev); submit(p); }}
+              className="rounded-full border border-white/10 bg-white/[0.03] px-3 py-1 font-mono text-[11.5px] text-white/70 transition hover:border-amber-300/30 hover:text-white disabled:opacity-40">
+              {p.label}
+            </button>
+          ))}
+        </div>
 
         <AnimatePresence>
           {loading && (

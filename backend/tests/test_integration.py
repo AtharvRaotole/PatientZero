@@ -169,3 +169,14 @@ def test_timeline_events_from_graph():
 def test_health_reports_llm_budget():
     b = client.get("/health").json()["llm_budget"]
     assert b["daily_cap"] >= 1 and b["per_ip_per_min"] >= 1 and "calls" in b
+
+
+def test_campaign_not_loaded_is_honest():
+    # The default test graph loads only the qix incident; Shai-Hulud must say so, not guess.
+    d = ask("Were we hit by the Shai-Hulud worm?")
+    assert d["outcome"] in ("not_in_graph", "answered_with_path")
+    assert d["trigger"] == "campaign Shai-Hulud"
+    if not d["scope"]:
+        assert "INCIDENTS=qix,shai-hulud" in d["message"]
+    else:
+        assert len(d["message"]) < 600

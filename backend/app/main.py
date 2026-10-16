@@ -62,8 +62,9 @@ def health() -> dict[str, Any]:
 
 
 def client_ip(request: Request) -> str:
+    """Rightmost X-Forwarded-For entry (added by the edge proxy, so clients cannot spoof it), else the socket peer."""
     fwd = request.headers.get("x-forwarded-for", "")
-    return fwd.split(",")[0].strip() if fwd else (request.client.host if request.client else "")
+    return fwd.split(",")[-1].strip() if fwd else (request.client.host if request.client else "")
 
 
 def _ask(query: str, depth: int | None, fresh: bool, session: str, fix: bool, mode: str = "auto",
