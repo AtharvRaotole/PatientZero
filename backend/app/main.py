@@ -11,6 +11,7 @@ from fastapi.responses import JSONResponse
 from . import admin, catalog, config, db, tools
 from .core import agent
 from .domains.patientzero import DOMAIN
+from .mcp_agent import wrap_domain
 from .db import GraphUnavailable, Trace
 from .models import AskRequest, AskResponse, ErrorResponse, FixRequest, SummaryRequest, SummaryResponse
 
@@ -20,6 +21,9 @@ app = FastAPI(title="PatientZero API", version="1.0.0",
 app.add_middleware(CORSMiddleware, allow_origins=config.CORS_ORIGINS, allow_origin_regex=config.CORS_ORIGIN_REGEX,
                    allow_credentials=True,
                    allow_methods=["*"], allow_headers=["*"])
+
+# The agent selects and runs its tools through our own MCP server (MCP_AGENT=off for direct calls).
+AGENT_DOMAIN = wrap_domain(DOMAIN)
 
 GRAPH_DOWN = ("graph unavailable: FalkorDB is not reachable, so PatientZero cannot answer. "
               "It never answers from anywhere else. Start it with scripts/start-falkordb.sh.")
@@ -58,7 +62,13 @@ def health() -> dict[str, Any]:
             "agent_mode": "llm" if agent.llm_available() else "deterministic",
             "llm_model": config.OPENAI_MODEL if agent.llm_available() else None,
             "domain": DOMAIN.name, "tools": DOMAIN.registry.names(), "llm_budget": agent.budget.status(),
-            "queries": len(db.CATALOGUE), "admin_guard": bool(config.ADMIN_TOKEN)}
+            "queries": len(db.CATALOGUE), "admin_guard": bool(config.ADMIN_TOKEN),
+            "mcp_agent": _mcp_agent_status()}
+
+
+def _mcp_agent_status() -> dict:
+    from .mcp_agent import domain as _md
+    return {**_md.status(), "active": AGENT_DOMAIN is not DOMAIN}
 
 
 def client_ip(request: Request) -> str:
@@ -69,7 +79,7 @@ def client_ip(request: Request) -> str:
 
 def _ask(query: str, depth: int | None, fresh: bool, session: str, fix: bool, mode: str = "auto",
          ip: str = "") -> AskResponse:
-    r = agent.run(DOMAIN, query, mode=mode, depth=depth, fresh=fresh, session=session, generate_fix=fix,
+    r = agent.run(AGENT_DOMAIN, query, mode=mode, depth=depth, fresh=fresh, session=session, generate_fix=fix,
                   client_ip=ip)
     return AskResponse.model_validate(r)
 

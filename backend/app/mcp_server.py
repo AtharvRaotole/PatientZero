@@ -1,4 +1,7 @@
-"""PatientZero MCP server (stdio). Exposes the same 8 tools as the web API.
+"""PatientZero MCP server (stdio). Exposes the 8 SPEC tools plus `investigate`, the agent's composite tool.
+
+The web agent (/api/ask) is a client of this same server object over the in-memory MCP transport
+(app/mcp_agent), so tool selection through MCP is what the product does, not a side door.
 
 Run:  cd backend && uv run python -m app.mcp_server
 Claude Desktop / Cursor config: command "uv", args ["--directory", "<repo>/backend", "run", "python", "-m", "app.mcp_server"]
@@ -51,6 +54,10 @@ def remediation_plan(trigger: str, depth: int = 4) -> dict:
 def recall(entity: str) -> dict:
     return catalog.recall(entity)
 
+
+from .mcp_agent.server import register as _register_agent_tools  # noqa: E402
+
+_register_agent_tools(mcp)
 
 if __name__ == "__main__":
     mcp.run()
