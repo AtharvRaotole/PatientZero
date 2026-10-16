@@ -26,6 +26,31 @@ plus an npm semver check on the last edge, shown with its trace. Nothing is gues
 
 More in [docs/screenshots](docs/screenshots).
 
+## Try it yourself
+On the [live app](https://patientzero-production-2cb3.up.railway.app), type into the bar (all checked on live, Oct 16, 2026):
+
+| Type | You get |
+|---|---|
+| `qix` | Answered from graph memory: the approved qix incident, 13 exposed services, patch on file |
+| `debug@4.4.2` | 10 of 22 services can install it at depth 4; 4 more reach debug but their ranges exclude it |
+| `chalk@5.6.1` | 1 of 22 exposed, 3 excluded by range |
+| `GHSA-4x49-vf9v-38px` | The same debug blast radius, entered by advisory id |
+| `Shai-Hulud` | Not hit: none of the 22 services can install any of the 589 malicious versions of the 203 worm packages |
+| `who to wake for auth-service` | Identity & Access (#team-identity), on-call Amara Okafor |
+| `path from img-service to simple-swizzle` | 4 hops: img-service, sharp, color, color-string, simple-swizzle |
+| `single points of failure` | npm accounts with the widest fleet reach: qix and matteo.collina (17 services each), sindresorhus (16) |
+
+Then scroll to **Would you have been hit on Sept 8, 2025?** and scan a public repo or a pasted package.json:
+
+| Input | Shows |
+|---|---|
+| `https://github.com/axios/axios` | Runtime exposed: axios, https-proxy-agent, debug@4.4.2 |
+| `https://github.com/sindresorhus/ora` | Runtime exposed: ora, string-width, strip-ansi@7.1.1 |
+| `https://github.com/expressjs/express/tree/4.x` (untick devDependencies) | Runtime clean: debug pinned to 2.6.9 exactly |
+| `https://github.com/vercel/ms` | Runtime clean; dev tooling only (jest, lint-staged and others reach chalk@5.6.1, debug@4.4.2) |
+| package.json `{"dependencies":{"chalk":"^5.3.0"}}` | Runtime exposed: `^5.3.0` admits chalk@5.6.1 |
+| package.json `{"dependencies":{"chalk":"5.3.0"}}` | Runtime clean: the exact pin excludes it |
+
 ## What you can do
 - **Ask** in plain English: "qix was phished, who is affected?", "debug@4.4.2", "GHSA-4x49-vf9v-38px", "who do I wake for checkout-api", "where are our single points of failure?", "why is img-service connected to is-arrayish?", "the guy who maintains chalk got phished".
 - **See** the blast radius on the live fleet graph, with exposed chains animated, a depth slider (1 to 6 hops) and honest negatives ("checkout-api reaches debug through express@4.21.2, but the exact pin 2.6.9 excludes 4.4.2").
