@@ -1,0 +1,182 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@koa/router@15.7.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/router_15.7.0_1783184237062_0.4153053405866016"
+ },
+ "_npmUser": {
+  "email": "imed_jebari@hotmail.fr",
+  "name": "3imed-jaberi"
+ },
+ "author": {
+  "name": "Koa.js"
+ },
+ "bugs": {
+  "email": "niftylettuce@gmail.com",
+  "url": "https://github.com/koajs/router/issues"
+ },
+ "contributors": [
+  {
+   "name": "@koajs"
+  },
+  {
+   "email": "imed-jaberi@outlook.com",
+   "name": "Imed Jaberi"
+  }
+ ],
+ "dependencies": {
+  "debug": "^4.4.3",
+  "http-errors": "^2.0.1",
+  "koa-compose": "^4.1.0",
+  "path-to-regexp": "^8.4.2"
+ },
+ "description": "Router middleware for Koa.",
+ "devDependencies": {
+  "@commitlint/cli": "^21.2.0",
+  "@commitlint/config-conventional": "^21.2.0",
+  "@eslint/js": "^10.0.1",
+  "@koa/bodyparser": "^6.1.0",
+  "@types/debug": "^4.1.13",
+  "@types/jsonwebtoken": "^9.0.10",
+  "@types/koa": "^3.0.3",
+  "@types/node": "^26.1.0",
+  "@types/supertest": "^7.2.0",
+  "@typescript-eslint/eslint-plugin": "^8.62.1",
+  "@typescript-eslint/parser": "^8.62.1",
+  "c8": "^11.0.0",
+  "chalk": "^5.6.2",
+  "eslint": "^10.6.0",
+  "eslint-plugin-unicorn": "^70.0.0",
+  "husky": "^9.1.7",
+  "joi": "^18.2.3",
+  "jsonwebtoken": "^9.0.3",
+  "koa": "^3.2.1",
+  "lint-staged": "^17.0.8",
+  "np": "^11.2.1",
+  "prettier": "^3.9.4",
+  "rimraf": "^6.1.3",
+  "supertest": "^7.2.2",
+  "ts-node": "^10.9.2",
+  "tsup": "^8.5.1",
+  "typescript": "^5.9.3"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 9,
+  "integrity": "sha512-WaAlk4TOl/O0rhTpOR0l052gz03syPMmI6Pe2gd7v3ubjfv5UcSGcnb0Y/J5NNC/ln+5FiUqPJTc/a15I+XqAA==",
+  "shasum": "e3448a6f8c541ddcfe4bbce49debac94f51fe20f",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQDobiPuxX7LKx3kpfepyLzBixvojW+5q/Z6k/gab2SSZgIhAK3UqoFHgRtL5nnl27pd2xF899+RftsQmrmwvyw3Pe3I"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@koa/router/-/router-15.7.0.tgz",
+  "unpackedSize": 207971
+ },
+ "engines": {
+  "node": ">= 20"
+ },
+ "exports": {
+  ".": {
+   "import": {
+    "import": "./dist/index.mjs",
+    "types": "./dist/index.d.mts"
+   },
+   "require": {
+    "require": "./dist/index.js",
+    "types": "./dist/index.d.ts"
+   }
+  }
+ },
+ "homepage": "https://github.com/koajs/router",
+ "keywords": [
+  "koa",
+  "middleware",
+  "route",
+  "router"
+ ],
+ "license": "MIT",
+ "licenseText": "The MIT License (MIT)\n\nCopyright (c) 2015 @koajs maintainers and contributors\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in\nall copies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN\nTHE SOFTWARE.\n",
+ "main": "./dist/index.js",
+ "maintainers": [
+  {
+   "email": "niftylettuce@gmail.com",
+   "name": "niftylettuce"
+  },
+  {
+   "email": "fengmk2@gmail.com",
+   "name": "fengmk2"
+  },
+  {
+   "email": "dead_horse@qq.com",
+   "name": "dead_horse"
+  },
+  {
+   "email": "jonathanrichardong@gmail.com",
+   "name": "jongleberry"
+  },
+  {
+   "email": "julian@juliangruber.com",
+   "name": "juliangruber"
+  },
+  {
+   "email": "aaron.heckmann+github@gmail.com",
+   "name": "aaron"
+  },
+  {
+   "email": "npm@titanism.com",
+   "name": "titanism"
+  },
+  {
+   "email": "imed_jebari@hotmail.fr",
+   "name": "3imed-jaberi"
+  },
+  {
+   "email": "ljharb@gmail.com",
+   "name": "ljharb"
+  }
+ ],
+ "module": "./dist/index.mjs",
+ "name": "@koa/router",
+ "peerDependencies": {
+  "koa": "^2.0.0 || ^3.0.0"
+ },
+ "peerDependenciesMeta": {
+  "koa": {
+   "optional": false
+  }
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/koajs/router.git"
+ },
+ "resolutions": {
+  "c8/yargs": "^18.0.0"
+ },
+ "scripts": {
+  "bench": "TS_NODE_PROJECT=tsconfig.bench.json node --require ts-node/register bench/run.ts",
+  "bench:all": "TS_NODE_PROJECT=tsconfig.bench.json node --require ts-node/register bench/make.ts",
+  "benchmark": "npm run bench",
+  "benchmark:all": "npm run bench:all",
+  "build": "tsup",
+  "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md,yml,yaml}\"",
+  "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md,yml,yaml}\"",
+  "lint": "npm run lint:ts",
+  "lint:ts": "eslint src test --fix",
+  "prebuild": "rimraf dist",
+  "prepare": "husky install",
+  "prepublishOnly": "npm run build",
+  "pretest:all": "npm run lint && npm run build",
+  "release": "np --test-script test:all",
+  "test:all": "TS_NODE_PROJECT=tsconfig.ts-node.json node --require ts-node/register --test test/*.test.ts test/**/*.test.ts recipes/**/*.test.ts",
+  "test:core": "TS_NODE_PROJECT=tsconfig.ts-node.json node --require ts-node/register --test test/*.test.ts test/**/*.test.ts",
+  "test:coverage": "c8 --all --exclude eslint.config.js --exclude tsup.config.ts --exclude src/types.ts --exclude \"bench/**\" --exclude \"dist/**\" --exclude \"recipes/**\" --exclude \"test/**\" --exclude-after-remap npm run test:all",
+  "test:recipes": "TS_NODE_PROJECT=tsconfig.recipes.json node --require ts-node/register --test recipes/**/*.test.ts",
+  "ts:check": "tsc --noEmit --project tsconfig.typecheck.json",
+  "ts:check:test": "tsc --noEmit --project tsconfig.test.json"
+ },
+ "types": "./dist/index.d.ts",
+ "version": "15.7.0"
+}

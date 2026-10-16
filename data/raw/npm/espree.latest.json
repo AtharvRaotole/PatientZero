@@ -1,0 +1,115 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "espree@11.2.0",
+ "_nodeVersion": "24.14.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/espree_11.2.0_1772836360772_0.4888272931340345"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:9364be98-4eeb-44d3-a083-9c4dcd38fd20"
+  }
+ },
+ "_npmVersion": "11.11.0",
+ "author": {
+  "email": "nicholas+npm@nczconsulting.com",
+  "name": "Nicholas C. Zakas"
+ },
+ "bugs": {
+  "url": "https://github.com/eslint/js/issues"
+ },
+ "dependencies": {
+  "acorn": "^8.16.0",
+  "acorn-jsx": "^5.3.2",
+  "eslint-visitor-keys": "^5.0.1"
+ },
+ "description": "An Esprima-compatible JavaScript parser built on Acorn",
+ "devDependencies": {
+  "shelljs": "^0.8.5",
+  "tsd": "^0.33.0"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/espree@11.2.0"
+  },
+  "fileCount": 13,
+  "integrity": "sha512-7p3DrVEIopW1B1avAGLuCSh1jubc01H2JHc8B4qqGblmg5gI9yumBgACjWo4JlIc04ufug4xJ3SQI8HkS/Rgzw==",
+  "shasum": "01d5e47dc332aaba3059008362454a8cc34ccaa5",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQDl6L1LCOc/d9LzPSQXQKB5n41XO4u4N0/tCX5yajUuAwIhAN0j3Dz97txuqdSFWei5HvmUrT31gl8tHYKoYH9sYMzQ"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/espree/-/espree-11.2.0.tgz",
+  "unpackedSize": 95658
+ },
+ "engines": {
+  "node": "^20.19.0 || ^22.13.0 || >=24"
+ },
+ "exports": {
+  ".": {
+   "default": "./dist/espree.cjs",
+   "import": "./espree.js",
+   "require": "./dist/espree.cjs",
+   "types": {
+    "import": "./dist/espree.d.ts",
+    "require": "./dist/espree.d.cts"
+   }
+  },
+  "./package.json": "./package.json"
+ },
+ "funding": "https://opencollective.com/eslint",
+ "gitHead": "a73b94be20835cd52379a43629fa2225e3f18763",
+ "homepage": "https://github.com/eslint/js/blob/main/packages/espree/README.md",
+ "keywords": [
+  "ast",
+  "ecmascript",
+  "javascript",
+  "parser",
+  "syntax",
+  "acorn"
+ ],
+ "license": "BSD-2-Clause",
+ "main": "dist/espree.cjs",
+ "maintainers": [
+  {
+   "email": "npm@openjsf.org",
+   "name": "openjsfoundation"
+  },
+  {
+   "email": "contact@eslint.org",
+   "name": "eslintbot"
+  }
+ ],
+ "name": "espree",
+ "repository": {
+  "directory": "packages/espree",
+  "type": "git",
+  "url": "git+https://github.com/eslint/js.git"
+ },
+ "scripts": {
+  "build": "rollup -c rollup.config.js && npm run build:types && node -e \"fs.rmSync('dist/lib', { recursive: true })\"",
+  "build:debug": "npm run build -- -m",
+  "build:docs": "node tools/sync-docs.js",
+  "build:types": "tsc && tsc -p tsconfig-cjs.json",
+  "lint:types": "attw --pack",
+  "pretest": "npm run build",
+  "test": "npm run test:types && npm run test:cjs && npm run test:esm",
+  "test:cjs": "mocha --color --reporter progress --timeout 30000 \"tests/**/*.test.cjs\"",
+  "test:esm": "c8 mocha --color --reporter progress --timeout 30000 \"tests/**/*.test.js\"",
+  "test:types": "tsd --typings dist/espree.d.ts"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "./dist/espree.d.cts",
+ "version": "11.2.0"
+}

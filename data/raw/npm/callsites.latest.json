@@ -1,0 +1,74 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "callsites@4.2.0",
+ "_nodeVersion": "18.20.2",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/callsites_4.2.0_1719668784407_0.26992061774254306"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "10.6.0",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/callsites/issues"
+ },
+ "description": "Get callsites from the V8 stack trace API",
+ "devDependencies": {
+  "ava": "^3.15.0",
+  "tsd": "^0.17.0",
+  "xo": "^0.44.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-kfzR4zzQtAE9PC7CzZsjl3aBNbXWuXiSeOCdLcPpBfGW8YuCqQHcRPFDbr/BPVmd3EEPVpuFzLyuT/cUhPr4OQ==",
+  "shasum": "98761d5be3ce092e4b9c92f7fb8c8eb9b83cadc8",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIQD/RK0/w4TMffsVCKp9/K9Cl+MfZfN8t4aOyIXCTwwK2AIgYyKgMYQo4nbLYF+tGjvwdTB5RM1ctGn0dS2OrMwKW/4="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/callsites/-/callsites-4.2.0.tgz",
+  "unpackedSize": 7134
+ },
+ "engines": {
+  "node": ">=12.20"
+ },
+ "exports": "./index.js",
+ "funding": "https://github.com/sponsors/sindresorhus",
+ "gitHead": "d782915ed4ef09a5cf44dddff7a55765cfb865c6",
+ "homepage": "https://github.com/sindresorhus/callsites#readme",
+ "keywords": [
+  "stacktrace",
+  "v8",
+  "callsite",
+  "callsites",
+  "stack",
+  "trace",
+  "function",
+  "file",
+  "line",
+  "debug"
+ ],
+ "license": "MIT",
+ "name": "callsites",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/callsites.git"
+ },
+ "scripts": {
+  "test": "xo && ava && tsd"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "4.2.0"
+}

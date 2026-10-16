@@ -1,0 +1,82 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "jws@4.0.1",
+ "_nodeVersion": "22.19.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/jws_4.0.1_1764838349097_0.25059224633532606"
+ },
+ "_npmUser": {
+  "email": "julien.wollscheid@auth0.com",
+  "name": "julien.wollscheid"
+ },
+ "_npmVersion": "11.6.0",
+ "author": {
+  "name": "Brian J Brennan"
+ },
+ "bugs": {
+  "url": "https://github.com/brianloveswords/node-jws/issues"
+ },
+ "dependencies": {
+  "jwa": "^2.0.1",
+  "safe-buffer": "^5.0.1"
+ },
+ "description": "Implementation of JSON Web Signatures",
+ "devDependencies": {
+  "semver": "^5.1.0",
+  "tape": "~2.14.0"
+ },
+ "directories": {
+  "test": "test"
+ },
+ "dist": {
+  "fileCount": 10,
+  "integrity": "sha512-EKI/M/yqPncGUUh44xz0PxSidXFr/+r0pA70+gIYhjv+et7yxM+s29Y+VGDkovRofQem0fs7Uvf4+YmAdyRduA==",
+  "shasum": "07edc1be8fac20e677b283ece261498bd38f0690",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIF/1KXL6u4k0MI44vrcZ7iWCp3Buephu9VU89+q29m5iAiAefxD9JqyBO1lHZFPpRSEhSpd0E+UDL3DBtGoPSiMzLg=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/jws/-/jws-4.0.1.tgz",
+  "unpackedSize": 18822
+ },
+ "gitHead": "c0f6b27bcea5a2ad2e304d91c2e842e4076a6b03",
+ "homepage": "https://github.com/brianloveswords/node-jws#readme",
+ "keywords": [
+  "jws",
+  "json",
+  "web",
+  "signatures"
+ ],
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "julien.wollscheid@auth0.com",
+   "name": "julien.wollscheid"
+  },
+  {
+   "email": "charles.rea@auth0.com",
+   "name": "charlesrea"
+  },
+  {
+   "email": "david.lozano@okta.com",
+   "name": "lozano.okta"
+  },
+  {
+   "email": "jquevedo@gmail.com",
+   "name": "javierquevedo"
+  }
+ ],
+ "name": "jws",
+ "repository": {
+  "type": "git",
+  "url": "git://github.com/brianloveswords/node-jws.git"
+ },
+ "scripts": {
+  "test": "make test"
+ },
+ "version": "4.0.1"
+}

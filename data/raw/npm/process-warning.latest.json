@@ -1,0 +1,137 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "process-warning@5.1.1",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/process-warning_5.1.1_1791628462776_0.2155021152424068"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "742414e2-7bfd-484d-8026-0573468698f7"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "author": {
+  "name": "Tomas Della Vedova"
+ },
+ "bugs": {
+  "url": "https://github.com/fastify/fastify-warning/issues"
+ },
+ "contributors": [
+  {
+   "email": "hello@matteocollina.com",
+   "name": "Matteo Collina"
+  },
+  {
+   "email": "behemoth89@gmail.com",
+   "name": "Manuel Spigolon"
+  },
+  {
+   "name": "James Sumners",
+   "url": "https://james.sumners.info"
+  },
+  {
+   "email": "frazer.dev@icloud.com",
+   "name": "Frazer Smith",
+   "url": "https://github.com/fdawgs"
+  }
+ ],
+ "description": "A small utility for creating warnings and emitting them.",
+ "devDependencies": {
+  "benchmark": "^2.1.4",
+  "c8": "^12.0.0",
+  "eslint": "^9.17.0",
+  "jest": "^30.0.3",
+  "neostandard": "^0.13.0",
+  "tstyche": "^7.0.0"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/process-warning@5.1.1"
+  },
+  "fileCount": 25,
+  "integrity": "sha512-oCkNVj4OKnKEcocVBcDfiIugN1/cE6rgfT3nCtzeqZPA8+rIxMaQ0xXzIkGP8Gj2qUaP1UR7uhJ1VD8lUCpzCg==",
+  "shasum": "9c7f34dd637100966be7d32661831ea328ea776b",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQDS2423gHENPciDPyVn3LbXF5ZR9NmG8JnccsDZwEe4LwIhAK9PKd65Jh71hQp0WQgnm2g0xFXplmUM/TTUUl6097w4"
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIEvlw6RaLHuC0Bf7PrcMjnXcNDTRB+basq0v8FfZTWAgAiB1GRHwTyNfa262IxFpbxiFkhARHc1fkIXQNzNKLmJ/lw=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/process-warning/-/process-warning-5.1.1.tgz",
+  "unpackedSize": 36172
+ },
+ "funding": [
+  {
+   "type": "github",
+   "url": "https://github.com/sponsors/fastify"
+  },
+  {
+   "type": "opencollective",
+   "url": "https://opencollective.com/fastify"
+  }
+ ],
+ "gitHead": "b218315ac16b9ec2c094bea73ab6b32b1b39e48f",
+ "homepage": "https://github.com/fastify/fastify-warning#readme",
+ "keywords": [
+  "fastify",
+  "error",
+  "warning",
+  "utility",
+  "plugin",
+  "emit",
+  "once"
+ ],
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "james.sumners@gmail.com",
+   "name": "jsumners"
+  },
+  {
+   "email": "tommydelved@gmail.com",
+   "name": "delvedor"
+  },
+  {
+   "email": "hello@matteocollina.com",
+   "name": "matteo.collina"
+  },
+  {
+   "email": "behemoth89@gmail.com",
+   "name": "eomm"
+  },
+  {
+   "email": "kaka@kakawebsitedemo.com",
+   "name": "climba03003"
+  }
+ ],
+ "name": "process-warning",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/fastify/process-warning.git"
+ },
+ "scripts": {
+  "lint": "eslint",
+  "lint:fix": "eslint --fix",
+  "test": "npm run test:unit && npm run test:jest && npm run test:typescript",
+  "test:jest": "jest jest.test.js",
+  "test:typescript": "tstyche",
+  "test:unit": "c8 --100 node --test"
+ },
+ "type": "commonjs",
+ "types": "types/index.d.ts",
+ "version": "5.1.1"
+}

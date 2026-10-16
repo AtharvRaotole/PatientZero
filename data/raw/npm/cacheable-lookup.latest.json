@@ -1,0 +1,98 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "cacheable-lookup@7.0.0",
+ "_nodeVersion": "14.19.3",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/cacheable-lookup_7.0.0_1664262674590_0.73013195329316"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "8.3.2",
+ "author": {
+  "name": "Szymon Marczak"
+ },
+ "ava": {
+  "nodeArguments": [
+   "--loader=quibble"
+  ]
+ },
+ "bugs": {
+  "url": "https://github.com/szmarczak/cacheable-lookup/issues"
+ },
+ "description": "A cacheable dns.lookup(\u2026) that respects TTL",
+ "devDependencies": {
+  "@types/keyv": "^3.1.1",
+  "ava": "^4.3.3",
+  "benchmark": "^2.1.4",
+  "coveralls": "^3.0.9",
+  "keyv": "^4.0.0",
+  "nyc": "^15.0.0",
+  "quibble": "^0.6.14",
+  "quick-lru": "^5.1.0",
+  "tsd": "^0.11.0",
+  "xo": "^0.25.3"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-+qJyx4xiKra8mZrcwhjMRMUhD5NR1R8esPkzIYxX96JiecFoxAXFuz/GpR3+ev4PE1WamHip78wV0vcmPQtp8w==",
+  "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v4.10.10\r\nComment: https://openpgpjs.org\r\n\r\nwsFzBAEBCAAGBQJjMqISACEJED1NWxICdlZqFiEECWMYAoorWMhJKdjhPU1b\r\nEgJ2VmrP2Q//c2Ke+uitTb/WLRJPLGGOlQD5Ifep1QhZYfcntvYBzAS97al8\r\n8UdsY589NoahBbWZh3D6nsvqakPqY7V195bT95cz5U09eXx3PEpwDMl3ENlw\r\nb+KBs36bCyAtYkmKrrBJkz+2BUPuKjiy+DUcJUVmgc2nJ17nmkkeRYuTmAZg\r\nYo1TvUzNEAfVUubdqIgISbKH5tfOZvgIj3D1J6oJc3aM2MY8evpYHrEzBjSB\r\ntdXf7HJbqgWjVvUpDC08ZnYI92/YvlmZnHvHtRPDef8ieeY1A0k2p66Ul/pC\r\n8H17TIbuBBu9xH4sJosboCRYysFpJUGH2cP+SEtXkhMdT2m+JfLyHa4gvUU0\r\nbdS29HqgOLeb2749aEJHdjucJksny4I7rfBxPYGS+cqlCDSGmM0mYK8Sxx1e\r\nf9z7pZBrg4dMnNHOu7axarEZJhARtu5QknwgGhuxIQgMqziBYmcV8IihFuZJ\r\nv3AICbyVq2f1xGeQT1pkzqMNMoLmtexRg/QEHQGeQMzZdCzLTxgz/Q3STWst\r\nvHZGBvOCd7sEbCCMpS1fJuMP+OuunBtS4vUEMQed5U17P3Lk9XEkiFT6AoZF\r\n0sqZOV7kN/7QJ2tjdOjyAW7o2uXNhtSthRsegcWps7JZkY5x7oH9Je9ICOrw\r\nWI3hic2cL7uDnJnN3eR4bETVlVa637smEFc=\r\n=rATp\r\n-----END PGP SIGNATURE-----\r\n",
+  "shasum": "3476a8215d046e5a3202a9209dd13fec1f933a27",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIB1njydILh7eyaOjefdXH9zNQV9FKb9VrXmoV28RaXl/AiEAyQ8/aVRMa+tCo+EDMRQ1slFz2pzseOwSBFx8Yo/U9/A="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/cacheable-lookup/-/cacheable-lookup-7.0.0.tgz",
+  "unpackedSize": 25193
+ },
+ "engines": {
+  "node": ">=14.16"
+ },
+ "exports": {
+  "default": "./source/index.js",
+  "types": "./index.d.ts"
+ },
+ "gitHead": "649ebeb16856e321ac7dc8026759cfffefcd1edb",
+ "homepage": "https://github.com/szmarczak/cacheable-lookup#readme",
+ "keywords": [
+  "dns",
+  "lookup",
+  "cacheable",
+  "ttl"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  },
+  {
+   "email": "sz.marczak@gmail.com",
+   "name": "szmarczak"
+  }
+ ],
+ "name": "cacheable-lookup",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/szmarczak/cacheable-lookup.git"
+ },
+ "scripts": {
+  "//test": "xo && nyc --reporter=lcovonly --reporter=text ava && tsd",
+  "test": "tsd"
+ },
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "7.0.0",
+ "xo": {
+  "rules": {
+   "import/extensions": "off",
+   "import/no-useless-path-segments": "off",
+   "unicorn/import-index": "off"
+  }
+ }
+}

@@ -1,0 +1,67 @@
+{
+ "edges": [
+  {
+   "fromNode": 0,
+   "requirement": "^1.1.0",
+   "toNode": 2
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^0.23.2",
+   "toNode": 3
+  },
+  {
+   "fromNode": 2,
+   "requirement": "^3.0.0 || ^4.0.0",
+   "toNode": 1
+  },
+  {
+   "fromNode": 3,
+   "requirement": "^1.1.0",
+   "toNode": 2
+  }
+ ],
+ "error": "",
+ "nodes": [
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "SELF",
+   "versionKey": {
+    "name": "react-dom",
+    "system": "NPM",
+    "version": "18.3.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "js-tokens",
+    "system": "NPM",
+    "version": "4.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "loose-envify",
+    "system": "NPM",
+    "version": "1.4.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "scheduler",
+    "system": "NPM",
+    "version": "0.23.2"
+   }
+  }
+ ]
+}

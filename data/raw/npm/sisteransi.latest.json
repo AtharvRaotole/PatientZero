@@ -1,0 +1,93 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "sisteransi@2.0.0",
+ "_nodeVersion": "24.17.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/sisteransi_2.0.0_1782399626888_0.532867770454126"
+ },
+ "_npmUser": {
+  "approver": {
+   "email": "terkel@terkel.com",
+   "name": "terkelg"
+  },
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:de1b2474-3acc-4919-8bad-b6c98b379ae3"
+  }
+ },
+ "_npmVersion": "11.17.0",
+ "author": {
+  "email": "terkel@terkel.com",
+  "name": "Terkel Gjervig",
+  "url": "https://terkel.com"
+ },
+ "bugs": {
+  "url": "https://github.com/terkelg/sisteransi/issues"
+ },
+ "description": "ANSI escape codes for some terminal swag",
+ "devDependencies": {
+  "typescript": "^5.4.0"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/sisteransi@2.0.0"
+  },
+  "fileCount": 5,
+  "integrity": "sha512-2WCqLdt12eN6ehLI50S2/ZxoowXU3DD1KVPRyVP0WEsFahrGZZmCdq1K59qjJljMRIDTwx1D9YaRK+hDneBUMg==",
+  "shasum": "d3d7a694075c2b17094cf1a691afd7937643b936",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQCZ+/28vLWWU6miCpjRAVYCY49QulSDIWkufNYj2Pf0vgIgPs4oSlcDpIdGZMP/RJ9knBSy4axnoOx5qwfSe7eEeh8="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/sisteransi/-/sisteransi-2.0.0.tgz",
+  "unpackedSize": 7426
+ },
+ "engines": {
+  "node": ">=20"
+ },
+ "exports": {
+  ".": {
+   "default": "./dist/index.js",
+   "types": "./dist/index.d.ts"
+  }
+ },
+ "gitHead": "305922fd6654df4c77d1e023aa6c55162958eccb",
+ "homepage": "https://github.com/terkelg/sisteransi#readme",
+ "keywords": [
+  "ansi",
+  "escape codes",
+  "escape",
+  "terminal",
+  "style"
+ ],
+ "license": "MIT",
+ "main": "./dist/index.js",
+ "maintainers": [
+  {
+   "email": "terkel@terkel.com",
+   "name": "terkelg"
+  }
+ ],
+ "name": "sisteransi",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/terkelg/sisteransi.git"
+ },
+ "scripts": {
+  "build": "tsc",
+  "prepublishOnly": "npm run build",
+  "test": "node --test"
+ },
+ "type": "module",
+ "types": "./dist/index.d.ts",
+ "version": "2.0.0"
+}

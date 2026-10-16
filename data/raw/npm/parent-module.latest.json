@@ -1,0 +1,87 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "parent-module@3.2.0",
+ "_nodeVersion": "20.19.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/parent-module_3.2.0_1757920845163_0.3273513190725885"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "10.9.2",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/parent-module/issues"
+ },
+ "dependencies": {
+  "callsites": "^4.1.0"
+ },
+ "description": "Get the path of the parent module",
+ "devDependencies": {
+  "ava": "^3.15.0",
+  "execa": "^5.1.1",
+  "tsd": "^0.17.0",
+  "xo": "^0.45.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-2Ik9vslIJdx+teObUMPbYd5ONHrTh0EH6o88qNQqU2o+JKPR13V5cmoWmCBn3G7V5pyomexaZixyQoHfzl5E4g==",
+  "shasum": "016bea3ac5a71d06f65697708c03dcaaf00ac33b",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIBgQJXpMkvyudyIK4sElVCwW0m9CDaIt688+33B2eHC3AiAFzcfG9T3QXdLeN8N7m3+W7EY75gI5Ln7WkQO2/xPg5w=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/parent-module/-/parent-module-3.2.0.tgz",
+  "unpackedSize": 5049
+ },
+ "engines": {
+  "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+ },
+ "exports": "./index.js",
+ "funding": "https://github.com/sponsors/sindresorhus",
+ "gitHead": "3e3193aa846d410e79b1f98dc08fa2801b15147e",
+ "homepage": "https://github.com/sindresorhus/parent-module#readme",
+ "keywords": [
+  "parent",
+  "module",
+  "package",
+  "caller",
+  "calling",
+  "module",
+  "path",
+  "callsites",
+  "callsite",
+  "stacktrace",
+  "stack",
+  "trace",
+  "function",
+  "file"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "parent-module",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/parent-module.git"
+ },
+ "scripts": {
+  "test": "xo && ava && tsd"
+ },
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "3.2.0"
+}

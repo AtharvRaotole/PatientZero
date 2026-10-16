@@ -1,0 +1,123 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "p-queue@10.0.0",
+ "_nodeVersion": "26.11.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/p-queue_10.0.0_1791827902905_0.34901648484325176"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "12.2.0",
+ "bugs": {
+  "url": "https://github.com/sindresorhus/p-queue/issues"
+ },
+ "description": "Promise queue with concurrency control",
+ "devDependencies": {
+  "@sindresorhus/tsconfig": "^8.1.0",
+  "@types/node": "^26.6.5",
+  "del-cli": "^8.0.1",
+  "delay": "^7.0.0",
+  "nz": "^0.1.0",
+  "p-defer": "^4.0.1",
+  "random-int": "^3.1.0",
+  "time-span": "^5.1.0",
+  "tsx": "^4.23.15",
+  "typescript": "^6.0.3",
+  "xo": "^5.0.1"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 13,
+  "integrity": "sha512-P2wrCri3bhGLPo3kX7qYVXbo/5GvaVATU0DpO24CbeT53Y4z35t8JUWku04ERpXHUYB5rPMi3TkWE3fmJgx5rA==",
+  "shasum": "7b7f0023fab4f868c2b8352524aee54a0630337e",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQCnFyIemvf9En4JM53tLZGXx1vmgXgCUH3AvSAy0mcKfgIgHjTG0AXEppCiGwYVuYzKYYwx+xeumJrsM6qSLYNum9M="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQDBLaG+NkLUrDr72P+UExTolghKrJXDIipyRiwnRsUI1wIhAOVkJ/yWh6dysN9kpwGcsA2CLVry12b6vPdU5/MUHOnS"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/p-queue/-/p-queue-10.0.0.tgz",
+  "unpackedSize": 103398
+ },
+ "engines": {
+  "node": ">=22"
+ },
+ "exports": {
+  ".": {
+   "default": "./dist/index.js",
+   "types": "./dist/index.d.ts"
+  }
+ },
+ "funding": "https://github.com/sponsors/sindresorhus",
+ "gitHead": "7f272ab5ff2254c0dc2537b7977e88ede1cd55e8",
+ "homepage": "https://github.com/sindresorhus/p-queue#readme",
+ "keywords": [
+  "promise",
+  "queue",
+  "enqueue",
+  "limit",
+  "limited",
+  "concurrency",
+  "throttle",
+  "throat",
+  "rate",
+  "batch",
+  "ratelimit",
+  "priority",
+  "priorityqueue",
+  "fifo",
+  "job",
+  "task",
+  "async",
+  "await",
+  "promises",
+  "bluebird"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "p-queue",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/p-queue.git"
+ },
+ "scripts": {
+  "bench": "node --import=tsx/esm --experimental-bench --bench bench.ts",
+  "build": "del-cli dist && tsc",
+  "prepublishOnly": "npm run build",
+  "test": "xo && node --import=tsx/esm --test --test-timeout=60000 test/*.ts && del-cli dist && tsc && nz"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "version": "10.0.0",
+ "xo": [
+  {
+   "ignores": [
+    "test/fixtures"
+   ]
+  },
+  {
+   "rules": {
+    "@typescript-eslint/member-ordering": "off",
+    "@typescript-eslint/no-floating-promises": "off",
+    "@typescript-eslint/no-unsafe-argument": "off",
+    "@typescript-eslint/no-unsafe-assignment": "off",
+    "@typescript-eslint/no-unsafe-call": "off",
+    "@typescript-eslint/no-unsafe-return": "off",
+    "@typescript-eslint/prefer-promise-reject-errors": "off",
+    "node-test/no-import-test-files": "off"
+   }
+  }
+ ]
+}

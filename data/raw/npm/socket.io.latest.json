@@ -1,0 +1,131 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "socket.io@4.8.4",
+ "_nodeVersion": "26.10.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/socket.io_4.8.4_1790326312899_0.9007855664262197"
+ },
+ "_npmUser": {
+  "approver": {
+   "email": "damien.arrachequesne@gmail.com",
+   "name": "darrachequesne"
+  },
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:51c61f97-f8ff-4369-9032-84a98d5103a4"
+  }
+ },
+ "_npmVersion": "11.19.1",
+ "bugs": {
+  "url": "https://github.com/socketio/socket.io/issues"
+ },
+ "contributors": [
+  {
+   "email": "rauchg@gmail.com",
+   "name": "Guillermo Rauch"
+  },
+  {
+   "email": "info@3rd-eden.com",
+   "name": "Arnout Kazemier"
+  },
+  {
+   "email": "dronnikov@gmail.com",
+   "name": "Vladimir Dronnikov"
+  },
+  {
+   "email": "einaros@gmail.com",
+   "name": "Einar Otto Stangvik"
+  }
+ ],
+ "dependencies": {
+  "accepts": "~1.3.4",
+  "cors": "~2.8.5",
+  "debug": "~4.4.1",
+  "engine.io": "~6.6.0",
+  "socket.io-adapter": "~2.5.2",
+  "socket.io-parser": "~4.2.4"
+ },
+ "description": "node.js realtime framework server",
+ "directories": {
+  "doc": "docs/",
+  "example": "example/",
+  "lib": "lib/",
+  "test": "test/"
+ },
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/socket.io@4.8.4"
+  },
+  "fileCount": 32,
+  "integrity": "sha512-9ZV9zg8vN8hO3Y25DhR7nUkJ1VDnBhq5O/JrXhFT9s6+F0gqytSASTHVfCFc2mJXaTfARroErplXlzFWwETZqQ==",
+  "shasum": "24bbb030792ce328ec3b73578b0dd8e63db7bbb7",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCICBDZRR0PJunulf4xN/K3KblzKbvSID7IqxAOlUiaAG2AiAtHXjKVLQEnne/gHbkC10M/cGrCOI9u0DlsY2Ucpqbjw=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/socket.io/-/socket.io-4.8.4.tgz",
+  "unpackedSize": 1412281
+ },
+ "engines": {
+  "node": ">=10.2.0"
+ },
+ "exports": {
+  ".": {
+   "import": "./wrapper.mjs",
+   "require": "./dist/index.js",
+   "types": "./dist/index.d.ts"
+  },
+  "./package.json": "./package.json"
+ },
+ "gitHead": "c239eb5d8945cee40a696a26e4aca00016f9565f",
+ "homepage": "https://github.com/socketio/socket.io/tree/main/packages/socket.io#readme",
+ "keywords": [
+  "realtime",
+  "framework",
+  "websocket",
+  "tcp",
+  "events",
+  "socket",
+  "io"
+ ],
+ "license": "MIT",
+ "main": "./dist/index.js",
+ "maintainers": [
+  {
+   "email": "rauchg@gmail.com",
+   "name": "rauchg"
+  },
+  {
+   "email": "damien.arrachequesne@gmail.com",
+   "name": "darrachequesne"
+  }
+ ],
+ "name": "socket.io",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/socketio/socket.io.git"
+ },
+ "scripts": {
+  "compile": "rimraf ./dist && tsc",
+  "format:check": "prettier --check \"lib/**/*.ts\" \"test/**/*.ts\"",
+  "format:fix": "prettier --write \"lib/**/*.ts\" \"test/**/*.ts\"",
+  "prepack": "npm run compile",
+  "test": "npm run format:check && npm run compile && npm run test:types && npm run test:unit",
+  "test:types": "exit 0",
+  "test:unit": "nyc mocha --import=tsx --reporter spec --slow 200 --bail --timeout 10000 test/index.ts"
+ },
+ "tsd": {
+  "directory": "test"
+ },
+ "type": "commonjs",
+ "types": "./dist/index.d.ts",
+ "version": "4.8.4"
+}

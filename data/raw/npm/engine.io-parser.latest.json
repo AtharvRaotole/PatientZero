@@ -1,0 +1,86 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "engine.io-parser@5.2.3",
+ "_nodeVersion": "20.15.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/engine.io-parser_5.2.3_1720699163314_0.4114723562044422"
+ },
+ "_npmUser": {
+  "email": "damien.arrachequesne@gmail.com",
+  "name": "darrachequesne"
+ },
+ "_npmVersion": "10.7.0",
+ "browser": {
+  "./build/cjs/decodePacket.js": "./build/cjs/decodePacket.browser.js",
+  "./build/cjs/encodePacket.js": "./build/cjs/encodePacket.browser.js",
+  "./build/esm/decodePacket.js": "./build/esm/decodePacket.browser.js",
+  "./build/esm/encodePacket.js": "./build/esm/encodePacket.browser.js",
+  "./test/node": "./test/browser"
+ },
+ "bugs": {
+  "url": "https://github.com/socketio/socket.io/issues"
+ },
+ "description": "Parser for the client for the realtime Engine",
+ "devDependencies": {
+  "prettier": "^3.3.2"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/engine.io-parser@5.2.3"
+  },
+  "fileCount": 33,
+  "integrity": "sha512-HqD3yTBfnBxIrbnM1DoD6Pcq8NECnh8d4As1Qgh0z5Gg3jRRIqijury0CL3ghu/edArpUYiYqQiDUQBIs4np3Q==",
+  "shasum": "00dc5b97b1f233a23c9398d0209504cf5f94d92f",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIEVTBIwo62rCL/JbxLLNWf0hmiVRqQMKISYtBEvp4FDLAiEA7Y7Zf2+UIazMThgfTX3XBJYBU22Ah3Jc2OaaUOxZMUk="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/engine.io-parser/-/engine.io-parser-5.2.3.tgz",
+  "unpackedSize": 45773
+ },
+ "engines": {
+  "node": ">=10.0.0"
+ },
+ "exports": {
+  "import": "./build/esm/index.js",
+  "require": "./build/cjs/index.js"
+ },
+ "gitHead": "0692bed4629047a26ae8fc96e3f8636e0a4d4b57",
+ "homepage": "https://github.com/socketio/socket.io/tree/main/packages/engine.io-parser#readme",
+ "license": "MIT",
+ "main": "./build/cjs/index.js",
+ "maintainers": [
+  {
+   "email": "rauchg@gmail.com",
+   "name": "rauchg"
+  },
+  {
+   "email": "damien.arrachequesne@gmail.com",
+   "name": "darrachequesne"
+  }
+ ],
+ "module": "./build/esm/index.js",
+ "name": "engine.io-parser",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/socketio/socket.io.git"
+ },
+ "scripts": {
+  "compile": "rimraf ./build && tsc && tsc -p tsconfig.esm.json && ./postcompile.sh",
+  "format:check": "prettier --check 'lib/**/*.ts' 'test/**/*.ts'",
+  "format:fix": "prettier --write 'lib/**/*.ts' 'test/**/*.ts'",
+  "prepack": "npm run compile",
+  "test": "npm run format:check && npm run compile && if test \"$BROWSERS\" = \"1\" ; then npm run test:browser; else npm run test:node; fi",
+  "test:browser": "zuul test/index.ts --no-coverage",
+  "test:node": "nyc mocha -r ts-node/register test/index.ts"
+ },
+ "types": "build/esm/index.d.ts",
+ "version": "5.2.3"
+}

@@ -1,0 +1,117 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "flat-cache@6.1.23",
+ "_nodeVersion": "22.23.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/flat-cache_6.1.23_1782584427481_0.102178914059458"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:7885416a-178a-4ea8-afc8-520353de90b8"
+  }
+ },
+ "author": "Jared Wray <me@jaredwray.com>",
+ "dependencies": {
+  "cacheable": "^2.5.0",
+  "flatted": "^3.4.2",
+  "hookified": "^1.15.0"
+ },
+ "description": "A simple key/value storage using files to persist the data",
+ "devDependencies": {
+  "tsdown": "^0.22.0",
+  "typescript": "^5.9.3"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/flat-cache@6.1.23"
+  },
+  "fileCount": 7,
+  "integrity": "sha512-f++BY9pTk+983xK1FLzlLpmM0i0z+jHmx3QESGkURMXujQZz1k5wzwX6hjnQ8goaD0B+sYnDK1yZ6MTyZfUaqA==",
+  "shasum": "735dc888c271868d7301b3bbb8edba5028afb61d",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIGmu/wINg9JCkhD488Ka23aN0ROUExMeKYDCzJCBx8xJAiEA/OV05kCSjFtnsPmb1pgwf3QxPnOtlSByCeBd5ELNpMw="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/flat-cache/-/flat-cache-6.1.23.tgz",
+  "unpackedSize": 56568
+ },
+ "exports": {
+  ".": {
+   "import": {
+    "default": "./dist/index.mjs",
+    "types": "./dist/index.d.mts"
+   },
+   "require": {
+    "default": "./dist/index.cjs",
+    "types": "./dist/index.d.cts"
+   }
+  }
+ },
+ "keywords": [
+  "cache",
+  "caching",
+  "cacheable",
+  "flat-cache",
+  "flat",
+  "file",
+  "file-cache",
+  "file-caching",
+  "file-based-cache",
+  "file-persist",
+  "file-persistence",
+  "file-storage",
+  "file-system",
+  "file-management",
+  "filesystem-cache",
+  "disk-cache",
+  "cache-persistence",
+  "cache-persist",
+  "persistent-cache",
+  "persistent-storage",
+  "cache-to-file",
+  "cache-on-disk",
+  "cache-file",
+  "cache-expiration",
+  "cache-lifetime",
+  "data-persistence",
+  "data-storage",
+  "local-storage",
+  "file-system-cache"
+ ],
+ "license": "MIT",
+ "main": "./dist/index.cjs",
+ "maintainers": [
+  {
+   "email": "me@jaredwray.com",
+   "name": "jaredwray"
+  }
+ ],
+ "module": "./dist/index.mjs",
+ "name": "flat-cache",
+ "private": false,
+ "repository": {
+  "directory": "packages/flat-cache",
+  "type": "git",
+  "url": "git+https://github.com/jaredwray/cacheable.git"
+ },
+ "scripts": {
+  "build": "rimraf ./dist && tsdown src/index.ts --format cjs,esm --dts --clean",
+  "clean": "rimraf ./dist ./coverage ./node_modules",
+  "lint": "biome check --write --error-on-warnings",
+  "test": "pnpm lint && vitest run --coverage",
+  "test:ci": "biome check --error-on-warnings && vitest run --coverage"
+ },
+ "type": "module",
+ "types": "./dist/index.d.mts",
+ "version": "6.1.23"
+}

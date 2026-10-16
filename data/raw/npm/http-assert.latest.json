@@ -1,0 +1,84 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "http-assert@1.5.0",
+ "_nodeVersion": "16.1.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/http-assert_1.5.0_1629871439311_0.9302951487834683"
+ },
+ "_npmUser": {
+  "email": "doug@somethingdoug.com",
+  "name": "dougwilson"
+ },
+ "_npmVersion": "7.11.2",
+ "bugs": {
+  "url": "https://github.com/jshttp/http-assert/issues"
+ },
+ "dependencies": {
+  "deep-equal": "~1.0.1",
+  "http-errors": "~1.8.0"
+ },
+ "description": "assert with status codes",
+ "devDependencies": {
+  "eslint": "7.32.0",
+  "eslint-config-standard": "14.1.1",
+  "eslint-plugin-import": "2.24.2",
+  "eslint-plugin-markdown": "2.2.0",
+  "eslint-plugin-node": "11.1.0",
+  "eslint-plugin-promise": "4.3.1",
+  "eslint-plugin-standard": "4.1.0",
+  "istanbul": "0.4.5",
+  "mocha": "9.1.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-uPpH7OKX4H25hBmU6G1jWNaqJGpTXxey+YOUizJUAgu0AjLUeC8D73hTrhvDS5D+GJN1DN1+hhc/eF/wpxtp0w==",
+  "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.13\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJhJd1PCRA9TVsSAnZWagAAsoYP/i6eYe3DEcdCcjOtMMAF\naQvAiKwJTpo4ZrNaHlhPHd1zM1rOkOnyFgxwWfVwfXs1X3sH9vXtqypZC/rs\nFbahFChqI1JLaN/s3yiy/yu7eUtgCnhueNoFTZdi5acSlWtjwNYZr9uXYJ0F\nIkkU3XFRxEEAnnSQO10Q7QApTd5b8cpUB4VUj8Ht/S+goiADlQ5zZKGxaxbl\nmhFkAlPfPJO1FXSwyusnBkNLyThcmDSusSi2ylvNsM0QPkzTSA4ygcxqzLYH\nzFbwd+MRAlcWFrZYv+8G00OxbQMWf//Te8o5c+7COEAiZfpqUzk8OTRKxNM1\n/ZKLFa6RiLYv6BzHnUlawCeAqFh9WH6xSRT1ab+efrhX/5fBEVH7W3IdhWFJ\nBWPw4++iicZSXI9SykzVT0A13CqQ2ivYKifkNbFf++oz1ccgrRNrZpNI52+G\n/vRgyRKoixVVgaiMLWdB9LJoSTECu+GxgE/F7xN/7xwzzKX1UKZ2hmghkx9e\nj4ufhzB1aZe1L4jZF5PD5zrYQlxXSAEPo7/jiYhlp45Yr/QMJtmJWcGPrgMw\nRcOYV5uSWq50Gv1Owlr71qMjTze1rqJXobMM/uxXnPAJGccCELzUMVMYe7Bd\nE5PKHYuwsCYvDZLSZHWqx6OevZ/zjcaXwgPppOsRqX2zMVZtwbTuOx6w1mKw\nViSx\r\n=E5s5\r\n-----END PGP SIGNATURE-----\r\n",
+  "shasum": "c389ccd87ac16ed2dfa6246fd73b926aa00e6b8f",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEYCIQCzz1cI1BHPwZ66GyoHGki5YDaDSVCilmZZOizi9Xg4IQIhAM110gQWcM10EQYqk7gcEyj7uxZVO5TwF6/jSEgy3W3z"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/http-assert/-/http-assert-1.5.0.tgz",
+  "unpackedSize": 9136
+ },
+ "engines": {
+  "node": ">= 0.8"
+ },
+ "gitHead": "976df0b5017be9ee53d8d17ff0d2c03aa8b689e4",
+ "homepage": "https://github.com/jshttp/http-assert#readme",
+ "keywords": [
+  "assert",
+  "http"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "eivind.fjeldstad@gmail.com",
+   "name": "eivifj"
+  },
+  {
+   "email": "doug@somethingdoug.com",
+   "name": "dougwilson"
+  },
+  {
+   "email": "jonathanrichardong@gmail.com",
+   "name": "jongleberry"
+  }
+ ],
+ "name": "http-assert",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/jshttp/http-assert.git"
+ },
+ "scripts": {
+  "lint": "eslint .",
+  "test": "mocha --reporter spec --bail --check-leaks test/",
+  "test-ci": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter spec --check-leaks test/",
+  "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot --check-leaks test/"
+ },
+ "version": "1.5.0"
+}

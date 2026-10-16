@@ -1,0 +1,82 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "acorn@8.19.0",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/acorn_8.19.0_1791204680889_0.6121866743785025"
+ },
+ "_npmUser": {
+  "email": "marijn@haverbeke.berlin",
+  "name": "marijn"
+ },
+ "_npmVersion": "11.19.0",
+ "bin": {
+  "acorn": "bin/acorn"
+ },
+ "bugs": {
+  "url": "https://github.com/acornjs/acorn/issues"
+ },
+ "description": "ECMAScript parser",
+ "directories": {},
+ "dist": {
+  "fileCount": 10,
+  "integrity": "sha512-oJlA3XiRm7Cyk6qFD2Jn8ak9B7jSy0qy00ADO3+8dpT0LSjFihQYv4C02LFCSYJV3Q37xYwwRy5m+IpIiUzqWw==",
+  "shasum": "6b26fd97ce1cc9dc50bdf7ad305e9f1384d4f28a",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQCKouNeQjsNuIDNdOhBF+uz6LunkScoJS+/V2+4k9ge/AIgEHuXfZzDLG7gfnbawXsTF58tvH/KnOP7UZCVEVfxL90="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIEj7V006uCgFneGXpdKS6uVJ0thDA2SqILqtSzkr9AkwAiBR1FIFWu4i3zlDWa4igOGgoJ5OQNOgrzS+K7GBC6TYkg=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/acorn/-/acorn-8.19.0.tgz",
+  "unpackedSize": 568532
+ },
+ "engines": {
+  "node": ">=0.4.0"
+ },
+ "exports": {
+  ".": [
+   {
+    "default": "./dist/acorn.js",
+    "import": "./dist/acorn.mjs",
+    "require": "./dist/acorn.js"
+   },
+   "./dist/acorn.js"
+  ],
+  "./package.json": "./package.json"
+ },
+ "gitHead": "0e0ece7cc7202624d4aca531be4b515b0114b5d0",
+ "homepage": "https://github.com/acornjs/acorn",
+ "license": "MIT",
+ "main": "dist/acorn.js",
+ "maintainers": [
+  {
+   "email": "marijn@haverbeke.berlin",
+   "name": "marijn"
+  },
+  {
+   "email": "mail@adrianheine.de",
+   "name": "adrianheine"
+  },
+  {
+   "email": "me@rreverser.com",
+   "name": "rreverser"
+  }
+ ],
+ "module": "dist/acorn.mjs",
+ "name": "acorn",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/acornjs/acorn.git"
+ },
+ "scripts": {
+  "prepare": "cd ..; npm run build:main"
+ },
+ "types": "dist/acorn.d.ts",
+ "version": "8.19.0"
+}

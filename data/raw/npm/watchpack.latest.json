@@ -1,0 +1,132 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "watchpack@2.6.1",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/watchpack_2.6.1_1791915685311_0.2813139902616373"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "e429b9f1-21d4-46a5-aea9-671c3ca84705"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "author": {
+  "name": "Tobias Koppers @sokra"
+ },
+ "bugs": {
+  "url": "https://github.com/webpack/watchpack/issues"
+ },
+ "dependencies": {
+  "graceful-fs": "^4.1.2"
+ },
+ "description": "Wrapper library for directory and file watching.",
+ "devDependencies": {
+  "@changesets/cli": "^3.0.3",
+  "@changesets/get-github-info": "^1.0.1",
+  "@codspeed/core": "^5.2.0",
+  "@types/glob-to-regexp": "^0.4.4",
+  "@types/graceful-fs": "^4.1.9",
+  "@types/jest": "^30.0.0",
+  "@types/node": "^24.19.2",
+  "eslint": "^9.39.5",
+  "eslint-config-webpack": "^4.15.0",
+  "jest": "^30.5.2",
+  "prettier": "^3.9.10",
+  "tinybench": "^6.2.2",
+  "typescript": "^6.0.2",
+  "write-file-atomic": "^8.0.0"
+ },
+ "directories": {
+  "test": "test"
+ },
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/watchpack@2.6.1"
+  },
+  "fileCount": 19,
+  "integrity": "sha512-8mk/LnXpQAiM2xKZhTkxikwly5GhL2Z+DWiLTkMa/E1Nfv9zURhHgiFyWvM4BWqW+LjIgL2AIS7JntEUx6v3vQ==",
+  "shasum": "fda5ef91ab74cdba7e9105e0bd2b03268b6818aa",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQC6/0cblnz/1zQSgFfYLh3D/LhcPFgiObtAjCQalw16pgIgZ7DXTgXEgIXsO89bSClI4M3TI3ucLgTc3E/Tmew/pG0="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIBrDHefZJ0ljCqBVrpP9+5m5Ucbu2odt6p/F6n/HdOB4AiEApQXDPf+4iTkvMIuHvMNO4kTvDSv1+OhUJD46/ztVuPI="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/watchpack/-/watchpack-2.6.1.tgz",
+  "unpackedSize": 111464
+ },
+ "engines": {
+  "node": ">=10.13.0"
+ },
+ "gitHead": "d5ab9bf01631c827b1b0e6248df751b6f46668f0",
+ "homepage": "https://github.com/webpack/watchpack",
+ "license": "MIT",
+ "main": "lib/index.js",
+ "maintainers": [
+  {
+   "email": "784487301@qq.com",
+   "name": "15000621931"
+  },
+  {
+   "email": "evenstensberg@gmail.com",
+   "name": "ev1stensberg"
+  },
+  {
+   "email": "haijie0619@gmail.com",
+   "name": "__hai"
+  },
+  {
+   "email": "tobias.koppers@googlemail.com",
+   "name": "sokra"
+  },
+  {
+   "email": "me@aviv.sh",
+   "name": "avivkeller"
+  },
+  {
+   "email": "sheo13666q@gmail.com",
+   "name": "evilebottnawi"
+  }
+ ],
+ "name": "watchpack",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/webpack/watchpack.git"
+ },
+ "scripts": {
+  "benchmark": "node --max-old-space-size=4096 --hash-seed=1 --random-seed=1 --no-opt --predictable --predictable-gc-schedule --interpreted-frames-native-stack --allow-natives-syntax --expose-gc --no-concurrent-sweeping ./benchmark/run.mjs",
+  "fix": "npm run fix:code && npm run fix:declarations",
+  "fix:code": "npm run lint:code -- --fix",
+  "fix:declarations": "tsc && npm run fmt -- ./types",
+  "fmt": "npm run fmt:base -- --log-level warn --write",
+  "fmt:base": "prettier --cache --ignore-unknown .",
+  "fmt:check": "npm run fmt:base -- --check",
+  "lint": "npm run lint:code && npm run lint:types && npm run lint:types-test && npm run lint:declarations && npm run fmt:check",
+  "lint:code": "eslint --cache .",
+  "lint:declarations": "npm run fix:declarations && git diff --exit-code ./types",
+  "lint:types": "tsc --noEmit",
+  "lint:types-test": "tsc -p tsconfig.types.test.json --noEmit",
+  "pretest": "npm run lint",
+  "release": "changeset publish",
+  "test": "npm run test:coverage",
+  "test:base": "jest --runInBand",
+  "test:coverage": "npm run test:base -- --collectCoverageFrom=\"lib/**/*.js\" --coverage",
+  "test:only": "npm run test:base",
+  "test:watch": "npm run test:base -- --watch",
+  "version": "changeset version"
+ },
+ "types": "types/index.js",
+ "version": "2.6.1"
+}

@@ -1,0 +1,16 @@
+{
+ "edges": [],
+ "error": "",
+ "nodes": [
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "SELF",
+   "versionKey": {
+    "name": "graphql",
+    "system": "NPM",
+    "version": "16.9.0"
+   }
+  }
+ ]
+}

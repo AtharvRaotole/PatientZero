@@ -1,0 +1,79 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@apollo/utils.keyvaluecache@4.0.0",
+ "_nodeVersion": "22.15.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/utils.keyvaluecache_4.0.0_1747853017707_0.09369520731580128"
+ },
+ "_npmUser": {
+  "email": "npm@apollographql.com",
+  "name": "apollo-bot"
+ },
+ "_npmVersion": "10.9.2",
+ "author": {
+  "email": "packages@apollographql.com",
+  "name": "Apollo"
+ },
+ "bugs": {
+  "url": "https://github.com/apollographql/apollo-utils/issues"
+ },
+ "dependencies": {
+  "@apollo/utils.logger": "^3.0.0",
+  "lru-cache": "^11.0.0"
+ },
+ "description": "Minimal key-value cache interface",
+ "directories": {},
+ "dist": {
+  "fileCount": 33,
+  "integrity": "sha512-mKw1myRUkQsGPNB+9bglAuhviodJ2L2MRYLTafCMw5BIo7nbvCPNCkLnIHjZ1NOzH7SnMAr5c9LmXiqsgYqLZw==",
+  "shasum": "c183fcc87263589e9e402651b2bb692e9f2353e0",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIFpaeWwajdo0HVsdY4114H9YJJ24UnWuz3Lg+lSLJzs9AiEA3hujYW0oDLJxbetIGalXz1qm19InZTzzaNdkuFtkKI8="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@apollo/utils.keyvaluecache/-/utils.keyvaluecache-4.0.0.tgz",
+  "unpackedSize": 38603
+ },
+ "engines": {
+  "node": ">=20"
+ },
+ "gitHead": "4a0d73a680f233cfe4b06a0aeb5200e687ba3bab",
+ "homepage": "https://github.com/apollographql/apollo-utils#readme",
+ "keywords": [
+  "apollo",
+  "graphql",
+  "typescript",
+  "node"
+ ],
+ "license": "MIT",
+ "main": "dist/index.js",
+ "maintainers": [
+  {
+   "email": "trevor.scheer@gmail.com",
+   "name": "trevor.scheer"
+  },
+  {
+   "email": "glasser@apollographql.com",
+   "name": "glasser"
+  },
+  {
+   "email": "dariusz_kuc@hotmail.com",
+   "name": "dkuc"
+  },
+  {
+   "email": "npm@apollographql.com",
+   "name": "apollo-bot"
+  }
+ ],
+ "name": "@apollo/utils.keyvaluecache",
+ "repository": {
+  "directory": "packages/keyValueCache/",
+  "type": "git",
+  "url": "git+https://github.com/apollographql/apollo-utils.git"
+ },
+ "types": "dist/index.d.ts",
+ "version": "4.0.0"
+}

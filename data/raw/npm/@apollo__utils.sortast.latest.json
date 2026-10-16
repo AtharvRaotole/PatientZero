@@ -1,0 +1,82 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@apollo/utils.sortast@3.0.0",
+ "_nodeVersion": "16.20.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/utils.sortast_3.0.0_1681772009984_0.7563407363550718"
+ },
+ "_npmUser": {
+  "email": "npm@apollographql.com",
+  "name": "apollo-bot"
+ },
+ "_npmVersion": "8.5.0",
+ "author": {
+  "email": "packages@apollographql.com",
+  "name": "Apollo"
+ },
+ "bugs": {
+  "url": "https://github.com/apollographql/apollo-utils/issues"
+ },
+ "dependencies": {
+  "lodash.sortby": "^4.7.0"
+ },
+ "description": "Sort AST nodes in a document alphabetically",
+ "directories": {},
+ "dist": {
+  "fileCount": 8,
+  "integrity": "sha512-qZG5L95wnvYD8Nsh+kKvtTDomn76wOC8H1KJGsxMTifXyY5M+PdKeAJVfPkyw11Pkq7sGVg96vk2BZ6pdFP/QA==",
+  "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v4.10.10\r\nComment: https://openpgpjs.org\r\n\r\nwsFzBAEBCAAGBQJkPc3qACEJED1NWxICdlZqFiEECWMYAoorWMhJKdjhPU1b\r\nEgJ2Vmqhxg//e9+Awnfd1Rc07aeh4gASiU1pwJ/02V9irZcEmGep0vVTy7Yo\r\nJENyggpjNxtxKjA/MeD+V+R3xjR/RnuXh+HCsNYNc+uMQEW2vQCtN8gxmHPa\r\nom/K1UuwwAd4rEYVuxnJiMZMP++A2BrZVtF7C9iEhLs4OLJVuOBO2AdKHg85\r\n2UvYkWKoHc6jOGgB+s2gQbwWeS1of0QYKKOBOH6KS2qg8i28zU8RwljuW4mc\r\nzV9zxhGSCb9mNizz3GLUUlLNFGTvOI4xsTqitDjprFmfaoMj9h8xtvVbV0hM\r\nOMoH/tSrb7Htg2K/DMSGODYnLiZywKQh1L055TrUj0EMa8IV58ksFFHPwF1v\r\ngRVFILh7vKS5J+8108jLIgghoLBHzlVhfACU+OAY+02IYdjwp6vwTcezoKAM\r\nD78z+JJROW+j348XIp3IhjMoFaSbeagmt/pyPNPTM21P7PsYwvgf/EFuOVDf\r\n+WsW8fPZwlVgVs9C8GaQYCxH2gqRhyBcXVGlsnwIMFAwgihHDNJYhhPzpAhP\r\naUUYwLPJwNLhcZ24318C74WvyxAJNMb4lnjnbHiEif7yanSpvmYHuMjeZeC4\r\nQbkVTlpRr9O2B/BlGGgivD3Gv7N5txw2QYwOM17lSoYs6BVuRJiBGjU69Ofa\r\n9tvIp0AYbRW8QuvfoyqAPFA9KeQbIgqg88s=\r\n=9vtS\r\n-----END PGP SIGNATURE-----\r\n",
+  "shasum": "2121918644444e97db2a89bfacecbec554e6e362",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIQD555yYPi5zAq/j2pRsQDj8LzbYOWJZ5sQjg6eH1pdNhgIgD5xcvKAGQbCxZ8ZrjrS99gUGWwiyWtXwYjUByIPDRQI="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@apollo/utils.sortast/-/utils.sortast-3.0.0.tgz",
+  "unpackedSize": 8926
+ },
+ "engines": {
+  "node": ">=16"
+ },
+ "gitHead": "9b66f38f6d6097a408bc354d749ebc480ba3bbda",
+ "homepage": "https://github.com/apollographql/apollo-utils#readme",
+ "keywords": [
+  "apollo",
+  "graphql",
+  "typescript",
+  "node"
+ ],
+ "license": "MIT",
+ "main": "dist/index.js",
+ "maintainers": [
+  {
+   "email": "dariusz_kuc@hotmail.com",
+   "name": "dkuc"
+  },
+  {
+   "email": "glasser@apollographql.com",
+   "name": "glasser"
+  },
+  {
+   "email": "trevor.scheer@gmail.com",
+   "name": "trevor.scheer"
+  },
+  {
+   "email": "npm@apollographql.com",
+   "name": "apollo-bot"
+  }
+ ],
+ "name": "@apollo/utils.sortast",
+ "peerDependencies": {
+  "graphql": "14.x || 15.x || 16.x"
+ },
+ "repository": {
+  "directory": "packages/sortAst/",
+  "type": "git",
+  "url": "git+https://github.com/apollographql/apollo-utils.git"
+ },
+ "types": "dist/index.d.ts",
+ "version": "3.0.0"
+}

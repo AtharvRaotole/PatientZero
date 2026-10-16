@@ -1,0 +1,84 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "test-exclude@8.0.0",
+ "_nodeVersion": "23.10.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/test-exclude_8.0.0_1771780233914_0.9769673806953403"
+ },
+ "_npmUser": {
+  "email": "bencoe@gmail.com",
+  "name": "bcoe"
+ },
+ "_npmVersion": "10.9.2",
+ "author": {
+  "email": "ben@npmjs.com",
+  "name": "Ben Coe"
+ },
+ "bugs": {
+  "url": "https://github.com/istanbuljs/test-exclude/issues"
+ },
+ "dependencies": {
+  "@istanbuljs/schema": "^0.1.2",
+  "glob": "^13.0.6",
+  "minimatch": "^10.2.2"
+ },
+ "description": "test for inclusion or exclusion of paths using globs",
+ "devDependencies": {
+  "c8": "^9.1.0",
+  "tap": "^19.2.2"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 7,
+  "integrity": "sha512-ZOffsNrXYggvU1mDGHk54I96r26P8SyMjO5slMKSc7+IWmtB/MQKnEC2fP51imB3/pT6YK5cT5E8f+Dd9KdyOQ==",
+  "shasum": "85891add3fa46bb822b1b1579c7f8c9a3d04ebd8",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQCN9ZiBQDX3DfvA8uBHY5xLMTJHCZrrw4MB5dAzrMFePgIhAKjigCe2juvhDJRtWRxqDGz4T7F38aIwMslnnWnKmD+f"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/test-exclude/-/test-exclude-8.0.0.tgz",
+  "unpackedSize": 11467
+ },
+ "engines": {
+  "node": "20 || >=22"
+ },
+ "gitHead": "3a37faa17cc4f0f602a7c1ec23ef0b0fcf44ab37",
+ "homepage": "https://istanbul.js.org/",
+ "keywords": [
+  "exclude",
+  "include",
+  "glob",
+  "package",
+  "config"
+ ],
+ "license": "ISC",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "bencoe@gmail.com",
+   "name": "bcoe"
+  },
+  {
+   "email": "jasonk92@gmail.com",
+   "name": "jakxz"
+  },
+  {
+   "email": "git@cfware.com",
+   "name": "coreyfarrell"
+  }
+ ],
+ "name": "test-exclude",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/istanbuljs/test-exclude.git"
+ },
+ "scripts": {
+  "release": "standard-version",
+  "snap": "npm test -- --snapshot",
+  "test": "c8 tap"
+ },
+ "version": "8.0.0"
+}

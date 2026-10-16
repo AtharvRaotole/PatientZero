@@ -1,0 +1,237 @@
+{
+ "edges": [
+  {
+   "fromNode": 0,
+   "requirement": "^3.2.2",
+   "toNode": 4
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^4.3.0",
+   "toNode": 5
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^3.0.3",
+   "toNode": 6
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^4.0.4",
+   "toNode": 7
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^3.0.3",
+   "toNode": 8
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^4.0.6",
+   "toNode": 9
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^4.0.1",
+   "toNode": 10
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^4.0.0",
+   "toNode": 11
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^2.1.1",
+   "toNode": 12
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^7.5.4",
+   "toNode": 14
+  },
+  {
+   "fromNode": 2,
+   "requirement": "^5.0.1",
+   "toNode": 13
+  },
+  {
+   "fromNode": 3,
+   "requirement": "^1.0.1",
+   "toNode": 1
+  },
+  {
+   "fromNode": 3,
+   "requirement": "1.0.11",
+   "toNode": 2
+  },
+  {
+   "fromNode": 3,
+   "requirement": "^5.0.1",
+   "toNode": 13
+  },
+  {
+   "fromNode": 4,
+   "requirement": "^1.4.2",
+   "toNode": 3
+  },
+  {
+   "fromNode": 4,
+   "requirement": "^5.0.1",
+   "toNode": 13
+  }
+ ],
+ "error": "",
+ "nodes": [
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "SELF",
+   "versionKey": {
+    "name": "jsonwebtoken",
+    "system": "NPM",
+    "version": "9.0.2"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "buffer-equal-constant-time",
+    "system": "NPM",
+    "version": "1.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "ecdsa-sig-formatter",
+    "system": "NPM",
+    "version": "1.0.11"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "jwa",
+    "system": "NPM",
+    "version": "1.4.2"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "jws",
+    "system": "NPM",
+    "version": "3.2.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "lodash.includes",
+    "system": "NPM",
+    "version": "4.3.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "lodash.isboolean",
+    "system": "NPM",
+    "version": "3.0.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "lodash.isinteger",
+    "system": "NPM",
+    "version": "4.0.4"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "lodash.isnumber",
+    "system": "NPM",
+    "version": "3.0.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "lodash.isplainobject",
+    "system": "NPM",
+    "version": "4.0.6"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "lodash.isstring",
+    "system": "NPM",
+    "version": "4.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "lodash.once",
+    "system": "NPM",
+    "version": "4.1.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "ms",
+    "system": "NPM",
+    "version": "2.1.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "safe-buffer",
+    "system": "NPM",
+    "version": "5.2.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "semver",
+    "system": "NPM",
+    "version": "7.8.5"
+   }
+  }
+ ]
+}

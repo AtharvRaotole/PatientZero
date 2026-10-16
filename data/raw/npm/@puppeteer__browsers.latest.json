@@ -1,0 +1,162 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@puppeteer/browsers@3.2.5",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/browsers_3.2.5_1791991824779_0.8579079259069033"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "8c1b24d8-c2ae-43e7-8e72-3a86ebe7b7b0"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "author": {
+  "name": "The Chromium Authors"
+ },
+ "bin": {
+  "browsers": "lib/main-cli.js"
+ },
+ "bugs": {
+  "url": "https://github.com/puppeteer/puppeteer/issues"
+ },
+ "dependencies": {
+  "modern-tar": "^0.8.5",
+  "yargs": "^18.0.0"
+ },
+ "description": "Download and launch browsers",
+ "devDependencies": {
+  "@types/yargs": "17.0.35",
+  "@types/yauzl": "3.4.0",
+  "proxy-agent": ">=8.0.1",
+  "yauzl": "^2.10.0 || ^3.4.0"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@puppeteer%2fbrowsers@3.2.5"
+  },
+  "fileCount": 102,
+  "integrity": "sha512-UoCo3Pynbm37aLEEoydSiG+t24ui7sLD40+07CKxzxNy4PpSowJMkvlLIiV67XjP1lMVynhQVnuwlTABqBH8LQ==",
+  "shasum": "4216501d96daf99079a26c7e14a1d6baacaf043e",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIGJOTXMhVv4l0zK0cpV/4aER3xsr5s16jNK2E934F+fvAiEAmWbTLv6WianyNBvndeGpgoMmGUBpbjaMOhSu3gL43M4="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIDalqUyf3GLguItGRFxsAwomHsFgKD0qhx+yE/rd73fgAiBVUg+GCRlqiMWJOJtrcYJwVSayLZljN/SrcsV8D1QAmw=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@puppeteer/browsers/-/browsers-3.2.5.tgz",
+  "unpackedSize": 452160
+ },
+ "engines": {
+  "node": ">=22.12.0"
+ },
+ "gitHead": "d1b9a2162a0113356db5093f055b4a2e1979c6a8",
+ "homepage": "https://github.com/puppeteer/puppeteer/tree/main#readme",
+ "keywords": [
+  "puppeteer",
+  "browsers"
+ ],
+ "license": "Apache-2.0",
+ "main": "./lib/main.js",
+ "maintainers": [
+  {
+   "email": "mathias@qiwi.be",
+   "name": "mathias"
+  },
+  {
+   "email": "node-team-npm+wombot@google.com",
+   "name": "google-wombot"
+  }
+ ],
+ "module": "./lib/main.js",
+ "name": "@puppeteer/browsers",
+ "peerDependencies": {
+  "proxy-agent": ">=8.0.1",
+  "yauzl": "^2.10.0 || ^3.4.0"
+ },
+ "peerDependenciesMeta": {
+  "proxy-agent": {
+   "optional": true
+  },
+  "yauzl": {
+   "optional": true
+  }
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/puppeteer/puppeteer.git#main"
+ },
+ "scripts": {
+  "build": "wireit",
+  "build:docs": "wireit",
+  "build:test": "wireit",
+  "clean": "../../tools/clean.mjs",
+  "test": "wireit"
+ },
+ "type": "module",
+ "types": "./lib/main.d.ts",
+ "version": "3.2.5",
+ "wireit": {
+  "build": {
+   "clean": "if-file-deleted",
+   "command": "tsc -b && node --experimental-strip-types ../../tools/chmod.ts 755 lib/main-cli.js",
+   "files": [
+    "src/**/*.ts",
+    "tsconfig.json"
+   ],
+   "output": [
+    "lib/**"
+   ]
+  },
+  "build:docs": {
+   "command": "api-extractor run --local --config \"./api-extractor.docs.json\"",
+   "dependencies": [
+    "build"
+   ],
+   "files": [
+    "api-extractor.docs.json",
+    "lib/main.d.ts",
+    "tsconfig.json"
+   ]
+  },
+  "build:test": {
+   "command": "tsc -b test/src/tsconfig.json",
+   "dependencies": [
+    "build",
+    "../testserver:build"
+   ],
+   "files": [
+    "test/**/*.ts",
+    "test/src/tsconfig.json"
+   ],
+   "output": [
+    "test/build/**",
+    "!test/build/package.json"
+   ]
+  },
+  "test": {
+   "command": "node tools/downloadTestBrowsers.mjs && mocha",
+   "dependencies": [
+    "build:test"
+   ],
+   "env": {
+    "NODE_DEBUG": "puppeteer:*"
+   },
+   "files": [
+    ".mocharc.js"
+   ]
+  }
+ }
+}

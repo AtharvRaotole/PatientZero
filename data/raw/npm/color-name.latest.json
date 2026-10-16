@@ -1,0 +1,73 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "color-name@2.1.1",
+ "_nodeVersion": "25.9.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/color-name_2.1.1_1784734715384_0.9299058594927432"
+ },
+ "_npmUser": {
+  "email": "df.creative@gmail.com",
+  "name": "dy"
+ },
+ "_npmVersion": "11.12.1",
+ "author": {
+  "email": "dfcreative@gmail.com",
+  "name": "Dmitry Iv"
+ },
+ "bugs": {
+  "url": "https://github.com/colorjs/color-name/issues"
+ },
+ "description": "A list of color names and its values",
+ "directories": {},
+ "dist": {
+  "fileCount": 4,
+  "integrity": "sha512-p2FdgwVx1a9yWBHP2wI0VgShkDpgN4kZISkxdNipGBJWpa5G6b04OINlVWCyJj0JmfvcPrgqt95E9k8yvaOJFg==",
+  "shasum": "86c00ec98db36705be5bd4428097f13af1175a6d",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDCIiWTiMqe/Dz27KwzOgC6Rg8tOEscVwL3ObT8G4PTiwIgAoAmVarX5bAOXM1cXYSSaXHqWMkIAucYN+/J9xFUWsc="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/color-name/-/color-name-2.1.1.tgz",
+  "unpackedSize": 6308
+ },
+ "engines": {
+  "node": ">=12.20"
+ },
+ "gitHead": "ac6cd6f0e4105534fd8da9ce6707dfecd7dd7d93",
+ "homepage": "https://github.com/colorjs/color-name",
+ "keywords": [
+  "color-name",
+  "color",
+  "color-keyword",
+  "keyword"
+ ],
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "df.creative@gmail.com",
+   "name": "dfcreative"
+  },
+  {
+   "email": "npm@moox.io",
+   "name": "moox"
+  },
+  {
+   "email": "df.creative@gmail.com",
+   "name": "dy"
+  }
+ ],
+ "name": "color-name",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/colorjs/color-name.git"
+ },
+ "scripts": {
+  "test": "node test.js"
+ },
+ "type": "module",
+ "version": "2.1.1"
+}

@@ -1,0 +1,147 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "js-yaml@5.5.0",
+ "_nodeVersion": "26.12.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/js-yaml_5.5.0_1792106917379_0.451672210271699"
+ },
+ "_npmUser": {
+  "email": "vitaly@rcopen.com",
+  "name": "vitaly"
+ },
+ "_npmVersion": "11.20.0",
+ "author": {
+  "email": "dervus.grim@gmail.com",
+  "name": "Vladimir Zapparov"
+ },
+ "bin": {
+  "js-yaml": "bin/js-yaml.mjs"
+ },
+ "bugs": {
+  "url": "https://github.com/nodeca/js-yaml/issues"
+ },
+ "contributors": [
+  {
+   "email": "ixti@member.fsf.org",
+   "name": "Aleksey V Zapparov",
+   "url": "http://www.ixti.net/"
+  },
+  {
+   "email": "vitaly@rcdesign.ru",
+   "name": "Vitaly Puzrin",
+   "url": "https://github.com/puzrin"
+  },
+  {
+   "email": "martin.grenfell@gmail.com",
+   "name": "Martin Grenfell",
+   "url": "http://got-ravings.blogspot.com"
+  }
+ ],
+ "dependencies": {
+  "argparse": "^3.0.3"
+ },
+ "description": "YAML 1.2 parser and serializer",
+ "devDependencies": {
+  "@streamparser/json": "^0.0.26",
+  "@types/node": "^26.6.5",
+  "c8": "^12.0.0",
+  "codemirror": "^5.65.21",
+  "eslint": "^10.12.0",
+  "fast-check": "^4.10.2",
+  "gh-pages": "^6.3.0",
+  "mitata": "^1.0.34",
+  "neostandard": "^0.14.1",
+  "rollup": "^4.64.7",
+  "rollup-plugin-dts": "^6.5.1",
+  "typedoc": "^0.28.20",
+  "typescript": "^6.0.3",
+  "vite": "^8.3.4",
+  "vite-plugin-node-polyfills": "^0.28.0",
+  "vite-plugin-singlefile": "^2.3.3",
+  "workerpool": "^10.0.3"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 13,
+  "integrity": "sha512-paNr4LFIFPjeeSmwNYdrb8FafLLG/Cr2Af3GjbsHJ5CxIjH4r0c2emlmRdAtpPAieP1gRVzk6buBbVP5gBMGAg==",
+  "shasum": "ec843f09ffb2a54b6758a41eee109a1815d16442",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIBeBJHdMMYaeZ/sTUn2cn1FImLJFTvO4XjzemT5s4A++AiA2auUbLtl79viKmfdf7XcwG4d+3ENkDtk/buUD9GafTA=="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQDHS5bCO9emZpfmS84ySJBtXrZdRHSpxXUmYOKhZSaIXwIhAO7zvOgBFvCvppD79UjQxe6HLsdQaAcXwWGHZ7mpoKL/"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/js-yaml/-/js-yaml-5.5.0.tgz",
+  "unpackedSize": 1626579
+ },
+ "exports": {
+  ".": {
+   "import": "./dist/js-yaml.mjs",
+   "require": "./dist/js-yaml.cjs.js",
+   "types": "./dist/js-yaml.d.ts"
+  },
+  "./browser": {
+   "default": "./dist/browser/js-yaml.umd.min.js",
+   "import": "./dist/browser/js-yaml.esm.min.mjs",
+   "require": "./dist/browser/js-yaml.umd.min.js",
+   "types": "./dist/js-yaml.d.ts"
+  },
+  "./package.json": "./package.json"
+ },
+ "funding": [
+  {
+   "type": "github",
+   "url": "https://github.com/sponsors/puzrin"
+  },
+  {
+   "type": "github",
+   "url": "https://github.com/sponsors/nodeca"
+  }
+ ],
+ "gitHead": "cb62b2dbbaa0b3e7379d83a5d69d8d52d21b6efb",
+ "homepage": "https://github.com/nodeca/js-yaml#readme",
+ "keywords": [
+  "yaml",
+  "parser",
+  "serializer",
+  "pyyaml"
+ ],
+ "license": "MIT",
+ "main": "./dist/js-yaml.cjs.js",
+ "maintainers": [
+  {
+   "email": "vitaly@rcopen.com",
+   "name": "vitaly"
+  }
+ ],
+ "module": "./dist/js-yaml.mjs",
+ "name": "js-yaml",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/nodeca/js-yaml.git"
+ },
+ "scripts": {
+  "benchmark:deps": "npm install --prefix benchmark/extra/",
+  "build": "node support/build-dist.mjs",
+  "coverage": "npm run build && npm run spec:get && c8 --include 'dist/js-yaml.mjs' --include 'src/**' -r text -r html -r lcov node --test 'test/core/**/*.test.mjs' 'test/spec/*.test.mjs'",
+  "demo": "npm run lint && node support/build_demo.mjs && npm run doc",
+  "demo:publish": "npm run demo && gh-pages -d demo -f",
+  "doc": "typedoc",
+  "lint": "eslint .",
+  "lint-fix": "eslint . --fix",
+  "postpublish": "npm run demo:publish",
+  "prepack": "npm test && npm run build && npm run demo",
+  "spec:get": "node support/get-yaml-test-suite.mjs",
+  "spec:update": "node support/get-yaml-test-suite.mjs update",
+  "test": "npm run lint && npm run build && npm run type-check && npm run spec:get && node --test 'test/core/**/*.test.mjs' 'test/spec/*.test.mjs'",
+  "test:spec": "npm run build && npm run spec:get && node test/spec/spec.test.mjs",
+  "type-check": "tsc --noEmit"
+ },
+ "types": "./dist/js-yaml.d.ts",
+ "version": "5.5.0"
+}

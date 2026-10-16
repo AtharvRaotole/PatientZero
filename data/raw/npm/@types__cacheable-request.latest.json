@@ -1,0 +1,42 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@types/cacheable-request@8.3.6",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/cacheable-request_8.3.6_1729651216923_0.2246302391964341"
+ },
+ "_npmUser": {
+  "email": "ts-npm-types@microsoft.com",
+  "name": "types"
+ },
+ "dependencies": {
+  "cacheable-request": "*"
+ },
+ "deprecated": "This is a stub types definition. cacheable-request provides its own type definitions, so you do not need this installed.",
+ "description": "Stub TypeScript definitions entry for cacheable-request, which provides its own types definitions",
+ "directories": {},
+ "dist": {
+  "fileCount": 4,
+  "integrity": "sha512-490ZO711a+yBqLd7O2PIr4XKdeFftV/eIyragGl7/ki2piOhBt4rmDxTe/yDzxgMcxy+Kis3QtV2w8C9X38ZZg==",
+  "shasum": "e0547cf6eb659a9669f5be421e543971664c1db2",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIQDKvFGmWsPy5qkexd8K1KpyRPYt1bAKXYaiSblDSSonbQIgL47zIZYAEPDAtytZqWsLqX7qlBeeYZ9vi1JWY2ECv6Y="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@types/cacheable-request/-/cacheable-request-8.3.6.tgz",
+  "unpackedSize": 1805
+ },
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "ts-npm-types@microsoft.com",
+   "name": "types"
+  }
+ ],
+ "name": "@types/cacheable-request",
+ "scripts": {},
+ "version": "8.3.6"
+}

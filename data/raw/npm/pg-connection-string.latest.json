@@ -1,0 +1,98 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "pg-connection-string@2.14.1",
+ "_nodeVersion": "24.14.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/pg-connection-string_2.14.1_1790782745145_0.6944683427004497"
+ },
+ "_npmUser": {
+  "email": "brian.m.carlson@gmail.com",
+  "name": "brianc"
+ },
+ "_npmVersion": "lerna/3.22.1/node@v24.14.0+arm64 (darwin)",
+ "author": {
+  "email": "blaine@iceddev.com",
+  "name": "Blaine Bublitz",
+  "url": "http://iceddev.com/"
+ },
+ "bugs": {
+  "url": "https://github.com/brianc/node-postgres/issues"
+ },
+ "description": "Functions for dealing with a PostgreSQL connection string",
+ "devDependencies": {
+  "@types/pg": "^8.12.0",
+  "chai": "^4.1.1",
+  "coveralls": "^3.0.4",
+  "mocha": "^11.7.5",
+  "nyc": "^15",
+  "tsx": "^4.19.4",
+  "typescript": "^6.0.3"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 6,
+  "integrity": "sha512-qR3kGNPBLpCNtz0evbKA0Y/MRFXwSSdT+pTJvYp/bXTcReZbvX1kzF0IyTc1QnxqF7AZbOeBhNL8R5mYQZV/MA==",
+  "shasum": "d9529fe2497c0cac8a9f5f6f059679c52f1bd964",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQC7bw6vY5sPY4qUq8wHeIIHS1eeSC94LuiqkMe5Qv2u4gIgcb9hLPdXREr8NXivWHZQ+UB7JoTOLQie3YExmgsHuEo="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIBkbZ4Z4gKvi4mUePsVAECecueHlvZ6ae3Gzt//oZICqAiEAv7o0Lt/pTjOPhal2MXr6xWViMVd7zpruUSy9N7P9oWg="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/pg-connection-string/-/pg-connection-string-2.14.1.tgz",
+  "unpackedSize": 16148
+ },
+ "exports": {
+  ".": {
+   "default": "./index.js",
+   "import": "./esm/index.mjs",
+   "require": "./index.js",
+   "types": "./index.d.ts"
+  }
+ },
+ "gitHead": "0980cefebe0ae461da8883703be049fe13ca96cf",
+ "homepage": "https://github.com/brianc/node-postgres/tree/master/packages/pg-connection-string",
+ "keywords": [
+  "pg",
+  "connection",
+  "string",
+  "parse"
+ ],
+ "license": "MIT",
+ "main": "./index.js",
+ "maintainers": [
+  {
+   "email": "herman@hermanradtke.com",
+   "name": "hjr3"
+  },
+  {
+   "email": "monteslu@gmail.com",
+   "name": "monteslu"
+  },
+  {
+   "email": "brian.m.carlson@gmail.com",
+   "name": "brianc"
+  },
+  {
+   "email": "me@andrewbowerman.com",
+   "name": "bowerman"
+  }
+ ],
+ "name": "pg-connection-string",
+ "repository": {
+  "directory": "packages/pg-connection-string",
+  "type": "git",
+  "url": "git://github.com/brianc/node-postgres.git"
+ },
+ "scripts": {
+  "check-coverage": "nyc check-coverage --statements 100 --branches 100 --lines 100 --functions 100",
+  "test": "nyc --reporter=lcov mocha && npm run check-coverage"
+ },
+ "types": "./index.d.ts",
+ "version": "2.14.1"
+}

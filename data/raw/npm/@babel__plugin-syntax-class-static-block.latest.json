@@ -1,0 +1,83 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@babel/plugin-syntax-class-static-block@7.14.5",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/plugin-syntax-class-static-block_7.14.5_1623280302045_0.14854421704979215"
+ },
+ "_npmUser": {
+  "email": "nicolo.ribaudo@gmail.com",
+  "name": "nicolo-ribaudo"
+ },
+ "author": "The Babel Team (https://babel.dev/team)",
+ "dependencies": {
+  "@babel/helper-plugin-utils": "^7.14.5"
+ },
+ "description": "Allow parsing of class static blocks",
+ "directories": {},
+ "dist": {
+  "fileCount": 4,
+  "integrity": "sha512-b+YyPmr6ldyNnM6sqYeMWE+bgJcJpO6yS4QD7ymxgH34GBPNDM/THBh8iunyvKIZztiwLH4CJZ0RxTk9emgpjw==",
+  "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.13\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJgwUquCRA9TVsSAnZWagAAsvAP/3BV+J67hEi8Ef3OVmFH\nYh2MUTtnPKqFWjE5TjNCQ2AUlO8j5/3t7G+4d7YY+mKmPlTFQNrL01vftl+9\nneFlVVkEy9+D8V8aAoD0C4oBcB2aqq3/cXJZMrXXXo5Xqw3da3nYqNc5ToM2\nZIQ2+Nyn8YyCVBa7TdrhtawzG0qGoLYlw5USHUxZPKbLOly9wMbhMhXnv7Hr\nnaccBHSY6cMsNApEEdkG+vGg0E5agOzb2+wMQktBLAeT1hyXBZWavYT11g9n\nV/B8GZTX++knTQaNRlH7FWs+L9w0hpaMYgSl1zBy4+1mv3V363zSWIvP0TXi\niq5LICIIyRqLhLDy28SZd/ndFkgN4hSSa/SFBxSPloHlCtc6Sgz6uREqGinh\np4yRuew9L0PljxeqoC89anB4kcF0OWg+azSJDAeseunDW9pYjnB0OdvIOasq\nyL8WDIkQCptPZgqzFu4kmSiBdIyjBNVsVFp5gs9FyWX8oTuEcAbE4XBRqQE3\ncu5mnRRB3oyEwlflu41CpeloU24O1Uew0IltF6ipBZNDB7ucyHQDOifJMM8z\n5hhwySoYOHvz6cnXG2ouduhdrvoa76i2PJNWNSGklkYtnaoHYjkNOUBB8A6u\n/OpG8oPFwAA5ycfNNKCZLSSxTo4WeDGdCRMLXTw0Sb/NHtwIHZ6IJSpEaQlw\nB4YN\r\n=BATr\r\n-----END PGP SIGNATURE-----\r\n",
+  "shasum": "195df89b146b4b78b3bf897fd7a257c84659d406",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEQCIBm2tKKFOVOQ4rxlNfanrvMiPK9sZTcLHviDtQWzpflwAiAuQePRNyhA85VxoVGXiC7vVx2EALktkJuITe7skdWkyw=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@babel/plugin-syntax-class-static-block/-/plugin-syntax-class-static-block-7.14.5.tgz",
+  "unpackedSize": 2744
+ },
+ "engines": {
+  "node": ">=6.9.0"
+ },
+ "exports": {
+  ".": "./lib/index.js"
+ },
+ "homepage": "https://babel.dev/docs/en/next/babel-plugin-syntax-class-static-block",
+ "keywords": [
+  "babel-plugin"
+ ],
+ "license": "MIT",
+ "main": "./lib/index.js",
+ "maintainers": [
+  {
+   "email": "hi@henryzoo.com",
+   "name": "hzoo"
+  },
+  {
+   "email": "loganfsmyth@gmail.com",
+   "name": "loganfsmyth"
+  },
+  {
+   "email": "npm@tschinder.de",
+   "name": "danez"
+  },
+  {
+   "email": "bng412@gmail.com",
+   "name": "existentialism"
+  },
+  {
+   "email": "nicolo.ribaudo@gmail.com",
+   "name": "nicolo-ribaudo"
+  },
+  {
+   "email": "i@jhuang.me",
+   "name": "jlhwung"
+  }
+ ],
+ "name": "@babel/plugin-syntax-class-static-block",
+ "peerDependencies": {
+  "@babel/core": "^7.0.0-0"
+ },
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "directory": "packages/babel-plugin-syntax-class-static-block",
+  "type": "git",
+  "url": "https://github.com/babel/babel.git"
+ },
+ "version": "7.14.5"
+}

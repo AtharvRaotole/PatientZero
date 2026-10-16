@@ -1,0 +1,68 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@types/send@1.2.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/send_1.2.1_1761280656193_0.6031953121021707"
+ },
+ "_npmUser": {
+  "email": "ts-npm-types@microsoft.com",
+  "name": "types"
+ },
+ "contributors": [
+  {
+   "githubUsername": "MikeJerred",
+   "name": "Mike Jerred",
+   "url": "https://github.com/MikeJerred"
+  },
+  {
+   "githubUsername": "peterblazejewicz",
+   "name": "Piotr B\u0142a\u017cejewicz",
+   "url": "https://github.com/peterblazejewicz"
+  },
+  {
+   "githubUsername": "bjohansebas",
+   "name": "Sebastian Beltran",
+   "url": "https://github.com/bjohansebas"
+  }
+ ],
+ "dependencies": {
+  "@types/node": "*"
+ },
+ "description": "TypeScript definitions for send",
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-arsCikDvlU99zl1g69TcAB3mzZPpxgw0UQnaHeC1Nwb015xp8bknZv5rIfri9xTOcMuaVgvabfIRA7PSZVuZIQ==",
+  "shasum": "6a784e45543c18c774c049bff6d3dbaf045c9c74",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQChF0A8FBVGEiRMJheoCappdnF7aYv8OL48IYfqY35++gIhAMH5LypH2ktHckQS0M+XqfywQuk1O9otWl2zLkYRAxHJ"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@types/send/-/send-1.2.1.tgz",
+  "unpackedSize": 9006
+ },
+ "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/send",
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "ts-npm-types@microsoft.com",
+   "name": "types"
+  }
+ ],
+ "name": "@types/send",
+ "peerDependencies": {},
+ "repository": {
+  "directory": "types/send",
+  "type": "git",
+  "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+ },
+ "scripts": {},
+ "typeScriptVersion": "5.2",
+ "types": "index.d.ts",
+ "typesPublisherContentHash": "7e844b30112f7eee3dc5a8f5c053af5f6bc07315ee3f5620d343ee55dcc2bffe",
+ "version": "1.2.1"
+}

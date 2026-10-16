@@ -1,0 +1,89 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "locate-path@8.0.0",
+ "_nodeVersion": "20.19.5",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/locate-path_8.0.0_1757978258616_0.17471298544212033"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "10.9.2",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/locate-path/issues"
+ },
+ "dependencies": {
+  "p-locate": "^6.0.0"
+ },
+ "description": "Get the first path that exists on disk of multiple paths",
+ "devDependencies": {
+  "ava": "^6.4.1",
+  "tsd": "^0.33.0",
+  "xo": "^1.2.2"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-XT9ewWAC43tiAV7xDAPflMkG0qOPn2QjHqlgX8FOqmWa/rxnyYDulF9T0F7tRy1u+TVTmK/M//6VIOye+2zDXg==",
+  "shasum": "4f0cca3d0d84b02b6f534a73331c83437bf14141",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQDplr4IyUtdl2vd4q2wHYAAlST3MYj4SiImeOXlJBhJ+QIhAIkC0x/Gy3pXzarHNKxxQCvvQON8b9nFQcacbhhMZTJ1"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/locate-path/-/locate-path-8.0.0.tgz",
+  "unpackedSize": 7173
+ },
+ "engines": {
+  "node": ">=20"
+ },
+ "exports": {
+  "default": "./index.js",
+  "types": "./index.d.ts"
+ },
+ "funding": "https://github.com/sponsors/sindresorhus",
+ "gitHead": "4c4ee027b830c35ff7605421a8ad92208f1b868a",
+ "homepage": "https://github.com/sindresorhus/locate-path#readme",
+ "keywords": [
+  "locate",
+  "path",
+  "paths",
+  "file",
+  "files",
+  "exists",
+  "find",
+  "finder",
+  "search",
+  "searcher",
+  "array",
+  "iterable",
+  "iterator"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "locate-path",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/locate-path.git"
+ },
+ "scripts": {
+  "test": "xo && ava && tsd"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "8.0.0"
+}

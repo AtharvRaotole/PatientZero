@@ -1,0 +1,282 @@
+{
+ "edges": [
+  {
+   "fromNode": 0,
+   "requirement": "^5.3.0",
+   "toNode": 2
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^5.0.0",
+   "toNode": 3
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^2.9.2",
+   "toNode": 4
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^2.0.0",
+   "toNode": 7
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^2.0.0",
+   "toNode": 9
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^6.0.0",
+   "toNode": 10
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^0.2.2",
+   "toNode": 15
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^7.2.0",
+   "toNode": 16
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^7.1.0",
+   "toNode": 17
+  },
+  {
+   "fromNode": 3,
+   "requirement": "^5.0.0",
+   "toNode": 13
+  },
+  {
+   "fromNode": 10,
+   "requirement": "^5.3.0",
+   "toNode": 2
+  },
+  {
+   "fromNode": 10,
+   "requirement": "^1.3.0",
+   "toNode": 8
+  },
+  {
+   "fromNode": 12,
+   "requirement": "^5.0.0",
+   "toNode": 11
+  },
+  {
+   "fromNode": 13,
+   "requirement": "^7.0.0",
+   "toNode": 12
+  },
+  {
+   "fromNode": 13,
+   "requirement": "^4.1.0",
+   "toNode": 14
+  },
+  {
+   "fromNode": 16,
+   "requirement": "^10.3.0",
+   "toNode": 5
+  },
+  {
+   "fromNode": 16,
+   "requirement": "^1.0.0",
+   "toNode": 6
+  },
+  {
+   "fromNode": 16,
+   "requirement": "^7.1.0",
+   "toNode": 17
+  },
+  {
+   "fromNode": 17,
+   "requirement": "^6.2.2",
+   "toNode": 1
+  }
+ ],
+ "error": "",
+ "nodes": [
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "SELF",
+   "versionKey": {
+    "name": "ora",
+    "system": "NPM",
+    "version": "8.1.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "ansi-regex",
+    "system": "NPM",
+    "version": "6.4.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "chalk",
+    "system": "NPM",
+    "version": "5.6.2"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "cli-cursor",
+    "system": "NPM",
+    "version": "5.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "cli-spinners",
+    "system": "NPM",
+    "version": "2.9.2"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "emoji-regex",
+    "system": "NPM",
+    "version": "10.6.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "get-east-asian-width",
+    "system": "NPM",
+    "version": "1.7.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "is-interactive",
+    "system": "NPM",
+    "version": "2.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "is-unicode-supported",
+    "system": "NPM",
+    "version": "1.3.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "is-unicode-supported",
+    "system": "NPM",
+    "version": "2.1.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "log-symbols",
+    "system": "NPM",
+    "version": "6.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "mimic-function",
+    "system": "NPM",
+    "version": "5.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "onetime",
+    "system": "NPM",
+    "version": "7.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "restore-cursor",
+    "system": "NPM",
+    "version": "5.1.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "signal-exit",
+    "system": "NPM",
+    "version": "4.1.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "stdin-discarder",
+    "system": "NPM",
+    "version": "0.2.2"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "string-width",
+    "system": "NPM",
+    "version": "7.2.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "strip-ansi",
+    "system": "NPM",
+    "version": "7.2.0"
+   }
+  }
+ ]
+}

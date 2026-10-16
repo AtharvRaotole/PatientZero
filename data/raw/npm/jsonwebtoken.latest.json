@@ -1,0 +1,112 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "jsonwebtoken@9.0.3",
+ "_nodeVersion": "22.19.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/jsonwebtoken_9.0.3_1764844077099_0.11844910007897624"
+ },
+ "_npmUser": {
+  "email": "julien.wollscheid@auth0.com",
+  "name": "julien.wollscheid"
+ },
+ "_npmVersion": "11.6.0",
+ "author": {
+  "name": "auth0"
+ },
+ "bugs": {
+  "url": "https://github.com/auth0/node-jsonwebtoken/issues"
+ },
+ "dependencies": {
+  "jws": "^4.0.1",
+  "lodash.includes": "^4.3.0",
+  "lodash.isboolean": "^3.0.3",
+  "lodash.isinteger": "^4.0.4",
+  "lodash.isnumber": "^3.0.3",
+  "lodash.isplainobject": "^4.0.6",
+  "lodash.isstring": "^4.0.1",
+  "lodash.once": "^4.0.0",
+  "ms": "^2.1.1",
+  "semver": "^7.5.4"
+ },
+ "description": "JSON Web Token implementation (symmetric and asymmetric)",
+ "devDependencies": {
+  "atob": "^2.1.2",
+  "chai": "^4.1.2",
+  "conventional-changelog": "~1.1.0",
+  "eslint": "^4.19.1",
+  "mocha": "^5.2.0",
+  "nsp": "^2.6.2",
+  "nyc": "^11.9.0",
+  "sinon": "^6.0.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 15,
+  "integrity": "sha512-MT/xP0CrubFRNLNKvxJ2BYfy53Zkm++5bX9dtuPbqAeQpTVe0MQTFhao8+Cp//EmJp244xt6Drw/GVEGCUj40g==",
+  "shasum": "6cd57ab01e9b0ac07cb847d53d3c9b6ee31f7ae2",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCICE5k0CMsR6OIdP9Zpm5B9xBhoJ3h7RV5M/5AfUtNmRBAiEAospGuIHliRFQBbiwRUDXJE03hN4ZXkjSQbLmEZSLGO8="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/jsonwebtoken/-/jsonwebtoken-9.0.3.tgz",
+  "unpackedSize": 43403
+ },
+ "engines": {
+  "node": ">=12",
+  "npm": ">=6"
+ },
+ "gitHead": "ed59e76ea37a80f54b833668c02a5271984dcba3",
+ "homepage": "https://github.com/auth0/node-jsonwebtoken#readme",
+ "keywords": [
+  "jwt"
+ ],
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "charles.rea@auth0.com",
+   "name": "charlesrea"
+  },
+  {
+   "email": "david.renaud@okta.com",
+   "name": "david.renaud.okta"
+  },
+  {
+   "email": "julien.wollscheid@auth0.com",
+   "name": "julien.wollscheid"
+  },
+  {
+   "email": "jquevedo@gmail.com",
+   "name": "javierquevedo"
+  }
+ ],
+ "name": "jsonwebtoken",
+ "nyc": {
+  "branches": 95,
+  "check-coverage": true,
+  "exclude": [
+   "./test/**"
+  ],
+  "functions": 100,
+  "lines": 95,
+  "reporter": [
+   "json",
+   "lcov",
+   "text-summary"
+  ],
+  "statements": 95
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/auth0/node-jsonwebtoken.git"
+ },
+ "scripts": {
+  "coverage": "nyc mocha --use_strict",
+  "lint": "eslint .",
+  "test": "mocha"
+ },
+ "version": "9.0.3"
+}

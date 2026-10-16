@@ -1,0 +1,97 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "d3-array@3.2.4",
+ "_nodeVersion": "18.12.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/d3-array_3.2.4_1685483603870_0.9649655851949746"
+ },
+ "_npmUser": {
+  "email": "mike@ocks.org",
+  "name": "mbostock"
+ },
+ "_npmVersion": "8.19.2",
+ "author": {
+  "name": "Mike Bostock",
+  "url": "http://bost.ocks.org/mike"
+ },
+ "bugs": {
+  "url": "https://github.com/d3/d3-array/issues"
+ },
+ "dependencies": {
+  "internmap": "1 - 2"
+ },
+ "description": "Array manipulation, ordering, searching, summarizing, etc.",
+ "devDependencies": {
+  "@rollup/plugin-node-resolve": "15",
+  "d3-dsv": "3",
+  "d3-random": "2 - 3",
+  "eslint": "8",
+  "jsdom": "21",
+  "mocha": "10",
+  "rollup": "3",
+  "rollup-plugin-terser": "7"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 66,
+  "integrity": "sha512-tdQAmyA18i4J7wprpYq8ClcxZy3SC31QMeByyCFyRt7BVHdREQZ5lpzoe5mFEYZUWe+oq8HBvk9JjpibyEV4Jg==",
+  "shasum": "15fec33b237f97ac5d7c986dc77da273a8ed0bb5",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIB7J7S5RpXxWrAU6v5ArgA3IWiAR5RPd494w/lmZfrOGAiEAldBrCDSBSbtKq2iWhLwg0tcrsG9J8WnCNhqNbAhR8+s="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/d3-array/-/d3-array-3.2.4.tgz",
+  "unpackedSize": 163730
+ },
+ "engines": {
+  "node": ">=12"
+ },
+ "exports": {
+  "default": "./src/index.js",
+  "umd": "./dist/d3-array.min.js"
+ },
+ "gitHead": "94d4541626ae3ac6c847e3d4c6e31aca1a8879b4",
+ "homepage": "https://d3js.org/d3-array/",
+ "jsdelivr": "dist/d3-array.min.js",
+ "keywords": [
+  "d3",
+  "d3-module",
+  "histogram",
+  "bisect",
+  "shuffle",
+  "statistics",
+  "search",
+  "sort",
+  "array"
+ ],
+ "license": "ISC",
+ "main": "src/index.js",
+ "maintainers": [
+  {
+   "email": "mike@ocks.org",
+   "name": "mbostock"
+  },
+  {
+   "email": "fil@rezo.net",
+   "name": "recifs"
+  }
+ ],
+ "module": "src/index.js",
+ "name": "d3-array",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/d3/d3-array.git"
+ },
+ "scripts": {
+  "postpublish": "git push && git push --tags && cd ../d3.github.com && git pull && cp ../${npm_package_name}/dist/${npm_package_name}.js ${npm_package_name}.v${npm_package_version%%.*}.js && cp ../${npm_package_name}/dist/${npm_package_name}.min.js ${npm_package_name}.v${npm_package_version%%.*}.min.js && git add ${npm_package_name}.v${npm_package_version%%.*}.js ${npm_package_name}.v${npm_package_version%%.*}.min.js && git commit -m \"${npm_package_name} ${npm_package_version}\" && git push && cd -",
+  "prepublishOnly": "rm -rf dist && rollup -c",
+  "test": "mocha 'test/**/*-test.js' && eslint src test"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "unpkg": "dist/d3-array.min.js",
+ "version": "3.2.4"
+}

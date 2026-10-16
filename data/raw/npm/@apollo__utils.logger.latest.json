@@ -1,0 +1,76 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@apollo/utils.logger@3.0.0",
+ "_nodeVersion": "16.20.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/utils.logger_3.0.0_1681772007993_0.7833006562496949"
+ },
+ "_npmUser": {
+  "email": "npm@apollographql.com",
+  "name": "apollo-bot"
+ },
+ "_npmVersion": "8.5.0",
+ "author": {
+  "email": "packages@apollographql.com",
+  "name": "Apollo"
+ },
+ "bugs": {
+  "url": "https://github.com/apollographql/apollo-utils/issues"
+ },
+ "description": "Generic logger interface",
+ "directories": {},
+ "dist": {
+  "fileCount": 10,
+  "integrity": "sha512-M8V8JOTH0F2qEi+ktPfw4RL7MvUycDfKp7aEap2eWXfL5SqWHN6jTLbj5f5fj1cceHpyaUSOZlvlaaryaxZAmg==",
+  "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v4.10.10\r\nComment: https://openpgpjs.org\r\n\r\nwsFzBAEBCAAGBQJkPc3oACEJED1NWxICdlZqFiEECWMYAoorWMhJKdjhPU1b\r\nEgJ2Vmo5mhAAoxq3W2ESkXCS9EW0SJVqCKQH/UGAYDdtasT7PBAwMnzun5bQ\r\ncjn50OvEVG+IhHBLPwmYPYHiu0De5r559pn7p3cbkwdvaOxHeaZ7gWVczin5\r\n4EiyGnCj7suhGriR6ej5/96xemD6aptzHIq4Yf5G/jorVnXeyKTHhbkJU9Zx\r\nBMaS7Uma9fkuxpvMF4pWYiQmICEXHIPGZ/QZbhRAmyFrDiyKaqLo7dSuBhka\r\nZ6wxysOgc+yaPk/i3aFFZjykDT3+IvJulYpZi+8szlAiS6Vlm2BU0uk/yQ5P\r\nW4YqcbYgN9OpfrjW/ahKZGKsWO5TrHUUr1uxiq95qIIparFqw18+1F+Ry3FI\r\n4T8HKM2DbOCQTt1IR97JuBbQBjlHBftBIQaJhfMQRuXkGQIe2zYcg23ycnj6\r\nRLh8MvjWbsELpw8YUzHK6NSmdtepNQ4LEKUbP+JHJi0XexH19q6Sr1dXOdoi\r\n8Rh0b/JCV1ulDT81MyIIb5NUb/q5QImkvOK/Dbzggby2eAo6v0nMEwJcXdqt\r\n4t73Or0om9KbLHA1MNB/5v1PCTz/8/nkmQZrbHotNCqfHX1HF11BgyiHk73f\r\nr7zYUQp21wLZIXNzAb9YsnhvPudJ9QEnnqEpYtLvUtE4y7PMJEBuN4G0yHmn\r\nigrK4icSMlRISNtyQYhzmK6YzZV4bTL0yG4=\r\n=+7kp\r\n-----END PGP SIGNATURE-----\r\n",
+  "shasum": "5b67de1e476bdfa8be70bfaa05c7e65a6a427960",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIDKm5xuLUpOsdgR1djf+uDqwrv0WrHKXcuLJzzpQWQaTAiEA42a4KktTaWQSiaAIkeZMHcTfMMIPA09fu9sknW9hFXY="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@apollo/utils.logger/-/utils.logger-3.0.0.tgz",
+  "unpackedSize": 7640
+ },
+ "engines": {
+  "node": ">=16"
+ },
+ "gitHead": "9b66f38f6d6097a408bc354d749ebc480ba3bbda",
+ "homepage": "https://github.com/apollographql/apollo-utils#readme",
+ "keywords": [
+  "apollo",
+  "graphql",
+  "typescript",
+  "node"
+ ],
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "dariusz_kuc@hotmail.com",
+   "name": "dkuc"
+  },
+  {
+   "email": "glasser@apollographql.com",
+   "name": "glasser"
+  },
+  {
+   "email": "trevor.scheer@gmail.com",
+   "name": "trevor.scheer"
+  },
+  {
+   "email": "npm@apollographql.com",
+   "name": "apollo-bot"
+  }
+ ],
+ "name": "@apollo/utils.logger",
+ "repository": {
+  "directory": "packages/logger/",
+  "type": "git",
+  "url": "git+https://github.com/apollographql/apollo-utils.git"
+ },
+ "types": "dist/index.d.ts",
+ "version": "3.0.0"
+}

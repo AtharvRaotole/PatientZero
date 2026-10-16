@@ -1,0 +1,16 @@
+{
+ "edges": [],
+ "error": "",
+ "nodes": [
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "SELF",
+   "versionKey": {
+    "name": "kafkajs",
+    "system": "NPM",
+    "version": "2.2.4"
+   }
+  }
+ ]
+}

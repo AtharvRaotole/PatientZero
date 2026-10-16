@@ -1,0 +1,110 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "react-transition-group@4.4.5",
+ "_nodeVersion": "14.20.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/react-transition-group_4.4.5_1659343018737_0.8482752319605904"
+ },
+ "_npmUser": {
+  "email": "silbermann.sebastian@gmail.com",
+  "name": "eps1lon"
+ },
+ "_npmVersion": "6.14.17",
+ "author": "",
+ "browserify": {
+  "transform": [
+   "loose-envify"
+  ]
+ },
+ "bugs": {
+  "url": "https://github.com/reactjs/react-transition-group/issues"
+ },
+ "dependencies": {
+  "@babel/runtime": "^7.5.5",
+  "dom-helpers": "^5.0.1",
+  "loose-envify": "^1.4.0",
+  "prop-types": "^15.6.2"
+ },
+ "description": "A react component toolset for managing animations",
+ "directories": {},
+ "dist": {
+  "fileCount": 36,
+  "integrity": "sha512-pZcd1MCJoiKiBR2NRxeCRg13uCXbydPnmB4EOeRrY7480qNWO8IIgQG6zlDkm6uRMsURXPuKq0GWtiM59a5Q6g==",
+  "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v4.10.10\r\nComment: https://openpgpjs.org\r\n\r\nwsFzBAEBCAAGBQJi55CqACEJED1NWxICdlZqFiEECWMYAoorWMhJKdjhPU1b\r\nEgJ2Vmqs8hAAlh/+CQ3cg8i93fcgLM0Q/foiUq76PwaJILyFP3Dy6bRjFknH\r\na7vwHV/tJF484XLdU5NGPNVWvz44y6OROYDaFcAmMH/C6PDBlmw7CI6/LpLG\r\n9nC+xNL24Ag7uv+m2Hz0uaBhdxmPEwhXugUJ4umIpgtVrX9dMzIf8M5BQfJ2\r\n7enRoYm0eP7nwhD9X91brqP0yivyEPEssCnMOoMhLP4mxcQh0giu+sQogiUC\r\n96lkVigLQXIV+ytcupuzhzfd1TBOS/aCtEJgCdzOZdBgpNH8Uzo/hAElIdcN\r\nWsb81n58Zsf/hnWKLKRxPCoa+4K7uTBC9nCAEdZwoVds7PEtyNo5q3qrRJ+k\r\nruMXmKiJj7A5NvjMh8vwygsnGZIYswSm1QRj8Ub/moMDSNO0gaU/Y5trC6fb\r\nkDL3coNRZIBCQNn/90/0K7FQJ1ZYXzV+JbyF5tn2QRbFLUdGD8A5+ZmUawca\r\nQDasf/tlfGNqZ/UlhmTQdZKiezQFGC8hJC7N117tMslz43nl6Jn7+GVZK2DQ\r\n8bSLqYRKK7pvIJUg5hKZ4p2DFXrFS5ddY0qnNfxfkCFv8HiRmVQFnrHWwjCF\r\nlAkFhwkyXOmEPRVgYVI0LmFpLL7GSiRZcu23/82nxUy3Dsic9xzyS4p9SKby\r\nPrbRA8gvTCxyTHq6n9N856L8eggduSSkX7Y=\r\n=Wb2T\r\n-----END PGP SIGNATURE-----\r\n",
+  "shasum": "e53d4e3f3344da8521489fbef8f2581d42becdd1",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIHreQr/lH/tMr6GVDAM6Ar+K2A1jYC5GwnQXMARcTbhOAiEAjSs7K0uy68A9TcVopUeW8tNBDgH58WgvoqR28o8prXI="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/react-transition-group/-/react-transition-group-4.4.5.tgz",
+  "unpackedSize": 244028
+ },
+ "homepage": "https://github.com/reactjs/react-transition-group#readme",
+ "jest": {
+  "roots": [
+   "<rootDir>/test"
+  ],
+  "setupFiles": [
+   "./test/setup.js"
+  ],
+  "setupFilesAfterEnv": [
+   "./test/setupAfterEnv.js"
+  ],
+  "testRegex": "-test\\.js"
+ },
+ "keywords": [
+  "react",
+  "transition",
+  "addons",
+  "transition-group",
+  "animation",
+  "css",
+  "transitions"
+ ],
+ "license": "BSD-3-Clause",
+ "main": "cjs/index.js",
+ "maintainers": [
+  {
+   "email": "koba0004@gmail.com",
+   "name": "koba04"
+  },
+  {
+   "email": "monastic.panic@gmail.com",
+   "name": "monastic.panic"
+  },
+  {
+   "email": "silbermann.sebastian@gmail.com",
+   "name": "eps1lon"
+  }
+ ],
+ "module": "esm/index.js",
+ "name": "react-transition-group",
+ "peerDependencies": {
+  "react": ">=16.6.0",
+  "react-dom": ">=16.6.0"
+ },
+ "release": {
+  "pkgRoot": "lib",
+  "prepare": [
+   "@semantic-release/changelog",
+   "semantic-release-alt-publish-dir",
+   "@semantic-release/npm",
+   "@semantic-release/git"
+  ],
+  "verifyConditions": [
+   "@semantic-release/changelog",
+   "semantic-release-alt-publish-dir",
+   "@semantic-release/git",
+   "@semantic-release/github"
+  ]
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/reactjs/react-transition-group.git"
+ },
+ "sideEffects": false,
+ "version": "4.4.5"
+}

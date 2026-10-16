@@ -1,0 +1,86 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "onetime@8.0.0",
+ "_nodeVersion": "25.3.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/onetime_8.0.0_1770018143898_0.346182239029033"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "11.7.0",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/onetime/issues"
+ },
+ "dependencies": {
+  "mimic-function": "^5.0.1"
+ },
+ "description": "Ensure a function is only called once",
+ "devDependencies": {
+  "ava": "^6.4.1",
+  "tsd": "^0.33.0",
+  "xo": "^1.2.3"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-ODz2CnF+9043eG3exS38Efor4ekggmKvIydHaXWr1n9mXA5Afn8BdSsvVpa5AhBWricxhdBMfyeG3Yo3SB+VWA==",
+  "shasum": "ce03ca837d5089fa7e637c22d9f4188ffff2ada6",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDy+UteBPsiVVAMjbUNcZ4dKgqfhPp8DCAkFAX04xpbEAIgTB1oYGJBUA6q1MKLOyYYVOhYOHQ/1JsmsbYtc5pKzkw="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/onetime/-/onetime-8.0.0.tgz",
+  "unpackedSize": 5762
+ },
+ "engines": {
+  "node": ">=22"
+ },
+ "exports": {
+  "default": "./index.js",
+  "types": "./index.d.ts"
+ },
+ "funding": "https://github.com/sponsors/sindresorhus",
+ "gitHead": "481ec583f8303e98c4d1d16bb316ef8e6b04d72c",
+ "homepage": "https://github.com/sindresorhus/onetime#readme",
+ "keywords": [
+  "once",
+  "function",
+  "one",
+  "onetime",
+  "func",
+  "fn",
+  "single",
+  "call",
+  "called",
+  "prevent"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "onetime",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/onetime.git"
+ },
+ "scripts": {
+  "test": "xo && ava && tsd"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "8.0.0"
+}

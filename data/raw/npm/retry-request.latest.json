@@ -1,0 +1,95 @@
+{
+ "_from": "file:/tmp/publishing-artifacts-3712920134/retry-request/9.1.0/retry-request-9.1.0.tgz",
+ "_hasShrinkwrap": false,
+ "_id": "retry-request@9.1.0",
+ "_integrity": "sha512-FILyVbis+DTo3KRbtKceqpj1595wIF+XQFW/+AVOBdCQmxwNDgcNXXr2FNM0Ej2qD7zVXbJGfH7lo4jB0wwhKA==",
+ "_nodeVersion": "22.18.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/retry-request_9.1.0_1791843224736_0.8642046238379681"
+ },
+ "_npmUser": {
+  "email": "node-team-npm+wombot@google.com",
+  "name": "google-wombot"
+ },
+ "_npmVersion": "10.9.3",
+ "_resolved": "/tmp/publishing-artifacts-3712920134/retry-request/9.1.0/retry-request-9.1.0.tgz",
+ "author": {
+  "email": "sawchuk@gmail.com",
+  "name": "Stephen Sawchuk"
+ },
+ "bugs": {
+  "url": "https://github.com/googleapis/google-cloud-node/issues"
+ },
+ "dependencies": {
+  "extend": "^3.0.2"
+ },
+ "description": "Retry a request.",
+ "devDependencies": {
+  "@types/request": "^2.48.13",
+  "async": "^3.2.6",
+  "gts": "^6.0.2",
+  "jsdoc": "^4.0.4",
+  "jsdoc-fresh": "^6.0.0",
+  "jsdoc-region-tag": "^5.0.0",
+  "lodash.range": "^3.2.0",
+  "mocha": "^11.1.0",
+  "teeny-request": "^11.0.0",
+  "typescript": "5.8.3"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-FILyVbis+DTo3KRbtKceqpj1595wIF+XQFW/+AVOBdCQmxwNDgcNXXr2FNM0Ej2qD7zVXbJGfH7lo4jB0wwhKA==",
+  "shasum": "b0c2c8e4432d9249e5f25150745ad63842ade8ac",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIHrViOxcKVYPvUD3ukN9Vxhf/OGcDVQJm+XRk6IVyZU2AiBlgaAtMn8VTKQCKHBymfRBEkWbOC/dCbzK7ZWfU/8Irw=="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIChMFJGWYd9JlJC7ShbgRDMSjpmYFOMkCsV9T9N15tv1AiEAuur9jR4KPxXPkoWhESbrNH1B3vO8zO/jj3I4ofz9uDg="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/retry-request/-/retry-request-9.1.0.tgz",
+  "unpackedSize": 16756
+ },
+ "engines": {
+  "node": ">=22"
+ },
+ "homepage": "https://github.com/googleapis/google-cloud-node/tree/main/core/packages/retry-request",
+ "keywords": [
+  "request",
+  "retry",
+  "stream"
+ ],
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "stephenplusplusplus@gmail.com",
+   "name": "stephenplusplus"
+  },
+  {
+   "email": "node-team-npm+wombot@google.com",
+   "name": "google-wombot"
+  }
+ ],
+ "name": "retry-request",
+ "repository": {
+  "directory": "core/packages/retry-request",
+  "type": "git",
+  "url": "git+https://github.com/googleapis/google-cloud-node.git"
+ },
+ "scripts": {
+  "docs": "jsdoc -c .jsdoc.js",
+  "fix": "gts fix",
+  "lint": "gts check",
+  "samples-test": "echo no samples",
+  "system-test": "echo no system test",
+  "test": "node ../../../bin/run-test.cjs --no-c8 --timeout 30000"
+ },
+ "types": "index.d.ts",
+ "version": "9.1.0"
+}

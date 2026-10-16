@@ -1,0 +1,16 @@
+{
+ "edges": [],
+ "error": "",
+ "nodes": [
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "SELF",
+   "versionKey": {
+    "name": "dataloader",
+    "system": "NPM",
+    "version": "2.2.2"
+   }
+  }
+ ]
+}

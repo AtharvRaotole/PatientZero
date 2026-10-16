@@ -1,0 +1,74 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "decimal.js-light@2.5.1",
+ "_nodeVersion": "14.11.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/decimal.js-light_2.5.1_1601500257040_0.39805761978013776"
+ },
+ "_npmUser": {
+  "email": "M8ch88l@gmail.com",
+  "name": "mikemcl"
+ },
+ "_npmVersion": "6.14.6",
+ "author": {
+  "email": "M8ch88l@gmail.com",
+  "name": "Michael Mclaughlin"
+ },
+ "browser": "decimal.js",
+ "bugs": {
+  "url": "https://github.com/MikeMcl/decimal.js-light/issues"
+ },
+ "description": "An arbitrary-precision Decimal type for JavaScript.",
+ "directories": {},
+ "dist": {
+  "fileCount": 10,
+  "integrity": "sha512-qIMFpTMZmny+MMIitAB6D7iVPEorVw6YQRWkvarTkT4tBeSLLiHzcwj6q0MmYSFCiVpiqPJTJEYIrpcPzVEIvg==",
+  "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.13\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJfdPRhCRA9TVsSAnZWagAAfSkP/33flvyRkUYcF6EaORLS\nrY7zhhtaQYjRrbckWbprdEOPUunewZEiOJ+Fg3kkF9brktlqfj9DDR/wpBBz\nk+HMFcXXli+Rq6avj2j2yqCxQIPyxTWS4vX9IWDQYKAHuCw0VpZUK9Wsovs4\nEod2L2zV8cTweuJP5mqvFkTwoXLLNbrrLefoVsOKLFSmMvrjHmbWYC4hJdhG\n8ALVhQHoiw+lyiBy27VYlsgc+8Sv7VCfrCO//tt3MrOJi0RI4tDmec65WMdU\nHnf/GO7gxET7PbMeUQSAmcmTtLRnpuAdfHF1MdNJQmwFD+aVTuoLyYW/0JHP\nj9BcrRr0AyJKR6qzjlatyAoOFtVIk83kaMRWUNuiczBjKcLPu4CCwLhShy8e\nNypHSjq7Nzacd6qhyqiJsYCAW9vBubACdVrbHuEBNIgyjdSAsosxLHTaYH2G\nqBS8tHDnob8KMySFMdqxphsOYB75rgNUJjqtom5X1eM79SOoT9KOxgSSw5Vn\nMDL7R6FylaeviEyTln5CpCxzCDH2XhsVplaUY5mptwl3r6QHMEEK2BO4R3FT\nzzZXuyFiuNP4lHJA0RpYcBzHOL2olFVXlebjEiaQw5NW7AZg329o8oNe6sh5\nWXWpURylaVJo/Qg2Uf9CGYMSWZ2m4F4wssVe8WozoAl5eguk6wbYoySOKVfa\nvciq\r\n=H9DY\r\n-----END PGP SIGNATURE-----\r\n",
+  "shasum": "134fd32508f19e208f4fb2f8dac0d2626a867934",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCICl9Drrzk1BGqFV/RQsAYZbVvHod5sqr10Y4Z4v0Fu0ZAiEAgS0rzfPQVYlINGiiucPxzb8Ej612/z5+cc3Ks6vLqKY="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/decimal.js-light/-/decimal.js-light-2.5.1.tgz",
+  "unpackedSize": 218255
+ },
+ "gitHead": "b2b0c28e04e4f96d21450d2075ea36064fc9e22d",
+ "homepage": "https://github.com/MikeMcl/decimal.js-light#readme",
+ "keywords": [
+  "arbitrary",
+  "precision",
+  "arithmetic",
+  "big",
+  "number",
+  "decimal",
+  "float",
+  "biginteger",
+  "bigdecimal",
+  "bignumber",
+  "bigint",
+  "bignum"
+ ],
+ "license": "MIT",
+ "main": "decimal",
+ "maintainers": [
+  {
+   "email": "M8ch88l@gmail.com",
+   "name": "mikemcl"
+  }
+ ],
+ "module": "decimal.mjs",
+ "name": "decimal.js-light",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/MikeMcl/decimal.js-light.git"
+ },
+ "scripts": {
+  "build": "uglifyjs decimal.js --source-map doc/decimal.js.map -c -m -o decimal.min.js --preamble \"/* decimal.js-light v2.5.1 https://github.com/MikeMcl/decimal.js-light/LICENCE */\"",
+  "test": "node ./test/test.js"
+ },
+ "types": "decimal.d.ts",
+ "version": "2.5.1"
+}

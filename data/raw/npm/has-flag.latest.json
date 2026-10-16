@@ -1,0 +1,86 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "has-flag@5.0.1",
+ "_nodeVersion": "14.16.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/has-flag_5.0.1_1626715853988_0.3138751642264608"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "7.10.0",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/has-flag/issues"
+ },
+ "description": "Check if argv has a specific flag",
+ "devDependencies": {
+  "ava": "^3.15.0",
+  "tsd": "^0.14.0",
+  "xo": "^0.38.2"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-CsNUt5x9LUdx6hnk/E2SZLsDyvfqANZSUq4+D3D8RzDJ2M+HDTIkF60ibS1vHaK55vzgiZw1bEPFG9yH7l33wA==",
+  "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.13\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJg9bbOCRA9TVsSAnZWagAA7FgQAIi/uPnwjILtQMmTqCIY\nWcD7Chz2q6Lf72iyfQje+50nmpmSrf16BcbBsNeR2T3NC9lFpTJKnDSpVMpM\nBye41Qwlw18c2hMLtXSpCdzMcuH1B0U+4cXuotoZaovThCA+p40y903bMox9\nG9xJRQrpy4XGjHe8o/4W6poR0QiQQrUJRWYhNgnRLvK87fSSk0PIAx9C4HSw\nsMOQdjCaSeSPby67AiF+qlIDfwwKBZqjsEZmUssxhpbxIqeBELHU+1KGJGGc\nKTqsl8Lez+Q5GYVmJo/84lcDLGxHCUolGoWhJqf54JTanEV+40x3QNmUtNTA\nGhbsi9ISZ1KIvu0NgxmkieLn14m0xM3sTcQ5IA+9kPrGj3b5Miqc0DlahtL6\ngRmrAegEmYUjeXdVLkH1XUJLuAbORfil1QzCZwxurJ0MatnKZtgxuIR1DU54\n9gbiDEpNJdhYs5sVLO7qaV5b1sHbJrEgqUw67eeOLb3WlTzW6mJyXAfqmUhS\nKspMFnXqkw+pOXdNL1TEDrTHb5x9TBoZjgugzcCDc45NpgMpATrgqp8v87x8\nux5C4bnVr6OGmB7rkwdKH7wF1vtIT8hiRR/CKkj+zoSqEJjZiE0hPLNZGmse\nms9671k04MVadIG+/M0MIVuuNd5OfoNmnA3oIn7JCyGotE3ggQXQlVYS+L2+\nTtXm\r\n=nheO\r\n-----END PGP SIGNATURE-----\r\n",
+  "shasum": "5483db2ae02a472d1d0691462fc587d1843cd940",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCID0U3iZuF4ngw6yI5Q1DMIzgGZOC+FjSkP1cUVWWPxX+AiEArAIRr7tR7h9kIVk4EB0OIr5q442GpY4swyNJsRVrI/I="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/has-flag/-/has-flag-5.0.1.tgz",
+  "unpackedSize": 4292
+ },
+ "engines": {
+  "node": ">=12"
+ },
+ "exports": "./index.js",
+ "funding": "https://github.com/sponsors/sindresorhus",
+ "gitHead": "0c7d032214c51d14b458364c9f6575ea9afa08b1",
+ "homepage": "https://github.com/sindresorhus/has-flag#readme",
+ "keywords": [
+  "has",
+  "check",
+  "detect",
+  "contains",
+  "find",
+  "flag",
+  "cli",
+  "command-line",
+  "argv",
+  "process",
+  "arg",
+  "args",
+  "argument",
+  "arguments",
+  "getopt",
+  "minimist",
+  "optimist"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "has-flag",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/has-flag.git"
+ },
+ "scripts": {
+  "test": "xo && ava && tsd"
+ },
+ "type": "module",
+ "version": "5.0.1"
+}

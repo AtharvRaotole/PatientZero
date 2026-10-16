@@ -1,0 +1,110 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "pretty-format@30.5.1",
+ "_nodeVersion": "26.8.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/pretty-format_30.5.1_1788249485073_0.7628115570864047"
+ },
+ "_npmUser": {
+  "email": "sbekkhus91@gmail.com",
+  "name": "simenb"
+ },
+ "_npmVersion": "lerna/4.11.5/node@v26.8.1+arm64 (darwin)",
+ "author": {
+  "email": "me@thejameskyle.com",
+  "name": "James Kyle"
+ },
+ "bugs": {
+  "url": "https://github.com/jestjs/jest/issues"
+ },
+ "dependencies": {
+  "@jest/react-is-18": "npm:react-is@^18.3.1",
+  "@jest/react-is-19": "npm:react-is@^19.2.5",
+  "@jest/schemas": "30.5.0",
+  "ansi-styles": "^5.2.0"
+ },
+ "description": "Stringify any JavaScript value.",
+ "devDependencies": {
+  "@types/react": "^19.2.18",
+  "@types/react-is": "^19.0.0",
+  "@types/react-test-renderer": "^19.1.0",
+  "immutable": "^5.1.2",
+  "jest-util": "30.5.1",
+  "react": "^19.2.3",
+  "react-17": "npm:react@^17.0.2",
+  "react-18": "npm:react@^18.3.1",
+  "react-19": "npm:react@^19.2.3",
+  "react-test-renderer": "^19.2.3",
+  "react-test-renderer-17": "npm:react-test-renderer@^17.0.2",
+  "react-test-renderer-18": "npm:react-test-renderer@^18.3.1",
+  "react-test-renderer-19": "npm:react-test-renderer@^19.2.3"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 6,
+  "integrity": "sha512-byhRAPguVKMQIj4kjJwJ5lAskVhfuiSdiYl/aLTWpgkGEmic2jYhJh1yE9ih8Ox44Xg9ccCT11/S6QrzSJuNrg==",
+  "shasum": "0dda910a75d12346b771977b1f328517b9e846d4",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIAWG7t3MMC7CIuWC4hjt9oweWKJ+qgFYBpmZmD3ZQ1sJAiAntUaVnUOQi0plkTMc2QI2uM6Dij+tvLBwQvBMrkVGsA=="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIF6udylVANGbfmVTuIGbGmwZKE0PZTFJXnR9zLiopcOHAiBNif/zIiVICc6wqMd4MzNhxadZTw5ZpchNI3e62DfqHg=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/pretty-format/-/pretty-format-30.5.1.tgz",
+  "unpackedSize": 61288
+ },
+ "engines": {
+  "node": "^18.14.0 || ^20.0.0 || ^22.0.0 || >=24.0.0"
+ },
+ "exports": {
+  ".": {
+   "default": "./build/index.js",
+   "import": "./build/index.mjs",
+   "require": "./build/index.js",
+   "types": "./build/index.d.ts"
+  },
+  "./package.json": "./package.json"
+ },
+ "gitHead": "9ab14feccd6c15fec1334dbcb03a53a079d153d3",
+ "homepage": "https://github.com/jestjs/jest#readme",
+ "license": "MIT",
+ "main": "./build/index.js",
+ "maintainers": [
+  {
+   "email": "aaron@abramov.io",
+   "name": "aaronabramov"
+  },
+  {
+   "email": "sbekkhus91@gmail.com",
+   "name": "simenb"
+  },
+  {
+   "email": "rickhanlonii@gmail.com",
+   "name": "rickhanlonii"
+  },
+  {
+   "email": "operations@openjsf.org",
+   "name": "openjs-operations"
+  },
+  {
+   "email": "christoph.pojer@gmail.com",
+   "name": "cpojer"
+  }
+ ],
+ "name": "pretty-format",
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "directory": "packages/pretty-format",
+  "type": "git",
+  "url": "git+https://github.com/jestjs/jest.git"
+ },
+ "types": "./build/index.d.ts",
+ "version": "30.5.1"
+}

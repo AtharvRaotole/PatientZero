@@ -1,0 +1,119 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "babel-plugin-istanbul@8.0.0",
+ "_nodeVersion": "22.12.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/babel-plugin-istanbul_8.0.0_1775698741131_0.6725057766050815"
+ },
+ "_npmUser": {
+  "email": "git@cfware.com",
+  "name": "coreyfarrell"
+ },
+ "_npmVersion": "10.9.0",
+ "author": {
+  "name": "Thai Pangsakulyanont @dtinth"
+ },
+ "bugs": {
+  "url": "https://github.com/istanbuljs/babel-plugin-istanbul/issues"
+ },
+ "dependencies": {
+  "@babel/helper-plugin-utils": "^7.0.0",
+  "@istanbuljs/load-nyc-config": "^1.0.0",
+  "@istanbuljs/schema": "^0.1.3",
+  "istanbul-lib-instrument": "^6.0.2",
+  "test-exclude": "^7.0.1"
+ },
+ "description": "A babel plugin that adds istanbul instrumentation to ES6 code",
+ "devDependencies": {
+  "@babel/cli": "^7.24.1",
+  "@babel/core": "^7.24.1",
+  "@babel/plugin-transform-block-scoping": "^7.24.1",
+  "@babel/plugin-transform-modules-commonjs": "^7.24.1",
+  "@babel/register": "^7.23.7",
+  "chai": "^4.2.0",
+  "coveralls": "^3.1.1",
+  "cross-env": "^7.0.3",
+  "mocha": "^6.2.2",
+  "nyc": "^15.0.0",
+  "pmock": "^0.2.3",
+  "standard": "^14.3.1"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-18wCskrN3DgbuBmp1gr7LBGT8xdz5xhQQqFvFhVxbkl8VBCrMKQ2YtqBWtUal1Zrc1HTuX0011+Brjw78TCFkg==",
+  "shasum": "8762f542153a52b77e626dd2c033b467de2f2fa2",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQDW/bJdsU+hQsOkmRpCAsxKLMv7ca4SqT5dll8wQQRpKgIhAOfxVUnQiw7QAtW3xd1jq0tX1ROgDIkMW7lNW46+nF7Y"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/babel-plugin-istanbul/-/babel-plugin-istanbul-8.0.0.tgz",
+  "unpackedSize": 13176
+ },
+ "engines": {
+  "node": ">=18"
+ },
+ "gitHead": "d28730cb9503bd1039bffbe3da1555641a3230e9",
+ "homepage": "https://github.com/istanbuljs/babel-plugin-istanbul#readme",
+ "keywords": [
+  "istanbul",
+  "babel",
+  "plugin",
+  "instrumentation"
+ ],
+ "license": "BSD-3-Clause",
+ "main": "lib/index.js",
+ "maintainers": [
+  {
+   "email": "kananthmail-github@yahoo.com",
+   "name": "gotwarlost"
+  },
+  {
+   "email": "bencoe@gmail.com",
+   "name": "bcoe"
+  },
+  {
+   "email": "git@cfware.com",
+   "name": "coreyfarrell"
+  },
+  {
+   "email": "bencoe+oss-bot@gmail.com",
+   "name": "oss-bot"
+  }
+ ],
+ "name": "babel-plugin-istanbul",
+ "nyc": {
+  "include": [
+   "src/*.js",
+   "fixtures/should-cover.js"
+  ],
+  "instrument": false,
+  "require": [
+   "@babel/register"
+  ],
+  "sourceMap": false
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/istanbuljs/babel-plugin-istanbul.git"
+ },
+ "scripts": {
+  "coverage": "nyc report --reporter=text-lcov | coveralls",
+  "prepublishOnly": "npm test && npm run release",
+  "pretest": "standard && npm run release",
+  "release": "babel src --out-dir lib",
+  "test": "cross-env NODE_ENV=test nyc --reporter=lcov --reporter=text mocha --timeout 5000 test/*.js"
+ },
+ "standard": {
+  "ignore": [
+   "fixtures/*.js"
+  ]
+ },
+ "version": "8.0.0",
+ "workspaces": [
+  "test/babel-8"
+ ]
+}

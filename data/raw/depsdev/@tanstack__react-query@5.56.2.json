@@ -1,0 +1,32 @@
+{
+ "edges": [
+  {
+   "fromNode": 0,
+   "requirement": "5.56.2",
+   "toNode": 1
+  }
+ ],
+ "error": "",
+ "nodes": [
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "SELF",
+   "versionKey": {
+    "name": "@tanstack/react-query",
+    "system": "NPM",
+    "version": "5.56.2"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "@tanstack/query-core",
+    "system": "NPM",
+    "version": "5.56.2"
+   }
+  }
+ ]
+}

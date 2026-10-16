@@ -1,0 +1,94 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "lines-and-columns@2.0.4",
+ "_nodeVersion": "14.21.3",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/lines-and-columns_2.0.4_1699321313143_0.3882401338787851"
+ },
+ "_npmUser": {
+  "email": "brian@donovans.cc",
+  "name": "eventualbuddha"
+ },
+ "_npmVersion": "6.14.18",
+ "author": {
+  "email": "brian@donovans.cc",
+  "name": "Brian Donovan"
+ },
+ "bugs": {
+  "url": "https://github.com/eventualbuddha/lines-and-columns/issues"
+ },
+ "description": "Maps lines and columns to character offsets and back.",
+ "devDependencies": {
+  "@types/jest": "^27.0.3",
+  "@types/node": "^16.11.9",
+  "@typescript-eslint/eslint-plugin": "^5.4.0",
+  "@typescript-eslint/parser": "^5.4.0",
+  "esbuild": "^0.13.15",
+  "esbuild-runner": "^2.2.1",
+  "eslint": "^8.2.0",
+  "eslint-config-prettier": "^8.3.0",
+  "eslint-plugin-prettier": "^4.0.0",
+  "is-ci-cli": "^2.2.0",
+  "jest": "^27.3.1",
+  "prettier": "^2.4.1",
+  "semantic-release": "^18.0.0",
+  "typescript": "^4.5.2"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 6,
+  "integrity": "sha512-wM1+Z03eypVAVUCE7QdSqpVIvelbOakn1M0bPDoA4SGWPx3sNDVUiMo3L6To6WWGClB7VyXnhQ4Sn7gxiJbE6A==",
+  "shasum": "d00318855905d2660d8c0822e3f5a4715855fc42",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEYCIQDmt14XwDhVzhJ3E+zDPnDZl8Fza3nZVHKqdIqYJ56ygQIhAKJh/bqACgNw339ZduolqOvlwdilzKk69fYG8wyBHtuZ"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/lines-and-columns/-/lines-and-columns-2.0.4.tgz",
+  "unpackedSize": 7692
+ },
+ "engines": {
+  "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+ },
+ "exports": {
+  "import": "./build/index.mjs",
+  "require": "./build/index.cjs",
+  "types": "./build/index.d.ts"
+ },
+ "gitHead": "eea2581b131685f2c21de777fd037c8ddd343354",
+ "homepage": "https://github.com/eventualbuddha/lines-and-columns#readme",
+ "keywords": [
+  "lines",
+  "columns",
+  "parser"
+ ],
+ "license": "MIT",
+ "main": "./build/index.cjs",
+ "maintainers": [
+  {
+   "email": "brian@donovans.cc",
+   "name": "eventualbuddha"
+  }
+ ],
+ "name": "lines-and-columns",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/eventualbuddha/lines-and-columns.git"
+ },
+ "scripts": {
+  "build": "tsc --project tsconfig.build.json && mv build/index.js build/index.mjs && tsc --project tsconfig.build.json --module commonjs && mv build/index.js build/index.cjs",
+  "build:watch": "tsc --project tsconfig.build.json --watch",
+  "lint": "eslint .",
+  "lint:fix": "eslint . --fix",
+  "prebuild": "rm -rf build",
+  "prepublishOnly": "npm run lint && npm run build",
+  "test": "is-ci test:coverage test:watch",
+  "test:coverage": "jest --coverage",
+  "test:watch": "jest --watch"
+ },
+ "type": "module",
+ "types": "./build/index.d.ts",
+ "version": "2.0.4"
+}

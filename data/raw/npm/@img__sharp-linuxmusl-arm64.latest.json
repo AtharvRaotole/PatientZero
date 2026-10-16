@@ -1,0 +1,96 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@img/sharp-linuxmusl-arm64@0.35.5",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/sharp-linuxmusl-arm64_0.35.5_1790516824576_0.9608384959347447"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:b6ff7453-a673-4968-bc4d-bef616108e15"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "author": {
+  "email": "npm@lovell.info",
+  "name": "Lovell Fuller"
+ },
+ "bugs": {
+  "url": "https://github.com/lovell/sharp/issues"
+ },
+ "config": {
+  "musl": ">=1.2.5"
+ },
+ "cpu": [
+  "arm64"
+ ],
+ "description": "Prebuilt sharp for use with Linux (musl) 64-bit ARM",
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@img%2fsharp-linuxmusl-arm64@0.35.5"
+  },
+  "fileCount": 5,
+  "integrity": "sha512-9HbMclmI1zlNkFRs3z9/eBtDjfD0sGlrX1z6b1qwmiFY5ElDLh4BC0LPBdVp7z1DXFiKlIcznf+ZlsuZzLxQqg==",
+  "shasum": "92d0904211086d10bd3c929de715dd8a81fa7268",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIF+5MGU+t+5YwhRnPUP25NONL9an9FjvjumHIoYhyE1hAiAiun3+34blgJGFa5bT9H/VDfUauE7ROJ0faGQ2esGyuA=="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIBEXCTtgFUA4cZOe/6D7caX5ljpCVzqHfUJNxemB5u4rAiBa3ILNp/CAr0H0TQDh31HDFwUQksX7I9RcNEVWLe91yA=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@img/sharp-linuxmusl-arm64/-/sharp-linuxmusl-arm64-0.35.5.tgz",
+  "unpackedSize": 341907
+ },
+ "engines": {
+  "node": ">=20.9.0"
+ },
+ "exports": {
+  "./package": "./package.json",
+  "./sharp.node": "./index.cjs"
+ },
+ "funding": {
+  "url": "https://opencollective.com/libvips"
+ },
+ "gitHead": "51a990faa26ade5586a4934ac9673c98d8893326",
+ "homepage": "https://sharp.pixelplumbing.com",
+ "libc": [
+  "musl"
+ ],
+ "license": "Apache-2.0",
+ "maintainers": [
+  {
+   "email": "npm@lovell.info",
+   "name": "lovell"
+  }
+ ],
+ "name": "@img/sharp-linuxmusl-arm64",
+ "optionalDependencies": {
+  "@img/sharp-libvips-linuxmusl-arm64": "1.3.4"
+ },
+ "os": [
+  "linux"
+ ],
+ "preferUnplugged": true,
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "directory": "npm/linuxmusl-arm64",
+  "type": "git",
+  "url": "git+https://github.com/lovell/sharp.git"
+ },
+ "type": "commonjs",
+ "version": "0.35.5"
+}

@@ -1,0 +1,121 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "mime@4.1.1",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/mime_4.1.1_1791786921840_0.09315853886643621"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "890adfc4-5c75-4e01-8fd2-7008390d408d"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "author": {
+  "email": "robert@broofa.com",
+  "name": "Robert Kieffer",
+  "url": "http://github.com/broofa"
+ },
+ "bin": {
+  "mime": "bin/cli.js"
+ },
+ "bugs": {
+  "url": "https://github.com/broofa/mime/issues"
+ },
+ "contributors": [],
+ "description": "A comprehensive library for mime-type mapping",
+ "devDependencies": {
+  "@types/mime-db": "1.43.6",
+  "@types/mime-types": "3.0.1",
+  "@types/node": "26.6.5",
+  "@typescript-eslint/eslint-plugin": "8.71.1",
+  "@typescript-eslint/parser": "8.71.1",
+  "chalk": "6.0.1",
+  "mime-score": "2.0.4",
+  "mime-types": "3.0.2",
+  "prettier": "3.9.10",
+  "release-please": "17.11.2",
+  "runmd": "2.1.1",
+  "typescript": "6.0.3"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/mime@4.1.1"
+  },
+  "fileCount": 22,
+  "integrity": "sha512-YAApRsTpM2+gnUFHhRNGfkX8NK0V5xj1nyQLufGlwEI+eX4xRsTcel2IXDuMEGSGjBvzykNW4VuoEACgwYe7BQ==",
+  "shasum": "74423f8333766bf8ab91d9543c73bd864f3d5c38",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQCDw2s+02gDS0ntEtpOm777GloYnvANzPELhxEDb+WrsAIgB9VgJjKrcLgi8AyFovubZpUCd3Ydl/9yL+5s3pX0i64="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIE7R8SW/oDRF+OfPGTDXd8p4MB8s9sFu7G4ek9HgwLEwAiBW9iSYkNlbtd5FgD8qGPm6C7FZHd0afIf5UR7GoRBJvg=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/mime/-/mime-4.1.1.tgz",
+  "unpackedSize": 161334
+ },
+ "engines": {
+  "node": ">=16"
+ },
+ "exports": {
+  ".": "./dist/src/index.js",
+  "./lite": "./dist/src/index_lite.js",
+  "./package.json": "./package.json",
+  "./types/other.js": "./dist/types/other.js",
+  "./types/standard.js": "./dist/types/standard.js"
+ },
+ "funding": [
+  "https://github.com/sponsors/broofa"
+ ],
+ "gitHead": "88d3086753e89979dfe2850ba45d4182e05fbbf6",
+ "homepage": "https://github.com/broofa/mime#readme",
+ "keywords": [
+  "extension",
+  "file",
+  "mime",
+  "mime-db",
+  "mimetypes",
+  "util"
+ ],
+ "license": "MIT",
+ "main": "./dist/src/index.js",
+ "maintainers": [
+  {
+   "email": "robert@broofa.com",
+   "name": "broofa"
+  }
+ ],
+ "name": "mime",
+ "packageManager": "npm@12.2.0",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/broofa/mime.git"
+ },
+ "scripts": {
+  "build": "rm -fr dist && tsc",
+  "build:types": "node dist/scripts/build.js",
+  "build:watch": "npm run build -- --watch",
+  "lint": "prettier -c .",
+  "lint:fix": "prettier -w .",
+  "prepack": "npm run build",
+  "prepublishOnly": "npm test",
+  "pretest": "npm run build",
+  "test": "node --test && ./test/exports_test.sh",
+  "test:watch": "clear && node --enable-source-maps --test --watch test"
+ },
+ "type": "module",
+ "types": "./dist/src/index.d.ts",
+ "version": "4.1.1"
+}

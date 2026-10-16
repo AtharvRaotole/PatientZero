@@ -1,0 +1,109 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@tanstack/query-core@5.104.3",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/query-core_5.104.3_1792050817910_0.033033736287177096"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "f154169d-63a2-44d3-ab06-733a52e9bf6c"
+  }
+ },
+ "author": "tannerlinsley",
+ "description": "The framework agnostic core that powers TanStack Query",
+ "devDependencies": {
+  "@tanstack/query-test-utils": "0.0.0",
+  "typescript": "6.0.3"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@tanstack%2fquery-core@5.104.3"
+  },
+  "fileCount": 365,
+  "integrity": "sha512-DZY9TuJAOgU3UyHUhXb4CcTYEHNZszlwkPg4VViIwTxOKzLprPUU+rbaPZQd3srqkGOtpaDdKpW972UV/LKlcg==",
+  "shasum": "ef22d22c22dfddf554975b990382506a6b6b4871",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQDDWT4Aw2iFheme3OvRVI2miB9mZDStVPlZgBWGUBOqMwIhALsL8rUWNyNg61T0U86Xu4NMUcWIGXryagNSsCLjlJYT"
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIFfG1q8AHlWv0M7Ms8gf8S4sWTDkCy5R9oNJrKU/Z2coAiEAu3OBIt1l1PX7a+tva8jaaGPOi3KzirLaGOqSZegSgs0="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@tanstack/query-core/-/query-core-5.104.3.tgz",
+  "unpackedSize": 3885531
+ },
+ "exports": {
+  ".": {
+   "@tanstack/custom-condition": "./src/index.ts",
+   "import": {
+    "default": "./build/modern/index.js",
+    "types": "./build/modern/index.d.ts"
+   },
+   "require": {
+    "default": "./build/modern/index.cjs",
+    "types": "./build/modern/index.d.cts"
+   }
+  },
+  "./package.json": "./package.json"
+ },
+ "funding": {
+  "type": "github",
+  "url": "https://github.com/sponsors/tannerlinsley"
+ },
+ "homepage": "https://tanstack.com/query",
+ "license": "MIT",
+ "main": "build/legacy/index.cjs",
+ "maintainers": [
+  {
+   "email": "tannerlinsley@gmail.com",
+   "name": "tannerlinsley"
+  },
+  {
+   "email": "t.zlak97@gmail.com",
+   "name": "alemtuzlak"
+  },
+  {
+   "email": "kevinvandy656@gmail.com",
+   "name": "kevinvandy"
+  }
+ ],
+ "module": "build/legacy/index.js",
+ "name": "@tanstack/query-core",
+ "react-native": "src/index.ts",
+ "repository": {
+  "directory": "packages/query-core",
+  "type": "git",
+  "url": "git+https://github.com/TanStack/query.git"
+ },
+ "scripts": {
+  "build": "tsdown --tsconfig tsconfig.prod.json",
+  "clean": "premove ./build ./coverage ./dist-ts ./.cache/test-types",
+  "compile": "tsc --project tsconfig.json",
+  "test:build": "publint --strict && attw --pack",
+  "test:lib": "vitest",
+  "test:lib:dev": "pnpm run test:lib --watch",
+  "test:oxlint": "oxlint ./src",
+  "test:types": "npm-run-all --serial test:types:*",
+  "test:types:ts57": "node ../../node_modules/typescript57/lib/tsc.js --project tsconfig.legacy.json --outDir .cache/test-types/ts57 --tsBuildInfoFile .cache/test-types/ts57.tsbuildinfo",
+  "test:types:ts58": "node ../../node_modules/typescript58/lib/tsc.js --project tsconfig.legacy.json --outDir .cache/test-types/ts58 --tsBuildInfoFile .cache/test-types/ts58.tsbuildinfo",
+  "test:types:ts59": "node ../../node_modules/typescript59/lib/tsc.js --project tsconfig.legacy.json --outDir .cache/test-types/ts59 --tsBuildInfoFile .cache/test-types/ts59.tsbuildinfo",
+  "test:types:ts70": "node ../../node_modules/typescript70/lib/tsc.js --project tsconfig.legacy.json --outDir .cache/test-types/ts70 --tsBuildInfoFile .cache/test-types/ts70.tsbuildinfo",
+  "test:types:ts71": "node ../../node_modules/typescript71/lib/tsc.js --project tsconfig.legacy.json --outDir .cache/test-types/ts71 --tsBuildInfoFile .cache/test-types/ts71.tsbuildinfo",
+  "test:types:tscurrent": "tsc --project tsconfig.json --outDir .cache/test-types/tscurrent --tsBuildInfoFile .cache/test-types/tscurrent.tsbuildinfo"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "build/legacy/index.d.ts",
+ "version": "5.104.3"
+}

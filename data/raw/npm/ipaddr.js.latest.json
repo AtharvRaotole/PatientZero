@@ -1,0 +1,79 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "ipaddr.js@2.5.0",
+ "_nodeVersion": "24.18.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/ipaddr.js_2.5.0_1785849759993_0.1485041498754225"
+ },
+ "_npmUser": {
+  "email": "whitequark@whitequark.org",
+  "name": "whitequark"
+ },
+ "_npmVersion": "9.2.0",
+ "author": {
+  "email": "whitequark@whitequark.org",
+  "name": "whitequark"
+ },
+ "bugs": {
+  "url": "https://github.com/whitequark/ipaddr.js/issues"
+ },
+ "description": "A library for manipulating IPv4 and IPv6 addresses in JavaScript.",
+ "devDependencies": {
+  "@eslint/js": "^10.0.1",
+  "eslint": "^10.3.0",
+  "globals": "^17.6.0"
+ },
+ "directories": {
+  "lib": "./lib"
+ },
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-aq+t5NAc+cS6rZQQVWC2x98CPqGtKKTMDd4Gaodv0wShnItdKg/51djkGJ1hqH+Oy0ivDftCbSLCQob8zso01w==",
+  "shasum": "7d4b6c39f9392fb61cf807de6e425e22c10e061f",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIETR/2NXEMreqongEKzvR0R0qxxTArVL/laPzW1uh+JHAiEA00r4xaHI9+Xyt7EYlYRQn2umQzyCyTYRx4uLgkfrSBY="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDl5uqZ0ieHe6qLMi6C/drdNj5GNO3QvRRroOp14/44rgIgbPBbiTWxdCZ2m+tvJP1au+65FbjgPmgL9HDtwRjqQsI="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/ipaddr.js/-/ipaddr.js-2.5.0.tgz",
+  "unpackedSize": 64424
+ },
+ "engines": {
+  "node": ">= 10"
+ },
+ "gitHead": "dc55282780d8702bac31ef012ca52e4a77fbca1f",
+ "homepage": "https://github.com/whitequark/ipaddr.js#readme",
+ "keywords": [
+  "ip",
+  "ipv4",
+  "ipv6"
+ ],
+ "license": "MIT",
+ "main": "./lib/ipaddr.js",
+ "maintainers": [
+  {
+   "email": "whitequark@whitequark.org",
+   "name": "whitequark"
+  }
+ ],
+ "name": "ipaddr.js",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/whitequark/ipaddr.js.git"
+ },
+ "scripts": {
+  "lint": "npx eslint lib",
+  "lintfix": "npx eslint --fix lib test",
+  "test": "node --test",
+  "test:coverage": "node --test --experimental-test-coverage"
+ },
+ "type": "commonjs",
+ "types": "./lib/ipaddr.d.ts",
+ "version": "2.5.0"
+}

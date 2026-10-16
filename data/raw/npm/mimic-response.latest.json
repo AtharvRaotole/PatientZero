@@ -1,0 +1,81 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "mimic-response@4.0.0",
+ "_nodeVersion": "16.2.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/mimic-response_4.0.0_1628692371184_0.7582342499964367"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "7.10.0",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/mimic-response/issues"
+ },
+ "description": "Mimic a Node.js HTTP response stream",
+ "devDependencies": {
+  "@types/node": "^16.4.13",
+  "ava": "^3.15.0",
+  "create-test-server": "^3.0.1",
+  "p-event": "^4.2.0",
+  "pify": "^5.0.0",
+  "tsd": "^0.17.0",
+  "xo": "^0.44.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-e5ISH9xMYU0DzrT+jl8q2ze9D6eWBto+I8CNpe+VI+K2J/F/k3PdkdTdz4wvGVH4NTpo+NRYTVIuMQEMMcsLqg==",
+  "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.13\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJhE9+TCRA9TVsSAnZWagAA4UoP/3I+dhcbYLxgwla4hIDA\n2zoMS8GnnAJvsJHiO5WHUM1pRO/Fff+efIlMD1kCsu2kQsu5zrLmc+nqUkaC\nqLRzmGWStdCk6xiqJ+c6Vby2xMdZOmI/wohE46T/1XFngIjkpEMJM4xsnkIS\nKuXWpkymvK6SpHe6D2RqgTVmXzRuzwYV9TFMzLt9dMGEck/ETQt8LDQUO8nO\nqTR7V126KKnm7UMLnlbr833zchloqvXad84EBGSoJWqin6KMi+8HVSm+bXPu\nVyTF5ZjIuMwUu5uZO8qc0vx0iPjs4ixLCPduJM2Xj6DITAFHo7AlRy94a+LL\npR/5LfFKJXVCTqxIIYajO+oQ9IRK8PGs2yOJzMB6v5EaE59hNZ/dQyUleZra\nZ+K124rViRgeMZQwcTRGTWtnMuIqLuuhR7RWjoF31SNuvykH9U5hzbn8diGt\nXwzlThQyDvvJ/B6x3KTtmOwG5cBQMZZRIaiUk9wNTdLIYRZoB7l6N0tgrE0k\n7h1Sehd2c94dcUn1jtrZXw7k9GUUHg9MLEw0ItCWw7XiyN8LzdGPbZ/+MpH6\nvjAilvHy9kseszwbkY6Dldw6yyCcau6aBG7blBbqOZ5ezBCIJKPRW7YW5z/h\nGlZ75+wjrW6QkpXY12RhG0JubCUvu9Ad268gkYAn7pUAU8/pzHeuO6E4ZGJX\nvmqF\r\n=01/Y\r\n-----END PGP SIGNATURE-----\r\n",
+  "shasum": "35468b19e7c75d10f5165ea25e75a5ceea7cf70f",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIQD/cSPcQTDLLSY1iCuXDp9FX9ok0TgeKl2KMeh3Yrpy5AIgLdDN+7earqBD7dPgs16aafC2c6BsuF08nYNs2csW3iQ="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/mimic-response/-/mimic-response-4.0.0.tgz",
+  "unpackedSize": 6201
+ },
+ "engines": {
+  "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+ },
+ "exports": "./index.js",
+ "funding": "https://github.com/sponsors/sindresorhus",
+ "gitHead": "2cb991bc4801a88e0cff37768d41379fabaa8eef",
+ "homepage": "https://github.com/sindresorhus/mimic-response#readme",
+ "keywords": [
+  "mimic",
+  "response",
+  "stream",
+  "http",
+  "https",
+  "request",
+  "get",
+  "core"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "mimic-response",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/mimic-response.git"
+ },
+ "scripts": {
+  "test": "xo && ava && tsd"
+ },
+ "type": "module",
+ "version": "4.0.0"
+}

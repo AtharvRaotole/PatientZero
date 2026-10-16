@@ -1,0 +1,129 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "json-schema-ref-resolver@3.0.1",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/json-schema-ref-resolver_3.0.1_1791628024823_0.9537785778273395"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "23e8d64e-b522-4181-b02e-c961981061b7"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "author": {
+  "email": "ivan@tymoshenko.me",
+  "name": "Ivan Tymoshenko"
+ },
+ "bugs": {
+  "url": "https://github.com/fastify/json-schema-ref-resolver/issues"
+ },
+ "contributors": [
+  {
+   "email": "hello@matteocollina.com",
+   "name": "Matteo Collina"
+  },
+  {
+   "name": "James Sumners",
+   "url": "https://james.sumners.info"
+  },
+  {
+   "email": "hey@gurgun.day",
+   "name": "G\u00fcrg\u00fcn Day\u0131o\u011flu",
+   "url": "https://heyhey.to/G"
+  },
+  {
+   "email": "frazer.dev@icloud.com",
+   "name": "Frazer Smith",
+   "url": "https://github.com/fdawgs"
+  }
+ ],
+ "dependencies": {
+  "dequal": "^2.0.3"
+ },
+ "description": "JSON schema reference resolver",
+ "devDependencies": {
+  "c8": "^12.0.0",
+  "eslint": "^9.17.0",
+  "neostandard": "^0.13.0",
+  "tstyche": "^7.0.0"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/json-schema-ref-resolver@3.0.1"
+  },
+  "fileCount": 20,
+  "integrity": "sha512-w+HwgljXpVwZ3IidoUR1qPZxSOQ+NRQWuVe6a5pe8XbHsNZE4UAwVPUvzZagn7yBKbJtt6UJnRFYbNTRPZI45Q==",
+  "shasum": "5ab9a5aa62ce607eee619fa420b3ee40a17ae0da",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIA4HQkoc4GjRufq9OL+7qrB0xzHEhmEgUw2hVI4ETU4zAiBs/bU1r8fbRKvKLZYUk4zwS8+W1C3Ei2QgehchAGsHOQ=="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIAFe+AVqFPGRKQxOKV96CTaK2P0vZ6bC1wZ11ej74Vr+AiEA8rqzSeVTrn4kGRE2vPzVQDn8RtKk6UAGJ41PhV3DXSA="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/json-schema-ref-resolver/-/json-schema-ref-resolver-3.0.1.tgz",
+  "unpackedSize": 61209
+ },
+ "funding": [
+  {
+   "type": "github",
+   "url": "https://github.com/sponsors/fastify"
+  },
+  {
+   "type": "opencollective",
+   "url": "https://opencollective.com/fastify"
+  }
+ ],
+ "gitHead": "11ea7f2f5a8a44dcfc062e2fa546048a986f8881",
+ "homepage": "https://github.com/fastify/json-schema-ref-resolver#readme",
+ "keywords": [
+  "json",
+  "schema",
+  "reference",
+  "openapi",
+  "swagger"
+ ],
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "behemoth89@gmail.com",
+   "name": "eomm"
+  },
+  {
+   "email": "hello@matteocollina.com",
+   "name": "matteo.collina"
+  },
+  {
+   "email": "ivan@tymoshenko.me",
+   "name": "ivan-tymoshenko"
+  }
+ ],
+ "name": "json-schema-ref-resolver",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/fastify/json-schema-ref-resolver.git"
+ },
+ "scripts": {
+  "lint": "eslint",
+  "lint:fix": "eslint --fix",
+  "test": "npm run lint && npm run test:unit && npm run test:typescript",
+  "test:typescript": "tstyche",
+  "test:unit": "c8 --100 node --test"
+ },
+ "type": "commonjs",
+ "types": "types/index.d.ts",
+ "version": "3.0.1"
+}

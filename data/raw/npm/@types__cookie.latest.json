@@ -1,0 +1,42 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@types/cookie@1.0.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/cookie_1.0.0_1730242986495_0.8098516928460593"
+ },
+ "_npmUser": {
+  "email": "ts-npm-types@microsoft.com",
+  "name": "types"
+ },
+ "dependencies": {
+  "cookie": "*"
+ },
+ "deprecated": "This is a stub types definition. cookie provides its own type definitions, so you do not need this installed.",
+ "description": "Stub TypeScript definitions entry for cookie, which provides its own types definitions",
+ "directories": {},
+ "dist": {
+  "fileCount": 4,
+  "integrity": "sha512-mGFXbkDQJ6kAXByHS7QAggRXgols0mAdP4MuXgloGY1tXokvzaFFM4SMqWvf7AH0oafI7zlFJwoGWzmhDqTZ9w==",
+  "shasum": "c1bd6d1fed5e8086e5ab700c1e3174c7a12d065b",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEQCIDuNXMMI7zRq/sTHkhmf1Pd/7RCJ5gNOsBbjdLcQYP01AiAuMjZC9e3lbNK1jUzQXiqtrakuUzJPd/EZ8O24k7Y3Ow=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@types/cookie/-/cookie-1.0.0.tgz",
+  "unpackedSize": 1722
+ },
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "ts-npm-types@microsoft.com",
+   "name": "types"
+  }
+ ],
+ "name": "@types/cookie",
+ "scripts": {},
+ "version": "1.0.0"
+}

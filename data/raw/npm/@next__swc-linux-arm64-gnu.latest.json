@@ -1,0 +1,81 @@
+{
+ "_from": "file:next-swc-linux-arm64-gnu-16.4.2.tgz",
+ "_hasShrinkwrap": false,
+ "_id": "@next/swc-linux-arm64-gnu@16.4.2",
+ "_integrity": "sha512-xhwFTAncJyaCNy5KqKKuKaIIdCy1/1ZV1s5S1G0hhT7wGMkDTlfJ6aQbfRFnIG/s3/kDrxQ8aycVe+c5QnP8ow==",
+ "_nodeVersion": "24.22.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/swc-linux-arm64-gnu_16.4.2_1792097004506_0.9877106815153165"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "34e800f4-1033-4c52-9f62-104944d20a46"
+  }
+ },
+ "_npmVersion": "11.19.1",
+ "_resolved": "/tmp/2523e741c702319c7d89df84ff911c24/next-swc-linux-arm64-gnu-16.4.2.tgz",
+ "bugs": {
+  "url": "https://github.com/vercel/next.js/issues"
+ },
+ "cpu": [
+  "arm64"
+ ],
+ "description": "This is the **linux-arm64-gnu** binary for `@next/swc`",
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@next%2fswc-linux-arm64-gnu@16.4.2"
+  },
+  "fileCount": 3,
+  "integrity": "sha512-xhwFTAncJyaCNy5KqKKuKaIIdCy1/1ZV1s5S1G0hhT7wGMkDTlfJ6aQbfRFnIG/s3/kDrxQ8aycVe+c5QnP8ow==",
+  "shasum": "aefb3d7350c86352e31889661b576d467388360b",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQD787B+ad1z/NCivo0Da+n6pIz0aQ6RtcFcn1P/y9x5twIhAJqssBhR1CdUjZ5XR4qRM6w0KeGc6WQu19BFntk7m90S"
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQDZyYEVUwcQ5FdnOKQEbn79+d7zrjOa1PVkibIiOoB4uwIhAO8phjDlpbFSH9pSsKFxIjnavSaz0dBhOvCx4wuGbDPF"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@next/swc-linux-arm64-gnu/-/swc-linux-arm64-gnu-16.4.2.tgz",
+  "unpackedSize": 92799458
+ },
+ "engines": {
+  "node": ">= 10"
+ },
+ "homepage": "https://github.com/vercel/next.js#readme",
+ "libc": [
+  "glibc"
+ ],
+ "license": "MIT",
+ "main": "next-swc.linux-arm64-gnu.node",
+ "maintainers": [
+  {
+   "email": "infra+release@vercel.com",
+   "name": "vercel-release-bot"
+  },
+  {
+   "email": "matt.j.straka@gmail.com",
+   "name": "matt.straka"
+  }
+ ],
+ "name": "@next/swc-linux-arm64-gnu",
+ "os": [
+  "linux"
+ ],
+ "repository": {
+  "directory": "crates/next-napi-bindings/npm/linux-arm64-gnu",
+  "type": "git",
+  "url": "git+https://github.com/vercel/next.js.git"
+ },
+ "version": "16.4.2"
+}

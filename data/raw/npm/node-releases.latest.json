@@ -1,0 +1,79 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "node-releases@2.0.59",
+ "_nodeVersion": "26.12.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/node-releases_2.0.59_1792051960272_0.6209902804340459"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "aecb7228-6a07-44f4-ae44-448be44d5293"
+  }
+ },
+ "_npmVersion": "11.20.0",
+ "author": {
+  "email": "chi187@gmail.com",
+  "name": "Sergey Rubanov"
+ },
+ "bugs": {
+  "url": "https://github.com/chicoxyzzy/node-releases/issues"
+ },
+ "description": "Node.js releases data",
+ "devDependencies": {
+  "semver": "^7.3.5"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/node-releases@2.0.59"
+  },
+  "fileCount": 5,
+  "integrity": "sha512-5qr2okC4ItAI0hG5SaV0HoYMpnM/Y6+Oqr7AmPYy/2uEoGvS+GbSKLeRxSS1uAdu59yz0ouzcuXievSgg///WA==",
+  "shasum": "172a7e253e3cca1ae00e8015a82b54e7fcc68fd3",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQCa66lWrGno6YNeYnCpJykM/Qjplykgk0Vjdn1i2o2wNAIgVGP4k/OFkDEbmk4JNQQMqln9FBTW8TZfTtkEFMWiAJM="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDBbqUtTB6gLT9Ai525aa0sTGAbT7M835RRWYxeI3aVMgIgE39mv4jwfy6U5EHnqZMmU3P9VoiADm/68G3SMwB8/Cg="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/node-releases/-/node-releases-2.0.59.tgz",
+  "unpackedSize": 62480
+ },
+ "engines": {
+  "node": ">=18"
+ },
+ "gitHead": "afa38d1941a48ba81959f5fa7dbe7126bf533970",
+ "homepage": "https://github.com/chicoxyzzy/node-releases#readme",
+ "keywords": [
+  "nodejs",
+  "releases"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "chi187@gmail.com",
+   "name": "chicoxyzzy"
+  }
+ ],
+ "name": "node-releases",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/chicoxyzzy/node-releases.git"
+ },
+ "scripts": {
+  "build": "node scripts/build.js"
+ },
+ "type": "module",
+ "version": "2.0.59"
+}

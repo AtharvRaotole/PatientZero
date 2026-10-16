@@ -1,0 +1,65 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@types/promise.allsettled@1.0.6",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/promise.allsettled_1.0.6_1699363751935_0.06849584698216327"
+ },
+ "_npmUser": {
+  "email": "ts-npm-types@microsoft.com",
+  "name": "types"
+ },
+ "contributors": [
+  {
+   "githubUsername": "jurca",
+   "name": "Martin Jur\u010da",
+   "url": "https://github.com/jurca"
+  },
+  {
+   "githubUsername": "kisaraofpern",
+   "name": "Elizabeth Lorenz",
+   "url": "https://github.com/kisaraofpern"
+  },
+  {
+   "githubUsername": "ljharb",
+   "name": "Jordan Harband",
+   "url": "https://github.com/ljharb"
+  }
+ ],
+ "dependencies": {},
+ "description": "TypeScript definitions for promise.allsettled",
+ "directories": {},
+ "dist": {
+  "fileCount": 11,
+  "integrity": "sha512-wA0UT0HeT2fGHzIFV9kWpYz5mdoyLxKrTgMdZQM++5h6pYAFH73HXcQhefg24nD1yivUFEn5KU+EF4b+CXJ4Wg==",
+  "shasum": "3f92657f807f14b165b90ee06cad3123529bd336",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIQCVg+HYf5wNbYN88F83xNIR0X6KXtW58TmgMphCcPPHbwIgfMhpgdJRTbPW3zSL+J4ADK00eMQWXeV6WFDTmYVVXJA="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@types/promise.allsettled/-/promise.allsettled-1.0.6.tgz",
+  "unpackedSize": 5473
+ },
+ "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/promise.allsettled",
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "ts-npm-types@microsoft.com",
+   "name": "types"
+  }
+ ],
+ "name": "@types/promise.allsettled",
+ "repository": {
+  "directory": "types/promise.allsettled",
+  "type": "git",
+  "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+ },
+ "scripts": {},
+ "typeScriptVersion": "4.5",
+ "types": "index.d.ts",
+ "typesPublisherContentHash": "b77ed5d9ea15441c2e1340c2ac0b712d299e8282d2acf09014efbb57cb59954c",
+ "version": "1.0.6"
+}

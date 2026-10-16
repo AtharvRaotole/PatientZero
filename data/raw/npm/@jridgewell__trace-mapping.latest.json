@@ -1,0 +1,101 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@jridgewell/trace-mapping@0.3.31",
+ "_nodeVersion": "20.10.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/trace-mapping_0.3.31_1757535169262_0.3481793426434441"
+ },
+ "_npmUser": {
+  "email": "justin+npm@ridgewell.name",
+  "name": "jridgewell"
+ },
+ "_npmVersion": "10.2.3",
+ "author": {
+  "email": "justin@ridgewell.name",
+  "name": "Justin Ridgewell"
+ },
+ "bugs": {
+  "url": "https://github.com/jridgewell/sourcemaps/issues"
+ },
+ "dependencies": {
+  "@jridgewell/resolve-uri": "^3.1.0",
+  "@jridgewell/sourcemap-codec": "^1.4.14"
+ },
+ "description": "Trace the original position through a source map",
+ "directories": {},
+ "dist": {
+  "fileCount": 52,
+  "integrity": "sha512-zzNR+SdQSDJzc8joaeP8QQoCQr8NuYx2dIIytl1QeBEZHJ9uW6hebsrYgbz8hJwUQao3TWCMtmfV8Nu1twOLAw==",
+  "shasum": "db15d6781c931f3a251a3dac39501c98a6082fd0",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQDnt7ZEsRkLh3IbT97P+q8XOsPOIAm84QB799xQzYZB/AIhAO6Mu+WPLULxKneRGao2w4gLAEcsMgb/Sl16RVJJzM4r"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@jridgewell/trace-mapping/-/trace-mapping-0.3.31.tgz",
+  "unpackedSize": 146724
+ },
+ "exports": {
+  ".": [
+   {
+    "default": {
+     "default": "./dist/trace-mapping.umd.js",
+     "types": "./types/trace-mapping.d.cts"
+    },
+    "import": {
+     "default": "./dist/trace-mapping.mjs",
+     "types": "./types/trace-mapping.d.mts"
+    }
+   },
+   "./dist/trace-mapping.umd.js"
+  ],
+  "./package.json": "./package.json"
+ },
+ "gitHead": "74fc8e11d30641b82e3ca3532cd89477671afeab",
+ "homepage": "https://github.com/jridgewell/sourcemaps/tree/main/packages/trace-mapping",
+ "keywords": [
+  "source",
+  "map"
+ ],
+ "license": "MIT",
+ "main": "dist/trace-mapping.umd.js",
+ "maintainers": [
+  {
+   "email": "justin+npm@ridgewell.name",
+   "name": "jridgewell"
+  }
+ ],
+ "module": "dist/trace-mapping.mjs",
+ "name": "@jridgewell/trace-mapping",
+ "repository": {
+  "directory": "packages/trace-mapping",
+  "type": "git",
+  "url": "git+https://github.com/jridgewell/sourcemaps.git"
+ },
+ "scripts": {
+  "benchmark": "run-s build:code benchmark:*",
+  "benchmark:install": "cd benchmark && npm install",
+  "benchmark:only": "node --expose-gc benchmark/index.mjs",
+  "build": "run-s -n build:code build:types",
+  "build:code": "node ../../esbuild.mjs trace-mapping.ts",
+  "build:types": "run-s build:types:force build:types:emit build:types:mts",
+  "build:types:emit": "tsc --project tsconfig.build.json",
+  "build:types:force": "rimraf tsconfig.build.tsbuildinfo",
+  "build:types:mts": "node ../../mts-types.mjs",
+  "clean": "run-s -n clean:code clean:types",
+  "clean:code": "tsc --build --clean tsconfig.build.json",
+  "clean:types": "rimraf dist types",
+  "lint": "run-s -n lint:types lint:format",
+  "lint:format": "npm run test:format -- --write",
+  "lint:types": "npm run test:types -- --fix",
+  "prepublishOnly": "npm run-s -n build test",
+  "test": "run-s -n test:types test:only test:format",
+  "test:format": "prettier --check '{src,test}/**/*.ts'",
+  "test:only": "mocha",
+  "test:types": "eslint '{src,test}/**/*.ts'"
+ },
+ "types": "types/trace-mapping.d.cts",
+ "version": "0.3.31"
+}

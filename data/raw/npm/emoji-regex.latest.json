@@ -1,0 +1,92 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "emoji-regex@11.0.0",
+ "_nodeVersion": "26.8.2",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/emoji-regex_11.0.0_1789492303904_0.9430852647563142"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:89d7315e-b90e-4351-a67f-775fa36a295f"
+  }
+ },
+ "_npmVersion": "11.19.1",
+ "author": {
+  "name": "Mathias Bynens",
+  "url": "https://mathiasbynens.be/"
+ },
+ "bugs": {
+  "url": "https://github.com/mathiasbynens/emoji-regex/issues"
+ },
+ "description": "A regular expression to match all Emoji-only symbols as per the Unicode Standard.",
+ "devDependencies": {
+  "@unicode/unicode-18.0.0": "^2.0.7",
+  "emoji-test-regex-pattern": "^2.6.0",
+  "prettier": "^3.9.6"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/emoji-regex@11.0.0"
+  },
+  "fileCount": 5,
+  "integrity": "sha512-2qQtc7syPcJmvF7BfKxBvwgvhzDth6u3q23+Jr4JOQUcmMGgmj7B4/ePZ2DmOhrrb77S8kMNHq2kilVASysfqA==",
+  "shasum": "83b2751a062eb9d2bebf7f3da7c9d12fdb10ad94",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIHWN/6lZpZ9zanXKTIqmf90jQNC1FHs+mf7XK37sTCCoAiArzTjLYXioE3JlYk6wnfqvBgOSBnSLFWcBEqROxe+yuA=="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDOdSwkWyit3s4Cp32czbdzO1i3eXuRwtN7SbgWvDGRNAIgHIfPdHW/GjV+8Af39Bl2yfOsG24vcLfyRiDd7UpesT8="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/emoji-regex/-/emoji-regex-11.0.0.tgz",
+  "unpackedSize": 20568
+ },
+ "gitHead": "28a10d9e23663582faed522853d2ddae38868ca9",
+ "homepage": "https://mths.be/emoji-regex",
+ "keywords": [
+  "unicode",
+  "regex",
+  "regexp",
+  "regular expressions",
+  "code points",
+  "symbols",
+  "characters",
+  "emoji"
+ ],
+ "license": "MIT",
+ "main": "index.mjs",
+ "maintainers": [
+  {
+   "email": "mathias@qiwi.be",
+   "name": "mathias"
+  },
+  {
+   "email": "node-team-npm+wombot@google.com",
+   "name": "google-wombot"
+  }
+ ],
+ "name": "emoji-regex",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/mathiasbynens/emoji-regex.git"
+ },
+ "scripts": {
+  "build": "node script/build.mjs",
+  "format": "prettier . --write",
+  "test": "node --test test/tests.mjs",
+  "test:watch": "npm run test -- --watch"
+ },
+ "types": "index.d.ts",
+ "version": "11.0.0"
+}

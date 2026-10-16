@@ -1,0 +1,226 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "mocha@12.0.3",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/mocha_12.0.3_1790829477310_0.9298729675671846"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "6b395132-63f6-427b-b3ca-59478c177906"
+  }
+ },
+ "_npmVersion": "12.2.0",
+ "author": {
+  "name": "Mark Wiemer",
+  "url": "https://markwiemer.com/software/mocha"
+ },
+ "bin": {
+  "mocha": "bin/mocha.js"
+ },
+ "browser": {
+  "./index.js": "./browser-entry.js",
+  "./lib/cli/index.cjs": false,
+  "./lib/nodejs/buffered-worker-pool.cjs": false,
+  "./lib/nodejs/esm-utils.cjs": false,
+  "./lib/nodejs/file-unloader.js": false,
+  "./lib/nodejs/parallel-buffered-runner.cjs": false,
+  "./lib/nodejs/reporters/parallel-buffered.cjs": false,
+  "./lib/nodejs/serializer.js": false,
+  "./lib/nodejs/worker.cjs": false,
+  "fs": false,
+  "path": false,
+  "supports-color": false
+ },
+ "bugs": {
+  "url": "https://github.com/mochajs/mocha/issues/"
+ },
+ "contributors": [
+  {
+   "email": "41898282+github-actions[bot]@users.noreply.github.com",
+   "name": "github-actions[bot]"
+  }
+ ],
+ "dependencies": {
+  "browser-stdout": "^1.3.1",
+  "chokidar": "^5.0.0",
+  "debug": "^4.3.5",
+  "diff": "^9.0.0",
+  "find-up-simple": "^1.0.1",
+  "glob": "^13.0.0",
+  "is-path-inside": "^4.0.0",
+  "is-unicode-supported": "^0.1.0",
+  "js-yaml": "^5.0.0",
+  "minimatch": "^10.2.2",
+  "ms": "^2.1.3",
+  "picocolors": "^1.1.1",
+  "serialize-javascript": "^7.1.1",
+  "strip-json-comments": "^5.0.3",
+  "supports-color": "^8.1.1",
+  "workerpool": "^10.0.0"
+ },
+ "description": "Classic, reliable, trusted test framework for Node.js and the browser",
+ "devDependencies": {
+  "@eslint/js": "^10.0.0",
+  "@eslint/markdown": "^8.0.0",
+  "@playwright/test": "^1.60.0",
+  "@rollup/plugin-alias": "^6.0.0",
+  "@rollup/plugin-commonjs": "^29.0.0",
+  "@rollup/plugin-json": "^6.1.0",
+  "@rollup/plugin-node-resolve": "^16.0.3",
+  "@test/esm-only-loader": "./test/compiler-fixtures/esm-only-loader",
+  "@types/node": "^24.0.0",
+  "chai": "^6.0.0",
+  "coffeescript": "^2.6.1",
+  "cross-env": "^10.0.0",
+  "eslint": "^10.0.0",
+  "eslint-plugin-n": "^18.0.0",
+  "globals": "^17.0.0",
+  "installed-check": "^10.0.0",
+  "knip": "^6.0.0",
+  "npm-run-all2": "^8.0.0",
+  "nyc": "^18.0.0",
+  "prettier": "3.9.5",
+  "ps-list": "^9.0.0",
+  "remark": "^15.0.0",
+  "remark-github": "^12.0.0",
+  "remark-inline-links": "^7.0.0",
+  "rewiremock": "^3.14.3",
+  "rimraf": "^6.0.0",
+  "rollup": "^4.52.3",
+  "rollup-plugin-polyfill-node": "^0.13.0",
+  "rollup-plugin-visualizer": "^6.0.5",
+  "semver": "^7.7.2",
+  "sinon": "^22.0.0",
+  "tsx": "^4.23.13",
+  "typescript": "^5.8.3",
+  "unexpected": "^13.2.1",
+  "unexpected-eventemitter": "^2.4.0",
+  "unexpected-sinon": "^11.1.0",
+  "webpack": "^5.67.0",
+  "webpack-cli": "^7.0.2"
+ },
+ "directories": {
+  "lib": "./lib",
+  "test": "./test"
+ },
+ "discord": "https://discord.gg/KeDn2uXhER",
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/mocha@12.0.3"
+  },
+  "fileCount": 74,
+  "integrity": "sha512-beammieDdiWdkjANWeWPpkxUROYGi5FN88fPOkLiticz7HTg3Y+Pho3EYE6SUdcuWnZ3h2WD8EXCA55JF4o6wg==",
+  "shasum": "f3022f5684f5a8306323dd5ab4d0f881a90cd031",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIAaQkNGImKKp1VplUWATtSM6C7+Pvk2pQ87PJ7PbhyXhAiAtzzZG/taZzA0jSnjf7s82+68YULt9iQ/RmVF7C/35WQ=="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQDHov78NllzJhgbRutx30C1EfzjWM4NmlsvWEUpA4PDOwIhAKe7vgWODZkoauwexi7QAJzbSBZLFyGNXuTvN1NQmLUl"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/mocha/-/mocha-12.0.3.tgz",
+  "unpackedSize": 1443342
+ },
+ "engines": {
+  "node": "^20.19.0 || >=22.12.0"
+ },
+ "gitHead": "51a0cc5530d8e29272406384723e8871245821f1",
+ "homepage": "https://mochajs.org/",
+ "keywords": [
+  "mocha",
+  "test",
+  "bdd",
+  "tdd",
+  "tap",
+  "testing",
+  "chai",
+  "assertion",
+  "ava",
+  "jest",
+  "tape",
+  "jasmine",
+  "playwright"
+ ],
+ "license": "MIT",
+ "logo": "https://cldup.com/S9uQ-cOLYz.svg",
+ "main": "./index.js",
+ "maintainers": [
+  {
+   "email": "npm@joshuakgoldberg.com",
+   "name": "joshuakgoldberg"
+  },
+  {
+   "email": "markwiemer@outlook.com",
+   "name": "mark-wiemer"
+  }
+ ],
+ "name": "mocha",
+ "notifyLogo": "https://ibin.co/4QuRuGjXvl36.png",
+ "overrides": {
+  "@types/eslint": "^9.6.1",
+  "@types/estree": "^1.0.7",
+  "webdriverio": "^9.0.0"
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/mochajs/mocha.git"
+ },
+ "scripts": {
+  "build": "rollup -c ./rollup.config.js",
+  "clean": "rimraf mocha.js mocha.js.map",
+  "docs": "cd docs; npm run docs",
+  "format:check": "prettier --check .",
+  "format:fix": "prettier --write .",
+  "lint": "run-p --aggregate-output --continue-on-error lint:*",
+  "lint:code": "eslint . --max-warnings 0",
+  "lint:installed-check": "installed-check --engine-check --ignore-dev",
+  "lint:knip": "knip --cache",
+  "lint:knip-docs": "cd docs && npm run lint:knip",
+  "prelint": "npm run clean",
+  "prepublishOnly": "run-s clean build version",
+  "pretest-browser:playwright": "playwright install chromium --with-deps",
+  "test": "run-s lint test-node test-browser",
+  "test-browser": "run-s clean build test-browser:*",
+  "test-browser:playwright": "playwright test",
+  "test-browser:webpack-compat": "webpack --mode development --config ./test/browser-specific/fixtures/webpack/webpack.config.cjs",
+  "test-coverage-clean": "rimraf .nyc_output coverage",
+  "test-coverage-generate": "nyc report --reporter=lcov --reporter=text",
+  "test-node": "run-s test-coverage-clean test-node:* test-coverage-generate",
+  "test-node-run": "cross-env NODE_OPTIONS=--enable-source-maps nyc --no-clean --reporter=json node bin/mocha.js --forbid-only",
+  "test-node-run-only": "cross-env NODE_OPTIONS=--enable-source-maps nyc --no-clean --reporter=json node bin/mocha.js --no-forbid-only",
+  "test-node:integration": "run-s clean build && npm run -s test-node-run -- --parallel --timeout 10000 --slow 3750 \"test/integration/**/*.spec.cjs\"",
+  "test-node:integration:watch": "run-s clean build && npm run -s test-node-run -- --parallel --timeout 10000 --slow 3750 \"test/integration/options/watch.spec.cjs\"",
+  "test-node:interfaces": "run-p test-node:interfaces:*",
+  "test-node:interfaces:bdd": "npm run -s test-node-run -- --ui bdd test/interfaces/bdd.spec",
+  "test-node:interfaces:exports": "npm run -s test-node-run -- --ui exports test/interfaces/exports.spec",
+  "test-node:interfaces:qunit": "npm run -s test-node-run -- --ui qunit test/interfaces/qunit.spec",
+  "test-node:interfaces:tdd": "npm run -s test-node-run -- --ui tdd test/interfaces/tdd.spec",
+  "test-node:jsapi": "node test/jsapi/index.js",
+  "test-node:only": "run-p test-node:only:*",
+  "test-node:only:bddRequire": "npm run -s test-node-run-only -- --ui qunit test/only/bdd-require.spec --no-parallel",
+  "test-node:only:globalBdd": "npm run -s test-node-run-only -- --ui bdd test/only/global/bdd.spec --no-parallel",
+  "test-node:only:globalQunit": "npm run -s test-node-run-only -- --ui qunit test/only/global/qunit.spec --no-parallel",
+  "test-node:only:globalTdd": "npm run -s test-node-run-only -- --ui tdd test/only/global/tdd.spec --no-parallel",
+  "test-node:reporters": "npm run -s test-node-run -- \"test/reporters/*.spec.{cjs,js}\"",
+  "test-node:requires": "npm run -s test-node-run -- --require coffeescript/register --require test/require/a.cjs --require test/require/b.coffee --require test/require/c.cjs --require test/require/d.coffee test/require/require.spec.cjs",
+  "test-node:unit": "npm run -s test-node-run -- \"test/unit/**/*.spec.cjs\" \"test/node-unit/**/*.spec.{cjs,js}\"",
+  "test-smoke": "node ./bin/mocha.js --no-config test/smoke/smoke.spec.cjs",
+  "tsc": "tsc",
+  "version": "run-p version:* && git add -A ./AUTHORS ./CHANGELOG.md",
+  "version:linkify-changelog": "node scripts/linkify-changelog.js",
+  "version:update-authors": "node scripts/update-authors.cjs"
+ },
+ "type": "module",
+ "version": "12.0.3"
+}

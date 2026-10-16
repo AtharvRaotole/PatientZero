@@ -1,0 +1,86 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "pino-abstract-transport@3.0.0",
+ "_nodeVersion": "24.7.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/pino-abstract-transport_3.0.0_1759753266346_0.6955896566209769"
+ },
+ "_npmUser": {
+  "email": "james.sumners@gmail.com",
+  "name": "jsumners"
+ },
+ "_npmVersion": "11.5.1",
+ "author": {
+  "email": "hello@matteocollina.com",
+  "name": "Matteo Collina"
+ },
+ "bugs": {
+  "url": "https://github.com/pinojs/pino-abstract-transport/issues"
+ },
+ "dependencies": {
+  "split2": "^4.0.0"
+ },
+ "description": "Write Pino transports easily",
+ "devDependencies": {
+  "@matteo.collina/tspl": "^0.2.0",
+  "@types/node": "^20.1.0",
+  "borp": "^0.20.2",
+  "husky": "^9.0.6",
+  "snazzy": "^9.0.0",
+  "standard": "^17.0.0",
+  "thread-stream": "^3.1.0",
+  "tsd": "^0.31.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 16,
+  "integrity": "sha512-wlfUczU+n7Hy/Ha5j9a/gZNy7We5+cXp8YL+X+PG8S0KXxw7n/JXA3c46Y0zQznIJ83URJiwy7Lh56WLokNuxg==",
+  "shasum": "b21e5f33a297e8c4c915c62b3ce5dd4a87a52c23",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQCYcSChooYBt0QVQmm6IF6Ud7l+s4dXXpplft+37syM7QIgZZUamI9BTPfc//dvMaBVESWMvDAKt6WfpBWQXM2TNs4="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/pino-abstract-transport/-/pino-abstract-transport-3.0.0.tgz",
+  "unpackedSize": 39716
+ },
+ "gitHead": "11556d6e141366ca7cbe1138ce8ddef72eaa2558",
+ "homepage": "https://github.com/pinojs/pino-abstract-transport#readme",
+ "keywords": [
+  "pino",
+  "transport"
+ ],
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "hello@matteocollina.com",
+   "name": "matteo.collina"
+  },
+  {
+   "email": "james.sumners@gmail.com",
+   "name": "jsumners"
+  },
+  {
+   "email": "w@tson.dk",
+   "name": "watson"
+  }
+ ],
+ "name": "pino-abstract-transport",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/pinojs/pino-abstract-transport.git"
+ },
+ "scripts": {
+  "prepare": "husky install",
+  "test": "standard | snazzy && borp --check-coverage 'test/*.test.js'  && tsd",
+  "test-ci": "npm test"
+ },
+ "tsd": {
+  "directory": "./test/types"
+ },
+ "types": "./index.d.ts",
+ "version": "3.0.0"
+}

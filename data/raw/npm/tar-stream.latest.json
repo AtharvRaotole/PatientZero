@@ -1,0 +1,87 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "tar-stream@3.2.2",
+ "_nodeVersion": "24.13.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/tar-stream_3.2.2_1790958793146_0.9703960928213535"
+ },
+ "_npmUser": {
+  "email": "mathiasbuus@gmail.com",
+  "name": "mafintosh"
+ },
+ "_npmVersion": "11.15.0",
+ "author": {
+  "email": "mathiasbuus@gmail.com",
+  "name": "Mathias Buus"
+ },
+ "browser": {
+  "fs": false
+ },
+ "bugs": {
+  "url": "https://github.com/mafintosh/tar-stream/issues"
+ },
+ "dependencies": {
+  "b4a": "^1.9.0",
+  "bare-fs": "^4.8.2",
+  "fast-fifo": "^1.3.2",
+  "streamx": "^2.28.1"
+ },
+ "description": "tar-stream is a streaming tar parser and generator and nothing else. It operates purely using streams which means you can easily extract/parse tarballs without ever hitting the file system.",
+ "devDependencies": {
+  "brittle": "^4.3.0",
+  "concat-stream": "^2.0.0",
+  "standard": "^17.0.1"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 9,
+  "integrity": "sha512-+8NeqHRjQWH9nYlwo2gamAMImZCVzI4UoEgDpWorBt9OEfppiZn+uSkskzQKPWIZyji/C8fpWO7u69G0DX0tbg==",
+  "shasum": "aec7f257e712192a177a93aa0450c2e76855c8be",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQCt5h/RFJCH2PpKhNA89vOYsjlfqJZ9hPCAVbCiao0ufAIhAPGHzI8ADQ1y+PdGuk1ACpba3AmfngXpa3tc+PRKDix1"
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQDR9VFQ5oDINEXjaafARiKnuiZ7TJ9D1uxZDWxdgkleLAIhAKw6Ei/ENy05O4QEaaAzp13VyfUTS4zJQzlQ2m+fkjLJ"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/tar-stream/-/tar-stream-3.2.2.tgz",
+  "unpackedSize": 34003
+ },
+ "exports": {
+  ".": {
+   "default": "./index.js",
+   "types": "./index.d.ts"
+  },
+  "./package": "./package.json"
+ },
+ "gitHead": "d49f05b495b432d57042d461bd91036b58439c6a",
+ "homepage": "https://github.com/mafintosh/tar-stream",
+ "imports": {
+  "fs": {
+   "bare": "bare-fs",
+   "default": "fs"
+  }
+ },
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "mathiasbuus@gmail.com",
+   "name": "mafintosh"
+  }
+ ],
+ "name": "tar-stream",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/mafintosh/tar-stream.git"
+ },
+ "scripts": {
+  "test": "standard && brittle-node test/*.js"
+ },
+ "types": "./index.d.ts",
+ "version": "3.2.2"
+}

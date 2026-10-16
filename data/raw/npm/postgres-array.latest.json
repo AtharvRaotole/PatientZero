@@ -1,0 +1,70 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "postgres-array@3.0.4",
+ "_nodeVersion": "22.14.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/postgres-array_3.0.4_1741278051338_0.8879817764988662"
+ },
+ "_npmUser": {
+  "email": "bvdrucker@gmail.com",
+  "name": "bendrucker"
+ },
+ "_npmVersion": "10.9.2",
+ "author": {
+  "email": "bvdrucker@gmail.com",
+  "name": "Ben Drucker",
+  "url": "bendrucker.me"
+ },
+ "bugs": {
+  "url": "https://github.com/bendrucker/postgres-array/issues"
+ },
+ "dependencies": {},
+ "description": "Parse postgres array columns",
+ "devDependencies": {
+  "standard": "^17.0.0",
+  "tape": "^5.0.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-nAUSGfSDGOaOAEGwqsRY27GPOea7CNipJPOA7lPbdEpx5Kg3qzdP0AaWC5MlhTWV9s4hFX39nomVZ+C4tnGOJQ==",
+  "shasum": "4efcaf4d2c688d8bcaa8620ed13f35f299f7528c",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIDz4ZVvfK5yXFuCUa8rGHGl6la3r4htke4UpvOzmHDJQAiEAg/nWVlyPQcu2IEju++CxGauWwLWjklXnHAR9D3fuuKU="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/postgres-array/-/postgres-array-3.0.4.tgz",
+  "unpackedSize": 6425
+ },
+ "engines": {
+  "node": ">=12"
+ },
+ "gitHead": "3d215dbec63d9f799cfda1438a07b657bb51748b",
+ "homepage": "https://github.com/bendrucker/postgres-array#readme",
+ "keywords": [
+  "postgres",
+  "array",
+  "parser"
+ ],
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "bvdrucker@gmail.com",
+   "name": "bendrucker"
+  }
+ ],
+ "name": "postgres-array",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/bendrucker/postgres-array.git"
+ },
+ "scripts": {
+  "test": "standard && tape test.js"
+ },
+ "types": "index.d.ts",
+ "version": "3.0.4"
+}

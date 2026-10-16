@@ -1,0 +1,86 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "strip-final-newline@4.0.0",
+ "_nodeVersion": "18.19.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/strip-final-newline_4.0.0_1702495910048_0.21989528729359664"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "9.2.0",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/strip-final-newline/issues"
+ },
+ "description": "Strip the final newline character from a string or Uint8Array",
+ "devDependencies": {
+  "ava": "^6.0.1",
+  "tsd": "^0.29.0",
+  "xo": "^0.56.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-aulFJcD6YK8V1G7iRB5tigAP4TsHBZZrOV8pjV++zdUwmeV8uzbY7yn6h9MswN62adStNZFuCIx4haBnRuMDaw==",
+  "shasum": "35a369ec2ac43df356e3edd5dcebb6429aa1fa5c",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEYCIQCcCxexozx8d+HGfQZEDtg6J5ok+bntRYwLpBLrrVfnVwIhANci9SZ3s28qKg+v3yk/KnRTiYJfAqtLz0lBezf6KOWI"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/strip-final-newline/-/strip-final-newline-4.0.0.tgz",
+  "unpackedSize": 4382
+ },
+ "engines": {
+  "node": ">=18"
+ },
+ "exports": {
+  "default": "./index.js",
+  "types": "./index.d.ts"
+ },
+ "funding": "https://github.com/sponsors/sindresorhus",
+ "gitHead": "a20b4f27fdbc96d7418a723269905340e3605276",
+ "homepage": "https://github.com/sindresorhus/strip-final-newline#readme",
+ "keywords": [
+  "strip",
+  "trim",
+  "remove",
+  "delete",
+  "final",
+  "last",
+  "end",
+  "file",
+  "newline",
+  "linebreak",
+  "character",
+  "string",
+  "uint8array"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "strip-final-newline",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/strip-final-newline.git"
+ },
+ "scripts": {
+  "test": "xo && ava && tsd"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "4.0.0"
+}

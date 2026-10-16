@@ -1,0 +1,98 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "color-convert@3.1.3",
+ "_nodeVersion": "22.15.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/color-convert_3.1.3_1763144951365_0.1966007634370952"
+ },
+ "_npmUser": {
+  "email": "npm@josh.junon.me",
+  "name": "qix"
+ },
+ "_npmVersion": "10.9.2",
+ "author": {
+  "email": "josh@junon.me",
+  "name": "Josh Junon"
+ },
+ "bugs": {
+  "url": "https://github.com/Qix-/color-convert/issues"
+ },
+ "contributors": [
+  {
+   "email": "fayearthur@gmail.com",
+   "name": "Heather Arthur"
+  }
+ ],
+ "dependencies": {
+  "color-name": "^2.0.0"
+ },
+ "description": "Plain color conversion functions",
+ "devDependencies": {
+  "chalk": "^5.2.0",
+  "jimp": "^0.22.8",
+  "tsd": "^0.28.1",
+  "xo": "^0.54.2"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 7,
+  "integrity": "sha512-fasDH2ont2GqF5HpyO4w0+BcewlhHEZOFn9c1ckZdHpJ56Qb7MHhH/IcJZbBGgvdtwdwNbLvxiBEdg336iA9Sg==",
+  "shasum": "db6627b97181cb8facdfce755ae26f97ab0711f1",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQC4r8Cg4BxrM8gds8HRAP6lgNzhEaG62KXmJJuSIKiBJAIhAORO5lbl++dllvJmoMVdG7sF4OAi3K25/03Va59RrYl5"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/color-convert/-/color-convert-3.1.3.tgz",
+  "unpackedSize": 47848
+ },
+ "engines": {
+  "node": ">=14.6"
+ },
+ "exports": "./index.js",
+ "gitHead": "5c106a633b5cd2de554d9c287ad31f9eeca7a271",
+ "homepage": "https://github.com/Qix-/color-convert#readme",
+ "keywords": [
+  "color",
+  "colour",
+  "convert",
+  "converter",
+  "conversion",
+  "rgb",
+  "hsl",
+  "hsv",
+  "hwb",
+  "cmyk",
+  "ansi",
+  "ansi16"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "npm@josh.junon.me",
+   "name": "qix"
+  }
+ ],
+ "name": "color-convert",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/Qix-/color-convert.git"
+ },
+ "scripts": {
+  "test": "xo && tsd && node test/basic.js"
+ },
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "3.1.3",
+ "xo": {
+  "rules": {
+   "@typescript-eslint/naming-convention": 0,
+   "default-case": 0,
+   "no-inline-comments": 0,
+   "operator-linebreak": 0,
+   "unicorn/prefer-exponentiation-operator": 0
+  }
+ }
+}

@@ -1,0 +1,94 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "decamelize@7.0.0",
+ "_nodeVersion": "26.11.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/decamelize_7.0.0_1791918823884_0.5024053995661315"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "12.2.0",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/decamelize/issues"
+ },
+ "description": "Convert a camelized string into a lowercased one with a custom separator: unicornRainbow \u2192 unicorn_rainbow",
+ "devDependencies": {
+  "nz": "^0.1.0",
+  "typescript": "^6.0.3",
+  "xo": "^5.0.1"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-uT/0KzZIx9u4b5vW3HLWtSYwjLTuY2QFVY3xNmfXXUmTqnfgzfT8DEA2gY93go5sXEjnbqP66KcURdVxm0rDXA==",
+  "shasum": "c61376d91a50cae8459db06701ad8cd5b2648770",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQCADc26WScMB5ETqptxUid0Wl/iC8Ctxtvj6kVAjDjbLwIgcNioPLyr/IbyJ0n1x7f9RdCZ6y52sH/Tqsf64asayzs="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQD3/KNkKRJZpJoQJtV/IoEJfTRGOXZGBpC4+7tlaWtJ8QIgEuKv3ZUzBcGxbNDnDRD7OY9T+N6HFkeZiV9bPREB9pg="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/decamelize/-/decamelize-7.0.0.tgz",
+  "unpackedSize": 8769
+ },
+ "engines": {
+  "node": ">=22"
+ },
+ "exports": {
+  "default": "./index.js",
+  "types": "./index.d.ts"
+ },
+ "funding": "https://github.com/sponsors/sindresorhus",
+ "gitHead": "48866469ca1793e1f163a964fc77e839f5038a3f",
+ "homepage": "https://github.com/sindresorhus/decamelize#readme",
+ "keywords": [
+  "decamelcase",
+  "camelcase",
+  "lowercase",
+  "case",
+  "dash",
+  "hyphen",
+  "string",
+  "text",
+  "convert"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "decamelize",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/decamelize.git"
+ },
+ "scripts": {
+  "test": "xo && node --test test.js && nz"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "7.0.0",
+ "xo": [
+  {
+   "files": "test.js",
+   "rules": {
+    "node-test/no-conditional-assertion": "off"
+   }
+  }
+ ]
+}

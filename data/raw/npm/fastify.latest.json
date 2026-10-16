@@ -1,0 +1,277 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "fastify@5.12.7",
+ "_nodeVersion": "24.18.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/fastify_5.12.7_1791878873153_0.2055343143098871"
+ },
+ "_npmUser": {
+  "email": "hello@matteocollina.com",
+  "name": "matteo.collina"
+ },
+ "_npmVersion": "11.16.0",
+ "author": {
+  "email": "hello@matteocollina.com",
+  "name": "Matteo Collina"
+ },
+ "bugs": {
+  "url": "https://github.com/fastify/fastify/issues"
+ },
+ "contributors": [
+  {
+   "name": "Tomas Della Vedova",
+   "url": "https://delvedor.dev"
+  },
+  {
+   "email": "tomallevi@gmail.com",
+   "name": "Tommaso Allevi"
+  },
+  {
+   "email": "ethan.arrowood@gmail.com",
+   "name": "Ethan Arrowood",
+   "url": "https://github.com/Ethan-Arrowood"
+  },
+  {
+   "email": "deusdustin@gmail.com",
+   "name": "Dustin Deus",
+   "url": "https://starptech.com"
+  },
+  {
+   "email": "elkhattabi.ayoub@gmail.com",
+   "name": "Ayoub El Khattabi",
+   "url": "https://github.com/AyoubElk"
+  },
+  {
+   "email": "rafael.nunu@hotmail.com",
+   "name": "Rafael Gonzaga",
+   "url": "https://github.com/rafaelgss"
+  },
+  {
+   "email": "trivikr.dev@gmail.com",
+   "name": "Trivikram Kamat",
+   "url": "https://trivikr.github.io"
+  },
+  {
+   "name": "Luciano Mammino",
+   "url": "https://loige.co"
+  },
+  {
+   "email": "cemremengu@gmail.com",
+   "name": "Cemre Mengu"
+  },
+  {
+   "email": "evanshortiss@gmail.com",
+   "name": "Evan Shortiss"
+  },
+  {
+   "name": "Maksim Sinik",
+   "url": "https://maksim.dev"
+  },
+  {
+   "email": "behemoth89@gmail.com",
+   "name": "Manuel Spigolon"
+  },
+  {
+   "name": "James Sumners",
+   "url": "https://james.sumners.info"
+  },
+  {
+   "name": "Denis F\u00e4cke",
+   "url": "https://github.com/SerayaEryn"
+  },
+  {
+   "email": "kibertoad@gmail.com",
+   "name": "Igor Savin",
+   "url": "https://github.com/kibertoad"
+  },
+  {
+   "email": "vince.legoff@gmail.com",
+   "name": "Vincent Le Goff",
+   "url": "https://github.com/zekth"
+  },
+  {
+   "email": "luisorbaiceta@gmail.com",
+   "name": "Luis Orbaiceta",
+   "url": "https://luisorbaiceta.com"
+  },
+  {
+   "email": "me@metcoder.dev",
+   "name": "Carlos Fuentes",
+   "url": "https://metcoder.dev"
+  },
+  {
+   "email": "hey@gurgun.day",
+   "name": "G\u00fcrg\u00fcn Day\u0131o\u011flu",
+   "url": "https://heyhey.to/G"
+  },
+  {
+   "email": "aras.abbasi@gmail.com",
+   "name": "Aras Abbasi"
+  },
+  {
+   "email": "frazer.dev@icloud.com",
+   "name": "Frazer Smith",
+   "url": "https://github.com/fdawgs"
+  },
+  {
+   "email": "kaka@kakang.dev",
+   "name": "KaKa Ng",
+   "url": "https://github.com/climba03003"
+  },
+  {
+   "email": "jean.antoine.michelet@gmail.com",
+   "name": "Jean Michelet",
+   "url": "https://github.com/jean-michelet"
+  }
+ ],
+ "dependencies": {
+  "@fastify/ajv-compiler": "^4.0.5",
+  "@fastify/error": "^4.0.0",
+  "@fastify/fast-json-stringify-compiler": "^5.0.0",
+  "@fastify/proxy-addr": "^5.0.0",
+  "abstract-logging": "^2.0.1",
+  "avvio": "^9.0.0",
+  "fast-json-stringify": "^7.0.0",
+  "find-my-way": "^9.6.0",
+  "light-my-request": "^6.0.0",
+  "pino": "^9.14.0 || ^10.1.0",
+  "process-warning": "^5.1.0",
+  "rfdc": "^1.3.1",
+  "secure-json-parse": "^4.0.0",
+  "semver": "^7.6.0",
+  "toad-cache": "^3.7.0"
+ },
+ "description": "Fast and low overhead web framework, for Node.js",
+ "devDependencies": {
+  "@jsumners/line-reporter": "^1.0.1",
+  "@stylistic/eslint-plugin": "^5.1.0",
+  "@stylistic/eslint-plugin-js": "^4.1.0",
+  "@types/node": "^26.0.1",
+  "JSONStream": "^1.3.5",
+  "ajv": "^8.12.0",
+  "ajv-errors": "^3.0.0",
+  "ajv-formats": "^3.0.1",
+  "ajv-i18n": "^4.2.0",
+  "ajv-merge-patch": "^5.0.1",
+  "autocannon": "^8.0.0",
+  "borp": "^1.0.0",
+  "branch-comparer": "^1.1.0",
+  "concurrently": "^10.0.0",
+  "cross-env": "^10.0.0",
+  "eslint": "^9.0.0",
+  "fast-json-body": "^1.1.0",
+  "fastify-plugin": "^6.0.0",
+  "fastify-tsconfig": "^3.0.0",
+  "fluent-json-schema": "^6.0.0",
+  "h2url": "^0.2.0",
+  "http-errors": "^2.0.0",
+  "joi": "^18.0.1",
+  "json-schema-to-ts": "^3.0.1",
+  "markdownlint-cli2": "^0.23.0",
+  "neostandard": "^0.12.0",
+  "node-forge": "^1.3.1",
+  "proxyquire": "^2.1.3",
+  "split2": "^4.2.0",
+  "tstyche": "^7.0.0",
+  "typebox": "^1.0.81",
+  "typescript": "~6.0.2",
+  "undici": "^7.11.0",
+  "vary": "^1.1.2",
+  "yup": "^1.4.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 363,
+  "integrity": "sha512-v4pEPsTRPuqlDIYiQFB+BHjVN4SdHX9u0ABk0ZDUKbbdY1vsNryUd1j4Z+jQEZajvYIVk047Kimva9/AJ79GYw==",
+  "shasum": "e8f9859b1ae908ba38bbdb0572d358788c4a4b46",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDdLs777TiwOslMO/idGH05bxg80+NjE7/tiBTtFyMCNAIgFmARpbbz4ZQXQvmLD3sOf68PwnyIIm4RGfYYCLP2ZYA="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIDGArf4SMO2pVJisYrvvKpJADAJoLzXwIR92e/18A8O5AiBgzwF5w6jvb59Zt8o1+Cd4y1EPh8G/6R96Q3i42OH4Ew=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/fastify/-/fastify-5.12.7.tgz",
+  "unpackedSize": 2970996
+ },
+ "funding": [
+  {
+   "type": "github",
+   "url": "https://github.com/sponsors/fastify"
+  },
+  {
+   "type": "opencollective",
+   "url": "https://opencollective.com/fastify"
+  }
+ ],
+ "gitHead": "9f400035ebaf572b95989db5040ebb09c01e4e77",
+ "homepage": "https://fastify.dev/",
+ "keywords": [
+  "web",
+  "framework",
+  "json",
+  "schema",
+  "open",
+  "api"
+ ],
+ "license": "MIT",
+ "main": "fastify.js",
+ "maintainers": [
+  {
+   "email": "james.sumners@gmail.com",
+   "name": "jsumners"
+  },
+  {
+   "email": "tommydelved@gmail.com",
+   "name": "delvedor"
+  },
+  {
+   "email": "hello@matteocollina.com",
+   "name": "matteo.collina"
+  },
+  {
+   "email": "behemoth89@gmail.com",
+   "name": "eomm"
+  },
+  {
+   "email": "kaka@kakawebsitedemo.com",
+   "name": "climba03003"
+  }
+ ],
+ "name": "fastify",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/fastify/fastify.git"
+ },
+ "scripts": {
+  "bench": "branchcmp -r 2 -g -s \"npm run benchmark\"",
+  "benchmark": "concurrently -k -s first \"node ./examples/benchmark/simple.js\" \"autocannon -c 100 -d 30 -p 10 localhost:3000/\"",
+  "benchmark:parser": "concurrently -k -s first \"node ./examples/benchmark/parser.js\" \"autocannon -c 100 -d 30 -p 10 -i ./examples/benchmark/body.json -H \"content-type:application/jsoff\" -m POST localhost:3000/\"",
+  "benchmark:parser:error": "concurrently -k -s first \"node ./examples/benchmark/parser.js\" \"autocannon -c 100 -d 30 -p 10 -i ./examples/benchmark/body.json -H \"content-type:application/jsoff\" -H \"content-length:123\" -m POST localhost:3000/\"",
+  "build:sync-version": "node build/sync-version.js",
+  "build:validation": "node build/build-error-serializer.js && node build/build-validation.js",
+  "citgm": "borp --reporter=@jsumners/line-reporter --coverage --check-coverage --concurrency=1",
+  "coverage": "c8 --reporter html borp --reporter=@jsumners/line-reporter",
+  "coverage:ci-check-coverage": "borp --reporter=@jsumners/line-reporter --coverage --check-coverage --lines 100",
+  "lint": "npm run lint:eslint",
+  "lint:eslint": "eslint",
+  "lint:fix": "eslint --fix",
+  "lint:markdown": "markdownlint-cli2",
+  "prepublishOnly": "cross-env PREPUBLISH=true borp --reporter=@jsumners/line-reporter && npm run test:validator:integrity && npm run build:sync-version",
+  "test": "npm run lint && npm run unit && npm run test:types",
+  "test:ci": "npm run unit && npm run test:types",
+  "test:report": "npm run lint && npm run unit:report && npm run test:types",
+  "test:types": "tstyche",
+  "test:validator:integrity": "npm run build:validation && git diff --quiet --ignore-all-space --ignore-blank-lines --ignore-cr-at-eol lib/error-serializer.js && git diff --quiet --ignore-all-space --ignore-blank-lines --ignore-cr-at-eol lib/config-validator.js",
+  "test:watch": "npm run unit -- --watch --coverage-report=none --reporter=terse",
+  "unit": "borp",
+  "unit:report": "c8 --reporter html borp --reporter=@jsumners/line-reporter"
+ },
+ "type": "commonjs",
+ "types": "fastify.d.ts",
+ "version": "5.12.7"
+}

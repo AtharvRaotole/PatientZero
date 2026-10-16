@@ -1,0 +1,90 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "buffer-crc32@1.0.0",
+ "_nodeVersion": "21.5.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/buffer-crc32_1.0.0_1707242286713_0.9201286026324527"
+ },
+ "_npmUser": {
+  "email": "iselwin@gmail.com",
+  "name": "kibertoad"
+ },
+ "_npmVersion": "10.2.4",
+ "author": {
+  "email": "brianloveswords@gmail.com",
+  "name": "Brian J. Brennan"
+ },
+ "bugs": {
+  "url": "https://github.com/brianloveswords/buffer-crc32/issues"
+ },
+ "contributors": [
+  {
+   "name": "Vladimir Kuznetsov"
+  }
+ ],
+ "dependencies": {},
+ "description": "A pure javascript CRC32 algorithm that plays nice with binary data",
+ "devDependencies": {
+  "prettier": "^3.2.4",
+  "tap": "~11.1.5"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 8,
+  "integrity": "sha512-Db1SbgBS/fg/392AblrMJk97KggmvYhr4pB5ZIMTWtaivCPMWLkmb7m21cJvpvgK+J3nsU2CmmixNBZx4vFj/w==",
+  "shasum": "a10993b9055081d55304bd9feb4a072de179f405",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIAS5BF7lsiWoArjVzkPrFL0Q4o/XWUXrowh7gftpNAlZAiEAsiNlrHjW+mGahCFFAb8ffFoIT85Zg1oUaf5Fz57nMVI="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/buffer-crc32/-/buffer-crc32-1.0.0.tgz",
+  "unpackedSize": 16801
+ },
+ "engines": {
+  "node": ">=8.0.0"
+ },
+ "exports": {
+  ".": {
+   "import": "./dist/index.mjs",
+   "require": "./dist/index.cjs"
+  }
+ },
+ "gitHead": "fc79b0d9e490dee637d02107b93b88dc9c26dc69",
+ "homepage": "https://github.com/brianloveswords/buffer-crc32",
+ "license": "MIT",
+ "licenses": [
+  {
+   "type": "MIT",
+   "url": "https://github.com/brianloveswords/buffer-crc32/raw/master/LICENSE"
+  }
+ ],
+ "main": "./dist/index.cjs",
+ "maintainers": [
+  {
+   "email": "brianloveswords@gmail.com",
+   "name": "brianloveswords"
+  },
+  {
+   "email": "iselwin@gmail.com",
+   "name": "kibertoad"
+  }
+ ],
+ "name": "buffer-crc32",
+ "optionalDependencies": {},
+ "repository": {
+  "type": "git",
+  "url": "git://github.com/brianloveswords/buffer-crc32.git"
+ },
+ "scripts": {
+  "build": "npx unbuild@2.0.0 && npx cpy-cli index.d.ts dist --rename=index.d.cts && npx cpy-cli index.d.ts dist --rename=index.d.mts",
+  "format": "prettier --write --log-level warn \"**/*.{json,md,js}\"",
+  "prepublishOnly": "npm run build",
+  "test": "tap tests/*.test.js --reporter classic"
+ },
+ "type": "commonjs",
+ "types": "./index.d.ts",
+ "version": "1.0.0"
+}

@@ -1,0 +1,535 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "sharp@0.35.5",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/sharp_0.35.5_1790516784407_0.846551761561793"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:d0f693c3-ada3-4197-b34c-b7aaeb524f11"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "author": {
+  "email": "npm@lovell.info",
+  "name": "Lovell Fuller"
+ },
+ "bugs": {
+  "url": "https://github.com/lovell/sharp/issues"
+ },
+ "config": {
+  "libvips": ">=8.18.7"
+ },
+ "contributors": [
+  {
+   "email": "pierre.inglebert@gmail.com",
+   "name": "Pierre Inglebert"
+  },
+  {
+   "email": "jonathanrichardong@gmail.com",
+   "name": "Jonathan Ong"
+  },
+  {
+   "email": "chanon.s@gmail.com",
+   "name": "Chanon Sajjamanochai"
+  },
+  {
+   "email": "julianojulio@gmail.com",
+   "name": "Juliano Julio"
+  },
+  {
+   "email": "daniel@gasienica.ch",
+   "name": "Daniel Gasienica"
+  },
+  {
+   "email": "julian@fiftythree.com",
+   "name": "Julian Walker"
+  },
+  {
+   "email": "pitaru.amit@gmail.com",
+   "name": "Amit Pitaru"
+  },
+  {
+   "email": "hello.brandon@aaron.sh",
+   "name": "Brandon Aaron"
+  },
+  {
+   "email": "andreas@one.com",
+   "name": "Andreas Lind"
+  },
+  {
+   "email": "mcuelenaere@gmail.com",
+   "name": "Maurus Cuelenaere"
+  },
+  {
+   "email": "linus@folkdatorn.se",
+   "name": "Linus Unneb\u00e4ck"
+  },
+  {
+   "email": "mvictoras@gmail.com",
+   "name": "Victor Mateevitsi"
+  },
+  {
+   "email": "alaric.holloway@gmail.com",
+   "name": "Alaric Holloway"
+  },
+  {
+   "email": "bkw@codingforce.com",
+   "name": "Bernhard K. Weisshuhn"
+  },
+  {
+   "email": "criley@primedia.com",
+   "name": "Chris Riley"
+  },
+  {
+   "email": "dacarley@gmail.com",
+   "name": "David Carley"
+  },
+  {
+   "email": "john@limelightmobileinc.com",
+   "name": "John Tobin"
+  },
+  {
+   "email": "kentongray@gmail.com",
+   "name": "Kenton Gray"
+  },
+  {
+   "email": "Felix.Buenemann@gmail.com",
+   "name": "Felix B\u00fcnemann"
+  },
+  {
+   "email": "samyalzahrany@gmail.com",
+   "name": "Samy Al Zahrani"
+  },
+  {
+   "email": "lemnisk8@gmail.com",
+   "name": "Chintan Thakkar"
+  },
+  {
+   "email": "frulo@gmx.de",
+   "name": "F. Orlando Galashan"
+  },
+  {
+   "email": "info@kleisauke.nl",
+   "name": "Kleis Auke Wolthuizen"
+  },
+  {
+   "email": "mhirsch@media.mit.edu",
+   "name": "Matt Hirsch"
+  },
+  {
+   "email": "thoemmes@gmail.com",
+   "name": "Matthias Thoemmes"
+  },
+  {
+   "email": "patrick@paskaris.gr",
+   "name": "Patrick Paskaris"
+  },
+  {
+   "email": "kapouer@melix.org",
+   "name": "J\u00e9r\u00e9my Lal"
+  },
+  {
+   "email": "r.nanwani@gmail.com",
+   "name": "Rahul Nanwani"
+  },
+  {
+   "email": "alice0meta@gmail.com",
+   "name": "Alice Monday"
+  },
+  {
+   "email": "kristo.jorgenson@gmail.com",
+   "name": "Kristo Jorgenson"
+  },
+  {
+   "email": "yves_bos@outlook.com",
+   "name": "YvesBos"
+  },
+  {
+   "email": "guy@tailorbrands.com",
+   "name": "Guy Maliar"
+  },
+  {
+   "email": "nicolas@ncoden.fr",
+   "name": "Nicolas Coden"
+  },
+  {
+   "email": "matt.r.parrish@gmail.com",
+   "name": "Matt Parrish"
+  },
+  {
+   "email": "marcel.bretschneider@gmail.com",
+   "name": "Marcel Bretschneider"
+  },
+  {
+   "email": "matthew+github@mceachen.org",
+   "name": "Matthew McEachen"
+  },
+  {
+   "email": "jarda.kotesovec@gmail.com",
+   "name": "Jarda Kot\u011b\u0161ovec"
+  },
+  {
+   "email": "kenric.dsouza@gmail.com",
+   "name": "Kenric D'Souza"
+  },
+  {
+   "email": "oleg.aleynik@gmail.com",
+   "name": "Oleh Aleinyk"
+  },
+  {
+   "email": "marcel.bretschneider@gmail.com",
+   "name": "Marcel Bretschneider"
+  },
+  {
+   "email": "andrea.bianco@unibas.ch",
+   "name": "Andrea Bianco"
+  },
+  {
+   "email": "rik@rik.org",
+   "name": "Rik Heywood"
+  },
+  {
+   "email": "hi@oncletom.io",
+   "name": "Thomas Parisot"
+  },
+  {
+   "email": "nathanrgraves+github@gmail.com",
+   "name": "Nathan Graves"
+  },
+  {
+   "email": "tom@lokhorst.eu",
+   "name": "Tom Lokhorst"
+  },
+  {
+   "email": "espen@hovlandsdal.com",
+   "name": "Espen Hovlandsdal"
+  },
+  {
+   "email": "sylvain.dumont35@gmail.com",
+   "name": "Sylvain Dumont"
+  },
+  {
+   "email": "alun.owain.davies@googlemail.com",
+   "name": "Alun Davies"
+  },
+  {
+   "email": "ajhoolachan21@gmail.com",
+   "name": "Aidan Hoolachan"
+  },
+  {
+   "email": "axel.eirola@iki.fi",
+   "name": "Axel Eirola"
+  },
+  {
+   "email": "freezy@xbmc.org",
+   "name": "Freezy"
+  },
+  {
+   "email": "taneli.vatanen@gmail.com",
+   "name": "Daiz"
+  },
+  {
+   "email": "j@ubourg.net",
+   "name": "Julian Aubourg"
+  },
+  {
+   "email": "keith@picthrive.com",
+   "name": "Keith Belovay"
+  },
+  {
+   "email": "mbklein@gmail.com",
+   "name": "Michael B. Klein"
+  },
+  {
+   "email": "jordan@raboland.fr",
+   "name": "Jordan Prudhomme"
+  },
+  {
+   "email": "iovdin@gmail.com",
+   "name": "Ilya Ovdin"
+  },
+  {
+   "email": "andargor@yahoo.com",
+   "name": "Andargor"
+  },
+  {
+   "email": "paul.neave@gmail.com",
+   "name": "Paul Neave"
+  },
+  {
+   "email": "brenwken@gmail.com",
+   "name": "Brendan Kennedy"
+  },
+  {
+   "email": "git@brychan.io",
+   "name": "Brychan Bennett-Odlum"
+  },
+  {
+   "email": "e.silverton@gmail.com",
+   "name": "Edward Silverton"
+  },
+  {
+   "email": "aromaleev@gmail.com",
+   "name": "Roman Malieiev"
+  },
+  {
+   "email": "tomas.szabo@deftomat.com",
+   "name": "Tomas Szabo"
+  },
+  {
+   "email": "robert@o-rourke.org",
+   "name": "Robert O'Rourke"
+  },
+  {
+   "email": "guillevch@gmail.com",
+   "name": "Guillermo Alfonso Varela Chouci\u00f1o"
+  },
+  {
+   "email": "chr@gigahost.dk",
+   "name": "Christian Flintrup"
+  },
+  {
+   "email": "manan@motionden.com",
+   "name": "Manan Jadhav"
+  },
+  {
+   "email": "leon@radley.se",
+   "name": "Leon Radley"
+  },
+  {
+   "email": "alza54@thiocod.in",
+   "name": "alza54"
+  },
+  {
+   "email": "jacob@frende.me",
+   "name": "Jacob Smith"
+  },
+  {
+   "email": "michael@nutt.im",
+   "name": "Michael Nutt"
+  },
+  {
+   "email": "baparham@gmail.com",
+   "name": "Brad Parham"
+  },
+  {
+   "email": "taneli.vatanen@gmail.com",
+   "name": "Taneli Vatanen"
+  },
+  {
+   "email": "zaruike10@gmail.com",
+   "name": "Joris Dugu\u00e9"
+  },
+  {
+   "email": "christopher.bradley.banks@gmail.com",
+   "name": "Chris Banks"
+  },
+  {
+   "email": "ompal.hitm09@gmail.com",
+   "name": "Ompal Singh"
+  },
+  {
+   "email": "christopher.hranj@gmail.com",
+   "name": "Brodan"
+  },
+  {
+   "email": "ankur.github@gmail.com",
+   "name": "Ankur Parihar"
+  },
+  {
+   "email": "brahima@gmail.com",
+   "name": "Brahim Ait elhaj"
+  },
+  {
+   "email": "m.jansink@gmail.com",
+   "name": "Mart Jansink"
+  },
+  {
+   "email": "lachnewman007@gmail.com",
+   "name": "Lachlan Newman"
+  },
+  {
+   "email": "dennis@dcbeatty.com",
+   "name": "Dennis Beatty"
+  },
+  {
+   "email": "me@rreverser.com",
+   "name": "Ingvar Stepanyan"
+  },
+  {
+   "email": "don@happycollision.com",
+   "name": "Don Denton"
+  },
+  {
+   "email": "cool.gegeg@gmail.com",
+   "name": "Dmytro Tiapukhin"
+  },
+  {
+   "email": "contact@florian-lefebvre.dev",
+   "name": "Florian Lefebvre"
+  }
+ ],
+ "dependencies": {
+  "@img/colour": "^1.1.0",
+  "detect-libc": "^2.1.2",
+  "semver": "^7.8.5"
+ },
+ "description": "High performance Node.js image processing, the fastest module to resize JPEG, PNG, WebP, GIF, AVIF and TIFF images",
+ "devDependencies": {
+  "@biomejs/biome": "^2.5.14",
+  "@cpplint/cli": "^0.1.0",
+  "@emnapi/runtime": "^1.11.3",
+  "@img/sharp-libvips-dev": "1.3.4",
+  "@img/sharp-libvips-dev-wasm32": "1.3.4",
+  "@img/sharp-libvips-win32-arm64": "1.3.4",
+  "@img/sharp-libvips-win32-ia32": "1.3.4",
+  "@img/sharp-libvips-win32-x64": "1.3.4",
+  "@types/node": "*",
+  "emnapi": "^1.11.3",
+  "exif-reader": "^2.0.3",
+  "icc": "^4.0.0",
+  "node-addon-api": "^8.9.2",
+  "node-gyp": "^12.4.0",
+  "publint": "^0.3.24",
+  "tar-fs": "^3.1.3",
+  "tsd": "^0.33.0",
+  "yauzl": "^3.4.0"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/sharp@0.35.5"
+  },
+  "fileCount": 47,
+  "integrity": "sha512-Ywn4OnzGukp7CDMrp08RQ50YKmuwG47brZgIVPTvBaaAfQlRlygrRqSrxdCiL9M+LlzLBiJ68IR1QqvzHyjC7g==",
+  "shasum": "43fb539872ec5f53cc7162eb850dbf6514692fbf",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQCyo1+tlBV7a2cmC8I84ARsUqvoaq+mx3W0/6VAa9nYqQIhAKtWlbR8qYS2H2IkE4lauEeV7TxILFTO0u9eFy0Q9IMU"
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQCLF9gSVuxlR9XSVusRLR+gKnSG05ojWaD3C+ne9L4uJgIhAPnnnMqW+1wcolOGQeXmk5qBoWsvJqs+OQjJRFLEIIrW"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/sharp/-/sharp-0.35.5.tgz",
+  "unpackedSize": 962168
+ },
+ "engines": {
+  "node": ">=20.9.0"
+ },
+ "exports": {
+  ".": {
+   "import": {
+    "default": "./dist/index.mjs",
+    "types": "./dist/index.d.mts"
+   },
+   "require": {
+    "default": "./dist/index.cjs",
+    "types": "./dist/index.d.cts"
+   }
+  }
+ },
+ "funding": {
+  "url": "https://opencollective.com/libvips"
+ },
+ "gitHead": "51a990faa26ade5586a4934ac9673c98d8893326",
+ "homepage": "https://sharp.pixelplumbing.com",
+ "keywords": [
+  "jpeg",
+  "png",
+  "webp",
+  "avif",
+  "tiff",
+  "gif",
+  "svg",
+  "jp2",
+  "dzi",
+  "image",
+  "resize",
+  "thumbnail",
+  "crop",
+  "embed",
+  "libvips",
+  "vips"
+ ],
+ "license": "Apache-2.0",
+ "main": "./dist/index.cjs",
+ "maintainers": [
+  {
+   "email": "npm@lovell.info",
+   "name": "lovell"
+  }
+ ],
+ "module": "./dist/index.mjs",
+ "name": "sharp",
+ "optionalDependencies": {
+  "@img/sharp-darwin-arm64": "0.35.5",
+  "@img/sharp-darwin-x64": "0.35.5",
+  "@img/sharp-freebsd-wasm32": "0.35.5",
+  "@img/sharp-libvips-darwin-arm64": "1.3.4",
+  "@img/sharp-libvips-darwin-x64": "1.3.4",
+  "@img/sharp-libvips-linux-arm": "1.3.4",
+  "@img/sharp-libvips-linux-arm64": "1.3.4",
+  "@img/sharp-libvips-linux-ppc64": "1.3.4",
+  "@img/sharp-libvips-linux-riscv64": "1.3.4",
+  "@img/sharp-libvips-linux-s390x": "1.3.4",
+  "@img/sharp-libvips-linux-x64": "1.3.4",
+  "@img/sharp-libvips-linuxmusl-arm64": "1.3.4",
+  "@img/sharp-libvips-linuxmusl-x64": "1.3.4",
+  "@img/sharp-linux-arm": "0.35.5",
+  "@img/sharp-linux-arm64": "0.35.5",
+  "@img/sharp-linux-ppc64": "0.35.5",
+  "@img/sharp-linux-riscv64": "0.35.5",
+  "@img/sharp-linux-s390x": "0.35.5",
+  "@img/sharp-linux-x64": "0.35.5",
+  "@img/sharp-linuxmusl-arm64": "0.35.5",
+  "@img/sharp-linuxmusl-x64": "0.35.5",
+  "@img/sharp-webcontainers-wasm32": "0.35.5",
+  "@img/sharp-win32-arm64": "0.35.5",
+  "@img/sharp-win32-ia32": "0.35.5",
+  "@img/sharp-win32-x64": "0.35.5"
+ },
+ "peerDependenciesMeta": {
+  "@types/node": {
+   "optional": true
+  }
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/lovell/sharp.git"
+ },
+ "scripts": {
+  "build": "node install/build.js",
+  "build:dist": "node scripts/build.mjs",
+  "clean": "rm -rf src/build/ test/fixtures/output.*",
+  "docs-build": "node docs/build.mjs",
+  "docs-publish": "cd docs && npm run build && npx firebase-tools deploy --project pixelplumbing --only hosting:pixelplumbing-sharp",
+  "docs-serve": "cd docs && npm start",
+  "lint": "npm run lint-cpp && npm run lint-js && npm run lint-types && npm run lint-publish",
+  "lint-cpp": "cpplint --quiet src/*.h src/*.cc",
+  "lint-js": "biome lint",
+  "lint-publish": "publint --strict",
+  "lint-types": "tsd --files ./test/types/sharp.test-d.{cts,mts}",
+  "package-from-local-build": "node npm/from-local-build.js",
+  "package-release-notes": "node npm/release-notes.js",
+  "package-wasm-wrappers": "node npm/wasm-wrappers.js",
+  "test": "npm run lint && npm run test-unit",
+  "test-leak": "./test/leak/leak.sh",
+  "test-unit": "node --experimental-test-coverage test/unit.mjs"
+ },
+ "sideEffects": true,
+ "type": "commonjs",
+ "types": "./dist/index.d.mts",
+ "version": "0.35.5"
+}

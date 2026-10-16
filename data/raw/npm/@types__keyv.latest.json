@@ -1,0 +1,43 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@types/keyv@4.2.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/keyv_4.2.0_1666127074429_0.7322157267222644"
+ },
+ "_npmUser": {
+  "email": "ts-npm-types@microsoft.com",
+  "name": "types"
+ },
+ "dependencies": {
+  "keyv": "*"
+ },
+ "deprecated": "This is a stub types definition. keyv provides its own type definitions, so you do not need this installed.",
+ "description": "Stub TypeScript definitions entry for keyv, which provides its own types definitions",
+ "directories": {},
+ "dist": {
+  "fileCount": 4,
+  "integrity": "sha512-xoBtGl5R9jeKUhc8ZqeYaRDx04qqJ10yhhXYGmJ4Jr8qKpvMsDQQrNUvF/wUJ4klOtmJeJM+p2Xo3zp9uaC3tw==",
+  "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v4.10.10\r\nComment: https://openpgpjs.org\r\n\r\nwsFzBAEBCAAGBQJjTxTiACEJED1NWxICdlZqFiEECWMYAoorWMhJKdjhPU1b\r\nEgJ2Vmo8/Q/+NfJS88DRAPsn5l7ypKaHV9W07/Ws+3vzKyVdCj32GI1k1IOd\r\nSlW9Me/pgxFULCCvDfK0qKuqJKEoM94Q2NmTWoE5ykmqe7mFlWHj4Uu1Rjr6\r\nWF/CPJoHeMr8ba91uqfuzl2BvIf22/4WqOp1vkd2ss5LFW429lrqangmi54a\r\nJpEQU/pXh7i8yX0UisuVu4obT5behDu972FDgPzbUO8fSXcdaRJ28J86+hJv\r\niWN7bSKZBQVypcBheB7gDtDp6aPvUQHl7E4iq0rsidBgI0llx1bvCXl9Bkxt\r\nulYJwdstqU4gAc8nJ1b9pqrefo0vuaveYxMnaOhqULDhkCQsnlc/1Y8zp0kf\r\nNsNulGn1Gk30f1zKb+vSdTcRBrN4aTG0pLb9PODq3E+Ljpp4vYVm/37dI4gw\r\ntYpXLYSJKZABdrVKjZyUydJNswSlNaec4kC9rXK3FYC/Wf4xlnxEP6bQUbrY\r\n/G7iXgSV/N3pJ9mpdbLqZL1RI9GoXaitfvBb3sVoNLCqEtsJKDbfyAt/ClaT\r\npV23DNAfj2dlShdVEjPGZy3owoB+3STPk2G7r6t8J2DNp0CBgilfeyXiB8wP\r\nBqdogtIYPp+DkZW3gOr2eOZLdlWctMCN9a89RWEL8HdoIcOwpclwAkuO4b8Q\r\nmvFKFLhHJ37bMKVRRyjgFRgsU0NDtadJnI8=\r\n=SEqZ\r\n-----END PGP SIGNATURE-----\r\n",
+  "shasum": "65b97868ab757906f2dbb653590d7167ad023fa0",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEYCIQDqcEZv93TdwAR3uJCOyUMbV/Z8KLHlqM/G20usNoBL5QIhAKVWU6ELhPYJCip5QPeHLNBzBnyjQMFkHX1FqmNf269P"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@types/keyv/-/keyv-4.2.0.tgz",
+  "unpackedSize": 1702
+ },
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "ts-npm-types@microsoft.com",
+   "name": "types"
+  }
+ ],
+ "name": "@types/keyv",
+ "scripts": {},
+ "version": "4.2.0"
+}

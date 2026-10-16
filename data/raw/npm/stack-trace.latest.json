@@ -1,0 +1,85 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "stack-trace@1.0.0",
+ "_nodeVersion": "25.9.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/stack-trace_1.0.0_1777744594092_0.2399214520530173"
+ },
+ "_npmUser": {
+  "email": "bniemyjski@gmail.com",
+  "name": "niemyjski"
+ },
+ "_npmVersion": "11.12.1",
+ "author": {
+  "email": "felix@debuggable.com",
+  "name": "Felix Geisend\u00f6rfer",
+  "url": "http://debuggable.com/"
+ },
+ "bugs": {
+  "url": "https://github.com/felixge/node-stack-trace/issues"
+ },
+ "description": "Get v8 stack traces as an array of CallSite objects.",
+ "directories": {},
+ "dist": {
+  "fileCount": 4,
+  "integrity": "sha512-H6D7134xi6qONvh7ZHKgviXf+rd3vhGBSvebPZCaUkd8zvQ+7PtDw6CljPTe4cXWNf2IKZGNqw6VJXSb9IgBpA==",
+  "shasum": "bcdf4c2b89382ee1fdd881345a2d3f3613c3f370",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIAnYvNgJQDZG09/cgmmkIfZxBjubvZZXtIMa2bUZhRGpAiEA7TY/pX3fkCZWTeRxfTcDDKqyuGQQKiWk4cw6W1gbyRI="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/stack-trace/-/stack-trace-1.0.0.tgz",
+  "unpackedSize": 10521
+ },
+ "engines": {
+  "node": ">=20.0.0"
+ },
+ "exports": {
+  ".": "./index.js",
+  "./package.json": "./package.json"
+ },
+ "gitHead": "68ba5373d4a24984dc7075240258cbbc0f797cea",
+ "homepage": "https://github.com/felixge/node-stack-trace",
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "felix@debuggable.com",
+   "name": "felixge"
+  },
+  {
+   "email": "hoitz@komola.de",
+   "name": "sebastianhoitz"
+  },
+  {
+   "email": "tim@fostle.com",
+   "name": "tim-smart"
+  },
+  {
+   "email": "gajus@gajus.com",
+   "name": "gajus"
+  },
+  {
+   "email": "bniemyjski@gmail.com",
+   "name": "niemyjski"
+  },
+  {
+   "email": "kevin@glowacz.info",
+   "name": "kjg"
+  }
+ ],
+ "name": "stack-trace",
+ "repository": {
+  "type": "git",
+  "url": "git://github.com/felixge/node-stack-trace.git"
+ },
+ "scripts": {
+  "release": "git push && git push --tags && npm publish",
+  "test": "node --test"
+ },
+ "type": "module",
+ "version": "1.0.0"
+}

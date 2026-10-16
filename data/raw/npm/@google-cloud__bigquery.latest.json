@@ -1,0 +1,138 @@
+{
+ "_from": "file:/tmp/publishing-artifacts-3712920134/@google-cloud/bigquery/9.3.0/bigquery-9.3.0.tgz",
+ "_hasShrinkwrap": false,
+ "_id": "@google-cloud/bigquery@9.3.0",
+ "_integrity": "sha512-c981hUuEMbEfGBEdw57OQtzmVsrvHRg59NE3K+U1cxRwT52wirNfi7V4lck2C4RI2nyVo+g1MxWgMnhp0TgCOQ==",
+ "_nodeVersion": "22.18.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/bigquery_9.3.0_1791842643293_0.025154730099649525"
+ },
+ "_npmUser": {
+  "email": "node-team-npm+wombot@google.com",
+  "name": "google-wombot"
+ },
+ "_npmVersion": "10.9.3",
+ "_resolved": "/tmp/publishing-artifacts-3712920134/@google-cloud/bigquery/9.3.0/bigquery-9.3.0.tgz",
+ "author": {
+  "name": "Google LLC"
+ },
+ "bugs": {
+  "url": "https://github.com/googleapis/google-cloud-node/issues"
+ },
+ "dependencies": {
+  "@google-cloud/common": "^8.0.0",
+  "@google-cloud/paginator": "^7.0.0",
+  "@google-cloud/precise-date": "^6.0.0",
+  "@google-cloud/promisify": "^6.0.0",
+  "arrify": "^3.0.0",
+  "big.js": "^7.0.0",
+  "duplexify": "^4.1.3",
+  "extend": "^3.0.2",
+  "stream-events": "^1.0.5",
+  "teeny-request": "^11.0.0"
+ },
+ "description": "Google BigQuery Client Library for Node.js",
+ "devDependencies": {
+  "@google-cloud/storage": "^7.16.0",
+  "@types/big.js": "^6.2.2",
+  "@types/duplexify": "^3.6.4",
+  "@types/extend": "^3.0.4",
+  "@types/is": "^0.0.25",
+  "@types/mocha": "^10.0.10",
+  "@types/node": "^22.14.0",
+  "@types/proxyquire": "^1.3.31",
+  "@types/sinon": "^17.0.4",
+  "c8": "^10.1.3",
+  "codecov": "^3.8.3",
+  "discovery-tsd": "^0.3.0",
+  "eslint-plugin-prettier": "^5.2.6",
+  "gts": "^6.0.2",
+  "jsdoc": "^4.0.4",
+  "jsdoc-fresh": "^6.0.0",
+  "jsdoc-region-tag": "^5.0.0",
+  "mocha": "^11.1.0",
+  "nise": "^6.1.1",
+  "pack-n-play": "^5.0.0",
+  "path-to-regexp": "^8.2.0",
+  "prettier": "^3.5.3",
+  "proxyquire": "^2.1.3",
+  "sinon": "21.0.3",
+  "typescript": "^5.8.2"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 26,
+  "integrity": "sha512-c981hUuEMbEfGBEdw57OQtzmVsrvHRg59NE3K+U1cxRwT52wirNfi7V4lck2C4RI2nyVo+g1MxWgMnhp0TgCOQ==",
+  "shasum": "74792f300533607e9f2a6ec8c89654658284f66f",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQCLBnRSy7vbNIpv0IT5r4ODw9trGP/ipvIPmTB8GY0MzwIhAPqmY90+KbTN4TmuMTcNtlQdBbXjSK9Kd2JuHWo3wN78"
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQDIJF+w50qyRi/s7gzxh62cOHJcbfsRYDp6mdOYJOxDAwIhAPlgvzHRtYqQvV9yepMfGW76EFOjuOmfQRElyup1MUzs"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@google-cloud/bigquery/-/bigquery-9.3.0.tgz",
+  "unpackedSize": 729151
+ },
+ "engines": {
+  "node": ">=22"
+ },
+ "homepage": "https://github.com/googleapis/google-cloud-node/tree/main/handwritten/bigquery",
+ "keywords": [
+  "google apis client",
+  "google api client",
+  "google apis",
+  "google api",
+  "google",
+  "google cloud platform",
+  "google cloud",
+  "cloud",
+  "google bigquery",
+  "bigquery"
+ ],
+ "license": "Apache-2.0",
+ "main": "./build/src/index.js",
+ "maintainers": [
+  {
+   "email": "node-team-npm+wombot@google.com",
+   "name": "google-wombot"
+  }
+ ],
+ "name": "@google-cloud/bigquery",
+ "overrides": {
+  "@google-cloud/common": {
+   "google-auth-library": "10.3.0"
+  },
+  "@sinonjs/fake-timers": "15.1.1"
+ },
+ "repository": {
+  "directory": "handwritten/bigquery",
+  "type": "git",
+  "url": "git+https://github.com/googleapis/google-cloud-node.git"
+ },
+ "scripts": {
+  "benchmark": "node build/benchmark/bench.js benchmark/queries.json",
+  "clean": "gts clean",
+  "compile": "tsc -p . && cp src/types.d.ts build/src/",
+  "docs": "jsdoc -c .jsdoc.js",
+  "fix": "gts fix",
+  "lint": "gts check",
+  "prebenchmark": "pnpm run compile",
+  "precompile": "gts clean",
+  "predocs": "pnpm run compile",
+  "prelint": "cd samples; pnpm link ../; pnpm install",
+  "prepare": "npm run compile",
+  "presystem-test": "pnpm run compile",
+  "pretest": "pnpm run compile",
+  "samples-test": "cd samples/ && pnpm link ../ && pnpm test && cd ../",
+  "system-test": "node ../../bin/run-test.cjs build/system-test --timeout 600000",
+  "test": "node ../../bin/run-test.cjs --proxyquire-shim build/test",
+  "types": "node scripts/gen-types.js"
+ },
+ "types": "./build/src/index.d.ts",
+ "version": "9.3.0"
+}

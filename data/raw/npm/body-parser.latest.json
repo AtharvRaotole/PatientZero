@@ -1,0 +1,119 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "body-parser@2.3.0",
+ "_nodeVersion": "22.10.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/body-parser_2.3.0_1781520372748_0.4548652798137591"
+ },
+ "_npmUser": {
+  "email": "ulisesgascondev@gmail.com",
+  "name": "ulisesgascon"
+ },
+ "_npmVersion": "10.9.0",
+ "bugs": {
+  "url": "https://github.com/expressjs/body-parser/issues"
+ },
+ "contributors": [
+  {
+   "email": "doug@somethingdoug.com",
+   "name": "Douglas Christopher Wilson"
+  },
+  {
+   "email": "me@jongleberry.com",
+   "name": "Jonathan Ong",
+   "url": "http://jongleberry.com"
+  }
+ ],
+ "dependencies": {
+  "bytes": "^3.1.2",
+  "content-type": "^2.0.0",
+  "debug": "^4.4.3",
+  "http-errors": "^2.0.1",
+  "iconv-lite": "^0.7.2",
+  "on-finished": "^2.4.1",
+  "qs": "^6.15.2",
+  "raw-body": "^3.0.2",
+  "type-is": "^2.1.0"
+ },
+ "description": "Node.js body parsing middleware",
+ "devDependencies": {
+  "eslint": "^8.57.1",
+  "eslint-config-standard": "^14.1.1",
+  "eslint-plugin-import": "^2.32.0",
+  "eslint-plugin-markdown": "^3.0.1",
+  "eslint-plugin-node": "^11.1.0",
+  "eslint-plugin-promise": "^6.6.0",
+  "eslint-plugin-standard": "^4.1.0",
+  "mocha": "^11.7.6",
+  "nyc": "^17.1.0",
+  "supertest": "^7.2.2"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 10,
+  "integrity": "sha512-2cGmJupaNgg+QUwVLAucDuWuoMZ6EX9iHDRswZ5lsNYEmwPaRknMPCLZz07yTzVq/83p4o/wzbDZbBrTvGGTIw==",
+  "shasum": "6d8662f4d8c336028b8ac9aa24251b0ca64ba437",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIGCX/T+R3Ow5xMvv/aOjnxJzICVYKL27LzUlZ1M1lumsAiEAiCHyPGK5Gc8RIE0LeEq2hIbquM13SGshFkQRGb/5ju8="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/body-parser/-/body-parser-2.3.0.tgz",
+  "unpackedSize": 42536
+ },
+ "engines": {
+  "node": ">=18"
+ },
+ "exports": {
+  ".": "./index.js",
+  "./json": "./lib/types/json.js",
+  "./lib/*": "./lib/*.js",
+  "./lib/*.js": "./lib/*.js",
+  "./lib/types/*": "./lib/types/*.js",
+  "./lib/types/*.js": "./lib/types/*.js",
+  "./package.json": "./package.json",
+  "./raw": "./lib/types/raw.js",
+  "./text": "./lib/types/text.js",
+  "./urlencoded": "./lib/types/urlencoded.js"
+ },
+ "funding": {
+  "type": "opencollective",
+  "url": "https://opencollective.com/express"
+ },
+ "gitHead": "d0f2ace6c74769da7d19b8661b9a01c01bdb0bf7",
+ "homepage": "https://github.com/expressjs/body-parser#readme",
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "doug@somethingdoug.com",
+   "name": "dougwilson"
+  },
+  {
+   "email": "ulisesgascondev@gmail.com",
+   "name": "ulisesgascon"
+  },
+  {
+   "email": "npm@jonchurch.com",
+   "name": "jonchurch"
+  },
+  {
+   "email": "wes@wesleytodd.com",
+   "name": "wesleytodd"
+  }
+ ],
+ "name": "body-parser",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/expressjs/body-parser.git"
+ },
+ "scripts": {
+  "lint": "eslint .",
+  "test": "mocha --reporter spec --check-leaks test/",
+  "test-ci": "nyc --reporter=lcovonly --reporter=text npm test",
+  "test-cov": "nyc --reporter=html --reporter=text npm test"
+ },
+ "type": "commonjs",
+ "version": "2.3.0"
+}

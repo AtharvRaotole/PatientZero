@@ -1,0 +1,62 @@
+{
+ "_from": ".",
+ "_id": "semver-compare@1.0.0",
+ "_nodeVersion": "0.10.31",
+ "_npmUser": {
+  "email": "mail@substack.net",
+  "name": "substack"
+ },
+ "_npmVersion": "2.1.3",
+ "_shasum": "0dee216a1c941ab37e9efb1788f6afc5ff5537fc",
+ "author": {
+  "email": "mail@substack.net",
+  "name": "James Halliday",
+  "url": "http://substack.net"
+ },
+ "bugs": {
+  "url": "https://github.com/substack/semver-compare/issues"
+ },
+ "dependencies": {},
+ "description": "compare two semver version strings, returning -1, 0, or 1",
+ "devDependencies": {
+  "tape": "^3.0.0"
+ },
+ "directories": {},
+ "dist": {
+  "integrity": "sha512-YM3/ITh2MJ5MtzaM429anh+x2jiLVjqILF4m4oyQB18W7Ggea7BfqdH/wGMK7dDiMghv/6WG7znWMwUDzJiXow==",
+  "shasum": "0dee216a1c941ab37e9efb1788f6afc5ff5537fc",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEYCIQDBniKp/9lzXC54TljT/2EDA3LrYGwon3NStN+SslITXQIhAJP6ixyAaiRRcAEXTa/i4rOh9z9e6dbkivubW4CptnZV"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/semver-compare/-/semver-compare-1.0.0.tgz"
+ },
+ "gitHead": "152c863e7c2615f9e9e81a9a370b672afaa3819a",
+ "homepage": "https://github.com/substack/semver-compare",
+ "keywords": [
+  "semver",
+  "compare",
+  "cmp",
+  "comparison",
+  "sort"
+ ],
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "mail@substack.net",
+   "name": "substack"
+  }
+ ],
+ "name": "semver-compare",
+ "repository": {
+  "type": "git",
+  "url": "git://github.com/substack/semver-compare.git"
+ },
+ "scripts": {
+  "test": "tape test/*.js"
+ },
+ "version": "1.0.0"
+}

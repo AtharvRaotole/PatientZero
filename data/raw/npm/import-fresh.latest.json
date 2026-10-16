@@ -1,0 +1,94 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "import-fresh@4.0.1",
+ "_nodeVersion": "26.9.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/import-fresh_4.0.1_1790360807922_0.05108568624705345"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "12.0.1",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/import-fresh/issues"
+ },
+ "description": "Import a module while bypassing the cache",
+ "devDependencies": {
+  "@types/node": "^25.3.0",
+  "heapdump": "^0.3.15",
+  "tsd": "^0.33.0",
+  "xo": "^1.2.3"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-/XFeXYgkuWgbtqPC7qPKvciXTvhtz7WMNQKQsAM1Kz+j0I5OWJDrybfiya6QtHF9oEvPkLwTHmC9+4OR/MmfIA==",
+  "shasum": "688b83e499c1d8cdd3c9a103a3275485b3dbdaca",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIFidWfZNAWfsgyxYoQ/Svkb3sEaBXPulX8tK3YG1O4zgAiEAmuQosqvSUGWOuseYMi7InlCdnCOj0gKIWCUAkKqbwEs="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIHbc8I+JbRRZX1Qe1FrVAMMCr02HlAVw8aF5s9MwDjuCAiEA31B//hGLap3qO8wW3RTf3XAD6kaQ5DbZ6v4FyQNJVrs="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/import-fresh/-/import-fresh-4.0.1.tgz",
+  "unpackedSize": 31743
+ },
+ "engines": {
+  "node": ">=22.15"
+ },
+ "exports": {
+  "default": "./index.js",
+  "types": "./index.d.ts"
+ },
+ "funding": "https://github.com/sponsors/sindresorhus",
+ "gitHead": "c916096f3448daa381556374f827f7f8bac3aba6",
+ "homepage": "https://github.com/sindresorhus/import-fresh#readme",
+ "keywords": [
+  "import",
+  "require",
+  "cache",
+  "uncache",
+  "uncached",
+  "module",
+  "fresh",
+  "bypass"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "import-fresh",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/import-fresh.git"
+ },
+ "scripts": {
+  "heapdump": "node heapdump.js",
+  "test": "xo && node --test tests/*.js && tsd"
+ },
+ "sideEffects": false,
+ "tsd": {
+  "compilerOptions": {
+   "module": "nodenext",
+   "moduleResolution": "nodenext"
+  },
+  "directory": "tests"
+ },
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "4.0.1"
+}

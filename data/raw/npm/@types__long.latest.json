@@ -1,0 +1,43 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@types/long@5.0.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/long_5.0.0_1660165357231_0.9450680077364129"
+ },
+ "_npmUser": {
+  "email": "ts-npm-types@microsoft.com",
+  "name": "types"
+ },
+ "dependencies": {
+  "long": "*"
+ },
+ "deprecated": "This is a stub types definition. long provides its own type definitions, so you do not need this installed.",
+ "description": "Stub TypeScript definitions entry for long, which provides its own types definitions",
+ "directories": {},
+ "dist": {
+  "fileCount": 4,
+  "integrity": "sha512-eQs9RsucA/LNjnMoJvWG/nXa7Pot/RbBzilF/QRIU/xRl+0ApxrSUFsV5lmf01SvSlqMzJ7Zwxe440wmz2SJGA==",
+  "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v4.10.10\r\nComment: https://openpgpjs.org\r\n\r\nwsFzBAEBCAAGBQJi9BztACEJED1NWxICdlZqFiEECWMYAoorWMhJKdjhPU1b\r\nEgJ2VmrBQw//TwxYjqy+FqJAyvVOQwvjLgtz6Fgps8NFE/jT5rDVmUFcXCt8\r\nOQAO1i3qh22Lf+wNVuFIZRh18YWqdcYjLPHwD8Q5JVoF78pPfLzkXg9FpSaA\r\nUGW3QJ+0aEoIOmO09K19LaKWMpQ+N6x5zC1ROX528xMdT7y9Gjr6HRrF6asC\r\n2kerpzVMOYwMoKMgSJRDjizSAjEns8Mmcgs4ls3xKGCNKAGKbihzrcMK1tv1\r\nemn+ohDrOtrIkNQDbzeoMmU+FnMk+OMjxOanS72GANMmNj1CWT2RYiV4oiyU\r\nAbqVHcdVLdHiZWc+Z1GnbA9KHJArzpi1f+eclLXSvWxD2G1lRB5hGQ++vnS3\r\nhoMUPJxEO4cGSszzSwn7Xd2Wxwo98n+CcVz79XqkQpV1g+cA1yp57LTeTnp1\r\nOEA2iJh0T4vsRLqVzO0FNtCpGWkjbBWkkbBp320I5S0bsY9MIUDRyom8oUzQ\r\naUKTVEyf+2BmWNsdTqh111A0MZmWtmEeSCitJBaK+CYYWmRHR3YW637xtuVA\r\ntOJRa9ImvnXJstV2WbYsLLpuf2d70dmex7hyVsOt6YM5r6qFf4R0C3rHG3eA\r\nGg9qZEC3aqKuPfIZsuz5tEq4i1wDbKSgyCNaIzViSJAv7rL7gj7fcA+U6fNO\r\n2QqsL7gw7VrKA2BEEY+1avGEQAf9iQa/XbU=\r\n=Zw4j\r\n-----END PGP SIGNATURE-----\r\n",
+  "shasum": "daaa7b7f74c919c946ff74889d5ca2afe363b2cd",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEYCIQCw65VNfh12oBVgiYv+Cu6wrtlUHdRzxUSKVc4ExZz5YgIhAIDdUR2kDHUzQi9K78GPD4Pv+4XWrid3nS80wFTaPjRR"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@types/long/-/long-5.0.0.tgz",
+  "unpackedSize": 1710
+ },
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "ts-npm-types@microsoft.com",
+   "name": "types"
+  }
+ ],
+ "name": "@types/long",
+ "scripts": {},
+ "version": "5.0.0"
+}

@@ -1,0 +1,86 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "mimic-function@5.0.1",
+ "_nodeVersion": "20.11.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/mimic-function_5.0.1_1710405462144_0.5510414973189222"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "9.2.0",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/mimic-function/issues"
+ },
+ "description": "Make a function mimic another one",
+ "devDependencies": {
+  "ava": "^5.3.1",
+  "tsd": "^0.29.0",
+  "xo": "^0.56.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-VP79XUPxV2CigYP3jWwAUFSku2aKqBH7uTAapFWCBqutsbmDo96KY5o8uh6U+/YSIn5OxJnXp73beVkpqMIGhA==",
+  "shasum": "acbe2b3349f99b9deaca7fb70e48b83e94e67076",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIQDqi2cYXNmieqqlagx5nZGl3Dscqv7WuVspDts/6JSGvwIgbdoOPPFR/AMDNG74GZ5pK6dJm9dYlxhDheknUMvAuRo="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/mimic-function/-/mimic-function-5.0.1.tgz",
+  "unpackedSize": 8096
+ },
+ "engines": {
+  "node": ">=18"
+ },
+ "exports": {
+  "default": "./index.js",
+  "types": "./index.d.ts"
+ },
+ "funding": "https://github.com/sponsors/sindresorhus",
+ "gitHead": "e451d0af761bed2cde0b9bc252dc6a2dfeb35844",
+ "homepage": "https://github.com/sindresorhus/mimic-function#readme",
+ "keywords": [
+  "function",
+  "mimic",
+  "imitate",
+  "rename",
+  "copy",
+  "inherit",
+  "properties",
+  "name",
+  "func",
+  "fn",
+  "set",
+  "infer",
+  "change"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "mimic-function",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/mimic-function.git"
+ },
+ "scripts": {
+  "test": "xo && ava && tsd"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "5.0.1"
+}

@@ -1,0 +1,73 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "on-exit-leak-free@2.1.2",
+ "_nodeVersion": "18.17.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/on-exit-leak-free_2.1.2_1696344125852_0.49115970753718496"
+ },
+ "_npmUser": {
+  "email": "hello@matteocollina.com",
+  "name": "matteo.collina"
+ },
+ "_npmVersion": "10.1.0",
+ "author": {
+  "email": "hello@matteocollina.com",
+  "name": "Matteo Collina"
+ },
+ "bugs": {
+  "url": "https://github.com/mcollina/on-exit-or-gc/issues"
+ },
+ "description": "Execute a function on exit without leaking memory, allowing all objects to be garbage collected",
+ "devDependencies": {
+  "snazzy": "^9.0.0",
+  "standard": "^17.0.0",
+  "tap": "^16.0.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 12,
+  "integrity": "sha512-0eJJY6hXLGf1udHwfNftBqH+g73EU4B504nZeKpz1sYRKafAghwxEJunB2O7rDZkL4PGfsMVnTXZ2EjibbqcsA==",
+  "shasum": "fed195c9ebddb7d9e4c3842f93f281ac8dadd3b8",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIFuycuWANeHj93G7XlZJpaCdPY7TD7P/wxwytsvmz8cnAiEAhsm+OY77cQhnTj/r1F/maetBq1hsYsqnFs3nv8/6ZA8="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/on-exit-leak-free/-/on-exit-leak-free-2.1.2.tgz",
+  "unpackedSize": 9246
+ },
+ "engines": {
+  "node": ">=14.0.0"
+ },
+ "gitHead": "54e85eb597d8ae9104324070ad767c120d975f2c",
+ "homepage": "https://github.com/mcollina/on-exit-or-gc#readme",
+ "keywords": [
+  "weak",
+  "reference",
+  "finalization",
+  "registry",
+  "process",
+  "exit",
+  "garbage",
+  "collector"
+ ],
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "hello@matteocollina.com",
+   "name": "matteo.collina"
+  }
+ ],
+ "name": "on-exit-leak-free",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/mcollina/on-exit-or-gc.git"
+ },
+ "scripts": {
+  "test": "standard | snazzy && tap test/*.js"
+ },
+ "version": "2.1.2"
+}

@@ -1,0 +1,90 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "escodegen@2.1.0",
+ "_nodeVersion": "20.0.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/escodegen_2.1.0_1688069917080_0.34523606176766686"
+ },
+ "_npmUser": {
+  "email": "npm@michael.ficarra.me",
+  "name": "michaelficarra"
+ },
+ "_npmVersion": "9.6.4",
+ "bin": {
+  "escodegen": "bin/escodegen.js",
+  "esgenerate": "bin/esgenerate.js"
+ },
+ "bugs": {
+  "url": "https://github.com/estools/escodegen/issues"
+ },
+ "dependencies": {
+  "esprima": "^4.0.1",
+  "estraverse": "^5.2.0",
+  "esutils": "^2.0.2",
+  "source-map": "~0.6.1"
+ },
+ "description": "ECMAScript code generator",
+ "devDependencies": {
+  "acorn": "^8.0.4",
+  "bluebird": "^3.4.7",
+  "bower-registry-client": "^1.0.0",
+  "chai": "^4.2.0",
+  "chai-exclude": "^2.0.2",
+  "commonjs-everywhere": "^0.9.7",
+  "gulp": "^4.0.2",
+  "gulp-eslint": "^6.0.0",
+  "gulp-mocha": "^7.0.2",
+  "minimist": "^1.2.5",
+  "optionator": "^0.9.1",
+  "semver": "^7.3.4"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 6,
+  "integrity": "sha512-2NlIDTwUWJN0mRPQOdtQBzbUHvdGY2P1VXSyU83Q3xKxM7WHX2Ql8dKq782Q9TgQUNOLEzEYu9bzLNj1q88I5w==",
+  "shasum": "ba93bbb7a43986d29d6041f99f5262da773e2e17",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIQDzUaziph6n9ktqasAcIxNaE1gRiw11W7NisjOA9eSgLgIgSJSiCmxfwqJud2uKQdSUCqXaX+J8uoiZGUYkwnNQsY4="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/escodegen/-/escodegen-2.1.0.tgz",
+  "unpackedSize": 108549
+ },
+ "engines": {
+  "node": ">=6.0"
+ },
+ "gitHead": "899cfdf5dc99de324fb6f1087aa9bab4d4bc2f00",
+ "homepage": "http://github.com/estools/escodegen",
+ "license": "BSD-2-Clause",
+ "main": "escodegen.js",
+ "maintainers": [
+  {
+   "email": "npm@michael.ficarra.me",
+   "name": "michaelficarra"
+  },
+  {
+   "email": "utatane.tea@gmail.com",
+   "name": "constellation"
+  }
+ ],
+ "name": "escodegen",
+ "optionalDependencies": {
+  "source-map": "~0.6.1"
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+ssh://git@github.com/estools/escodegen.git"
+ },
+ "scripts": {
+  "build": "cjsify -a path: tools/entry-point.js > escodegen.browser.js",
+  "build-min": "cjsify -ma path: tools/entry-point.js > escodegen.browser.min.js",
+  "lint": "gulp lint",
+  "release": "node tools/release.js",
+  "test": "gulp travis",
+  "unit-test": "gulp test"
+ },
+ "version": "2.1.0"
+}

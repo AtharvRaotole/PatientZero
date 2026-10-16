@@ -1,0 +1,128 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@graphql-tools/schema@10.1.5",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/schema_10.1.5_1792072015314_0.704417832017427"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "7aa5e24e-b8d8-4476-b557-39c4977f8f7f"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "bugs": {
+  "url": "https://github.com/ardatan/graphql-tools/issues"
+ },
+ "dependencies": {
+  "@graphql-tools/merge": "^9.2.8",
+  "@graphql-tools/utils": "^12.1.0",
+  "tslib": "^2.4.0"
+ },
+ "description": "A set of utils for faster development of GraphQL tools",
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@graphql-tools%2fschema@10.1.5"
+  },
+  "fileCount": 39,
+  "integrity": "sha512-F0Onw0ZBREakKGqcgsKhdSCjOXgmntzQWL0QA+/WrwKmnJ7nJRyGKUJavwuVZL2TrXblaIUvQxm4t1h3FuA3cA==",
+  "shasum": "348102cd8cab9d207e3d5bd94fcf92edc03d2812",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIBP2cB2S0uANA8XjAWraWzILJr+XPd4A2vgd0ATehlBhAiEA3n+ntlfsXg4GVtrZI9p5OaIO5ffzhKI5LpfOyOfWIac="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQCqW0JGujRZbHQgtaPo00fgIeg/i7hvNOY2EQVMYbZu5wIgMU2UwCx+MKy809hAmA2XYUsbtCi3MGKntm9PhOjGlaA="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@graphql-tools/schema/-/schema-10.1.5.tgz",
+  "unpackedSize": 71127
+ },
+ "engines": {
+  "node": ">=16.0.0"
+ },
+ "exports": {
+  ".": {
+   "default": {
+    "default": "./esm/index.js",
+    "types": "./typings/index.d.ts"
+   },
+   "import": {
+    "default": "./esm/index.js",
+    "types": "./typings/index.d.ts"
+   },
+   "require": {
+    "default": "./cjs/index.js",
+    "types": "./typings/index.d.cts"
+   }
+  },
+  "./*": {
+   "default": {
+    "default": "./esm/*.js",
+    "types": "./typings/*.d.ts"
+   },
+   "import": {
+    "default": "./esm/*.js",
+    "types": "./typings/*.d.ts"
+   },
+   "require": {
+    "default": "./cjs/*.js",
+    "types": "./typings/*.d.cts"
+   }
+  },
+  "./package.json": "./package.json"
+ },
+ "gitHead": "36342333e3244572a8b94fa26fd0e57344b661bc",
+ "homepage": "https://github.com/ardatan/graphql-tools#readme",
+ "license": "MIT",
+ "main": "cjs/index.js",
+ "maintainers": [
+  {
+   "email": "dotan@the-guild.dev",
+   "name": "dotansimha"
+  },
+  {
+   "email": "uri.goldshtein@gmail.com",
+   "name": "urigo"
+  },
+  {
+   "email": "ardatanrikulu@gmail.com",
+   "name": "ardatan"
+  },
+  {
+   "email": "badurinadenis@gmail.com",
+   "name": "enisdenjo"
+  },
+  {
+   "email": "bot@the-guild.dev",
+   "name": "theguild-bot"
+  }
+ ],
+ "module": "esm/index.js",
+ "name": "@graphql-tools/schema",
+ "peerDependencies": {
+  "graphql": "^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0"
+ },
+ "repository": {
+  "directory": "packages/schema",
+  "type": "git",
+  "url": "git+https://github.com/ardatan/graphql-tools.git"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "typescript": {
+  "definition": "typings/index.d.ts"
+ },
+ "typings": "typings/index.d.ts",
+ "version": "10.1.5"
+}

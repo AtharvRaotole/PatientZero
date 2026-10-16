@@ -1,0 +1,137 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "cosmiconfig@10.0.1",
+ "_nodeVersion": "24.18.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/cosmiconfig_10.0.1_1788099515019_0.9951231360431567"
+ },
+ "_npmUser": {
+  "email": "daniel@d-fischer.dev",
+  "name": "d-fischer"
+ },
+ "_npmVersion": "11.17.0",
+ "author": {
+  "email": "daniel@d-fischer.dev",
+  "name": "Daniel Fischer"
+ },
+ "bugs": {
+  "url": "https://github.com/cosmiconfig/cosmiconfig/issues"
+ },
+ "contributors": [
+  {
+   "email": "jrandolf@google.com",
+   "name": "Randolf J"
+  },
+  {
+   "email": "david.dave.clark@gmail.com",
+   "name": "David Clark"
+  },
+  {
+   "email": "trysound@yandex.ru",
+   "name": "Bogdan Chadkin"
+  },
+  {
+   "email": "sudo.suhas@gmail.com",
+   "name": "Suhas Karanth"
+  }
+ ],
+ "dependencies": {
+  "env-paths": "^2.2.1",
+  "js-yaml": "^5.4.1"
+ },
+ "description": "Find and load configuration from a package.json property, rc file, TypeScript module, and more!",
+ "devDependencies": {
+  "@types/js-yaml": "^4.0.5",
+  "@types/node": "^14",
+  "@typescript-eslint/eslint-plugin": "^6.5.0",
+  "@typescript-eslint/parser": "^6.5.0",
+  "@vitest/coverage-istanbul": "^0.34.3",
+  "cross-env": "^7.0.3",
+  "eslint": "^8.48.0",
+  "eslint-config-davidtheclark-node": "^0.2.2",
+  "eslint-config-prettier": "^9.0.0",
+  "eslint-import-resolver-typescript": "^3.6.0",
+  "eslint-plugin-import": "^2.28.1",
+  "eslint-plugin-node": "^11.1.0",
+  "eslint-plugin-vitest": "^0.2.8",
+  "husky": "^8.0.3",
+  "lint-staged": "^14.0.1",
+  "parent-module": "^3.0.0",
+  "prettier": "^3.0.3",
+  "typescript": "^5.2.2",
+  "vitest": "^0.34.3"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 31,
+  "integrity": "sha512-/zvGoYn0y27QTBmK+0B+oPdEPC4fKGUmJsMTQbDjqph00TrkqfVFW/M+C6ya54sYCgHC6QCwK/mI6djt8cEGHQ==",
+  "shasum": "af7d6e328a18a7b04fc20c8064bf3c74ae452549",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIEmuPhkxJmmg9655uqkyAfuwUCdQrKWJ4Wyk9mhdK4guAiEAgo+n+EbXAyGcJs5GP2xg4vOvRkHocQugyCejZH8YuMM="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDTDh/3DxMPoTMriCtvU532vtnp5q538/5CL7hWxCp4bwIgSVb4QvZfp++mtNrWVTD8xVH7QnmwcApBJEf0z1ed8Bw="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/cosmiconfig/-/cosmiconfig-10.0.1.tgz",
+  "unpackedSize": 79267
+ },
+ "engines": {
+  "node": "^22.18 || >= 24"
+ },
+ "funding": "https://github.com/sponsors/d-fischer",
+ "gitHead": "219805f445a26a6190d3a46ad43c8b5c3f0a172e",
+ "homepage": "https://github.com/cosmiconfig/cosmiconfig#readme",
+ "keywords": [
+  "load",
+  "configuration",
+  "config"
+ ],
+ "license": "MIT",
+ "lint-staged": {
+  "*.{js,ts}": [
+   "eslint --fix",
+   "prettier --write"
+  ],
+  "*.{json,yml,yaml}": [
+   "prettier --write"
+  ]
+ },
+ "main": "dist/index.js",
+ "maintainers": [
+  {
+   "email": "david.dave.clark@gmail.com",
+   "name": "davidtheclark"
+  },
+  {
+   "email": "daniel@d-fischer.dev",
+   "name": "d-fischer"
+  }
+ ],
+ "name": "cosmiconfig",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/cosmiconfig/cosmiconfig.git"
+ },
+ "scripts": {
+  "build": "npm run build:tsc",
+  "build:tsc": "cross-env NODE_ENV=production tsc -b",
+  "check:all": "npm run test && npm run lint && npm run format:check",
+  "clean": "git clean -Xdf -e '!node_modules' .",
+  "dev": "npm run build:tsc -- --watch",
+  "format": "prettier \"**/*.{js,ts,json,yml,yaml}\" --write",
+  "format:check": "prettier \"**/*.{js,ts,json,yml,yaml}\" --check",
+  "lint": "eslint --ext .js,.ts .",
+  "lint:fix": "eslint --ext .js,.ts . --fix",
+  "prepare": "husky install",
+  "prepublishOnly": "npm run check:all && npm run build",
+  "test": "vitest run --coverage",
+  "test:watch": "vitest"
+ },
+ "types": "dist/index.d.ts",
+ "version": "10.0.1"
+}

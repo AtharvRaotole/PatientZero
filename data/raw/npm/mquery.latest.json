@@ -1,0 +1,75 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "mquery@6.0.0",
+ "_nodeVersion": "20.18.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/mquery_6.0.0_1763480834713_0.8457996639194323"
+ },
+ "_npmUser": {
+  "email": "val@karpov.io",
+  "name": "vkarpov15"
+ },
+ "_npmVersion": "10.8.2",
+ "author": {
+  "email": "aaron.heckmann+github@gmail.com",
+  "name": "Aaron Heckmann"
+ },
+ "bugs": {
+  "url": "https://github.com/aheckmann/mquery/issues/new"
+ },
+ "description": "Expressive query building for MongoDB",
+ "devDependencies": {
+  "eslint": "8.x",
+  "eslint-plugin-mocha-no-only": "1.1.1",
+  "mocha": "11.x",
+  "mongodb": "6.x"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 14,
+  "integrity": "sha512-b2KQNsmgtkscfeDgkYMcWGn9vZI9YoXh802VDEwE6qc50zxBFQ0Oo8ROkawbPAsXCY1/Z1yp0MagqsZStPWJjw==",
+  "shasum": "ef6d744619ff13368c1b137d09a7adc5530fce9e",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDcmdCJbWsYRI1tabrLgY2RC2Icwe+BYGl/EVsxrYXhwgIgU75oPclhq+I4F7xQhPmTvUuS5UwuJUO4iA7dZAN2zAE="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/mquery/-/mquery-6.0.0.tgz",
+  "unpackedSize": 134727
+ },
+ "engines": {
+  "node": ">=20.19.0"
+ },
+ "gitHead": "c1c94987aa4ffa672862bfa7b8662a01f5e8c5c5",
+ "homepage": "https://github.com/aheckmann/mquery/",
+ "keywords": [
+  "mongodb",
+  "query",
+  "builder"
+ ],
+ "license": "MIT",
+ "main": "lib/mquery.js",
+ "maintainers": [
+  {
+   "email": "aaron.heckmann+github@gmail.com",
+   "name": "aaron"
+  },
+  {
+   "email": "val@karpov.io",
+   "name": "vkarpov15"
+  }
+ ],
+ "name": "mquery",
+ "repository": {
+  "type": "git",
+  "url": "git://github.com/aheckmann/mquery.git"
+ },
+ "scripts": {
+  "fix-lint": "eslint . --fix",
+  "lint": "eslint .",
+  "test": "mocha --exit test/index.js test/*.test.js"
+ },
+ "version": "6.0.0"
+}

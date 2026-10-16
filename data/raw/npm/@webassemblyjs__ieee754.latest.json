@@ -1,0 +1,59 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@webassemblyjs/ieee754@1.14.1",
+ "_nodeVersion": "21.7.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/ieee754_1.14.1_1730930015885_0.6738747666341605"
+ },
+ "_npmUser": {
+  "email": "npm@sauleau.com",
+  "name": "xtuc"
+ },
+ "_npmVersion": "lerna/5.1.6/node@v21.7.1+x64 (linux)",
+ "bugs": {
+  "url": "https://github.com/xtuc/webassemblyjs/issues"
+ },
+ "dependencies": {
+  "@xtuc/ieee754": "^1.2.0"
+ },
+ "description": "IEEE754 decoder and encoder",
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-hZDDfS2/NYPw+/0eFSqFZQ+WGNlFERxj1C6ObV7FxGUrNkoVuTRl8A6+Tg9prfFxD2O84Jxx7rbZAggO9EAQDg==",
+  "shasum": "4d02a880f3ffae500cf019842b907b6f2c901e92",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEQCIBoqqfuDUybRSRNdQE+HI/xk1LL3pSaTsOjZM+mnkHcKAiBqSDk+UXKLkun4en/6l3eKpDRZWN9Ff9jLOcbiplxNHA=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@webassemblyjs/ieee754/-/ieee754-1.14.1.tgz",
+  "unpackedSize": 5342
+ },
+ "gitHead": "25d52b1296e151ac56244a7c3886661e6b4a69ea",
+ "homepage": "https://github.com/xtuc/webassemblyjs#readme",
+ "license": "MIT",
+ "main": "lib/index.js",
+ "maintainers": [
+  {
+   "email": "npm@sauleau.com",
+   "name": "xtuc"
+  }
+ ],
+ "module": "esm/index.js",
+ "name": "@webassemblyjs/ieee754",
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "directory": "packages/ieee754",
+  "type": "git",
+  "url": "git+https://github.com/xtuc/webassemblyjs.git"
+ },
+ "scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1"
+ },
+ "version": "1.14.1"
+}

@@ -1,0 +1,99 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "pkg-dir@9.0.0",
+ "_nodeVersion": "20.19.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/pkg-dir_9.0.0_1749148418202_0.4057696963948574"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "10.9.2",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/pkg-dir/issues"
+ },
+ "dependencies": {
+  "find-up-simple": "^1.0.0"
+ },
+ "deprecated": "Renamed to `package-directory`.",
+ "description": "Find the root directory of a Node.js project or npm package",
+ "devDependencies": {
+  "ava": "^5.3.1",
+  "tempy": "^3.1.0",
+  "tsd": "^0.29.0",
+  "xo": "^0.56.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-BMmxOuokumBehLGYwCKMBJxpAGSBbvGTtDn1yUV9UpCAvC4F7UWHoPTGSDGPV8eQPkYq/G8b0g1W5vIc5K/EhA==",
+  "shasum": "79d0ca53023fa93f848ba960d75df4476e1fbb1f",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIAdOJVWBiF1ATB2EV23naBkaW38NPL/Ey6EQWvDJiNxaAiBr1tYoR3PSyIlGI+UQv+84HA+hk60B72N5xWIDA9zuXQ=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/pkg-dir/-/pkg-dir-9.0.0.tgz",
+  "unpackedSize": 4930
+ },
+ "engines": {
+  "node": ">=18"
+ },
+ "exports": {
+  "default": "./index.js",
+  "types": "./index.d.ts"
+ },
+ "funding": "https://github.com/sponsors/sindresorhus",
+ "gitHead": "fe0b0fbe45a2b3bd92961cbc586d8fde90e58e01",
+ "homepage": "https://github.com/sindresorhus/pkg-dir#readme",
+ "keywords": [
+  "package",
+  "json",
+  "root",
+  "npm",
+  "entry",
+  "find",
+  "up",
+  "find-up",
+  "findup",
+  "look-up",
+  "look",
+  "file",
+  "search",
+  "match",
+  "resolve",
+  "parent",
+  "parents",
+  "folder",
+  "directory",
+  "walk",
+  "walking",
+  "path"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "pkg-dir",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/pkg-dir.git"
+ },
+ "scripts": {
+  "test": "xo && ava && tsd"
+ },
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "9.0.0"
+}

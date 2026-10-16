@@ -1,0 +1,75 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@protobufjs/fetch@1.1.1",
+ "_nodeVersion": "24.15.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/fetch_1.1.1_1779021662613_0.018653452347427768"
+ },
+ "_npmUser": {
+  "email": "dcode+npm@dcode.io",
+  "name": "dcode"
+ },
+ "_npmVersion": "11.12.1",
+ "author": {
+  "email": "dcode+protobufjs@dcode.io",
+  "name": "Daniel Wirtz"
+ },
+ "browser": {
+  "fs": false
+ },
+ "bugs": {
+  "url": "https://github.com/dcodeIO/protobuf.js/issues"
+ },
+ "dependencies": {
+  "@protobufjs/aspromise": "^1.1.1"
+ },
+ "description": "Fetches the contents of a file accross node and browsers.",
+ "devDependencies": {
+  "istanbul": "^0.4.5",
+  "tape": "^5.0.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 9,
+  "integrity": "sha512-GpptLrs57adMSuHi3VNj0mAF8dwh36LMaYF6XyJ6JMWlVsc+t42tm1HSEDmOs3A8fC9yyeisgLhsTVQokOZ0zw==",
+  "shasum": "4d6fc00c8fb64016a5c81b469d549046350f1065",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIBWIg4Ul2Ru57wkMFT0LV4INCokE/CpvKq/rTc3yJWNZAiBqt45ZhqUdlKWMTmJlJleYHUxpz0myaxM3Os57QUPYbw=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@protobufjs/fetch/-/fetch-1.1.1.tgz",
+  "unpackedSize": 14872
+ },
+ "gitHead": "e5a58c4b658739da42f1bc2efa3bdb0d1394edfb",
+ "homepage": "https://github.com/dcodeIO/protobuf.js#readme",
+ "license": "BSD-3-Clause",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "dcode+npm@dcode.io",
+   "name": "dcode"
+  },
+  {
+   "email": "dcode+protobufjs@dcode.io",
+   "name": "protobufjs"
+  },
+  {
+   "email": "node-team-npm+wombot@google.com",
+   "name": "google-wombot"
+  }
+ ],
+ "name": "@protobufjs/fetch",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/dcodeIO/protobuf.js.git"
+ },
+ "scripts": {
+  "coverage": "istanbul cover node_modules/tape/bin/tape tests/*.js",
+  "test": "tape tests/*.js"
+ },
+ "types": "index.d.ts",
+ "version": "1.1.1"
+}

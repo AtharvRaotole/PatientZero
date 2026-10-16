@@ -1,0 +1,95 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "cookies@0.9.2",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/cookies_0.9.2_1788996213884_0.4098833114939988"
+ },
+ "_npmUser": {
+  "email": "hello@blakeembrey.com",
+  "name": "blakeembrey"
+ },
+ "_npmVersion": "11.19.0",
+ "author": {
+  "email": "tr@nslator.jp",
+  "name": "Jed Schmidt",
+  "url": "http://jed.is"
+ },
+ "bugs": {
+  "url": "https://github.com/pillarjs/cookies/issues"
+ },
+ "contributors": [
+  {
+   "email": "doug@somethingdoug.com",
+   "name": "Douglas Christopher Wilson"
+  }
+ ],
+ "dependencies": {
+  "depd": "~2.0.0",
+  "keygrip": "~1.1.0"
+ },
+ "description": "Cookies, optionally signed using Keygrip.",
+ "devDependencies": {
+  "eslint": "8.56.0",
+  "express": "4.22.1",
+  "mocha": "10.2.0",
+  "nyc": "15.1.0",
+  "restify": "8.6.1",
+  "supertest": "6.3.3"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 4,
+  "integrity": "sha512-8BIbcC6tPZMv2/PD4PrB3CtKks7LmAWhA7FRZK/6/b/WJ2RUz00KCga7gq50S4/RhZ22kxefRFGgsuts0v3eoA==",
+  "shasum": "008155ba8914985360d42b5d5384373cf85aba79",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIAd94o6hjowm2DtXLWrRF8udDkEfvA3UXYVQqdLWBgGXAiEA3SgnTKchCV8Pjz2ETTyIIifGmoQw52p9bkSOclH4Tbk="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCID6a5+JbWeOR7H3aEnzQYwZFnELGeNHbhgP/WYTRED7wAiEA6xkjEV8kaz7gCB0FJmOkhN3enbUS9QOFqoOJinzZZSM="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/cookies/-/cookies-0.9.2.tgz",
+  "unpackedSize": 19651
+ },
+ "engines": {
+  "node": ">= 0.8"
+ },
+ "gitHead": "6e35de1524bb55d5deac3edcf67c2ac374d658d0",
+ "homepage": "https://github.com/pillarjs/cookies#readme",
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "ulisesgascondev@gmail.com",
+   "name": "ulisesgascon"
+  },
+  {
+   "email": "hello@blakeembrey.com",
+   "name": "blakeembrey"
+  },
+  {
+   "email": "doug@somethingdoug.com",
+   "name": "dougwilson"
+  },
+  {
+   "email": "jonathanrichardong@gmail.com",
+   "name": "jongleberry"
+  }
+ ],
+ "name": "cookies",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/pillarjs/cookies.git"
+ },
+ "scripts": {
+  "lint": "eslint .",
+  "test": "mocha --require test/support/env --reporter spec --bail --check-leaks test/",
+  "test-ci": "nyc --reporter=lcov --reporter=text npm test",
+  "test-cov": "nyc --reporter=html --reporter=text npm test"
+ },
+ "version": "0.9.2"
+}

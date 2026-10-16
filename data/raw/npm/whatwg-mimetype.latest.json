@@ -1,0 +1,115 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "whatwg-mimetype@5.0.0",
+ "_nodeVersion": "24.12.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/whatwg-mimetype_5.0.0_1768878277865_0.6519475557968633"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:99a8fc3d-333c-4030-98c9-309f1f03dc38"
+  }
+ },
+ "_npmVersion": "11.6.2",
+ "author": {
+  "email": "d@domenic.me",
+  "name": "Domenic Denicola",
+  "url": "https://domenic.me/"
+ },
+ "bugs": {
+  "url": "https://github.com/jsdom/whatwg-mimetype/issues"
+ },
+ "c8": {
+  "exclude": [
+   "scripts/",
+   "test/"
+  ],
+  "reporter": [
+   "html"
+  ]
+ },
+ "description": "Parses, serializes, and manipulates MIME types, according to the WHATWG MIME Sniffing Standard",
+ "devDependencies": {
+  "@domenic/eslint-config": "^4.0.1",
+  "@exodus/bytes": "^1.9.0",
+  "c8": "^10.1.3",
+  "eslint": "^9.39.2",
+  "printable-string": "^0.3.0"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/whatwg-mimetype@5.0.0"
+  },
+  "fileCount": 10,
+  "integrity": "sha512-sXcNcHOC51uPGF0P/D4NVtrkjSU2fNsm9iog4ZvZJsL3rjoDAzXZhkm2MWt1y+PUdggKAYVoMAIYcs78wJ51Cw==",
+  "shasum": "d8232895dbd527ceaee74efd4162008fb8a8cf48",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIAUGnDRNFO0Pqn5jNNphPi6+Z+GDnnIUfyuIno9tK7eaAiB1VdDnh4QlnCLW9DjSv1/r+MXAGAybmjB/jz9Ut14R6Q=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/whatwg-mimetype/-/whatwg-mimetype-5.0.0.tgz",
+  "unpackedSize": 42618
+ },
+ "engines": {
+  "node": ">=20"
+ },
+ "gitHead": "7614048e8bc775796bdaf623cdfe28c4b97fdab9",
+ "homepage": "https://github.com/jsdom/whatwg-mimetype#readme",
+ "keywords": [
+  "content-type",
+  "mime type",
+  "mimesniff",
+  "http",
+  "whatwg"
+ ],
+ "license": "MIT",
+ "main": "lib/index.js",
+ "maintainers": [
+  {
+   "email": "timothygu99@gmail.com",
+   "name": "timothygu"
+  },
+  {
+   "email": "d@domenic.me",
+   "name": "domenic"
+  },
+  {
+   "email": "sebmaster16@gmail.com",
+   "name": "sebmaster"
+  },
+  {
+   "email": "code@zirro.se",
+   "name": "zirro"
+  },
+  {
+   "email": "tmpvar@gmail.com",
+   "name": "tmpvar"
+  },
+  {
+   "email": "joris@jorisvanderwel.com",
+   "name": "joris-van-der-wel"
+  }
+ ],
+ "name": "whatwg-mimetype",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/jsdom/whatwg-mimetype.git"
+ },
+ "scripts": {
+  "coverage": "c8 node --test --experimental-test-coverage",
+  "lint": "eslint",
+  "pretest": "node scripts/get-latest-platform-tests.mjs",
+  "test": "node --test"
+ },
+ "version": "5.0.0"
+}

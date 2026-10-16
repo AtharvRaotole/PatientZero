@@ -1,0 +1,113 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@sindresorhus/is@8.1.0",
+ "_nodeVersion": "25.8.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/is_8.1.0_1778498556104_0.2072856709559281"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "11.12.0",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/is/issues"
+ },
+ "description": "Type check values",
+ "devDependencies": {
+  "@sindresorhus/tsconfig": "^8.1.0",
+  "@types/jsdom": "^28.0.1",
+  "@types/node": "^25.5.2",
+  "@types/zen-observable": "^0.8.7",
+  "del-cli": "^7.0.0",
+  "expect-type": "^1.3.0",
+  "jsdom": "^29.0.2",
+  "rxjs": "^7.8.2",
+  "tempy": "^3.2.0",
+  "typescript": "6.0.2",
+  "xo": "^2.0.2",
+  "zen-observable": "^0.10.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 9,
+  "integrity": "sha512-2SX/1jW6CIMAiebvVv5ZInoCEuWQmMyBoJXXGC6Vjakjp/fpxP5eHs7/V6WKuPEIbuK06+VpjH+vjLQhr98rDQ==",
+  "shasum": "00d7b9dc92664550fe933cdcfaa8665bc4111202",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQCVm+0+mi7gVllsiwQdObBCDBS3mr5nS5ngLuZsev9u5QIhAIcMCgZlkXTIsI5RuUS3XBextimMl5gq7zZQgyOdbuLL"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@sindresorhus/is/-/is-8.1.0.tgz",
+  "unpackedSize": 123119
+ },
+ "engines": {
+  "node": ">=22"
+ },
+ "exports": {
+  "default": "./distribution/index.js",
+  "types": "./distribution/index.d.ts"
+ },
+ "funding": "https://github.com/sindresorhus/is?sponsor=1",
+ "gitHead": "a4393055546c2d90aa386dd6f6f9cde80b9e6338",
+ "homepage": "https://github.com/sindresorhus/is#readme",
+ "keywords": [
+  "type",
+  "types",
+  "is",
+  "check",
+  "checking",
+  "validate",
+  "validation",
+  "utility",
+  "util",
+  "typeof",
+  "instanceof",
+  "object",
+  "assert",
+  "assertion",
+  "test",
+  "kind",
+  "primitive",
+  "verify",
+  "compare",
+  "typescript",
+  "typeguards",
+  "types"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "@sindresorhus/is",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/is.git"
+ },
+ "scripts": {
+  "build": "del distribution && tsc",
+  "prepare": "npm run build",
+  "test": "tsc --noEmit && tsc --project test/tsconfig.json --noEmit && xo && node --experimental-transform-types --test test/test.ts"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "version": "8.1.0",
+ "xo": {
+  "rules": {
+   "@stylistic/operator-linebreak": "off",
+   "@typescript-eslint/no-confusing-void-expression": "off",
+   "@typescript-eslint/no-unsafe-enum-comparison": "off",
+   "@typescript-eslint/no-unsafe-type-assertion": "off"
+  }
+ }
+}

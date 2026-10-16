@@ -1,0 +1,62 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@webassemblyjs/floating-point-hex-parser@1.14.1",
+ "_nodeVersion": "21.7.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/floating-point-hex-parser_1.14.1_1730930015876_0.9072304201636809"
+ },
+ "_npmUser": {
+  "email": "npm@sauleau.com",
+  "name": "xtuc"
+ },
+ "_npmVersion": "lerna/5.1.6/node@v21.7.1+x64 (linux)",
+ "author": {
+  "name": "Mauro Bringolf"
+ },
+ "bugs": {
+  "url": "https://github.com/xtuc/webassemblyjs/issues"
+ },
+ "description": "A function to parse floating point hexadecimal strings as defined by the WebAssembly specification",
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-/UCkJbBDOI/JA30YP/jFxZ+GH9A8DzVXKq0K/FWCXaEF6Idt0ziduhtah8ShbvijvUmXzD3/fFGXVw2vkrHl/w==",
+  "shasum": "b5140c4c2b090ca8e4c4eeb1e56b7ff3d19b2071",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIQCn77chSujPmVpisgj6S4AlWiZWbNixo14M8aXq+P7HAAIgJKF7kJ4LIgxAilpgB7kEzFjA586EbMOjBNlv9NaqyEQ="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@webassemblyjs/floating-point-hex-parser/-/floating-point-hex-parser-1.14.1.tgz",
+  "unpackedSize": 6373
+ },
+ "gitHead": "25d52b1296e151ac56244a7c3886661e6b4a69ea",
+ "homepage": "https://github.com/xtuc/webassemblyjs#readme",
+ "keywords": [
+  "webassembly",
+  "floating-point"
+ ],
+ "license": "MIT",
+ "main": "lib/index.js",
+ "maintainers": [
+  {
+   "email": "npm@sauleau.com",
+   "name": "xtuc"
+  }
+ ],
+ "module": "esm/index.js",
+ "name": "@webassemblyjs/floating-point-hex-parser",
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/xtuc/webassemblyjs.git"
+ },
+ "scripts": {
+  "build-fuzzer": "[ -f ./test/fuzzing/parse.out ] || gcc ./test/fuzzing/parse.c -o ./test/fuzzing/parse.out -lm -Wall"
+ },
+ "version": "1.14.1"
+}

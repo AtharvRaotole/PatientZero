@@ -1,0 +1,472 @@
+{
+ "_notice": "SYNTHETIC DATA. 'Acme' is a fictional company. Services, teams, people, handles, repos and phone numbers are invented for the PatientZero demo. Only the npm package names/versions are real; their dependency trees come from deps.dev (cached in data/raw/depsdev).",
+ "company": "Acme",
+ "teams": [
+  {
+   "name": "payments",
+   "display": "Payments",
+   "slack": "#team-payments",
+   "pager": "acme-payments"
+  },
+  {
+   "name": "storefront",
+   "display": "Storefront",
+   "slack": "#team-storefront",
+   "pager": "acme-storefront"
+  },
+  {
+   "name": "identity",
+   "display": "Identity & Access",
+   "slack": "#team-identity",
+   "pager": "acme-identity"
+  },
+  {
+   "name": "platform",
+   "display": "Platform",
+   "slack": "#team-platform",
+   "pager": "acme-platform"
+  },
+  {
+   "name": "fulfillment",
+   "display": "Fulfillment",
+   "slack": "#team-fulfillment",
+   "pager": "acme-fulfillment"
+  },
+  {
+   "name": "data",
+   "display": "Data & Analytics",
+   "slack": "#team-data",
+   "pager": "acme-data"
+  },
+  {
+   "name": "devex",
+   "display": "Developer Experience",
+   "slack": "#team-devex",
+   "pager": "acme-devex"
+  },
+  {
+   "name": "support-eng",
+   "display": "Support Engineering",
+   "slack": "#team-support-eng",
+   "pager": "acme-support-eng"
+  }
+ ],
+ "people": [
+  {
+   "name": "Priya Raman",
+   "handle": "@priya",
+   "email": "priya.raman@acme.example",
+   "team": "payments",
+   "role": "Staff Engineer",
+   "oncall": true
+  },
+  {
+   "name": "Marcus Bell",
+   "handle": "@mbell",
+   "email": "marcus.bell@acme.example",
+   "team": "payments",
+   "role": "Engineering Manager"
+  },
+  {
+   "name": "Sofia Alvarez",
+   "handle": "@sofia",
+   "email": "sofia.alvarez@acme.example",
+   "team": "storefront",
+   "role": "Senior Engineer",
+   "oncall": true
+  },
+  {
+   "name": "Kenji Watanabe",
+   "handle": "@kenji",
+   "email": "kenji.watanabe@acme.example",
+   "team": "storefront",
+   "role": "Engineering Manager"
+  },
+  {
+   "name": "Amara Okafor",
+   "handle": "@amara",
+   "email": "amara.okafor@acme.example",
+   "team": "identity",
+   "role": "Security Engineer",
+   "oncall": true
+  },
+  {
+   "name": "Lukas Becker",
+   "handle": "@lukas",
+   "email": "lukas.becker@acme.example",
+   "team": "identity",
+   "role": "Engineering Manager"
+  },
+  {
+   "name": "Hannah Cho",
+   "handle": "@hcho",
+   "email": "hannah.cho@acme.example",
+   "team": "platform",
+   "role": "SRE",
+   "oncall": true
+  },
+  {
+   "name": "Diego Santos",
+   "handle": "@diego",
+   "email": "diego.santos@acme.example",
+   "team": "platform",
+   "role": "Principal Engineer"
+  },
+  {
+   "name": "Fatima Zahra",
+   "handle": "@fatima",
+   "email": "fatima.zahra@acme.example",
+   "team": "fulfillment",
+   "role": "Senior Engineer",
+   "oncall": true
+  },
+  {
+   "name": "Tom Whitaker",
+   "handle": "@tomw",
+   "email": "tom.whitaker@acme.example",
+   "team": "fulfillment",
+   "role": "Engineering Manager"
+  },
+  {
+   "name": "Arjun Mehta",
+   "handle": "@arjun",
+   "email": "arjun.mehta@acme.example",
+   "team": "data",
+   "role": "Data Engineer",
+   "oncall": true
+  },
+  {
+   "name": "Elena Petrova",
+   "handle": "@elena",
+   "email": "elena.petrova@acme.example",
+   "team": "data",
+   "role": "Engineering Manager"
+  },
+  {
+   "name": "Noah Kim",
+   "handle": "@noah",
+   "email": "noah.kim@acme.example",
+   "team": "devex",
+   "role": "Senior Engineer",
+   "oncall": true
+  },
+  {
+   "name": "Grace Mwangi",
+   "handle": "@grace",
+   "email": "grace.mwangi@acme.example",
+   "team": "devex",
+   "role": "Engineering Manager"
+  },
+  {
+   "name": "Oliver Grant",
+   "handle": "@oliver",
+   "email": "oliver.grant@acme.example",
+   "team": "support-eng",
+   "role": "Engineer",
+   "oncall": true
+  },
+  {
+   "name": "Mei Lin",
+   "handle": "@meilin",
+   "email": "mei.lin@acme.example",
+   "team": "support-eng",
+   "role": "Engineering Manager"
+  }
+ ],
+ "services": [
+  {
+   "name": "checkout-api",
+   "team": "payments",
+   "tier": 1,
+   "env": "prod",
+   "runtime": "server",
+   "repo": "acme/checkout-api",
+   "description": "Cart checkout and order placement API",
+   "dependencies": {
+    "express": "4.21.2",
+    "stripe": "^16.12.0",
+    "zod": "^3.23.8"
+   }
+  },
+  {
+   "name": "payments-gateway",
+   "team": "payments",
+   "tier": 1,
+   "env": "prod",
+   "runtime": "server",
+   "repo": "acme/payments-gateway",
+   "description": "PSP routing, refunds and webhooks",
+   "dependencies": {
+    "fastify": "^4.28.1",
+    "pg": "^8.12.0",
+    "jsonwebtoken": "^9.0.2"
+   }
+  },
+  {
+   "name": "pdf-invoices",
+   "team": "payments",
+   "tier": 3,
+   "env": "prod",
+   "runtime": "server",
+   "repo": "acme/pdf-invoices",
+   "description": "Renders invoice PDFs with headless Chrome",
+   "dependencies": {
+    "puppeteer": "^23.4.0",
+    "handlebars": "^4.7.8"
+   }
+  },
+  {
+   "name": "web-frontend",
+   "team": "storefront",
+   "tier": 1,
+   "env": "prod",
+   "runtime": "browser",
+   "repo": "acme/web-frontend",
+   "description": "Customer-facing Next.js storefront (ships browser bundles)",
+   "dependencies": {
+    "next": "14.2.5",
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "axios": "^1.7.7"
+   }
+  },
+  {
+   "name": "img-service",
+   "team": "storefront",
+   "tier": 2,
+   "env": "prod",
+   "runtime": "server",
+   "repo": "acme/img-service",
+   "description": "On-the-fly product image resizing",
+   "dependencies": {
+    "sharp": "0.33.5",
+    "fastify": "^4.28.1"
+   }
+  },
+  {
+   "name": "admin-dashboard",
+   "team": "storefront",
+   "tier": 3,
+   "env": "prod",
+   "runtime": "browser",
+   "repo": "acme/admin-dashboard",
+   "description": "Internal merchandising dashboard (React SPA)",
+   "dependencies": {
+    "react": "18.3.1",
+    "react-dom": "18.3.1",
+    "@tanstack/react-query": "^5.56.2",
+    "recharts": "^2.12.7"
+   }
+  },
+  {
+   "name": "auth-service",
+   "team": "identity",
+   "tier": 1,
+   "env": "prod",
+   "runtime": "server",
+   "repo": "acme/auth-service",
+   "description": "Login, sessions, OAuth and token issuance",
+   "dependencies": {
+    "express": "4.21.2",
+    "passport": "^0.7.0",
+    "jsonwebtoken": "^9.0.2",
+    "ioredis": "^5.4.1"
+   }
+  },
+  {
+   "name": "feature-flags",
+   "team": "identity",
+   "tier": 2,
+   "env": "prod",
+   "runtime": "server",
+   "repo": "acme/feature-flags",
+   "description": "Feature flag evaluation service",
+   "dependencies": {
+    "fastify": "^4.28.1",
+    "pg": "^8.12.0"
+   }
+  },
+  {
+   "name": "realtime-gateway",
+   "team": "platform",
+   "tier": 2,
+   "env": "prod",
+   "runtime": "server",
+   "repo": "acme/realtime-gateway",
+   "description": "Websocket fan-out for order status and chat",
+   "dependencies": {
+    "socket.io": "4.7.5"
+   }
+  },
+  {
+   "name": "graphql-gateway",
+   "team": "platform",
+   "tier": 1,
+   "env": "prod",
+   "runtime": "server",
+   "repo": "acme/graphql-gateway",
+   "description": "Federated GraphQL edge for web and mobile",
+   "dependencies": {
+    "@apollo/server": "^4.11.0",
+    "graphql": "^16.9.0",
+    "dataloader": "^2.2.2"
+   }
+  },
+  {
+   "name": "build-service",
+   "team": "platform",
+   "tier": 2,
+   "env": "ci",
+   "runtime": "cli",
+   "repo": "acme/build-service",
+   "description": "Builds and bundles front-end assets",
+   "dependencies": {
+    "webpack": "5.94.0"
+   }
+  },
+  {
+   "name": "inventory-service",
+   "team": "fulfillment",
+   "tier": 1,
+   "env": "prod",
+   "runtime": "server",
+   "repo": "acme/inventory-service",
+   "description": "Stock levels and reservations",
+   "dependencies": {
+    "mongoose": "^8.6.2",
+    "express": "4.21.2"
+   }
+  },
+  {
+   "name": "shipping-tracker",
+   "team": "fulfillment",
+   "tier": 2,
+   "env": "prod",
+   "runtime": "server",
+   "repo": "acme/shipping-tracker",
+   "description": "Polls carriers and updates tracking",
+   "dependencies": {
+    "got": "^11.8.6",
+    "p-retry": "^4.6.2",
+    "debug": "^4.3.7"
+   }
+  },
+  {
+   "name": "order-events-consumer",
+   "team": "fulfillment",
+   "tier": 2,
+   "env": "prod",
+   "runtime": "server",
+   "repo": "acme/order-events-consumer",
+   "description": "Kafka consumer for order lifecycle events",
+   "dependencies": {
+    "kafkajs": "^2.2.4",
+    "pino": "^9.4.0",
+    "zod": "^3.23.8"
+   }
+  },
+  {
+   "name": "notifications-worker",
+   "team": "support-eng",
+   "tier": 2,
+   "env": "prod",
+   "runtime": "server",
+   "repo": "acme/notifications-worker",
+   "description": "Email/SMS/push dispatch from BullMQ queues",
+   "dependencies": {
+    "bullmq": "^5.13.2",
+    "nodemailer": "^6.9.15",
+    "winston": "^3.14.2"
+   }
+  },
+  {
+   "name": "support-bot",
+   "team": "support-eng",
+   "tier": 3,
+   "env": "prod",
+   "runtime": "server",
+   "repo": "acme/support-bot",
+   "description": "Slack bot that triages support tickets",
+   "dependencies": {
+    "@slack/bolt": "^3.21.1",
+    "openai": "^4.63.0"
+   }
+  },
+  {
+   "name": "search-api",
+   "team": "data",
+   "tier": 2,
+   "env": "prod",
+   "runtime": "server",
+   "repo": "acme/search-api",
+   "description": "Product search over Elasticsearch",
+   "dependencies": {
+    "@elastic/elasticsearch": "^8.15.0",
+    "koa": "^2.15.3"
+   }
+  },
+  {
+   "name": "analytics-ingest",
+   "team": "data",
+   "tier": 2,
+   "env": "prod",
+   "runtime": "server",
+   "repo": "acme/analytics-ingest",
+   "description": "Clickstream collector writing to BigQuery",
+   "dependencies": {
+    "express": "^5.1.0",
+    "@google-cloud/bigquery": "^7.9.0"
+   }
+  },
+  {
+   "name": "cli-tools",
+   "team": "devex",
+   "tier": 3,
+   "env": "internal",
+   "runtime": "cli",
+   "repo": "acme/cli-tools",
+   "description": "Internal deploy/rollback CLI used by every team",
+   "dependencies": {
+    "ora": "8.1.0",
+    "commander": "^12.1.0"
+   }
+  },
+  {
+   "name": "ci-runner",
+   "team": "devex",
+   "tier": 3,
+   "env": "ci",
+   "runtime": "cli",
+   "repo": "acme/ci-runner",
+   "description": "Pre-commit and CI hook runner",
+   "dependencies": {
+    "lint-staged": "15.2.10"
+   }
+  },
+  {
+   "name": "lint-service",
+   "team": "devex",
+   "tier": 3,
+   "env": "ci",
+   "runtime": "cli",
+   "repo": "acme/lint-service",
+   "description": "Shared lint pipeline for all repos",
+   "dependencies": {
+    "eslint": "9.9.0"
+   }
+  },
+  {
+   "name": "test-harness",
+   "team": "devex",
+   "tier": 3,
+   "env": "ci",
+   "runtime": "cli",
+   "repo": "acme/test-harness",
+   "description": "Shared test runner (mocha + jest)",
+   "dependencies": {
+    "mocha": "10.7.3",
+    "jest": "29.7.0"
+   }
+  }
+ ]
+}

@@ -1,0 +1,87 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "istanbul-lib-report@3.0.1",
+ "_nodeVersion": "14.21.3",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/istanbul-lib-report_3.0.1_1690295498222_0.14603155054781447"
+ },
+ "_npmUser": {
+  "email": "bencoe+oss-bot@gmail.com",
+  "name": "oss-bot"
+ },
+ "_npmVersion": "6.14.18",
+ "author": {
+  "email": "kananthmail-github@yahoo.com",
+  "name": "Krishnan Anantheswaran"
+ },
+ "bugs": {
+  "url": "https://github.com/istanbuljs/istanbuljs/issues"
+ },
+ "dependencies": {
+  "istanbul-lib-coverage": "^3.0.0",
+  "make-dir": "^4.0.0",
+  "supports-color": "^7.1.0"
+ },
+ "description": "Base reporting library for istanbul",
+ "devDependencies": {
+  "chai": "^4.2.0",
+  "mocha": "^6.2.2",
+  "nyc": "^15.0.0-beta.2",
+  "rimraf": "^3.0.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 13,
+  "integrity": "sha512-GCfE1mtsHGOELCU8e/Z7YWzpmybrx/+dSTfLrvY8qRmaY6zXTKWn6WQIjaAFw069icm6GVMNkgu0NzI4iPZUNw==",
+  "shasum": "908305bac9a5bd175ac6a74489eafd0fc2445a7d",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIQCCvaAL46mWIk1ayGfF9uAq3ZH5ioLvrQzupN/WhHWu8gIgRh/WP+V6zDliZiRSDN/m6RCqscLQGxSHmCH7Y2L6Jz8="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/istanbul-lib-report/-/istanbul-lib-report-3.0.1.tgz",
+  "unpackedSize": 37641
+ },
+ "engines": {
+  "node": ">=10"
+ },
+ "homepage": "https://istanbul.js.org/",
+ "keywords": [
+  "istanbul",
+  "report",
+  "api",
+  "lib"
+ ],
+ "license": "BSD-3-Clause",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "kananthmail-github@yahoo.com",
+   "name": "gotwarlost"
+  },
+  {
+   "email": "bencoe@gmail.com",
+   "name": "bcoe"
+  },
+  {
+   "email": "git@cfware.com",
+   "name": "coreyfarrell"
+  },
+  {
+   "email": "bencoe+oss-bot@gmail.com",
+   "name": "oss-bot"
+  }
+ ],
+ "name": "istanbul-lib-report",
+ "repository": {
+  "directory": "packages/istanbul-lib-report",
+  "type": "git",
+  "url": "git+ssh://git@github.com/istanbuljs/istanbuljs.git"
+ },
+ "scripts": {
+  "test": "nyc mocha"
+ },
+ "version": "3.0.1"
+}

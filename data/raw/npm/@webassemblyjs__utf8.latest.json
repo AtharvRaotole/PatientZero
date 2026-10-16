@@ -1,0 +1,58 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@webassemblyjs/utf8@1.14.1",
+ "_nodeVersion": "21.7.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/utf8_1.14.1_1730930015892_0.09990291548451169"
+ },
+ "_npmUser": {
+  "email": "npm@sauleau.com",
+  "name": "xtuc"
+ },
+ "_npmVersion": "lerna/5.1.6/node@v21.7.1+x64 (linux)",
+ "author": {
+  "name": "Sven Sauleau"
+ },
+ "bugs": {
+  "url": "https://github.com/xtuc/webassemblyjs/issues"
+ },
+ "description": "UTF8 encoder/decoder for WASM",
+ "directories": {},
+ "dist": {
+  "fileCount": 12,
+  "integrity": "sha512-ppmr21h5laouMyJRgAG26qHm/bueeSuiOBcDh9TiyO5+XfGlzi5AkaysAD4JkmrqHtf/tvc/GZmc+5O+qWhakA==",
+  "shasum": "d91637b904fb8de715b99e36c68269a9c57c7458",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIAXHiRYzRCoSpVl+jU21GS7QedJkxR37HTnl4owg2hFTAiEAipfUt8o4lyp6gYBfQACdNrPA3rUh3gHXqMTJWO1Zj6c="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@webassemblyjs/utf8/-/utf8-1.14.1.tgz",
+  "unpackedSize": 12286
+ },
+ "gitHead": "25d52b1296e151ac56244a7c3886661e6b4a69ea",
+ "homepage": "https://github.com/xtuc/webassemblyjs#readme",
+ "license": "MIT",
+ "main": "lib/index.js",
+ "maintainers": [
+  {
+   "email": "npm@sauleau.com",
+   "name": "xtuc"
+  }
+ ],
+ "module": "esm/index.js",
+ "name": "@webassemblyjs/utf8",
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/xtuc/webassemblyjs.git"
+ },
+ "scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1"
+ },
+ "version": "1.14.1"
+}

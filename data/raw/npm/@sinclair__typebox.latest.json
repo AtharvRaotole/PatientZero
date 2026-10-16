@@ -1,0 +1,167 @@
+{
+ "_from": "file:sinclair-typebox-0.34.52.tgz",
+ "_hasShrinkwrap": false,
+ "_id": "@sinclair/typebox@0.34.52",
+ "_integrity": "sha512-XiMQh7qqVlxZzcVD+kkGMNGMzcTrDMLWI7S4x7z1MkCkbDPrekpZXEUK0eZqZFMuHQg2a2DZOcDIh9o5v3Gonw==",
+ "_nodeVersion": "20.20.2",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/typebox_0.34.52_1783804108106_0.8566933091050821"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:d868933f-c589-417a-b20c-03a7a095069a"
+  }
+ },
+ "_npmVersion": "11.18.0",
+ "_resolved": "/home/runner/work/sinclair-typebox/sinclair-typebox/target/build/sinclair-typebox-0.34.52.tgz",
+ "author": {
+  "name": "sinclairzx81"
+ },
+ "bugs": {
+  "url": "https://github.com/sinclairzx81/sinclair-typebox/issues"
+ },
+ "description": "Json Schema Type Builder with Static Type Resolution for TypeScript",
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@sinclair%2ftypebox@0.34.52"
+  },
+  "fileCount": 1074,
+  "integrity": "sha512-XiMQh7qqVlxZzcVD+kkGMNGMzcTrDMLWI7S4x7z1MkCkbDPrekpZXEUK0eZqZFMuHQg2a2DZOcDIh9o5v3Gonw==",
+  "shasum": "62f8a686e4ab28a8944902e2ad2d648312ef11cb",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIHWgz54/pWMnIG30FBM+tsOFp5eT5VW6kgY+bn3UyGEVAiEApFB0qV/S/ZxD1o7luW0E/4zJk6t4yYXyWI8NcS9rV3g="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@sinclair/typebox/-/typebox-0.34.52.tgz",
+  "unpackedSize": 1907776
+ },
+ "esm.sh": {
+  "bundle": false
+ },
+ "exports": {
+  ".": {
+   "import": {
+    "default": "./build/esm/index.mjs",
+    "types": "./build/esm/index.d.mts"
+   },
+   "require": {
+    "default": "./build/cjs/index.js",
+    "types": "./build/cjs/index.d.ts"
+   }
+  },
+  "./compiler": {
+   "import": {
+    "default": "./build/esm/compiler/index.mjs",
+    "types": "./build/esm/compiler/index.d.mts"
+   },
+   "require": {
+    "default": "./build/cjs/compiler/index.js",
+    "types": "./build/cjs/compiler/index.d.ts"
+   }
+  },
+  "./errors": {
+   "import": {
+    "default": "./build/esm/errors/index.mjs",
+    "types": "./build/esm/errors/index.d.mts"
+   },
+   "require": {
+    "default": "./build/cjs/errors/index.js",
+    "types": "./build/cjs/errors/index.d.ts"
+   }
+  },
+  "./parser": {
+   "import": {
+    "default": "./build/esm/parser/index.mjs",
+    "types": "./build/esm/parser/index.d.mts"
+   },
+   "require": {
+    "default": "./build/cjs/parser/index.js",
+    "types": "./build/cjs/parser/index.d.ts"
+   }
+  },
+  "./syntax": {
+   "import": {
+    "default": "./build/esm/syntax/index.mjs",
+    "types": "./build/esm/syntax/index.d.mts"
+   },
+   "require": {
+    "default": "./build/cjs/syntax/index.js",
+    "types": "./build/cjs/syntax/index.d.ts"
+   }
+  },
+  "./system": {
+   "import": {
+    "default": "./build/esm/system/index.mjs",
+    "types": "./build/esm/system/index.d.mts"
+   },
+   "require": {
+    "default": "./build/cjs/system/index.js",
+    "types": "./build/cjs/system/index.d.ts"
+   }
+  },
+  "./type": {
+   "import": {
+    "default": "./build/esm/type/index.mjs",
+    "types": "./build/esm/type/index.d.mts"
+   },
+   "require": {
+    "default": "./build/cjs/type/index.js",
+    "types": "./build/cjs/type/index.d.ts"
+   }
+  },
+  "./value": {
+   "import": {
+    "default": "./build/esm/value/index.mjs",
+    "types": "./build/esm/value/index.d.mts"
+   },
+   "require": {
+    "default": "./build/cjs/value/index.js",
+    "types": "./build/cjs/value/index.d.ts"
+   }
+  }
+ },
+ "homepage": "https://github.com/sinclairzx81/sinclair-typebox#readme",
+ "keywords": [
+  "typescript",
+  "json-schema",
+  "validate",
+  "typecheck"
+ ],
+ "license": "MIT",
+ "main": "./build/cjs/index.js",
+ "maintainers": [
+  {
+   "email": "haydn.developer@gmail.com",
+   "name": "sinclair"
+  }
+ ],
+ "module": "./build/esm/index.mjs",
+ "name": "@sinclair/typebox",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sinclairzx81/sinclair-typebox.git"
+ },
+ "scripts": {
+  "test": "echo test"
+ },
+ "sideEffects": [
+  "./build/esm/type/registry/format.mjs",
+  "./build/esm/type/registry/type.mjs",
+  "./build/esm/type/system/policy.mjs",
+  "./build/cjs/type/registry/format.js",
+  "./build/cjs/type/registry/type.js",
+  "./build/cjs/type/system/policy.js"
+ ],
+ "types": "./build/cjs/index.d.ts",
+ "version": "0.34.52"
+}

@@ -1,0 +1,82 @@
+{
+ "_from": ".",
+ "_id": "lodash.isplainobject@4.0.6",
+ "_nodeVersion": "4.4.7",
+ "_npmOperationalInternal": {
+  "host": "packages-16-east.internal.npmjs.com",
+  "tmp": "tmp/lodash.isplainobject-4.0.6.tgz_1471110064885_0.12097060843370855"
+ },
+ "_npmUser": {
+  "email": "john.david.dalton@gmail.com",
+  "name": "jdalton"
+ },
+ "_npmVersion": "2.15.10",
+ "_shasum": "7c526a52d89b45c45cc690b88163be0497f550cb",
+ "author": {
+  "email": "john.david.dalton@gmail.com",
+  "name": "John-David Dalton",
+  "url": "http://allyoucanleet.com/"
+ },
+ "bugs": {
+  "url": "https://github.com/lodash/lodash/issues"
+ },
+ "contributors": [
+  {
+   "email": "john.david.dalton@gmail.com",
+   "name": "John-David Dalton",
+   "url": "http://allyoucanleet.com/"
+  },
+  {
+   "email": "blaine.bublitz@gmail.com",
+   "name": "Blaine Bublitz",
+   "url": "https://github.com/phated"
+  },
+  {
+   "email": "mathias@qiwi.be",
+   "name": "Mathias Bynens",
+   "url": "https://mathiasbynens.be/"
+  }
+ ],
+ "description": "The lodash method `_.isPlainObject` exported as a module.",
+ "dist": {
+  "integrity": "sha512-oSXzaWypCMHkPC3NvBEaPHf0KsA5mvPrOPgQWDsbg8n7orZ290M0BmC/jgRZ4vcJ6DTAhjrsSYgdsW/F+MFOBA==",
+  "shasum": "7c526a52d89b45c45cc690b88163be0497f550cb",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIQDg212GEjn6VLb2naZMKrEYVuQ2Oh3I9I0EaKk/3FmRrwIgKRCFL2p5MVHgNUa4NfOaBtBm3VgObHD44iQeLGam8Ks="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/lodash.isplainobject/-/lodash.isplainobject-4.0.6.tgz"
+ },
+ "homepage": "https://lodash.com/",
+ "icon": "https://lodash.com/icon.svg",
+ "keywords": [
+  "lodash-modularized",
+  "isplainobject"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "john.david.dalton@gmail.com",
+   "name": "jdalton"
+  },
+  {
+   "email": "mathias@qiwi.be",
+   "name": "mathias"
+  },
+  {
+   "email": "blaine@iceddev.com",
+   "name": "phated"
+  }
+ ],
+ "name": "lodash.isplainobject",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/lodash/lodash.git"
+ },
+ "scripts": {
+  "test": "echo \"See https://travis-ci.org/lodash/lodash-cli for testing details.\""
+ },
+ "version": "4.0.6"
+}

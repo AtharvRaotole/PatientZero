@@ -1,0 +1,113 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@eslint/plugin-kit@0.7.3",
+ "_nodeVersion": "24.20.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/plugin-kit_0.7.3_1788459003490_0.25861105798065"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:139e2445-c888-434b-b72e-d7348028a67b"
+  }
+ },
+ "_npmVersion": "12.0.2",
+ "author": {
+  "name": "Nicholas C. Zakas"
+ },
+ "bugs": {
+  "url": "https://github.com/eslint/rewrite/issues"
+ },
+ "dependencies": {
+  "@eslint/core": "^1.2.1",
+  "levn": "^0.4.1"
+ },
+ "description": "Utilities for building ESLint plugins.",
+ "devDependencies": {
+  "@types/levn": "^0.4.0",
+  "rollup-plugin-copy": "^3.5.0"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@eslint%2fplugin-kit@0.7.3"
+  },
+  "fileCount": 11,
+  "integrity": "sha512-IkO+/KEUvwbVpiURZg+P7zF74z5Jxe0UgJxVni+RtoHQ6IZieXaO02kmadomap/q+l6bc/jdPGGqTjhuZnuz1Q==",
+  "shasum": "cc7268cc36405b331ef92db1bc37971f21d66fe1",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIE2k0e45BiFHk4ri26s/24SFlhFoyn1pKkcUxtdpL6IIAiBJn8WwzAH+JeCSU24gemDm6i8QFmxiVhAd2reWENBukw=="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIEMtOyE5Yi1Fjo1SozBw2OpBeogMNOW1Nx8dKly0I5A6AiAyskVWKEUa4g9+THE8wMdrDzqpXesy1swhPDrCMS1L+w=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@eslint/plugin-kit/-/plugin-kit-0.7.3.tgz",
+  "unpackedSize": 110535
+ },
+ "engines": {
+  "node": "^20.19.0 || ^22.13.0 || >=24"
+ },
+ "exports": {
+  "import": {
+   "default": "./dist/esm/index.js",
+   "types": "./dist/esm/index.d.ts"
+  },
+  "require": {
+   "default": "./dist/cjs/index.cjs",
+   "types": "./dist/cjs/index.d.cts"
+  }
+ },
+ "gitHead": "a4466ca3f8dc7d6817c4dd91c10a989b83ecb30d",
+ "homepage": "https://github.com/eslint/rewrite/tree/main/packages/plugin-kit#readme",
+ "keywords": [
+  "eslint",
+  "eslintplugin",
+  "eslint-plugin"
+ ],
+ "license": "Apache-2.0",
+ "main": "dist/esm/index.js",
+ "maintainers": [
+  {
+   "email": "npm@openjsf.org",
+   "name": "openjsfoundation"
+  },
+  {
+   "email": "contact@eslint.org",
+   "name": "eslintbot"
+  }
+ ],
+ "name": "@eslint/plugin-kit",
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "directory": "packages/plugin-kit",
+  "type": "git",
+  "url": "git+https://github.com/eslint/rewrite.git"
+ },
+ "scripts": {
+  "build": "rollup -c && npm run build:dedupe-types && tsc -p tsconfig.esm.json && npm run build:cts",
+  "build:cts": "node ../../tools/build-cts.js dist/esm/index.d.ts dist/cjs/index.d.cts && node -e \"fs.cpSync('dist/esm/types.d.ts', 'dist/cjs/types.d.cts')\"",
+  "build:dedupe-types": "node ../../tools/dedupe-types.js dist/cjs/index.cjs dist/esm/index.js",
+  "lint:types": "attw --pack",
+  "pretest": "npm run build",
+  "test": "npm run test:types && npm run test:unit",
+  "test:coverage": "npm run build && c8 npm run test:unit",
+  "test:jsr": "npx -y jsr@latest publish --dry-run",
+  "test:types": "tsc -p tests/types/tsconfig.json",
+  "test:unit": "mocha \"tests/**/*.test.js\""
+ },
+ "type": "module",
+ "types": "dist/esm/index.d.ts",
+ "version": "0.7.3"
+}

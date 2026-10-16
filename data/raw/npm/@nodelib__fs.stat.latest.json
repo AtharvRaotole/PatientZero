@@ -1,0 +1,72 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@nodelib/fs.stat@4.0.0",
+ "_nodeVersion": "22.11.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/fs.stat_4.0.0_1733058850407_0.8133784382502236"
+ },
+ "_npmUser": {
+  "email": "dmalinochkin@rambler.ru",
+  "name": "mrmlnc"
+ },
+ "_npmVersion": "lerna/3.10.0/node@v22.11.0+arm64 (darwin)",
+ "description": "Get the status of a file with some features",
+ "devDependencies": {
+  "@nodelib/fs.macchiato": "3.0.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 19,
+  "integrity": "sha512-ctr6bByzksKRCV0bavi8WoQevU6plSp2IkllIsEqaiKe2mwNNnaluhnRhcsgGZHrrHk57B3lf95MkLMO3STYcg==",
+  "shasum": "d609b10d9c17dac012c4d7be93602ed939861e58",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIQCfOwgX6LjEJ0ZmEEmv9leQ8DF3VQYdRTb/NxmHIXoPeAIgeCA+xQj/ZMZ0bw1G3qFYJQlcCBqnFH+3H3gh95NsojM="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@nodelib/fs.stat/-/fs.stat-4.0.0.tgz",
+  "unpackedSize": 12716
+ },
+ "engines": {
+  "node": ">=18.18.0"
+ },
+ "exports": {
+  ".": {
+   "default": "./out/index.js"
+  },
+  "./promises": {
+   "default": "./out/stat-promises.js"
+  }
+ },
+ "gitHead": "32f75d7dab34d403e1c3b8c3911437a9e3fc5f54",
+ "keywords": [
+  "NodeLib",
+  "fs",
+  "FileSystem",
+  "file system",
+  "stat"
+ ],
+ "license": "MIT",
+ "main": "out/index.js",
+ "maintainers": [
+  {
+   "email": "dmalinochkin@rambler.ru",
+   "name": "mrmlnc"
+  }
+ ],
+ "name": "@nodelib/fs.stat",
+ "repository": "https://github.com/nodelib/nodelib/tree/master/packages/fs/fs.stat",
+ "scripts": {
+  "build": "npm run clean && npm run compile && npm run lint && npm test",
+  "clean": "rimraf {tsconfig.tsbuildinfo,out}",
+  "compile": "tsc -b .",
+  "compile:watch": "tsc -b . --watch --sourceMap",
+  "lint": "eslint \"src/**/*.ts\" --cache",
+  "test": "mocha \"out/**/*.spec.js\" -s 0",
+  "watch": "npm run clean && npm run compile:watch"
+ },
+ "typings": "out/index.d.ts",
+ "version": "4.0.0"
+}

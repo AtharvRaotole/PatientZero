@@ -1,0 +1,161 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "diff@9.0.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/diff_9.0.0_1776083964313_0.17225729556980207"
+ },
+ "_npmUser": {
+  "email": "markrobertamery+npm@gmail.com",
+  "name": "explodingcabbage"
+ },
+ "browser": "./dist/diff.js",
+ "bugs": {
+  "email": "kpdecker@gmail.com",
+  "url": "http://github.com/kpdecker/jsdiff/issues"
+ },
+ "description": "A JavaScript text diff implementation.",
+ "devDependencies": {
+  "@arethetypeswrong/cli": "^0.18.2",
+  "@babel/core": "^7.29.0",
+  "@babel/preset-env": "^7.29.2",
+  "@babel/register": "^7.28.6",
+  "@colors/colors": "^1.6.0",
+  "@eslint/js": "^10.0.1",
+  "babel-loader": "^10.1.1",
+  "babel-plugin-istanbul": "8.0.0",
+  "chai": "^6.2.2",
+  "cross-env": "^10.1.0",
+  "eslint": "^10.2.0",
+  "globals": "^17.5.0",
+  "karma": "^6.4.4",
+  "karma-mocha": "^2.0.1",
+  "karma-mocha-reporter": "^2.2.5",
+  "karma-sourcemap-loader": "^0.4.0",
+  "karma-webpack": "^5.0.1",
+  "mocha": "^11.7.5",
+  "nyc": "^18.0.0",
+  "rollup": "^4.60.1",
+  "tsd": "^0.33.0",
+  "typescript": "^6.0.2",
+  "typescript-eslint": "^8.58.1",
+  "uglify-js": "^3.19.3",
+  "webpack": "^5.106.1",
+  "webpack-dev-server": "^5.2.3"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 136,
+  "integrity": "sha512-svtcdpS8CgJyqAjEQIXdb3OjhFVVYjzGAPO8WGCmRbrml64SPw/jJD4GoE98aR7r25A0XcgrK3F02yw9R/vhQw==",
+  "shasum": "297c31cd7c280f13dfe335791ec2063bd4a73a6f",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCID8x3Mlk9Yy4dvTKuivkAAHOUuwwQFStl4quk8tBCCm1AiEAz0i3eHNKDubOCuix0oMzvuexDFLFzwWoQL1FQbwcGKg="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/diff/-/diff-9.0.0.tgz",
+  "unpackedSize": 615597
+ },
+ "engines": {
+  "node": ">=0.3.1"
+ },
+ "exports": {
+  ".": {
+   "import": {
+    "default": "./libesm/index.js",
+    "types": "./libesm/index.d.ts"
+   },
+   "require": {
+    "default": "./libcjs/index.js",
+    "types": "./libcjs/index.d.ts"
+   }
+  },
+  "./lib/": {
+   "import": {
+    "default": "./libesm/",
+    "types": "./libesm/"
+   },
+   "require": {
+    "default": "./libcjs/",
+    "types": "./libcjs/"
+   }
+  },
+  "./lib/*.js": {
+   "import": {
+    "default": "./libesm/*.js",
+    "types": "./libesm/*.d.ts"
+   },
+   "require": {
+    "default": "./libcjs/*.js",
+    "types": "./libcjs/*.d.ts"
+   }
+  },
+  "./package.json": "./package.json"
+ },
+ "gitHead": "db0b12ace208da7fd741cf96d97f009347a9eaa8",
+ "keywords": [
+  "diff",
+  "jsdiff",
+  "compare",
+  "patch",
+  "text",
+  "json",
+  "css",
+  "javascript"
+ ],
+ "license": "BSD-3-Clause",
+ "main": "./libcjs/index.js",
+ "maintainers": [
+  {
+   "email": "kpdecker@gmail.com",
+   "name": "kpdecker"
+  },
+  {
+   "email": "markrobertamery+npm@gmail.com",
+   "name": "explodingcabbage"
+  }
+ ],
+ "module": "./libesm/index.js",
+ "name": "diff",
+ "nyc": {
+  "branches": 100,
+  "check-coverage": true,
+  "functions": 100,
+  "instrument": false,
+  "lines": 100,
+  "reporter": [
+   "lcov",
+   "text"
+  ],
+  "require": [
+   "@babel/register"
+  ],
+  "sourceMap": false,
+  "statements": 100
+ },
+ "packageManager": "yarn@4.12.0",
+ "repository": {
+  "type": "git",
+  "url": "https://github.com/kpdecker/jsdiff.git"
+ },
+ "scripts": {
+  "_test": "yarn build && cross-env NODE_ENV=test yarn run-mocha",
+  "build": "yarn lint && yarn generate-esm && yarn generate-cjs && yarn check-types && yarn run-rollup && yarn run-uglify",
+  "check-types": "yarn run-tsd && yarn run-attw",
+  "clean": "rm -rf libcjs/ libesm/ dist/ coverage/ .nyc_output/",
+  "generate-cjs": "yarn tsc --module commonjs --outDir libcjs && node --eval \"fs.writeFileSync('libcjs/package.json', JSON.stringify({type:'commonjs',sideEffects:false}))\"",
+  "generate-esm": "yarn tsc --module nodenext --outDir libesm --target es6 && node --eval \"fs.writeFileSync('libesm/package.json', JSON.stringify({type:'module',sideEffects:false}))\"",
+  "lint": "yarn eslint",
+  "run-attw": "yarn attw --pack --entrypoints . && yarn attw --pack --entrypoints lib/diff/word.js --profile node16",
+  "run-mocha": "mocha --require ./runtime 'test/**/*.js'",
+  "run-rollup": "rollup -c rollup.config.mjs",
+  "run-tsd": "yarn tsd --typings libesm/ && yarn tsd --files test-d/",
+  "run-uglify": "uglifyjs dist/diff.js -c -o dist/diff.min.js",
+  "test": "nyc yarn _test"
+ },
+ "type": "module",
+ "types": "libcjs/index.d.ts",
+ "unpkg": "./dist/diff.js",
+ "version": "9.0.0"
+}

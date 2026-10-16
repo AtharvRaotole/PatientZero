@@ -1,0 +1,188 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "puppeteer@25.14.0",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/puppeteer_25.14.0_1791991751597_0.3868938847680816"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "4cd10a8e-9ba0-4d45-9983-fb3124672c35"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "author": {
+  "name": "The Chromium Authors"
+ },
+ "bin": {
+  "puppeteer": "lib/puppeteer/node/cli.js"
+ },
+ "bugs": {
+  "url": "https://github.com/puppeteer/puppeteer/issues"
+ },
+ "dependencies": {
+  "@puppeteer/browsers": "3.2.5",
+  "chromium-bidi": "157.0.8090-0",
+  "devtools-protocol": "0.0.1696802",
+  "lilconfig": "^3.1.3",
+  "puppeteer-core": "25.14.0",
+  "typed-query-selector": "^2.12.3"
+ },
+ "description": "A high-level API to control headless Chrome over the DevTools Protocol",
+ "devDependencies": {
+  "@types/node": "^18.17.15"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/puppeteer@25.14.0"
+  },
+  "fileCount": 24,
+  "integrity": "sha512-+s1Iqbl9DsGLOaQdgCQyhtgHZsF9hi4Iu8iuBqxzraxUXoRG1QkYQI0CA1/VsNK1gZWJfs50BL/oOb1L+Yz8Yg==",
+  "shasum": "c17186820448d63f27e81b4064cbf53aac89c437",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIE9TG8VEO9fWdiY8yqVzD6+j30HMaOGKlAVUJA1MNvmZAiEA1p362yTNypMGPbB9Tqmk3JlT7b4ToZN3m9DP72kPV1Q="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQCONp3yKuOgDMI+5Ub6tR0QXwiYwBcvL6p9M1v8R0pvTQIgHiAPk9KB82p1Khv/HQ9Srlrb0b2bV8eW1fCZakOvOVM="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/puppeteer/-/puppeteer-25.14.0.tgz",
+  "unpackedSize": 43220
+ },
+ "engines": {
+  "node": ">=22.12.0"
+ },
+ "exports": {
+  ".": {
+   "import": "./lib/puppeteer/puppeteer.js",
+   "require": "./lib/puppeteer/puppeteer.js",
+   "types": "./lib/types.d.ts"
+  },
+  "./*": {
+   "import": "./*",
+   "require": "./*"
+  },
+  "./internal/*": {
+   "import": "./lib/puppeteer/*",
+   "require": "./lib/puppeteer/*"
+  }
+ },
+ "gitHead": "d1b9a2162a0113356db5093f055b4a2e1979c6a8",
+ "homepage": "https://github.com/puppeteer/puppeteer/tree/main#readme",
+ "keywords": [
+  "puppeteer",
+  "chrome",
+  "headless",
+  "automation"
+ ],
+ "license": "Apache-2.0",
+ "main": "./lib/puppeteer/puppeteer.js",
+ "maintainers": [
+  {
+   "email": "mathias@qiwi.be",
+   "name": "mathias"
+  },
+  {
+   "email": "node-team-npm+wombot@google.com",
+   "name": "google-wombot"
+  }
+ ],
+ "module": "./lib/puppeteer/puppeteer.js",
+ "name": "puppeteer",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/puppeteer/puppeteer.git#main"
+ },
+ "scripts": {
+  "build": "wireit",
+  "build:docs": "wireit",
+  "clean": "../../tools/clean.mjs",
+  "postinstall": "node install.mjs",
+  "prepack": "wireit",
+  "unit": "wireit",
+  "unit:only": "wireit"
+ },
+ "type": "module",
+ "types": "./lib/types.d.ts",
+ "version": "25.14.0",
+ "wireit": {
+  "build": {
+   "dependencies": [
+    "build:tsc",
+    "build:types"
+   ]
+  },
+  "build:docs": {
+   "command": "api-extractor run --local --config \"./api-extractor.docs.json\"",
+   "dependencies": [
+    "build:tsc"
+   ],
+   "files": [
+    "api-extractor.docs.json",
+    "lib/puppeteer/puppeteer.docs.d.ts",
+    "tsconfig.json"
+   ]
+  },
+  "build:tsc": {
+   "clean": "if-file-deleted",
+   "command": "tsc -b && node --experimental-strip-types ../../tools/chmod.ts 755 lib/puppeteer/node/cli.js",
+   "dependencies": [
+    "../puppeteer-core:build",
+    "../browsers:build"
+   ],
+   "files": [
+    "src/**"
+   ],
+   "output": [
+    "lib/**",
+    "!lib/package.json"
+   ]
+  },
+  "build:types": {
+   "command": "api-extractor run --local && eslint --fix lib/types.d.ts --no-ignore",
+   "dependencies": [
+    "build:tsc"
+   ],
+   "files": [
+    "api-extractor.json",
+    "lib/puppeteer/types.d.ts",
+    "tsconfig.json"
+   ],
+   "output": [
+    "lib/types.d.ts"
+   ]
+  },
+  "prepack": {
+   "command": "node --experimental-strip-types ../../tools/cp.ts ../../README.md README.md",
+   "files": [
+    "../../README.md"
+   ],
+   "output": [
+    "README.md"
+   ]
+  },
+  "unit": {
+   "command": "node --test --test-reporter=spec \"lib/**/*.test.js\"",
+   "dependencies": [
+    "build"
+   ]
+  },
+  "unit:only": {
+   "command": "node --test --test-only --test-reporter=spec \"lib/**/*.test.js\"",
+   "dependencies": [
+    "build"
+   ]
+  }
+ }
+}

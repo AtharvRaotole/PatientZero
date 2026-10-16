@@ -1,0 +1,122 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "cookie@2.0.1",
+ "_nodeVersion": "26.4.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/cookie_2.0.1_1782857713880_0.6071024637378182"
+ },
+ "_npmUser": {
+  "approver": {
+   "email": "hello@blakeembrey.com",
+   "name": "blakeembrey"
+  },
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:2e6871c3-23f1-4fd6-9e51-5ec226c5bd54"
+  }
+ },
+ "_npmVersion": "11.17.0",
+ "author": {
+  "email": "shtylman@gmail.com",
+  "name": "Roman Shtylman"
+ },
+ "bugs": {
+  "url": "https://github.com/jshttp/cookie/issues"
+ },
+ "contributors": [
+  {
+   "email": "doug@somethingdoug.com",
+   "name": "Douglas Christopher Wilson"
+  }
+ ],
+ "description": "HTTP server cookie parsing and serialization",
+ "devDependencies": {
+  "@borderless/ts-scripts": "^0.15.0",
+  "@size-limit/preset-small-lib": "^12.0.0",
+  "@types/node": "^26.0.1",
+  "@vitest/coverage-v8": "^4.1.9",
+  "size-limit": "^12.0.0",
+  "top-sites": "1.1.225",
+  "typescript": "^6.0.3",
+  "vitest": "^4.1.9"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/cookie@2.0.1"
+  },
+  "fileCount": 6,
+  "integrity": "sha512-yuToqVvRrj6pfDXREyQAAv8SkAEk/8GS3jQRTiUMm66TVtBYmqQeoEjL2Lmq8Rpo6271vH76InTChTitEAm65w==",
+  "shasum": "1fc7e9bddf38fa9567cd4d750820087cdb5d6e98",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQCd+DPj02/R3xLeZrdf4Q6/zNT3EsZF+q/ean1rfX/pLQIhAKgjjkxuzLOAED5VgAxYTkKIZiHabhkmNiGEz+smwqnC"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/cookie/-/cookie-2.0.1.tgz",
+  "unpackedSize": 60821
+ },
+ "engines": {
+  "node": ">=22"
+ },
+ "exports": "./dist/index.js",
+ "funding": {
+  "type": "opencollective",
+  "url": "https://opencollective.com/express"
+ },
+ "gitHead": "51c485421a95ee796de6d8dab53a5ade0a20db8a",
+ "homepage": "https://github.com/jshttp/cookie#readme",
+ "keywords": [
+  "cookie",
+  "cookies"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "ulisesgascondev@gmail.com",
+   "name": "ulisesgascon"
+  },
+  {
+   "email": "hello@blakeembrey.com",
+   "name": "blakeembrey"
+  },
+  {
+   "email": "doug@somethingdoug.com",
+   "name": "dougwilson"
+  }
+ ],
+ "name": "cookie",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/jshttp/cookie.git"
+ },
+ "scripts": {
+  "bench": "vitest bench",
+  "build": "ts-scripts build",
+  "format": "ts-scripts format",
+  "prepare": "ts-scripts install",
+  "prepublishOnly": "npm run build",
+  "size": "size-limit",
+  "specs": "ts-scripts specs",
+  "test": "ts-scripts test && npm run size"
+ },
+ "sideEffects": false,
+ "size-limit": [
+  {
+   "limit": "1.4 KB",
+   "path": "dist/index.js"
+  }
+ ],
+ "ts-scripts": {
+  "project": "tsconfig.build.json"
+ },
+ "type": "module",
+ "version": "2.0.1"
+}

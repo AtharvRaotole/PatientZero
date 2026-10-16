@@ -1,0 +1,109 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "which@7.0.0",
+ "_nodeVersion": "26.1.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/which_7.0.0_1778265058595_0.11326548299629091"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:d5ecf3a3-9e36-450e-af5a-a30d3093e023"
+  }
+ },
+ "_npmVersion": "11.14.1",
+ "author": {
+  "name": "GitHub Inc."
+ },
+ "bin": {
+  "node-which": "bin/which.js"
+ },
+ "bugs": {
+  "url": "https://github.com/npm/node-which/issues"
+ },
+ "dependencies": {
+  "isexe": "^4.0.0"
+ },
+ "description": "Like which(1) unix command. Find the first instance of an executable in the PATH.",
+ "devDependencies": {
+  "@npmcli/eslint-config": "^6.0.0",
+  "@npmcli/template-oss": "5.0.0",
+  "tap": "^16.3.0"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/which@7.0.0"
+  },
+  "fileCount": 5,
+  "integrity": "sha512-RancgH2dmbLdHl6LRhEqvklWMgl/Hdnun0Y90KhBOLkMefg8Qa7/Zel8Sm+8HEcP6DEjzsWzpkuBQEZok58isA==",
+  "shasum": "cdfdd7bfc31c5af050b97bc7c02b1844731fb8b2",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCID3ZjMsHPaPK2o38MlhvJFZ+/zBve/9fRPU3gvi4WlY5AiEA8SV4wc80vxmD50uxCPe0fiMZLLvjbPpODzC0IyJyOXw="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/which/-/which-7.0.0.tgz",
+  "unpackedSize": 7487
+ },
+ "engines": {
+  "node": "^22.22.2 || ^24.15.0 || >=26.0.0"
+ },
+ "gitHead": "297db11d58eebe01551ae0875a127a89ee63d2cb",
+ "homepage": "https://github.com/npm/node-which#readme",
+ "license": "ISC",
+ "main": "lib/index.js",
+ "maintainers": [
+  {
+   "email": "saquibkhan@github.com",
+   "name": "saquibkhan"
+  },
+  {
+   "email": "npm-cli+bot@github.com",
+   "name": "npm-cli-ops"
+  },
+  {
+   "email": "reggi@github.com",
+   "name": "reggi"
+  },
+  {
+   "email": "owlstronaut@github.com",
+   "name": "owlstronaut"
+  }
+ ],
+ "name": "which",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/npm/node-which.git"
+ },
+ "scripts": {
+  "eslint": "eslint \"**/*.{js,cjs,ts,mjs,jsx,tsx}\"",
+  "lint": "npm run eslint",
+  "lintfix": "npm run eslint -- --fix",
+  "postlint": "template-oss-check",
+  "posttest": "npm run lint",
+  "snap": "tap",
+  "template-oss-apply": "template-oss-apply --force",
+  "test": "tap"
+ },
+ "tap": {
+  "check-coverage": true,
+  "nyc-arg": [
+   "--exclude",
+   "tap-snapshots/**"
+  ]
+ },
+ "templateOSS": {
+  "//@npmcli/template-oss": "This file is partially managed by @npmcli/template-oss. Edits may be overwritten.",
+  "publish": "true",
+  "version": "5.0.0"
+ },
+ "version": "7.0.0"
+}

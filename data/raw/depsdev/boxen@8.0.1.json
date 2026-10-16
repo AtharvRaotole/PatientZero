@@ -1,0 +1,327 @@
+{
+ "edges": [
+  {
+   "fromNode": 0,
+   "requirement": "^3.0.1",
+   "toNode": 1
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^8.0.0",
+   "toNode": 2
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^5.3.0",
+   "toNode": 3
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^3.0.0",
+   "toNode": 4
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^7.2.0",
+   "toNode": 5
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^4.21.0",
+   "toNode": 6
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^5.0.0",
+   "toNode": 7
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^9.0.0",
+   "toNode": 8
+  },
+  {
+   "fromNode": 1,
+   "requirement": "^4.1.0",
+   "toNode": 9
+  },
+  {
+   "fromNode": 5,
+   "requirement": "^10.3.0",
+   "toNode": 10
+  },
+  {
+   "fromNode": 5,
+   "requirement": "^1.0.0",
+   "toNode": 11
+  },
+  {
+   "fromNode": 5,
+   "requirement": "^7.1.0",
+   "toNode": 12
+  },
+  {
+   "fromNode": 7,
+   "requirement": "^7.0.0",
+   "toNode": 5
+  },
+  {
+   "fromNode": 8,
+   "requirement": "^7.0.0",
+   "toNode": 5
+  },
+  {
+   "fromNode": 8,
+   "requirement": "^6.2.1",
+   "toNode": 13
+  },
+  {
+   "fromNode": 8,
+   "requirement": "^7.1.0",
+   "toNode": 14
+  },
+  {
+   "fromNode": 9,
+   "requirement": "^8.0.0",
+   "toNode": 15
+  },
+  {
+   "fromNode": 9,
+   "requirement": "^3.0.0",
+   "toNode": 16
+  },
+  {
+   "fromNode": 9,
+   "requirement": "^6.0.1",
+   "toNode": 17
+  },
+  {
+   "fromNode": 12,
+   "requirement": "^6.2.2",
+   "toNode": 18
+  },
+  {
+   "fromNode": 14,
+   "requirement": "^6.2.2",
+   "toNode": 19
+  },
+  {
+   "fromNode": 17,
+   "requirement": "^5.0.1",
+   "toNode": 20
+  }
+ ],
+ "error": "",
+ "nodes": [
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "SELF",
+   "versionKey": {
+    "name": "boxen",
+    "system": "NPM",
+    "version": "8.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "ansi-align",
+    "system": "NPM",
+    "version": "3.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "camelcase",
+    "system": "NPM",
+    "version": "8.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "chalk",
+    "system": "NPM",
+    "version": "5.6.2"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "cli-boxes",
+    "system": "NPM",
+    "version": "3.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "string-width",
+    "system": "NPM",
+    "version": "7.2.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "type-fest",
+    "system": "NPM",
+    "version": "4.41.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "widest-line",
+    "system": "NPM",
+    "version": "5.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "wrap-ansi",
+    "system": "NPM",
+    "version": "9.0.2"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "string-width",
+    "system": "NPM",
+    "version": "4.2.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "emoji-regex",
+    "system": "NPM",
+    "version": "10.6.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "get-east-asian-width",
+    "system": "NPM",
+    "version": "1.7.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "strip-ansi",
+    "system": "NPM",
+    "version": "7.2.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "ansi-styles",
+    "system": "NPM",
+    "version": "6.2.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "strip-ansi",
+    "system": "NPM",
+    "version": "7.2.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "emoji-regex",
+    "system": "NPM",
+    "version": "8.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "is-fullwidth-code-point",
+    "system": "NPM",
+    "version": "3.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "strip-ansi",
+    "system": "NPM",
+    "version": "6.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "ansi-regex",
+    "system": "NPM",
+    "version": "6.4.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "ansi-regex",
+    "system": "NPM",
+    "version": "6.4.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "ansi-regex",
+    "system": "NPM",
+    "version": "5.0.1"
+   }
+  }
+ ]
+}

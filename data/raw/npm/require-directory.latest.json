@@ -1,0 +1,72 @@
+{
+ "_from": ".",
+ "_id": "require-directory@2.1.1",
+ "_nodeVersion": "0.12.0",
+ "_npmUser": {
+  "email": "troygoode@gmail.com",
+  "name": "troygoode"
+ },
+ "_npmVersion": "2.5.1",
+ "_shasum": "8c64ad5fd30dab1c976e2344ffe7f792a6a6df42",
+ "author": {
+  "email": "troygoode@gmail.com",
+  "name": "Troy Goode",
+  "url": "http://github.com/troygoode/"
+ },
+ "bugs": {
+  "url": "http://github.com/troygoode/node-require-directory/issues/"
+ },
+ "contributors": [
+  {
+   "email": "troygoode@gmail.com",
+   "name": "Troy Goode",
+   "url": "http://github.com/troygoode/"
+  }
+ ],
+ "description": "Recursively iterates over specified directory, require()'ing each file, and returning a nested hash structure containing those modules.",
+ "devDependencies": {
+  "jshint": "^2.6.0",
+  "mocha": "^2.1.0"
+ },
+ "directories": {},
+ "dist": {
+  "integrity": "sha512-fGxEI7+wsG9xrvdjsrlmL22OMTTiHRwAMroiEeMgq8gzoLC/PQr7RsRDSTLUg/bZAZtF+TVIkHc6/4RIKrui+Q==",
+  "shasum": "8c64ad5fd30dab1c976e2344ffe7f792a6a6df42",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEQCIGClBqRURzZkkK060ZZVZeHq85UyQvNt6ZF9KOQfN12PAiABryiFbUkYd99blPQeu55J/QCLQFAzUicy/mm6OR5I9g=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/require-directory/-/require-directory-2.1.1.tgz"
+ },
+ "engines": {
+  "node": ">=0.10.0"
+ },
+ "gitHead": "cc71c23dd0c16cefd26855303c16ca1b9b50a36d",
+ "homepage": "https://github.com/troygoode/node-require-directory/",
+ "keywords": [
+  "require",
+  "directory",
+  "library",
+  "recursive"
+ ],
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "troygoode@gmail.com",
+   "name": "troygoode"
+  }
+ ],
+ "name": "require-directory",
+ "repository": {
+  "type": "git",
+  "url": "git://github.com/troygoode/node-require-directory.git"
+ },
+ "scripts": {
+  "lint": "jshint index.js test/test.js",
+  "test": "mocha"
+ },
+ "version": "2.1.1"
+}

@@ -1,0 +1,88 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@types/d3-shape@3.2.0",
+ "_nodeVersion": "24.19.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/d3-shape_3.2.0_1787348351028_0.4028233428435788"
+ },
+ "_npmUser": {
+  "email": "ts-npm-types@microsoft.com",
+  "name": "types"
+ },
+ "contributors": [
+  {
+   "githubUsername": "tomwanzek",
+   "name": "Tom Wanzek",
+   "url": "https://github.com/tomwanzek"
+  },
+  {
+   "githubUsername": "gustavderdrache",
+   "name": "Alex Ford",
+   "url": "https://github.com/gustavderdrache"
+  },
+  {
+   "githubUsername": "borisyankov",
+   "name": "Boris Yankov",
+   "url": "https://github.com/borisyankov"
+  },
+  {
+   "githubUsername": "denisname",
+   "name": "denisname",
+   "url": "https://github.com/denisname"
+  },
+  {
+   "githubUsername": "Methuselah96",
+   "name": "Nathan Bierema",
+   "url": "https://github.com/Methuselah96"
+  },
+  {
+   "githubUsername": "Fil",
+   "name": "Fil",
+   "url": "https://github.com/Fil"
+  }
+ ],
+ "dependencies": {
+  "@types/d3-path": "*"
+ },
+ "description": "TypeScript definitions for d3-shape",
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-kVd74ta9eof3eJOvbNd1vGKS/XERRyQbT26Og63hIsvDO84cjD5gEOhsXf26w3FSoNlPVz84DOFcKv/oou+fMw==",
+  "shasum": "66ff342011dc243c6c20e6b899523d148aca412d",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQCWecqI1OQr3J4TojU8ivxYFcDitqEgr/kKOLZ8KOXfWgIhALI3q/pa1tKm2FIgz6KHDCdsABMmoiapodiKdQ1ssPXE"
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQDccbfHEPXx99+B5h9nLZrgC0H82Ve2fiYW0k+f+GjAnAIhAPtOcmEYosdZTbkPgZLFK9VFYdNNXMgL86UsyzbLP15b"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@types/d3-shape/-/d3-shape-3.2.0.tgz",
+  "unpackedSize": 141150
+ },
+ "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/d3-shape",
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "ts-npm-types@microsoft.com",
+   "name": "types"
+  }
+ ],
+ "name": "@types/d3-shape",
+ "peerDependencies": {},
+ "repository": {
+  "directory": "types/d3-shape",
+  "type": "git",
+  "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+ },
+ "scripts": {},
+ "typeScriptVersion": "5.6",
+ "types": "index.d.ts",
+ "typesPublisherContentHash": "4d33e16c0579135ebe257c1dfb53b603cbf36eb29b15a4748ff9b6cbf1f979b2",
+ "version": "3.2.0"
+}

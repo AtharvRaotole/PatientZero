@@ -1,0 +1,542 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@babel/runtime@8.0.7",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/runtime_8.0.7_1791367182019_0.9351672901150816"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "22f5c040-e7b2-46fd-be90-be85e6408c9d"
+  }
+ },
+ "author": "The Babel Team (https://babel.dev/team)",
+ "description": "babel's modular runtime helpers",
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@babel%2fruntime@8.0.7"
+  },
+  "fileCount": 194,
+  "integrity": "sha512-k0hagDDq/6w4v+0Sp4wFvIz/yswH5O7Va6aRTnD7N62Tnborp4X+YB+H3XUcWVSR4aE47WPEXiIIZchBs0GmYg==",
+  "shasum": "4f4d0371d27c93c269b57dba49b8427027ddd25e",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQDVbkthP3I88+8O8YF9AEmaerG2NMT+y8Djx/alacZT8AIhALyRLcv7ATroZpxlDKaf1Mo1iZFWZcRfwyHMNZkjwQp+"
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIA/VopmmiJ38hL6Vm2Ikv+rvu+tatFkfV0jhePG2DfT/AiEAxuPrpVzWwG9uT08ULfKGk4hG6wKYqa6lc29caCrPsVs="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@babel/runtime/-/runtime-8.0.7.tgz",
+  "unpackedSize": 118138
+ },
+ "exports": {
+  "./helpers/OverloadYield": {
+   "default": "./helpers/OverloadYield.js",
+   "import": "./helpers/esm/OverloadYield.js",
+   "node": "./helpers/OverloadYield.js"
+  },
+  "./helpers/applyDecoratedDescriptor": {
+   "default": "./helpers/applyDecoratedDescriptor.js",
+   "import": "./helpers/esm/applyDecoratedDescriptor.js",
+   "node": "./helpers/applyDecoratedDescriptor.js"
+  },
+  "./helpers/applyDecs2311": {
+   "default": "./helpers/applyDecs2311.js",
+   "import": "./helpers/esm/applyDecs2311.js",
+   "node": "./helpers/applyDecs2311.js"
+  },
+  "./helpers/arrayLikeToArray": {
+   "default": "./helpers/arrayLikeToArray.js",
+   "import": "./helpers/esm/arrayLikeToArray.js",
+   "node": "./helpers/arrayLikeToArray.js"
+  },
+  "./helpers/arrayWithHoles": {
+   "default": "./helpers/arrayWithHoles.js",
+   "import": "./helpers/esm/arrayWithHoles.js",
+   "node": "./helpers/arrayWithHoles.js"
+  },
+  "./helpers/arrayWithoutHoles": {
+   "default": "./helpers/arrayWithoutHoles.js",
+   "import": "./helpers/esm/arrayWithoutHoles.js",
+   "node": "./helpers/arrayWithoutHoles.js"
+  },
+  "./helpers/assertClassBrand": {
+   "default": "./helpers/assertClassBrand.js",
+   "import": "./helpers/esm/assertClassBrand.js",
+   "node": "./helpers/assertClassBrand.js"
+  },
+  "./helpers/assertThisInitialized": {
+   "default": "./helpers/assertThisInitialized.js",
+   "import": "./helpers/esm/assertThisInitialized.js",
+   "node": "./helpers/assertThisInitialized.js"
+  },
+  "./helpers/asyncGeneratorDelegate": {
+   "default": "./helpers/asyncGeneratorDelegate.js",
+   "import": "./helpers/esm/asyncGeneratorDelegate.js",
+   "node": "./helpers/asyncGeneratorDelegate.js"
+  },
+  "./helpers/asyncIterator": {
+   "default": "./helpers/asyncIterator.js",
+   "import": "./helpers/esm/asyncIterator.js",
+   "node": "./helpers/asyncIterator.js"
+  },
+  "./helpers/asyncToGenerator": {
+   "default": "./helpers/asyncToGenerator.js",
+   "import": "./helpers/esm/asyncToGenerator.js",
+   "node": "./helpers/asyncToGenerator.js"
+  },
+  "./helpers/awaitAsyncGenerator": {
+   "default": "./helpers/awaitAsyncGenerator.js",
+   "import": "./helpers/esm/awaitAsyncGenerator.js",
+   "node": "./helpers/awaitAsyncGenerator.js"
+  },
+  "./helpers/callSuper": {
+   "default": "./helpers/callSuper.js",
+   "import": "./helpers/esm/callSuper.js",
+   "node": "./helpers/callSuper.js"
+  },
+  "./helpers/checkInRHS": {
+   "default": "./helpers/checkInRHS.js",
+   "import": "./helpers/esm/checkInRHS.js",
+   "node": "./helpers/checkInRHS.js"
+  },
+  "./helpers/checkPrivateRedeclaration": {
+   "default": "./helpers/checkPrivateRedeclaration.js",
+   "import": "./helpers/esm/checkPrivateRedeclaration.js",
+   "node": "./helpers/checkPrivateRedeclaration.js"
+  },
+  "./helpers/classCallCheck": {
+   "default": "./helpers/classCallCheck.js",
+   "import": "./helpers/esm/classCallCheck.js",
+   "node": "./helpers/classCallCheck.js"
+  },
+  "./helpers/classNameTDZError": {
+   "default": "./helpers/classNameTDZError.js",
+   "import": "./helpers/esm/classNameTDZError.js",
+   "node": "./helpers/classNameTDZError.js"
+  },
+  "./helpers/classPrivateFieldGet2": {
+   "default": "./helpers/classPrivateFieldGet2.js",
+   "import": "./helpers/esm/classPrivateFieldGet2.js",
+   "node": "./helpers/classPrivateFieldGet2.js"
+  },
+  "./helpers/classPrivateFieldInitSpec": {
+   "default": "./helpers/classPrivateFieldInitSpec.js",
+   "import": "./helpers/esm/classPrivateFieldInitSpec.js",
+   "node": "./helpers/classPrivateFieldInitSpec.js"
+  },
+  "./helpers/classPrivateFieldLooseBase": {
+   "default": "./helpers/classPrivateFieldLooseBase.js",
+   "import": "./helpers/esm/classPrivateFieldLooseBase.js",
+   "node": "./helpers/classPrivateFieldLooseBase.js"
+  },
+  "./helpers/classPrivateFieldLooseKey": {
+   "default": "./helpers/classPrivateFieldLooseKey.js",
+   "import": "./helpers/esm/classPrivateFieldLooseKey.js",
+   "node": "./helpers/classPrivateFieldLooseKey.js"
+  },
+  "./helpers/classPrivateFieldSet2": {
+   "default": "./helpers/classPrivateFieldSet2.js",
+   "import": "./helpers/esm/classPrivateFieldSet2.js",
+   "node": "./helpers/classPrivateFieldSet2.js"
+  },
+  "./helpers/classPrivateGetter": {
+   "default": "./helpers/classPrivateGetter.js",
+   "import": "./helpers/esm/classPrivateGetter.js",
+   "node": "./helpers/classPrivateGetter.js"
+  },
+  "./helpers/classPrivateMethodInitSpec": {
+   "default": "./helpers/classPrivateMethodInitSpec.js",
+   "import": "./helpers/esm/classPrivateMethodInitSpec.js",
+   "node": "./helpers/classPrivateMethodInitSpec.js"
+  },
+  "./helpers/classPrivateSetter": {
+   "default": "./helpers/classPrivateSetter.js",
+   "import": "./helpers/esm/classPrivateSetter.js",
+   "node": "./helpers/classPrivateSetter.js"
+  },
+  "./helpers/classStaticPrivateMethodGet": {
+   "default": "./helpers/classStaticPrivateMethodGet.js",
+   "import": "./helpers/esm/classStaticPrivateMethodGet.js",
+   "node": "./helpers/classStaticPrivateMethodGet.js"
+  },
+  "./helpers/construct": {
+   "default": "./helpers/construct.js",
+   "import": "./helpers/esm/construct.js",
+   "node": "./helpers/construct.js"
+  },
+  "./helpers/createClass": {
+   "default": "./helpers/createClass.js",
+   "import": "./helpers/esm/createClass.js",
+   "node": "./helpers/createClass.js"
+  },
+  "./helpers/createForOfIteratorHelper": {
+   "default": "./helpers/createForOfIteratorHelper.js",
+   "import": "./helpers/esm/createForOfIteratorHelper.js",
+   "node": "./helpers/createForOfIteratorHelper.js"
+  },
+  "./helpers/createForOfIteratorHelperLoose": {
+   "default": "./helpers/createForOfIteratorHelperLoose.js",
+   "import": "./helpers/esm/createForOfIteratorHelperLoose.js",
+   "node": "./helpers/createForOfIteratorHelperLoose.js"
+  },
+  "./helpers/createSuper": {
+   "default": "./helpers/createSuper.js",
+   "import": "./helpers/esm/createSuper.js",
+   "node": "./helpers/createSuper.js"
+  },
+  "./helpers/defaults": {
+   "default": "./helpers/defaults.js",
+   "import": "./helpers/esm/defaults.js",
+   "node": "./helpers/defaults.js"
+  },
+  "./helpers/defineAccessor": {
+   "default": "./helpers/defineAccessor.js",
+   "import": "./helpers/esm/defineAccessor.js",
+   "node": "./helpers/defineAccessor.js"
+  },
+  "./helpers/defineProperty": {
+   "default": "./helpers/defineProperty.js",
+   "import": "./helpers/esm/defineProperty.js",
+   "node": "./helpers/defineProperty.js"
+  },
+  "./helpers/extends": {
+   "default": "./helpers/extends.js",
+   "import": "./helpers/esm/extends.js",
+   "node": "./helpers/extends.js"
+  },
+  "./helpers/get": {
+   "default": "./helpers/get.js",
+   "import": "./helpers/esm/get.js",
+   "node": "./helpers/get.js"
+  },
+  "./helpers/getPrototypeOf": {
+   "default": "./helpers/getPrototypeOf.js",
+   "import": "./helpers/esm/getPrototypeOf.js",
+   "node": "./helpers/getPrototypeOf.js"
+  },
+  "./helpers/identity": {
+   "default": "./helpers/identity.js",
+   "import": "./helpers/esm/identity.js",
+   "node": "./helpers/identity.js"
+  },
+  "./helpers/importDeferProxy": {
+   "default": "./helpers/importDeferProxy.js",
+   "import": "./helpers/esm/importDeferProxy.js",
+   "node": "./helpers/importDeferProxy.js"
+  },
+  "./helpers/inherits": {
+   "default": "./helpers/inherits.js",
+   "import": "./helpers/esm/inherits.js",
+   "node": "./helpers/inherits.js"
+  },
+  "./helpers/inheritsLoose": {
+   "default": "./helpers/inheritsLoose.js",
+   "import": "./helpers/esm/inheritsLoose.js",
+   "node": "./helpers/inheritsLoose.js"
+  },
+  "./helpers/initializerDefineProperty": {
+   "default": "./helpers/initializerDefineProperty.js",
+   "import": "./helpers/esm/initializerDefineProperty.js",
+   "node": "./helpers/initializerDefineProperty.js"
+  },
+  "./helpers/initializerWarningHelper": {
+   "default": "./helpers/initializerWarningHelper.js",
+   "import": "./helpers/esm/initializerWarningHelper.js",
+   "node": "./helpers/initializerWarningHelper.js"
+  },
+  "./helpers/instanceof": {
+   "default": "./helpers/instanceof.js",
+   "import": "./helpers/esm/instanceof.js",
+   "node": "./helpers/instanceof.js"
+  },
+  "./helpers/interopRequireDefault": {
+   "default": "./helpers/interopRequireDefault.js",
+   "import": "./helpers/esm/interopRequireDefault.js",
+   "node": "./helpers/interopRequireDefault.js"
+  },
+  "./helpers/interopRequireWildcard": {
+   "default": "./helpers/interopRequireWildcard.js",
+   "import": "./helpers/esm/interopRequireWildcard.js",
+   "node": "./helpers/interopRequireWildcard.js"
+  },
+  "./helpers/isNativeFunction": {
+   "default": "./helpers/isNativeFunction.js",
+   "import": "./helpers/esm/isNativeFunction.js",
+   "node": "./helpers/isNativeFunction.js"
+  },
+  "./helpers/isNativeReflectConstruct": {
+   "default": "./helpers/isNativeReflectConstruct.js",
+   "import": "./helpers/esm/isNativeReflectConstruct.js",
+   "node": "./helpers/isNativeReflectConstruct.js"
+  },
+  "./helpers/iterableToArray": {
+   "default": "./helpers/iterableToArray.js",
+   "import": "./helpers/esm/iterableToArray.js",
+   "node": "./helpers/iterableToArray.js"
+  },
+  "./helpers/iterableToArrayLimit": {
+   "default": "./helpers/iterableToArrayLimit.js",
+   "import": "./helpers/esm/iterableToArrayLimit.js",
+   "node": "./helpers/iterableToArrayLimit.js"
+  },
+  "./helpers/jsx": {
+   "default": "./helpers/jsx.js",
+   "import": "./helpers/esm/jsx.js",
+   "node": "./helpers/jsx.js"
+  },
+  "./helpers/maybeArrayLike": {
+   "default": "./helpers/maybeArrayLike.js",
+   "import": "./helpers/esm/maybeArrayLike.js",
+   "node": "./helpers/maybeArrayLike.js"
+  },
+  "./helpers/newArrowCheck": {
+   "default": "./helpers/newArrowCheck.js",
+   "import": "./helpers/esm/newArrowCheck.js",
+   "node": "./helpers/newArrowCheck.js"
+  },
+  "./helpers/nonIterableRest": {
+   "default": "./helpers/nonIterableRest.js",
+   "import": "./helpers/esm/nonIterableRest.js",
+   "node": "./helpers/nonIterableRest.js"
+  },
+  "./helpers/nonIterableSpread": {
+   "default": "./helpers/nonIterableSpread.js",
+   "import": "./helpers/esm/nonIterableSpread.js",
+   "node": "./helpers/nonIterableSpread.js"
+  },
+  "./helpers/nullishReceiverError": {
+   "default": "./helpers/nullishReceiverError.js",
+   "import": "./helpers/esm/nullishReceiverError.js",
+   "node": "./helpers/nullishReceiverError.js"
+  },
+  "./helpers/objectDestructuringEmpty": {
+   "default": "./helpers/objectDestructuringEmpty.js",
+   "import": "./helpers/esm/objectDestructuringEmpty.js",
+   "node": "./helpers/objectDestructuringEmpty.js"
+  },
+  "./helpers/objectSpread2": {
+   "default": "./helpers/objectSpread2.js",
+   "import": "./helpers/esm/objectSpread2.js",
+   "node": "./helpers/objectSpread2.js"
+  },
+  "./helpers/objectWithoutProperties": {
+   "default": "./helpers/objectWithoutProperties.js",
+   "import": "./helpers/esm/objectWithoutProperties.js",
+   "node": "./helpers/objectWithoutProperties.js"
+  },
+  "./helpers/objectWithoutPropertiesLoose": {
+   "default": "./helpers/objectWithoutPropertiesLoose.js",
+   "import": "./helpers/esm/objectWithoutPropertiesLoose.js",
+   "node": "./helpers/objectWithoutPropertiesLoose.js"
+  },
+  "./helpers/possibleConstructorReturn": {
+   "default": "./helpers/possibleConstructorReturn.js",
+   "import": "./helpers/esm/possibleConstructorReturn.js",
+   "node": "./helpers/possibleConstructorReturn.js"
+  },
+  "./helpers/readOnlyError": {
+   "default": "./helpers/readOnlyError.js",
+   "import": "./helpers/esm/readOnlyError.js",
+   "node": "./helpers/readOnlyError.js"
+  },
+  "./helpers/regenerator": {
+   "default": "./helpers/regenerator.js",
+   "import": "./helpers/esm/regenerator.js",
+   "node": "./helpers/regenerator.js"
+  },
+  "./helpers/regeneratorAsync": {
+   "default": "./helpers/regeneratorAsync.js",
+   "import": "./helpers/esm/regeneratorAsync.js",
+   "node": "./helpers/regeneratorAsync.js"
+  },
+  "./helpers/regeneratorAsyncGen": {
+   "default": "./helpers/regeneratorAsyncGen.js",
+   "import": "./helpers/esm/regeneratorAsyncGen.js",
+   "node": "./helpers/regeneratorAsyncGen.js"
+  },
+  "./helpers/regeneratorKeys": {
+   "default": "./helpers/regeneratorKeys.js",
+   "import": "./helpers/esm/regeneratorKeys.js",
+   "node": "./helpers/regeneratorKeys.js"
+  },
+  "./helpers/regeneratorValues": {
+   "default": "./helpers/regeneratorValues.js",
+   "import": "./helpers/esm/regeneratorValues.js",
+   "node": "./helpers/regeneratorValues.js"
+  },
+  "./helpers/set": {
+   "default": "./helpers/set.js",
+   "import": "./helpers/esm/set.js",
+   "node": "./helpers/set.js"
+  },
+  "./helpers/setFunctionName": {
+   "default": "./helpers/setFunctionName.js",
+   "import": "./helpers/esm/setFunctionName.js",
+   "node": "./helpers/setFunctionName.js"
+  },
+  "./helpers/setPrototypeOf": {
+   "default": "./helpers/setPrototypeOf.js",
+   "import": "./helpers/esm/setPrototypeOf.js",
+   "node": "./helpers/setPrototypeOf.js"
+  },
+  "./helpers/skipFirstGeneratorNext": {
+   "default": "./helpers/skipFirstGeneratorNext.js",
+   "import": "./helpers/esm/skipFirstGeneratorNext.js",
+   "node": "./helpers/skipFirstGeneratorNext.js"
+  },
+  "./helpers/slicedToArray": {
+   "default": "./helpers/slicedToArray.js",
+   "import": "./helpers/esm/slicedToArray.js",
+   "node": "./helpers/slicedToArray.js"
+  },
+  "./helpers/superPropBase": {
+   "default": "./helpers/superPropBase.js",
+   "import": "./helpers/esm/superPropBase.js",
+   "node": "./helpers/superPropBase.js"
+  },
+  "./helpers/superPropGet": {
+   "default": "./helpers/superPropGet.js",
+   "import": "./helpers/esm/superPropGet.js",
+   "node": "./helpers/superPropGet.js"
+  },
+  "./helpers/superPropSet": {
+   "default": "./helpers/superPropSet.js",
+   "import": "./helpers/esm/superPropSet.js",
+   "node": "./helpers/superPropSet.js"
+  },
+  "./helpers/taggedTemplateLiteral": {
+   "default": "./helpers/taggedTemplateLiteral.js",
+   "import": "./helpers/esm/taggedTemplateLiteral.js",
+   "node": "./helpers/taggedTemplateLiteral.js"
+  },
+  "./helpers/taggedTemplateLiteralLoose": {
+   "default": "./helpers/taggedTemplateLiteralLoose.js",
+   "import": "./helpers/esm/taggedTemplateLiteralLoose.js",
+   "node": "./helpers/taggedTemplateLiteralLoose.js"
+  },
+  "./helpers/tdz": {
+   "default": "./helpers/tdz.js",
+   "import": "./helpers/esm/tdz.js",
+   "node": "./helpers/tdz.js"
+  },
+  "./helpers/temporalRef": {
+   "default": "./helpers/temporalRef.js",
+   "import": "./helpers/esm/temporalRef.js",
+   "node": "./helpers/temporalRef.js"
+  },
+  "./helpers/temporalUndefined": {
+   "default": "./helpers/temporalUndefined.js",
+   "import": "./helpers/esm/temporalUndefined.js",
+   "node": "./helpers/temporalUndefined.js"
+  },
+  "./helpers/toArray": {
+   "default": "./helpers/toArray.js",
+   "import": "./helpers/esm/toArray.js",
+   "node": "./helpers/toArray.js"
+  },
+  "./helpers/toConsumableArray": {
+   "default": "./helpers/toConsumableArray.js",
+   "import": "./helpers/esm/toConsumableArray.js",
+   "node": "./helpers/toConsumableArray.js"
+  },
+  "./helpers/toPrimitive": {
+   "default": "./helpers/toPrimitive.js",
+   "import": "./helpers/esm/toPrimitive.js",
+   "node": "./helpers/toPrimitive.js"
+  },
+  "./helpers/toPropertyKey": {
+   "default": "./helpers/toPropertyKey.js",
+   "import": "./helpers/esm/toPropertyKey.js",
+   "node": "./helpers/toPropertyKey.js"
+  },
+  "./helpers/toSetter": {
+   "default": "./helpers/toSetter.js",
+   "import": "./helpers/esm/toSetter.js",
+   "node": "./helpers/toSetter.js"
+  },
+  "./helpers/tsRewriteRelativeImportExtensions": {
+   "default": "./helpers/tsRewriteRelativeImportExtensions.js",
+   "import": "./helpers/esm/tsRewriteRelativeImportExtensions.js",
+   "node": "./helpers/tsRewriteRelativeImportExtensions.js"
+  },
+  "./helpers/typeof": {
+   "default": "./helpers/typeof.js",
+   "import": "./helpers/esm/typeof.js",
+   "node": "./helpers/typeof.js"
+  },
+  "./helpers/unsupportedIterableToArray": {
+   "default": "./helpers/unsupportedIterableToArray.js",
+   "import": "./helpers/esm/unsupportedIterableToArray.js",
+   "node": "./helpers/unsupportedIterableToArray.js"
+  },
+  "./helpers/usingCtx": {
+   "default": "./helpers/usingCtx.js",
+   "import": "./helpers/esm/usingCtx.js",
+   "node": "./helpers/usingCtx.js"
+  },
+  "./helpers/wrapAsyncGenerator": {
+   "default": "./helpers/wrapAsyncGenerator.js",
+   "import": "./helpers/esm/wrapAsyncGenerator.js",
+   "node": "./helpers/wrapAsyncGenerator.js"
+  },
+  "./helpers/wrapNativeSuper": {
+   "default": "./helpers/wrapNativeSuper.js",
+   "import": "./helpers/esm/wrapNativeSuper.js",
+   "node": "./helpers/wrapNativeSuper.js"
+  },
+  "./helpers/wrapRegExp": {
+   "default": "./helpers/wrapRegExp.js",
+   "import": "./helpers/esm/wrapRegExp.js",
+   "node": "./helpers/wrapRegExp.js"
+  },
+  "./helpers/writeOnlyError": {
+   "default": "./helpers/writeOnlyError.js",
+   "import": "./helpers/esm/writeOnlyError.js",
+   "node": "./helpers/writeOnlyError.js"
+  },
+  "./package.json": "./package.json"
+ },
+ "homepage": "https://babel.dev/docs/en/next/babel-runtime",
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "hi@henryzoo.com",
+   "name": "hzoo"
+  },
+  {
+   "email": "bng412@gmail.com",
+   "name": "existentialism"
+  },
+  {
+   "email": "hello+npm@nicr.dev",
+   "name": "nicolo-ribaudo"
+  },
+  {
+   "email": "jlhwung@gmail.com",
+   "name": "jlhwung"
+  }
+ ],
+ "name": "@babel/runtime",
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "directory": "packages/babel-runtime",
+  "type": "git",
+  "url": "https://github.com/babel/babel.git"
+ },
+ "sideEffects": false,
+ "type": "commonjs",
+ "version": "8.0.7"
+}

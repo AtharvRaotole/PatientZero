@@ -1,0 +1,90 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "is-fullwidth-code-point@5.1.0",
+ "_nodeVersion": "22.12.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/is-fullwidth-code-point_5.1.0_1756625824623_0.27673527004073195"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "10.9.2",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/is-fullwidth-code-point/issues"
+ },
+ "dependencies": {
+  "get-east-asian-width": "^1.3.1"
+ },
+ "description": "Check if the character represented by a given Unicode code point is fullwidth",
+ "devDependencies": {
+  "ava": "^5.3.1",
+  "tsd": "^0.29.0",
+  "xo": "^0.56.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-5XHYaSyiqADb4RnZ1Bdad6cPp8Toise4TzEjcOYDHZkTCbKgiUl7WTUCpNWHuxmDt91wnsZBc9xinNzopv3JMQ==",
+  "shasum": "046b2a6d4f6b156b2233d3207d4b5a9783999b98",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIBM34lhjXIIEX+R2/HEUNXCMU1mF6ybiqpc7je7XlzTrAiEA/asSrq2A0GW2qUgEHljbIGrMYXdhomhq2YWvKTYRigI="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/is-fullwidth-code-point/-/is-fullwidth-code-point-5.1.0.tgz",
+  "unpackedSize": 3527
+ },
+ "engines": {
+  "node": ">=18"
+ },
+ "exports": {
+  "default": "./index.js",
+  "types": "./index.d.ts"
+ },
+ "funding": "https://github.com/sponsors/sindresorhus",
+ "gitHead": "2696d873463fde9f6b09b49c98380bd49c67b00a",
+ "homepage": "https://github.com/sindresorhus/is-fullwidth-code-point#readme",
+ "keywords": [
+  "fullwidth",
+  "full-width",
+  "full",
+  "width",
+  "unicode",
+  "character",
+  "string",
+  "codepoint",
+  "code",
+  "point",
+  "is",
+  "detect",
+  "check",
+  "east-asian-width"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "is-fullwidth-code-point",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/is-fullwidth-code-point.git"
+ },
+ "scripts": {
+  "test": "xo && ava && tsd"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "5.1.0"
+}

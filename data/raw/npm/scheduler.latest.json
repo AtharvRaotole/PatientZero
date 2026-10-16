@@ -1,0 +1,69 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "scheduler@0.28.0",
+ "_nodeVersion": "24.20.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/scheduler_0.28.0_1788974250171_0.7646114486818962"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:92323e41-1b65-4acb-a5ae-294377b47da1"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "bugs": {
+  "url": "https://github.com/react/react/issues"
+ },
+ "description": "Cooperative scheduler for the browser environment.",
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/scheduler@0.28.0"
+  },
+  "fileCount": 15,
+  "integrity": "sha512-juorfCmIkIw8tT+p5BXSm6PJjQF/ycEYmKyzURCIt/RaZIhL+PulbQ9Yu2z1HdOJDdqDTlxA1+xKBmHXJsczAw==",
+  "shasum": "03d3ca348aeaf8b7502f64468f217b27523f9695",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQCp6JhfBUG0bNJ0AX9+v90XqfYsRerL3xB93Bzc7rkJbgIhAMiUdDkiN+BQW2IGNWdRupf1NWrUv3kTeYWHkOcBj8SK"
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQCYs2BeSsTLmwCuhToI8CO7xqwUyKCKX9nYaB5TeoS7CwIgGbmyAGGhO+idI2DYBerRitZy2Sd3jAMKpUkFItyTyoY="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/scheduler/-/scheduler-0.28.0.tgz",
+  "unpackedSize": 82659
+ },
+ "gitHead": "1d34f91dfde6bba84d08b683aaba164c7194dacb",
+ "homepage": "https://react.dev/",
+ "keywords": [
+  "react"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "opensource+npm@fb.com",
+   "name": "fb"
+  },
+  {
+   "email": "react-core@meta.com",
+   "name": "react-bot"
+  }
+ ],
+ "name": "scheduler",
+ "repository": {
+  "directory": "packages/scheduler",
+  "type": "git",
+  "url": "git+https://github.com/react/react.git"
+ },
+ "version": "0.28.0"
+}

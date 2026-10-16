@@ -1,0 +1,102 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "browserslist@4.29.3",
+ "_nodeVersion": "26.10.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/browserslist_4.29.3_1790698800579_0.4620606452803109"
+ },
+ "_npmUser": {
+  "approver": {
+   "email": "andrey@sitnik.es",
+   "name": "ai"
+  },
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "d23d42f9-fca8-4cdf-be57-e7a0ebd95791"
+  }
+ },
+ "_npmVersion": "11.19.1",
+ "author": {
+  "email": "andrey@sitnik.es",
+  "name": "Andrey Sitnik"
+ },
+ "bin": {
+  "browserslist": "cli.js"
+ },
+ "browser": {
+  "./node.js": "./browser.js",
+  "path": false
+ },
+ "bugs": {
+  "url": "https://github.com/browserslist/browserslist/issues"
+ },
+ "dependencies": {
+  "baseline-browser-mapping": "^2.11.26",
+  "caniuse-lite": "^1.0.30001813",
+  "electron-to-chromium": "^1.5.439",
+  "node-releases": "^2.0.57",
+  "update-browserslist-db": "^1.3.3"
+ },
+ "description": "Share target browsers between different front-end tools, like Autoprefixer, Stylelint and babel-env-preset",
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/browserslist@4.29.3"
+  },
+  "fileCount": 11,
+  "integrity": "sha512-1R4kiYKXGViqEN0CnoDrXc1StD9niAwu+j2dukWzrD4bJgsD4lDmEp0CRbc6E/vYJIfTHwPmwyaKtVSudICdPA==",
+  "shasum": "9c8dafe96ab1c8e40e21c1274bdfa05aaee46476",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDyvTEaSRtGyvLuiGg9eIYY8GkKDb6kBLOyZClPBllPhAIgRY5tvN8gidSx4y7OhXLhq9kf6Zi2mOvKAexDQauwuw4="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/browserslist/-/browserslist-4.29.3.tgz",
+  "unpackedSize": 70780
+ },
+ "engines": {
+  "node": "^6 || ^7 || ^8 || ^9 || ^10 || ^11 || ^12 || >=13.7"
+ },
+ "funding": [
+  {
+   "type": "opencollective",
+   "url": "https://opencollective.com/browserslist"
+  },
+  {
+   "type": "tidelift",
+   "url": "https://tidelift.com/funding/github/npm/browserslist"
+  },
+  {
+   "type": "github",
+   "url": "https://github.com/sponsors/ai"
+  }
+ ],
+ "gitHead": "b4809dd2a2a11fbff492258f968130e9b470067f",
+ "homepage": "https://github.com/browserslist/browserslist#readme",
+ "keywords": [
+  "browsers",
+  "caniuse",
+  "target"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "andrey@sitnik.es",
+   "name": "ai"
+  }
+ ],
+ "name": "browserslist",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/browserslist/browserslist.git"
+ },
+ "types": "./index.d.ts",
+ "version": "4.29.3"
+}

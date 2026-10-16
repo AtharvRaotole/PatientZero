@@ -1,0 +1,90 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@apollo/cache-control-types@1.0.3",
+ "_nodeVersion": "18.16.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/cache-control-types_1.0.3_1687797457295_0.2741167564024256"
+ },
+ "_npmUser": {
+  "email": "npm@apollographql.com",
+  "name": "apollo-bot"
+ },
+ "_npmVersion": "9.5.1",
+ "author": {
+  "email": "packages@apollographql.com",
+  "name": "Apollo"
+ },
+ "bugs": {
+  "url": "https://github.com/apollographql/apollo-server/issues"
+ },
+ "description": "TypeScript types for Apollo Server info.cacheControl",
+ "directories": {},
+ "dist": {
+  "fileCount": 16,
+  "integrity": "sha512-F17/vCp7QVwom9eG7ToauIKdAxpSoadsJnqIfyryLFSkLSOEqu+eC5Z3N8OXcUVStuOMcNHlyraRsA6rRICu4g==",
+  "shasum": "5da62cf64c3b4419dabfef4536b57a40c8ff0b47",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIDpXKP6o0Ntq1DXmj89/w/wPpF3+oA1mHYxnkPTyQpCBAiEAzWVmRdBpqWu4s/JyIj12cpvSCsiJwngyWDno+aUu0zc="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@apollo/cache-control-types/-/cache-control-types-1.0.3.tgz",
+  "unpackedSize": 75611
+ },
+ "exports": {
+  ".": {
+   "import": "./dist/esm/index.js",
+   "require": "./dist/cjs/index.js",
+   "types": {
+    "default": "./dist/esm/index.d.ts",
+    "require": "./dist/cjs/index.d.ts"
+   }
+  }
+ },
+ "gitHead": "65a8ac86a7407a3bd5fea792e09a3053fbca0c6c",
+ "homepage": "https://github.com/apollographql/apollo-server#readme",
+ "keywords": [
+  "apollo",
+  "graphql",
+  "typescript",
+  "node"
+ ],
+ "license": "MIT",
+ "main": "dist/cjs/index.js",
+ "maintainers": [
+  {
+   "email": "dariusz_kuc@hotmail.com",
+   "name": "dkuc"
+  },
+  {
+   "email": "glasser@apollographql.com",
+   "name": "glasser"
+  },
+  {
+   "email": "trevor.scheer@gmail.com",
+   "name": "trevor.scheer"
+  },
+  {
+   "email": "npm@apollographql.com",
+   "name": "apollo-bot"
+  }
+ ],
+ "module": "dist/esm/index.js",
+ "name": "@apollo/cache-control-types",
+ "peerDependencies": {
+  "graphql": "14.x || 15.x || 16.x"
+ },
+ "repository": {
+  "directory": "packages/cache-control-types/",
+  "type": "git",
+  "url": "git+https://github.com/apollographql/apollo-server.git"
+ },
+ "type": "module",
+ "types": "dist/esm/index.d.ts",
+ "version": "1.0.3",
+ "volta": {
+  "extends": "../../package.json"
+ }
+}

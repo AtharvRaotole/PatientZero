@@ -1,0 +1,111 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "es-module-lexer@3.0.4",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/es-module-lexer_3.0.4_1792038933718_0.2743129257509256"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "256c92fc-fa7b-4c72-91fe-bd1b094da73a"
+  }
+ },
+ "_npmVersion": "12.2.0",
+ "author": {
+  "name": "Guy Bedford"
+ },
+ "bugs": {
+  "url": "https://github.com/guybedford/es-module-lexer/issues"
+ },
+ "description": "Lexes ES modules returning their import/export metadata",
+ "devDependencies": {
+  "@babel/cli": "^7.29.7",
+  "@babel/core": "^7.29.7",
+  "@babel/plugin-transform-modules-commonjs": "^7.29.7",
+  "@swc/cli": "^0.8.1",
+  "@swc/core": "^1.16.2",
+  "@types/node": "^26.4.1",
+  "kleur": "^4.1.5",
+  "mocha": "^11.8.0",
+  "terser": "^5.51.2",
+  "typescript": "^7.0.2"
+ },
+ "directories": {
+  "lib": "lib",
+  "test": "test"
+ },
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/es-module-lexer@3.0.4"
+  },
+  "fileCount": 11,
+  "integrity": "sha512-BldNY5mwkVu+cQ5Ymn3e6hB9Sx8XHx4ZevWbiUyZbfKxJxYO27Hf0wfzkxIaD5CAJMaGl3YspKELj0ff/7nCMA==",
+  "shasum": "157174100418c206cd1c5d142e5a3be849b845b9",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIEN392OK+QkkILSd4i6BzsoJ0kEj+Ht7GHgGf1Js4+t5AiEAyiNr/aTH7b+dynuwE09I98TxD6TP3NQgcUJrZ9VKt4M="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQCudRTkJ2Yl4CRx+7IAgIzDVVFwI0fxJ5WdgtRKioXKtAIhAMy7z06kyuDQMl/Z3Ul3NTY1bJLMedLoJoN9AMmnjVja"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/es-module-lexer/-/es-module-lexer-3.0.4.tgz",
+  "unpackedSize": 254251
+ },
+ "exports": {
+  ".": {
+   "import": "./dist/lexer.js",
+   "module": "./dist/lexer.js",
+   "require": "./dist/lexer.cjs",
+   "types": "./types/lexer.d.ts"
+  },
+  "./js": {
+   "default": "./dist/lexer.asm.js",
+   "types": "./types/lexer.d.ts"
+  },
+  "./minimal": {
+   "import": "./dist/lexer.minimal.js",
+   "module": "./dist/lexer.minimal.js",
+   "require": "./dist/lexer.minimal.cjs",
+   "types": "./types/lexer.minimal.d.ts"
+  },
+  "./minimal/js": {
+   "default": "./dist/lexer.minimal.asm.js",
+   "types": "./types/lexer.minimal.d.ts"
+  }
+ },
+ "gitHead": "1c17334d2c3bc0eed6a92022e16254a28bb9ebea",
+ "homepage": "https://github.com/guybedford/es-module-lexer#readme",
+ "keywords": [],
+ "license": "MIT",
+ "main": "dist/lexer.cjs",
+ "maintainers": [
+  {
+   "email": "guybedford@gmail.com",
+   "name": "guybedford"
+  }
+ ],
+ "module": "dist/lexer.js",
+ "name": "es-module-lexer",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/guybedford/es-module-lexer.git"
+ },
+ "scripts": {
+  "build": "npm install -g chomp ; chomp build",
+  "test": "npm install -g chomp ; chomp test"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "types/lexer.d.ts",
+ "version": "3.0.4"
+}

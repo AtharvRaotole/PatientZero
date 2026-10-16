@@ -1,0 +1,200 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@isaacs/cliui@9.0.0",
+ "_nodeVersion": "24.4.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/cliui_9.0.0_1770316856095_0.0023434399762787272"
+ },
+ "_npmUser": {
+  "email": "i@izs.me",
+  "name": "isaacs"
+ },
+ "_npmVersion": "11.8.0",
+ "bugs": {
+  "url": "https://github.com/isaacs/cliui/issues"
+ },
+ "description": "easily create complex multi-column command-line-interfaces",
+ "devDependencies": {
+  "@types/node": "^25.2.1",
+  "esbuild": "^0.27.2",
+  "prettier": "^3.8.1",
+  "tap": "^21.5.0",
+  "tshy": "^3.1.0",
+  "typedoc": "^0.28.16"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 73,
+  "integrity": "sha512-AokJm4tuBHillT+FpMtxQ60n8ObyXBatq7jD2/JA9dxbDDokKQm8KMht5ibGzLVU9IJDIKK4TPKgMHEYMn3lMg==",
+  "shasum": "4d0a3f127058043bf2e7ee169eaf30ed901302f3",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCICxFW2lEGZOJL0b9YN9BTh5ys+pVasAFJMN42Izbfi1HAiEAwlZQvNq+aLOlKkAWUuvS9ItFv8L3WH1q2OsUp/Tze6M="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@isaacs/cliui/-/cliui-9.0.0.tgz",
+  "unpackedSize": 522445
+ },
+ "engines": {
+  "node": ">=18"
+ },
+ "exports": {
+  ".": {
+   "import": {
+    "default": "./dist/esm/index.js",
+    "types": "./dist/esm/index.d.ts"
+   },
+   "require": {
+    "default": "./dist/commonjs/index.js",
+    "types": "./dist/commonjs/index.d.ts"
+   }
+  },
+  "./ansi-regex": {
+   "import": {
+    "default": "./dist/esm/ansi-regex/index.js",
+    "types": "./dist/esm/ansi-regex/index.d.ts"
+   },
+   "require": {
+    "default": "./dist/commonjs/ansi-regex/index.js",
+    "types": "./dist/commonjs/ansi-regex/index.d.ts"
+   }
+  },
+  "./ansi-styles": {
+   "import": {
+    "default": "./dist/esm/ansi-styles/index.js",
+    "types": "./dist/esm/ansi-styles/index.d.ts"
+   },
+   "require": {
+    "default": "./dist/commonjs/ansi-styles/index.js",
+    "types": "./dist/commonjs/ansi-styles/index.d.ts"
+   }
+  },
+  "./eastasianwidth": {
+   "import": {
+    "default": "./dist/esm/eastasianwidth/index.js",
+    "types": "./dist/esm/eastasianwidth/index.d.ts"
+   },
+   "require": {
+    "default": "./dist/commonjs/eastasianwidth/index.js",
+    "types": "./dist/commonjs/eastasianwidth/index.d.ts"
+   }
+  },
+  "./emoji-regex": {
+   "import": {
+    "default": "./dist/esm/emoji-regex/index.js",
+    "types": "./dist/esm/emoji-regex/index.d.ts"
+   },
+   "require": {
+    "default": "./dist/commonjs/emoji-regex/index.js",
+    "types": "./dist/commonjs/emoji-regex/index.d.ts"
+   }
+  },
+  "./min": {
+   "import": {
+    "default": "./dist/esm/index.min.js",
+    "types": "./dist/esm/index.d.ts"
+   },
+   "require": {
+    "default": "./dist/commonjs/index.min.js",
+    "types": "./dist/commonjs/index.d.ts"
+   }
+  },
+  "./package.json": "./package.json",
+  "./string-width": {
+   "import": {
+    "default": "./dist/esm/string-width/index.js",
+    "types": "./dist/esm/string-width/index.d.ts"
+   },
+   "require": {
+    "default": "./dist/commonjs/string-width/index.js",
+    "types": "./dist/commonjs/string-width/index.d.ts"
+   }
+  },
+  "./strip-ansi": {
+   "import": {
+    "default": "./dist/esm/strip-ansi/index.js",
+    "types": "./dist/esm/strip-ansi/index.d.ts"
+   },
+   "require": {
+    "default": "./dist/commonjs/strip-ansi/index.js",
+    "types": "./dist/commonjs/strip-ansi/index.d.ts"
+   }
+  },
+  "./wrap-ansi": {
+   "import": {
+    "default": "./dist/esm/wrap-ansi/index.js",
+    "types": "./dist/esm/wrap-ansi/index.d.ts"
+   },
+   "require": {
+    "default": "./dist/commonjs/wrap-ansi/index.js",
+    "types": "./dist/commonjs/wrap-ansi/index.d.ts"
+   }
+  }
+ },
+ "gitHead": "b33b76c344fc3e76cca1a6e8d8cf25ae09f33fc0",
+ "homepage": "https://github.com/isaacs/cliui#readme",
+ "keywords": [
+  "cli",
+  "command-line",
+  "layout",
+  "design",
+  "console",
+  "wrap",
+  "table"
+ ],
+ "license": "BlueOak-1.0.0",
+ "main": "./dist/commonjs/index.js",
+ "maintainers": [
+  {
+   "email": "i@izs.me",
+   "name": "isaacs"
+  }
+ ],
+ "module": "./dist/esm/index.js",
+ "name": "@isaacs/cliui",
+ "repository": {
+  "type": "git",
+  "url": "git+ssh://git@github.com/isaacs/cliui.git"
+ },
+ "scripts": {
+  "format": "prettier --write . --log-level warn",
+  "postversion": "npm publish",
+  "prepare": "tshy && bash build.sh",
+  "prepublishOnly": "git push origin --follow-tags",
+  "presnap": "npm run prepare",
+  "pretest": "npm run prepare",
+  "preversion": "npm test",
+  "snap": "tap",
+  "test": "tap",
+  "typedoc": "typedoc"
+ },
+ "tshy": {
+  "exports": {
+   ".": "./src/index.ts",
+   "./ansi-regex": "./src/ansi-regex/index.ts",
+   "./ansi-styles": "./src/ansi-styles/index.ts",
+   "./eastasianwidth": "./src/eastasianwidth/index.ts",
+   "./emoji-regex": "./src/emoji-regex/index.ts",
+   "./min": {
+    "import": {
+     "default": "./dist/esm/index.min.js",
+     "types": "./dist/esm/index.d.ts"
+    },
+    "require": {
+     "default": "./dist/commonjs/index.min.js",
+     "types": "./dist/commonjs/index.d.ts"
+    }
+   },
+   "./package.json": "./package.json",
+   "./string-width": "./src/string-width/index.ts",
+   "./strip-ansi": "./src/strip-ansi/index.ts",
+   "./wrap-ansi": "./src/wrap-ansi/index.ts"
+  },
+  "selfLink": false
+ },
+ "type": "module",
+ "types": "./dist/commonjs/index.d.ts",
+ "version": "9.0.0"
+}

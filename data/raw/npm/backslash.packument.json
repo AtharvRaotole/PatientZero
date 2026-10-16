@@ -1,0 +1,409 @@
+{
+ "_id": "backslash",
+ "_rev": "11-d30515a0e36b890d6815d7669684b487",
+ "author": {
+  "name": "Qix",
+  "url": "http://github.com/Qix-"
+ },
+ "bugs": {
+  "url": "https://github.com/Qix-/node-backslash/issues"
+ },
+ "description": "parse string escapes (\\n, \\r, etc.)",
+ "dist-tags": {
+  "latest": "0.2.2"
+ },
+ "homepage": "https://github.com/Qix-/node-backslash#readme",
+ "keywords": [
+  "backslash",
+  "escape",
+  "escaped",
+  "parse",
+  "convert",
+  "raw",
+  "string",
+  "characters",
+  "unicode"
+ ],
+ "maintainers": [
+  {
+   "email": "npm@josh.junon.me",
+   "name": "qix"
+  }
+ ],
+ "name": "backslash",
+ "readme": "# Backslash [![Travis-CI.org Build Status](https://img.shields.io/travis/Qix-/node-backslash.svg?style=flat-square)](https://travis-ci.org/Qix-/node-backslash) [![Coveralls.io Coverage Rating](https://img.shields.io/coveralls/Qix-/node-backslash.svg?style=flat-square)](https://coveralls.io/r/Qix-/node-backslash)\nParse collected strings with escapes.\n\n### Example\n\n```javascript\nvar backslash = require('backslash');\n\nvar s = backslash(\"\\\\\\\\\\\\tHello!\\\\nThis was escaped.\");\n/*\n\\\tHello!\nThis was escaped.\n*/\n```\n\n## License\nLicensed under the MIT license.\n",
+ "readmeFilename": "README.md",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/Qix-/node-backslash.git"
+ },
+ "time": {
+  "0.1.0": "2015-06-26T03:23:33.119Z",
+  "0.1.5": "2015-06-26T03:50:16.703Z",
+  "0.1.6": "2015-06-26T03:53:48.567Z",
+  "0.1.7": "2015-06-26T03:56:01.831Z",
+  "0.2.0": "2016-04-08T01:01:07.667Z",
+  "0.2.1": "2025-09-08T13:20:31.923Z",
+  "0.2.2": "2025-09-13T15:03:55.590Z",
+  "created": "2015-06-26T03:23:33.119Z",
+  "modified": "2025-09-13T15:03:56.109Z"
+ },
+ "versions": {
+  "0.1.0": {
+   "_from": ".",
+   "_id": "backslash@0.1.0",
+   "_nodeVersion": "0.12.0",
+   "_npmUser": {
+    "email": "i.am.qix@gmail.com",
+    "name": "qix"
+   },
+   "_npmVersion": "2.5.1",
+   "_shasum": "596cd34b1ee49d77a40d4610192ea96ab357e5eb",
+   "author": {
+    "name": "Qix",
+    "url": "http://github.com/Qix-"
+   },
+   "description": "parse string escapes (\\n, \\r, etc.)",
+   "devDependencies": {
+    "mocha": "^2.2.5",
+    "should": "^7.0.1"
+   },
+   "directories": {},
+   "dist": {
+    "integrity": "sha512-MvVOpMMma95oOnoRq8QeKS7yQ+NhgF9kHaa0vRFWGDAc52onYrqJ/V/TzAXYjFExmut/aWGlR22ktm7qUwofkQ==",
+    "shasum": "596cd34b1ee49d77a40d4610192ea96ab357e5eb",
+    "signatures": [
+     {
+      "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+      "sig": "MEQCIDFw4q4dOuAdg9yeczcA1luc8MwAUH0JqcdsanFe1NHEAiBMUr7Dm0gHXzEJUCbuDbWb8AZjG1kJDUE9jNj5U0D9Kw=="
+     }
+    ],
+    "tarball": "https://registry.npmjs.org/backslash/-/backslash-0.1.0.tgz"
+   },
+   "gitHead": "38777d475ae847f7d3b2309b026e404c3505a68b",
+   "maintainers": [
+    {
+     "email": "i.am.qix@gmail.com",
+     "name": "qix"
+    }
+   ],
+   "name": "backslash",
+   "scripts": {
+    "test": "mocha"
+   },
+   "version": "0.1.0"
+  },
+  "0.1.5": {
+   "_from": ".",
+   "_id": "backslash@0.1.5",
+   "_nodeVersion": "0.12.0",
+   "_npmUser": {
+    "email": "i.am.qix@gmail.com",
+    "name": "qix"
+   },
+   "_npmVersion": "2.5.1",
+   "_shasum": "38182bc33d3eced31919397bc3e33d7fbd49cbbc",
+   "author": {
+    "name": "Qix",
+    "url": "http://github.com/Qix-"
+   },
+   "bugs": {
+    "url": "https://github.com/Qix-/node-backslash/issues"
+   },
+   "description": "parse string escapes (\\n, \\r, etc.)",
+   "devDependencies": {
+    "coveralls": "^2.11.2",
+    "istanbul": "^0.3.16",
+    "mocha": "^2.2.5",
+    "should": "^7.0.1"
+   },
+   "directories": {},
+   "dist": {
+    "integrity": "sha512-vYI0hiM2rZRKga/qzDKfEInoimvspE5RTrLfdxLINo0h0Ta037J3ysl4JOy7TwahF67CEgkUxXoUd/4amIC7ng==",
+    "shasum": "38182bc33d3eced31919397bc3e33d7fbd49cbbc",
+    "signatures": [
+     {
+      "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+      "sig": "MEUCIQC4Qt5eayrUPt7+qSSislvuneGlhirsFbk4Nichwxyu4AIgHEscTLsmNFdwG0P5nFMyoCnOkAACsuDH5fwcN2/1I1Y="
+     }
+    ],
+    "tarball": "https://registry.npmjs.org/backslash/-/backslash-0.1.5.tgz"
+   },
+   "gitHead": "ee28ad935c6edd56249a2add8919d20e244fb075",
+   "homepage": "https://github.com/Qix-/node-backslash",
+   "maintainers": [
+    {
+     "email": "i.am.qix@gmail.com",
+     "name": "qix"
+    }
+   ],
+   "name": "backslash",
+   "repository": {
+    "type": "git",
+    "url": "https://github.com/Qix-/node-backslash.git"
+   },
+   "scripts": {
+    "test": "mocha"
+   },
+   "version": "0.1.5"
+  },
+  "0.1.6": {
+   "_from": ".",
+   "_id": "backslash@0.1.6",
+   "_nodeVersion": "0.12.0",
+   "_npmUser": {
+    "email": "i.am.qix@gmail.com",
+    "name": "qix"
+   },
+   "_npmVersion": "2.5.1",
+   "_shasum": "a14fbfa1dd53e7c1a28625bea80622195efd3c0c",
+   "author": {
+    "name": "Qix",
+    "url": "http://github.com/Qix-"
+   },
+   "bugs": {
+    "url": "https://github.com/Qix-/node-backslash/issues"
+   },
+   "description": "parse string escapes (\\n, \\r, etc.)",
+   "devDependencies": {
+    "coveralls": "^2.11.2",
+    "istanbul": "^0.3.16",
+    "mocha": "^2.2.5",
+    "should": "^7.0.1"
+   },
+   "directories": {},
+   "dist": {
+    "integrity": "sha512-BMFsVlTit+jQ9XQDe5tKSJUmhPObkExfKIO4k9N8amFAefZQxC2xe9Qhi990cc38Nm/KEu6dNV0T7JTzvNd+yg==",
+    "shasum": "a14fbfa1dd53e7c1a28625bea80622195efd3c0c",
+    "signatures": [
+     {
+      "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+      "sig": "MEUCIQDpWAVPCawW2fAhI/bdKO5Iy7jdCr9dWGVm1R9Hn1ZPqAIgKQUg0Fv70NcC+xUaMQER1wGe8ueoJQM0Hz7aggSaCTg="
+     }
+    ],
+    "tarball": "https://registry.npmjs.org/backslash/-/backslash-0.1.6.tgz"
+   },
+   "gitHead": "2bfae358c7109be3f288acbb6ab751d7f1a13654",
+   "homepage": "https://github.com/Qix-/node-backslash",
+   "maintainers": [
+    {
+     "email": "i.am.qix@gmail.com",
+     "name": "qix"
+    }
+   ],
+   "name": "backslash",
+   "repository": {
+    "type": "git",
+    "url": "https://github.com/Qix-/node-backslash.git"
+   },
+   "scripts": {
+    "test": "mocha"
+   },
+   "version": "0.1.6"
+  },
+  "0.1.7": {
+   "_from": ".",
+   "_id": "backslash@0.1.7",
+   "_nodeVersion": "0.12.0",
+   "_npmUser": {
+    "email": "i.am.qix@gmail.com",
+    "name": "qix"
+   },
+   "_npmVersion": "2.5.1",
+   "_shasum": "c30ec5417fecb5dc30c4700a2229b862cbfbd0d3",
+   "author": {
+    "name": "Qix",
+    "url": "http://github.com/Qix-"
+   },
+   "bugs": {
+    "url": "https://github.com/Qix-/node-backslash/issues"
+   },
+   "description": "parse string escapes (\\n, \\r, etc.)",
+   "devDependencies": {
+    "coveralls": "^2.11.2",
+    "istanbul": "^0.3.16",
+    "mocha": "^2.2.5",
+    "should": "^7.0.1"
+   },
+   "directories": {},
+   "dist": {
+    "integrity": "sha512-H2D0Iu8VyTxEoEutdO0Z3gcYcsNKnQoMZZ6GDghdklUvDZvMFJB5s2fHyqfSvxkmZV0i/J5Cd+WNGe9Ip4z46Q==",
+    "shasum": "c30ec5417fecb5dc30c4700a2229b862cbfbd0d3",
+    "signatures": [
+     {
+      "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+      "sig": "MEUCIEb8d0agla2llJ2rmJvK8D6c2p70n10xT++bFxMXiyQRAiEAge6CncSObxbPlg+3FoUdyWc03kB2N4UgGLzdT9Ac7PE="
+     }
+    ],
+    "tarball": "https://registry.npmjs.org/backslash/-/backslash-0.1.7.tgz"
+   },
+   "gitHead": "3af518f4242eef568bb9e989d5d373e56d43483c",
+   "homepage": "https://github.com/Qix-/node-backslash",
+   "keywords": [
+    "backslash",
+    "escape",
+    "escaped",
+    "parse",
+    "convert",
+    "raw",
+    "string",
+    "characters",
+    "unicode"
+   ],
+   "maintainers": [
+    {
+     "email": "i.am.qix@gmail.com",
+     "name": "qix"
+    }
+   ],
+   "name": "backslash",
+   "repository": {
+    "type": "git",
+    "url": "https://github.com/Qix-/node-backslash.git"
+   },
+   "scripts": {
+    "test": "mocha"
+   },
+   "version": "0.1.7"
+  },
+  "0.2.0": {
+   "_from": ".",
+   "_id": "backslash@0.2.0",
+   "_nodeVersion": "0.10.32",
+   "_npmOperationalInternal": {
+    "host": "packages-12-west.internal.npmjs.com",
+    "tmp": "tmp/backslash-0.2.0.tgz_1460077267132_0.47199821565300226"
+   },
+   "_npmUser": {
+    "email": "i.am.qix@gmail.com",
+    "name": "qix"
+   },
+   "_npmVersion": "2.14.2",
+   "_shasum": "6c3c1fce7e7e714ccfc10fd74f0f73410677375f",
+   "author": {
+    "name": "Qix",
+    "url": "http://github.com/Qix-"
+   },
+   "bugs": {
+    "url": "https://github.com/Qix-/node-backslash/issues"
+   },
+   "description": "parse string escapes (\\n, \\r, etc.)",
+   "devDependencies": {
+    "coveralls": "^2.11.2",
+    "istanbul": "^0.3.16",
+    "mocha": "^2.2.5",
+    "should": "^7.0.1"
+   },
+   "directories": {},
+   "dist": {
+    "integrity": "sha512-Avs+8FUZ1HF/VFP4YWwHQZSGzRPm37ukU1JQYQWijuHhtXdOuAzcZ8PcAzfIw898a8PyBzdn+RtnKA6MzW0X2A==",
+    "shasum": "6c3c1fce7e7e714ccfc10fd74f0f73410677375f",
+    "signatures": [
+     {
+      "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+      "sig": "MEUCIQDyDiXsTtQXlWFWWZNxjOtQp85DhsM0ilHfd4AfwtLHqgIgRhW9/pq6XMHbhgjOA8/EA8wq2TfD1dmIWK5/Y09+AAU="
+     }
+    ],
+    "tarball": "https://registry.npmjs.org/backslash/-/backslash-0.2.0.tgz"
+   },
+   "gitHead": "5ec7200fb60fbe9cf325896245e023c6a80ac473",
+   "homepage": "https://github.com/Qix-/node-backslash#readme",
+   "keywords": [
+    "backslash",
+    "escape",
+    "escaped",
+    "parse",
+    "convert",
+    "raw",
+    "string",
+    "characters",
+    "unicode"
+   ],
+   "maintainers": [
+    {
+     "email": "i.am.qix@gmail.com",
+     "name": "qix"
+    }
+   ],
+   "name": "backslash",
+   "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Qix-/node-backslash.git"
+   },
+   "scripts": {
+    "test": "mocha"
+   },
+   "version": "0.2.0"
+  },
+  "0.2.2": {
+   "_hasShrinkwrap": false,
+   "_id": "backslash@0.2.2",
+   "_nodeVersion": "22.15.0",
+   "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages-npm-production",
+    "tmp": "tmp/backslash_0.2.2_1757775835406_0.494541122367514"
+   },
+   "_npmUser": {
+    "email": "npm@josh.junon.me",
+    "name": "qix"
+   },
+   "_npmVersion": "10.9.2",
+   "author": {
+    "name": "Qix",
+    "url": "http://github.com/Qix-"
+   },
+   "bugs": {
+    "url": "https://github.com/Qix-/node-backslash/issues"
+   },
+   "description": "parse string escapes (\\n, \\r, etc.)",
+   "devDependencies": {
+    "coveralls": "^2.11.2",
+    "istanbul": "^0.3.16",
+    "mocha": "^2.2.5",
+    "should": "^7.0.1"
+   },
+   "directories": {},
+   "dist": {
+    "fileCount": 8,
+    "integrity": "sha512-PKRYPE2LLTtNUYz1dszquxKSBs6XyLyJRHgFpY5rlq7y3DscDx239k5Gm+zenoY47OU4CApan1o0k2R8ptZC1Q==",
+    "shasum": "4165199ddafe6e46f583b67724fdeb02fcc6d18e",
+    "signatures": [
+     {
+      "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+      "sig": "MEYCIQDrDvvlDfEKzpxUkSd3FisFyWjvIpBFCkGNXLEUNbXV0QIhAP9MxW27xVCcFqKTfGxYnYuw0j4BXEgsIZPh9cgYHPFz"
+     }
+    ],
+    "tarball": "https://registry.npmjs.org/backslash/-/backslash-0.2.2.tgz",
+    "unpackedSize": 8693
+   },
+   "gitHead": "628aa56807b7ed3639f752b3ed1c7899ebc4ec85",
+   "homepage": "https://github.com/Qix-/node-backslash#readme",
+   "keywords": [
+    "backslash",
+    "escape",
+    "escaped",
+    "parse",
+    "convert",
+    "raw",
+    "string",
+    "characters",
+    "unicode"
+   ],
+   "maintainers": [
+    {
+     "email": "npm@josh.junon.me",
+     "name": "qix"
+    }
+   ],
+   "name": "backslash",
+   "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Qix-/node-backslash.git"
+   },
+   "scripts": {
+    "test": "mocha"
+   },
+   "version": "0.2.2"
+  }
+ }
+}

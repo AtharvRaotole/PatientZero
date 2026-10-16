@@ -1,0 +1,55 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@types/triple-beam@1.3.5",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/triple-beam_1.3.5_1699380511729_0.7232276111272264"
+ },
+ "_npmUser": {
+  "email": "ts-npm-types@microsoft.com",
+  "name": "types"
+ },
+ "contributors": [
+  {
+   "githubUsername": "danwbyrne",
+   "name": "Daniel Byrne",
+   "url": "https://github.com/danwbyrne"
+  }
+ ],
+ "dependencies": {},
+ "description": "TypeScript definitions for triple-beam",
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-6WaYesThRMCl19iryMYP7/x2OVgCtbIVflDGFpWnb9irXI3UjYE4AzmYuiUKY1AJstGijoY+MgUszMgRxIYTYw==",
+  "shasum": "74fef9ffbaa198eb8b588be029f38b00299caa2c",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEQCICk3I6ex1fF7HzSgCutsxT2OK6lVh2ybIElH/Qd+y3vuAiARRz5BWUFLote1qtakdNouGtIugKbOpKhpukT38lMwLg=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@types/triple-beam/-/triple-beam-1.3.5.tgz",
+  "unpackedSize": 3361
+ },
+ "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/triple-beam",
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "ts-npm-types@microsoft.com",
+   "name": "types"
+  }
+ ],
+ "name": "@types/triple-beam",
+ "repository": {
+  "directory": "types/triple-beam",
+  "type": "git",
+  "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+ },
+ "scripts": {},
+ "typeScriptVersion": "4.5",
+ "types": "index.d.ts",
+ "typesPublisherContentHash": "aba808a8cd292b633d60f24f8ed117bf7f4f83771da677fe4d557c4e1ad3211b",
+ "version": "1.3.5"
+}

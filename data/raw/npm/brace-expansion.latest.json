@@ -1,0 +1,107 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "brace-expansion@5.0.12",
+ "_nodeVersion": "24.16.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/brace-expansion_5.0.12_1789423140204_0.170643808293506"
+ },
+ "_npmUser": {
+  "email": "julian@juliangruber.com",
+  "name": "juliangruber"
+ },
+ "_npmVersion": "11.13.0",
+ "bugs": {
+  "url": "https://github.com/juliangruber/brace-expansion/issues"
+ },
+ "dependencies": {
+  "balanced-match": "^4.0.2"
+ },
+ "description": "Brace expansion as known from sh/bash",
+ "devDependencies": {
+  "@types/brace-expansion": "^1.1.2",
+  "@types/node": "^25.2.1",
+  "mkdirp": "^3.0.1",
+  "prettier": "^3.3.2",
+  "tap": "^21.6.2",
+  "tshy": "^3.0.2",
+  "typedoc": "^0.28.5"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 13,
+  "integrity": "sha512-YovQ3rzhaLMIrDjNDMkNS01tea93qhEhG5xy8f6+R0l+dw3Ki+5sCoIoI942iuLZTHWogWktgwVDhU09iNEimQ==",
+  "shasum": "995fbb4750a77c4d16a7dc942ff2ca6ef8e675ec",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIAMXX2WNJDJJkVHQORu87Mi5BGgEzbA21nhoBLCd5pVbAiAty43mX29opG/0V0Oh41VVzPRs+bijBdQ3ao+wyviCsg=="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDZemgdCtGEvGCCV16aS9sGD8McnOAM5EM80gowpoytHwIgNLc7QYBEXho5Tgpn5+IY2fXgSrvXlQejMT/jf5f+++o="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/brace-expansion/-/brace-expansion-5.0.12.tgz",
+  "unpackedSize": 84997
+ },
+ "engines": {
+  "node": "20 || >=22"
+ },
+ "exports": {
+  ".": {
+   "import": {
+    "default": "./dist/esm/index.js",
+    "types": "./dist/esm/index.d.ts"
+   },
+   "require": {
+    "default": "./dist/commonjs/index.js",
+    "types": "./dist/commonjs/index.d.ts"
+   }
+  },
+  "./package.json": "./package.json"
+ },
+ "gitHead": "f3410159d768f56c9d9f4511d3e1b46425fc1099",
+ "homepage": "https://github.com/juliangruber/brace-expansion#readme",
+ "license": "MIT",
+ "main": "./dist/commonjs/index.js",
+ "maintainers": [
+  {
+   "email": "julian@juliangruber.com",
+   "name": "juliangruber"
+  },
+  {
+   "email": "i@izs.me",
+   "name": "isaacs"
+  }
+ ],
+ "module": "./dist/esm/index.js",
+ "name": "brace-expansion",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/juliangruber/brace-expansion.git"
+ },
+ "scripts": {
+  "benchmark": "node benchmark/index.js",
+  "format": "prettier --write .",
+  "format:check": "prettier --check .",
+  "postversion": "npm publish",
+  "prepare": "tshy",
+  "prepublishOnly": "git push origin --follow-tags",
+  "presnap": "npm run prepare",
+  "pretest": "npm run prepare",
+  "preversion": "npm test",
+  "snap": "tap",
+  "test": "tap",
+  "typedoc": "typedoc --tsconfig .tshy/esm.json ./src/*.ts"
+ },
+ "tshy": {
+  "exports": {
+   ".": "./src/index.ts",
+   "./package.json": "./package.json"
+  }
+ },
+ "type": "module",
+ "types": "./dist/commonjs/index.d.ts",
+ "version": "5.0.12"
+}

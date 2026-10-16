@@ -1,0 +1,79 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@apollo/utils.removealiases@3.0.0",
+ "_nodeVersion": "16.20.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/utils.removealiases_3.0.0_1681772009711_0.8576760662188558"
+ },
+ "_npmUser": {
+  "email": "npm@apollographql.com",
+  "name": "apollo-bot"
+ },
+ "_npmVersion": "8.5.0",
+ "author": {
+  "email": "packages@apollographql.com",
+  "name": "Apollo"
+ },
+ "bugs": {
+  "url": "https://github.com/apollographql/apollo-utils/issues"
+ },
+ "description": "Remove aliases from a GraphQL document",
+ "directories": {},
+ "dist": {
+  "fileCount": 10,
+  "integrity": "sha512-UNAgcvME7hS0P3mgg7qrdS3p4WHNXKDy5qQhiGrmVtpwMa3COlcWHVF0LxkHgb2U2pIiPT7dcOBQGFJLVwSO6g==",
+  "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v4.10.10\r\nComment: https://openpgpjs.org\r\n\r\nwsFzBAEBCAAGBQJkPc3pACEJED1NWxICdlZqFiEECWMYAoorWMhJKdjhPU1b\r\nEgJ2VmqZnA//el9CmPYnNlM1+FsebgPWYMMqpuZPyQFwkSa55459VN5Szcod\r\n5CijHeLC+tVk18zZJUAkoU5RUBpmcDCpTUHibdKTu1y8Z+uHKKmxLfdo6FfY\r\nTklCHsagXtHnY36ZZPUqJ+pFbqExxC9y58Bi4K/wTBkLOxtZWm0R1KQZmAUy\r\n303P25TTGWAe+yBbQfHeUr8LWSlgq6wP6gUHpzA6kkyzvrb1iHxGxm4yQFqy\r\nJmCBjrqv1zTddzZ7z+YHWl42S0MMwjKvNiAAZ6cGAsQEBge8P0Cs95LDYja4\r\nMdjK7P9PCYEYYSr3Cgt56KcEF9nxIEza9HgN/+QJ20PKApTiCqnMSmfqc5o4\r\ndtOFyi9/PqYKxF5md+z8uSltD9SIP98TEueZyjoCP9Zgj9JJrzuvdQZnOIDs\r\nnJrMIR3yS7Ltv0Z2C4cAkHOvn5udOV5PcNd0xTuksc86n1jF6aDx9vHlYhrK\r\nFCgP6YRbCpT2Wn8+gkM4H+WFxuHB1Cyqz3m9yA7xB1t2WJBm+gOnL72J+6dO\r\nfrOO/mAjG6lI4/zGmBFt90eT20/k5r29cNLZeVzlbYNQasqoiuXL6TV1gkNf\r\nImlTTTh64o260/qZ5nOM0qT2G9qasQJDhiHQwGomAvsTeY/BYZvU8IQuLWP6\r\nWrHeH5nvi4VoYmq2LbQen6BfTf9imbh30FI=\r\n=WQX+\r\n-----END PGP SIGNATURE-----\r\n",
+  "shasum": "5c4fb516da3aebcae3f7ac173fc1dde9a42a278b",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIAftTHPpvreUj03bLK6klUglXFgjEWUfpSnLz6/nAunzAiEA9VNNrXVf9nBCOWsofSqkB9NgUjqceMhf6UwxCmIi0H8="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@apollo/utils.removealiases/-/utils.removealiases-3.0.0.tgz",
+  "unpackedSize": 4952
+ },
+ "engines": {
+  "node": ">=16"
+ },
+ "gitHead": "9b66f38f6d6097a408bc354d749ebc480ba3bbda",
+ "homepage": "https://github.com/apollographql/apollo-utils#readme",
+ "keywords": [
+  "apollo",
+  "graphql",
+  "typescript",
+  "node"
+ ],
+ "license": "MIT",
+ "main": "dist/index.js",
+ "maintainers": [
+  {
+   "email": "dariusz_kuc@hotmail.com",
+   "name": "dkuc"
+  },
+  {
+   "email": "glasser@apollographql.com",
+   "name": "glasser"
+  },
+  {
+   "email": "trevor.scheer@gmail.com",
+   "name": "trevor.scheer"
+  },
+  {
+   "email": "npm@apollographql.com",
+   "name": "apollo-bot"
+  }
+ ],
+ "name": "@apollo/utils.removealiases",
+ "peerDependencies": {
+  "graphql": "14.x || 15.x || 16.x"
+ },
+ "repository": {
+  "directory": "packages/removeAliases/",
+  "type": "git",
+  "url": "git+https://github.com/apollographql/apollo-utils.git"
+ },
+ "types": "dist/index.d.ts",
+ "version": "3.0.0"
+}

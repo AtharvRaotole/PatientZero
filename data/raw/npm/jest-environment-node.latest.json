@@ -1,0 +1,104 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "jest-environment-node@30.5.2",
+ "_nodeVersion": "26.8.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/jest-environment-node_30.5.2_1789739868663_0.9925108523336692"
+ },
+ "_npmUser": {
+  "email": "sbekkhus91@gmail.com",
+  "name": "simenb"
+ },
+ "_npmVersion": "lerna/4.11.5/node@v26.8.1+arm64 (darwin)",
+ "bugs": {
+  "url": "https://github.com/jestjs/jest/issues"
+ },
+ "dependencies": {
+  "@jest/environment": "30.5.2",
+  "@jest/fake-timers": "30.5.2",
+  "@jest/types": "30.5.1",
+  "@types/node": "*",
+  "jest-mock": "30.5.2",
+  "jest-util": "30.5.1",
+  "jest-validate": "30.5.1"
+ },
+ "devDependencies": {
+  "@jest/test-utils": "30.5.2",
+  "clsx": "^2.1.1"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-Ciz4KgTGIbojxSKpuFImgWJj5EyqfE8xMq9NxWmOXnQywHHS03H9Mv+vaCB29J5pr3JBrY27WbRV18rBdjh8Dg==",
+  "shasum": "64207d64054ccaa30d677dbd99eb95c7f1c72fa1",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIHZFVCM3V9aJlhoiREZcEkztIcAdNzBo7Zn5oOQdQuvRAiBG0ZO8XNgdyeEgysOO3ctA8FI6F9ecVVhG49BkLNprtw=="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIGJEur9JPPGpgpmR4mTvnbMNDtm8fqJhx/Yvb6nsLTjNAiA9qS78j9AOr8l6CZjbrNOR+fV9cFtquCmHkUpvBGcHtA=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/jest-environment-node/-/jest-environment-node-30.5.2.tgz",
+  "unpackedSize": 15827
+ },
+ "engines": {
+  "node": "^18.14.0 || ^20.0.0 || ^22.0.0 || >=24.0.0"
+ },
+ "exports": {
+  ".": {
+   "default": "./build/index.js",
+   "import": "./build/index.mjs",
+   "require": "./build/index.js",
+   "types": "./build/index.d.ts"
+  },
+  "./package.json": "./package.json"
+ },
+ "gitHead": "202dd8a14777c270607c2416bd5034c3c0abc984",
+ "homepage": "https://github.com/jestjs/jest#readme",
+ "license": "MIT",
+ "main": "./build/index.js",
+ "maintainers": [
+  {
+   "email": "aaron@abramov.io",
+   "name": "aaronabramov"
+  },
+  {
+   "email": "sbekkhus91@gmail.com",
+   "name": "simenb"
+  },
+  {
+   "email": "rickhanlonii@gmail.com",
+   "name": "rickhanlonii"
+  },
+  {
+   "email": "operations@openjsf.org",
+   "name": "openjs-operations"
+  },
+  {
+   "email": "christoph.pojer@gmail.com",
+   "name": "cpojer"
+  }
+ ],
+ "name": "jest-environment-node",
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "directory": "packages/jest-environment-node",
+  "type": "git",
+  "url": "git+https://github.com/jestjs/jest.git"
+ },
+ "scripts": {
+  "test": "yarn test:globals-cleanup-off && yarn test:globals-cleanup-soft && yarn test:globals-cleanup-on",
+  "test:base": "echo GLOBALS_CLEANUP=$GLOBALS_CLEANUP && yarn --cwd='../.' jest --runInBand packages/jest-environment-node/src/__tests__",
+  "test:globals-cleanup-off": "GLOBALS_CLEANUP=off yarn test:base",
+  "test:globals-cleanup-on": "GLOBALS_CLEANUP=on yarn test:base",
+  "test:globals-cleanup-soft": "GLOBALS_CLEANUP=soft yarn test:base"
+ },
+ "types": "./build/index.d.ts",
+ "version": "30.5.2"
+}

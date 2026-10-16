@@ -1,0 +1,110 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "flatted@3.4.4",
+ "_nodeVersion": "26.3.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/flatted_3.4.4_1785405190072_0.6012803725626417"
+ },
+ "_npmUser": {
+  "email": "andrea.giammarchi@gmail.com",
+  "name": "webreflection"
+ },
+ "_npmVersion": "11.16.0",
+ "author": {
+  "name": "Andrea Giammarchi"
+ },
+ "bugs": {
+  "url": "https://github.com/WebReflection/flatted/issues"
+ },
+ "description": "A super light and fast circular JSON parser.",
+ "devDependencies": {
+  "@babel/core": "^7.29.0",
+  "@babel/preset-env": "^7.29.2",
+  "@rollup/plugin-babel": "^7.0.0",
+  "@rollup/plugin-terser": "^1.0.0",
+  "@ungap/structured-clone": "^1.3.0",
+  "ascjs": "^6.0.3",
+  "c8": "^11.0.0",
+  "circular-json": "^0.5.9",
+  "circular-json-es6": "^2.0.2",
+  "flatted-view": "^0.1.6",
+  "jsan": "^3.1.14",
+  "rollup": "^4.60.1",
+  "terser": "^5.46.1",
+  "typescript": "^5.9.3"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 15,
+  "integrity": "sha512-5+ybhBZANEJxaH3X5evAFatUxLfEHSr7n6kYJ+1Qd0mUqr4eu9gIf6GDbWHf8RJijHrjjO8G+la14SlL2SeS1Q==",
+  "shasum": "aeeca2a506303f0cee61c59e6c9f2a88d2f29fc6",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQCcBoZbce/9ABYdjhIWSkGcu6ZhlDvbn6/oQyZUJdAUpgIgOuYfuX2cKzx1Uertj7eGNwNkFMfV/opIPLhJV/M9TBs="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQDvHxF6d+nnHYa7rMzlH+QMLCiMuaFSgDve+pTyldmzmQIhAMNBs9Nn2BRCXkI+O3OHABR0Z+rpWLHy68H5+froTn0Q"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/flatted/-/flatted-3.4.4.tgz",
+  "unpackedSize": 38501
+ },
+ "exports": {
+  ".": {
+   "default": "./cjs/index.js",
+   "import": "./esm/index.js",
+   "types": "./types/index.d.ts"
+  },
+  "./esm": "./esm.js",
+  "./package.json": "./package.json"
+ },
+ "gitHead": "e6f5ca700c4ca8104a6a83472c8219e267bd5e84",
+ "homepage": "https://github.com/WebReflection/flatted#readme",
+ "keywords": [
+  "circular",
+  "JSON",
+  "fast",
+  "parser",
+  "minimal"
+ ],
+ "license": "ISC",
+ "main": "./cjs/index.js",
+ "maintainers": [
+  {
+   "email": "andrea.giammarchi@gmail.com",
+   "name": "webreflection"
+  }
+ ],
+ "module": "./esm/index.js",
+ "name": "flatted",
+ "overrides": {
+  "c8": {
+   "yargs": "^18.0.0"
+  }
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/WebReflection/flatted.git"
+ },
+ "scripts": {
+  "build": "npm run cjs && npm run rollup:esm && npm run rollup:es && npm run rollup:babel && npm run min && npm run test && npm run size",
+  "cjs": "ascjs esm cjs",
+  "coverage": "mkdir -p ./coverage; c8 report --reporter=text-lcov > ./coverage/lcov.info",
+  "min": "terser index.js -c -m -o min.js",
+  "rollup:babel": "rollup --config rollup/babel.config.js && sed -i.bck 's/^var /self./' index.js && rm -rf index.js.bck",
+  "rollup:es": "rollup --config rollup/es.config.js && sed -i.bck 's/^var /self./' es.js && rm -rf es.js.bck",
+  "rollup:esm": "rollup --config rollup/esm.config.js",
+  "size": "cat index.js | wc -c;cat min.js | wc -c;gzip -c9 min.js | wc -c;cat min.js | brotli | wc -c; cat es.js | brotli | wc -c; cat esm.js | brotli | wc -c",
+  "test": "c8 node test/index.js",
+  "test:php": "php php/test.php",
+  "test:py": "python python/test.py",
+  "ts": "tsc -p ."
+ },
+ "type": "module",
+ "types": "./types/index.d.ts",
+ "unpkg": "min.js",
+ "version": "3.4.4"
+}

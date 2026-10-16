@@ -1,0 +1,70 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "istanbul-lib-source-maps@5.0.6",
+ "_nodeVersion": "14.21.3",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/istanbul-lib-source-maps_5.0.6_1719911975550_0.09621476823617714"
+ },
+ "_npmUser": {
+  "email": "bencoe+oss-bot@gmail.com",
+  "name": "oss-bot"
+ },
+ "_npmVersion": "6.14.18",
+ "author": {
+  "email": "kananthmail-github@yahoo.com",
+  "name": "Krishnan Anantheswaran"
+ },
+ "bugs": {
+  "url": "https://github.com/istanbuljs/istanbuljs/issues"
+ },
+ "dependencies": {
+  "@jridgewell/trace-mapping": "^0.3.23",
+  "debug": "^4.1.1",
+  "istanbul-lib-coverage": "^3.0.0"
+ },
+ "description": "Source maps support for istanbul",
+ "devDependencies": {
+  "chai": "^4.2.0",
+  "mocha": "^6.2.2",
+  "nyc": "^15.0.0-beta.2",
+  "ts-node": "^8.5.4"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 11,
+  "integrity": "sha512-yg2d+Em4KizZC5niWhQaIomgf5WlL4vOOjZ5xGCmF8SnPE/mDWWXgvRExdcpCgh9lLRRa1/fSYp2ymmbJ1pI+A==",
+  "shasum": "acaef948df7747c8eb5fbf1265cb980f6353a441",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEQCIHrSvSFq0TVO9EuM7sTz71gutNMxnvJLOdwE/919WU9CAiA7ubA0TscQEmHJWwDaqfpfgKEwMFYHs+yMeJ7YHx30qA=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/istanbul-lib-source-maps/-/istanbul-lib-source-maps-5.0.6.tgz",
+  "unpackedSize": 37725
+ },
+ "engines": {
+  "node": ">=10"
+ },
+ "homepage": "https://istanbul.js.org/",
+ "keywords": [
+  "istanbul",
+  "sourcemaps",
+  "sourcemap",
+  "source",
+  "maps"
+ ],
+ "license": "BSD-3-Clause",
+ "main": "index.js",
+ "name": "istanbul-lib-source-maps",
+ "repository": {
+  "directory": "packages/istanbul-lib-source-maps",
+  "type": "git",
+  "url": "git+ssh://git@github.com/istanbuljs/istanbuljs.git"
+ },
+ "scripts": {
+  "test": "nyc mocha"
+ },
+ "version": "5.0.6"
+}

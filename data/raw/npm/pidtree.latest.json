@@ -1,0 +1,130 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "pidtree@1.0.0",
+ "_nodeVersion": "24.16.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/pidtree_1.0.0_1780918954864_0.18975876824282167"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:11129aee-94d1-42be-bf83-0821e88b72b3"
+  }
+ },
+ "_npmVersion": "11.16.0",
+ "author": {
+  "email": "simonepri@outlook.com",
+  "name": "Simone Primarosa",
+  "url": "https://github.com/simonepri"
+ },
+ "bin": {
+  "pidtree": "bin/pidtree.js"
+ },
+ "bugs": {
+  "email": "simonepri@outlook.com",
+  "url": "https://github.com/simonepri/pidtree/issues"
+ },
+ "c8": {
+  "reporter": [
+   "lcov",
+   "text"
+  ]
+ },
+ "contributors": [
+  {
+   "email": "simonepri@outlook.com",
+   "name": "Simone Primarosa",
+   "url": "https://github.com/simonepri"
+  }
+ ],
+ "description": "Cross platform children list of a PID",
+ "devDependencies": {
+  "ava": "^6.4.1",
+  "c8": "^10.1.3",
+  "time-span": "^5.1.0",
+  "tree-kill": "^1.2.2",
+  "tsd": "^0.33.0",
+  "xo": "^2.0.2"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/pidtree@1.0.0"
+  },
+  "fileCount": 13,
+  "integrity": "sha512-avfAvjB9Dd0wdj3rjJX//yS+G79OO0KrS5pJHFJENjYGX6N4SMgEDBBI/yFy0lloOYSaC6XQxzpOAMPfSYFV/Q==",
+  "shasum": "55a9b149ba64519a8b46781165a122a34f4a6d31",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQCWSa1CYJFrcHddUxQCzayLuTx5EcoL1+65mnOej7DC9AIhAOSqlMHKufFjhqxh6Saf+7N4ExDnWVGvEir8Uww4X2WJ"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/pidtree/-/pidtree-1.0.0.tgz",
+  "unpackedSize": 25261
+ },
+ "engines": {
+  "node": ">=18"
+ },
+ "exports": {
+  ".": {
+   "default": "./index.js",
+   "types": "./index.d.ts"
+  }
+ },
+ "gitHead": "01f2ba126afdfd4e323e56362e5fc9d8da7d8e02",
+ "homepage": "http://github.com/simonepri/pidtree#readme",
+ "keywords": [
+  "ps-tree",
+  "ps",
+  "tree",
+  "ppid",
+  "pid",
+  "pidtree",
+  "pgrep",
+  "list",
+  "all",
+  "system",
+  "process",
+  "processes"
+ ],
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "simone.primarosa@gmail.com",
+   "name": "simonepri"
+  }
+ ],
+ "name": "pidtree",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/simonepri/pidtree.git"
+ },
+ "scripts": {
+  "bench": "ava -m \"*benchmark*\"",
+  "lint": "xo",
+  "start": "node ./bin/pidtree.js",
+  "test": "c8 ava -m \"!*benchmark*\"",
+  "types": "tsd"
+ },
+ "type": "module",
+ "types": "index.d.ts",
+ "version": "1.0.0",
+ "xo": {
+  "prettier": true,
+  "rules": {
+   "n/prefer-global/buffer": "off",
+   "n/prefer-global/process": "off",
+   "require-unicode-regexp": "off",
+   "unicorn/prefer-top-level-await": "off"
+  },
+  "space": true
+ }
+}

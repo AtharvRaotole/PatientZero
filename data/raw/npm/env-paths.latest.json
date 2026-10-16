@@ -1,0 +1,92 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "env-paths@4.0.0",
+ "_nodeVersion": "25.3.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/env-paths_4.0.0_1769264947207_0.5276079631423061"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "11.7.0",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/env-paths/issues"
+ },
+ "dependencies": {
+  "is-safe-filename": "^0.1.0"
+ },
+ "description": "Get paths for storing things like data, config, cache, etc",
+ "devDependencies": {
+  "ava": "^6.4.1",
+  "tsd": "^0.33.0",
+  "xo": "^1.2.3"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-pxP8eL2SwwaTRi/KHYwLYXinDs7gL3jxFcBYmEdYfZmZXbaVDvdppd0XBU8qVz03rDfKZMXg1omHCbsJjZrMsw==",
+  "shasum": "d0bb1f84a81d2542581bf7b7e8085d0683b39097",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQD1lm7L392zIjr3ATkLdh4DKM/DR0xlEQd7sGERx24+GQIgbZdrXbVPrCtG2BhFIsjDi/YL/MPNJHhFXbL0CTfwhZY="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/env-paths/-/env-paths-4.0.0.tgz",
+  "unpackedSize": 9557
+ },
+ "engines": {
+  "node": ">=20"
+ },
+ "exports": {
+  "default": "./index.js",
+  "types": "./index.d.ts"
+ },
+ "funding": "https://github.com/sponsors/sindresorhus",
+ "gitHead": "c3c0dd464c268a99a28feeaec54c54d0a12c4291",
+ "homepage": "https://github.com/sindresorhus/env-paths#readme",
+ "keywords": [
+  "common",
+  "user",
+  "paths",
+  "env",
+  "environment",
+  "directory",
+  "dir",
+  "appdir",
+  "path",
+  "data",
+  "config",
+  "cache",
+  "logs",
+  "temp",
+  "linux",
+  "unix"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "env-paths",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/env-paths.git"
+ },
+ "scripts": {
+  "test": "xo && ava && tsd"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "4.0.0"
+}

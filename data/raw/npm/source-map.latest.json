@@ -1,0 +1,317 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "source-map@0.8.0",
+ "_nodeVersion": "23.10.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/source-map_0.8.0_1784526325830_0.08134528563073729"
+ },
+ "_npmUser": {
+  "email": "hmanilla+npm@mozilla.com",
+  "name": "hmanilla"
+ },
+ "_npmVersion": "11.18.0",
+ "author": {
+  "email": "nfitzgerald@mozilla.com",
+  "name": "Nick Fitzgerald"
+ },
+ "browser": {
+  "./lib/read-wasm.js": "./lib/read-wasm-browser.js"
+ },
+ "bugs": {
+  "url": "https://github.com/mozilla/source-map/issues"
+ },
+ "contributors": [
+  {
+   "email": "tobias.koppers@googlemail.com",
+   "name": "Tobias Koppers"
+  },
+  {
+   "email": "duncan@dweebd.com",
+   "name": "Duncan Beevers"
+  },
+  {
+   "email": "scrane@mozilla.com",
+   "name": "Stephen Crane"
+  },
+  {
+   "email": "seddon.ryan@gmail.com",
+   "name": "Ryan Seddon"
+  },
+  {
+   "email": "miles.elam@deem.com",
+   "name": "Miles Elam"
+  },
+  {
+   "email": "mihai.bazon@gmail.com",
+   "name": "Mihai Bazon"
+  },
+  {
+   "email": "github.public.email@michael.ficarra.me",
+   "name": "Michael Ficarra"
+  },
+  {
+   "email": "todd@twolfson.com",
+   "name": "Todd Wolfson"
+  },
+  {
+   "email": "alexander@solovyov.net",
+   "name": "Alexander Solovyov"
+  },
+  {
+   "email": "fgnass@gmail.com",
+   "name": "Felix Gnass"
+  },
+  {
+   "email": "conrad.irwin@gmail.com",
+   "name": "Conrad Irwin"
+  },
+  {
+   "email": "usrbincc@yahoo.com",
+   "name": "usrbincc"
+  },
+  {
+   "email": "glasser@davidglasser.net",
+   "name": "David Glasser"
+  },
+  {
+   "email": "chase@newrelic.com",
+   "name": "Chase Douglas"
+  },
+  {
+   "email": "evan.exe@gmail.com",
+   "name": "Evan Wallace"
+  },
+  {
+   "email": "fayearthur@gmail.com",
+   "name": "Heather Arthur"
+  },
+  {
+   "email": "hughskennedy@gmail.com",
+   "name": "Hugh Kennedy"
+  },
+  {
+   "email": "glasser@davidglasser.net",
+   "name": "David Glasser"
+  },
+  {
+   "email": "simon.lydell@gmail.com",
+   "name": "Simon Lydell"
+  },
+  {
+   "email": "jellyes2@gmail.com",
+   "name": "Jmeas Smith"
+  },
+  {
+   "email": "mzgoddard@gmail.com",
+   "name": "Michael Z Goddard"
+  },
+  {
+   "email": "azu@users.noreply.github.com",
+   "name": "azu"
+  },
+  {
+   "email": "john@gozde.ca",
+   "name": "John Gozde"
+  },
+  {
+   "email": "akirkton@truefitinnovation.com",
+   "name": "Adam Kirkton"
+  },
+  {
+   "email": "christopher.montgomery@dowjones.com",
+   "name": "Chris Montgomery"
+  },
+  {
+   "email": "jryans@gmail.com",
+   "name": "J. Ryan Stinnett"
+  },
+  {
+   "email": "jherrington@walmartlabs.com",
+   "name": "Jack Herrington"
+  },
+  {
+   "email": "jeffpalentine@gmail.com",
+   "name": "Chris Truter"
+  },
+  {
+   "email": "daniel@danielespeset.com",
+   "name": "Daniel Espeset"
+  },
+  {
+   "email": "jamie.lf.wong@gmail.com",
+   "name": "Jamie Wong"
+  },
+  {
+   "email": "ejpbruel@mozilla.com",
+   "name": "Eddy Bru\u00ebl"
+  },
+  {
+   "email": "hawkrives@gmail.com",
+   "name": "Hawken Rives"
+  },
+  {
+   "email": "giladp007@gmail.com",
+   "name": "Gilad Peleg"
+  },
+  {
+   "email": "djchie.dev@gmail.com",
+   "name": "djchie"
+  },
+  {
+   "email": "garysye@gmail.com",
+   "name": "Gary Ye"
+  },
+  {
+   "email": "nicolas.lalevee@hibnet.org",
+   "name": "Nicolas Laleve\u0301e"
+  }
+ ],
+ "dependencies": {},
+ "description": "Generates and consumes source maps",
+ "devDependencies": {
+  "c8": "^7.12.0",
+  "doctoc": "^2.2.1",
+  "eslint": "^8.24.0",
+  "eslint-config-prettier": "^8.5.0",
+  "prettier": "^2.7.1"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 19,
+  "integrity": "sha512-d8EqvL+k/SOXCreS/SUzg2ciyHqBBLcN/yuRjFsbvVhHTE2pgei7oAhmPM7kWFbkX6OSMQfUq4KbkF3au9lhYQ==",
+  "shasum": "72b9006383bd9fc70d52e435c91c2d73249c60a4",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQCwavAvnkVLNwomGjCdHcmcbHTNkoL4FaTrPUHsHiO91QIgV6P2uTXSZd5kR7A3Cka3NxsYpSZhoHEA2/+TTsF2Hoo="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/source-map/-/source-map-0.8.0.tgz",
+  "unpackedSize": 185657
+ },
+ "engines": {
+  "node": ">= 12"
+ },
+ "gitHead": "ac0a1a6342dd0e50b407b1997b32784a3fbe8a67",
+ "homepage": "https://github.com/mozilla/source-map",
+ "license": "BSD-3-Clause",
+ "main": "./source-map.js",
+ "maintainers": [
+  {
+   "email": "npm-owners@mozilla.com",
+   "name": "mozilla-npm"
+  },
+  {
+   "email": "mythmon@gmail.com",
+   "name": "mythmon"
+  },
+  {
+   "email": "jkratzer@mozilla.com",
+   "name": "jkratzer"
+  },
+  {
+   "email": "factorui.npm@mozilla.com",
+   "name": "factorui.npm"
+  },
+  {
+   "email": "project-nimbus-publishing@mozilla.com",
+   "name": "project-nimbus-publishing"
+  },
+  {
+   "email": "gijskruitbosch@gmail.com",
+   "name": "gijs"
+  },
+  {
+   "email": "brizental@mozilla.com",
+   "name": "brizental"
+  },
+  {
+   "email": "aplacitelli@mozilla.com",
+   "name": "aplacitelli"
+  },
+  {
+   "email": "rhelmer@mozilla.com",
+   "name": "mozrhelmer"
+  },
+  {
+   "email": "ted@knowtheory.net",
+   "name": "knowtheory"
+  },
+  {
+   "email": "niklasbaumgardner@gmail.com",
+   "name": "nbaumgardner"
+  },
+  {
+   "email": "tigleym@gmail.com",
+   "name": "tigleym"
+  },
+  {
+   "email": "eemeli@gmail.com",
+   "name": "eemeli"
+  },
+  {
+   "email": "hmanilla+npm@mozilla.com",
+   "name": "hmanilla"
+  },
+  {
+   "email": "jdescottes+npm@mozilla.com",
+   "name": "jdescottes-mozilla-npm"
+  },
+  {
+   "email": "ahanot+npm@mozilla.com",
+   "name": "ahanot"
+  },
+  {
+   "email": "mlifshin+npm@mozilla.com",
+   "name": "mlifshin"
+  },
+  {
+   "email": "llisi+npm@mozilla.com",
+   "name": "llisi-moz"
+  },
+  {
+   "email": "jdarcangelo+npm@mozilla.com",
+   "name": "jdarcangelo-mozilla"
+  },
+  {
+   "email": "nchevobbe+npm@mozilla.com",
+   "name": "nchevobbe"
+  },
+  {
+   "email": "nfitzgerald@mozilla.com",
+   "name": "mozilla-devtools"
+  },
+  {
+   "email": "fitzgen@gmail.com",
+   "name": "nickfitzgerald"
+  },
+  {
+   "email": "loganfsmyth@gmail.com",
+   "name": "loganfsmyth"
+  },
+  {
+   "email": "ejpbruel@gmail.com",
+   "name": "ejpbruel"
+  },
+  {
+   "email": "tom@tromey.com",
+   "name": "tromey"
+  }
+ ],
+ "name": "source-map",
+ "repository": {
+  "type": "git",
+  "url": "git+ssh://git@github.com/mozilla/source-map.git"
+ },
+ "scripts": {
+  "clean": "rm -rf coverage",
+  "coverage": "c8 --reporter=text --reporter=html npm test",
+  "lint": "eslint --fix *.js lib/ test/ --ignore-pattern 'test/source-map-tests/**'",
+  "prettier": "prettier --write .",
+  "test": "git submodule update --init --recursive; node test/run-tests.js",
+  "toc": "doctoc --github --notitle README.md CONTRIBUTING.md"
+ },
+ "types": "./source-map.d.ts",
+ "version": "0.8.0"
+}

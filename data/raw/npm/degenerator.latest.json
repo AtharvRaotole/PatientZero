@@ -1,0 +1,95 @@
+{
+ "_from": "file:degenerator-7.0.1.tgz",
+ "_hasShrinkwrap": false,
+ "_id": "degenerator@7.0.1",
+ "_integrity": "sha512-ABErK0IefDSyHjlPH7WUEenIAX2rPPnrDcDM+TS3z3+zu9TfyKKi07BQM+8rmxpdE2y1v5fjjdoAS/x4D2U60w==",
+ "_nodeVersion": "20.20.2",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/degenerator_7.0.1_1775457664595_0.01656438043695152"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:9faa8b3f-d109-487e-88cb-fd86660a742e"
+  }
+ },
+ "_npmVersion": "11.12.1",
+ "_resolved": "/tmp/690fafbbd9962ba0f3da2101c90048fe/degenerator-7.0.1.tgz",
+ "author": {
+  "email": "nathan@tootallnate.net",
+  "name": "Nathan Rajlich",
+  "url": "http://n8.io/"
+ },
+ "bugs": {
+  "url": "https://github.com/TooTallNate/proxy-agents/issues"
+ },
+ "dependencies": {
+  "ast-types": "^0.13.4",
+  "escodegen": "^2.1.0",
+  "esprima": "^4.0.1"
+ },
+ "description": "Compiles sync functions into async generator functions",
+ "devDependencies": {
+  "@types/escodegen": "^0.0.7",
+  "@types/esprima": "^4.0.3",
+  "@types/node": "^22.13.0",
+  "quickjs-wasi": "^2.2.0",
+  "tsconfig": "0.0.0",
+  "typescript": "^5.1.6"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/degenerator@7.0.1"
+  },
+  "fileCount": 15,
+  "integrity": "sha512-ABErK0IefDSyHjlPH7WUEenIAX2rPPnrDcDM+TS3z3+zu9TfyKKi07BQM+8rmxpdE2y1v5fjjdoAS/x4D2U60w==",
+  "shasum": "9b057747a2e5d058b0ef8fd753faccc109957467",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQCbTGeY6+o3gfz37r1vcNpXgiu6WdS+H4pTmBCeM0h3AgIgboRJQ4CIdZnFE8FiT3haLDHkhZPyPo+pOqfpE70IwL0="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/degenerator/-/degenerator-7.0.1.tgz",
+  "unpackedSize": 27704
+ },
+ "engines": {
+  "node": ">= 20"
+ },
+ "exports": {
+  "default": "./dist/index.js",
+  "types": "./dist/index.d.ts"
+ },
+ "homepage": "https://github.com/TooTallNate/proxy-agents#readme",
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "nathan@tootallnate.net",
+   "name": "tootallnate"
+  }
+ ],
+ "name": "degenerator",
+ "peerDependencies": {
+  "quickjs-wasi": "^2.2.0"
+ },
+ "repository": {
+  "directory": "packages/degenerator",
+  "type": "git",
+  "url": "git+https://github.com/TooTallNate/proxy-agents.git"
+ },
+ "scripts": {
+  "build": "tsc",
+  "lint": "eslint . --ext .ts",
+  "pack": "node ../../scripts/pack.mjs",
+  "test": "vitest"
+ },
+ "type": "module",
+ "version": "7.0.1"
+}

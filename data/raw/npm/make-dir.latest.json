@@ -1,0 +1,98 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "make-dir@5.1.0",
+ "_nodeVersion": "20.19.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/make-dir_5.1.0_1757528675610_0.5448277798656365"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "10.9.2",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "ava": {
+  "workerThreads": false
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/make-dir/issues"
+ },
+ "description": "Make a directory and its parents if needed - Think `mkdir -p`",
+ "devDependencies": {
+  "@types/graceful-fs": "^4.1.9",
+  "@types/node": "^20.12.8",
+  "ava": "^6.1.2",
+  "graceful-fs": "^4.2.11",
+  "path-type": "^5.0.0",
+  "tempy": "^3.1.0",
+  "tsd": "^0.31.0",
+  "xo": "^0.58.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-IfpFq6UM39dUNiphpA6uDezNx/AvWyhwfICWPR3t1VspkgkMZrL+Rk1RbN1bx+aeNYwOrqGJgEgV3yotk+ZUVw==",
+  "shasum": "59b2d9acf7ffa543d14238617a697458fa8dd5c9",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIEUSyVipb3XJogBdgaKEyrq66zyo8GdMnVGbGOHezO6WAiBH89ZbCnbulyBH3WXL4Ycvll4P4AAc58c8aqa2B8HeZA=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/make-dir/-/make-dir-5.1.0.tgz",
+  "unpackedSize": 9557
+ },
+ "engines": {
+  "node": ">=18"
+ },
+ "exports": {
+  "default": "./index.js",
+  "types": "./index.d.ts"
+ },
+ "funding": "https://github.com/sponsors/sindresorhus",
+ "gitHead": "5e4210dea885f2d45a8af8839e836a14aacdbf06",
+ "homepage": "https://github.com/sindresorhus/make-dir#readme",
+ "keywords": [
+  "mkdir",
+  "mkdirp",
+  "make",
+  "directories",
+  "folders",
+  "directory",
+  "folder",
+  "path",
+  "parent",
+  "parents",
+  "intermediate",
+  "recursively",
+  "recursive",
+  "create",
+  "fs",
+  "filesystem",
+  "file-system"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "make-dir",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/make-dir.git"
+ },
+ "scripts": {
+  "test": "xo && ava && tsd"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "5.1.0"
+}

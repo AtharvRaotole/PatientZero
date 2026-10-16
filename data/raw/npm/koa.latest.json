@@ -1,0 +1,868 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "koa@3.2.1",
+ "_nodeVersion": "24.15.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/koa_3.2.1_1779348334224_0.3701655718232304"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:bdd63175-b661-40af-ae06-d2aa448ef971"
+  }
+ },
+ "_npmVersion": "11.12.1",
+ "bugs": {
+  "url": "https://github.com/koajs/koa/issues"
+ },
+ "contributors": [
+  {
+   "email": "xtx1130@gmail.com",
+   "name": "\u5c0f\u83dc"
+  },
+  {
+   "email": "aaron.heckmann+github@gmail.com",
+   "name": "Aaron Heckmann"
+  },
+  {
+   "email": "skyros@gmail.com",
+   "name": "Adam L"
+  },
+  {
+   "email": "skyros@gmail.com",
+   "name": "Adam Lau"
+  },
+  {
+   "email": "aesopwolf@users.noreply.github.com",
+   "name": "Aesop Wolf"
+  },
+  {
+   "email": "AlexeyKhristov@users.noreply.github.com",
+   "name": "AlexeyKhristov"
+  },
+  {
+   "email": "agat00@gmail.com",
+   "name": "Alexsey"
+  },
+  {
+   "email": "amit.portnoy@gmail.com",
+   "name": "Amit Portnoy"
+  },
+  {
+   "email": "anton.harniakou@gmail.com",
+   "name": "Anton Harniakou"
+  },
+  {
+   "email": "arjun453@gmail.com",
+   "name": "Arjun"
+  },
+  {
+   "email": "lealceldeiro@gmail.com",
+   "name": "Asiel Leal"
+  },
+  {
+   "email": "aavindraa@gmail.com",
+   "name": "Avindra Goolcharan"
+  },
+  {
+   "email": "bartol.k@gmail.com",
+   "name": "Bartol Karuza"
+  },
+  {
+   "email": "breinhart@groupon.com",
+   "name": "Ben Reinhart"
+  },
+  {
+   "email": "bernzs@gmail.com",
+   "name": "Bernie Stern"
+  },
+  {
+   "email": "squarejaw@bsbess.com",
+   "name": "Bryan Bess"
+  },
+  {
+   "email": "chentsulin@gmail.com",
+   "name": "C.T. Lin"
+  },
+  {
+   "email": "purepennons@users.noreply.github.com",
+   "name": "Chiahao Lin"
+  },
+  {
+   "email": "chris@ilsken.com",
+   "name": "Chris Tarquini"
+  },
+  {
+   "email": "hallas@users.noreply.github.com",
+   "name": "Christoffer Hallas"
+  },
+  {
+   "email": "clark.duxin@gmail.com",
+   "name": "Clark Du"
+  },
+  {
+   "email": "darren@cauthon.com",
+   "name": "Darren Cauthon"
+  },
+  {
+   "email": "debjeet@vxtindia.com",
+   "name": "Debjeet Biswas"
+  },
+  {
+   "email": "dmitry.mazuro@icloud.com",
+   "name": "Dmitry Mazuro"
+  },
+  {
+   "email": "doug@somethingdoug.com",
+   "name": "Douglas Christopher Wilson"
+  },
+  {
+   "email": "eivind.fjeldstad@gmail.com",
+   "name": "Eivind Fjeldstad"
+  },
+  {
+   "email": "sayaka@ekyu.moe",
+   "name": "Equim"
+  },
+  {
+   "email": "fundon@users.noreply.github.com",
+   "name": "Fangdun Cai"
+  },
+  {
+   "email": "felix.b@outlook.com",
+   "name": "Felix Becker"
+  },
+  {
+   "email": "panva.ip@gmail.com",
+   "name": "Filip Skokan"
+  },
+  {
+   "email": "franciscop@users.noreply.github.com",
+   "name": "Francisco Presencia"
+  },
+  {
+   "email": "gaosheng08@meituan.com",
+   "name": "Gao Sheng"
+  },
+  {
+   "email": "Gerhut@GMail.com",
+   "name": "George Chung"
+  },
+  {
+   "email": "gilles.de.mey@gmail.com",
+   "name": "Gilles De Mey"
+  },
+  {
+   "email": "sungg12138@163.com",
+   "name": "Grand"
+  },
+  {
+   "email": "guilherme.f.pacheco@hotmail.com",
+   "name": "Guilherme Pacheco"
+  },
+  {
+   "email": "hanhor.wu@gmail.com",
+   "name": "HanHor Wu"
+  },
+  {
+   "email": "hartley@melamed.biz",
+   "name": "Hartley Melamed"
+  },
+  {
+   "email": "hrvoje@twobucks.co",
+   "name": "Hrvoje \u0160imi\u0107"
+  },
+  {
+   "email": "hughskennedy@gmail.com",
+   "name": "Hugh Kennedy"
+  },
+  {
+   "email": "ian@ianstormtaylor.com",
+   "name": "Ian Storm Taylor"
+  },
+  {
+   "email": "iao@iki.fi",
+   "name": "Ilkka Oksanen"
+  },
+  {
+   "email": "ivan@paqmind.com",
+   "name": "Ivan Kleshnin"
+  },
+  {
+   "email": "iliyang.cn@gmail.com",
+   "name": "Ivan Lyons"
+  },
+  {
+   "email": "jacob@jacobbass.net",
+   "name": "Jacob Bass"
+  },
+  {
+   "email": "likegun94@gmail.com",
+   "name": "JamesWang"
+  },
+  {
+   "email": "buschtoens@gmail.com",
+   "name": "Jan Buscht\u00f6ns"
+  },
+  {
+   "email": "virayjancarlo@yahoo.com",
+   "name": "Jan Carlo Viray"
+  },
+  {
+   "email": "jason.macgowan@icloud.com",
+   "name": "Jason Macgowan"
+  },
+  {
+   "email": "where@jed.is",
+   "name": "Jed Schmidt"
+  },
+  {
+   "email": "jeff@procata.com",
+   "name": "Jeff Moore"
+  },
+  {
+   "email": "foxandxss@gmail.com",
+   "name": "Jesus Rodriguez"
+  },
+  {
+   "email": "Foxandxss@gmail.com",
+   "name": "Jes\u00fas Rodr\u00edguez Rodr\u00edguez"
+  },
+  {
+   "email": "liujingwei@gmail.com",
+   "name": "Jingwei \"John\" Liu"
+  },
+  {
+   "email": "bugs@bergstroem.nu",
+   "name": "Johan Bergstr\u00f6m"
+  },
+  {
+   "email": "106856363@qq.com",
+   "name": "Jonas Zhang"
+  },
+  {
+   "email": "jonathanrichardong@gmail.com",
+   "name": "Jonathan Ong"
+  },
+  {
+   "email": "me@jongleberry.com",
+   "name": "Jonathan Ong"
+  },
+  {
+   "email": "josephlin55555@gmail.com",
+   "name": "Joseph Lin"
+  },
+  {
+   "email": "julian@juliangruber.com",
+   "name": "Julian Gruber"
+  },
+  {
+   "email": "kareem.kwong@gmail.com",
+   "name": "Kareem Kwong"
+  },
+  {
+   "email": "karl.bohlmark@gmail.com",
+   "name": "Karl B\u00f6hlmark"
+  },
+  {
+   "email": "kenneth@chloi.io",
+   "name": "Kenneth Ormandy"
+  },
+  {
+   "email": "kjbekkelund@gmail.com",
+   "name": "Kim Joar Bekkelund"
+  },
+  {
+   "email": "kwyn.meagher@gmail.com",
+   "name": "Kwyn Alice Meagher"
+  },
+  {
+   "email": "susskyle@gmail.com",
+   "name": "Kyle Suss"
+  },
+  {
+   "email": "ljbousfield@gmail.com",
+   "name": "Lee Bousfield"
+  },
+  {
+   "email": "louis.descioli@gmail.com",
+   "name": "Louis DeScioli"
+  },
+  {
+   "email": "math.master.champion@gmail.com",
+   "name": "Luke Bousfield"
+  },
+  {
+   "email": "noinkling@users.noreply.github.com",
+   "name": "Malcolm"
+  },
+  {
+   "email": "me@marceli.no",
+   "name": "Marceli.no"
+  },
+  {
+   "email": "marswong618@gmail.com",
+   "name": "Mars Wong"
+  },
+  {
+   "email": "martin@iwanowski.se",
+   "name": "Martin Iwanowski"
+  },
+  {
+   "email": "me@fl0w.io",
+   "name": "Martin Iwanowski"
+  },
+  {
+   "email": "martin@iwanowski.se",
+   "name": "Martin fl0w Iwanowski"
+  },
+  {
+   "email": "matheuslazzi@gmail.com",
+   "name": "Matheus Azzi"
+  },
+  {
+   "email": "mathieu.galletessonneau@gmail.com",
+   "name": "Mathieu Gall\u00e9-Tessonneau"
+  },
+  {
+   "email": "matthew@socialtables.com",
+   "name": "Matthew Chase Whittemore"
+  },
+  {
+   "email": "mking@users.noreply.github.com",
+   "name": "Matthew King"
+  },
+  {
+   "email": "mattmuelle@gmail.com",
+   "name": "Matthew Mueller"
+  },
+  {
+   "email": "gaomdev@gmail.com",
+   "name": "Mengdi Gao"
+  },
+  {
+   "email": "mic.besace@gmail.com",
+   "name": "Micha\u00ebl Zasso"
+  },
+  {
+   "email": "m.goleb@gmail.com",
+   "name": "Micha\u0142 Go\u0142\u0119biowski-Owczarek"
+  },
+  {
+   "email": "nathan@tootallnate.net",
+   "name": "Nathan Rajlich"
+  },
+  {
+   "email": "empty@cqdr.es",
+   "name": "New Now Nohow"
+  },
+  {
+   "email": "nick@nickmccurdy.com",
+   "name": "Nick McCurdy"
+  },
+  {
+   "email": "nvartolomei@gmail.com",
+   "name": "Nicolae Vartolomei"
+  },
+  {
+   "email": "github@gdi2290.com",
+   "name": "PatrickJS"
+  },
+  {
+   "email": "thesamuraipanda@gmail.com",
+   "name": "Paul Anderson"
+  },
+  {
+   "email": "wachunei@gmail.com",
+   "name": "Pedro Pablo Aste Kompen"
+  },
+  {
+   "email": "peeyush.p97@gmail.com",
+   "name": "Peeyush Kushwaha"
+  },
+  {
+   "email": "git@phillipalexander.io",
+   "name": "Phillip Alexander"
+  },
+  {
+   "email": "ljbousfield@gmail.com",
+   "name": "PlasmaPower"
+  },
+  {
+   "email": "prayag.verma@gmail.com",
+   "name": "Prayag Verma"
+  },
+  {
+   "email": "chemzqm@gmail.com",
+   "name": "Qiming zhao"
+  },
+  {
+   "email": "remek.ambroziak@gmail.com",
+   "name": "Remek Ambroziak"
+  },
+  {
+   "email": "snowyu.lee@gmail.com",
+   "name": "Riceball LEE"
+  },
+  {
+   "email": "twitchard@users.noreply.github.com",
+   "name": "Richard Marmorstein"
+  },
+  {
+   "email": "rstacruz@users.noreply.github.com",
+   "name": "Rico Sta. Cruz"
+  },
+  {
+   "email": "robert@publicclass.se",
+   "name": "Robert Sk\u00f6ld"
+  },
+  {
+   "email": "me@robinpokorny.com",
+   "name": "Robin Pokorn\u00fd"
+  },
+  {
+   "email": "ruben@bridgewater.de",
+   "name": "Ruben Bridgewater"
+  },
+  {
+   "email": "rpm@seegno.com",
+   "name": "Rui Marinho"
+  },
+  {
+   "email": "ruipmarinho@gmail.com",
+   "name": "Rui Marinho"
+  },
+  {
+   "email": "tricknotes.rs@gmail.com",
+   "name": "Ryunosuke SATO"
+  },
+  {
+   "email": "saad@saadq.com",
+   "name": "Saad Quadri"
+  },
+  {
+   "email": "sansoto2003@yahoo.com.ar",
+   "name": "Santiago Sotomayor"
+  },
+  {
+   "email": "hcz@users.noreply.github.com",
+   "name": "Sergei Osipov"
+  },
+  {
+   "email": "shaunwarman1@gmail.com",
+   "name": "Shaun Warman"
+  },
+  {
+   "email": "958033967@qq.com",
+   "name": "Shawn Cheung"
+  },
+  {
+   "email": "xueqingxiao@gmail.com",
+   "name": "Shawn Sit"
+  },
+  {
+   "email": "slobodan@cloudhorizon.com",
+   "name": "Slobodan Stojanovic"
+  },
+  {
+   "email": "sonny@fastmail.net",
+   "name": "Sonny Piers"
+  },
+  {
+   "email": "sterlingw@qualtrics.com",
+   "name": "Sterling Williams"
+  },
+  {
+   "email": "stephane.bisinger@protonmail.com",
+   "name": "St\u00e9phane Bisinger"
+  },
+  {
+   "email": "tj@apex.sh",
+   "name": "TJ Holowaychuk"
+  },
+  {
+   "email": "tj@vision-media.ca",
+   "name": "TJ Holowaychuk"
+  },
+  {
+   "email": "taehwanno.dev@gmail.com",
+   "name": "Taehwan, No"
+  },
+  {
+   "email": "me@tejas.io",
+   "name": "Tejas Manohar"
+  },
+  {
+   "email": "teo@soygul.com",
+   "name": "Teoman Soygul"
+  },
+  {
+   "email": "lagden@gmail.com",
+   "name": "Thiago Lagden"
+  },
+  {
+   "email": "tlr@seegno.com",
+   "name": "Tiago Ribeiro"
+  },
+  {
+   "email": "tim.schaub@gmail.com",
+   "name": "Tim Schaub"
+  },
+  {
+   "email": "pretodor@gmail.com",
+   "name": "Todor Stoychev"
+  },
+  {
+   "email": "tomasruud@users.noreply.github.com",
+   "name": "Tomas Ruud"
+  },
+  {
+   "email": "tj@travisjeffery.com",
+   "name": "Travis Jeffery"
+  },
+  {
+   "email": "usmandap@gmail.com",
+   "name": "Usman Hussain"
+  },
+  {
+   "email": "veselin@veselin.bg",
+   "name": "Veselin Todorov"
+  },
+  {
+   "email": "wonderfuly@gmail.com",
+   "name": "Wang D\u00e0p\u00e9ng"
+  },
+  {
+   "email": "xdamman@gmail.com",
+   "name": "Xavier Damman"
+  },
+  {
+   "email": "geekplux@qq.com",
+   "name": "Xiang Gao"
+  },
+  {
+   "email": "yanick.rochon@gmail.com",
+   "name": "Yanick Rochon"
+  },
+  {
+   "email": "l900422@vip.qq.com",
+   "name": "Yazhong Liu"
+  },
+  {
+   "email": "yorkiefixer@gmail.com",
+   "name": "Yazhong Liu"
+  },
+  {
+   "email": "dead-horse@users.noreply.github.com",
+   "name": "Yiyu He"
+  },
+  {
+   "email": "dead_horse@qq.com",
+   "name": "Yiyu He"
+  },
+  {
+   "email": "yoshuawuyts@gmail.com",
+   "name": "Yoshua Wuyts"
+  },
+  {
+   "email": "iyuq@outlook.com",
+   "name": "Yu Qi"
+  },
+  {
+   "email": "njuyuqi@gmail.com",
+   "name": "Yu Qi"
+  },
+  {
+   "email": "zacktanner@gmail.com",
+   "name": "Zack Tanner"
+  },
+  {
+   "email": "alsotang@gmail.com",
+   "name": "alsotang"
+  },
+  {
+   "email": "bananaappletw@gmail.com",
+   "name": "bananaappletw"
+  },
+  {
+   "email": "bhanuc@iitk.ac.in",
+   "name": "bhanuc"
+  },
+  {
+   "email": "blaz@menems.net",
+   "name": "blaz"
+  },
+  {
+   "email": "broucapierre@gmail.com",
+   "name": "broucz"
+  },
+  {
+   "email": "cr1s@users.noreply.github.com",
+   "name": "d3v"
+  },
+  {
+   "email": "dead_horse@qq.com",
+   "name": "dead-horse"
+  },
+  {
+   "email": "dead_horse@qq.com",
+   "name": "dead_horse"
+  },
+  {
+   "email": "anshul@designgrill.com",
+   "name": "designgrill"
+  },
+  {
+   "email": "fengmk2@gmail.com",
+   "name": "fengmk2"
+  },
+  {
+   "email": "m@fengmk2.com",
+   "name": "fengmk2"
+  },
+  {
+   "email": "frankxin93@hotmail.com",
+   "name": "frank"
+  },
+  {
+   "email": "cfddream@gmail.com",
+   "name": "fundon"
+  },
+  {
+   "email": "eilian.yunsong@gmail.com",
+   "name": "gyson"
+  },
+  {
+   "email": "coderhaoxin@outlook.com",
+   "name": "haoxin"
+  },
+  {
+   "email": "haoxins@icloud.com",
+   "name": "haoxin"
+  },
+  {
+   "email": "iamchenxin@gmail.com",
+   "name": "iamchenxin"
+  },
+  {
+   "email": "initial-wu@outlook.com",
+   "name": "initial-wu"
+  },
+  {
+   "email": "jerome.wagner@m4x.org",
+   "name": "jeromew"
+  },
+  {
+   "email": "leanbrown@live.cn",
+   "name": "joehecn"
+  },
+  {
+   "email": "jonathanong@users.noreply.github.com",
+   "name": "jongleberry"
+  },
+  {
+   "email": "me@jongleberry.com",
+   "name": "jongleberry"
+  },
+  {
+   "email": "xxgsoftware@gmail.com",
+   "name": "llambda"
+  },
+  {
+   "email": "jake.y.scott@gmail.com",
+   "name": "mako-taco"
+  },
+  {
+   "email": "mds@xue.bi",
+   "name": "mdemo"
+  },
+  {
+   "email": "nicolas.dermine@gmail.com",
+   "name": "nicoder"
+  },
+  {
+   "email": "gxqzk@126.com",
+   "name": "nswbmw"
+  },
+  {
+   "email": "pana.wang@outlook.com",
+   "name": "pana"
+  },
+  {
+   "email": "358242939@qq.com",
+   "name": "qingming"
+  },
+  {
+   "email": "xiongsongsong@outlook.com",
+   "name": "song"
+  },
+  {
+   "email": "superchink@gmail.com",
+   "name": "superchink"
+  },
+  {
+   "email": "tmilewski@gmail.com",
+   "name": "tmilewski"
+  },
+  {
+   "email": "i@yoshuawuyts.com",
+   "name": "yoshuawuyts"
+  },
+  {
+   "email": "yoshida.keiji.84@gmail.com",
+   "name": "yosssi"
+  },
+  {
+   "email": "admin@zensh.com",
+   "name": "zensh"
+  },
+  {
+   "email": "446240525@qq.com",
+   "name": "ziyunfei"
+  },
+  {
+   "email": "sshsfl@yeah.net",
+   "name": "\u77f3\u53d1\u78ca"
+  }
+ ],
+ "dependencies": {
+  "accepts": "^1.3.8",
+  "content-disposition": "~1.0.1",
+  "content-type": "^1.0.5",
+  "cookies": "~0.9.1",
+  "delegates": "^1.0.0",
+  "destroy": "^1.2.0",
+  "encodeurl": "^2.0.0",
+  "escape-html": "^1.0.3",
+  "fresh": "~0.5.2",
+  "http-assert": "^1.5.0",
+  "http-errors": "^2.0.0",
+  "koa-compose": "^4.1.0",
+  "mime-types": "^3.0.1",
+  "on-finished": "^2.4.1",
+  "parseurl": "^1.3.3",
+  "statuses": "^2.0.1",
+  "type-is": "^2.0.1",
+  "vary": "^1.1.2"
+ },
+ "description": "Koa web app framework",
+ "devDependencies": {
+  "c8": "^10.1.3",
+  "gen-esm-wrapper": "^1.1.3",
+  "snazzy": "^9.0.0",
+  "standard": "^17.1.2",
+  "supertest": "^7.1.1"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/koa@3.2.1"
+  },
+  "fileCount": 11,
+  "integrity": "sha512-e7IpWJrnanNUroVK2taAgMxoEZvHLXdQiNjeExSu/DEIWm83jaKGBgb7tLmu2rMYpA027qFB3iLR/k3AVpFRnA==",
+  "shasum": "c99b0c17469418ad5672d3f5832a5610cd6500e4",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDi0pjcNHTxfSjdPEcaL3VudUJPm0Im98w1YSW+/SFLrgIgcgl5++99JY5kYxDj/T4I3G3p8zAO7ytr3quUyY9dB2w="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/koa/-/koa-3.2.1.tgz",
+  "unpackedSize": 65032
+ },
+ "engines": {
+  "node": ">= 18"
+ },
+ "exports": {
+  ".": {
+   "default": "./dist/koa.mjs",
+   "import": "./dist/koa.mjs",
+   "require": "./lib/application.js"
+  },
+  "./*": "./*.js",
+  "./*.js": "./*.js",
+  "./package": "./package.json",
+  "./package.json": "./package.json"
+ },
+ "gitHead": "6984592d41946ed746f15afcb05554e073f64dad",
+ "homepage": "https://koajs.com",
+ "keywords": [
+  "web",
+  "app",
+  "http",
+  "application",
+  "framework",
+  "middleware",
+  "rack"
+ ],
+ "license": "MIT",
+ "main": "lib/application.js",
+ "maintainers": [
+  {
+   "email": "niftylettuce@gmail.com",
+   "name": "niftylettuce"
+  },
+  {
+   "email": "fengmk2@gmail.com",
+   "name": "fengmk2"
+  },
+  {
+   "email": "dead_horse@qq.com",
+   "name": "dead_horse"
+  },
+  {
+   "email": "jonathanrichardong@gmail.com",
+   "name": "jongleberry"
+  },
+  {
+   "email": "julian@juliangruber.com",
+   "name": "juliangruber"
+  },
+  {
+   "email": "aaron.heckmann+github@gmail.com",
+   "name": "aaron"
+  },
+  {
+   "email": "npm@titanism.com",
+   "name": "titanism"
+  },
+  {
+   "email": "imed_jebari@hotmail.fr",
+   "name": "3imed-jaberi"
+  },
+  {
+   "email": "ljharb@gmail.com",
+   "name": "ljharb"
+  },
+  {
+   "email": "haoxinst@gmail.com",
+   "name": "coderhaoxin"
+  },
+  {
+   "email": "tj@vision-media.ca",
+   "name": "tjholowaychuk"
+  }
+ ],
+ "name": "koa",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/koajs/koa.git"
+ },
+ "scripts": {
+  "authors": "git log --format='%aN <%aE>' | sort -u > AUTHORS",
+  "build": "gen-esm-wrapper . ./dist/koa.mjs",
+  "lint": "standard",
+  "lint:fix": "standard --fix",
+  "lint:pretty": "standard | snazzy",
+  "prepare": "npm run build",
+  "test": "node --test",
+  "test:coverage": "c8 --reporter=lcov --reporter=text-summary node --test"
+ },
+ "version": "3.2.1"
+}

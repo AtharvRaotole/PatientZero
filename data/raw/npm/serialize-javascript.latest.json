@@ -1,0 +1,91 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "serialize-javascript@7.1.2",
+ "_nodeVersion": "24.20.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/serialize-javascript_7.1.2_1790178751438_0.8468807405329264"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:56d1949c-2e63-4e52-81c0-f17b57228c0f"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "author": {
+  "email": "edf@ericf.me",
+  "name": "Eric Ferraiuolo"
+ },
+ "bugs": {
+  "url": "https://github.com/yahoo/serialize-javascript/issues"
+ },
+ "description": "Serialize JavaScript to a superset of JSON that includes regular expressions and functions.",
+ "devDependencies": {
+  "benchmark": "^2.1.4"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/serialize-javascript@7.1.2"
+  },
+  "fileCount": 4,
+  "integrity": "sha512-GL2BWwVa6JydKO6l/ljVgjAZF4QJ3S7dWDWi53s5GZT8PJzD2fNxi67HANQGKAqPrwEpL5ba7gUBGi0Ls/sEoQ==",
+  "shasum": "0161010a0815dd7b7e011cbc5a3644850b8c2289",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIA6S303zwqAV+YyT7K2nIY7IAoL960Jro37UL3g1JHIUAiArFEFLdWncn5E9fYaN5OkB+N14fB/EwDKeZuQyWo14Ng=="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIEi2ZmNrPSWY45YC3GERjijsNbeiffKhq1NnEPHGxKTqAiAGKo0s97/DpkFGmKCeL8G9JxaYaCvkPg1aTq7+C/T/fg=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/serialize-javascript/-/serialize-javascript-7.1.2.tgz",
+  "unpackedSize": 23542
+ },
+ "engines": {
+  "node": ">=20.0.0"
+ },
+ "gitHead": "6a73fa1ddcbe4bbee8bfb12fc1ad8c086cb1334b",
+ "homepage": "https://github.com/yahoo/serialize-javascript",
+ "keywords": [
+  "serialize",
+  "serialization",
+  "javascript",
+  "js",
+  "json"
+ ],
+ "license": "BSD-3-Clause",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "okuryu@okuryu.com",
+   "name": "okuryu"
+  },
+  {
+   "email": "eferraiuolo@gmail.com",
+   "name": "ericf"
+  },
+  {
+   "email": "seth@bertalotto.net",
+   "name": "redonkulus"
+  }
+ ],
+ "name": "serialize-javascript",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/yahoo/serialize-javascript.git"
+ },
+ "scripts": {
+  "benchmark": "node -v && node test/benchmark/serialize.js",
+  "test": "node --test test/unit/*.js"
+ },
+ "version": "7.1.2"
+}

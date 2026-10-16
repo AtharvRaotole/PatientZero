@@ -1,0 +1,115 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "minimatch@10.2.6",
+ "_nodeVersion": "26.5.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/minimatch_10.2.6_1785178809367_0.5819828142818"
+ },
+ "_npmUser": {
+  "email": "i@izs.me",
+  "name": "isaacs"
+ },
+ "_npmVersion": "11.17.0",
+ "author": {
+  "email": "i@izs.me",
+  "name": "Isaac Z. Schlueter",
+  "url": "http://blog.izs.me"
+ },
+ "bugs": {
+  "url": "https://github.com/isaacs/minimatch/issues"
+ },
+ "dependencies": {
+  "brace-expansion": "^5.0.8"
+ },
+ "description": "a glob matcher in javascript",
+ "devDependencies": {
+  "@types/node": "^26.1.2",
+  "mkdirp": "^3.0.1",
+  "oxlint": "^1.76.0",
+  "oxlint-tsgolint": "^7.0.2001",
+  "prettier": "^3.9.6",
+  "tap": "^21.7.5",
+  "tshy": "^4.1.3",
+  "typedoc": "^0.28.20"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 53,
+  "integrity": "sha512-vpLQEs+VLCr1nU0BXS07maYoFwlDAH0gngQuuttxIwutDFEMHq2blX+8vpgxDdK3J1PwjCJiep77OitTZ4Ll1A==",
+  "shasum": "fd956bbe0b77241e9f15ac5dccb1c638060968ef",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQDLegvdEjBRh1U1nDKkfh4BzwQz166O6MJMgYwImofKYAIhAIOZCIrS3n41sqBbTqWzE9xT7zS0ViICJO5QAHrKtEUw"
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDP7WdDO/71coBXkjGtERJGHnRsczabTsOPQqfMzzwhhQIgeAbHT9TWRID3gwOZwgiDnon8eEFMO9ytSJnU6tD8pic="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/minimatch/-/minimatch-10.2.6.tgz",
+  "unpackedSize": 536122
+ },
+ "engines": {
+  "node": "18 || 20 || >=22"
+ },
+ "exports": {
+  ".": {
+   "import": {
+    "default": "./dist/esm/index.js",
+    "types": "./dist/esm/index.d.ts"
+   },
+   "require": {
+    "default": "./dist/commonjs/index.js",
+    "types": "./dist/commonjs/index.d.ts"
+   }
+  },
+  "./package.json": "./package.json"
+ },
+ "funding": {
+  "url": "https://github.com/sponsors/isaacs"
+ },
+ "gitHead": "ded1bbd01beca62a5978bc1650ed0a1ccf9039d5",
+ "homepage": "https://github.com/isaacs/minimatch#readme",
+ "license": "BlueOak-1.0.0",
+ "main": "./dist/commonjs/index.js",
+ "maintainers": [
+  {
+   "email": "i@izs.me",
+   "name": "isaacs"
+  }
+ ],
+ "module": "./dist/esm/index.js",
+ "name": "minimatch",
+ "repository": {
+  "type": "git",
+  "url": "git+ssh://git@github.com/isaacs/minimatch.git"
+ },
+ "scripts": {
+  "benchmark": "node benchmark/index.js",
+  "format": "prettier --write .",
+  "lint": "oxlint --fix src test",
+  "postlint": "npm run format",
+  "postsnap": "npm run lint",
+  "postversion": "npm publish",
+  "prepare": "tshy",
+  "prepublishOnly": "git push origin --follow-tags",
+  "presnap": "npm run prepare",
+  "pretest": "npm run prepare",
+  "preversion": "npm test",
+  "snap": "tap",
+  "test": "tap",
+  "typedoc": "typedoc --tsconfig .tshy/esm.json ./src/*.ts"
+ },
+ "tshy": {
+  "exports": {
+   ".": "./src/index.ts",
+   "./package.json": "./package.json"
+  },
+  "selfLink": false
+ },
+ "type": "module",
+ "types": "./dist/commonjs/index.d.ts",
+ "version": "10.2.6"
+}

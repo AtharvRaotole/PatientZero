@@ -1,0 +1,111 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "environment@1.1.0",
+ "_nodeVersion": "20.12.2",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/environment_1.1.0_1715670140211_0.5873498122088465"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "10.6.0",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/environment/issues"
+ },
+ "description": "Check which JavaScript environment your code is running in at runtime: browser, Node.js, Bun, etc",
+ "devDependencies": {
+  "ava": "^6.1.3",
+  "typescript": "^5.4.5",
+  "xo": "^0.58.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-xUtoPkMggbz0MPyPiIWr1Kp4aeWJjDZ6SMvURhimjdZgsRuDplF5/s9hcgGhyXMhs+6vpnuoiZ2kFiu3FMnS8Q==",
+  "shasum": "8e86c66b180f363c7ab311787e0259665f45a9f1",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEQCIFrPsHw0o0V4xoRvNXpGPmeWQFX4LK19K8l/sQccNf8PAiAymt3rS9nco+H3kd6pYpZaGoCOddzhmRB8J8b7vIV7FQ=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/environment/-/environment-1.1.0.tgz",
+  "unpackedSize": 8889
+ },
+ "engines": {
+  "node": ">=18"
+ },
+ "exports": {
+  "default": "./index.js",
+  "types": "./index.d.ts"
+ },
+ "funding": "https://github.com/sponsors/sindresorhus",
+ "gitHead": "102e1c7e34f9d77791d323bed8c5ff79c71b1348",
+ "homepage": "https://github.com/sindresorhus/environment#readme",
+ "keywords": [
+  "runtime",
+  "environment",
+  "env",
+  "execution",
+  "engine",
+  "platform",
+  "context",
+  "js",
+  "javascript",
+  "is",
+  "check",
+  "checking",
+  "detect",
+  "detection",
+  "browser",
+  "node",
+  "bun",
+  "deno",
+  "electron",
+  "jsdom",
+  "webworker",
+  "worker",
+  "serviceworker",
+  "macos",
+  "ios",
+  "iphone",
+  "ipad",
+  "windows",
+  "linux",
+  "android",
+  "os",
+  "operating",
+  "system"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "environment",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/environment.git"
+ },
+ "scripts": {
+  "test": "xo && ava && tsc index.d.ts"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "1.1.0",
+ "xo": {
+  "rules": {
+   "n/prefer-global/process": "off"
+  }
+ }
+}

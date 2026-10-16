@@ -1,0 +1,109 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "get-east-asian-width@1.7.0",
+ "_nodeVersion": "22.23.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/get-east-asian-width_1.7.0_1789621469774_0.34121834277161467"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "12.0.1",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/get-east-asian-width/issues"
+ },
+ "description": "Determine the East Asian Width of a Unicode character",
+ "devDependencies": {
+  "ava": "^5.3.1",
+  "outdent": "^0.8.0",
+  "simplify-ranges": "^0.1.0",
+  "typescript": "^5.2.2",
+  "xo": "^0.56.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 8,
+  "integrity": "sha512-XjH1AECxf0giL2V1aU8vKyRR2ppRUb5c0EvT7zuJTokQ74bNo52zOtghqdWIqrhUD79fo3x0WfKZdOqxF6LG1Q==",
+  "shasum": "7ee99f0bd5ab7c622002deeabba232923726d1d4",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDvVD4IwTSuzX9JgEQZF/djV6aJMKUP7QehbtP/5H68nQIgaud5M0vB+UNrBrxsKiM00mD5LpOHQUZv6LP9Jl0d26U="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIAmoz45pbV2cfk7uU8aE/uqHC4Xmzo7q3rDpYZ7V1Sb1AiEA2V0uKcJrTDfhjfLgteEV187Rtti4zvxPY69q/H+w4tQ="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/get-east-asian-width/-/get-east-asian-width-1.7.0.tgz",
+  "unpackedSize": 14724
+ },
+ "engines": {
+  "node": ">=18"
+ },
+ "exports": {
+  "default": "./index.js",
+  "types": "./index.d.ts"
+ },
+ "funding": "https://github.com/sponsors/sindresorhus",
+ "gitHead": "4d326374582406bdd9b430f992423a8c63dbadda",
+ "homepage": "https://github.com/sindresorhus/get-east-asian-width#readme",
+ "keywords": [
+  "unicode",
+  "east-asian-width",
+  "eastasianwidth",
+  "character",
+  "string",
+  "width",
+  "text",
+  "layout",
+  "alignment",
+  "fullwidth",
+  "halfwidth",
+  "ambiguous",
+  "narrow",
+  "wide",
+  "neutral",
+  "typography",
+  "japanese",
+  "chinese",
+  "korean",
+  "codepoint",
+  "text-processing",
+  "i18n",
+  "l10n"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "get-east-asian-width",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/get-east-asian-width.git"
+ },
+ "scripts": {
+  "build": "node scripts/build.js",
+  "prepublish": "npm run build",
+  "test": "xo && ava && tsc index.d.ts"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "1.7.0",
+ "xo": {
+  "ignores": [
+   "lookup-data.js"
+  ]
+ }
+}

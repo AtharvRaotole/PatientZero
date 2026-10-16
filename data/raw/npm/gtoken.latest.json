@@ -1,0 +1,143 @@
+{
+ "_from": "file:gtoken-8.0.0.tgz",
+ "_hasShrinkwrap": false,
+ "_id": "gtoken@8.0.0",
+ "_integrity": "sha512-+CqsMbHPiSTdtSO14O51eMNlrp9N79gmeqmXeouJOhfucAedHw9noVe/n5uJk3tbKE6a+6ZCQg3RPhVhHByAIw==",
+ "_nodeVersion": "18.20.3",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/gtoken_8.0.0_1749587339929_0.015637123124380814"
+ },
+ "_npmUser": {
+  "email": "node-team-npm+wombot@google.com",
+  "name": "google-wombot"
+ },
+ "_npmVersion": "10.7.0",
+ "_resolved": "/b/f/w/src/git/build-dir/gtoken-8.0.0.tgz",
+ "author": {
+  "name": "Google, LLC"
+ },
+ "bugs": {
+  "url": "https://github.com/google/node-gtoken/issues"
+ },
+ "dependencies": {
+  "gaxios": "^7.0.0",
+  "jws": "^4.0.0"
+ },
+ "description": "Node.js Google Authentication Service Account Tokens",
+ "devDependencies": {
+  "@babel/cli": "^7.23.0",
+  "@babel/core": "^7.23.0",
+  "@babel/plugin-proposal-private-methods": "^7.18.6",
+  "@babel/preset-env": "^7.22.20",
+  "@babel/preset-typescript": "^7.23.0",
+  "@types/jws": "^3.2.10",
+  "@types/mocha": "^10.0.9",
+  "@types/node": "^22.9.0",
+  "babel-plugin-replace-import-extension": "^1.1.4",
+  "c8": "^10.1.2",
+  "esmock": "^2.6.9",
+  "gapic-tools": "^0.4.6",
+  "gts": "^6.0.2",
+  "jsdoc": "^4.0.4",
+  "jsdoc-fresh": "^4.0.0",
+  "jsdoc-region-tag": "^3.0.0",
+  "linkinator": "^6.1.2",
+  "mocha": "^10.8.2",
+  "nock": "^14.0.0",
+  "pack-n-play": "^2.1.0",
+  "pdfmake": "^0.2.15",
+  "proxyquire": "^2.1.3",
+  "typescript": "^5.6.3"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 7,
+  "integrity": "sha512-+CqsMbHPiSTdtSO14O51eMNlrp9N79gmeqmXeouJOhfucAedHw9noVe/n5uJk3tbKE6a+6ZCQg3RPhVhHByAIw==",
+  "shasum": "d67a0e346dd441bfb54ad14040ddc3b632886575",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQCMS+5peHz8R/4aWRPwSRS+YkFQttqRZQr7d5OEX9NqZQIhAIVSDAI9BBEBrGinJuTdehKwrKe4yFTOPndzYqH/98ff"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/gtoken/-/gtoken-8.0.0.tgz",
+  "unpackedSize": 48079
+ },
+ "engines": {
+  "node": ">=18"
+ },
+ "exports": {
+  ".": {
+   "import": {
+    "default": "./build/esm/src/index.js",
+    "types": "./build/esm/src/index.d.ts"
+   },
+   "require": {
+    "default": "./build/cjs/src/index.cjs",
+    "types": "./build/cjs/src/index.d.ts"
+   }
+  }
+ },
+ "homepage": "https://github.com/google/node-gtoken#readme",
+ "keywords": [
+  "google",
+  "service",
+  "account",
+  "api",
+  "token",
+  "api",
+  "auth"
+ ],
+ "license": "MIT",
+ "main": "./build/cjs/src/index.cjs",
+ "maintainers": [
+  {
+   "email": "ofrobots@google.com",
+   "name": "ofrobots"
+  },
+  {
+   "email": "node-team-npm@google.com",
+   "name": "google-node-team"
+  },
+  {
+   "email": "soldair@gmail.com",
+   "name": "soldair"
+  },
+  {
+   "email": "node-team-npm+wombot@google.com",
+   "name": "google-wombot"
+  }
+ ],
+ "name": "gtoken",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/google/node-gtoken.git"
+ },
+ "scripts": {
+  "babel": "babel esm --out-dir build/cjs --ignore \"esm/**/*.d.ts\" --extensions \".ts\" --out-file-extension .cjs --copy-files",
+  "clean": "rm -rf build",
+  "compile": "npm run compile:esm && npm run compile:cjs",
+  "compile:cjs": "tsc -p ./tsconfig.json && npm run babel",
+  "compile:esm": "tsc -p ./tsconfig.esm.json",
+  "docs": "jsdoc -c .jsdoc.json",
+  "fix": "gts fix",
+  "lint": "gts check",
+  "precompile": "rm -rf build",
+  "predocs-test": "npm run docs",
+  "prelint": "cd samples; npm link ../; npm install",
+  "prepare": "npm run compile",
+  "presystem-test": "npm run compile",
+  "pretest": "npm run compile",
+  "samples-test": "cd samples/ && npm link ../ && npm test && cd ../",
+  "system-test": "npm run system-test:esm && npm run system-test:cjs",
+  "system-test:cjs": "mocha build/cjs/system-test --timeout 600000",
+  "system-test:esm": "mocha build/esm/system-test --timeout 600000 --experimental-modules",
+  "test": "npm run test:esm && npm run test:cjs",
+  "test:cjs": "c8 mocha --timeout=5000 build/cjs/test",
+  "test:esm": "c8 mocha build/esm/test --loader=esmock"
+ },
+ "type": "module",
+ "types": "./build/cjs/src/index.d.ts",
+ "version": "8.0.0"
+}

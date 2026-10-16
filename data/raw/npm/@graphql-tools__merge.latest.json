@@ -1,0 +1,131 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@graphql-tools/merge@9.2.8",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/merge_9.2.8_1792071071739_0.11798255125166701"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "fce132b9-c831-4bba-9ab5-d6999c2fb7b2"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "author": {
+  "email": "dotansimha@gmail.com",
+  "name": "Dotan Simha"
+ },
+ "bugs": {
+  "url": "https://github.com/ardatan/graphql-tools/issues"
+ },
+ "dependencies": {
+  "@graphql-tools/utils": "^12.1.0",
+  "tslib": "^2.4.0"
+ },
+ "description": "A set of utils for faster development of GraphQL tools",
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@graphql-tools%2fmerge@9.2.8"
+  },
+  "fileCount": 83,
+  "integrity": "sha512-OsCEmJ9RIMT4LB/1jBbyKHe7pMIlfGhLAQ0FVNaZqteydDUC+rTI9wZ+yaKqxQpPOFFycD+UtMhovg19lPq92Q==",
+  "shasum": "110b2d5ae2bc7fe13ecc7ae3e4cafe365e45ed46",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDsMhF/5tbX1pp4jz3d78KESfxNvTIfy2BJQ3VAzHgzLgIgA7k1dmqPF/UcRsLWp9crSInfA232HXgqGnMR77lTcPw="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIC8/ZXTdeLwJkJqbi4yHANRTTnJNoislJFqWdY0ZlXQlAiEAxIB73VgyngvhLEwWi9xZWtzu1HOXpkJRrsdM/epesEI="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@graphql-tools/merge/-/merge-9.2.8.tgz",
+  "unpackedSize": 121985
+ },
+ "engines": {
+  "node": ">=16.0.0"
+ },
+ "exports": {
+  ".": {
+   "default": {
+    "default": "./esm/index.js",
+    "types": "./typings/index.d.ts"
+   },
+   "import": {
+    "default": "./esm/index.js",
+    "types": "./typings/index.d.ts"
+   },
+   "require": {
+    "default": "./cjs/index.js",
+    "types": "./typings/index.d.cts"
+   }
+  },
+  "./*": {
+   "default": {
+    "default": "./esm/*.js",
+    "types": "./typings/*.d.ts"
+   },
+   "import": {
+    "default": "./esm/*.js",
+    "types": "./typings/*.d.ts"
+   },
+   "require": {
+    "default": "./cjs/*.js",
+    "types": "./typings/*.d.cts"
+   }
+  },
+  "./package.json": "./package.json"
+ },
+ "gitHead": "36342333e3244572a8b94fa26fd0e57344b661bc",
+ "homepage": "https://github.com/ardatan/graphql-tools#readme",
+ "license": "MIT",
+ "main": "cjs/index.js",
+ "maintainers": [
+  {
+   "email": "dotan@the-guild.dev",
+   "name": "dotansimha"
+  },
+  {
+   "email": "uri.goldshtein@gmail.com",
+   "name": "urigo"
+  },
+  {
+   "email": "ardatanrikulu@gmail.com",
+   "name": "ardatan"
+  },
+  {
+   "email": "badurinadenis@gmail.com",
+   "name": "enisdenjo"
+  },
+  {
+   "email": "bot@the-guild.dev",
+   "name": "theguild-bot"
+  }
+ ],
+ "module": "esm/index.js",
+ "name": "@graphql-tools/merge",
+ "peerDependencies": {
+  "graphql": "^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0"
+ },
+ "repository": {
+  "directory": "packages/merge",
+  "type": "git",
+  "url": "git+https://github.com/ardatan/graphql-tools.git"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "typescript": {
+  "definition": "typings/index.d.ts"
+ },
+ "typings": "typings/index.d.ts",
+ "version": "9.2.8"
+}

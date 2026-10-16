@@ -1,0 +1,97 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@babel/helper-compilation-targets@8.0.7",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/helper-compilation-targets_8.0.7_1791367225733_0.6418294859875942"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "6d868299-a0c3-4912-aec9-6326b5a29548"
+  }
+ },
+ "author": "The Babel Team (https://babel.dev/team)",
+ "dependencies": {
+  "@babel/compat-data": "^8.0.5",
+  "@babel/helper-validator-option": "^8.0.0",
+  "browserslist": "^4.24.0",
+  "flru": "1.0.2",
+  "verkit": "^0.5.0"
+ },
+ "description": "Helper functions on Babel compilation targets",
+ "devDependencies": {
+  "@babel/helper-plugin-test-runner": "^8.0.0"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@babel%2fhelper-compilation-targets@8.0.7"
+  },
+  "fileCount": 5,
+  "integrity": "sha512-ilAZCdOOlOVA7dQbaFNw2f/59p6GW33NxTopc3DvEE3efp3ZXTrGX/yZScaKw8/vd9bq31Ag0EcXiLw32bAgJg==",
+  "shasum": "7ece9e53952af8f769e15ecabc8b899cb017f745",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQCSMy/5+5+YPXOhaZ2HYIjNssR3VPDL3mdeoqrtMmzBagIgGkUuwVLJavCZQToT+swHC7LYI8eU8xzsvCNiMvIEBsk="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQCZD5MSblnqAThqr+d8fDtfy1+dC2phmaA+sBkjP7DqmAIhAOmnGWU6MFmXpQ2QPlUQ3f/tfaSvn2RvYurwocodiG15"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@babel/helper-compilation-targets/-/helper-compilation-targets-8.0.7.tgz",
+  "unpackedSize": 16582
+ },
+ "engines": {
+  "node": "^22.18.0 || >=24.11.0"
+ },
+ "exports": {
+  ".": {
+   "default": "./lib/index.js",
+   "types": "./lib/index.d.ts"
+  },
+  "./package.json": "./package.json"
+ },
+ "keywords": [
+  "babel",
+  "babel-plugin"
+ ],
+ "license": "MIT",
+ "main": "./lib/index.js",
+ "maintainers": [
+  {
+   "email": "hi@henryzoo.com",
+   "name": "hzoo"
+  },
+  {
+   "email": "bng412@gmail.com",
+   "name": "existentialism"
+  },
+  {
+   "email": "hello+npm@nicr.dev",
+   "name": "nicolo-ribaudo"
+  },
+  {
+   "email": "jlhwung@gmail.com",
+   "name": "jlhwung"
+  }
+ ],
+ "name": "@babel/helper-compilation-targets",
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "directory": "packages/babel-helper-compilation-targets",
+  "type": "git",
+  "url": "https://github.com/babel/babel.git"
+ },
+ "type": "module",
+ "version": "8.0.7"
+}

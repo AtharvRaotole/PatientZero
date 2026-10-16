@@ -1,0 +1,119 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "isexe@4.0.0",
+ "_nodeVersion": "24.4.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/isexe_4.0.0_1770654482717_0.6803795249710778"
+ },
+ "_npmUser": {
+  "email": "i@izs.me",
+  "name": "isaacs"
+ },
+ "_npmVersion": "11.9.0",
+ "author": {
+  "email": "i@izs.me",
+  "name": "Isaac Z. Schlueter",
+  "url": "http://blog.izs.me/"
+ },
+ "bugs": {
+  "url": "https://github.com/isaacs/isexe/issues"
+ },
+ "description": "Minimal module to check if a file is executable.",
+ "devDependencies": {
+  "@types/node": "^25.2.1",
+  "esbuild": "^0.27.3",
+  "prettier": "^3.8.1",
+  "tap": "^21.5.1",
+  "tshy": "^3.1.3",
+  "typedoc": "^0.28.16"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 41,
+  "integrity": "sha512-FFUtZMpoZ8RqHS3XeXEmHWLA4thH+ZxCv2lOiPIn1Xc7CxrqhWzNSDzD+/chS/zbYezmiwWLdQC09JdQKmthOw==",
+  "shasum": "48f6576af8e87a18feb796b7ed5e2e5903b43dca",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIAJ2SLZJf2Z68KuaF686MERYNpjzTg67MR0hbGb5OI8NAiAyrfHm8HDGMK8/7dPLBo8L5qMxQCbQzrzPTe3jjaSVRg=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/isexe/-/isexe-4.0.0.tgz",
+  "unpackedSize": 64013
+ },
+ "engines": {
+  "node": ">=20"
+ },
+ "exports": {
+  ".": {
+   "import": {
+    "default": "./dist/esm/index.min.js",
+    "types": "./dist/esm/index.d.ts"
+   },
+   "require": {
+    "default": "./dist/commonjs/index.min.js",
+    "types": "./dist/commonjs/index.d.ts"
+   }
+  },
+  "./package.json": "./package.json",
+  "./raw": {
+   "import": {
+    "default": "./dist/esm/index.js",
+    "types": "./dist/esm/index.d.ts"
+   },
+   "require": {
+    "default": "./dist/commonjs/index.js",
+    "types": "./dist/commonjs/index.d.ts"
+   }
+  }
+ },
+ "gitHead": "2e7df7dabc4f68e88cf6b32b9029225ba52c6b0c",
+ "homepage": "https://github.com/isaacs/isexe#readme",
+ "license": "BlueOak-1.0.0",
+ "main": "./dist/commonjs/index.min.js",
+ "maintainers": [
+  {
+   "email": "i@izs.me",
+   "name": "isaacs"
+  }
+ ],
+ "module": "./dist/esm/index.min.js",
+ "name": "isexe",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/isaacs/isexe.git"
+ },
+ "scripts": {
+  "format": "prettier --write .",
+  "postversion": "npm publish",
+  "prepare": "tshy && bash build.sh",
+  "prepublishOnly": "git push origin --follow-tags",
+  "presnap": "npm run prepare",
+  "pretest": "npm run prepare",
+  "preversion": "npm test",
+  "snap": "tap",
+  "test": "tap",
+  "typedoc": "typedoc"
+ },
+ "tshy": {
+  "exports": {
+   ".": {
+    "import": {
+     "default": "./dist/esm/index.min.js",
+     "types": "./dist/esm/index.d.ts"
+    },
+    "require": {
+     "default": "./dist/commonjs/index.min.js",
+     "types": "./dist/commonjs/index.d.ts"
+    }
+   },
+   "./package.json": "./package.json",
+   "./raw": "./src/index.ts"
+  },
+  "selfLink": false
+ },
+ "type": "module",
+ "types": "./dist/commonjs/index.d.ts",
+ "version": "4.0.0"
+}

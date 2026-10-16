@@ -1,0 +1,263 @@
+{
+ "_from": "file:victory-vendor-37.3.6.tgz",
+ "_hasShrinkwrap": false,
+ "_id": "victory-vendor@37.3.6",
+ "_integrity": "sha512-SbPDPdDBYp+5MJHhBCAyI7wKM3d5ivekigc2Dk2s7pgbZ9wIgIBYGVw4zGHBml/qTFbexrofXW6Gu4noGxrOwQ==",
+ "_nodeVersion": "18.20.5",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/victory-vendor_37.3.6_1736875311306_0.34578305715633095"
+ },
+ "_npmUser": {
+  "email": "npm@formidablelabs.com",
+  "name": "formidablelabs"
+ },
+ "_npmVersion": "10.8.2",
+ "_resolved": "/tmp/2dde803d638d11460b97c6527fa6da58/victory-vendor-37.3.6.tgz",
+ "author": {
+  "name": "Formidable"
+ },
+ "bugs": {
+  "url": "https://github.com/FormidableLabs/victory/issues"
+ },
+ "dependencies": {
+  "@types/d3-array": "^3.0.3",
+  "@types/d3-ease": "^3.0.0",
+  "@types/d3-interpolate": "^3.0.1",
+  "@types/d3-scale": "^4.0.2",
+  "@types/d3-shape": "^3.1.0",
+  "@types/d3-time": "^3.0.0",
+  "@types/d3-timer": "^3.0.0",
+  "d3-array": "^3.1.6",
+  "d3-ease": "^3.0.1",
+  "d3-interpolate": "^3.0.1",
+  "d3-scale": "^4.0.2",
+  "d3-shape": "^3.1.0",
+  "d3-time": "^3.0.0",
+  "d3-timer": "^3.0.1"
+ },
+ "description": "Vendored dependencies for Victory",
+ "devDependencies": {
+  "d3-color": "^3.1.0",
+  "d3-format": "^3.1.0",
+  "d3-path": "^3.0.1",
+  "d3-time-format": "^4.1.0",
+  "d3-voronoi": "^1.1.4",
+  "execa": "^6.1.0",
+  "internmap": "^2.0.3",
+  "rimraf": "^3.0.2"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/victory-vendor@37.3.6"
+  },
+  "fileCount": 299,
+  "integrity": "sha512-SbPDPdDBYp+5MJHhBCAyI7wKM3d5ivekigc2Dk2s7pgbZ9wIgIBYGVw4zGHBml/qTFbexrofXW6Gu4noGxrOwQ==",
+  "shasum": "401ac4b029a0b3d33e0cba8e8a1d765c487254da",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEYCIQD6RYX12bJaX3eD+w787kRKxgEqfxhIDa2+GfLAmoqX6gIhAMUziETNjWVlyO6ibirlr+i5qIVJb8kQrVXNzioFwEHn"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/victory-vendor/-/victory-vendor-37.3.6.tgz",
+  "unpackedSize": 392943
+ },
+ "exports": {
+  "./d3-*": {
+   "default": "./lib/d3-*.js",
+   "import": "./es/d3-*.js",
+   "types": "./d3-*.d.ts"
+  },
+  "./package.json": "./package.json"
+ },
+ "homepage": "https://commerce.nearform.com/open-source/victory",
+ "keywords": [
+  "data visualization",
+  "React",
+  "d3",
+  "charting"
+ ],
+ "license": "MIT AND ISC",
+ "maintainers": [
+  {
+   "email": "michael@michaelmerrill.me",
+   "name": "michaelmerrill"
+  },
+  {
+   "email": "sarahmichellemeyer@gmail.com",
+   "name": "sarmeyer"
+  },
+  {
+   "email": "mariano.martinez@formidable.com",
+   "name": "mariano-formidable"
+  },
+  {
+   "email": "ryan@loose-bits.com",
+   "name": "ryan.roemer"
+  },
+  {
+   "email": "admin@formidablelabs.com",
+   "name": "formidable-owner"
+  },
+  {
+   "email": "npm@formidablelabs.com",
+   "name": "formidablelabs"
+  },
+  {
+   "email": "carbonrobot@gmail.com",
+   "name": "carbonrobot"
+  },
+  {
+   "email": "mansoor@msiddeeq.com",
+   "name": "masiddee"
+  },
+  {
+   "email": "scott.william.rippey@gmail.com",
+   "name": "scott-rippey"
+  },
+  {
+   "email": "sarah.wright@formidable.com",
+   "name": "sarahformidable"
+  },
+  {
+   "email": "hi@robwalker.co",
+   "name": "robwalkerco"
+  },
+  {
+   "email": "senesealessandro@gmail.com",
+   "name": "ceceppa"
+  },
+  {
+   "email": "keith@keithluchtel.com",
+   "name": "keithluchtel"
+  },
+  {
+   "email": "scott@scottstewart.co",
+   "name": "scottianstewart"
+  },
+  {
+   "email": "victory-ci+npm@formidable.com",
+   "name": "victory-ci"
+  },
+  {
+   "email": "becca.bailey@formidable.com",
+   "name": "beccanelson"
+  }
+ ],
+ "name": "victory-vendor",
+ "publishConfig": {
+  "provenance": true
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/FormidableLabs/victory.git"
+ },
+ "scripts": {
+  "build": "wireit",
+  "build:dist": "wireit",
+  "build:dist:dev": "wireit",
+  "build:dist:min": "wireit",
+  "build:lib": "wireit",
+  "build:lib:cjs": "wireit",
+  "build:lib:esm": "wireit",
+  "check": "wireit",
+  "jest": "wireit",
+  "lint": "wireit",
+  "lint:fix": "wireit",
+  "types:check": "wireit",
+  "types:create": "wireit"
+ },
+ "version": "37.3.6",
+ "wireit": {
+  "build": {
+   "command": "node ./scripts/build.js",
+   "files": [
+    ".babelrc.js",
+    "scripts/build.js",
+    "node_modules/**"
+   ],
+   "output": [
+    "es/**",
+    "lib/**",
+    "lib-vendor/**",
+    "d3-*"
+   ],
+   "packageLocks": [
+    "pnpm-lock.yaml"
+   ]
+  },
+  "build:dist": {
+   "dependencies": [
+    "build"
+   ]
+  },
+  "build:dist:dev": {
+   "dependencies": [
+    "build"
+   ]
+  },
+  "build:dist:min": {
+   "dependencies": [
+    "build"
+   ]
+  },
+  "build:lib:cjs": {
+   "dependencies": [
+    "build"
+   ]
+  },
+  "build:lib:esm": {
+   "dependencies": [
+    "build"
+   ]
+  },
+  "check": {
+   "dependencies": [
+    "types:check",
+    "jest",
+    "format",
+    "lint"
+   ]
+  },
+  "jest": {
+   "command": "echo victory-vendor has no tests",
+   "files": [],
+   "output": []
+  },
+  "lint": {
+   "command": "eslint scripts",
+   "files": [
+    "scripts/**"
+   ],
+   "output": [],
+   "packageLocks": [
+    "pnpm-lock.yaml"
+   ]
+  },
+  "lint:fix": {
+   "command": "eslint --fix scripts",
+   "files": [
+    "scripts/**"
+   ],
+   "output": [],
+   "packageLocks": [
+    "pnpm-lock.yaml"
+   ]
+  },
+  "types:check": {
+   "command": "echo \"No types to check here\"",
+   "files": [],
+   "output": []
+  },
+  "types:create": {
+   "dependencies": [
+    "build"
+   ]
+  }
+ }
+}

@@ -1,0 +1,114 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@types/jsonwebtoken@9.0.10",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/jsonwebtoken_9.0.10_1750059359978_0.593673404527786"
+ },
+ "_npmUser": {
+  "email": "ts-npm-types@microsoft.com",
+  "name": "types"
+ },
+ "contributors": [
+  {
+   "githubUsername": "SomaticIT",
+   "name": "Maxime LUCE",
+   "url": "https://github.com/SomaticIT"
+  },
+  {
+   "githubUsername": "danielheim",
+   "name": "Daniel Heim",
+   "url": "https://github.com/danielheim"
+  },
+  {
+   "githubUsername": "brikou",
+   "name": "Brice BERNARD",
+   "url": "https://github.com/brikou"
+  },
+  {
+   "githubUsername": "vpk",
+   "name": "Veli-Pekka Kestil\u00e4",
+   "url": "https://github.com/vpk"
+  },
+  {
+   "githubUsername": "GeneralistDev",
+   "name": "Daniel Parker",
+   "url": "https://github.com/GeneralistDev"
+  },
+  {
+   "githubUsername": "kettil",
+   "name": "Kjell Die\u00dfel",
+   "url": "https://github.com/kettil"
+  },
+  {
+   "githubUsername": "RunAge",
+   "name": "Robert Gajda",
+   "url": "https://github.com/RunAge"
+  },
+  {
+   "githubUsername": "nflaig",
+   "name": "Nico Flaig",
+   "url": "https://github.com/nflaig"
+  },
+  {
+   "githubUsername": "LinusU",
+   "name": "Linus Unneb\u00e4ck",
+   "url": "https://github.com/LinusU"
+  },
+  {
+   "githubUsername": "ivansieder",
+   "name": "Ivan Sieder",
+   "url": "https://github.com/ivansieder"
+  },
+  {
+   "githubUsername": "peterblazejewicz",
+   "name": "Piotr B\u0142a\u017cejewicz",
+   "url": "https://github.com/peterblazejewicz"
+  },
+  {
+   "githubUsername": "nandi95",
+   "name": "Nandor Kraszlan",
+   "url": "https://github.com/nandi95"
+  }
+ ],
+ "dependencies": {
+  "@types/ms": "*",
+  "@types/node": "*"
+ },
+ "description": "TypeScript definitions for jsonwebtoken",
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-asx5hIG9Qmf/1oStypjanR7iKTv0gXQ1Ov/jfrX6kS/EO0OFni8orbmGCn0672NHR3kXHwpAwR+B368ZGN/2rA==",
+  "shasum": "a7932a47177dcd4283b6146f3bd5c26d82647f09",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIF+u9Dgbi3gPpc44YzKRW9fpXvro7keDk3lTfxA7NCMAAiBqtpwaMjrYTMIOEghUnZm9zRuR1yGbDhfVt7nlGvrlUA=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@types/jsonwebtoken/-/jsonwebtoken-9.0.10.tgz",
+  "unpackedSize": 13712
+ },
+ "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/jsonwebtoken",
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "ts-npm-types@microsoft.com",
+   "name": "types"
+  }
+ ],
+ "name": "@types/jsonwebtoken",
+ "peerDependencies": {},
+ "repository": {
+  "directory": "types/jsonwebtoken",
+  "type": "git",
+  "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+ },
+ "scripts": {},
+ "typeScriptVersion": "5.1",
+ "types": "index.d.ts",
+ "typesPublisherContentHash": "d51483f13412c41d8e77e914b45268c47b0cde11c20fa17f2dee720012292dca",
+ "version": "9.0.10"
+}

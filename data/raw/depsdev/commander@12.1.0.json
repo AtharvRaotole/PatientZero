@@ -1,0 +1,16 @@
+{
+ "edges": [],
+ "error": "",
+ "nodes": [
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "SELF",
+   "versionKey": {
+    "name": "commander",
+    "system": "NPM",
+    "version": "12.1.0"
+   }
+  }
+ ]
+}

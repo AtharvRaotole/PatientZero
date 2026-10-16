@@ -1,0 +1,84 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "clone-response@2.0.0",
+ "_nodeVersion": "14.19.3",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/clone-response_2.0.0_1658070796968_0.5743072080081504"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "8.3.2",
+ "author": {
+  "email": "lukechilds123@gmail.com",
+  "name": "Luke Childs",
+  "url": "https://lukechilds.co.uk"
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/clone-response/issues"
+ },
+ "dependencies": {
+  "mimic-response": "^4.0.0"
+ },
+ "description": "Clone a Node.js HTTP response stream",
+ "devDependencies": {
+  "ava": "^4.3.1",
+  "create-test-server": "^3.0.1",
+  "get-stream": "^6.0.1",
+  "pify": "^6.0.0",
+  "xo": "^0.50.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 4,
+  "integrity": "sha512-2jbaEcptYA32VbtJw/ucElFsFNVPmF+fkXWsH+GgjWX7fZWGosmqXxzAf+5nIeqAzg2HKpHu0zFXGhaRWkQdNw==",
+  "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v4.10.10\r\nComment: https://openpgpjs.org\r\n\r\nwsFzBAEBCAAGBQJi1CcNACEJED1NWxICdlZqFiEECWMYAoorWMhJKdjhPU1b\r\nEgJ2VmqmfQ/+Pcf2cGqITLv+8csXhr0AWO3axOkzjgtxCVzNpWNAVI6/g0DC\r\ncbUhvMml1nO+tJUZGYobZAftweeGNBNe5VdLogemSGL7QoUskPpm9S/u5Hod\r\ne1H6nUwdyZkb11STqt5lRhpWgd7IIiGzsu/3tMMiE3+XqPug9fVcEGxL1dBJ\r\nPbDGQUHQlWorL8xe1HIHqm24UNWiSWU5U4+fTtFbVTKUbbQ+PsjEh7If+xZI\r\nd/s4+j+YhOepiXtEKQ1iVoPy0+llybmnIzQnuNJlu/kZHgVkdao2l4NgsLps\r\nVgeN0DpIUoo3iVPU9QczEYTuxa0POokp/X4lLxGmw5GkOZ2xBNhRWLkmYVYR\r\nrXetVW4TuaI/bBRtW3xgaETxOC28uEKmEXBLtHQQ1oZ1VuUECCsjWGtd+Wk8\r\nE381C6o8C4sZYPrVjRy+9EGZHT6ezlFnh7ZOh0yFS0YgJujDezjNYc7YsU30\r\nl/Cu6SEwThicB5QemTTJqjFZRP2z33nuU0eV3c16Y2D9IkI9KLX/9wphjZy9\r\n+ag4uZ6CvstO1HVhEH2glvOGmHOks24Owp1tGKpigccILTLz9PtkM0BxVDc+\r\nXpU4Ij70UFWdm1suV7Ck9dnL17wuZobhE5X4w4/J9tgEf1kVIbRqGil0HQnB\r\njffI3P/CYqz0t7SBwXGwJ1a8ZYHvQRfH1UA=\r\n=FCHf\r\n-----END PGP SIGNATURE-----\r\n",
+  "shasum": "6978655600cb6f0bb99ca5f10e7fb0c19ecc56bc",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIQDKNXJa6LqWC6cvvBZlcUuSS8TQgn5zWkC4Fzn4Q3Z3dQIgM1rfWNrslofqPy5aD/XdnO69lxHo/Xkwkd5X9HEJSHU="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/clone-response/-/clone-response-2.0.0.tgz",
+  "unpackedSize": 3869
+ },
+ "engines": {
+  "node": ">=14.16"
+ },
+ "exports": "./index.js",
+ "funding": "https://github.com/sponsors/sindresorhus",
+ "gitHead": "3c2392df0d6a7811ef30e4d31c981db3080d9d56",
+ "homepage": "https://github.com/sindresorhus/clone-response#readme",
+ "keywords": [
+  "clone",
+  "response",
+  "duplicate",
+  "copy",
+  "http",
+  "stream"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  },
+  {
+   "email": "lukechilds123@gmail.com",
+   "name": "lukechilds"
+  }
+ ],
+ "name": "clone-response",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/clone-response.git"
+ },
+ "scripts": {
+  "test": "xo && ava"
+ },
+ "type": "module",
+ "version": "2.0.0"
+}

@@ -1,0 +1,70 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "backslash@0.2.2",
+ "_nodeVersion": "22.15.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/backslash_0.2.2_1757775835406_0.494541122367514"
+ },
+ "_npmUser": {
+  "email": "npm@josh.junon.me",
+  "name": "qix"
+ },
+ "_npmVersion": "10.9.2",
+ "author": {
+  "name": "Qix",
+  "url": "http://github.com/Qix-"
+ },
+ "bugs": {
+  "url": "https://github.com/Qix-/node-backslash/issues"
+ },
+ "description": "parse string escapes (\\n, \\r, etc.)",
+ "devDependencies": {
+  "coveralls": "^2.11.2",
+  "istanbul": "^0.3.16",
+  "mocha": "^2.2.5",
+  "should": "^7.0.1"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 8,
+  "integrity": "sha512-PKRYPE2LLTtNUYz1dszquxKSBs6XyLyJRHgFpY5rlq7y3DscDx239k5Gm+zenoY47OU4CApan1o0k2R8ptZC1Q==",
+  "shasum": "4165199ddafe6e46f583b67724fdeb02fcc6d18e",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQDrDvvlDfEKzpxUkSd3FisFyWjvIpBFCkGNXLEUNbXV0QIhAP9MxW27xVCcFqKTfGxYnYuw0j4BXEgsIZPh9cgYHPFz"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/backslash/-/backslash-0.2.2.tgz",
+  "unpackedSize": 8693
+ },
+ "gitHead": "628aa56807b7ed3639f752b3ed1c7899ebc4ec85",
+ "homepage": "https://github.com/Qix-/node-backslash#readme",
+ "keywords": [
+  "backslash",
+  "escape",
+  "escaped",
+  "parse",
+  "convert",
+  "raw",
+  "string",
+  "characters",
+  "unicode"
+ ],
+ "maintainers": [
+  {
+   "email": "npm@josh.junon.me",
+   "name": "qix"
+  }
+ ],
+ "name": "backslash",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/Qix-/node-backslash.git"
+ },
+ "scripts": {
+  "test": "mocha"
+ },
+ "version": "0.2.2"
+}

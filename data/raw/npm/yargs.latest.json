@@ -1,0 +1,148 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "yargs@18.2.0",
+ "_nodeVersion": "24.20.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/yargs_18.2.0_1789943651707_0.39155417426648453"
+ },
+ "_npmUser": {
+  "approver": {
+   "email": "npm_j@ruru.gen.nz",
+   "name": "shadowspawn"
+  },
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:fc1de4ec-4bbe-4ba2-af6c-b0bef036a519"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "bugs": {
+  "url": "https://github.com/yargs/yargs/issues"
+ },
+ "contributors": [
+  {
+   "name": "Yargs Contributors",
+   "url": "https://github.com/yargs/yargs/graphs/contributors"
+  }
+ ],
+ "dependencies": {
+  "cliui": "^9.0.1",
+  "escalade": "^3.1.1",
+  "get-caller-file": "^2.0.5",
+  "string-width": "^8.2.1",
+  "y18n": "^5.0.5",
+  "yargs-parser": "^22.0.0"
+ },
+ "description": "yargs the modern, pirate-themed, successor to optimist.",
+ "devDependencies": {
+  "@babel/eslint-parser": "^7.26.10",
+  "@babel/preset-typescript": "^7.26.0",
+  "@types/chai": "^5.2.3",
+  "@types/mocha": "^9.0.0",
+  "@types/node": "^20.0.0",
+  "@typescript-eslint/eslint-plugin": "^8.26.1",
+  "browserslist-generator": "^3.0.0",
+  "c8": "^11.0.0",
+  "chai": "^6.2.2",
+  "chalk": "^5.6.2",
+  "cpr": "^3.0.1",
+  "cross-env": "^10.0.0",
+  "cross-spawn": "^7.0.6",
+  "eslint": "^8.57.1",
+  "eslint-plugin-prettier": "^5.1.2",
+  "gts": "^5.3.1",
+  "hashish": "0.0.4",
+  "mocha": "^11.7.6",
+  "rimraf": "^3.0.2",
+  "typescript": "^5.9.3",
+  "which": "^2.0.2",
+  "yargs-test-extends": "^1.0.1"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/yargs@18.2.0"
+  },
+  "fileCount": 59,
+  "integrity": "sha512-9OpKOLeaoNFecEp7P6iYbzze/5CqWoH7N3SMs/6y1XF4nMvFMspEGZzJ6uFi9MmQwXhyzqYoSEKO3tvA3Z/o2w==",
+  "shasum": "c258276baa935fe8fb911d986067f6d0733e8608",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQCceEaWrv/xLpEwHqW/bksxnIOLcCWhJcLkVL3tVFmNtAIhAJFzQx/4iRHSYo7vB4ac58W709chhoifY5G9P0dSQJHX"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/yargs/-/yargs-18.2.0.tgz",
+  "unpackedSize": 236734
+ },
+ "engines": {
+  "node": "^20.19.0 || ^22.12.0 || >=23"
+ },
+ "exports": {
+  ".": "./index.mjs",
+  "./browser": {
+   "import": "./browser.mjs",
+   "types": "./browser.d.ts"
+  },
+  "./helpers": "./helpers/helpers.mjs",
+  "./package.json": "./package.json",
+  "./yargs": "./index.mjs"
+ },
+ "gitHead": "e49b60aa1ab2bfe061a9ecd5d61f4c5130fe3e14",
+ "homepage": "https://yargs.js.org/",
+ "keywords": [
+  "argument",
+  "args",
+  "option",
+  "parser",
+  "parsing",
+  "cli",
+  "command"
+ ],
+ "license": "MIT",
+ "main": "./index.mjs",
+ "maintainers": [
+  {
+   "email": "bencoe@gmail.com",
+   "name": "bcoe"
+  },
+  {
+   "email": "npm_j@ruru.gen.nz",
+   "name": "shadowspawn"
+  },
+  {
+   "email": "bencoe+oss-bot@gmail.com",
+   "name": "oss-bot"
+  }
+ ],
+ "module": "./index.mjs",
+ "name": "yargs",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/yargs/yargs.git"
+ },
+ "scripts": {
+  "check": "gts lint && npm run check:js",
+  "check:js": "eslint . --ext mjs --ext js",
+  "clean": "gts clean",
+  "compile": "rimraf build && tsc",
+  "coverage": "c8 report --check-coverage",
+  "fix": "gts fix && npm run fix:js",
+  "fix:js": "eslint . --ext mjs --ext js --fix",
+  "posttest": "npm run check",
+  "prepare": "npm run compile",
+  "pretest": "npm run compile -- -p tsconfig.test.json",
+  "test": "c8 mocha --enable-source-maps ./test/*.mjs --require ./test/before.mjs --timeout=24000 --check-leaks",
+  "test:esm": "c8 mocha --enable-source-maps ./test/esm/*.mjs --check-leaks",
+  "watch": "rimraf build && npm:watch:tsc",
+  "watch:tsc": "tsc --watch"
+ },
+ "type": "module",
+ "version": "18.2.0"
+}

@@ -1,0 +1,105 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "emittery@2.1.0",
+ "_nodeVersion": "26.9.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/emittery_2.1.0_1790420696184_0.9881594282913582"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "12.0.1",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/emittery/issues"
+ },
+ "description": "Simple and modern async event emitter",
+ "devDependencies": {
+  "@types/node": "^25.3.2",
+  "ava": "^6.4.1",
+  "delay": "^7.0.0",
+  "p-event": "^7.1.0",
+  "tsd": "^0.33.0",
+  "xo": "^1.2.3"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-cPP/ddRdWhEQz7+R/QJi22O2iA73YuNWJRgDM2SUVEKA3XRPiv9f5cfGb508s+124sEBlnewHq/CiSOuIyewHg==",
+  "shasum": "8ee9a35fb2c92127f1fe453b0e476b261c9dc119",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQCKfRaiX1HoLfjOv7nD/pq0VbmbHYOUvDOtU3QaL6wvRwIhAKO3vUxgJaQAacbAm37nwaVyidf0ltlvrod8o59k/H6P"
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIDRpJ9xJWks4xOtJjgCqkMEug51FlArSi0OGnbQISgX0AiEAkZ0MOfQQPGIR1mNqnVuaMBufwdoUlbDOJMuhRpYlPk8="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/emittery/-/emittery-2.1.0.tgz",
+  "unpackedSize": 78941
+ },
+ "engines": {
+  "node": ">=22"
+ },
+ "exports": {
+  "default": "./index.js",
+  "types": "./index.d.ts"
+ },
+ "funding": "https://github.com/sindresorhus/emittery?sponsor=1",
+ "gitHead": "0271984053f95f9c1c79a5416a18248bb0ea8bf6",
+ "homepage": "https://github.com/sindresorhus/emittery#readme",
+ "keywords": [
+  "event",
+  "emitter",
+  "eventemitter",
+  "events",
+  "async",
+  "emit",
+  "on",
+  "once",
+  "off",
+  "listener",
+  "subscribe",
+  "unsubscribe",
+  "pubsub",
+  "tiny",
+  "addlistener",
+  "addeventlistener",
+  "dispatch",
+  "dispatcher",
+  "observer",
+  "trigger",
+  "await",
+  "promise",
+  "typescript",
+  "ts",
+  "typed"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "emittery",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/emittery.git"
+ },
+ "scripts": {
+  "test": "xo && ava && tsd"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "2.1.0"
+}

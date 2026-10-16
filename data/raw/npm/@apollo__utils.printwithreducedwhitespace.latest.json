@@ -1,0 +1,79 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@apollo/utils.printwithreducedwhitespace@3.0.0",
+ "_nodeVersion": "16.20.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/utils.printwithreducedwhitespace_3.0.0_1681772008123_0.9102015773045389"
+ },
+ "_npmUser": {
+  "email": "npm@apollographql.com",
+  "name": "apollo-bot"
+ },
+ "_npmVersion": "8.5.0",
+ "author": {
+  "email": "packages@apollographql.com",
+  "name": "Apollo"
+ },
+ "bugs": {
+  "url": "https://github.com/apollographql/apollo-utils/issues"
+ },
+ "description": "Print an AST with as little whitespace as possible",
+ "directories": {},
+ "dist": {
+  "fileCount": 10,
+  "integrity": "sha512-LEj2+zCM8qZTLJrHF2Hh55VxWrakr7NQGVWjwo7HMThi2YxDWUDDkqaXDhPshTB57cjH9LTybvnwV8mEl+ypWQ==",
+  "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v4.10.10\r\nComment: https://openpgpjs.org\r\n\r\nwsFzBAEBCAAGBQJkPc3oACEJED1NWxICdlZqFiEECWMYAoorWMhJKdjhPU1b\r\nEgJ2VmpKwRAAktzh/VNvDweKltE13hV7qt6iOWA2el+x5oykDPSr2r3FhWzJ\r\noA6T2fUceP0d1eSEkwkVOFazcrS9aw0xhGbbV3JC27t4BAznqSct/cnTtTuT\r\ngiHfcrFj1Got3wJ2S50Nm8PUyKaeb2CILyd8ShLg9eKQPGBMbJJ+ptzkjgQ4\r\nfVcyl3RcT6VM21kjEdYQcDTHNYmqOJV+dS9SeOQ3+f2prF6Xdxp6TiRWSjxu\r\n05M8Hk1e2h6D5qVifM4oX0T9WEG+dLiQMbqGzBopTRAHb9Iy9SpPN8ZXr7ID\r\n/McFZ4r4DdRu+yy1sSkUUz+Qh5qx72pvHKDK75VYv90h+A7YYrcZ5c9M87W7\r\nXwQ/FceJH6U3xZIZe2lKJlxnamgbKm0roymJ27cEZiblcSrg7pGkAnaybxsB\r\no1+Pe2xZxgtAo5fcGPQPoQKGS8Kgb9czIcesRzHIvTwBy5vwlSypspSwqDGj\r\nyZNBouNGUEL3+sHuIAY65IxslFiHeJWw80D5A2FTpHS8aJhRAhUSKrDJc6Oc\r\np/zSZ7sx0YADFu0KycCPMRf9jmN2hkDeT+/JgkzHIFaoRtcPCzOSY1ZYfnl9\r\nXtXspSOBA3lQzfoNPGAZw2i/84bpqSXqr1wTVgnuOJNDAPrSu0DiINkVgZXQ\r\n8qCrAN9qr1DQBq9n2qSZHMb8p9txvCBecmo=\r\n=szo4\r\n-----END PGP SIGNATURE-----\r\n",
+  "shasum": "4886173ef0095c19d16358f66cc5f4597f715e4d",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEYCIQC+j4jTPAynSmObYSrzo73uFJkWhj5lEDEq1qj4sW4rmgIhAO5PMYy8Z7LWaqdZhZ/tbPeheqsWd3SWl/h8gullDWFN"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@apollo/utils.printwithreducedwhitespace/-/utils.printwithreducedwhitespace-3.0.0.tgz",
+  "unpackedSize": 6830
+ },
+ "engines": {
+  "node": ">=16"
+ },
+ "gitHead": "9b66f38f6d6097a408bc354d749ebc480ba3bbda",
+ "homepage": "https://github.com/apollographql/apollo-utils#readme",
+ "keywords": [
+  "apollo",
+  "graphql",
+  "typescript",
+  "node"
+ ],
+ "license": "MIT",
+ "main": "dist/index.js",
+ "maintainers": [
+  {
+   "email": "dariusz_kuc@hotmail.com",
+   "name": "dkuc"
+  },
+  {
+   "email": "glasser@apollographql.com",
+   "name": "glasser"
+  },
+  {
+   "email": "trevor.scheer@gmail.com",
+   "name": "trevor.scheer"
+  },
+  {
+   "email": "npm@apollographql.com",
+   "name": "apollo-bot"
+  }
+ ],
+ "name": "@apollo/utils.printwithreducedwhitespace",
+ "peerDependencies": {
+  "graphql": "14.x || 15.x || 16.x"
+ },
+ "repository": {
+  "directory": "packages/printWithReducedWhitespace/",
+  "type": "git",
+  "url": "git+https://github.com/apollographql/apollo-utils.git"
+ },
+ "types": "dist/index.d.ts",
+ "version": "3.0.0"
+}

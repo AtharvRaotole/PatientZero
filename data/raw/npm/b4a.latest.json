@@ -1,0 +1,96 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "b4a@1.9.0",
+ "_nodeVersion": "24.20.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/b4a_1.9.0_1789328548910_0.7395673542634937"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:8b4d81a4-f1c9-42ad-a587-d92905ea33d2"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "author": {
+  "name": "Holepunch"
+ },
+ "bugs": {
+  "url": "https://github.com/holepunchto/b4a/issues"
+ },
+ "description": "Bridging the gap between buffers and typed arrays",
+ "devDependencies": {
+  "brittle": "^3.5.2",
+  "lunte": "^1.7.0",
+  "nanobench": "^3.0.0",
+  "prettier": "^3.6.2",
+  "prettier-config-holepunch": "^2.0.0"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/b4a@1.9.0"
+  },
+  "fileCount": 14,
+  "integrity": "sha512-dpfcF9fDNR6++cthXR67iyhgqWy9CBouAvIWhIntzBG6cvK/cnIPiZQjBwi/ZqjjBEDGfoNDtmB0kTjroOJ3pQ==",
+  "shasum": "6336313b6e76b299c397afa68676ec6ebc788845",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIGMK+JdQeqJ/VUTbx6i6A78JANb1S/7LTq4Fbt+vy72HAiBT3K1A2w8DGAB7OGhdD6BzghTkTqZoqC9qXQo2hMaC5Q=="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQCZZeJpt+uvuv7chb9oi+JVgksNlYzTv5IA6qtMb2kf5QIhAIuhmtyE1CfR8HQKJBk2XzAAi+JzffFTQLeb++2VfASe"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/b4a/-/b4a-1.9.0.tgz",
+  "unpackedSize": 46650
+ },
+ "exports": {
+  ".": {
+   "browser": "./browser.js",
+   "default": "./index.js",
+   "react-native": "./react-native.js",
+   "types": "index.d.ts"
+  },
+  "./package": "./package.json"
+ },
+ "gitHead": "ff7aea3d28f2be699fc079a9a00841e83eeaabf8",
+ "homepage": "https://github.com/holepunchto/b4a#readme",
+ "license": "Apache-2.0",
+ "maintainers": [
+  {
+   "email": "mathiasbuus@gmail.com",
+   "name": "mafintosh"
+  }
+ ],
+ "name": "b4a",
+ "peerDependencies": {
+  "react-native-b4a": "*"
+ },
+ "peerDependenciesMeta": {
+  "react-native-b4a": {
+   "optional": true
+  }
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/holepunchto/b4a.git"
+ },
+ "scripts": {
+  "format": "prettier --write . && lunte --fix",
+  "lint": "prettier --check . && lunte",
+  "test": "npm run test:bare && npm run test:node",
+  "test:bare": "brittle-bare --coverage test.mjs",
+  "test:node": "brittle-node --coverage test.mjs"
+ },
+ "types": "./index.d.ts",
+ "version": "1.9.0"
+}

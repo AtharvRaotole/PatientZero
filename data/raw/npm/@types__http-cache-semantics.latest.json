@@ -1,0 +1,56 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@types/http-cache-semantics@4.2.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/http-cache-semantics_4.2.0_1769504777089_0.3826745934429443"
+ },
+ "_npmUser": {
+  "email": "ts-npm-types@microsoft.com",
+  "name": "types"
+ },
+ "contributors": [
+  {
+   "githubUsername": "BendingBender",
+   "name": "BendingBender",
+   "url": "https://github.com/BendingBender"
+  }
+ ],
+ "dependencies": {},
+ "description": "TypeScript definitions for http-cache-semantics",
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-L3LgimLHXtGkWikKnsPg0/VFx9OGZaC+eN1u4r+OB1XRqH3meBIAVC2zr1WdMH+RHmnRkqliQAOHNJ/E0j/e0Q==",
+  "shasum": "f6a7788f438cbfde15f29acad46512b4c01913b3",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDZAA2Rpx1c88C1o9lBKlYpIoVxedN8MTp3byZGGMvmowIgedPkWHGUFIFL3HGwV7foB/MSAq47b7swPHikJtz9BAU="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@types/http-cache-semantics/-/http-cache-semantics-4.2.0.tgz",
+  "unpackedSize": 12149
+ },
+ "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/http-cache-semantics",
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "ts-npm-types@microsoft.com",
+   "name": "types"
+  }
+ ],
+ "name": "@types/http-cache-semantics",
+ "peerDependencies": {},
+ "repository": {
+  "directory": "types/http-cache-semantics",
+  "type": "git",
+  "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+ },
+ "scripts": {},
+ "typeScriptVersion": "5.2",
+ "types": "index.d.ts",
+ "typesPublisherContentHash": "f5ae2b8a76a826965b8617b73b86a92dc7b5dd7230a0d6d8e1ecb6139ec75db8",
+ "version": "4.2.0"
+}

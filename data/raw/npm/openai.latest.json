@@ -1,0 +1,440 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "openai@7.34.0",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/openai_7.34.0_1792013688954_0.5211836103813754"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "965f7bf0-7c82-421d-b52d-1879aab497f8"
+  }
+ },
+ "_npmVersion": "11.6.2",
+ "author": {
+  "email": "support@openai.com",
+  "name": "OpenAI"
+ },
+ "bugs": {
+  "url": "https://github.com/openai/openai-node/issues"
+ },
+ "description": "The official TypeScript library for the OpenAI API",
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/openai@7.34.0"
+  },
+  "fileCount": 3945,
+  "integrity": "sha512-PMwuTQ/3cVyWZJOVpb6bzlrQj17uImlnUGQWqh5zHlN/snwK5ww4ZUHW8NYGtH6f9PQOEPxyD/f8WJVIHp1q2A==",
+  "shasum": "86ea47b0d27bdc60b3aa6906cb422e293fa25667",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDdMo4Fm/ilHJKWrZz9ZwtFLyR+SUq3YVX9pYc2nIuF8wIgMtqpm/mWEamqCtLl+6BqmUPdR//NIBJ/lH5PWaqvqy0="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIDvE+xJdGtomJV8H7AeA3wmhYFUGX5vX0a+q1T3H+EyiAiEA8fJsWeZyFinSnuT08dVE2yhA/1IikfMp++SyDJyRPzU="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/openai/-/openai-7.34.0.tgz",
+  "unpackedSize": 22666197
+ },
+ "engines": {
+  "node": ">=22.0.0"
+ },
+ "exports": {
+  ".": {
+   "default": "./index.mjs",
+   "require": {
+    "default": "./index.js",
+    "types": "./index.d.ts"
+   },
+   "types": "./index.d.mts"
+  },
+  "./_vendor/*": {
+   "import": "./_vendor/*.mjs",
+   "require": "./_vendor/*.js"
+  },
+  "./_vendor/*.js": {
+   "default": "./_vendor/*.js"
+  },
+  "./_vendor/*.mjs": {
+   "default": "./_vendor/*.mjs"
+  },
+  "./api-promise": {
+   "import": "./api-promise.mjs",
+   "require": "./api-promise.js"
+  },
+  "./api-promise.js": {
+   "default": "./api-promise.js"
+  },
+  "./api-promise.mjs": {
+   "default": "./api-promise.mjs"
+  },
+  "./auth": {
+   "default": "./auth/index.mjs",
+   "require": {
+    "default": "./auth/index.js",
+    "types": "./auth/index.d.ts"
+   },
+   "types": "./auth/index.d.mts"
+  },
+  "./auth/*": {
+   "import": "./auth/*.mjs",
+   "require": "./auth/*.js"
+  },
+  "./auth/*.js": {
+   "default": "./auth/*.js"
+  },
+  "./auth/*.mjs": {
+   "default": "./auth/*.mjs"
+  },
+  "./azure": {
+   "import": "./azure.mjs",
+   "require": "./azure.js"
+  },
+  "./azure.js": {
+   "default": "./azure.js"
+  },
+  "./azure.mjs": {
+   "default": "./azure.mjs"
+  },
+  "./bedrock": {
+   "import": "./bedrock.mjs",
+   "require": "./bedrock.js"
+  },
+  "./bedrock.js": {
+   "default": "./bedrock.js"
+  },
+  "./bedrock.mjs": {
+   "default": "./bedrock.mjs"
+  },
+  "./beta/*": {
+   "import": "./beta/*.mjs",
+   "require": "./beta/*.js"
+  },
+  "./beta/*.js": {
+   "default": "./beta/*.js"
+  },
+  "./beta/*.mjs": {
+   "default": "./beta/*.mjs"
+  },
+  "./client": {
+   "import": "./client.mjs",
+   "require": "./client.js"
+  },
+  "./client.js": {
+   "default": "./client.js"
+  },
+  "./client.mjs": {
+   "default": "./client.mjs"
+  },
+  "./core/*": {
+   "import": "./core/*.mjs",
+   "require": "./core/*.js"
+  },
+  "./core/*.js": {
+   "default": "./core/*.js"
+  },
+  "./core/*.mjs": {
+   "default": "./core/*.mjs"
+  },
+  "./error": {
+   "import": "./error.mjs",
+   "require": "./error.js"
+  },
+  "./error.js": {
+   "default": "./error.js"
+  },
+  "./error.mjs": {
+   "default": "./error.mjs"
+  },
+  "./helpers/*": {
+   "import": "./helpers/*.mjs",
+   "require": "./helpers/*.js"
+  },
+  "./helpers/*.js": {
+   "default": "./helpers/*.js"
+  },
+  "./helpers/*.mjs": {
+   "default": "./helpers/*.mjs"
+  },
+  "./index": {
+   "import": "./index.mjs",
+   "require": "./index.js"
+  },
+  "./index.js": {
+   "default": "./index.js"
+  },
+  "./index.mjs": {
+   "default": "./index.mjs"
+  },
+  "./lib/*": {
+   "import": "./lib/*.mjs",
+   "require": "./lib/*.js"
+  },
+  "./lib/*.js": {
+   "default": "./lib/*.js"
+  },
+  "./lib/*.mjs": {
+   "default": "./lib/*.mjs"
+  },
+  "./live/*": {
+   "import": "./live/*.mjs",
+   "require": "./live/*.js"
+  },
+  "./live/*.js": {
+   "default": "./live/*.js"
+  },
+  "./live/*.mjs": {
+   "default": "./live/*.mjs"
+  },
+  "./pagination": {
+   "import": "./pagination.mjs",
+   "require": "./pagination.js"
+  },
+  "./pagination.js": {
+   "default": "./pagination.js"
+  },
+  "./pagination.mjs": {
+   "default": "./pagination.mjs"
+  },
+  "./providers/*": {
+   "import": "./providers/*.mjs",
+   "require": "./providers/*.js"
+  },
+  "./providers/*.js": {
+   "default": "./providers/*.js"
+  },
+  "./providers/*.mjs": {
+   "default": "./providers/*.mjs"
+  },
+  "./realtime/*": {
+   "import": "./realtime/*.mjs",
+   "require": "./realtime/*.js"
+  },
+  "./realtime/*.js": {
+   "default": "./realtime/*.js"
+  },
+  "./realtime/*.mjs": {
+   "default": "./realtime/*.mjs"
+  },
+  "./resource": {
+   "import": "./resource.mjs",
+   "require": "./resource.js"
+  },
+  "./resource.js": {
+   "default": "./resource.js"
+  },
+  "./resource.mjs": {
+   "default": "./resource.mjs"
+  },
+  "./resources": {
+   "import": "./resources.mjs",
+   "require": "./resources.js"
+  },
+  "./resources.js": {
+   "default": "./resources.js"
+  },
+  "./resources.mjs": {
+   "default": "./resources.mjs"
+  },
+  "./resources/*": {
+   "import": "./resources/*.mjs",
+   "require": "./resources/*.js"
+  },
+  "./resources/*.js": {
+   "default": "./resources/*.js"
+  },
+  "./resources/*.mjs": {
+   "default": "./resources/*.mjs"
+  },
+  "./streaming": {
+   "import": "./streaming.mjs",
+   "require": "./streaming.js"
+  },
+  "./streaming.js": {
+   "default": "./streaming.js"
+  },
+  "./streaming.mjs": {
+   "default": "./streaming.mjs"
+  },
+  "./uploads": {
+   "import": "./uploads.mjs",
+   "require": "./uploads.js"
+  },
+  "./uploads.js": {
+   "default": "./uploads.js"
+  },
+  "./uploads.mjs": {
+   "default": "./uploads.mjs"
+  },
+  "./version": {
+   "import": "./version.mjs",
+   "require": "./version.js"
+  },
+  "./version.js": {
+   "default": "./version.js"
+  },
+  "./version.mjs": {
+   "default": "./version.mjs"
+  }
+ },
+ "gitHead": "85e528a1907b001076e5fbef8c08827978dd9249",
+ "homepage": "https://github.com/openai/openai-node#readme",
+ "imports": {
+  "#x509-transport-state": {
+   "browser": {
+    "default": "./internal/auth/x509-transport-state.mjs",
+    "import": "./internal/auth/x509-transport-state.mjs",
+    "require": "./internal/auth/x509-transport-state.js"
+   },
+   "default": "./internal/auth/x509-transport-state.js",
+   "node": "./internal/auth/x509-transport-state.js",
+   "types": "./src/internal/auth/x509-transport-state.cts"
+  }
+ },
+ "license": "Apache-2.0",
+ "main": "./index.js",
+ "maintainers": [
+  {
+   "email": "oai-package-publish-npm@openai.com",
+   "name": "openai-publisher"
+  },
+  {
+   "email": "tino@openai.com",
+   "name": "tino-openai"
+  },
+  {
+   "email": "dylan.hurd@openai.com",
+   "name": "dylan-hurd-openai"
+  },
+  {
+   "email": "moustafa@openai.com",
+   "name": "moustafa-openai"
+  },
+  {
+   "email": "tylersmith@openai.com",
+   "name": "tylersmith-openai"
+  },
+  {
+   "email": "mdangelo@openai.com",
+   "name": "mdangelo-openai"
+  },
+  {
+   "email": "victor@openai.com",
+   "name": "victor-openai"
+  },
+  {
+   "email": "jbeckwith@openai.com",
+   "name": "jbeckwith-oai"
+  },
+  {
+   "email": "wadih@openai.com",
+   "name": "wadih-openai"
+  },
+  {
+   "email": "atty@openai.com",
+   "name": "atty-openai"
+  },
+  {
+   "email": "tibo@openai.com",
+   "name": "tibo-openai"
+  },
+  {
+   "email": "dkundel@openai.com",
+   "name": "dkundel-openai"
+  },
+  {
+   "email": "mbolin@openai.com",
+   "name": "mbolin-openai"
+  },
+  {
+   "email": "fouad@openai.com",
+   "name": "fouad-openai"
+  },
+  {
+   "email": "easong@openai.com",
+   "name": "easong-openai"
+  },
+  {
+   "email": "ahmedibrhm32@gmail.com",
+   "name": "aibrahim-openai"
+  },
+  {
+   "email": "apcha@openai.com",
+   "name": "apcha-oai"
+  },
+  {
+   "email": "seratch@openai.com",
+   "name": "seratch-openai"
+  },
+  {
+   "email": "dschnurr@openai.com",
+   "name": "dschnurr-openai"
+  }
+ ],
+ "name": "openai",
+ "overrides": {
+  "minimatch": "^9.0.9"
+ },
+ "packageManager": "pnpm@11.5.1",
+ "peerDependencies": {
+  "@aws-sdk/credential-provider-node": ">=3.972.0 <4",
+  "@smithy/hash-node": ">=4.3.0 <5",
+  "@smithy/signature-v4": ">=5.4.0 <6",
+  "undici": ">=5 <9",
+  "ws": "^8.21.0",
+  "zod": "^3.25 || ^4.0"
+ },
+ "peerDependenciesMeta": {
+  "@aws-sdk/credential-provider-node": {
+   "optional": true
+  },
+  "@smithy/hash-node": {
+   "optional": true
+  },
+  "@smithy/signature-v4": {
+   "optional": true
+  },
+  "undici": {
+   "optional": true
+  },
+  "ws": {
+   "optional": true
+  },
+  "zod": {
+   "optional": true
+  }
+ },
+ "private": false,
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/openai/openai-node.git"
+ },
+ "scripts": {
+  "build": "./scripts/build",
+  "format": "./scripts/format",
+  "lint": "./scripts/lint",
+  "test": "./scripts/test",
+  "test:generated": "OPENAI_TEST_SUITE=generated ./scripts/test",
+  "test:live:bedrock": "jest --config jest.live.config.ts --runInBand tests/live/bedrock.live.test.ts",
+  "test:live:x509": "pnpm build && node --input-type=module < examples/mtls/x509-workload-identity.mjs",
+  "test:unit": "vitest run --config vitest.config.mts",
+  "tsn": "ts-node -r tsconfig-paths/register"
+ },
+ "type": "commonjs",
+ "types": "./index.d.ts",
+ "version": "7.34.0"
+}

@@ -1,0 +1,77 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "bser@2.1.2",
+ "_nodeVersion": "24.18.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/bser_2.1.2_1791566982547_0.5932357468516714"
+ },
+ "_npmUser": {
+  "email": "source_control@meta.com",
+  "name": "fb-watchman"
+ },
+ "_npmVersion": "11.16.0",
+ "author": {
+  "email": "wez@fb.com",
+  "name": "Wez Furlong",
+  "url": "http://wezfurlong.org"
+ },
+ "bugs": {
+  "url": "https://github.com/facebook/watchman/issues"
+ },
+ "dependencies": {
+  "node-int64": "^0.4.0"
+ },
+ "description": "JavaScript implementation of the BSER Binary Serialization",
+ "directories": {
+  "test": "test"
+ },
+ "dist": {
+  "fileCount": 4,
+  "integrity": "sha512-V2o8YS2EhrKMO9AumnkK0ynynfFlsajpYupwq7S46H5mhcanwxDkNTw3K67wPIcKTH1ffkA4vhMOtAc7gRmPZw==",
+  "shasum": "3052372d49a1bc2a25e68c267697af5e823e147a",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIF5B0zrqqQVOlKQs8j6R1zT5gkTFy0EMKaHGBr3/fHCTAiEA0UXJfLT4tOua20Qo1rDUlu2A8ydwUevYs2uwW1RovLU="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIA9WDdZjL6bqtWacIqx9EtKmS2sCkxAcmuKTT9NP0OeWAiBPYHmpWcKYHKniYH21xOnda69ZmPiSDDPvk2PrnZTYJA=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/bser/-/bser-2.1.2.tgz",
+  "unpackedSize": 19168
+ },
+ "homepage": "https://facebook.github.io/watchman/docs/bser.html",
+ "keywords": [
+  "bser",
+  "binary",
+  "protocol"
+ ],
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "wez@wezfurlong.org",
+   "name": "wez"
+  },
+  {
+   "email": "jkassens@fb.com",
+   "name": "kassens"
+  },
+  {
+   "email": "source_control@meta.com",
+   "name": "fb-watchman"
+  }
+ ],
+ "name": "bser",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/facebook/watchman.git"
+ },
+ "scripts": {
+  "test": "node test/bser.js"
+ },
+ "version": "2.1.2"
+}

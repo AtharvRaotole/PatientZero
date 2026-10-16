@@ -1,0 +1,69 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@protobufjs/utf8@1.1.2",
+ "_nodeVersion": "24.15.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/utf8_1.1.2_1783293482471_0.24572214725472352"
+ },
+ "_npmUser": {
+  "email": "dcode+npm@dcode.io",
+  "name": "dcode"
+ },
+ "_npmVersion": "11.12.1",
+ "author": {
+  "email": "dcode+protobufjs@dcode.io",
+  "name": "Daniel Wirtz"
+ },
+ "bugs": {
+  "url": "https://github.com/protobufjs/protobuf.js/issues"
+ },
+ "description": "A minimal UTF8 implementation for number arrays.",
+ "devDependencies": {
+  "istanbul": "^0.4.5",
+  "tape": "^5.0.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 9,
+  "integrity": "sha512-b1UQwcEZ4yCnMCD8DAL1VlbvBJE9/IX4FTIp7BG1xYpf29SLazLSrqUkj4w7Y5y7cCVP6E5tcqqcI0xemPkHug==",
+  "shasum": "78d476333d85d5b1c792e257bca74ba080da49a4",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDdtxXE2niCtDNErDPtSapJUAJRN5xemxaiwyrTJGDoTgIgDZwgxNTSOh623ckLsozQC5LBqi5iLzIZ68O+mq1r32o="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@protobufjs/utf8/-/utf8-1.1.2.tgz",
+  "unpackedSize": 42558
+ },
+ "gitHead": "d29ff6786257262921ce71f324a2205c10181ce7",
+ "homepage": "https://github.com/protobufjs/protobuf.js#readme",
+ "license": "BSD-3-Clause",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "dcode+npm@dcode.io",
+   "name": "dcode"
+  },
+  {
+   "email": "dcode+protobufjs@dcode.io",
+   "name": "protobufjs"
+  },
+  {
+   "email": "node-team-npm+wombot@google.com",
+   "name": "google-wombot"
+  }
+ ],
+ "name": "@protobufjs/utf8",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/protobufjs/protobuf.js.git"
+ },
+ "scripts": {
+  "coverage": "istanbul cover node_modules/tape/bin/tape tests/*.js",
+  "test": "tape tests/*.js"
+ },
+ "types": "index.d.ts",
+ "version": "1.1.2"
+}

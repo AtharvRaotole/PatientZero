@@ -1,0 +1,115 @@
+{
+ "_from": "file:form-data-encoder-4.1.0.tgz",
+ "_hasShrinkwrap": false,
+ "_id": "form-data-encoder@4.1.0",
+ "_integrity": "sha512-G6NsmEW15s0Uw9XnCg+33H3ViYRyiM0hMrMhhqQOR8NFc5GhYrI+6I3u7OTw7b91J2g8rtvMBZJDbcGb2YUniw==",
+ "_nodeVersion": "20.19.2",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/form-data-encoder_4.1.0_1749075504094_0.5403679401635675"
+ },
+ "_npmUser": {
+  "email": "nick.kruchinin@gmail.com",
+  "name": "octetstream"
+ },
+ "_npmVersion": "10.8.2",
+ "_resolved": "/tmp/4db8e092a0092c2e1ce1dbaa0b7029f7/form-data-encoder-4.1.0.tgz",
+ "author": {
+  "name": "Nick K."
+ },
+ "bugs": {
+  "url": "https://github.com/octet-stream/form-data-encoder/issues"
+ },
+ "description": "Encode FormData content into the multipart/form-data format",
+ "devDependencies": {
+  "@biomejs/biome": "1.8.3",
+  "@changesets/changelog-github": "0.5.0",
+  "@changesets/cli": "2.27.6",
+  "@types/mime-types": "2.1.4",
+  "@types/node": "20.14.2",
+  "@types/sinon": "17.0.3",
+  "ava": "6.1.3",
+  "c8": "10.1.2",
+  "cross-env": "7.0.3",
+  "del-cli": "5.1.0",
+  "formdata-node": "6.0.3",
+  "husky": "9.0.11",
+  "lint-staged": "15.2.7",
+  "node-fetch": "3.3.2",
+  "sinon": "18.0.0",
+  "ts-expect": "1.3.0",
+  "ts-node": "10.9.2",
+  "tsup": "8.1.0",
+  "typescript": "5.5.2",
+  "undici": "6.19.2",
+  "web-streams-polyfill": "4.0.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 7,
+  "integrity": "sha512-G6NsmEW15s0Uw9XnCg+33H3ViYRyiM0hMrMhhqQOR8NFc5GhYrI+6I3u7OTw7b91J2g8rtvMBZJDbcGb2YUniw==",
+  "shasum": "497cedc94810bd5d53b99b5d4f6c152d5cbc9db2",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIFb41/Dc6LpH9sCwWfD2eM/G9AE/RpqaYyFQplX1OmhsAiBiUir61HCLZxN7KR9HkVjxJgME709s+KNq1AZuZTDwrA=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/form-data-encoder/-/form-data-encoder-4.1.0.tgz",
+  "unpackedSize": 59380
+ },
+ "engines": {
+  "node": ">= 18"
+ },
+ "exports": {
+  ".": {
+   "import": {
+    "default": "./lib/index.js",
+    "types": "./lib/index.d.ts"
+   },
+   "require": {
+    "default": "./lib/index.cjs",
+    "types": "./lib/index.d.cts"
+   }
+  },
+  "./package.json": "./package.json"
+ },
+ "homepage": "https://github.com/octet-stream/form-data-encoder#readme",
+ "keywords": [
+  "form-data",
+  "encoder",
+  "multipart",
+  "files-upload",
+  "async-iterator",
+  "spec-compatible",
+  "form"
+ ],
+ "license": "MIT",
+ "main": "./lib/index.js",
+ "maintainers": [
+  {
+   "email": "nick.kruchinin@gmail.com",
+   "name": "octetstream"
+  }
+ ],
+ "module": "./lib/index.js",
+ "name": "form-data-encoder",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/octet-stream/form-data-encoder.git"
+ },
+ "scripts": {
+  "build": "pnpm exec del-cli lib && pnpm exec tsup",
+  "ci": "c8 pnpm test && c8 report --reporter=json",
+  "coverage": "c8 pnpm test",
+  "lint": "biome lint --write --no-errors-on-unmatched . && pnpm lint:types",
+  "lint:types": "tsc --project tsconfig.json --noEmit",
+  "release": "pnpm build && pnpm changeset publish",
+  "report:html": "c8 -r=html pnpm test",
+  "test": "cross-env NODE_OPTIONS=\"--no-warnings --experimental-fetch --loader=ts-node/esm\" ava"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "./lib/index.d.ts",
+ "version": "4.1.0"
+}

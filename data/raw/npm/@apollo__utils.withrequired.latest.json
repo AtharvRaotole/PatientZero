@@ -1,0 +1,76 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@apollo/utils.withrequired@3.0.0",
+ "_nodeVersion": "16.20.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/utils.withrequired_3.0.0_1681772009929_0.7551181526473334"
+ },
+ "_npmUser": {
+  "email": "npm@apollographql.com",
+  "name": "apollo-bot"
+ },
+ "_npmVersion": "8.5.0",
+ "author": {
+  "email": "packages@apollographql.com",
+  "name": "Apollo"
+ },
+ "bugs": {
+  "url": "https://github.com/apollographql/apollo-utils/issues"
+ },
+ "description": "TypeScript utility type WithRequired",
+ "directories": {},
+ "dist": {
+  "fileCount": 10,
+  "integrity": "sha512-aaxeavfJ+RHboh7c2ofO5HHtQobGX4AgUujXP4CXpREHp9fQ9jPi6K9T1jrAKe7HIipoP0OJ1gd6JamSkFIpvA==",
+  "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v4.10.10\r\nComment: https://openpgpjs.org\r\n\r\nwsFzBAEBCAAGBQJkPc3qACEJED1NWxICdlZqFiEECWMYAoorWMhJKdjhPU1b\r\nEgJ2Vmpkpw/+MOHSa3n5IjWqxsCvRtOn7dTOb6dkerZNii8x2et2bwbpax+G\r\nOMojfE6hhxnaoVUnrYxPQ/fpmWlo4WskraU4tOs6MeiR8al8RJlraiS59Qsy\r\n+aV7hgOSI10gB50xPqDaTOqN7/m0jkzfOLW+yn/aWiRKff0NVEhS2Wk3Oppe\r\nwp0qTFglYt2YY2BsygzvlHQWQfzzPMi0hmjFyQs5R1bDoJ3ulZsCSszvXX2m\r\nTkCNFRl7rQXIV5WjXk4BIvauD10naD/o6xLSq04DZdRI90UiNxcU+kDC17WD\r\nn8OOK2kVA59u/8KxHWES+mSKHQRiEW13FBpHbf8sJsx57Uted9JiSwwWxPSq\r\nE0vVYUc07FJaailuRUem5jK5diObpP63qXkHOxr9AVWTOwDO0ttZeaSq7pUA\r\nbB6NXr068YppBLF/K+nqK4t95c1RKszoWh8nWxBK3Kq/FtRkpPcDpH2GpRwr\r\nPE3cQnIHNj2eLFN0fhOPxskL+SrSQRaQSU0m3IwFPgKf0YHGMSgCxkOKY5BB\r\nzB8o0ng5+I2xKtLWFUGqTW8/+uIN+J6eMlrjEXIZlZxg0vsqz9/W1QWnFoko\r\n1SOrnjeEZaU3sk49O+mFn3SlVlAIYPWvJgI/rhZP0TU/VnwI8tIkPuP4XJqR\r\nthbnaBjYIzdh/TEpNkLQxExlAvMfI9G+Ek0=\r\n=GdYL\r\n-----END PGP SIGNATURE-----\r\n",
+  "shasum": "1342bab438528d09c41e43ce33cb976fa9c99e52",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEQCIBxHI6KGlttBK/WZfQMOlNloeyZYjMYC8s1IUyexXxaXAiARn6qF6krBIDWeglDJViyx+nqmjA/EyMhfOMdb9E+kbA=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@apollo/utils.withrequired/-/utils.withrequired-3.0.0.tgz",
+  "unpackedSize": 3594
+ },
+ "engines": {
+  "node": ">=16"
+ },
+ "gitHead": "9b66f38f6d6097a408bc354d749ebc480ba3bbda",
+ "homepage": "https://github.com/apollographql/apollo-utils#readme",
+ "keywords": [
+  "apollo",
+  "graphql",
+  "typescript",
+  "node"
+ ],
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "dariusz_kuc@hotmail.com",
+   "name": "dkuc"
+  },
+  {
+   "email": "glasser@apollographql.com",
+   "name": "glasser"
+  },
+  {
+   "email": "trevor.scheer@gmail.com",
+   "name": "trevor.scheer"
+  },
+  {
+   "email": "npm@apollographql.com",
+   "name": "apollo-bot"
+  }
+ ],
+ "name": "@apollo/utils.withrequired",
+ "repository": {
+  "directory": "packages/withRequired/",
+  "type": "git",
+  "url": "git+https://github.com/apollographql/apollo-utils.git"
+ },
+ "types": "dist/index.d.ts",
+ "version": "3.0.0"
+}

@@ -1,0 +1,62 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@socket.io/component-emitter@3.1.2",
+ "_nodeVersion": "20.3.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/component-emitter_3.1.2_1714109537485_0.9594432039475118"
+ },
+ "_npmUser": {
+  "email": "damien.arrachequesne@gmail.com",
+  "name": "darrachequesne"
+ },
+ "_npmVersion": "9.6.7",
+ "bugs": {
+  "url": "https://github.com/socketio/emitter/issues"
+ },
+ "component": {
+  "scripts": {
+   "emitter/index.js": "index.js"
+  }
+ },
+ "description": "Event emitter",
+ "devDependencies": {
+  "mocha": "*",
+  "should": "*"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 9,
+  "integrity": "sha512-9BCxFwvbGg/RsZK9tjXd8s4UcwR0MWeFQ1XEKIQVVvAGJyINdrqKMcTRyLoK8Rse1GjzLV9cwjWV1olXRWEXVA==",
+  "shasum": "821f8442f4175d8f0467b9daf26e3a18e2d02af2",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIQCHrt9fDcdYJGUAfsx6RYwOPj5/RM0GCi13+3LxZniKSAIgZhoQ+kXyUxfPcZu7hXddxVjRm42NzFr1oH8gDmbWbhU="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@socket.io/component-emitter/-/component-emitter-3.1.2.tgz",
+  "unpackedSize": 21216
+ },
+ "gitHead": "8a2ece1f367dd9898791ee663940386147d2d688",
+ "homepage": "https://github.com/socketio/emitter#readme",
+ "license": "MIT",
+ "main": "./lib/cjs/index.js",
+ "maintainers": [
+  {
+   "email": "damien.arrachequesne@gmail.com",
+   "name": "darrachequesne"
+  }
+ ],
+ "module": "./lib/esm/index.js",
+ "name": "@socket.io/component-emitter",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/socketio/emitter.git"
+ },
+ "scripts": {
+  "test": "make test"
+ },
+ "types": "./lib/cjs/index.d.ts",
+ "version": "3.1.2"
+}

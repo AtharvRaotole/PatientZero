@@ -1,0 +1,79 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@babel/plugin-syntax-bigint@7.8.3",
+ "_nodeVersion": "13.6.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/plugin-syntax-bigint_7.8.3_1578949939421_0.9511207783876041"
+ },
+ "_npmUser": {
+  "email": "nicolo.ribaudo@gmail.com",
+  "name": "nicolo-ribaudo"
+ },
+ "_npmVersion": "6.13.4",
+ "dependencies": {
+  "@babel/helper-plugin-utils": "^7.8.0"
+ },
+ "description": "Allow parsing of BigInt literals",
+ "devDependencies": {
+  "@babel/core": "^7.8.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 4,
+  "integrity": "sha512-wnTnFlG+YxQm3vDxpGE57Pj0srRU4sHE/mDkt1qv2YJJSeUAec2ma4WLUnUPeKjyrfntVwe/N6dCXpU+zL3Npg==",
+  "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.4\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJeHN0zCRA9TVsSAnZWagAAWVYP/0TeBLadQNrQaqsNo9M0\nwulUz5Fmq/9NlXc7RX2cG+c7QifXbKuzJqY6UMaMM+HJZnJKY+4OIuKXc/f0\nsrtg2ZqArnI4x1MG7xYPhJOCMKDLdPy5qP/h9PHCyD+t1zjpOnffNHSq5IU1\ncDQoFESMfSKuU1LK+++PFeWY/hSmqVwU4uyPMTbwukk4p+B60ipDpdu2jHIX\neumDLmAsBUOBXihSmJJ0rrxnWRNhfWHTu8HDcSLumqsfB4Vm4hRz8+XfLcuX\nhgQBKOwcjqn8O+Y2GItXb+9ZZ85H+i7w4z/LGK88ZikRFnWMoZmlDUDN3lcs\nz9K72xE42B9DDF9H9v0KPwnkUMJGZltoP4msuhee2Ls5gTI8m5iTGwswS5pr\nw1yGSQpUM/32NQ987vOhMzfZHtdpbh1YxoskBc9kraq7mFTSpAK+O/Yfyk3r\nA2QANQ8B/k6e3aucBjDzUYAvGDFhINVSEifApgD+hDoHkE0lTqb9DiOgu8CZ\nol5n+Al/1FzgwgSmwiAhd3pVv4Fr3kfG5wa1kYPHTOUuQXnuCw2oACCL9qDd\nuAXV7dEke61J0UJ0srPob3KqCvRR2ud9fGmvAKxC4dQEdQfSIHHiPbKuTSe0\nT3+VTAfkZIPDf4sVIMJ3bu6oRZBD1plExC6zg+SjeCGNf87B4J/WLMti20z3\nQ+vO\r\n=sukl\r\n-----END PGP SIGNATURE-----\r\n",
+  "shasum": "4c9a6f669f5d0cdf1b90a1671e9a146be5300cea",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEYCIQCJodBL1Eaofo74Jk3MvEHsc/ZYN5fBKWF47Hc8FTS3KAIhAKzSJCiI5sCjZObyR8XtgGBBJ/Qg8GSuuQGHgzm5vpUE"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@babel/plugin-syntax-bigint/-/plugin-syntax-bigint-7.8.3.tgz",
+  "unpackedSize": 2415
+ },
+ "keywords": [
+  "babel-plugin"
+ ],
+ "license": "MIT",
+ "main": "lib/index.js",
+ "maintainers": [
+  {
+   "email": "daniel@tschinder.de",
+   "name": "danez"
+  },
+  {
+   "email": "jason@developit.ca",
+   "name": "developit"
+  },
+  {
+   "email": "bng412@gmail.com",
+   "name": "existentialism"
+  },
+  {
+   "email": "hi@henryzoo.com",
+   "name": "hzoo"
+  },
+  {
+   "email": "loganfsmyth@gmail.com",
+   "name": "loganfsmyth"
+  },
+  {
+   "email": "nicolo.ribaudo@gmail.com",
+   "name": "nicolo-ribaudo"
+  }
+ ],
+ "name": "@babel/plugin-syntax-bigint",
+ "peerDependencies": {
+  "@babel/core": "^7.0.0-0"
+ },
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "type": "git",
+  "url": "https://github.com/babel/babel/tree/master/packages/babel-plugin-syntax-bigint"
+ },
+ "version": "7.8.3"
+}

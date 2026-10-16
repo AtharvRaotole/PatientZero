@@ -1,0 +1,78 @@
+{
+ "_from": "file:next-swc-darwin-arm64-16.4.2.tgz",
+ "_hasShrinkwrap": false,
+ "_id": "@next/swc-darwin-arm64@16.4.2",
+ "_integrity": "sha512-ONkhFvZNFWlsEHOM/81AtxdyuJP2KRYKYR0JxPwvcu1AuPMMMgcL+wW2luldJvMtZwKtUxoSkCychW5wIeoYSw==",
+ "_nodeVersion": "24.22.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/swc-darwin-arm64_16.4.2_1792097322121_0.9502960154133797"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "f950cddb-cdc1-4ccd-bf51-5865afe1f706"
+  }
+ },
+ "_npmVersion": "11.19.1",
+ "_resolved": "/tmp/0ae0cfd4c6ba816a412f9a471eed69ee/next-swc-darwin-arm64-16.4.2.tgz",
+ "bugs": {
+  "url": "https://github.com/vercel/next.js/issues"
+ },
+ "cpu": [
+  "arm64"
+ ],
+ "description": "This is the **aarch64-apple-darwin** binary for `@next/swc`",
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@next%2fswc-darwin-arm64@16.4.2"
+  },
+  "fileCount": 3,
+  "integrity": "sha512-ONkhFvZNFWlsEHOM/81AtxdyuJP2KRYKYR0JxPwvcu1AuPMMMgcL+wW2luldJvMtZwKtUxoSkCychW5wIeoYSw==",
+  "shasum": "ed26619374b94f291b8c182c15b36d8b8f8d1790",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIG/z2VxkcE+YaazxEbXRDi1TepuG/n1ZmMqbIL8Bxi0EAiEAu75Eg2rKC+m+u7Tpa1/lqN58KjPk2JLnzxA3MOO+sDs="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQDshgNuDTWkXy5o+uCfsiQrh0pYzSXmpMtPSFkqBkAaGgIhAIRmtSEba8vGC1i51NUWUd7gRFV3bi3Xt7nXcdVZDYbg"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@next/swc-darwin-arm64/-/swc-darwin-arm64-16.4.2.tgz",
+  "unpackedSize": 90463236
+ },
+ "engines": {
+  "node": ">= 10"
+ },
+ "homepage": "https://github.com/vercel/next.js#readme",
+ "license": "MIT",
+ "main": "next-swc.darwin-arm64.node",
+ "maintainers": [
+  {
+   "email": "infra+release@vercel.com",
+   "name": "vercel-release-bot"
+  },
+  {
+   "email": "matt.j.straka@gmail.com",
+   "name": "matt.straka"
+  }
+ ],
+ "name": "@next/swc-darwin-arm64",
+ "os": [
+  "darwin"
+ ],
+ "repository": {
+  "directory": "crates/next-napi-bindings/npm/darwin-arm64",
+  "type": "git",
+  "url": "git+https://github.com/vercel/next.js.git"
+ },
+ "version": "16.4.2"
+}

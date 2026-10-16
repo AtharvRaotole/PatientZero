@@ -1,0 +1,94 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@types/body-parser@1.19.6",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/body-parser_1.19.6_1749262526187_0.589670325646108"
+ },
+ "_npmUser": {
+  "email": "ts-npm-types@microsoft.com",
+  "name": "types"
+ },
+ "contributors": [
+  {
+   "githubUsername": "santialbo",
+   "name": "Santi Albo",
+   "url": "https://github.com/santialbo"
+  },
+  {
+   "githubUsername": "vilic",
+   "name": "Vilic Vane",
+   "url": "https://github.com/vilic"
+  },
+  {
+   "githubUsername": "dreampulse",
+   "name": "Jonathan H\u00e4berle",
+   "url": "https://github.com/dreampulse"
+  },
+  {
+   "githubUsername": "blendsdk",
+   "name": "Gevik Babakhani",
+   "url": "https://github.com/blendsdk"
+  },
+  {
+   "githubUsername": "tlaziuk",
+   "name": "Tomasz \u0141aziuk",
+   "url": "https://github.com/tlaziuk"
+  },
+  {
+   "githubUsername": "jwalton",
+   "name": "Jason Walton",
+   "url": "https://github.com/jwalton"
+  },
+  {
+   "githubUsername": "peterblazejewicz",
+   "name": "Piotr B\u0142a\u017cejewicz",
+   "url": "https://github.com/peterblazejewicz"
+  },
+  {
+   "githubUsername": "bjohansebas",
+   "name": "Sebastian Beltran",
+   "url": "https://github.com/bjohansebas"
+  }
+ ],
+ "dependencies": {
+  "@types/connect": "*",
+  "@types/node": "*"
+ },
+ "description": "TypeScript definitions for body-parser",
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-HLFeCYgz89uk22N5Qg3dvGvsv46B8GLvKKo1zKG4NybA8U2DiEO3w9lqGg29t/tfLRJpJ6iQxnVw4OnB7MoM9g==",
+  "shasum": "1859bebb8fd7dac9918a45d54c1971ab8b5af474",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIFomBJIRNmJtSRk0VltC0p7f97tK5280BRg2KenjxDg0AiBEvrjZze4PC0l569/oh4EvtuXgLIuaDCVzFYLdG3nGWg=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@types/body-parser/-/body-parser-1.19.6.tgz",
+  "unpackedSize": 7888
+ },
+ "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/body-parser",
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "ts-npm-types@microsoft.com",
+   "name": "types"
+  }
+ ],
+ "name": "@types/body-parser",
+ "peerDependencies": {},
+ "repository": {
+  "directory": "types/body-parser",
+  "type": "git",
+  "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+ },
+ "scripts": {},
+ "typeScriptVersion": "5.1",
+ "types": "index.d.ts",
+ "typesPublisherContentHash": "d788c843f427d6ca19640ee90eb433324a18f23aed05402a82c4e47e6d60b29d",
+ "version": "1.19.6"
+}

@@ -1,0 +1,114 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@types/node-fetch@2.6.13",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/node-fetch_2.6.13_1753832167150_0.6563941747795152"
+ },
+ "_npmUser": {
+  "email": "ts-npm-types@microsoft.com",
+  "name": "types"
+ },
+ "contributors": [
+  {
+   "githubUsername": "torstenwerner",
+   "name": "Torsten Werner",
+   "url": "https://github.com/torstenwerner"
+  },
+  {
+   "githubUsername": "nikcorg",
+   "name": "Niklas Lindgren",
+   "url": "https://github.com/nikcorg"
+  },
+  {
+   "githubUsername": "vinaybedre",
+   "name": "Vinay Bedre",
+   "url": "https://github.com/vinaybedre"
+  },
+  {
+   "githubUsername": "kyranet",
+   "name": "Antonio Rom\u00e1n",
+   "url": "https://github.com/kyranet"
+  },
+  {
+   "githubUsername": "AndrewLeedham",
+   "name": "Andrew Leedham",
+   "url": "https://github.com/AndrewLeedham"
+  },
+  {
+   "githubUsername": "JasonLi914",
+   "name": "Jason Li",
+   "url": "https://github.com/JasonLi914"
+  },
+  {
+   "githubUsername": "southpolesteve",
+   "name": "Steve Faulkner",
+   "url": "https://github.com/southpolesteve"
+  },
+  {
+   "githubUsername": "ExE-Boss",
+   "name": "ExE Boss",
+   "url": "https://github.com/ExE-Boss"
+  },
+  {
+   "githubUsername": "alexandrusavin",
+   "name": "Alex Savin",
+   "url": "https://github.com/alexandrusavin"
+  },
+  {
+   "githubUsername": "OmgImAlexis",
+   "name": "Alexis Tyler",
+   "url": "https://github.com/OmgImAlexis"
+  },
+  {
+   "githubUsername": "kbkk",
+   "name": "Jakub Kisielewski",
+   "url": "https://github.com/kbkk"
+  },
+  {
+   "githubUsername": "glasser",
+   "name": "David Glasser",
+   "url": "https://github.com/glasser"
+  }
+ ],
+ "dependencies": {
+  "@types/node": "*",
+  "form-data": "^4.0.4"
+ },
+ "description": "TypeScript definitions for node-fetch",
+ "directories": {},
+ "dist": {
+  "fileCount": 6,
+  "integrity": "sha512-QGpRVpzSaUs30JBSGPjOg4Uveu384erbHBoT1zeONvyCfwQxIkUshLAOqN/k9EjGviPRmWTTe6aH2qySWKTVSw==",
+  "shasum": "e0c9b7b5edbdb1b50ce32c127e85e880872d56ee",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQCp+A8dOs1tAs5NVbw9D+Tj1urhYH526/8L5cKf7oMIyAIgfWVcISBKzLsHebZBIMQXj/QKy2tBuoxedXxkaFXlgA8="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@types/node-fetch/-/node-fetch-2.6.13.tgz",
+  "unpackedSize": 11940
+ },
+ "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/node-fetch",
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "ts-npm-types@microsoft.com",
+   "name": "types"
+  }
+ ],
+ "name": "@types/node-fetch",
+ "peerDependencies": {},
+ "repository": {
+  "directory": "types/node-fetch",
+  "type": "git",
+  "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+ },
+ "scripts": {},
+ "typeScriptVersion": "5.1",
+ "types": "index.d.ts",
+ "typesPublisherContentHash": "502a2d320543373ad812a0b841a43dd3721f54164da2a7d0395a5498e2d10f46",
+ "version": "2.6.13"
+}

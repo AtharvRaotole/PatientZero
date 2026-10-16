@@ -1,0 +1,119 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@fastify/error@4.2.1",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/error_4.2.1_1791627244539_0.21029268933523482"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "8e1e6053-e2a3-469b-ab36-922ac8d895bf"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "author": {
+  "name": "Tomas Della Vedova"
+ },
+ "bugs": {
+  "url": "https://github.com/fastify/fastify-error/issues"
+ },
+ "contributors": [
+  {
+   "email": "hello@matteocollina.com",
+   "name": "Matteo Collina"
+  },
+  {
+   "name": "James Sumners",
+   "url": "https://james.sumners.info"
+  },
+  {
+   "email": "aras.abbasi@gmail.com",
+   "name": "Aras Abbasi"
+  },
+  {
+   "email": "frazer.dev@icloud.com",
+   "name": "Frazer Smith",
+   "url": "https://github.com/fdawgs"
+  }
+ ],
+ "description": "A small utility, used by Fastify itself, for generating consistent error objects across your codebase and plugins.",
+ "devDependencies": {
+  "benchmark": "^2.1.4",
+  "c8": "^12.0.0",
+  "eslint": "^9.17.0",
+  "neostandard": "^0.13.0",
+  "tstyche": "^7.1.0"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@fastify%2ferror@4.2.1"
+  },
+  "fileCount": 18,
+  "integrity": "sha512-MYBumuIwP+5MIpXSyKm6/o1Eigcoij186lWUssX3LH5U8KWqU0ktZhzC4CErIX9EJeQeRGI+zJZQWakBlFbUcg==",
+  "shasum": "6ec02a481559abc5ac8fd478f8a1f9391ee8188e",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCICWzb9FRqzxZ02iTAwir6D2qfMAac7PzGCM7KyAtAsszAiEAzjSkkjaKdROtUHWLEQb2nyziFC7kInBeX/hSxklyPng="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDNVWwFYYuTfPj+COg/XrmdguweTrLIUsxxrjASpNJp7wIgCws1DB4IqGClGZVAaLgyJ+2RRddZz/Ws/5+Y16lSd9M="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@fastify/error/-/error-4.2.1.tgz",
+  "unpackedSize": 40081
+ },
+ "funding": [
+  {
+   "type": "github",
+   "url": "https://github.com/sponsors/fastify"
+  },
+  {
+   "type": "opencollective",
+   "url": "https://opencollective.com/fastify"
+  }
+ ],
+ "gitHead": "9e864fdbadb0ae0701ae536f9725a3456aa7bfac",
+ "homepage": "https://github.com/fastify/fastify-error#readme",
+ "keywords": [
+  "fastify",
+  "error",
+  "utility",
+  "plugin"
+ ],
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "behemoth89@gmail.com",
+   "name": "eomm"
+  }
+ ],
+ "name": "@fastify/error",
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/fastify/fastify-error.git"
+ },
+ "scripts": {
+  "lint": "eslint",
+  "lint:fix": "eslint --fix",
+  "test": "npm run test:unit && npm run test:typescript",
+  "test:typescript": "tstyche",
+  "test:unit": "c8 --100 node --test"
+ },
+ "type": "commonjs",
+ "types": "types/index.d.ts",
+ "version": "4.2.1"
+}

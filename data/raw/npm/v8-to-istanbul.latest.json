@@ -1,0 +1,81 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "v8-to-istanbul@9.3.0",
+ "_nodeVersion": "12.22.12",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/v8-to-istanbul_9.3.0_1719044030313_0.5053154597681602"
+ },
+ "_npmUser": {
+  "email": "bencoe+oss-bot@gmail.com",
+  "name": "oss-bot"
+ },
+ "_npmVersion": "6.14.16",
+ "author": {
+  "email": "ben@npmjs.com",
+  "name": "Ben Coe"
+ },
+ "bugs": {
+  "url": "https://github.com/istanbuljs/v8-to-istanbul/issues"
+ },
+ "dependencies": {
+  "@jridgewell/trace-mapping": "^0.3.12",
+  "@types/istanbul-lib-coverage": "^2.0.1",
+  "convert-source-map": "^2.0.0"
+ },
+ "description": "convert from v8 coverage format to istanbul's format",
+ "devDependencies": {
+  "@types/node": "^20.0.0",
+  "c8": "^7.2.1",
+  "semver": "^7.3.2",
+  "should": "13.2.3",
+  "source-map": "^0.7.3",
+  "standard": "^17.0.0",
+  "tap": "^16.0.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 12,
+  "integrity": "sha512-kiGUalWN+rgBJ/1OHZsBtU4rXZOfj/7rKQxULKlIzwzQSvMJUUNgPwJEEh7gU6xEVxC0ahoOBvN2YI8GH6FNgA==",
+  "shasum": "b9572abfa62bd556c16d75fdebc1a411d5ff3175",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIGBuZLLuzwLTzPuAm0s0foP6kjRESOyZCWLNiDIVOmSDAiEA1Ha/ibF/6iaDNa00KzFFNal6FCQIc1dyNuMsY11Z728="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/v8-to-istanbul/-/v8-to-istanbul-9.3.0.tgz",
+  "unpackedSize": 47644
+ },
+ "engines": {
+  "node": ">=10.12.0"
+ },
+ "gitHead": "46b972458b40ea0d628c80dd60223cc909f81cd0",
+ "homepage": "https://github.com/istanbuljs/v8-to-istanbul#readme",
+ "keywords": [
+  "istanbul",
+  "v8",
+  "coverage"
+ ],
+ "license": "ISC",
+ "main": "index.js",
+ "name": "v8-to-istanbul",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/istanbuljs/v8-to-istanbul.git"
+ },
+ "scripts": {
+  "coverage": "c8 report --check-coverage",
+  "fix": "standard --fix",
+  "posttest": "standard",
+  "snapshot": "TAP_SNAPSHOT=1 tap test/*.js",
+  "test": "c8 --reporter=html --reporter=text tap --no-coverage test/*.js"
+ },
+ "standard": {
+  "ignore": [
+   "**/test/fixtures"
+  ]
+ },
+ "types": "index.d.ts",
+ "version": "9.3.0"
+}

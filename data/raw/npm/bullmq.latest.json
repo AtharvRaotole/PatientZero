@@ -1,0 +1,298 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "bullmq@6.3.15",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/bullmq_6.3.15_1791950218407_0.748915934938915"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "6db18b09-23ad-430a-b64f-ee1ece392cab"
+  }
+ },
+ "_npmVersion": "11.21.0",
+ "author": {
+  "name": "Taskforce.sh Inc."
+ },
+ "bugs": {
+  "url": "https://github.com/taskforcesh/bullmq/issues"
+ },
+ "commitlint": {
+  "extends": [
+   "@commitlint/config-conventional"
+  ]
+ },
+ "dependencies": {
+  "cron-parser": "5.10.2",
+  "msgpackr": "2.1.0",
+  "node-abort-controller": "3.1.1",
+  "semver": "7.8.5",
+  "tslib": "2.8.1"
+ },
+ "description": "Queue for messages and jobs based on Redis",
+ "devDependencies": {
+  "@commitlint/cli": "21.2.3",
+  "@commitlint/config-conventional": "21.2.3",
+  "@eslint/eslintrc": "3.3.7",
+  "@eslint/js": "10.0.1",
+  "@semantic-release/changelog": "7.0.0",
+  "@semantic-release/commit-analyzer": "13.0.1",
+  "@semantic-release/exec": "7.1.0",
+  "@semantic-release/git": "11.0.1",
+  "@semantic-release/github": "12.0.10",
+  "@semantic-release/npm": "13.2.0",
+  "@semantic-release/release-notes-generator": "14.1.1",
+  "@types/lodash.defaults": "4.2.9",
+  "@types/lodash.isarguments": "3.1.9",
+  "@types/msgpack": "0.0.34",
+  "@types/node": "24.19.1",
+  "@types/pg": "8.23.1",
+  "@types/semver": "7.8.0",
+  "@types/sinon": "22.0.0",
+  "@typescript-eslint/eslint-plugin": "8.71.0",
+  "@typescript-eslint/parser": "8.71.0",
+  "@vitest/coverage-v8": "4.1.11",
+  "coveralls-next": "6.0.2",
+  "cpx2": "9.0.3",
+  "eslint": "10.12.0",
+  "eslint-config-prettier": "10.1.8",
+  "eslint-plugin-prettier": "5.5.6",
+  "eslint-plugin-promise": "7.3.0",
+  "eslint-plugin-tsdoc": "0.5.4",
+  "fast-glob": "3.3.3",
+  "globals": "17.13.0",
+  "husky": "9.1.7",
+  "ioredis": "5.11.1",
+  "lint-staged": "17.6.0",
+  "madge": "8.0.0",
+  "minimatch": "10.2.6",
+  "moment": "2.31.0",
+  "pg": "8.23.1",
+  "prettier": "3.9.9",
+  "pretty-quick": "4.2.2",
+  "progress": "2.0.3",
+  "redis": "6.3.0",
+  "rimraf": "6.1.3",
+  "rrule": "2.8.1",
+  "semantic-release": "25.0.9",
+  "sinon": "22.1.0",
+  "test-console": "2.0.0",
+  "ts-node": "10.9.2",
+  "typedoc": "0.28.20",
+  "typescript": "5.9.3",
+  "vitepress": "2.0.0-alpha.20",
+  "vitest": "4.1.11"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/bullmq@6.3.15"
+  },
+  "fileCount": 712,
+  "integrity": "sha512-J6EZH/DhfGnsIafSK2FfNJ6XtSAQnD4YM1vts5+jT4usLYkxV2uU72oKNpmyxUQl9U4sFEvK5MO5SJ+dGlwOLQ==",
+  "shasum": "7f4f4449f7ba48a1b426742cd72c4f65c7745498",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIH8ZcaliB+ARKKw9Kb+uz1HSa0D8JOjJz/duIkL0AMDLAiAdIf5AMLmSGQF9A20FH85E4UFCuwPMUy5Fn4xMAr/HQQ=="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQCCm5IVWLLwLzFCAGvI17sTgKXqbpYSoPxXOWW9bBpKaAIhANQnVMegs6yTs/gzhA1ZScYHNHdB4CtG3MGHMa2csw0U"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/bullmq/-/bullmq-6.3.15.tgz",
+  "unpackedSize": 3014613
+ },
+ "engines": {
+  "node": ">=14.17.0"
+ },
+ "gitHead": "afc9711a89fe9e38547f09a79bce4566049266c0",
+ "homepage": "https://bullmq.io/",
+ "keywords": [
+  "bull",
+  "bullmq",
+  "queues",
+  "jobs",
+  "redis"
+ ],
+ "license": "MIT",
+ "lint-staged": {
+  "*.{js,ts}": "npm run eslint:fix"
+ },
+ "main": "./dist/cjs/index.js",
+ "maintainers": [
+  {
+   "email": "manuel@optimalbits.com",
+   "name": "manast"
+  }
+ ],
+ "module": "./dist/esm/index.js",
+ "name": "bullmq",
+ "packageManager": "yarn@1.22.22",
+ "peerDependencies": {
+  "bullmq-otel": ">=2.0.0",
+  "ioredis": ">=5.0.0",
+  "pg": ">=8.0.0",
+  "redis": ">=5.0.0"
+ },
+ "peerDependenciesMeta": {
+  "bullmq-otel": {
+   "optional": true
+  },
+  "ioredis": {
+   "optional": true
+  },
+  "pg": {
+   "optional": true
+  },
+  "redis": {
+   "optional": true
+  }
+ },
+ "release": {
+  "plugins": [
+   [
+    "@semantic-release/commit-analyzer",
+    {
+     "releaseRules": [
+      {
+       "header": "**/*\\[python\\]*",
+       "release": false
+      },
+      {
+       "header": "**/*\\[elixir\\]*",
+       "release": false
+      },
+      {
+       "header": "**/*\\[php\\]*",
+       "release": false
+      },
+      {
+       "header": "**/*\\[rust\\]*",
+       "release": false
+      },
+      {
+       "header": "**/*\\[dotnet\\]*",
+       "release": false
+      },
+      {
+       "header": "**/*\\[dotnet\\]*",
+       "release": false
+      }
+     ]
+    }
+   ],
+   [
+    "@semantic-release/release-notes-generator",
+    {
+     "preset": "angular",
+     "presetConfig": {
+      "ignoreCommits": "(\\[python\\]|\\[elixir\\]|\\[php\\]|\\[rust\\]|\\[dotnet\\])"
+     }
+    }
+   ],
+   [
+    "@semantic-release/changelog",
+    {
+     "changelogFile": "docs/gitbook/changelog.md"
+    }
+   ],
+   [
+    "@semantic-release/exec",
+    {
+     "prepareCmd": "node scripts/updateVersion.js ${nextRelease.version} && yarn build"
+    }
+   ],
+   [
+    "@semantic-release/npm",
+    {
+     "npmPublish": true,
+     "provenance": true
+    }
+   ],
+   "@semantic-release/github"
+  ]
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/taskforcesh/bullmq.git"
+ },
+ "resolutions": {
+  "brace-expansion": "5.0.12",
+  "js-yaml": "5.4.2",
+  "picomatch": "4.0.7",
+  "tar": "7.5.22",
+  "yaml": "2.9.1"
+ },
+ "scripts": {
+  "build": "npm run clean:dist && npm run pretest && npm run tsc:all && npm run copy:main:type && npm run clean:temp:files && npm run copy:lua && npm run copy:includes:lua",
+  "circular:references": "madge --circular --extensions ts ./src",
+  "clean:dist": "rimraf dist",
+  "clean:scripts": "rimraf rawScripts src/scripts src/postgres/sql-scripts.ts",
+  "clean:temp:files": "rimraf dist/cjs/bullmq.d.ts dist/esm/bullmq.d.ts dist/tsdoc-metadata.json",
+  "copy:includes:lua": "cpx \"./src/commands/includes/*.lua\" ./dist/cjs/commands/includes && cpx \"./src/commands/includes/*.lua\" ./dist/esm/commands/includes",
+  "copy:lua": "cpx \"./src/commands/*.lua\" ./dist/cjs/commands && cpx \"./src/commands/*.lua\" ./dist/esm/commands",
+  "copy:lua:dotnet": "rm -f ./dotnet/src/BullMQ/Commands/*.lua && cpx \"./rawScripts/*.lua\" ./dotnet/src/BullMQ/Commands",
+  "copy:lua:elixir": "rm -f ./elixir/priv/scripts/*.lua && cpx \"./rawScripts/*.lua\" ./elixir/priv/scripts",
+  "copy:lua:php": "rm -f ./php/src/commands/*.lua && cpx \"./rawScripts/*.lua\" ./php/src/commands",
+  "copy:lua:python": "rm -f ./python/bullmq/commands/*.lua && cpx \"./rawScripts/*.lua\" ./python/bullmq/commands",
+  "copy:lua:rust": "rm -f ./rust/src/commands/*.lua && cpx \"./rawScripts/*.lua\" ./rust/src/commands",
+  "copy:main:type": "cpx \"./dist/esm/classes/main.d.ts\" ./dist/cjs/classes && cpx \"./dist/esm/classes/main-worker.d.ts\" ./dist/cjs/classes",
+  "copy:sql": "cpx \"./src/postgres/migrations/*.sql\" ./dist/cjs/postgres/migrations && cpx \"./src/postgres/migrations/*.sql\" ./dist/esm/postgres/migrations && cpx \"./src/postgres/commands/*.sql\" ./dist/cjs/postgres/commands && cpx \"./src/postgres/commands/*.sql\" ./dist/esm/postgres/commands",
+  "copy:sql:dotnet": "rm -f ./dotnet/src/BullMQ/Postgres/migrations/*.sql ./dotnet/src/BullMQ/Postgres/commands/*.sql && cpx \"./src/postgres/migrations/*.sql\" ./dotnet/src/BullMQ/Postgres/migrations && cpx \"./src/postgres/commands/*.sql\" ./dotnet/src/BullMQ/Postgres/commands",
+  "copy:sql:elixir": "rm -f ./elixir/priv/postgres/migrations/*.sql ./elixir/priv/postgres/commands/*.sql && cpx \"./src/postgres/migrations/*.sql\" ./elixir/priv/postgres/migrations && cpx \"./src/postgres/commands/*.sql\" ./elixir/priv/postgres/commands",
+  "copy:sql:python": "rm -f ./python/bullmq/postgres/migrations/*.sql ./python/bullmq/postgres/commands/*.sql && cpx \"./src/postgres/migrations/*.sql\" ./python/bullmq/postgres/migrations && cpx \"./src/postgres/commands/*.sql\" ./python/bullmq/postgres/commands",
+  "coverage": "vitest run --no-file-parallelism --coverage --config vitest.coverage.config.ts",
+  "dc:down": "docker-compose -f docker-compose.yml down",
+  "dc:up": "docker-compose -f docker-compose.yml up -d",
+  "docs": "typedoc --excludeExternals --excludeProtected --excludePrivate --readme none src/index.ts",
+  "docs:api": "yarn docs:json && typedoc --includeVersion --excludeExternals --excludeProtected --excludePrivate --readme ./README.md --entryPointStrategy merge --out ./docs/gitbook/public/api $(find ./apiVersions -maxdepth 1 -name 'v*.json' | sort -r)",
+  "docs:build": "yarn docs:api && vitepress build docs",
+  "docs:dev": "yarn docs:api && vitepress dev docs",
+  "docs:json": "mkdir -p ./apiVersions && yarn pretest && typedoc --excludeExternals --excludeProtected --excludePrivate --readme none src/index.ts --json ./apiVersions/v6.json --name v6",
+  "docs:preview": "vitepress preview docs",
+  "dry-run": "npm publish --dry-run",
+  "eslint:fix": "eslint . --fix",
+  "generate:raw:scripts": "ts-node --project tsconfig-cjs.json scripts/generateRawScripts.ts",
+  "generate:sql:scripts": "node ./scripts/generateSqlScripts.js",
+  "lint": "eslint .",
+  "lint:staged": "lint-staged",
+  "prepare": "husky",
+  "prepublishOnly": "npm run build",
+  "pretest": "npm run clean:scripts && npm run generate:raw:scripts && npm run transform:commands && npm run generate:sql:scripts && npm run circular:references",
+  "prettier": "prettier **/*.ts --write",
+  "pretty:quick": "pretty-quick --staged",
+  "semantic-release": "semantic-release",
+  "semantic-release-prepare": "ts-node tools/semantic-release-prepare",
+  "semantic-release:debug": "semantic-release --no-ci --dry-run --debug",
+  "test": "vitest run --no-file-parallelism",
+  "test:adapter-conformance": "vitest run --no-file-parallelism --config vitest.adapter-conformance.config.ts",
+  "test:bun": "bun node_modules/vitest/dist/cli.js run --no-file-parallelism --config vitest.bun.config.ts",
+  "test:bun:smoke": "bun test --timeout 20000 tests/bun-redis.test.ts tests/bun-adapter-suite.test.ts",
+  "test:ioredis": "vitest run --no-file-parallelism --config vitest.ioredis.config.ts",
+  "test:node-redis": "vitest run --no-file-parallelism --config vitest.node-redis.config.ts",
+  "test:postgres": "vitest run --config vitest.postgres.config.ts",
+  "test:postgres:smoke": "vitest run --no-file-parallelism --config vitest.postgres.smoke.config.ts",
+  "test:smoke": "vitest run --no-file-parallelism --bail=1 tests/async_fifo_queue.test.ts tests/script_loader.test.ts tests/scripts.test.ts tests/child-pool.test.ts tests/bulk.test.ts tests/queue.test.ts",
+  "test:types": "tsc --emitDeclarationOnly --incremental false --outDir dist/type-tests && tsc -p tsconfig.type-tests.json",
+  "test:valkey-glide": "vitest run --no-file-parallelism --config vitest.valkey-glide.config.ts",
+  "test:vitest": "vitest run --no-file-parallelism",
+  "test:vitest:ui": "vitest --ui",
+  "test:vitest:watch": "vitest",
+  "test:watch": "vitest --watch",
+  "transform:commands": "node ./scripts/commandTransform.js ./rawScripts ./src/scripts",
+  "tsc": "tsc",
+  "tsc:all": "tsc && tsc -p tsconfig-cjs.json"
+ },
+ "source": "./src/index.ts",
+ "types": "./dist/esm/index.d.ts",
+ "version": "6.3.15"
+}

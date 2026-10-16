@@ -1,0 +1,110 @@
+{
+ "_from": "file:proxy-agent-8.0.2.tgz",
+ "_hasShrinkwrap": false,
+ "_id": "proxy-agent@8.0.2",
+ "_integrity": "sha512-idLLRewuemWd7GH/BDJzGiB0dWGfT2SQs3jy6NtZtGWU9uPTTSdeC1/cdbqLwgzhfv027daGFuXX426e2Eg20A==",
+ "_nodeVersion": "20.20.2",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/proxy-agent_8.0.2_1780937258670_0.27298241131943324"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:cf65541a-aa7c-402c-bc86-f18da6f1fd1b"
+  }
+ },
+ "_npmVersion": "11.16.0",
+ "_resolved": "/tmp/130933e155e5db274f4f051476d9220b/proxy-agent-8.0.2.tgz",
+ "author": {
+  "email": "nathan@tootallnate.net",
+  "name": "Nathan Rajlich",
+  "url": "http://n8.io/"
+ },
+ "bugs": {
+  "url": "https://github.com/TooTallNate/proxy-agents/issues"
+ },
+ "dependencies": {
+  "agent-base": "9.0.0",
+  "debug": "^4.3.4",
+  "http-proxy-agent": "9.1.0",
+  "https-proxy-agent": "9.1.0",
+  "lru-cache": "^7.14.1",
+  "pac-proxy-agent": "9.1.0",
+  "proxy-from-env": "^2.0.0",
+  "socks-proxy-agent": "10.1.0"
+ },
+ "description": "Maps proxy protocols to `http.Agent` implementations",
+ "devDependencies": {
+  "@types/agent-base": "^4.2.0",
+  "@types/debug": "^4.1.7",
+  "@types/node": "^22.13.0",
+  "@types/proxy-from-env": "^1.0.1",
+  "@types/ws": "^8.5.4",
+  "async-listen": "^3.0.0",
+  "proxy": "4.1.0",
+  "socksv5": "github:TooTallNate/socksv5#d937368b28e929396166d77a06d387a4a902bd51",
+  "tsconfig": "0.0.0",
+  "typescript": "^5.1.6",
+  "ws": "^8.20.1"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/proxy-agent@8.0.2"
+  },
+  "fileCount": 7,
+  "integrity": "sha512-idLLRewuemWd7GH/BDJzGiB0dWGfT2SQs3jy6NtZtGWU9uPTTSdeC1/cdbqLwgzhfv027daGFuXX426e2Eg20A==",
+  "shasum": "70737a3b9cdc8bd7a282c9e6ff54a64f5252413c",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIDk79iZ609qXZ5bcSB2aPlnoGOmeiZY15LZTgkKELpt0AiAnSuhte7qUGy4HPP5GsNhe8dPHKfI04RFlOQA5cnUZ7g=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/proxy-agent/-/proxy-agent-8.0.2.tgz",
+  "unpackedSize": 17453
+ },
+ "engines": {
+  "node": ">= 20"
+ },
+ "exports": {
+  "default": "./dist/index.js",
+  "types": "./dist/index.d.ts"
+ },
+ "homepage": "https://github.com/TooTallNate/proxy-agents#readme",
+ "keywords": [
+  "http",
+  "https",
+  "socks",
+  "agent",
+  "mapping",
+  "proxy"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "nathan@tootallnate.net",
+   "name": "tootallnate"
+  }
+ ],
+ "name": "proxy-agent",
+ "repository": {
+  "directory": "packages/proxy-agent",
+  "type": "git",
+  "url": "git+https://github.com/TooTallNate/proxy-agents.git"
+ },
+ "scripts": {
+  "build": "tsc",
+  "lint": "eslint . --ext .ts",
+  "pack": "node ../../scripts/pack.mjs",
+  "test": "vitest"
+ },
+ "type": "module",
+ "version": "8.0.2"
+}

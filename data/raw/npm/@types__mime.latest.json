@@ -1,0 +1,42 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@types/mime@4.0.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/mime_4.0.0_1711877729602_0.9770973707328015"
+ },
+ "_npmUser": {
+  "email": "ts-npm-types@microsoft.com",
+  "name": "types"
+ },
+ "dependencies": {
+  "mime": "*"
+ },
+ "deprecated": "This is a stub types definition. mime provides its own type definitions, so you do not need this installed.",
+ "description": "Stub TypeScript definitions entry for mime, which provides its own types definitions",
+ "directories": {},
+ "dist": {
+  "fileCount": 4,
+  "integrity": "sha512-5eEkJZ/BLvTE3vXGKkWlyTSUVZuzj23Wj8PoyOq2lt5I3CYbiLBOPb3XmCW6QcuOibIUE6emHXHt9E/F/rCa6w==",
+  "shasum": "b5f8a75697ac775ecf1daaea9bfb91cde065b397",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEYCIQCJ8ZKsKq0Jx+lV+c2B31R/9z3plLvIttZXtwMyv531AgIhAOal9payETCUBKZZ3e/y5Plve2zYwNByXNJH7DFakjOA"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@types/mime/-/mime-4.0.0.tgz",
+  "unpackedSize": 1706
+ },
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "ts-npm-types@microsoft.com",
+   "name": "types"
+  }
+ ],
+ "name": "@types/mime",
+ "scripts": {},
+ "version": "4.0.0"
+}

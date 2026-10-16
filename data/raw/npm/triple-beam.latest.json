@@ -1,0 +1,80 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "triple-beam@1.4.1",
+ "_nodeVersion": "16.18.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/triple-beam_1.4.1_1689003107882_0.16415200083536807"
+ },
+ "_npmUser": {
+  "email": "dabh@alumni.stanford.edu",
+  "name": "dabh"
+ },
+ "_npmVersion": "9.8.0",
+ "author": {
+  "email": "charlie.robbins@gmail.com",
+  "name": "Charlie Robbins"
+ },
+ "bugs": {
+  "url": "https://github.com/winstonjs/triple-beam/issues"
+ },
+ "description": "Definitions of levels for logging purposes & shareable Symbol constants.",
+ "devDependencies": {
+  "@dabh/eslint-config-populist": "^5.0.0",
+  "assume": "^2.0.1",
+  "mocha": "^10.2.0",
+  "nyc": "^15.1.0",
+  "typescript": "^5.1.6"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 12,
+  "integrity": "sha512-aZbgViZrg1QNcG+LULa7nhZpJTZSLm/mXnHXnbAbjmN5aSa0y7V+wvv6+4WaBtpISJzThKy+PIPxc1Nq1EJ9mg==",
+  "shasum": "6fde70271dc6e5d73ca0c3b24e2d92afb7441984",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIQCe0R/VJGRqEi3WiKOctKGKay6ddpYH7uId9BUBQ/orngIgQV8JnXneS27jbY3Vh1G8fYC56YMKWfnVwHlv97AME24="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/triple-beam/-/triple-beam-1.4.1.tgz",
+  "unpackedSize": 10220
+ },
+ "engines": {
+  "node": ">= 14.0.0"
+ },
+ "gitHead": "6ce2be7e76149479695abaf5caf6c11e30cb21b8",
+ "homepage": "https://github.com/winstonjs/triple-beam#readme",
+ "keywords": [
+  "winstonjs",
+  "winston",
+  "logging",
+  "logform",
+  "symbols",
+  "logs",
+  "levels"
+ ],
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "charlie.robbins@gmail.com",
+   "name": "indexzero"
+  },
+  {
+   "email": "dabh@alumni.stanford.edu",
+   "name": "dabh"
+  }
+ ],
+ "name": "triple-beam",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/winstonjs/triple-beam.git"
+ },
+ "scripts": {
+  "lint": "eslint config/*.js index.js --resolve-plugins-relative-to ./node_modules/@dabh/eslint-config-populist",
+  "pretest": "npm run lint",
+  "test": "nyc mocha test.js"
+ },
+ "version": "1.4.1"
+}

@@ -1,0 +1,102 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "p-timeout@8.0.0",
+ "_nodeVersion": "26.11.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/p-timeout_8.0.0_1792066293557_0.3349639356599081"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "12.2.0",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/p-timeout/issues"
+ },
+ "description": "Timeout a promise after a specified amount of time",
+ "devDependencies": {
+  "@typescript/native": "npm:typescript@^7.0.2",
+  "delay": "^7.0.0",
+  "in-range": "^3.0.0",
+  "nz": "^0.1.0",
+  "p-cancelable": "^4.0.1",
+  "sinon": "^22.1.0",
+  "time-span": "^5.1.0",
+  "xo": "^5.0.1"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-IHjMTvwSvMPKVfGAVTRxI+Ea6Vu5soB0oaC3fuEc58EI01T36AiVclDTTYoHBO8M1gjxqAvgkRLm33TGUCzEDw==",
+  "shasum": "90adbd066c2cef50fca3c37a7dd7480163a95a24",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQDU2QVGoKs0lrUxAW6T3IGNxK/8lO8SFnGSzl72WrprzQIhALBYZ7QW1UIBAMm1sZltfoiGbMX29BY8HFx0MwFr5AUg"
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQDsx0zSaLiIMBw/O/uBAlDGyfxyu06gtiS0LRPB2VC2rAIhAPeIsjdyyIwA0h3T1169OqSV3BfS1bRiIDG8hB4jsRNk"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/p-timeout/-/p-timeout-8.0.0.tgz",
+  "unpackedSize": 16768
+ },
+ "engines": {
+  "node": ">=22"
+ },
+ "exports": {
+  ".": {
+   "default": "./index.js",
+   "types": "./index.d.ts"
+  }
+ },
+ "funding": "https://github.com/sponsors/sindresorhus",
+ "gitHead": "071659ceb486e8ef960a1ddadefcc946fc5e309b",
+ "homepage": "https://github.com/sindresorhus/p-timeout#readme",
+ "keywords": [
+  "promise",
+  "timeout",
+  "error",
+  "invalidate",
+  "async",
+  "await",
+  "promises",
+  "time",
+  "out",
+  "cancel",
+  "bluebird"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "p-timeout",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/p-timeout.git"
+ },
+ "scripts": {
+  "test": "xo && node --test && nz"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "8.0.0",
+ "xo": [
+  {
+   "rules": {
+    "node-test/prefer-test-context-assert": "off"
+   }
+  }
+ ]
+}

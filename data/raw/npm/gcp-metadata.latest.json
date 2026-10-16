@@ -1,0 +1,122 @@
+{
+ "_from": "file:/tmp/publishing-artifacts-443824278/gcp-metadata/9.2.1/gcp-metadata-9.2.1.tgz",
+ "_hasShrinkwrap": false,
+ "_id": "gcp-metadata@9.2.1",
+ "_integrity": "sha512-5/LvxarRKbGCA5LJ+ha2aV1iVm7/aALIW4PzeXnQR5dyXiNMWbeA4UOBnqERInLfH/xSFp0ZREcxodUzxhEw2Q==",
+ "_nodeVersion": "22.18.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/gcp-metadata_9.2.1_1792101510463_0.5355603024242019"
+ },
+ "_npmUser": {
+  "email": "node-team-npm+wombot@google.com",
+  "name": "google-wombot"
+ },
+ "_npmVersion": "10.9.3",
+ "_resolved": "/tmp/publishing-artifacts-443824278/gcp-metadata/9.2.1/gcp-metadata-9.2.1.tgz",
+ "author": {
+  "name": "Google LLC"
+ },
+ "bugs": {
+  "url": "https://github.com/googleapis/google-cloud-node/issues"
+ },
+ "dependencies": {
+  "gaxios": "^8.3.0",
+  "google-logging-utils": "^2.0.0",
+  "json-bigint": "^1.0.0"
+ },
+ "description": "Get the metadata from a Google Cloud Platform environment",
+ "devDependencies": {
+  "@google-cloud/functions": "^5.0.0",
+  "@types/json-bigint": "^1.0.4",
+  "@types/mocha": "^10.0.10",
+  "@types/ncp": "^2.0.8",
+  "@types/node": "^24.0.0",
+  "@types/sinon": "^21.0.0",
+  "@types/tmp": "^0.2.6",
+  "c8": "^10.1.3",
+  "chai": "^4.3.10",
+  "cross-env": "^7.0.3",
+  "gcbuild": "^1.3.39",
+  "gts": "^6.0.2",
+  "jsdoc": "^4.0.4",
+  "jsdoc-fresh": "^6.0.0",
+  "jsdoc-region-tag": "^5.0.0",
+  "mocha": "^11.1.0",
+  "ncp": "^2.0.0",
+  "nock": "^14.0.5",
+  "sinon": "21.0.3",
+  "tmp": "0.2.7",
+  "typescript": "5.8.3"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 9,
+  "integrity": "sha512-5/LvxarRKbGCA5LJ+ha2aV1iVm7/aALIW4PzeXnQR5dyXiNMWbeA4UOBnqERInLfH/xSFp0ZREcxodUzxhEw2Q==",
+  "shasum": "d5052034e64cf8211f3e79609b0c2268308713b4",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDjyp1egENHNH/OsBg5VYYH1DdvYxV3O7LtNi4GzmfVCwIgakKWaL7eAeWsIdtViFKOto3jSo4f229XfQwOEpHWqPA="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIAfyamHu1n6dhJZumdhIn977105YqgTurXbbSpwLR1KGAiBBCIwM0ddFEezlpmOt5MBaDOiDsswL8xTL58z+3yeZEA=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/gcp-metadata/-/gcp-metadata-9.2.1.tgz",
+  "unpackedSize": 62237
+ },
+ "engines": {
+  "node": ">=22"
+ },
+ "homepage": "https://github.com/googleapis/google-cloud-node/tree/main/core/packages/gcp-metadata",
+ "keywords": [
+  "google cloud platform",
+  "google cloud",
+  "google",
+  "app engine",
+  "compute engine",
+  "metadata server",
+  "metadata"
+ ],
+ "license": "Apache-2.0",
+ "main": "./build/src/index.js",
+ "maintainers": [
+  {
+   "email": "node-team-npm+wombot@google.com",
+   "name": "google-wombot"
+  },
+  {
+   "email": "stephenplusplusplus@gmail.com",
+   "name": "stephenplusplus"
+  },
+  {
+   "email": "google-cloud@google.com",
+   "name": "google-cloud-admin"
+  }
+ ],
+ "name": "gcp-metadata",
+ "repository": {
+  "directory": "core/packages/gcp-metadata",
+  "type": "git",
+  "url": "git+https://github.com/googleapis/google-cloud-node.git"
+ },
+ "scripts": {
+  "clean": "gts clean",
+  "compile": "cross-env NODE_OPTIONS=--max-old-space-size=8192 tsc -p .",
+  "docs": "jsdoc -c .jsdoc.js",
+  "fix": "gts fix",
+  "lint": "gts check",
+  "precompile": "gts clean",
+  "prelint": "cd samples; npm link ../; npm install",
+  "presystem-test": "npm run compile",
+  "pretest": "npm run compile",
+  "samples-test": "npm link && cd samples/ && npm link ../ && npm test && cd ../",
+  "system-test": "mocha build/system-test --timeout 600000",
+  "test": "node ../../../bin/run-test.cjs --timeout=5000 build/test"
+ },
+ "type": "commonjs",
+ "types": "./build/src/index.d.ts",
+ "version": "9.2.1"
+}

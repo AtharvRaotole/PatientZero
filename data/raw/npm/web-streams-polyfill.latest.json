@@ -1,0 +1,155 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "web-streams-polyfill@4.3.0",
+ "_nodeVersion": "24.15.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/web-streams-polyfill_4.3.0_1778853078132_0.3686756202575401"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:3407a257-3bf3-4c16-93a3-83e0a5424bfd"
+  }
+ },
+ "_npmVersion": "11.12.1",
+ "author": {
+  "email": "mattias@buelens.com",
+  "name": "Mattias Buelens"
+ },
+ "bugs": {
+  "url": "https://github.com/MattiasBuelens/web-streams-polyfill/issues"
+ },
+ "contributors": [
+  {
+   "email": "diwank.singh@gmail.com",
+   "name": "Diwank Singh"
+  }
+ ],
+ "description": "Web Streams, based on the WHATWG spec reference implementation",
+ "devDependencies": {
+  "@eslint/js": "^10.0.1",
+  "@microsoft/api-extractor": "^7.58.7",
+  "@rollup/plugin-inject": "^5.0.5",
+  "@rollup/plugin-replace": "^6.0.3",
+  "@rollup/plugin-strip": "^3.0.4",
+  "@rollup/plugin-terser": "^1.0.0",
+  "@rollup/plugin-typescript": "^12.3.0",
+  "@stylistic/eslint-plugin": "^5.10.0",
+  "@types/node": "~25.6.2",
+  "eslint": "^10.1.0",
+  "globals": "^17.4.0",
+  "micromatch": "^4.0.8",
+  "minimist": "^1.2.8",
+  "playwright": "^1.60.0",
+  "rollup": "^4.60.0",
+  "st": "^3.0.3",
+  "tslib": "^2.8.1",
+  "typescript": "^6.0.3",
+  "typescript-eslint": "^8.59.3",
+  "wpt-runner": "^7.0.0"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/web-streams-polyfill@4.3.0"
+  },
+  "fileCount": 12,
+  "integrity": "sha512-/Gnggvj9oSrEvJbDyyPtAnxBt5fGQM2iWOKQNu7ie1OxDgK40iZpyV3TKaRiEzVj1oA1UxKnEy9XPXh6PW3eVw==",
+  "shasum": "2f5fe004e2c53f09f7e03aef25b892953cab99a6",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQCDxHZBHXHp4ZbdTiE+R882QUsNLqgdX0C2PEwIvTx7dgIgYL8fP5xMmWPwZA9FCW5K5qYh5SeIQTNb3OGyr4Nvkd0="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/web-streams-polyfill/-/web-streams-polyfill-4.3.0.tgz",
+  "unpackedSize": 458800
+ },
+ "engines": {
+  "node": ">= 8"
+ },
+ "exports": {
+  ".": {
+   "import": "./dist/ponyfill.mjs",
+   "require": "./dist/ponyfill.js",
+   "types": "./types/ponyfill.d.ts"
+  },
+  "./dist/*": "./dist/*",
+  "./es5": {
+   "import": "./dist/ponyfill.es5.mjs",
+   "require": "./dist/ponyfill.es5.js",
+   "types": "./types/ponyfill.d.ts"
+  },
+  "./package": "./package.json",
+  "./package.json": "./package.json",
+  "./polyfill": {
+   "default": "./dist/polyfill.js",
+   "types": "./types/polyfill.d.ts"
+  },
+  "./polyfill/es5": {
+   "default": "./dist/polyfill.es5.js",
+   "types": "./types/polyfill.d.ts"
+  },
+  "./types/*": "./types/*"
+ },
+ "gitHead": "12b4fedec6c01503a137d837204ca0b85992461e",
+ "homepage": "https://github.com/MattiasBuelens/web-streams-polyfill#readme",
+ "keywords": [
+  "streams",
+  "whatwg",
+  "polyfill"
+ ],
+ "license": "MIT",
+ "main": "dist/ponyfill.js",
+ "maintainers": [
+  {
+   "email": "diwank.singh@gmail.com",
+   "name": "diwank"
+  },
+  {
+   "email": "asmatic075@gmail.com",
+   "name": "whiterabbit1983"
+  },
+  {
+   "email": "mattias.buelens@gmail.com",
+   "name": "mattiasbuelens"
+  }
+ ],
+ "module": "dist/ponyfill.mjs",
+ "name": "web-streams-polyfill",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/MattiasBuelens/web-streams-polyfill.git"
+ },
+ "scripts": {
+  "accept:types": "npm run build:types -- --local",
+  "build": "npm run build:bundle && npm run build:types",
+  "build:bundle": "rollup -c",
+  "build:types": "tsc --project . --emitDeclarationOnly --declarationDir ./lib && api-extractor run",
+  "lint": "eslint \"*.mjs\" \"src/**/*.ts\"",
+  "prepare": "npm run build",
+  "test": "npm run test:types && npm run test:unit && npm run test:wpt && npm run test:bundlers",
+  "test:bundler:rollup": "npm test --workspace=test/rollup-test",
+  "test:bundler:webpack": "npm test --workspace=test/webpack-test",
+  "test:bundlers": "npm run test:bundler:rollup && npm run test:bundler:webpack",
+  "test:types": "tsc -p ./test/types/tsconfig.json",
+  "test:unit": "cd test/unit && node --test",
+  "test:wpt": "npm run test:wpt:node && npm run test:wpt:chromium && npm run test:wpt:firefox",
+  "test:wpt:chromium": "node ./test/wpt/browser/run.mjs --browser chromium",
+  "test:wpt:firefox": "node ./test/wpt/browser/run.mjs --browser firefox",
+  "test:wpt:node": "node --expose_gc ./test/wpt/node/run.mjs"
+ },
+ "types": "types/ponyfill.d.ts",
+ "version": "4.3.0",
+ "workspaces": [
+  "test/benchmark-test",
+  "test/rollup-test",
+  "test/webpack-test"
+ ]
+}

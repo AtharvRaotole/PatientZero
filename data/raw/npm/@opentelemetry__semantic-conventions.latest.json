@@ -1,0 +1,138 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@opentelemetry/semantic-conventions@1.43.0",
+ "_nodeVersion": "24.18.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/semantic-conventions_1.43.0_1783627587877_0.7925613428879401"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:1f6afc5a-33bd-4eb5-b34e-94028110725c"
+  }
+ },
+ "_npmVersion": "lerna/9.0.7/node@v24.18.0+x64 (linux)",
+ "author": {
+  "name": "OpenTelemetry Authors"
+ },
+ "bugs": {
+  "url": "https://github.com/open-telemetry/opentelemetry-js/issues"
+ },
+ "description": "OpenTelemetry semantic conventions",
+ "devDependencies": {
+  "@size-limit/file": "^12.0.0",
+  "@size-limit/time": "^12.0.0",
+  "@size-limit/webpack": "^12.0.0",
+  "@types/mocha": "10.0.10",
+  "@types/node": "^14.18.63",
+  "@types/sinon": "17.0.4",
+  "mocha": "11.7.6",
+  "nock": "13.5.6",
+  "nyc": "17.1.0",
+  "sinon": "18.0.1",
+  "size-limit": "^12.0.0",
+  "ts-node": "10.9.2",
+  "typescript": "5.2.2"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@opentelemetry%2fsemantic-conventions@1.43.0"
+  },
+  "fileCount": 129,
+  "integrity": "sha512-eSYWTm620tTk45EKSedaUL8MFYI8hW164hIXsgIHyxu3VobUB3fFCu5t0hQby6OoWRPsG1KkKUG2M5UadiLiVg==",
+  "shasum": "f3f467e36c27332f0e735ec86cdcd78dd6f27865",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIA871w+BEacK8pg+0DD2yI5QqAxguFFUMd0jKHCD7ruIAiA7A0S2ewp7LFOE60M6gLHFM1BRRAaE1hrtEWhF5NFMeQ=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@opentelemetry/semantic-conventions/-/semantic-conventions-1.43.0.tgz",
+  "unpackedSize": 12006437
+ },
+ "engines": {
+  "node": ">=14"
+ },
+ "esnext": "build/esnext/index.js",
+ "exports": {
+  ".": {
+   "default": "./build/src/index.js",
+   "esnext": "./build/esnext/index.js",
+   "module": "./build/esm/index.js",
+   "types": "./build/src/index.d.ts"
+  },
+  "./incubating": {
+   "default": "./build/src/index-incubating.js",
+   "esnext": "./build/esnext/index-incubating.js",
+   "module": "./build/esm/index-incubating.js",
+   "types": "./build/src/index-incubating.d.ts"
+  }
+ },
+ "gitHead": "9b05f668ee7ab884a44b04b504e0baaff6c6d2b2",
+ "homepage": "https://github.com/open-telemetry/opentelemetry-js/tree/main/semantic-conventions",
+ "keywords": [
+  "opentelemetry",
+  "nodejs",
+  "tracing",
+  "attributes",
+  "semantic conventions"
+ ],
+ "license": "Apache-2.0",
+ "main": "build/src/index.js",
+ "maintainers": [
+  {
+   "email": "dyladan@gmail.com",
+   "name": "dyladan"
+  },
+  {
+   "email": "marc.pichler@dynatrace.com",
+   "name": "pichlermarc"
+  },
+  {
+   "email": "overbalancedev@proton.me",
+   "name": "overbalance"
+  },
+  {
+   "email": "npmjs-account@opentelemetry.io",
+   "name": "npmjs-account"
+  },
+  {
+   "email": "trentm@gmail.com",
+   "name": "trentm"
+  },
+  {
+   "email": "martin@martinkuba.com",
+   "name": "martinkuba"
+  }
+ ],
+ "module": "build/esm/index.js",
+ "name": "@opentelemetry/semantic-conventions",
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/open-telemetry/opentelemetry-js.git"
+ },
+ "scripts": {
+  "align-api-deps": "node ../scripts/align-api-deps.js",
+  "clean": "tsc --build --clean tsconfig.json tsconfig.esm.json tsconfig.esnext.json",
+  "compile": "tsc --build tsconfig.json tsconfig.esm.json tsconfig.esnext.json",
+  "peer-api-check": "node ../scripts/peer-api-check.js",
+  "prepublishOnly": "npm run compile",
+  "prewatch": "npm run precompile",
+  "size-check": "npm run compile && mocha 'test/**/*.test.ts'",
+  "version": "node ../scripts/version-update.js",
+  "watch": "tsc --build --watch tsconfig.json tsconfig.esm.json tsconfig.esnext.json"
+ },
+ "sideEffects": false,
+ "types": "build/src/index.d.ts",
+ "version": "1.43.0"
+}

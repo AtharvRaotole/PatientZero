@@ -1,0 +1,128 @@
+{
+ "_from": "file:/tmp/publishing-artifacts-443824278/google-auth-library/11.3.1/google-auth-library-11.3.1.tgz",
+ "_hasShrinkwrap": false,
+ "_id": "google-auth-library@11.3.1",
+ "_integrity": "sha512-mQS0R2Ev/DKkzuWSYtDeq15uhDeaWuT2qzLYqJ41LmooxVKHmn5ut3pc6dlHY6wfHW/D7FBmOYjAtkjaD1A7qA==",
+ "_nodeVersion": "22.18.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/google-auth-library_11.3.1_1792101489788_0.06857619377839863"
+ },
+ "_npmUser": {
+  "email": "node-team-npm+wombot@google.com",
+  "name": "google-wombot"
+ },
+ "_npmVersion": "10.9.3",
+ "_resolved": "/tmp/publishing-artifacts-443824278/google-auth-library/11.3.1/google-auth-library-11.3.1.tgz",
+ "author": {
+  "name": "Google Inc."
+ },
+ "bugs": {
+  "url": "https://github.com/googleapis/google-cloud-node/issues"
+ },
+ "dependencies": {
+  "base64-js": "^1.3.0",
+  "ecdsa-sig-formatter": "^1.0.11",
+  "gaxios": "^8.3.0",
+  "gcp-metadata": "^9.0.0",
+  "google-logging-utils": "^2.0.0",
+  "jws": "^4.0.0"
+ },
+ "description": "Google APIs Authentication Client Library for Node.js",
+ "devDependencies": {
+  "@types/base64-js": "^1.2.5",
+  "@types/jws": "^3.1.0",
+  "@types/mocha": "^10.0.10",
+  "@types/mv": "^2.1.0",
+  "@types/ncp": "^2.0.8",
+  "@types/node": "^24.0.0",
+  "@types/sinon": "^21.0.0",
+  "assert-rejects": "^1.0.0",
+  "c8": "^10.1.3",
+  "codecov": "^3.8.3",
+  "gts": "^6.0.2",
+  "is-docker": "^3.0.0",
+  "jsdoc": "^4.0.4",
+  "jsdoc-fresh": "^6.0.0",
+  "jsdoc-region-tag": "^5.0.0",
+  "karma": "^6.0.0",
+  "karma-chrome-launcher": "^3.0.0",
+  "karma-coverage": "^2.0.0",
+  "karma-firefox-launcher": "^2.0.0",
+  "karma-mocha": "^2.0.0",
+  "karma-sourcemap-loader": "^0.4.0",
+  "karma-webpack": "^5.0.0",
+  "mocha": "^11.1.0",
+  "mv": "^2.1.1",
+  "ncp": "^2.0.0",
+  "nock": "^14.0.5",
+  "null-loader": "^4.0.1",
+  "puppeteer": "^24.0.0",
+  "sinon": "21.0.3",
+  "ts-loader": "^9.5.2",
+  "typescript": "5.8.3",
+  "webpack": "^5.97.1",
+  "webpack-cli": "^6.0.1"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 141,
+  "integrity": "sha512-mQS0R2Ev/DKkzuWSYtDeq15uhDeaWuT2qzLYqJ41LmooxVKHmn5ut3pc6dlHY6wfHW/D7FBmOYjAtkjaD1A7qA==",
+  "shasum": "89820f220d11df0b3a9de1c3b02be15ca63fd565",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDoXant6zG6f7FDBGGhziHTb6McuC6auIIwRr3zUBJd8gIgAn9u8gNEQW/ycMoySNT2Jcg08tWq4nUAhHkKcf/yErY="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQCLJAMUfhM3vaqcZttZbFrSsoaw07kXn6N/d01Y82IDhQIhAMO0JHQdPANAy+PkT5EoD+yzxugBNOzshImpaO/VILWz"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/google-auth-library/-/google-auth-library-11.3.1.tgz",
+  "unpackedSize": 778463
+ },
+ "engines": {
+  "node": ">=22"
+ },
+ "homepage": "https://github.com/googleapis/google-cloud-node/tree/main/core/packages/google-auth-library-nodejs",
+ "keywords": [
+  "google",
+  "api",
+  "google apis",
+  "client",
+  "client library"
+ ],
+ "license": "Apache-2.0",
+ "main": "./build/src/index.js",
+ "maintainers": [
+  {
+   "email": "node-team-npm+wombot@google.com",
+   "name": "google-wombot"
+  }
+ ],
+ "name": "google-auth-library",
+ "repository": {
+  "directory": "core/packages/google-auth-library-nodejs",
+  "type": "git",
+  "url": "git+https://github.com/googleapis/google-cloud-node.git"
+ },
+ "scripts": {
+  "browser-test": "karma start",
+  "clean": "gts clean",
+  "compile": "tsc -p .",
+  "docs": "jsdoc -c .jsdoc.js",
+  "fix": "gts fix",
+  "lint": "gts check --no-inline-config",
+  "prelint": "cd samples; pnpm link ../; pnpm install",
+  "presystem-test": "pnpm run compile --sourceMap",
+  "pretest": "pnpm run compile --sourceMap",
+  "samples-setup": "cd samples/ && pnpm link ../ && pnpm run setup && cd ../",
+  "samples-test": "cd samples/ && pnpm link ../ && pnpm test && cd ../",
+  "system-test": "mocha build/system-test --timeout 60000",
+  "test": "node ../../../bin/run-test.cjs build/test",
+  "webpack": "webpack"
+ },
+ "types": "./build/src/index.d.ts",
+ "version": "11.3.1"
+}

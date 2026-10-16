@@ -1,0 +1,85 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "is-stream@4.0.1",
+ "_nodeVersion": "18.19.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/is-stream_4.0.1_1708370052095_0.5622682672651913"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "9.2.0",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/is-stream/issues"
+ },
+ "description": "Check if something is a Node.js stream",
+ "devDependencies": {
+  "@types/node": "^20.11.19",
+  "ava": "^5.3.1",
+  "tempy": "^3.1.0",
+  "tsd": "^0.30.5",
+  "xo": "^0.57.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-Dnz92NInDqYckGEUJv689RbRiTSEHCQ7wOVeALbkOz999YpqT46yMRIGtSNl2iCL1waAZSx40+h59NV/EwzV/A==",
+  "shasum": "375cf891e16d2e4baec250b85926cffc14720d9b",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEYCIQCVUZ5C3saftedvOFBl/kC+7AUKUufNPqhTIGd5Q6EG7AIhAPgxV7RGk9Hu6zwEv7D0MxlyoxrZkUwhWg2g3LCqO+1b"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/is-stream/-/is-stream-4.0.1.tgz",
+  "unpackedSize": 7619
+ },
+ "engines": {
+  "node": ">=18"
+ },
+ "exports": {
+  "default": "./index.js",
+  "types": "./index.d.ts"
+ },
+ "funding": "https://github.com/sponsors/sindresorhus",
+ "gitHead": "0868e196b222faa5e4b58c86c5bc6c480a94a966",
+ "homepage": "https://github.com/sindresorhus/is-stream#readme",
+ "keywords": [
+  "stream",
+  "type",
+  "streams",
+  "writable",
+  "readable",
+  "duplex",
+  "transform",
+  "check",
+  "detect",
+  "is"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "is-stream",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/is-stream.git"
+ },
+ "scripts": {
+  "test": "xo && ava && tsd"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "4.0.1"
+}

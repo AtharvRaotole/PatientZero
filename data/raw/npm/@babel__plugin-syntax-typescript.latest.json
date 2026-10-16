@@ -1,0 +1,94 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@babel/plugin-syntax-typescript@8.0.3",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/plugin-syntax-typescript_8.0.3_1782547472836_0.9935624314367537"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:9a0e7b49-ebe9-4f44-a678-62745b308d45"
+  }
+ },
+ "author": "The Babel Team (https://babel.dev/team)",
+ "dependencies": {
+  "@babel/helper-plugin-utils": "^8.0.1"
+ },
+ "description": "Allow parsing of TypeScript syntax",
+ "devDependencies": {
+  "@babel/core": "^8.0.1",
+  "@babel/helper-plugin-test-runner": "^8.0.0"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@babel%2fplugin-syntax-typescript@8.0.3"
+  },
+  "fileCount": 6,
+  "integrity": "sha512-jmTPwps7oSQSZaV1SxkQ3C12UWyufGysGc5OzDpZzvPAIX4mO7dJT3hoqkWVrSImvkcMiknir1iLN1SNV/CZzg==",
+  "shasum": "695e5768ff9f2f83289c6dee5b1dc734becd0c59",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIFjnV6PzmdwR1Uw/tzEZS4IGrGiyUT5/tz7vLhpUn6uxAiBFB6BsuL9jz6AC6zXCCQEB/tce1oubFxcEzS92OD9bYQ=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@babel/plugin-syntax-typescript/-/plugin-syntax-typescript-8.0.3.tgz",
+  "unpackedSize": 4283
+ },
+ "engines": {
+  "node": "^22.18.0 || >=24.11.0"
+ },
+ "exports": {
+  ".": {
+   "default": "./lib/index.js",
+   "types": "./lib/index.d.ts"
+  },
+  "./package.json": "./package.json"
+ },
+ "homepage": "https://babel.dev/docs/en/next/babel-plugin-syntax-typescript",
+ "keywords": [
+  "babel-plugin",
+  "typescript"
+ ],
+ "license": "MIT",
+ "main": "./lib/index.js",
+ "maintainers": [
+  {
+   "email": "hi@henryzoo.com",
+   "name": "hzoo"
+  },
+  {
+   "email": "bng412@gmail.com",
+   "name": "existentialism"
+  },
+  {
+   "email": "hello+npm@nicr.dev",
+   "name": "nicolo-ribaudo"
+  },
+  {
+   "email": "jlhwung@gmail.com",
+   "name": "jlhwung"
+  }
+ ],
+ "name": "@babel/plugin-syntax-typescript",
+ "peerDependencies": {
+  "@babel/core": "^8.0.0"
+ },
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "directory": "packages/babel-plugin-syntax-typescript",
+  "type": "git",
+  "url": "https://github.com/babel/babel.git"
+ },
+ "type": "module",
+ "version": "8.0.3"
+}

@@ -1,0 +1,62 @@
+{
+ "_from": ".",
+ "_id": "@protobufjs/aspromise@1.1.2",
+ "_nodeVersion": "6.9.1",
+ "_npmOperationalInternal": {
+  "host": "packages-18-east.internal.npmjs.com",
+  "tmp": "tmp/aspromise-1.1.2.tgz_1493030312365_0.014110192423686385"
+ },
+ "_npmUser": {
+  "email": "dcode+npm@dcode.io",
+  "name": "dcode"
+ },
+ "_npmVersion": "4.0.5",
+ "_shasum": "9b8b0cc663d669a7d8f6f5d0893a14d348f30fbf",
+ "author": {
+  "email": "dcode+protobufjs@dcode.io",
+  "name": "Daniel Wirtz"
+ },
+ "bugs": {
+  "url": "https://github.com/dcodeIO/protobuf.js/issues"
+ },
+ "description": "Returns a promise from a node-style callback function.",
+ "devDependencies": {
+  "istanbul": "^0.4.5",
+  "tape": "^4.6.3"
+ },
+ "dist": {
+  "integrity": "sha512-j+gKExEuLmKwvz3OgROXtrJ2UG2x8Ch2YZUxahh+s1F2HZ+wAceUNLkvy6zKCPVRkU++ZWQrdxsUeQXmcg4uoQ==",
+  "shasum": "9b8b0cc663d669a7d8f6f5d0893a14d348f30fbf",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEQCIH5sRgrmnNGhrPmcP+7xl0MvGWvHSKpDW7fFX66zm0WSAiBgBxKO2qN34pHskgokCTx+EoBVr4ASwFIiO8B8pcQjvQ=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@protobufjs/aspromise/-/aspromise-1.1.2.tgz"
+ },
+ "homepage": "https://github.com/dcodeIO/protobuf.js#readme",
+ "license": "BSD-3-Clause",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "dcode+npm@dcode.io",
+   "name": "dcode"
+  },
+  {
+   "email": "dcode+protobufjs@dcode.io",
+   "name": "protobufjs"
+  }
+ ],
+ "name": "@protobufjs/aspromise",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/dcodeIO/protobuf.js.git"
+ },
+ "scripts": {
+  "coverage": "istanbul cover node_modules/tape/bin/tape tests/*.js",
+  "test": "tape tests/*.js"
+ },
+ "types": "index.d.ts",
+ "version": "1.1.2"
+}

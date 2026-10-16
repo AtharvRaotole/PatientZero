@@ -1,0 +1,105 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "nanoid@6.0.2",
+ "_nodeVersion": "26.10.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/nanoid_6.0.2_1791235380019_0.9694956837387441"
+ },
+ "_npmUser": {
+  "approver": {
+   "email": "andrey@sitnik.es",
+   "name": "ai"
+  },
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "012e1798-4fc7-407a-b875-bbc877f0017d"
+  }
+ },
+ "_npmVersion": "11.19.1",
+ "author": {
+  "email": "andrey@sitnik.es",
+  "name": "Andrey Sitnik"
+ },
+ "bin": {
+  "nanoid": "bin/nanoid.js"
+ },
+ "browser": {
+  "./index.js": "./index.browser.js"
+ },
+ "bugs": {
+  "url": "https://github.com/ai/nanoid/issues"
+ },
+ "description": "A tiny (117 bytes), secure URL-friendly unique string ID generator",
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/nanoid@6.0.2"
+  },
+  "fileCount": 11,
+  "integrity": "sha512-hIvVOb9Qr1p/9CNNLOe0OlWvgx/ziTsVwKN/GDSsuArN2K0wDiafP3s0SWmsm7o2BdnyS8Z9Z64NFBUbn6ziBg==",
+  "shasum": "21f04be37e204d616b694de1564a9d89d123d788",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIDbsEb3AvH151crW5Ve9ICAHEShV3YTjeqWpyce6xxhQAiB1XNYODoPyqxebRkshnIEm8UOE8qIcHLWX09P91pEa8g=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/nanoid/-/nanoid-6.0.2.tgz",
+  "unpackedSize": 14728
+ },
+ "engines": {
+  "node": "^22 || ^24 || >=26"
+ },
+ "exports": {
+  ".": {
+   "browser": "./index.browser.js",
+   "default": "./index.js",
+   "react-native": "./index.browser.js",
+   "types": "./index.d.ts"
+  },
+  "./non-secure": {
+   "default": "./non-secure/index.js",
+   "types": "./non-secure/index.d.ts"
+  },
+  "./package.json": "./package.json"
+ },
+ "funding": [
+  {
+   "type": "github",
+   "url": "https://github.com/sponsors/ai"
+  }
+ ],
+ "gitHead": "3167e108865702c0539d8e552365ed840ac9d8d9",
+ "homepage": "https://github.com/ai/nanoid#readme",
+ "keywords": [
+  "id",
+  "random",
+  "url",
+  "uuid"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "andrey@sitnik.es",
+   "name": "ai"
+  }
+ ],
+ "name": "nanoid",
+ "react-native": {
+  "./index.js": "./index.browser.js"
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/ai/nanoid.git"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "6.0.2"
+}

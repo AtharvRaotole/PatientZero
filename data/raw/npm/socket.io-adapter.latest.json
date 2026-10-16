@@ -1,0 +1,78 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "socket.io-adapter@2.5.8",
+ "_nodeVersion": "26.3.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/socket.io-adapter_2.5.8_1781601247697_0.5638277517383159"
+ },
+ "_npmUser": {
+  "approver": {
+   "email": "damien.arrachequesne@gmail.com",
+   "name": "darrachequesne"
+  },
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:ceb06954-648a-4949-b58d-c36e53fd0e24"
+  }
+ },
+ "_npmVersion": "11.16.0",
+ "bugs": {
+  "url": "https://github.com/socketio/socket.io/issues"
+ },
+ "dependencies": {
+  "debug": "~4.4.1",
+  "ws": "~8.21.0"
+ },
+ "description": "default socket.io in-memory adapter",
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/socket.io-adapter@2.5.8"
+  },
+  "fileCount": 11,
+  "integrity": "sha512-6Oy52pbg+kvdCVvjcN+FnY7BvxZ7cIHNScbvztT/It5d0vbwoJoVZmF2gjJmnV0/4WlXRfG15zc45ySk9Ah8bw==",
+  "shasum": "c9fcabf602dbd5b09258ca98e5ec6a7ae4360698",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIEYHponsE07mp3AZPupK25PC+7zckk5u0jwO51f6xNA/AiEAmHByJgVxXvtx4K+e1Sxca17tqz/aBg8ZlEt5qkHxiHU="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/socket.io-adapter/-/socket.io-adapter-2.5.8.tgz",
+  "unpackedSize": 57728
+ },
+ "gitHead": "ac83bfad2eb8bdd1ceddd46ddb1b4ee692d7262d",
+ "homepage": "https://github.com/socketio/socket.io/tree/main/packages/socket.io-adapter#readme",
+ "license": "MIT",
+ "main": "./dist/index.js",
+ "maintainers": [
+  {
+   "email": "rauchg@gmail.com",
+   "name": "rauchg"
+  },
+  {
+   "email": "damien.arrachequesne@gmail.com",
+   "name": "darrachequesne"
+  }
+ ],
+ "name": "socket.io-adapter",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/socketio/socket.io.git"
+ },
+ "scripts": {
+  "compile": "rimraf ./dist && tsc",
+  "format:check": "prettier --parser typescript --check 'lib/**/*.ts' 'test/**/*.ts'",
+  "format:fix": "prettier --parser typescript --write 'lib/**/*.ts' 'test/**/*.ts'",
+  "prepack": "npm run compile",
+  "test": "npm run format:check && npm run compile && nyc mocha --import=tsx test/*.ts"
+ },
+ "types": "./dist/index.d.ts",
+ "version": "2.5.8"
+}

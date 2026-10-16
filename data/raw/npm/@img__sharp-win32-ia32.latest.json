@@ -1,0 +1,88 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@img/sharp-win32-ia32@0.35.5",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/sharp-win32-ia32_0.35.5_1790516795317_0.7960110361332589"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:0f5399b0-71ff-414c-9594-d6a33f94d038"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "author": {
+  "email": "npm@lovell.info",
+  "name": "Lovell Fuller"
+ },
+ "bugs": {
+  "url": "https://github.com/lovell/sharp/issues"
+ },
+ "cpu": [
+  "ia32"
+ ],
+ "description": "Prebuilt sharp for use with Windows x86 (deprecated)",
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@img%2fsharp-win32-ia32@0.35.5"
+  },
+  "fileCount": 8,
+  "integrity": "sha512-5Zm82LoBc43nhwNybZlG7Y1KO//Zhsn306fQl29ZOuStHLGTo3BWL83q3cznX0poxSAMuYL1On/BHBxkBeKr6A==",
+  "shasum": "cc5dac453dc3500aac2e63f182b952af0d437bc1",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDthLe5QKJrCn5OFxONFSMAzjcH/V1iltuktmuPjj2rnQIgPTxpWYXqg5G2KkkhxPQBpJHotOd2nm/NwTcbksmX7y8="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIBWz8kHKb/GYkhso+iI730JZHCC2mFiohNf8YtHpAfpSAiEA6EwJGfqZGJWKVd63gqTDzPDKYbzYFJGEz9s1qXfab1I="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@img/sharp-win32-ia32/-/sharp-win32-ia32-0.35.5.tgz",
+  "unpackedSize": 19132473
+ },
+ "engines": {
+  "node": "^20.9.0"
+ },
+ "exports": {
+  "./package": "./package.json",
+  "./sharp.node": "./index.cjs",
+  "./versions": "./versions.json"
+ },
+ "funding": {
+  "url": "https://opencollective.com/libvips"
+ },
+ "gitHead": "51a990faa26ade5586a4934ac9673c98d8893326",
+ "homepage": "https://sharp.pixelplumbing.com",
+ "license": "Apache-2.0 AND LGPL-3.0-or-later",
+ "maintainers": [
+  {
+   "email": "npm@lovell.info",
+   "name": "lovell"
+  }
+ ],
+ "name": "@img/sharp-win32-ia32",
+ "os": [
+  "win32"
+ ],
+ "preferUnplugged": true,
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "directory": "npm/win32-ia32",
+  "type": "git",
+  "url": "git+https://github.com/lovell/sharp.git"
+ },
+ "type": "commonjs",
+ "version": "0.35.5"
+}

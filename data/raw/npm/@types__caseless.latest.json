@@ -1,0 +1,65 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@types/caseless@0.12.5",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/caseless_0.12.5_1699316479897_0.32134302423126004"
+ },
+ "_npmUser": {
+  "email": "ts-npm-types@microsoft.com",
+  "name": "types"
+ },
+ "contributors": [
+  {
+   "githubUsername": "downace",
+   "name": "downace",
+   "url": "https://github.com/downace"
+  },
+  {
+   "githubUsername": "mastermatt",
+   "name": "Matt R. Wilson",
+   "url": "https://github.com/mastermatt"
+  },
+  {
+   "githubUsername": "forivall",
+   "name": "Emily Klassen",
+   "url": "https://github.com/forivall"
+  }
+ ],
+ "dependencies": {},
+ "description": "TypeScript definitions for caseless",
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-hWtVTC2q7hc7xZ/RLbxapMvDMgUnDvKvMOpKal4DrMyfGBUfB1oKaZlIRr6mJL+If3bAP6sV/QneGzF6tJjZDg==",
+  "shasum": "db9468cb1b1b5a925b8f34822f1669df0c5472f5",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEYCIQCYajnJjp4oUPa8zF3Gb/x2isv/pZ7gw1Z6f1Ib6qC2fgIhALZL+1sz8YRkkX6mw3DBS/MSfs3A9PTYySpZ4ECKEJMM"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@types/caseless/-/caseless-0.12.5.tgz",
+  "unpackedSize": 4720
+ },
+ "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/caseless",
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "ts-npm-types@microsoft.com",
+   "name": "types"
+  }
+ ],
+ "name": "@types/caseless",
+ "repository": {
+  "directory": "types/caseless",
+  "type": "git",
+  "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+ },
+ "scripts": {},
+ "typeScriptVersion": "4.5",
+ "types": "index.d.ts",
+ "typesPublisherContentHash": "89139c26e367c4adc78c0db606bf3e7b208f60498430b2c167551f7169d0b81c",
+ "version": "0.12.5"
+}

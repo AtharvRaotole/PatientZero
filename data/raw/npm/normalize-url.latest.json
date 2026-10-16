@@ -1,0 +1,108 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "normalize-url@10.0.0",
+ "_nodeVersion": "26.11.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/normalize-url_10.0.0_1791998732603_0.2314820094957628"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "12.2.0",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/normalize-url/issues"
+ },
+ "c8": {
+  "reporter": [
+   "text",
+   "lcov"
+  ]
+ },
+ "description": "Normalize a URL",
+ "devDependencies": {
+  "xo": "^5.0.1"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-aZEiiOP3lVdNrCCdPELWvJHbjJjoPfbWRLPAZLSsGA6l4ckvPmZSB+uX6JB4QQu33SeXCsd6v75jKivr43n/EQ==",
+  "shasum": "901999a7c56da2721a3fbd98dde47b2aef5547e4",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIC0+0clVMq1ZkFWzWcysyrvXs+MktSnaNrvnukQfWETbAiBbYxFoWKcmw1mfbs1ZAR4hgEUypaqCZZwvGQSN6BMm6A=="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQC686m2ZMBAHkGJetdzZ8d4bAZOlNRqhDv4cQxBJ1qKwQIgJwjg4BdzdgE8GTUihOaX4OHISPHPY0NvqS4RkL4EjTw="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/normalize-url/-/normalize-url-10.0.0.tgz",
+  "unpackedSize": 72495
+ },
+ "engines": {
+  "node": ">=22"
+ },
+ "exports": {
+  "default": "./index.js",
+  "types": "./index.d.ts"
+ },
+ "funding": "https://github.com/sponsors/sindresorhus",
+ "gitHead": "5d0151dd3a702f96becc90241331259d5642b735",
+ "homepage": "https://github.com/sindresorhus/normalize-url#readme",
+ "keywords": [
+  "normalize",
+  "url",
+  "uri",
+  "address",
+  "string",
+  "normalization",
+  "normalisation",
+  "query",
+  "querystring",
+  "simplify",
+  "strip",
+  "trim",
+  "canonical"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "normalize-url",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/normalize-url.git"
+ },
+ "scripts": {
+  "test": "xo && node --test"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "10.0.0",
+ "xo": [
+  {
+   "rules": {
+    "node-test/no-conditional-assertion": "off",
+    "unicorn/prefer-https": "off"
+   }
+  },
+  {
+   "files": "test.js",
+   "rules": {
+    "unicorn/no-break-in-nested-loop": "off"
+   }
+  }
+ ]
+}

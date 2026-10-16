@@ -1,0 +1,93 @@
+{
+ "_from": "file:next-env-16.4.2.tgz",
+ "_hasShrinkwrap": false,
+ "_id": "@next/env@16.4.2",
+ "_integrity": "sha512-nTUTFH7G5/J/fmpkjVLegOkqyKOP0CEsJcMsyO4UCYeN1su+YMW/MfaSErnJskL7XM+UDK6aTvslxsRCyya/sA==",
+ "_nodeVersion": "24.22.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/env_16.4.2_1792097001242_0.1818064163186368"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "c05a3d8f-88d9-42da-abc9-cf7b735fcb77"
+  }
+ },
+ "_npmVersion": "11.19.1",
+ "_resolved": "/tmp/eb73e80865ffd32598a9f5c10026587b/next-env-16.4.2.tgz",
+ "author": {
+  "email": "support@vercel.com",
+  "name": "Next.js Team"
+ },
+ "bugs": {
+  "url": "https://github.com/vercel/next.js/issues"
+ },
+ "description": "Next.js dotenv file loading",
+ "devDependencies": {
+  "@vercel/ncc": "0.38.4",
+  "dotenv": "16.3.1",
+  "dotenv-expand": "10.0.0"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@next%2fenv@16.4.2"
+  },
+  "fileCount": 4,
+  "integrity": "sha512-nTUTFH7G5/J/fmpkjVLegOkqyKOP0CEsJcMsyO4UCYeN1su+YMW/MfaSErnJskL7XM+UDK6aTvslxsRCyya/sA==",
+  "shasum": "cba0dfac625d6f4793052f06f988f7e3c8d08936",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQCsYL7z7CSXyYdNwCIUMir+D2z6TRBLGQ7rTMyzn2HVJgIgZ8EJ7+hr2WYldNltDa2UmYokoHjogl23zPM8REwxSuQ="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDdeXvwL97WI/1tkzBdlzAEc5DoH8WuceQqst1vzxODjAIgJvxxoJkDV51qqU9PEManajQi1Ewiy/GjSBwBJRXuCJo="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@next/env/-/env-16.4.2.tgz",
+  "unpackedSize": 11895
+ },
+ "homepage": "https://github.com/vercel/next.js#readme",
+ "keywords": [
+  "react",
+  "next",
+  "next.js",
+  "dotenv"
+ ],
+ "license": "MIT",
+ "main": "dist/index.js",
+ "maintainers": [
+  {
+   "email": "infra+release@vercel.com",
+   "name": "vercel-release-bot"
+  },
+  {
+   "email": "matt.j.straka@gmail.com",
+   "name": "matt.straka"
+  }
+ ],
+ "name": "@next/env",
+ "repository": {
+  "directory": "packages/next-env",
+  "type": "git",
+  "url": "git+https://github.com/vercel/next.js.git"
+ },
+ "scripts": {
+  "build": "pnpm build:source && pnpm types",
+  "build:source": "ncc build ./index.ts -o ./dist/ --minify --no-cache --no-source-map-register",
+  "dev": "ncc build ./index.ts -w -o dist/",
+  "pack-for-isolated-tests": "pnpm pack --out ./packed.tgz",
+  "prebuild:source": "node ../../scripts/rm.mjs dist",
+  "types": "tsc --declaration --emitDeclarationOnly --declarationDir dist"
+ },
+ "types": "dist/index.d.ts",
+ "version": "16.4.2"
+}

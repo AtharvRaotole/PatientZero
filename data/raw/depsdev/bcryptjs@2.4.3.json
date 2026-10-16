@@ -1,0 +1,16 @@
+{
+ "edges": [],
+ "error": "",
+ "nodes": [
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "SELF",
+   "versionKey": {
+    "name": "bcryptjs",
+    "system": "NPM",
+    "version": "2.4.3"
+   }
+  }
+ ]
+}

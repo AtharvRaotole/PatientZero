@@ -1,0 +1,111 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@eslint/config-array@0.23.5",
+ "_nodeVersion": "24.14.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/config-array_0.23.5_1775640157643_0.5306370899926109"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:2d7306e0-acb1-4bd5-b236-f5897d41444f"
+  }
+ },
+ "_npmVersion": "11.12.1",
+ "author": {
+  "name": "Nicholas C. Zakas"
+ },
+ "bugs": {
+  "url": "https://github.com/eslint/rewrite/issues"
+ },
+ "dependencies": {
+  "@eslint/object-schema": "^3.0.5",
+  "debug": "^4.3.1",
+  "minimatch": "^10.2.4"
+ },
+ "description": "General purpose glob-based configuration matching.",
+ "devDependencies": {
+  "@jsr/std__path": "^1.0.4",
+  "rollup-plugin-copy": "^3.5.0"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@eslint%2fconfig-array@0.23.5"
+  },
+  "fileCount": 14,
+  "integrity": "sha512-Y3kKLvC1dvTOT+oGlqNQ1XLqK6D1HU2YXPc52NmAlJZbMMWDzGYXMiPRJ8TYD39muD/OTjlZmNJ4ib7dvSrMBA==",
+  "shasum": "56e86d243049195d8acc0c06a1b3dfdc3fa3de95",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIAfMKAcX/P+BmtwuSz6BWUdqLhKypyUhyhS9j8SrU2e1AiByl62MU7iOL9IEPwsCry6sL8gB2DCts61CKVK0OLYHwg=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@eslint/config-array/-/config-array-0.23.5.tgz",
+  "unpackedSize": 328752
+ },
+ "engines": {
+  "node": "^20.19.0 || ^22.13.0 || >=24"
+ },
+ "exports": {
+  "import": {
+   "default": "./dist/esm/index.js",
+   "types": "./dist/esm/index.d.ts"
+  },
+  "require": {
+   "default": "./dist/cjs/index.cjs",
+   "types": "./dist/cjs/index.d.cts"
+  }
+ },
+ "gitHead": "d2dbf7b73d01505da89a69b7465e486d8a88aa8f",
+ "homepage": "https://github.com/eslint/rewrite/tree/main/packages/config-array#readme",
+ "keywords": [
+  "configuration",
+  "configarray",
+  "config file"
+ ],
+ "license": "Apache-2.0",
+ "main": "dist/esm/index.js",
+ "maintainers": [
+  {
+   "email": "npm@openjsf.org",
+   "name": "openjsfoundation"
+  },
+  {
+   "email": "contact@eslint.org",
+   "name": "eslintbot"
+  }
+ ],
+ "name": "@eslint/config-array",
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "directory": "packages/config-array",
+  "type": "git",
+  "url": "git+https://github.com/eslint/rewrite.git"
+ },
+ "scripts": {
+  "build": "rollup -c && npm run build:dedupe-types && tsc -p tsconfig.esm.json && npm run build:cts && npm run build:std__path",
+  "build:cts": "node ../../tools/build-cts.js dist/esm/index.d.ts dist/cjs/index.d.cts",
+  "build:dedupe-types": "node ../../tools/dedupe-types.js dist/cjs/index.cjs dist/esm/index.js",
+  "build:std__path": "rollup -c rollup.std__path-config.js && node fix-std__path-imports",
+  "lint:types": "attw --pack",
+  "pretest": "npm run build",
+  "test": "npm run test:types && npm run test:unit",
+  "test:coverage": "npm run build && c8 npm run test:unit",
+  "test:jsr": "npx -y jsr@latest publish --dry-run",
+  "test:types": "tsc -p tests/types/tsconfig.json",
+  "test:unit": "mocha \"tests/**/*.test.js\""
+ },
+ "type": "module",
+ "types": "dist/esm/index.d.ts",
+ "version": "0.23.5"
+}

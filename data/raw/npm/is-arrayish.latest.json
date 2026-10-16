@@ -1,0 +1,85 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "is-arrayish@0.3.4",
+ "_nodeVersion": "22.15.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/is-arrayish_0.3.4_1757781863187_0.43737376725399857"
+ },
+ "_npmUser": {
+  "email": "npm@josh.junon.me",
+  "name": "qix"
+ },
+ "_npmVersion": "10.9.2",
+ "author": {
+  "name": "Qix",
+  "url": "http://github.com/qix-"
+ },
+ "bugs": {
+  "url": "https://github.com/qix-/node-is-arrayish/issues"
+ },
+ "description": "Determines if an object can be used as an array",
+ "devDependencies": {
+  "@zeit/eslint-config-node": "^0.3.0",
+  "@zeit/git-hooks": "^0.1.4",
+  "coffeescript": "^2.3.1",
+  "coveralls": "^3.0.1",
+  "eslint": "^4.19.1",
+  "istanbul": "^0.4.5",
+  "mocha": "^5.2.0",
+  "should": "^13.2.1"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 4,
+  "integrity": "sha512-m6UrgzFVUYawGBh1dUsWR5M2Clqic9RVXC/9f8ceNlv2IcO9j9J/z8UoCLPqtsPBFNzEpfR3xftohbfqDx8EQA==",
+  "shasum": "1ee5553818511915685d33bb13d31bf854e5059d",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCICpOeGWGN3K8dsBqhE/LENQMgjUp8rD7xWb9Ig3kbJU9AiB+ZiVDrXUy4HDhRhwOlMgd2wsubOvmg2dY6NZE59z9gQ=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/is-arrayish/-/is-arrayish-0.3.4.tgz",
+  "unpackedSize": 3150
+ },
+ "eslintConfig": {
+  "extends": [
+   "@zeit/eslint-config-node"
+  ]
+ },
+ "git": {
+  "pre-commit": "lint-staged"
+ },
+ "gitHead": "db809c0ff45fa21ce3e22c3bbf435614aedad21d",
+ "homepage": "https://github.com/qix-/node-is-arrayish#readme",
+ "keywords": [
+  "is",
+  "array",
+  "duck",
+  "type",
+  "arrayish",
+  "similar",
+  "proto",
+  "prototype",
+  "type"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "npm@josh.junon.me",
+   "name": "qix"
+  }
+ ],
+ "name": "is-arrayish",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/qix-/node-is-arrayish.git"
+ },
+ "scripts": {
+  "lint": "zeit-eslint --ext .jsx,.js .",
+  "lint-staged": "git diff --diff-filter=ACMRT --cached --name-only '*.js' '*.jsx' | xargs zeit-eslint",
+  "test": "mocha --require coffeescript/register ./test/**/*.coffee"
+ },
+ "version": "0.3.4"
+}

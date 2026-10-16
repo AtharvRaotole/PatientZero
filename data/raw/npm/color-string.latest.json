@@ -1,0 +1,97 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "color-string@2.1.4",
+ "_nodeVersion": "22.15.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/color-string_2.1.4_1763224504447_0.18741520643610476"
+ },
+ "_npmUser": {
+  "email": "npm@josh.junon.me",
+  "name": "qix"
+ },
+ "_npmVersion": "10.9.2",
+ "author": {
+  "name": "Josh Junon",
+  "url": "https://github.com/qix-"
+ },
+ "bugs": {
+  "url": "https://github.com/Qix-/color-string/issues"
+ },
+ "contributors": [
+  {
+   "name": "Maxime Thirouin"
+  },
+  {
+   "email": "dfcreative@gmail.com",
+   "name": "Dyma Ywanov"
+  },
+  {
+   "email": "fayearthur@gmail.com",
+   "name": "Heather Arthur"
+  },
+  {
+   "name": "LitoMore",
+   "url": "https://github.com/LitoMore"
+  }
+ ],
+ "dependencies": {
+  "color-name": "^2.0.0"
+ },
+ "description": "Parser and generator for CSS color strings",
+ "devDependencies": {
+  "tsd": "^0.31.2",
+  "xo": "^0.60.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-Bb6Cq8oq0IjDOe8wJmi4JeNn763Xs9cfrBcaylK1tPypWzyoy2G3l90v9k64kjphl/ZJjPIShFztenRomi8WTg==",
+  "shasum": "9dcf566ff976e23368c8bd673f5c35103ab41058",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQChrzP4KMIPmsgsbSxfPijQLAFtgJiLL2GbXZD1TGFp5AIhAJ1hEybvvJHtHiWqGtVIGIdiTRLnMx70OdkcHuNlq86I"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/color-string/-/color-string-2.1.4.tgz",
+  "unpackedSize": 10988
+ },
+ "engines": {
+  "node": ">=18"
+ },
+ "exports": "./index.js",
+ "gitHead": "247fb2c0e76cc88408cc2834df2843a1ed078b60",
+ "homepage": "https://github.com/Qix-/color-string#readme",
+ "keywords": [
+  "color",
+  "colour",
+  "rgb",
+  "css"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "npm@josh.junon.me",
+   "name": "qix"
+  }
+ ],
+ "name": "color-string",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/Qix-/color-string.git"
+ },
+ "scripts": {
+  "test": "xo && tsd && node test.js"
+ },
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "2.1.4",
+ "xo": {
+  "rules": {
+   "@typescript-eslint/ban-types": 0,
+   "no-cond-assign": 0,
+   "operator-linebreak": 0
+  }
+ }
+}

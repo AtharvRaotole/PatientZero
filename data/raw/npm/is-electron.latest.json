@@ -1,0 +1,66 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "is-electron@2.2.2",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/is-electron_2.2.2_1676982204835_0.7278019113503553"
+ },
+ "_npmUser": {
+  "email": "cheton@gmail.com",
+  "name": "cheton"
+ },
+ "author": {
+  "email": "cheton@gmail.com",
+  "name": "Cheton Wu"
+ },
+ "description": "Detect if running in Electron.",
+ "devDependencies": {
+  "coveralls": "^2.11.9",
+  "tap": "^5.7.2"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 6,
+  "integrity": "sha512-FO/Rhvz5tuw4MCWkpMzHFKWD2LsfHzIb7i6MdPYZ/KW7AlxawyLkqdy+jPZP1WubqEADE3O4FUENlJHDfQASRg==",
+  "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v4.10.10\r\nComment: https://openpgpjs.org\r\n\r\nwsFzBAEBCAAGBQJj9Le9ACEJED1NWxICdlZqFiEECWMYAoorWMhJKdjhPU1b\r\nEgJ2Vmo+8Q//TUc+ln/f6wNes0Naocmi0Pd1OpHHJBWZe7TNwTR/OeZO+4mQ\r\n94FG1nQsaJtlgBrW+fKXGDm8T2/UXpHOZbolpMeUTkRmSkl6+y0Y3kHVGim6\r\naur7nuzRsNwQC675kPQIvnhMsyiwZ+PxkI2qkjqZeIM6odhufFr1IVmQTsm1\r\negLViqe/+rE0s1X+ey8ZwFGcEKe/rnVfeG4eC189g/0WbsB6S/E2Z48yy6mV\r\nGbXHb0Udr9uqRnjlrf6sEwTIMql1j5qz3SrV+NjHTm0KVp0+mkTY8VI8A7NO\r\nwM0tXAgQu9WfF7Mzy2C5bvhvowxhxOTIuxK6VRz41uPHa9XTcqkUUDjO0AGB\r\nBDpjPuFiOrJX++nV+eNGvOFdgoLM7LCQ+W/hlebTvYLqc9887QuavZfokzW3\r\nbuFORM5cZ0MWdcwldvJfi3Nsa45n1lIkUqiGzZzf3zgJ2d/C6Ed1oyLchbP6\r\nRZkuxUwo5c23miybFHY6czI1A17j3QC1dSN8MNfTai1ebLA2F2H3SCqAFIzN\r\nnWVn8hLKdA7kJe87Cpq1qSzk6PttMTmgm+4Rxd9FHQS2pvECFuLyXmpjKV6L\r\nN7ogQKNBPz6g0EvIy+DkZiyVDXJASwCXTi23etLI4O61LfmqeAMqSqmVxLIM\r\nSDPiFwRBy7xbIYJo7MheDajeEFdxThFOye4=\r\n=OPoU\r\n-----END PGP SIGNATURE-----\r\n",
+  "shasum": "3778902a2044d76de98036f5dc58089ac4d80bb9",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIQCmKFqL96WAWbZG/iRvxR+dBRmM9YYr0fekW7YVm0mqMgIgR0MFjurfN99BvpsKKhZ27OMZZRP50elxmUGnEby0tHU="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/is-electron/-/is-electron-2.2.2.tgz",
+  "unpackedSize": 3260
+ },
+ "homepage": "https://github.com/cheton/is-electron",
+ "keywords": [
+  "atom",
+  "electron",
+  "renderer",
+  "process"
+ ],
+ "license": "MIT",
+ "licenseText": "The MIT License (MIT)\n\nCopyright (c) 2016-2018 Cheton Wu\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "cheton@gmail.com",
+   "name": "cheton"
+  }
+ ],
+ "name": "is-electron",
+ "nyc": {
+  "exclude": []
+ },
+ "repository": {
+  "type": "git",
+  "url": "git@github.com:cheton/is-electron.git"
+ },
+ "scripts": {
+  "coveralls": "tap --coverage --coverage-report=text-lcov test/*.js | node_modules/.bin/coveralls",
+  "test": "tap --coverage test/*.js"
+ },
+ "types": "index.d.ts",
+ "version": "2.2.2"
+}

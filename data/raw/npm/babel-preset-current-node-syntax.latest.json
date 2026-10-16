@@ -1,0 +1,83 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "babel-preset-current-node-syntax@1.2.0",
+ "_nodeVersion": "24.3.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/babel-preset-current-node-syntax_1.2.0_1753888448096_0.8738764343233076"
+ },
+ "_npmUser": {
+  "email": "nicolo.ribaudo@gmail.com",
+  "name": "nicolo-ribaudo"
+ },
+ "_npmVersion": "11.4.2",
+ "author": {
+  "name": "Nicol\u00f2 Ribaudo",
+  "url": "https://github.com/nicolo-ribaudo"
+ },
+ "bugs": {
+  "url": "https://github.com/nicolo-ribaudo/babel-preset-current-node-syntax/issues"
+ },
+ "dependencies": {
+  "@babel/plugin-syntax-async-generators": "^7.8.4",
+  "@babel/plugin-syntax-bigint": "^7.8.3",
+  "@babel/plugin-syntax-class-properties": "^7.12.13",
+  "@babel/plugin-syntax-class-static-block": "^7.14.5",
+  "@babel/plugin-syntax-import-attributes": "^7.24.7",
+  "@babel/plugin-syntax-import-meta": "^7.10.4",
+  "@babel/plugin-syntax-json-strings": "^7.8.3",
+  "@babel/plugin-syntax-logical-assignment-operators": "^7.10.4",
+  "@babel/plugin-syntax-nullish-coalescing-operator": "^7.8.3",
+  "@babel/plugin-syntax-numeric-separator": "^7.10.4",
+  "@babel/plugin-syntax-object-rest-spread": "^7.8.3",
+  "@babel/plugin-syntax-optional-catch-binding": "^7.8.3",
+  "@babel/plugin-syntax-optional-chaining": "^7.8.3",
+  "@babel/plugin-syntax-private-property-in-object": "^7.14.5",
+  "@babel/plugin-syntax-top-level-await": "^7.14.5"
+ },
+ "description": "A Babel preset that enables parsing of proposals supported by the current Node.js version.",
+ "devDependencies": {
+  "@babel/core": "7.25.2",
+  "@babel/core-8": "npm:@babel/core@^8.0.0-beta.1",
+  "@babel/parser-7.0.0": "npm:@babel/parser@7.0.0",
+  "@babel/parser-7.12.0": "npm:@babel/parser@7.12.0",
+  "@babel/parser-7.22.0": "npm:@babel/parser@7.22.0",
+  "@babel/parser-7.9.0": "npm:@babel/parser@7.9.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 6,
+  "integrity": "sha512-E/VlAEzRrsLEb2+dv8yp3bo4scof3l9nR4lrld+Iy5NyVqgVYUJnDAmunkhPMisRI32Qc4iRiz425d8vM++2fg==",
+  "shasum": "20730d6cdc7dda5d89401cab10ac6a32067acde6",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIEs6EBD6+EK6fQO5TxssWlIJjPsKIYRYALpTUUrgsS0zAiEAogqVJDSY4PWomLjhbmzqR8yO0AP+jpTNCh4iPu/wBQ4="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/babel-preset-current-node-syntax/-/babel-preset-current-node-syntax-1.2.0.tgz",
+  "unpackedSize": 7480
+ },
+ "gitHead": "e7efb6b9a2a1979f2860334a948bf8f63fba6776",
+ "homepage": "https://github.com/nicolo-ribaudo/babel-preset-current-node-syntax#readme",
+ "license": "MIT",
+ "main": "src/index.js",
+ "maintainers": [
+  {
+   "email": "nicolo.ribaudo@gmail.com",
+   "name": "nicolo-ribaudo"
+  }
+ ],
+ "name": "babel-preset-current-node-syntax",
+ "peerDependencies": {
+  "@babel/core": "^7.0.0 || ^8.0.0-0"
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/nicolo-ribaudo/babel-preset-current-node-syntax.git"
+ },
+ "scripts": {
+  "test": "node ./test/index.js"
+ },
+ "version": "1.2.0"
+}

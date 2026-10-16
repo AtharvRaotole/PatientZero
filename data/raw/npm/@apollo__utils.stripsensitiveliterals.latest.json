@@ -1,0 +1,79 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@apollo/utils.stripsensitiveliterals@3.0.0",
+ "_nodeVersion": "16.20.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/utils.stripsensitiveliterals_3.0.0_1681772009960_0.7432002061314895"
+ },
+ "_npmUser": {
+  "email": "npm@apollographql.com",
+  "name": "apollo-bot"
+ },
+ "_npmVersion": "8.5.0",
+ "author": {
+  "email": "packages@apollographql.com",
+  "name": "Apollo"
+ },
+ "bugs": {
+  "url": "https://github.com/apollographql/apollo-utils/issues"
+ },
+ "description": "Remove literals from an AST which might contain PII (strings and numbers, and optionally lists and objects)",
+ "directories": {},
+ "dist": {
+  "fileCount": 10,
+  "integrity": "sha512-oVflmYj2e0ascz2X/nu2qaUo/y56gJIZII4YAMeBjFWDeh/wj+gSxWwCdy2PM6MRR3epGMSJG8Qk+0fYTLBnTw==",
+  "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v4.10.10\r\nComment: https://openpgpjs.org\r\n\r\nwsFzBAEBCAAGBQJkPc3qACEJED1NWxICdlZqFiEECWMYAoorWMhJKdjhPU1b\r\nEgJ2VmoCIQ/+MGO3AlO7Dd+rskPa0i4wuHTfoU7vFaHxGNoE9pGAeXPbw0Cd\r\n+6qiJFEWkWf331rggA7hfiVcg9ppKbNX4wcGjxNHIibLdyc1YsRgwsu5Wybh\r\n0oes3MmMZcrtZiB2DsDKoXpUJJgQnj4tpEei134pw3CPQDNBahinSSQN5LxE\r\nSrcwJvh5hC9ZXGq1E5yb0Fg7lBExVIFN01GC7LK6Dx0yDZeibE/2CkKqttoO\r\nS0tq5uADwtPHmwcM5NKNFmlk9wSakIWQKuZqztcDf0ZyJcMd14MKne1IKkSu\r\n65MsnFNuMvNmCBERta5YBxgPjF0jMykIxRoCDvhYAE+UqLP5Cus0pewGJmWo\r\nVS8YBrtikkRSb47Ny8jvyVkYMDMGmOllBVlRI2oaO+kPpmpnPwM+rZejddY2\r\nY7LDr7rJneIBDVtplPwyKqhQaQnfn4TBJDIK6W7z8z1UG1v7how3p+Ed1VLk\r\n/wWk/Ew7hg7oaD3B8QBShqObPacFZTuft7bLhBPs3pRv7+xk3CVODhR0jByy\r\nwUHJgLKiHsl1IIxkLzwcR39xaQkn+7Qk02iwkhRZZiL5aqlHJFZrSxmG96c0\r\nB4EBOsaUHwWhBRePHfHTT7iw7NZcg2tpjD26PtXZAkF1OX+qjj55DVVfRRS8\r\nPCaSiV+lu3iBQfkNP/p1WDW+CQh5kwc/bds=\r\n=VDQE\r\n-----END PGP SIGNATURE-----\r\n",
+  "shasum": "a19ae248fe7e97e5e56e8638e851726bda6ae0ef",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIQCiksSUwVBa91AND4E39G8hcVe6Z6ChQCxs2txhND96IQIgJSRCJAcz1LN4fCgaYsqSAlJxhdcot4tGxPUGv06Fyps="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@apollo/utils.stripsensitiveliterals/-/utils.stripsensitiveliterals-3.0.0.tgz",
+  "unpackedSize": 9429
+ },
+ "engines": {
+  "node": ">=16"
+ },
+ "gitHead": "9b66f38f6d6097a408bc354d749ebc480ba3bbda",
+ "homepage": "https://github.com/apollographql/apollo-utils#readme",
+ "keywords": [
+  "apollo",
+  "graphql",
+  "typescript",
+  "node"
+ ],
+ "license": "MIT",
+ "main": "dist/index.js",
+ "maintainers": [
+  {
+   "email": "dariusz_kuc@hotmail.com",
+   "name": "dkuc"
+  },
+  {
+   "email": "glasser@apollographql.com",
+   "name": "glasser"
+  },
+  {
+   "email": "trevor.scheer@gmail.com",
+   "name": "trevor.scheer"
+  },
+  {
+   "email": "npm@apollographql.com",
+   "name": "apollo-bot"
+  }
+ ],
+ "name": "@apollo/utils.stripsensitiveliterals",
+ "peerDependencies": {
+  "graphql": "14.x || 15.x || 16.x"
+ },
+ "repository": {
+  "directory": "packages/stripSensitiveLiterals/",
+  "type": "git",
+  "url": "git+https://github.com/apollographql/apollo-utils.git"
+ },
+ "types": "dist/index.d.ts",
+ "version": "3.0.0"
+}

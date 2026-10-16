@@ -1,0 +1,74 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "sprintf-js@1.1.3",
+ "_nodeVersion": "18.16.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/sprintf-js_1.1.3_1694437928849_0.6056137367139747"
+ },
+ "_npmUser": {
+  "email": "hello@alexei.ro",
+  "name": "alexei"
+ },
+ "_npmVersion": "9.5.1",
+ "author": {
+  "email": "hello@alexei.ro",
+  "name": "Alexandru M\u0103r\u0103\u0219teanu"
+ },
+ "bugs": {
+  "url": "https://github.com/alexei/sprintf.js/issues"
+ },
+ "description": "JavaScript sprintf implementation",
+ "devDependencies": {
+  "benchmark": "^2.1.4",
+  "eslint": "^5.10.0",
+  "gulp": "^3.9.1",
+  "gulp-benchmark": "^1.1.1",
+  "gulp-eslint": "^5.0.0",
+  "gulp-header": "^2.0.5",
+  "gulp-mocha": "^6.0.0",
+  "gulp-rename": "^1.4.0",
+  "gulp-sourcemaps": "^2.6.4",
+  "gulp-uglify": "^3.0.1",
+  "mocha": "^5.2.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 11,
+  "integrity": "sha512-Oo+0REFV59/rz3gfJNKQiBlwfHaSESl1pcGyABQsnnIfWOFt6JNj5gCog2U6MLZ//IGYD+nA8nI+mTShREReaA==",
+  "shasum": "4914b903a2f8b685d17fdf78a70e917e872e444a",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEQCIFqEdBzxc5TO4qHn2Vaj+rUbeXXAIrldXZrm+Oh3ctpGAiA9wmSjDRjIGR5h/m5RnndPawduJOh1VPtIhc1D08pEew=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/sprintf-js/-/sprintf-js-1.1.3.tgz",
+  "unpackedSize": 39879
+ },
+ "gitHead": "3a0d8c26d291b5bd9f1974877ecc50739921d6f5",
+ "homepage": "https://github.com/alexei/sprintf.js#readme",
+ "license": "BSD-3-Clause",
+ "main": "src/sprintf.js",
+ "maintainers": [
+  {
+   "email": "hello@alexei.ro",
+   "name": "alexei"
+  }
+ ],
+ "name": "sprintf-js",
+ "overrides": {
+  "graceful-fs": "^4.2.11"
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/alexei/sprintf.js.git"
+ },
+ "scripts": {
+  "lint": "eslint .",
+  "lint:fix": "eslint --fix .",
+  "pretest": "npm run lint",
+  "test": "mocha test/*.js"
+ },
+ "version": "1.1.3"
+}

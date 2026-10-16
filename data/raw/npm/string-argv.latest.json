@@ -1,0 +1,90 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "string-argv@0.4.0",
+ "_nodeVersion": "26.8.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/string-argv_0.4.0_1790645570762_0.054861571757504946"
+ },
+ "_npmUser": {
+  "email": "mike.ferris@hotmail.com",
+  "name": "cellule"
+ },
+ "_npmVersion": "11.19.0",
+ "author": {
+  "email": "anthony.mccormick@gmail.com",
+  "name": "Anthony McCormick"
+ },
+ "bugs": {
+  "url": "https://github.com/mccormicka/string-argv/issues"
+ },
+ "contributors": [
+  {
+   "email": "mike.ferri@hotmail.com",
+   "name": "Michael Ferris"
+  }
+ ],
+ "description": "string-argv parses a string into an argument array to mimic process.argv. This is useful when testing Command Line Utilities that you want to pass arguments to.",
+ "devDependencies": {
+  "jasmine": "^4.4.0",
+  "typescript": "^7.0.2"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 6,
+  "integrity": "sha512-UOtaksJ3SK3KLHba2i9I27fvuZNfBlImDP5wKsCOxCDMRDNxlipCe8rmnUAaDpqlQ93upnA0SzF2pjWhttozSA==",
+  "shasum": "773a4a666b6b0925ea5d90e58ce40d5a90bba230",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQD8mkHb4uPugITgdLCYByCjPhjT0UWYzyUX97rF3EQihwIgSwGiH/k1qoXcNE2yyWjqBFwXG83H/zs0FtJzFN1Oez8="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQDKGr/be8PFhb43XmPuUXkVPf6kuO+W3MHSLCpGnwN0dwIhAKMbZYKCHu1RfqkjOeJWXVnsPtHrFX/OJr7DpZOXScpF"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/string-argv/-/string-argv-0.4.0.tgz",
+  "unpackedSize": 10659
+ },
+ "engines": {
+  "node": ">=16.20.0"
+ },
+ "exports": {
+  ".": {
+   "import": "./index.js",
+   "types": "./index.d.ts"
+  }
+ },
+ "gitHead": "d9b225a7b9c2a3aba46682caa6bf3af31e6e3a10",
+ "homepage": "https://github.com/mccormicka/string-argv",
+ "keywords": [
+  "argv"
+ ],
+ "license": "MIT",
+ "main": "./index.js",
+ "maintainers": [
+  {
+   "email": "anthony.mccormick@gmail.com",
+   "name": "mccormicka"
+  },
+  {
+   "email": "mike.ferris@hotmail.com",
+   "name": "cellule"
+  }
+ ],
+ "name": "string-argv",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/mccormicka/string-argv.git"
+ },
+ "scripts": {
+  "build": "tsc -p .",
+  "prepublishOnly": "npm test",
+  "test": "npm run build & jasmine --config=test/config.json",
+  "test:no-build": "jasmine --config=test/config.json"
+ },
+ "type": "module",
+ "types": "index.d.ts",
+ "version": "0.4.0"
+}

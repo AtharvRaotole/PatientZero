@@ -1,0 +1,88 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@jest/globals@30.5.2",
+ "_nodeVersion": "26.8.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/globals_30.5.2_1789739840585_0.5176122723235996"
+ },
+ "_npmUser": {
+  "email": "sbekkhus91@gmail.com",
+  "name": "simenb"
+ },
+ "_npmVersion": "lerna/4.11.5/node@v26.8.1+arm64 (darwin)",
+ "bugs": {
+  "url": "https://github.com/jestjs/jest/issues"
+ },
+ "dependencies": {
+  "@jest/environment": "30.5.2",
+  "@jest/expect": "30.5.2",
+  "@jest/types": "30.5.1",
+  "jest-mock": "30.5.2"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 4,
+  "integrity": "sha512-62zfS+dL+M5aTNHXCNLyqD+j4oqxTIzDYrZbpqMP8Yn+gvlAGyzC6BSPNb1ZmFOakV1RtFYX/O3FCQXSWmQdgg==",
+  "shasum": "6e89c0b6334fc4b9cd9b18fa4495edc7783e856f",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIBDGPyaLKilYv+ooaFIOM5twnILUWR+ykanazx9fkfWCAiA9XW36rp+aWxLad5OyUx+JBQ9S6h4BJxuPFJgFGRx9VQ=="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIHjZeSDvuK/fZSqn4QsLqk9/wGClmPt4iO1R2MJpk5WNAiBFIxcwkbS4nYfB/+pmhk8Mdq2hyE3Y6bNDrW1MjRX9eg=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@jest/globals/-/globals-30.5.2.tgz",
+  "unpackedSize": 5656
+ },
+ "engines": {
+  "node": "^18.14.0 || ^20.0.0 || ^22.0.0 || >=24.0.0"
+ },
+ "exports": {
+  ".": {
+   "default": "./build/index.js",
+   "types": "./build/index.d.ts"
+  },
+  "./package.json": "./package.json"
+ },
+ "gitHead": "202dd8a14777c270607c2416bd5034c3c0abc984",
+ "homepage": "https://github.com/jestjs/jest#readme",
+ "license": "MIT",
+ "main": "./build/index.js",
+ "maintainers": [
+  {
+   "email": "aaron@abramov.io",
+   "name": "aaronabramov"
+  },
+  {
+   "email": "sbekkhus91@gmail.com",
+   "name": "simenb"
+  },
+  {
+   "email": "rickhanlonii@gmail.com",
+   "name": "rickhanlonii"
+  },
+  {
+   "email": "operations@openjsf.org",
+   "name": "openjs-operations"
+  },
+  {
+   "email": "christoph.pojer@gmail.com",
+   "name": "cpojer"
+  }
+ ],
+ "name": "@jest/globals",
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "directory": "packages/jest-globals",
+  "type": "git",
+  "url": "git+https://github.com/jestjs/jest.git"
+ },
+ "types": "./build/index.d.ts",
+ "version": "30.5.2"
+}

@@ -1,0 +1,79 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "deepmerge@4.3.1",
+ "_nodeVersion": "16.8.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/deepmerge_4.3.1_1679007536333_0.9033742187586644"
+ },
+ "_npmUser": {
+  "email": "me@JoshDuff.com",
+  "name": "tehshrike"
+ },
+ "_npmVersion": "8.6.0",
+ "bugs": {
+  "url": "https://github.com/TehShrike/deepmerge/issues"
+ },
+ "description": "A library for deep (recursive) merging of Javascript objects",
+ "devDependencies": {
+  "@types/node": "^8.10.54",
+  "is-mergeable-object": "1.1.0",
+  "is-plain-object": "^5.0.0",
+  "jsmd": "^1.0.2",
+  "rollup": "^1.23.1",
+  "rollup-plugin-commonjs": "^10.1.0",
+  "rollup-plugin-node-resolve": "^5.2.0",
+  "tape": "^4.11.0",
+  "ts-node": "7.0.1",
+  "typescript": "=2.2.2",
+  "uglify-js": "^3.6.1"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 11,
+  "integrity": "sha512-3sUqbMEc77XqpdNO7FRyRog+eW3ph+GYCbj+rK+uYyRMuwsVy0rMiVtPn+QJlKFvWP/1PYpapqYn0Me2knFn+A==",
+  "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v4.10.10\r\nComment: https://openpgpjs.org\r\n\r\nwsFzBAEBCAAGBQJkE58wACEJED1NWxICdlZqFiEECWMYAoorWMhJKdjhPU1b\r\nEgJ2VmqwgA//SUBIsWdXabo9mcwaFaK0sg1UJMFXp+Z1PLA0FB98BZ7Kw+23\r\nXByEFVHf5SH2X7EG8VHMMCa4mdsqWUNP6Qz7UGa1oQebTXnTN20VhkBaAdUT\r\n2Hr61AwJHMNGaK098Vx4rn8OBLh1SDN9Q/FKIRU1M3PDo8p8dfsCs98WhLmj\r\nUtQzfb8AXRUmYf6A6vJaIwmShw3pJVU8a7JLFcl9Rgx7L5L6h/xjz2oNEb42\r\nwBYz+K1R/PvbhF2Ejkjmj5R0NSr8wSMmizK29uGXvtJYvon2kIqNPyPfaCaV\r\nVBCiHvtJdV4xCRUduPkXlHPMrgC0Xp1G+AoJn/Banx1OZFtLDjZa/ZBX86Am\r\nwPRAqr5ZiCaWzgC3Q8o1/qRsSrpdAO7OWRfzGVBqf10H4HdCvcnZzeyeSXQw\r\nCEnNT+zEsoe08upOGW5CCijrr8hq1Pj7LEtfyZr7nGmkWl1+bG2f6XB3VbdK\r\nRzWM5rcNRKJcDaCNMRXrzyKZ7eutn9Mzj70fRfUR1s5oqz5ruGAMHD8D8kx7\r\nsR/9P1u1a8E00oiQGMKHMIyaSVEvEtGGgLoJ8MXIJ+qArhasiWIzMY3eFcAf\r\n6z4MRfo0Nf6/m6WM+mMdwsitug9dVzhPa4+FFWWNNuhO0aVkXr9X2+A4Fjeb\r\nOUwt3H4PdpOegx1dVu7/IEYNFFEN0HmuZ1w=\r\n=A4WO\r\n-----END PGP SIGNATURE-----\r\n",
+  "shasum": "44b5f2147cd3b00d4b56137685966f26fd25dd4a",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIQDN993WZ4bZkA9ji9rC0yXDb/eFJLDqMXftQaUQp3hA9AIgOqjV7vLLdNtIfYCLlcugHmhK6t3rgYR+AbGZf0GzGPI="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/deepmerge/-/deepmerge-4.3.1.tgz",
+  "unpackedSize": 31157
+ },
+ "engines": {
+  "node": ">=0.10.0"
+ },
+ "gitHead": "5b87756a5671635679001cbac72aa42f23472c81",
+ "homepage": "https://github.com/TehShrike/deepmerge",
+ "keywords": [
+  "merge",
+  "deep",
+  "extend",
+  "copy",
+  "clone",
+  "recursive"
+ ],
+ "license": "MIT",
+ "main": "dist/cjs.js",
+ "maintainers": [
+  {
+   "email": "me@JoshDuff.com",
+   "name": "tehshrike"
+  }
+ ],
+ "name": "deepmerge",
+ "repository": {
+  "type": "git",
+  "url": "git://github.com/TehShrike/deepmerge.git"
+ },
+ "scripts": {
+  "build": "rollup -c",
+  "size": "npm run build && uglifyjs --compress --mangle -- ./dist/umd.js | gzip -c | wc -c",
+  "test": "npm run build && tape test/*.js && jsmd readme.md && npm run test:typescript",
+  "test:typescript": "tsc --noEmit test/typescript.ts && ts-node test/typescript.ts"
+ },
+ "version": "4.3.1"
+}

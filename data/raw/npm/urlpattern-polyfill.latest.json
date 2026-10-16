@@ -1,0 +1,189 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "urlpattern-polyfill@10.1.0",
+ "_nodeVersion": "22.15.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/urlpattern-polyfill_10.1.0_1746688455047_0.1854334153232251"
+ },
+ "_npmUser": {
+  "email": "sanderelias@gmail.com",
+  "name": "sanderelias"
+ },
+ "_npmVersion": "10.9.2",
+ "author": "",
+ "ava": {
+  "files": [
+   "test/**/*",
+   "!test/wpt"
+  ],
+  "typescript": {
+   "compile": false,
+   "rewritePaths": {
+    "src/": "dist/"
+   }
+  }
+ },
+ "bugs": {
+  "url": "https://github.com/kenchris/urlpattern-polyfill/issues"
+ },
+ "dependencies": {},
+ "description": "Polyfill for the URLPattern API",
+ "devDependencies": {
+  "@ava/typescript": "^4.0.0",
+  "ava": "^5.3.0",
+  "esbuild": "^0.17.19",
+  "rimraf": "^5.0.1",
+  "typescript": "^5.1.3",
+  "wireit": "^0.9.5"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 9,
+  "integrity": "sha512-IGjKp/o0NL3Bso1PymYURCJxMPNAf/ILOpendP9f5B6e1rTJgdgiOvgfoT8VxCAdY+Wisb9uhGaJJf3yZ2V9nw==",
+  "shasum": "1b2517e614136c73ba32948d5e7a3a063cba8e74",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIAa/+d0CZq5bQ/7F5HlyajpMcLYYMd5n5QTQEBIzdOMfAiBU4vn2fYZ7YBffBZ2aVp+HjA4mWAWACo+GNeeUCtnFWw=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/urlpattern-polyfill/-/urlpattern-polyfill-10.1.0.tgz",
+  "unpackedSize": 52699
+ },
+ "exports": {
+  ".": {
+   "import": "./index.js",
+   "require": "./index.cjs",
+   "types": "./dist/index.d.ts"
+  },
+  "./urlpattern": {
+   "import": "./dist/urlpattern.js",
+   "require": "./dist/urlpattern.cjs",
+   "types": "./dist/index.d.ts"
+  }
+ },
+ "gitHead": "8cdbab265bf67b75101505a8a20f9e0e381be80f",
+ "homepage": "https://github.com/kenchris/urlpattern-polyfill#readme",
+ "license": "MIT",
+ "main": "./index.cjs",
+ "maintainers": [
+  {
+   "email": "ben@wanderview.com",
+   "name": "wanderview"
+  },
+  {
+   "email": "sanderelias@gmail.com",
+   "name": "sanderelias"
+  },
+  {
+   "email": "kenneth.christiansen@gmail.com",
+   "name": "kenchris"
+  }
+ ],
+ "module": "./index.js",
+ "name": "urlpattern-polyfill",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/kenchris/urlpattern-polyfill.git"
+ },
+ "scripts": {
+  "build": "wireit",
+  "manual-test": "wireit",
+  "publish-dev": "wireit",
+  "publish-major": "wireit",
+  "publish-patch": "wireit",
+  "sync-wpt": "wireit",
+  "test": "wireit"
+ },
+ "tags": [
+  "url",
+  "urlpattern",
+  "url-pattern",
+  "browser",
+  "node",
+  "polyfill",
+  "w3c",
+  "wicg"
+ ],
+ "type": "module",
+ "types": "./dist/index.d.ts",
+ "version": "10.1.0",
+ "wireit": {
+  "build": {
+   "dependencies": [
+    "copyTypeFiles"
+   ]
+  },
+  "build:cjs": {
+   "command": "esbuild --bundle --format=cjs src/url-pattern.ts --outfile=dist/urlpattern.cjs --minify --keep-names --target=es2022",
+   "files": [
+    "src/**/*"
+   ],
+   "output": [
+    "dist/urlpattern.cjs"
+   ]
+  },
+  "build:esm": {
+   "command": "esbuild --bundle --format=esm src/url-pattern.ts --outfile=dist/urlpattern.js --minify --keep-names --target=es2022",
+   "files": [
+    "src/**/*"
+   ],
+   "output": [
+    "dist/urlpattern.js"
+   ]
+  },
+  "copyTypeFiles": {
+   "command": "cp ./src/index.d.ts ./src/types.d.ts ./dist",
+   "dependencies": [
+    "build:esm",
+    "build:cjs"
+   ],
+   "output": [
+    "dist/index.d.ts",
+    "dist/types.d.ts"
+   ]
+  },
+  "manual-test": {
+   "command": "npx http-server -o /index.html -p 4203",
+   "dependencies": [
+    "test"
+   ]
+  },
+  "prepFakeNodeModules": {
+   "command": "rm -rf node_modules/urlpattern-polyfill; ln -s $(pwd) node_modules/urlpattern-polyfill"
+  },
+  "publish-dev": {
+   "command": "VERSION=${npm_package_version%-*}-dev.`git rev-parse --short HEAD` && npm version --no-git-tag-version $VERSION && npm publish --tag dev",
+   "dependencies": [
+    "test"
+   ]
+  },
+  "publish-major": {
+   "command": "npm version major && npm publish",
+   "dependencies": [
+    "test"
+   ]
+  },
+  "publish-patch": {
+   "command": "npm version patch && npm publish",
+   "dependencies": [
+    "test"
+   ]
+  },
+  "sync-wpt": {
+   "command": "cd test && wget http://wpt.live/urlpattern/resources/urlpatterntestdata.json && wget http://wpt.live/urlpattern/resources/urlpattern-compare-test-data.json"
+  },
+  "test": {
+   "command": "ava --timeout=60s",
+   "dependencies": [
+    "prepFakeNodeModules",
+    "build"
+   ],
+   "files": [
+    "test/**/*"
+   ],
+   "watch": "test/**/*"
+  }
+ }
+}

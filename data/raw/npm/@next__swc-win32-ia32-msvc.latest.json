@@ -1,0 +1,80 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@next/swc-win32-ia32-msvc@14.2.16",
+ "_nodeVersion": "20.18.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/swc-win32-ia32-msvc_14.2.16_1729647432269_0.37429399500620275"
+ },
+ "_npmUser": {
+  "email": "infra+release@vercel.com",
+  "name": "vercel-release-bot"
+ },
+ "_npmVersion": "10.4.0",
+ "bugs": {
+  "url": "https://github.com/vercel/next.js/issues"
+ },
+ "cpu": [
+  "ia32"
+ ],
+ "description": "This is the **win32-ia32-msvc** binary for `@next/swc`",
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@next%2fswc-win32-ia32-msvc@14.2.16"
+  },
+  "fileCount": 3,
+  "integrity": "sha512-jhPl3nN0oKEshJBNDAo0etGMzv0j3q3VYorTSFqH1o3rwv1MQRdor27u1zhkgsHPNeY1jxcgyx1ZsCkDD1IHgg==",
+  "shasum": "6d093a33bc285404b1cd817959ce6129f4b32c02",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIQD+WKJAkRTxz+qZvbU3zw5OaQcY2ZavGbyJDABnXkSFVgIgcFpN9OZWDrqpzyKKY7z/GQeEK3U9plb8QQgTtF+hFMQ="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@next/swc-win32-ia32-msvc/-/swc-win32-ia32-msvc-14.2.16.tgz",
+  "unpackedSize": 93952521
+ },
+ "engines": {
+  "node": ">= 10"
+ },
+ "gitHead": "3c01e3a9a17e5cc8d060b87e57d30ef544fe5dcd",
+ "homepage": "https://github.com/vercel/next.js#readme",
+ "license": "MIT",
+ "main": "next-swc.win32-ia32-msvc.node",
+ "maintainers": [
+  {
+   "email": "matt.j.straka@gmail.com",
+   "name": "matt.straka"
+  },
+  {
+   "email": "infra+release@vercel.com",
+   "name": "vercel-release-bot"
+  },
+  {
+   "email": "rauchg@gmail.com",
+   "name": "rauchg"
+  },
+  {
+   "email": "timneutkens@icloud.com",
+   "name": "timneutkens"
+  },
+  {
+   "email": "timer150@gmail.com",
+   "name": "timer"
+  }
+ ],
+ "name": "@next/swc-win32-ia32-msvc",
+ "os": [
+  "win32"
+ ],
+ "repository": {
+  "directory": "packages/next-swc/crates/napi/npm/win32-ia32-msvc",
+  "type": "git",
+  "url": "git+https://github.com/vercel/next.js.git"
+ },
+ "version": "14.2.16"
+}

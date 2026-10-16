@@ -1,0 +1,77 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@eslint/js@10.0.1",
+ "_nodeVersion": "22.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/js_10.0.1_1770417296141_0.21997168566501624"
+ },
+ "_npmUser": {
+  "email": "contact@eslint.org",
+  "name": "eslintbot"
+ },
+ "_npmVersion": "10.9.4",
+ "bugs": {
+  "url": "https://github.com/eslint/eslint/issues/"
+ },
+ "description": "ESLint JavaScript language implementation",
+ "directories": {},
+ "dist": {
+  "fileCount": 7,
+  "integrity": "sha512-zeR9k5pd4gxjZ0abRoIaxdc7I3nDktoXZk2qOv9gCNWx3mVwEn32VRhyLaRsDiJjTs0xq/T8mfPtyuXu7GWBcA==",
+  "shasum": "1e8a876f50117af8ab67e47d5ad94d38d6622583",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQC01PnD397TPFwX0F9HFSExrqR/ahZ/msR5jN0S2R716wIgJi3MsB6EmezIqYLGeLnGsuRmVAmSBUdcpNLONJnD71s="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@eslint/js/-/js-10.0.1.tgz",
+  "unpackedSize": 15687
+ },
+ "engines": {
+  "node": "^20.19.0 || ^22.13.0 || >=24"
+ },
+ "funding": "https://eslint.org/donate",
+ "gitHead": "84fb885d49ac810e79a9491276b4828b53d913e5",
+ "homepage": "https://eslint.org",
+ "keywords": [
+  "javascript",
+  "eslint-plugin",
+  "eslint"
+ ],
+ "license": "MIT",
+ "main": "./src/index.js",
+ "maintainers": [
+  {
+   "email": "npm@openjsf.org",
+   "name": "openjsfoundation"
+  },
+  {
+   "email": "contact@eslint.org",
+   "name": "eslintbot"
+  }
+ ],
+ "name": "@eslint/js",
+ "peerDependencies": {
+  "eslint": "^10.0.0"
+ },
+ "peerDependenciesMeta": {
+  "eslint": {
+   "optional": true
+  }
+ },
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "directory": "packages/js",
+  "type": "git",
+  "url": "git+https://github.com/eslint/eslint.git"
+ },
+ "scripts": {
+  "test:types": "tsc -p tests/types/tsconfig.json"
+ },
+ "types": "./types/index.d.ts",
+ "version": "10.0.1"
+}

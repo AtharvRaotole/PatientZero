@@ -1,0 +1,71 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "react-is@19.3.1",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/react-is_19.3.1_1791996470740_0.6250752729837907"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "cbf6e476-d8fc-438d-8573-d441b42a7262"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "bugs": {
+  "url": "https://github.com/react/react/issues"
+ },
+ "description": "Brand checking of React Elements.",
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/react-is@19.3.1"
+  },
+  "fileCount": 6,
+  "integrity": "sha512-RRieF6IyxQBkcK6pP8xOHprLTPW6QjRkbGdImtqNme+/hYVwCZkLQLdlZGOhUqXwkS9IEynaGvPJtv6XB/cz0Q==",
+  "shasum": "81f7f7e431fc9b5bd9781b0a9f19997f08dee51b",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQD946yzsMqRp97KJa/IVvww8XEB4+/eqBiHolC2xvt0tgIgMnSY3e/ATRqahSay0jpZaZKRrf7AmL4DV2pEHzUSPm4="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIG5Q9o1xI132FNqebJkDpEe4+r0HgwrQiVnLcbjDHjKGAiEAsEaEQwyLkAdKePiWdDBqyc00WNuc23Yo77LWzJIs80E="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/react-is/-/react-is-19.3.1.tgz",
+  "unpackedSize": 13616
+ },
+ "gitHead": "61aa00df822d0eb76d0362eb8b6fdd3527693efe",
+ "homepage": "https://react.dev/",
+ "keywords": [
+  "react"
+ ],
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "opensource+npm@fb.com",
+   "name": "fb"
+  },
+  {
+   "email": "react-core@meta.com",
+   "name": "react-bot"
+  }
+ ],
+ "name": "react-is",
+ "repository": {
+  "directory": "packages/react-is",
+  "type": "git",
+  "url": "git+https://github.com/react/react.git"
+ },
+ "sideEffects": false,
+ "version": "19.3.1"
+}

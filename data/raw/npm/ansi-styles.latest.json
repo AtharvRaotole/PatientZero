@@ -1,0 +1,95 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "ansi-styles@7.0.0",
+ "_nodeVersion": "22.23.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/ansi-styles_7.0.0_1785077856753_0.616452296505001"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "12.0.1",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/chalk/ansi-styles/issues"
+ },
+ "description": "ANSI escape codes for styling strings in the terminal",
+ "devDependencies": {
+  "ava": "^8.0.1",
+  "svg-term-cli": "^2.1.1",
+  "tsd": "^0.33.0",
+  "xo": "^4.0.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-kKvt3m4uwzqL0wlkPd09CmljPJGOZZ4D0fP65sqFSvPkMRKhNi+74MgIJ5QxE6SxqB4t4KyUFGg8+n5zjo6hew==",
+  "shasum": "859089a725560e235a41fecde8999196df6c78c0",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQCasXowPAqN+liuuv7siVzyduwWlhsZG4Gpt7cL+eKP9wIgLHZeijrPGeHaM9jyvIyW8csNSkyLQhYVlcbm5LN5EpQ="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIHrjJ1wqcQ/rB/tdvYTZiXxXuCl+vxh/8nXcIc7gUf37AiAFyfOvT8FcDzGmesdc1qHgc36SnmkFGojqVWEmLT2ZlQ=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/ansi-styles/-/ansi-styles-7.0.0.tgz",
+  "unpackedSize": 22120
+ },
+ "engines": {
+  "node": ">=22"
+ },
+ "exports": "./index.js",
+ "funding": "https://github.com/chalk/ansi-styles?sponsor=1",
+ "gitHead": "c1c3dd4e017a2938807aaff0d361f46d086aeab7",
+ "homepage": "https://github.com/chalk/ansi-styles#readme",
+ "keywords": [
+  "ansi",
+  "styles",
+  "color",
+  "colour",
+  "colors",
+  "terminal",
+  "console",
+  "cli",
+  "string",
+  "tty",
+  "escape",
+  "formatting",
+  "rgb",
+  "256",
+  "shell",
+  "xterm",
+  "log",
+  "logging",
+  "command-line",
+  "text"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "ansi-styles",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/chalk/ansi-styles.git"
+ },
+ "scripts": {
+  "screenshot": "svg-term --command='node screenshot' --out=screenshot.svg --padding=3 --width=55 --height=3 --at=1000 --no-cursor",
+  "test": "xo && ava && tsd"
+ },
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "7.0.0"
+}

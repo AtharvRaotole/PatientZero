@@ -1,0 +1,70 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@types/json-schema@7.0.15",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/json-schema_7.0.15_1699346963325_0.6509864909632233"
+ },
+ "_npmUser": {
+  "email": "ts-npm-types@microsoft.com",
+  "name": "types"
+ },
+ "contributors": [
+  {
+   "githubUsername": "bcherny",
+   "name": "Boris Cherny",
+   "url": "https://github.com/bcherny"
+  },
+  {
+   "githubUsername": "lucianbuzzo",
+   "name": "Lucian Buzzo",
+   "url": "https://github.com/lucianbuzzo"
+  },
+  {
+   "githubUsername": "rolandjitsu",
+   "name": "Roland Groza",
+   "url": "https://github.com/rolandjitsu"
+  },
+  {
+   "githubUsername": "JasonHK",
+   "name": "Jason Kwok",
+   "url": "https://github.com/JasonHK"
+  }
+ ],
+ "dependencies": {},
+ "description": "TypeScript definitions for json-schema",
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-5+fP8P8MFNC+AyZCDxrB2pkZFPGzqQWUzpSeuuVLvm8VMcorNYavBqoFcxK8bQz4Qsbn4oUEEem4wDLfcysGHA==",
+  "shasum": "596a1747233694d50f6ad8a7869fcb6f56cf5841",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEQCIFc0f2/H6JU9C7JfRgHVkCAC+OOTz3xyR9EvaK8uT14pAiAqK9zDzN7/9Y3FlqfiAd/0qDeyNjOMdZ5B9r0g023zDw=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@types/json-schema/-/json-schema-7.0.15.tgz",
+  "unpackedSize": 31748
+ },
+ "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/json-schema",
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "ts-npm-types@microsoft.com",
+   "name": "types"
+  }
+ ],
+ "name": "@types/json-schema",
+ "repository": {
+  "directory": "types/json-schema",
+  "type": "git",
+  "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+ },
+ "scripts": {},
+ "typeScriptVersion": "4.5",
+ "types": "index.d.ts",
+ "typesPublisherContentHash": "79984fd70cd25c3f7d72b84368778c763c89728ea0073832d745d4691b705257",
+ "version": "7.0.15"
+}

@@ -1,0 +1,99 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "slice-ansi@9.0.1",
+ "_nodeVersion": "22.23.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/slice-ansi_9.0.1_1789758982120_0.9163814307830742"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "12.0.1",
+ "bugs": {
+  "url": "https://github.com/chalk/slice-ansi/issues"
+ },
+ "dependencies": {
+  "ansi-styles": "^6.2.3",
+  "is-fullwidth-code-point": "^5.1.0"
+ },
+ "description": "Slice a string with ANSI escape codes",
+ "devDependencies": {
+  "ava": "^7.0.0",
+  "chalk": "^5.6.2",
+  "random-item": "^4.0.1",
+  "strip-ansi": "^7.2.0",
+  "xo": "^2.0.2"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 6,
+  "integrity": "sha512-aBY19bn/XA+hKOKX0qL7Z0UfdBsbQvc9hn993U8ALUjzxCvDcuZqLoRXjGJrUARWAlwMnsRVD9sw2AFNOYvalA==",
+  "shasum": "6754918812fed4460e215ea8ee24abedaca435c3",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQCFM/9zd8cKXGE4rtsUe28tfbDM3QtpsYY9uUYpIY9q/QIgCpQ0TVgtLL1BYR992KYDP3WMsybY+94su6zLUVmMuTM="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIAs+Gu0vPBMK5ytk3K8VmLrXN7qBTDuIbA8xcWZKGKOpAiEAlD997J/QK+bjXF9zqJw/0K2CYnRqZDJRFpPL117icS8="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/slice-ansi/-/slice-ansi-9.0.1.tgz",
+  "unpackedSize": 31260
+ },
+ "engines": {
+  "node": ">=22"
+ },
+ "exports": {
+  "default": "./index.js",
+  "types": "./index.d.ts"
+ },
+ "funding": "https://github.com/chalk/slice-ansi?sponsor=1",
+ "gitHead": "1196f5f5f8dab9727dcfc3f32c1be9d0ec83c6ac",
+ "homepage": "https://github.com/chalk/slice-ansi#readme",
+ "keywords": [
+  "slice",
+  "string",
+  "ansi",
+  "styles",
+  "color",
+  "colour",
+  "colors",
+  "terminal",
+  "console",
+  "cli",
+  "tty",
+  "escape",
+  "formatting",
+  "rgb",
+  "256",
+  "shell",
+  "xterm",
+  "log",
+  "logging",
+  "command-line",
+  "text"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "slice-ansi",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/chalk/slice-ansi.git"
+ },
+ "scripts": {
+  "test": "xo && ava && tsc --lib esnext index.d.ts"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "9.0.1"
+}

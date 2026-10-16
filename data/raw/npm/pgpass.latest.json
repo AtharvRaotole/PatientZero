@@ -1,0 +1,77 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "pgpass@1.0.6",
+ "_nodeVersion": "18.19.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/pgpass_1.0.6_1781978257161_0.4540475275939382"
+ },
+ "_npmUser": {
+  "email": "hhoerl+npm@proton.me",
+  "name": "hoegaarden"
+ },
+ "_npmVersion": "9.2.0",
+ "author": {
+  "email": "hannes.hoerl+pgpass@snowreporter.com",
+  "name": "Hannes H\u00f6rl"
+ },
+ "bugs": {
+  "url": "https://github.com/hoegaarden/pgpass/issues"
+ },
+ "description": "Module for reading .pgpass",
+ "devDependencies": {
+  "jshint": "^2.13.6",
+  "mocha": "^11.3.0",
+  "nyc": "^18.0.0",
+  "pg": "^8.22.0",
+  "pg-escape": "^0.2.0",
+  "pg-native": "3.8.0",
+  "resumer": "0.0.0",
+  "tmp": "^0.2.7",
+  "which": "^2.0.2"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 4,
+  "integrity": "sha512-lqIfH7bdgsxHAY/ZnUOwm+aCFKrsHBDhSFuk9O0B9uCqJAIkrKTo/+LQqLPLUS4e04+jCmQVikxE3QipH5chPw==",
+  "shasum": "d3f6629b024b16fe2a9f8b033e6befc34e2ddb07",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCICFIJvv4gxIj3aReTq9laxNZh7U7vPu66FGA2A2HqxizAiAooxd7h3uN8PUGaTfTwzkOoi7gK04dnEhs4QhDf7y5VA=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/pgpass/-/pgpass-1.0.6.tgz",
+  "unpackedSize": 10542
+ },
+ "gitHead": "2dae74a042ba15b6cbb83f55bf66079a99bd4191",
+ "homepage": "https://github.com/hoegaarden/pgpass#readme",
+ "keywords": [
+  "postgres",
+  "pg",
+  "pgpass",
+  "password",
+  "postgresql"
+ ],
+ "license": "MIT",
+ "main": "lib/index",
+ "maintainers": [
+  {
+   "email": "hhoerl+npm@proton.me",
+   "name": "hoegaarden"
+  }
+ ],
+ "name": "pgpass",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/hoegaarden/pgpass.git"
+ },
+ "scripts": {
+  "_covered_test": "nyc --reporter html --reporter text \"$npm_execpath\" run _test",
+  "_hint": "jshint --exclude node_modules --verbose lib test",
+  "_test": "mocha --recursive -R list",
+  "pretest": "chmod 600 ./test/_pgpass",
+  "test": "\"$npm_execpath\" run _hint && \"$npm_execpath\" run _covered_test"
+ },
+ "version": "1.0.6"
+}

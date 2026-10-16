@@ -1,0 +1,118 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "content-disposition@3.0.0",
+ "_nodeVersion": "26.7.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/content-disposition_3.0.0_1786652956750_0.2738129430896561"
+ },
+ "_npmUser": {
+  "approver": {
+   "email": "hello@blakeembrey.com",
+   "name": "blakeembrey"
+  },
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:99aed8be-b5f1-43a9-a86f-345979d3956d"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "author": {
+  "email": "doug@somethingdoug.com",
+  "name": "Douglas Christopher Wilson"
+ },
+ "bugs": {
+  "url": "https://github.com/jshttp/content-disposition/issues"
+ },
+ "description": "Create and parse Content-Disposition header",
+ "devDependencies": {
+  "@borderless/ts-scripts": "^0.15.0",
+  "@vitest/coverage-v8": "^4.1.10",
+  "typescript": "^7.0.2",
+  "vitest": "^4.1.10"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/content-disposition@3.0.0"
+  },
+  "fileCount": 6,
+  "integrity": "sha512-ZH/0Xs9rMIFWCOmGdmS9eHBTF62qqQYNz4nVjQhkdIO/a0fCP4UIM3mRz/wiqL0L14YgAz/1xio4OaSY4+ON/A==",
+  "shasum": "624fe1697b362049d4735368e3fe57138b2c528d",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQCBetWEGgSrzu0MFeHeYgAflkz6NecZFhVKoCcrxWye4AIgQdmAnTyxYw6txm+pRGR7wrPQ5JAwCizYJ4x6MtzqLaw="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/content-disposition/-/content-disposition-3.0.0.tgz",
+  "unpackedSize": 49686
+ },
+ "engines": {
+  "node": ">=22"
+ },
+ "exports": "./dist/index.js",
+ "funding": {
+  "type": "opencollective",
+  "url": "https://opencollective.com/express"
+ },
+ "gitHead": "1a542fe19e982569c5fb0162b3a1997ad02da1fe",
+ "homepage": "https://github.com/jshttp/content-disposition#readme",
+ "keywords": [
+  "content-disposition",
+  "http",
+  "rfc6266",
+  "res"
+ ],
+ "license": "MIT",
+ "main": "./dist/index.js",
+ "maintainers": [
+  {
+   "email": "ulisesgascondev@gmail.com",
+   "name": "ulisesgascon"
+  },
+  {
+   "email": "hello@blakeembrey.com",
+   "name": "blakeembrey"
+  },
+  {
+   "email": "wes@wesleytodd.com",
+   "name": "wesleytodd"
+  },
+  {
+   "email": "doug@somethingdoug.com",
+   "name": "dougwilson"
+  }
+ ],
+ "name": "content-disposition",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/jshttp/content-disposition.git"
+ },
+ "scripts": {
+  "bench": "vitest bench",
+  "build": "ts-scripts build",
+  "demo": "node demo/server.js",
+  "format": "ts-scripts format",
+  "lint": "ts-scripts lint",
+  "prepare": "ts-scripts install && npm run build",
+  "specs": "ts-scripts specs",
+  "test": "ts-scripts test"
+ },
+ "ts-scripts": {
+  "dist": [
+   "dist"
+  ],
+  "project": [
+   "tsconfig.build.json"
+  ]
+ },
+ "type": "module",
+ "types": "./dist/index.d.ts",
+ "version": "3.0.0"
+}

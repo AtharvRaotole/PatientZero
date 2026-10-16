@@ -1,0 +1,58 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@types/estree@1.0.9",
+ "_nodeVersion": "24.14.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/estree_1.0.9_1778101260833_0.6861892258742783"
+ },
+ "_npmUser": {
+  "email": "ts-npm-types@microsoft.com",
+  "name": "types"
+ },
+ "contributors": [
+  {
+   "githubUsername": "RReverser",
+   "name": "RReverser",
+   "url": "https://github.com/RReverser"
+  }
+ ],
+ "dependencies": {},
+ "description": "TypeScript definitions for estree",
+ "directories": {},
+ "dist": {
+  "fileCount": 6,
+  "integrity": "sha512-GhdPgy1el4/ImP05X05Uw4cw2/M93BCUmnEvWZNStlCzEKME4Fkk+YpoA5OiHNQmoS7Cafb8Xa3Pya8m1Qrzeg==",
+  "shasum": "cf3f0e876d7bee15a93ab925b82bf570a3904a24",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIG5LeiyV3/m+9NSRDf8bEpvCkRcyilZuXkNQlbi061y3AiEAmCE4B4EH6503g6oasz7YS+5ASghAE7+b7mLkeXCI4K8="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@types/estree/-/estree-1.0.9.tgz",
+  "unpackedSize": 26153
+ },
+ "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/estree",
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "ts-npm-types@microsoft.com",
+   "name": "types"
+  }
+ ],
+ "name": "@types/estree",
+ "nonNpm": true,
+ "peerDependencies": {},
+ "repository": {
+  "directory": "types/estree",
+  "type": "git",
+  "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+ },
+ "scripts": {},
+ "typeScriptVersion": "5.3",
+ "types": "index.d.ts",
+ "typesPublisherContentHash": "db16da859cb0bee641414117047a4becba2e9f39d3e14a6745f887c47ef68482",
+ "version": "1.0.9"
+}

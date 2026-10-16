@@ -1,0 +1,107 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@types/ws@8.18.2",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/ws_8.18.2_1790669265565_0.30925752990314215"
+ },
+ "_npmUser": {
+  "email": "ts-npm-types@microsoft.com",
+  "name": "types"
+ },
+ "contributors": [
+  {
+   "githubUsername": "loyd",
+   "name": "Paul Loyd",
+   "url": "https://github.com/loyd"
+  },
+  {
+   "githubUsername": "mlamp",
+   "name": "Margus Lamp",
+   "url": "https://github.com/mlamp"
+  },
+  {
+   "githubUsername": "TitaneBoy",
+   "name": "Philippe D'Alva",
+   "url": "https://github.com/TitaneBoy"
+  },
+  {
+   "githubUsername": "reduckted",
+   "name": "reduckted",
+   "url": "https://github.com/reduckted"
+  },
+  {
+   "githubUsername": "teidesu",
+   "name": "teidesu",
+   "url": "https://github.com/teidesu"
+  },
+  {
+   "githubUsername": "wojtkowiak",
+   "name": "Bartosz Wojtkowiak",
+   "url": "https://github.com/wojtkowiak"
+  },
+  {
+   "githubUsername": "k-yle",
+   "name": "Kyle Hensel",
+   "url": "https://github.com/k-yle"
+  },
+  {
+   "githubUsername": "cwadrupldijjit",
+   "name": "Samuel Skeen",
+   "url": "https://github.com/cwadrupldijjit"
+  }
+ ],
+ "dependencies": {
+  "@types/node": "*"
+ },
+ "description": "TypeScript definitions for ws",
+ "directories": {},
+ "dist": {
+  "fileCount": 6,
+  "integrity": "sha512-67MQl+fpWKVTT1NYdnmo3U4sc/xPo/zQBncVnI74qmQa0z/b+1g6iYqNmGCPbxO+zz2aklb08a0oHfegiVd0/w==",
+  "shasum": "25d6321b30ef0fddf6cc7052b4eef9ce4e412b6e",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQCT+Vitcb+xbO+7RLFlbrDMDRdPdEwh3nYu4N7WGyyfEQIhAJj7blzik7c7/01R7QxF2lPji7EqjgmzUkgwlh3AM+dX"
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIAGImh+zT/KmOywYjHNDt4xlKnmx0MSrj2Mh35EMsriHAiEA+7+71OHVFboaqIzhZOe7BvJzPJOmAQx9GVf1Q2kXsKo="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@types/ws/-/ws-8.18.2.tgz",
+  "unpackedSize": 42711
+ },
+ "exports": {
+  ".": {
+   "types": {
+    "default": "./index.d.ts",
+    "import": "./index.d.mts"
+   }
+  },
+  "./package.json": "./package.json"
+ },
+ "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/ws",
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "ts-npm-types@microsoft.com",
+   "name": "types"
+  }
+ ],
+ "name": "@types/ws",
+ "peerDependencies": {},
+ "repository": {
+  "directory": "types/ws",
+  "type": "git",
+  "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+ },
+ "scripts": {},
+ "typeScriptVersion": "5.6",
+ "types": "index.d.ts",
+ "typesPublisherContentHash": "cc5646969f6447ed3bbda0af1afd034a06ea04a46c4e810b2f955450ac935f23",
+ "version": "8.18.2"
+}

@@ -1,0 +1,16 @@
+{
+ "edges": [],
+ "error": "",
+ "nodes": [
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "SELF",
+   "versionKey": {
+    "name": "zod",
+    "system": "NPM",
+    "version": "3.23.8"
+   }
+  }
+ ]
+}

@@ -1,0 +1,502 @@
+{
+ "edges": [
+  {
+   "fromNode": 0,
+   "requirement": "^4.0.0",
+   "toNode": 1
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^4.0.5",
+   "toNode": 2
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^6.0.1",
+   "toNode": 3
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^1.0.0",
+   "toNode": 7
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^5.0.3",
+   "toNode": 8
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^7.0.2",
+   "toNode": 9
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^6.0.0",
+   "toNode": 11
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^1.0.0-beta.5.2",
+   "toNode": 16
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^2.0.0",
+   "toNode": 19
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^2.0.0",
+   "toNode": 24
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^2.0.0",
+   "toNode": 28
+  },
+  {
+   "fromNode": 2,
+   "requirement": "^2.0.0",
+   "toNode": 12
+  },
+  {
+   "fromNode": 3,
+   "requirement": "*",
+   "toNode": 4
+  },
+  {
+   "fromNode": 3,
+   "requirement": "^3.1.4",
+   "toNode": 5
+  },
+  {
+   "fromNode": 3,
+   "requirement": "*",
+   "toNode": 6
+  },
+  {
+   "fromNode": 3,
+   "requirement": "^1.0.0",
+   "toNode": 7
+  },
+  {
+   "fromNode": 5,
+   "requirement": "*",
+   "toNode": 6
+  },
+  {
+   "fromNode": 6,
+   "requirement": "~8.9.0",
+   "toNode": 29
+  },
+  {
+   "fromNode": 7,
+   "requirement": "*",
+   "toNode": 6
+  },
+  {
+   "fromNode": 9,
+   "requirement": "^1.0.2",
+   "toNode": 10
+  },
+  {
+   "fromNode": 9,
+   "requirement": "^5.1.0",
+   "toNode": 14
+  },
+  {
+   "fromNode": 9,
+   "requirement": "^4.0.0",
+   "toNode": 15
+  },
+  {
+   "fromNode": 9,
+   "requirement": "^4.0.0",
+   "toNode": 18
+  },
+  {
+   "fromNode": 9,
+   "requirement": "^2.0.0",
+   "toNode": 19
+  },
+  {
+   "fromNode": 9,
+   "requirement": "^6.0.1",
+   "toNode": 22
+  },
+  {
+   "fromNode": 9,
+   "requirement": "^2.0.0",
+   "toNode": 28
+  },
+  {
+   "fromNode": 10,
+   "requirement": "^1.0.0",
+   "toNode": 20
+  },
+  {
+   "fromNode": 11,
+   "requirement": "^3.1.0",
+   "toNode": 21
+  },
+  {
+   "fromNode": 13,
+   "requirement": "^1.4.0",
+   "toNode": 23
+  },
+  {
+   "fromNode": 14,
+   "requirement": "^3.0.0",
+   "toNode": 25
+  },
+  {
+   "fromNode": 16,
+   "requirement": "^5.1.1",
+   "toNode": 26
+  },
+  {
+   "fromNode": 16,
+   "requirement": "^1.0.0",
+   "toNode": 27
+  },
+  {
+   "fromNode": 18,
+   "requirement": "3.0.1",
+   "toNode": 17
+  },
+  {
+   "fromNode": 23,
+   "requirement": "1",
+   "toNode": 30
+  },
+  {
+   "fromNode": 25,
+   "requirement": "^1.1.0",
+   "toNode": 13
+  },
+  {
+   "fromNode": 25,
+   "requirement": "^1.3.1",
+   "toNode": 23
+  },
+  {
+   "fromNode": 28,
+   "requirement": "^2.0.0",
+   "toNode": 19
+  }
+ ],
+ "error": "",
+ "nodes": [
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "SELF",
+   "versionKey": {
+    "name": "got",
+    "system": "NPM",
+    "version": "11.8.6"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "@sindresorhus/is",
+    "system": "NPM",
+    "version": "4.6.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "@szmarczak/http-timer",
+    "system": "NPM",
+    "version": "4.0.6"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "@types/cacheable-request",
+    "system": "NPM",
+    "version": "6.0.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "@types/http-cache-semantics",
+    "system": "NPM",
+    "version": "4.2.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "@types/keyv",
+    "system": "NPM",
+    "version": "3.1.4"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "@types/node",
+    "system": "NPM",
+    "version": "26.6.5"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "@types/responselike",
+    "system": "NPM",
+    "version": "1.0.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "cacheable-lookup",
+    "system": "NPM",
+    "version": "5.0.4"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "cacheable-request",
+    "system": "NPM",
+    "version": "7.0.4"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "clone-response",
+    "system": "NPM",
+    "version": "1.0.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "decompress-response",
+    "system": "NPM",
+    "version": "6.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "defer-to-connect",
+    "system": "NPM",
+    "version": "2.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "end-of-stream",
+    "system": "NPM",
+    "version": "1.4.5"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "get-stream",
+    "system": "NPM",
+    "version": "5.2.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "http-cache-semantics",
+    "system": "NPM",
+    "version": "4.3.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "http2-wrapper",
+    "system": "NPM",
+    "version": "1.0.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "json-buffer",
+    "system": "NPM",
+    "version": "3.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "keyv",
+    "system": "NPM",
+    "version": "4.5.4"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "lowercase-keys",
+    "system": "NPM",
+    "version": "2.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "mimic-response",
+    "system": "NPM",
+    "version": "1.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "mimic-response",
+    "system": "NPM",
+    "version": "3.1.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "normalize-url",
+    "system": "NPM",
+    "version": "6.1.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "once",
+    "system": "NPM",
+    "version": "1.4.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "p-cancelable",
+    "system": "NPM",
+    "version": "2.1.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "pump",
+    "system": "NPM",
+    "version": "3.0.4"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "quick-lru",
+    "system": "NPM",
+    "version": "5.1.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "resolve-alpn",
+    "system": "NPM",
+    "version": "1.2.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "responselike",
+    "system": "NPM",
+    "version": "2.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "undici-types",
+    "system": "NPM",
+    "version": "8.9.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "wrappy",
+    "system": "NPM",
+    "version": "1.0.2"
+   }
+  }
+ ]
+}

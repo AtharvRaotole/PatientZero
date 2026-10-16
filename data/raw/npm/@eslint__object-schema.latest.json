@@ -1,0 +1,107 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@eslint/object-schema@3.0.5",
+ "_nodeVersion": "24.14.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/object-schema_3.0.5_1775640154415_0.6065567256570696"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:1295a891-c6bd-4729-9ef7-41e7903845dc"
+  }
+ },
+ "_npmVersion": "11.12.1",
+ "author": {
+  "name": "Nicholas C. Zakas"
+ },
+ "bugs": {
+  "url": "https://github.com/eslint/rewrite/issues"
+ },
+ "description": "An object schema merger/validator",
+ "devDependencies": {
+  "rollup-plugin-copy": "^3.5.0"
+ },
+ "directories": {
+  "test": "tests"
+ },
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@eslint%2fobject-schema@3.0.5"
+  },
+  "fileCount": 10,
+  "integrity": "sha512-vqTaUEgxzm+YDSdElad6PiRoX4t8VGDjCtt05zn4nU810UIx/uNEV7/lZJ6KwFThKZOzOxzXy48da+No7HZaMw==",
+  "shasum": "88e9bf4d11d2b19c082e78ebe7ce88724a5eb091",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIDAgt1v9LlD8MdqiBi1gfPTMyM7PgoLCPDJCZz4jT22GAiBTaT9lTmXBbMunq2MOI7LsLBJgizyAxIweOBaL1eFi4w=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@eslint/object-schema/-/object-schema-3.0.5.tgz",
+  "unpackedSize": 67104
+ },
+ "engines": {
+  "node": "^20.19.0 || ^22.13.0 || >=24"
+ },
+ "exports": {
+  "import": {
+   "default": "./dist/esm/index.js",
+   "types": "./dist/esm/index.d.ts"
+  },
+  "require": {
+   "default": "./dist/cjs/index.cjs",
+   "types": "./dist/cjs/index.d.cts"
+  }
+ },
+ "gitHead": "d2dbf7b73d01505da89a69b7465e486d8a88aa8f",
+ "homepage": "https://github.com/eslint/rewrite/tree/main/packages/object-schema#readme",
+ "keywords": [
+  "object",
+  "validation",
+  "schema",
+  "merge"
+ ],
+ "license": "Apache-2.0",
+ "main": "dist/esm/index.js",
+ "maintainers": [
+  {
+   "email": "npm@openjsf.org",
+   "name": "openjsfoundation"
+  },
+  {
+   "email": "contact@eslint.org",
+   "name": "eslintbot"
+  }
+ ],
+ "name": "@eslint/object-schema",
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "directory": "packages/object-schema",
+  "type": "git",
+  "url": "git+https://github.com/eslint/rewrite.git"
+ },
+ "scripts": {
+  "build": "rollup -c && npm run build:dedupe-types && tsc -p tsconfig.esm.json && npm run build:cts",
+  "build:cts": "node ../../tools/build-cts.js dist/esm/index.d.ts dist/cjs/index.d.cts",
+  "build:dedupe-types": "node ../../tools/dedupe-types.js dist/cjs/index.cjs dist/esm/index.js",
+  "lint:types": "attw --pack",
+  "pretest": "npm run build",
+  "test": "npm run test:types && npm run test:unit",
+  "test:coverage": "c8 npm run test:unit",
+  "test:jsr": "npx -y jsr@latest publish --dry-run",
+  "test:types": "tsc -p tests/types/tsconfig.json",
+  "test:unit": "mocha \"tests/**/*.test.js\""
+ },
+ "type": "module",
+ "types": "dist/esm/index.d.ts",
+ "version": "3.0.5"
+}

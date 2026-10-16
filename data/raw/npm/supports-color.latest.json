@@ -1,0 +1,103 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "supports-color@11.0.0",
+ "_nodeVersion": "22.23.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/supports-color_11.0.0_1785078816731_0.05508506282375447"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "12.0.1",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "ava": {
+  "serial": true,
+  "workerThreads": false
+ },
+ "bugs": {
+  "url": "https://github.com/chalk/supports-color/issues"
+ },
+ "description": "Detect whether a terminal supports color",
+ "devDependencies": {
+  "@types/node": "^26.1.1",
+  "ava": "^8.0.1",
+  "tsd": "^0.33.0",
+  "xo": "^4.0.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 7,
+  "integrity": "sha512-/zyImLdxhdygBIaVX0xTlQhKaCDLCrm665aqHk8xqK/Pa6k61fL6gwQGQq1k31yNyz6x55PppQgF2DMyPQa5xw==",
+  "shasum": "54f4096e9cac614c6f273dc764e697e3c2c3941d",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQCOg+pMBArTrUu6tfMz36VsJhh2AkFcSO2LjRZCYhJg5gIgfvHo00aAhC6fUDYVu/zpPbhADL0W66Jw/oLntsuFerQ="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQCLDX7O5HUs4mjwisnV0gB0+kXD2IixCxus9AnGQin31gIhAJ1q4XbTrrvvSojMDpZTH/WoSU9vmUrrVq/wkISdtYZj"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/supports-color/-/supports-color-11.0.0.tgz",
+  "unpackedSize": 11618
+ },
+ "engines": {
+  "node": ">=22"
+ },
+ "exports": {
+  "default": "./browser.js",
+  "node": "./index.js",
+  "types": "./index.d.ts"
+ },
+ "funding": "https://github.com/chalk/supports-color?sponsor=1",
+ "gitHead": "e2a4cd3c44eb384b075161ef32859cd29ce1aa7f",
+ "homepage": "https://github.com/chalk/supports-color#readme",
+ "keywords": [
+  "color",
+  "colour",
+  "colors",
+  "terminal",
+  "console",
+  "cli",
+  "ansi",
+  "styles",
+  "tty",
+  "rgb",
+  "256",
+  "shell",
+  "xterm",
+  "command-line",
+  "support",
+  "supports",
+  "capability",
+  "detect",
+  "truecolor",
+  "16m"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "supports-color",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/chalk/supports-color.git"
+ },
+ "scripts": {
+  "test": "xo && ava && tsd"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "11.0.0"
+}

@@ -1,0 +1,84 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "long@5.3.2",
+ "_nodeVersion": "23.11.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/long_5.3.2_1744911125806_0.1429677546207977"
+ },
+ "_npmUser": {
+  "email": "dcode+npm@dcode.io",
+  "name": "dcode"
+ },
+ "_npmVersion": "10.9.2",
+ "author": {
+  "email": "dcode@dcode.io",
+  "name": "Daniel Wirtz"
+ },
+ "bugs": {
+  "url": "https://github.com/dcodeIO/long.js/issues"
+ },
+ "description": "A Long class for representing a 64-bit two's-complement integer value.",
+ "devDependencies": {
+  "esm2umd": "^0.3.1",
+  "prettier": "^3.5.0",
+  "typescript": "^5.7.3"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 10,
+  "integrity": "sha512-mNAgZ1GmyNhD7AuqnTG3/VQ26o760+ZYBPKjPvugO8+nLbYfX6TVpJPseBvopbdY+qpZ/lKUnmEc1LeZYS3QAA==",
+  "shasum": "1d84463095999262d7d7b7f8bfd4a8cc55167f83",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIDMvXdMTBLInRSFmAZOF7GS41Uy0/JYeG0krEZzxzSnuAiBA/q4klrTLmms4LzmV57ujmBcqQZ3r0gAwINoaGyQc2A=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/long/-/long-5.3.2.tgz",
+  "unpackedSize": 139458
+ },
+ "exports": {
+  ".": {
+   "import": {
+    "default": "./index.js",
+    "types": "./index.d.ts"
+   },
+   "require": {
+    "default": "./umd/index.js",
+    "types": "./umd/index.d.ts"
+   }
+  }
+ },
+ "gitHead": "e1bcb4f65096465b69f0fd67e68fc2a79a67ade9",
+ "homepage": "https://github.com/dcodeIO/long.js#readme",
+ "keywords": [
+  "math",
+  "long",
+  "int64"
+ ],
+ "license": "Apache-2.0",
+ "main": "umd/index.js",
+ "maintainers": [
+  {
+   "email": "dcode+npm@dcode.io",
+   "name": "dcode"
+  }
+ ],
+ "name": "long",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/dcodeIO/long.js.git"
+ },
+ "scripts": {
+  "build": "node scripts/build.js",
+  "format": "prettier --write .",
+  "lint": "prettier --check .",
+  "test": "npm run test:unit && npm run test:typescript",
+  "test:typescript": "tsc --project tests/typescript/tsconfig.esnext.json && tsc --project tests/typescript/tsconfig.nodenext.json && tsc --project tests/typescript/tsconfig.commonjs.json && tsc --project tests/typescript/tsconfig.global.json",
+  "test:unit": "node tests"
+ },
+ "type": "module",
+ "types": "umd/index.d.ts",
+ "version": "5.3.2"
+}

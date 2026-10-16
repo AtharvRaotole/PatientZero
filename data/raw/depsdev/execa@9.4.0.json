@@ -1,0 +1,352 @@
+{
+ "edges": [
+  {
+   "fromNode": 0,
+   "requirement": "^4.0.0",
+   "toNode": 2
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^7.0.3",
+   "toNode": 3
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^6.1.0",
+   "toNode": 4
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^9.0.0",
+   "toNode": 5
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^8.0.0",
+   "toNode": 6
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^4.1.0",
+   "toNode": 7
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^4.0.1",
+   "toNode": 8
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^6.0.0",
+   "toNode": 11
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^9.0.0",
+   "toNode": 15
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^4.1.0",
+   "toNode": 18
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^4.0.0",
+   "toNode": 19
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^2.0.0",
+   "toNode": 22
+  },
+  {
+   "fromNode": 3,
+   "requirement": "^3.1.0",
+   "toNode": 13
+  },
+  {
+   "fromNode": 3,
+   "requirement": "^2.0.0",
+   "toNode": 16
+  },
+  {
+   "fromNode": 3,
+   "requirement": "^2.0.1",
+   "toNode": 21
+  },
+  {
+   "fromNode": 4,
+   "requirement": "^2.0.0",
+   "toNode": 9
+  },
+  {
+   "fromNode": 5,
+   "requirement": "^0.4.1",
+   "toNode": 1
+  },
+  {
+   "fromNode": 5,
+   "requirement": "^4.0.1",
+   "toNode": 8
+  },
+  {
+   "fromNode": 11,
+   "requirement": "^4.0.0",
+   "toNode": 14
+  },
+  {
+   "fromNode": 11,
+   "requirement": "^0.3.0",
+   "toNode": 20
+  },
+  {
+   "fromNode": 15,
+   "requirement": "^4.0.0",
+   "toNode": 12
+  },
+  {
+   "fromNode": 16,
+   "requirement": "^3.0.0",
+   "toNode": 17
+  },
+  {
+   "fromNode": 21,
+   "requirement": "^2.0.0",
+   "toNode": 10
+  }
+ ],
+ "error": "",
+ "nodes": [
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "SELF",
+   "versionKey": {
+    "name": "execa",
+    "system": "NPM",
+    "version": "9.4.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "@sec-ant/readable-stream",
+    "system": "NPM",
+    "version": "0.4.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "@sindresorhus/merge-streams",
+    "system": "NPM",
+    "version": "4.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "cross-spawn",
+    "system": "NPM",
+    "version": "7.0.6"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "figures",
+    "system": "NPM",
+    "version": "6.1.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "get-stream",
+    "system": "NPM",
+    "version": "9.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "human-signals",
+    "system": "NPM",
+    "version": "8.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "is-plain-obj",
+    "system": "NPM",
+    "version": "4.1.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "is-stream",
+    "system": "NPM",
+    "version": "4.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "is-unicode-supported",
+    "system": "NPM",
+    "version": "2.1.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "isexe",
+    "system": "NPM",
+    "version": "2.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "npm-run-path",
+    "system": "NPM",
+    "version": "6.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "parse-ms",
+    "system": "NPM",
+    "version": "4.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "path-key",
+    "system": "NPM",
+    "version": "3.1.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "path-key",
+    "system": "NPM",
+    "version": "4.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "pretty-ms",
+    "system": "NPM",
+    "version": "9.3.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "shebang-command",
+    "system": "NPM",
+    "version": "2.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "shebang-regex",
+    "system": "NPM",
+    "version": "3.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "signal-exit",
+    "system": "NPM",
+    "version": "4.1.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "strip-final-newline",
+    "system": "NPM",
+    "version": "4.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "unicorn-magic",
+    "system": "NPM",
+    "version": "0.3.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "which",
+    "system": "NPM",
+    "version": "2.0.2"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "yoctocolors",
+    "system": "NPM",
+    "version": "2.2.0"
+   }
+  }
+ ]
+}

@@ -1,0 +1,81 @@
+{
+ "_from": "file:artifacts/releases/colors-colors-1.6.1.tgz",
+ "_hasShrinkwrap": false,
+ "_id": "@colors/colors@1.6.1",
+ "_integrity": "sha512-dTmUJzXSuayBK+hZydEaXd2mhx61qWQwkwaBBY6LyEOVx/L9aQU5ac8eFNEsd9nrD1+zb9zvDCphLSe8g1F4Qw==",
+ "_nodeVersion": "24.14.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/colors_1.6.1_1788753087590_0.9145585239300784"
+ },
+ "_npmUser": {
+  "email": "dabh@alumni.stanford.edu",
+  "name": "dabh"
+ },
+ "_npmVersion": "11.9.0",
+ "_resolved": "/Users/dabh/dabh_llc/artifacts/releases/colors-colors-1.6.1.tgz",
+ "author": {
+  "name": "DABH"
+ },
+ "bugs": {
+  "url": "https://github.com/DABH/colors.js/issues"
+ },
+ "contributors": [
+  {
+   "name": "DABH",
+   "url": "https://github.com/DABH"
+  }
+ ],
+ "description": "get colors in your node.js console",
+ "devDependencies": {
+  "eslint": "^8.9.0",
+  "eslint-config-google": "^0.14.0",
+  "typescript": "5.7.3"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 22,
+  "integrity": "sha512-dTmUJzXSuayBK+hZydEaXd2mhx61qWQwkwaBBY6LyEOVx/L9aQU5ac8eFNEsd9nrD1+zb9zvDCphLSe8g1F4Qw==",
+  "shasum": "8e2827259ada76965b3a051c18a5927fbdac38c2",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIHhcJjkfWSGKTkwbn8Yy3M2ZpeR+HiCphsnHXFTN/Yg3AiBkWIsThOerPD03llrUqGcdOSbha2dmQnua+3AXfPFMhg=="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQCnB7bvgXm9TqxtYtKa0Eoal0Q+GOLex0e63T8H/1ZwVwIhAJH7dztR5wPX+wm6uJi35q8FqtkPN5HmSVCVTnbI+W7J"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@colors/colors/-/colors-1.6.1.tgz",
+  "unpackedSize": 42319
+ },
+ "engines": {
+  "node": ">=0.1.90"
+ },
+ "homepage": "https://github.com/DABH/colors.js",
+ "keywords": [
+  "ansi",
+  "terminal",
+  "colors"
+ ],
+ "license": "MIT",
+ "main": "lib/index.js",
+ "maintainers": [
+  {
+   "email": "dabh@alumni.stanford.edu",
+   "name": "dabh"
+  }
+ ],
+ "name": "@colors/colors",
+ "repository": {
+  "type": "git",
+  "url": "git+ssh://git@github.com/DABH/colors.js.git"
+ },
+ "scripts": {
+  "lint": "eslint . --fix",
+  "test": "export FORCE_COLOR=1 && node tests/basic-test.js && node tests/safe-test.js",
+  "test:types": "tsc --noEmit"
+ },
+ "version": "1.6.1"
+}

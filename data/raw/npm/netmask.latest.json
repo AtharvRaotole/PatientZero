@@ -1,0 +1,77 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "netmask@2.1.1",
+ "_nodeVersion": "24.9.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/netmask_2.1.1_1775667546465_0.686204232558494"
+ },
+ "_npmUser": {
+  "email": "rs@rhapsodyk.net",
+  "name": "rs"
+ },
+ "_npmVersion": "11.6.0",
+ "author": {
+  "email": "rs@rhapsodyk.net",
+  "name": "Olivier Poitrey"
+ },
+ "bugs": {
+  "url": "https://github.com/rs/node-netmask/issues"
+ },
+ "description": "Parse and lookup IP network blocks",
+ "devDependencies": {
+  "@types/mocha": "^9.0.0",
+  "@types/node": "^18.0.0",
+  "mocha": "^10.2.0",
+  "ts-node": "^10.0.0",
+  "typescript": "^5.0.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 10,
+  "integrity": "sha512-eonl3sLUha+S1GzTPxychyhnUzKyeQkZ7jLjKrBagJgPla13F+uQ71HgpFefyHgqrjEbCPkDArxYsjY8/+gLKA==",
+  "shasum": "80043d265b53aa521b3bd01e8fcdf353f9e1e81e",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDvFZX3qm2j3FpKV58vuI+3gTrRsr4VR4DtubDL0sLoHgIgAXMEP2RKbTxr4C9r4hpdzsO3LI2OsyAeSbaqS8lHsyg="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/netmask/-/netmask-2.1.1.tgz",
+  "unpackedSize": 26100
+ },
+ "engines": {
+  "node": ">= 0.4.0"
+ },
+ "gitHead": "1cbf0e16f51c6b17f53741a6bd5fd8cfb9dc833d",
+ "homepage": "https://github.com/rs/node-netmask",
+ "keywords": [
+  "net",
+  "mask",
+  "ip",
+  "network",
+  "cidr",
+  "netmask",
+  "subnet",
+  "ipcalc"
+ ],
+ "license": "MIT",
+ "main": "./dist/netmask",
+ "maintainers": [
+  {
+   "email": "rs@rhapsodyk.net",
+   "name": "rs"
+  }
+ ],
+ "name": "netmask",
+ "repository": {
+  "type": "git",
+  "url": "git://github.com/rs/node-netmask.git"
+ },
+ "scripts": {
+  "prepublish": "tsc",
+  "test": "tsc && mocha --require ts-node/register tests/*.ts"
+ },
+ "types": "./dist/netmask.d.ts",
+ "version": "2.1.1"
+}

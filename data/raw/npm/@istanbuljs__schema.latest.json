@@ -1,0 +1,87 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@istanbuljs/schema@0.1.6",
+ "_nodeVersion": "24.14.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/schema_0.1.6_1776077873422_0.989063191634783"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:67ce3c3a-438a-4c2b-b677-68bf5c6ba1d3"
+  }
+ },
+ "_npmVersion": "11.11.0",
+ "author": {
+  "name": "Corey Farrell"
+ },
+ "bugs": {
+  "url": "https://github.com/istanbuljs/schema/issues"
+ },
+ "description": "Schemas describing various structures used by nyc and istanbuljs",
+ "devDependencies": {
+  "nyc": "^18.0.0"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@istanbuljs%2fschema@0.1.6"
+  },
+  "fileCount": 7,
+  "integrity": "sha512-+Sg6GCR/wy1oSmQDFq4LQDAhm3ETKnorxN+y5nbLULOR3P0c14f2Wurzj3/xqPXtasLFfHd5iRFQ7AJt4KH2cw==",
+  "shasum": "8dc9afa2ac1506cb1a58f89940f1c124446c8df3",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQC/taMny5Kgd5VAqC9iILl+iOd6dOs0RYKobaTuTDNXCQIhAICBHbyEl6xfDnrN8ToxNmbc8o4eh3ZzarLU6zUNhr+K"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@istanbuljs/schema/-/schema-0.1.6.tgz",
+  "unpackedSize": 17949
+ },
+ "engines": {
+  "node": ">=8"
+ },
+ "gitHead": "f870afe9d8e71e1c8d723ff75cf78f388a1a7e1c",
+ "homepage": "https://github.com/istanbuljs/schema#readme",
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "git@cfware.com",
+   "name": "coreyfarrell"
+  },
+  {
+   "email": "bencoe@gmail.com",
+   "name": "bcoe"
+  },
+  {
+   "email": "jasonk92@gmail.com",
+   "name": "jakxz"
+  },
+  {
+   "email": "kananthmail-github@yahoo.com",
+   "name": "gotwarlost"
+  },
+  {
+   "email": "bencoe+oss-bot@gmail.com",
+   "name": "oss-bot"
+  }
+ ],
+ "name": "@istanbuljs/schema",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/istanbuljs/schema.git"
+ },
+ "scripts": {
+  "test": "nyc node --test test/test.js",
+  "test:update-snapshots": "nyc node --test --test-update-snapshots test/test.js"
+ },
+ "version": "0.1.6"
+}

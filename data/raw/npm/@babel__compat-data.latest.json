@@ -1,0 +1,95 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@babel/compat-data@8.0.5",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/compat-data_8.0.5_1789074805167_0.0745063255329732"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:20c04fd0-2439-42b3-93fb-4045b911fc14"
+  }
+ },
+ "author": "The Babel Team (https://babel.dev/team)",
+ "description": "The compat-data to determine required Babel plugins",
+ "devDependencies": {
+  "@mdn/browser-compat-data": "^6.0.8",
+  "core-js-compat": "^3.48.0",
+  "electron-to-chromium": "^1.5.278"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@babel%2fcompat-data@8.0.5"
+  },
+  "fileCount": 7,
+  "integrity": "sha512-YLsYoQMvL8l8WrGpN3Zj7O1wK5LEBN+cQtux7BcuHyxIXve724XG+zuJ1n3U1cUweRtTzQOA4IHbuQw3N34SZw==",
+  "shasum": "b5e933559f0830bd4d71f167a7b24cbb4b0f3fd7",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIFUI6ZppzZQrJolrU6CzNiTvq/fGkjMIDed8rW6ns2HxAiEAswpKFkQH6rw7lK2Z6sf37Psf+0pbg0VvhKAT+IMRzQE="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQDwXWOX6aeWWOEISvispRwi3pt0qpyABIFh3r1dTcO5KAIhANqJw6hMfLmuQkbnIQKeZBN79HIYH/uTfjSAgkAEQxk3"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@babel/compat-data/-/compat-data-8.0.5.tgz",
+  "unpackedSize": 21506
+ },
+ "engines": {
+  "node": "^22.18.0 || >=24.11.0"
+ },
+ "exports": {
+  "./native-modules": "./data/native-modules.json",
+  "./overlapping-plugins": "./data/overlapping-plugins.json",
+  "./package.json": "./package.json",
+  "./plugin-bugfixes": "./data/plugin-bugfixes.json",
+  "./plugins": "./data/plugins.json"
+ },
+ "keywords": [
+  "babel",
+  "compat-table",
+  "compat-data"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "hi@henryzoo.com",
+   "name": "hzoo"
+  },
+  {
+   "email": "bng412@gmail.com",
+   "name": "existentialism"
+  },
+  {
+   "email": "hello+npm@nicr.dev",
+   "name": "nicolo-ribaudo"
+  },
+  {
+   "email": "jlhwung@gmail.com",
+   "name": "jlhwung"
+  }
+ ],
+ "name": "@babel/compat-data",
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "directory": "packages/babel-compat-data",
+  "type": "git",
+  "url": "https://github.com/babel/babel.git"
+ },
+ "scripts": {
+  "build-data": "./scripts/download-compat-table.sh && node ./scripts/build-data.mjs && node ./scripts/build-modules-support.mjs && node ./scripts/build-bugfixes-targets.mjs"
+ },
+ "type": "commonjs",
+ "version": "8.0.5"
+}

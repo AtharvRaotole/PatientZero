@@ -1,0 +1,73 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "devtools-protocol@0.0.1718299",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/devtools-protocol_0.0.1718299_1791952966764_0.313862097295287"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "1a11a0ea-9257-4dff-a907-5ca308e1edd1"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "author": {
+  "name": "The Chromium Authors"
+ },
+ "bugs": {
+  "url": "https://github.com/ChromeDevTools/devtools-protocol/issues"
+ },
+ "description": "The Chrome DevTools Protocol JSON",
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/devtools-protocol@0.0.1718299"
+  },
+  "fileCount": 64,
+  "integrity": "sha512-f7A0354+zlhRMPKry6Aw3z7/CejNRKt5//xJADvwT/HopEGBXbbQ0+A6z7DkTUQUVzoKKSmduawqm+5I8WNm7g==",
+  "shasum": "1666520c4a491c3e0e4ee9ebd155c7bd01d98212",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIDIoeA79LdRDg+6/EV5eqx1XdnEpUnzaQp8qOci/CvemAiEAkeDwLfe/4uaQeeV3WEv5mEXBa27wkqXsY/C0r+1HIj4="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQCMpIdW1yU1lHblTM3pxLh/7yoNaPkj1soTyg/xN6t+hAIhAKPWmOGo32UlGa3YfzL14sVIBgZm7zTjpIPh+nb0x7I1"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/devtools-protocol/-/devtools-protocol-0.0.1718299.tgz",
+  "unpackedSize": 3758775
+ },
+ "gitHead": "dfad77069330a9188771bb64a32d18853a10b012",
+ "homepage": "https://github.com/ChromeDevTools/devtools-protocol#readme",
+ "license": "BSD-3-Clause",
+ "maintainers": [
+  {
+   "email": "npm@paul.irish",
+   "name": "paulirish"
+  },
+  {
+   "email": "mathias@qiwi.be",
+   "name": "mathias"
+  },
+  {
+   "email": "node-team-npm+wombot@google.com",
+   "name": "google-wombot"
+  }
+ ],
+ "name": "devtools-protocol",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/ChromeDevTools/devtools-protocol.git"
+ },
+ "types": "types/protocol.d.ts",
+ "version": "0.0.1718299"
+}

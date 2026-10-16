@@ -1,0 +1,108 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "mime-db@1.54.0",
+ "_nodeVersion": "23.5.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/mime-db_1.54.0_1742310404154_0.19473775997612774"
+ },
+ "_npmUser": {
+  "email": "wes@wesleytodd.com",
+  "name": "wesleytodd"
+ },
+ "_npmVersion": "10.9.2",
+ "bugs": {
+  "url": "https://github.com/jshttp/mime-db/issues"
+ },
+ "contributors": [
+  {
+   "email": "doug@somethingdoug.com",
+   "name": "Douglas Christopher Wilson"
+  },
+  {
+   "email": "me@jongleberry.com",
+   "name": "Jonathan Ong",
+   "url": "http://jongleberry.com"
+  },
+  {
+   "email": "robert@broofa.com",
+   "name": "Robert Kieffer",
+   "url": "http://github.com/broofa"
+  }
+ ],
+ "description": "Media Type Database",
+ "devDependencies": {
+  "csv-parse": "4.16.3",
+  "eslint": "8.32.0",
+  "eslint-config-standard": "15.0.1",
+  "eslint-plugin-import": "2.27.5",
+  "eslint-plugin-markdown": "3.0.0",
+  "eslint-plugin-node": "11.1.0",
+  "eslint-plugin-promise": "6.1.1",
+  "eslint-plugin-standard": "4.1.0",
+  "media-typer": "1.1.0",
+  "mocha": "10.2.0",
+  "nyc": "15.1.0",
+  "stream-to-array": "2.3.0",
+  "undici": "7.1.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 6,
+  "integrity": "sha512-aU5EJuIN2WDemCcAp2vFBfp/m4EAhWJnUNSSw0ixs7/kXbd6Pg64EmwJkNdFhB8aWt1sH2CTXrLxo/iAGV3oPQ==",
+  "shasum": "cddb3ee4f9c64530dff640236661d42cb6a314f5",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQCQNJ57UlaKKgaBxzUo5WoRsITrTNeknrN05f96Z6VrCwIhANtVnf0QvkzIzRBhGoaP7MY007vjoouE5wcTJmBxirCB"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/mime-db/-/mime-db-1.54.0.tgz",
+  "unpackedSize": 225566
+ },
+ "engines": {
+  "node": ">= 0.6"
+ },
+ "gitHead": "5207a32f76e77ed2f63421641449f8addeacb0a5",
+ "homepage": "https://github.com/jshttp/mime-db#readme",
+ "keywords": [
+  "mime",
+  "db",
+  "type",
+  "types",
+  "database",
+  "charset",
+  "charsets"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "hello@blakeembrey.com",
+   "name": "blakeembrey"
+  },
+  {
+   "email": "wes@wesleytodd.com",
+   "name": "wesleytodd"
+  },
+  {
+   "email": "doug@somethingdoug.com",
+   "name": "dougwilson"
+  }
+ ],
+ "name": "mime-db",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/jshttp/mime-db.git"
+ },
+ "scripts": {
+  "build": "node scripts/build",
+  "fetch": "node scripts/fetch-apache && node scripts/fetch-iana && node scripts/fetch-nginx",
+  "lint": "eslint .",
+  "test": "mocha --reporter spec --check-leaks test/",
+  "test-ci": "nyc --reporter=lcovonly --reporter=text npm test",
+  "test-cov": "nyc --reporter=html --reporter=text npm test",
+  "update": "npm run fetch && npm run build",
+  "version": "node scripts/version-history.js && git add HISTORY.md"
+ },
+ "version": "1.54.0"
+}

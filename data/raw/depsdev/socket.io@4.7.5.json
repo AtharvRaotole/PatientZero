@@ -1,0 +1,412 @@
+{
+ "edges": [
+  {
+   "fromNode": 0,
+   "requirement": "~1.3.4",
+   "toNode": 1
+  },
+  {
+   "fromNode": 0,
+   "requirement": "~2.0.0",
+   "toNode": 2
+  },
+  {
+   "fromNode": 0,
+   "requirement": "~2.8.5",
+   "toNode": 3
+  },
+  {
+   "fromNode": 0,
+   "requirement": "~4.3.2",
+   "toNode": 4
+  },
+  {
+   "fromNode": 0,
+   "requirement": "~6.5.2",
+   "toNode": 5
+  },
+  {
+   "fromNode": 0,
+   "requirement": "~2.5.2",
+   "toNode": 6
+  },
+  {
+   "fromNode": 0,
+   "requirement": "~4.2.4",
+   "toNode": 7
+  },
+  {
+   "fromNode": 1,
+   "requirement": "~2.1.34",
+   "toNode": 8
+  },
+  {
+   "fromNode": 1,
+   "requirement": "0.6.3",
+   "toNode": 9
+  },
+  {
+   "fromNode": 3,
+   "requirement": "^4",
+   "toNode": 10
+  },
+  {
+   "fromNode": 3,
+   "requirement": "^1",
+   "toNode": 11
+  },
+  {
+   "fromNode": 4,
+   "requirement": "^2.1.3",
+   "toNode": 12
+  },
+  {
+   "fromNode": 5,
+   "requirement": "~1.3.4",
+   "toNode": 1
+  },
+  {
+   "fromNode": 5,
+   "requirement": "2.0.0",
+   "toNode": 2
+  },
+  {
+   "fromNode": 5,
+   "requirement": "~2.8.5",
+   "toNode": 3
+  },
+  {
+   "fromNode": 5,
+   "requirement": "~4.3.1",
+   "toNode": 4
+  },
+  {
+   "fromNode": 5,
+   "requirement": "^0.4.1",
+   "toNode": 13
+  },
+  {
+   "fromNode": 5,
+   "requirement": "^2.8.12",
+   "toNode": 14
+  },
+  {
+   "fromNode": 5,
+   "requirement": ">=10.0.0",
+   "toNode": 15
+  },
+  {
+   "fromNode": 5,
+   "requirement": "~0.4.1",
+   "toNode": 16
+  },
+  {
+   "fromNode": 5,
+   "requirement": "~5.2.1",
+   "toNode": 17
+  },
+  {
+   "fromNode": 5,
+   "requirement": "~8.17.1",
+   "toNode": 18
+  },
+  {
+   "fromNode": 6,
+   "requirement": "~4.4.1",
+   "toNode": 19
+  },
+  {
+   "fromNode": 6,
+   "requirement": "~8.21.0",
+   "toNode": 20
+  },
+  {
+   "fromNode": 7,
+   "requirement": "~3.1.0",
+   "toNode": 21
+  },
+  {
+   "fromNode": 7,
+   "requirement": "~4.4.1",
+   "toNode": 22
+  },
+  {
+   "fromNode": 8,
+   "requirement": "1.52.0",
+   "toNode": 23
+  },
+  {
+   "fromNode": 14,
+   "requirement": "*",
+   "toNode": 15
+  },
+  {
+   "fromNode": 15,
+   "requirement": "~8.9.0",
+   "toNode": 24
+  },
+  {
+   "fromNode": 19,
+   "requirement": "^2.1.3",
+   "toNode": 12
+  },
+  {
+   "fromNode": 22,
+   "requirement": "^2.1.3",
+   "toNode": 12
+  }
+ ],
+ "error": "",
+ "nodes": [
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "SELF",
+   "versionKey": {
+    "name": "socket.io",
+    "system": "NPM",
+    "version": "4.7.5"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "accepts",
+    "system": "NPM",
+    "version": "1.3.8"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "base64id",
+    "system": "NPM",
+    "version": "2.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "cors",
+    "system": "NPM",
+    "version": "2.8.6"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "debug",
+    "system": "NPM",
+    "version": "4.3.7"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "engine.io",
+    "system": "NPM",
+    "version": "6.5.5"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "socket.io-adapter",
+    "system": "NPM",
+    "version": "2.5.8"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "socket.io-parser",
+    "system": "NPM",
+    "version": "4.2.7"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "mime-types",
+    "system": "NPM",
+    "version": "2.1.35"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "negotiator",
+    "system": "NPM",
+    "version": "0.6.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "object-assign",
+    "system": "NPM",
+    "version": "4.1.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "vary",
+    "system": "NPM",
+    "version": "1.1.2"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "ms",
+    "system": "NPM",
+    "version": "2.1.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "@types/cookie",
+    "system": "NPM",
+    "version": "0.4.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "@types/cors",
+    "system": "NPM",
+    "version": "2.8.19"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "@types/node",
+    "system": "NPM",
+    "version": "26.6.5"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "cookie",
+    "system": "NPM",
+    "version": "0.4.2"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "engine.io-parser",
+    "system": "NPM",
+    "version": "5.2.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "ws",
+    "system": "NPM",
+    "version": "8.17.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "debug",
+    "system": "NPM",
+    "version": "4.4.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "ws",
+    "system": "NPM",
+    "version": "8.21.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "@socket.io/component-emitter",
+    "system": "NPM",
+    "version": "3.1.2"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "debug",
+    "system": "NPM",
+    "version": "4.4.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "mime-db",
+    "system": "NPM",
+    "version": "1.52.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "undici-types",
+    "system": "NPM",
+    "version": "8.9.0"
+   }
+  }
+ ]
+}

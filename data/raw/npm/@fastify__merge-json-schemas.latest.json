@@ -1,0 +1,116 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@fastify/merge-json-schemas@0.2.2",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/merge-json-schemas_0.2.2_1791628116150_0.14031023169728662"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "3622d285-dec3-4b49-bff3-28cd41193877"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "author": {
+  "email": "ivan@tymoshenko.me",
+  "name": "Ivan Tymoshenko"
+ },
+ "bugs": {
+  "url": "https://github.com/fastify/merge-json-schemas/issues"
+ },
+ "contributors": [
+  {
+   "email": "hello@matteocollina.com",
+   "name": "Matteo Collina"
+  },
+  {
+   "email": "frazer.dev@icloud.com",
+   "name": "Frazer Smith",
+   "url": "https://github.com/fdawgs"
+  },
+  {
+   "email": "hey@gurgun.day",
+   "name": "G\u00fcrg\u00fcn Day\u0131o\u011flu",
+   "url": "https://heyhey.to/G"
+  }
+ ],
+ "dependencies": {
+  "dequal": "^2.0.3"
+ },
+ "description": "Builds a logical conjunction (AND) of multiple JSON schemas",
+ "devDependencies": {
+  "c8": "^12.0.0",
+  "eslint": "^9.17.0",
+  "neostandard": "^0.13.0",
+  "tstyche": "^7.0.0"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@fastify%2fmerge-json-schemas@0.2.2"
+  },
+  "fileCount": 54,
+  "integrity": "sha512-d/gx9sRbUCVgGRGzma46wLcwiY8noTqO2Nmjg/vbTARxHRE5bdh5PIL8s97Lt1X7ScRWRW52eVYxwIoPwIdVUA==",
+  "shasum": "2f461fe22ff405d8fd0d46463871a362559f7cfc",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQC2qfySUKhPBOeUNEiqIdymsXc/QjHv1uTF/M8IMkkaagIhAL0OoyZpKoj52aGsqZsXaQRBEVpjzPxflPA7uBeVXRHH"
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQC7JkIBxsu2LSV4aNyL1yC+VSlaslNFip9qa0hNn7dNPwIhAJOcJshJ1XmyVH8+nZARgl3P1e1ECnoSF1eSdRtAKFcZ"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@fastify/merge-json-schemas/-/merge-json-schemas-0.2.2.tgz",
+  "unpackedSize": 104760
+ },
+ "funding": [
+  {
+   "type": "github",
+   "url": "https://github.com/sponsors/fastify"
+  },
+  {
+   "type": "opencollective",
+   "url": "https://opencollective.com/fastify"
+  }
+ ],
+ "gitHead": "9d855db675b409a5fcd993480d98feb80de9f4b8",
+ "homepage": "https://github.com/fastify/merge-json-schemas#readme",
+ "keywords": [
+  "json",
+  "schema",
+  "merge",
+  "allOf"
+ ],
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "behemoth89@gmail.com",
+   "name": "eomm"
+  }
+ ],
+ "name": "@fastify/merge-json-schemas",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/fastify/merge-json-schemas.git"
+ },
+ "scripts": {
+  "lint": "eslint",
+  "lint:fix": "eslint --fix",
+  "test": "npm run test:unit && npm run test:types",
+  "test:types": "tstyche",
+  "test:unit": "c8 --100 node --test"
+ },
+ "type": "commonjs",
+ "types": "types/index.d.ts",
+ "version": "0.2.2"
+}

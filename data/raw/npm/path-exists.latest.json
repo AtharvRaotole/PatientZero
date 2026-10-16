@@ -1,0 +1,78 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "path-exists@5.0.0",
+ "_nodeVersion": "16.2.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/path-exists_5.0.0_1628764999208_0.25633467024338685"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "7.10.0",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/path-exists/issues"
+ },
+ "description": "Check if a path exists",
+ "devDependencies": {
+  "ava": "^3.15.0",
+  "tsd": "^0.17.0",
+  "xo": "^0.44.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-RjhtfwJOxzcFmNOi6ltcbcu4Iu+FL3zEj83dk4kAS+fVpTxXLO1b38RvJgT/0QwvV/L3aY9TAnyv0EOqW4GoMQ==",
+  "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.13\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJhFPtHCRA9TVsSAnZWagAA8f4QAIVfOc9y52rfjkwQIHby\nluF+gVwfmS1yR6w7W0Z9Pvutg43I7lED28Z9R0Wlkawdz6zRIJGD5s3Aol0o\n8d4Pnb47xbsiON+cklgW6XA3cz3BUTyxQ0/2bfaQJ06pVX51esDsAyCrW5aa\nBKWBcA5HX9gHlxO9i9fGAUvxI7wdB6AxHbuiB4cM0GFlIcyvFd5XaKbQ/9kK\n1uyQu1Oq3vO0nu3szNDhzQ37paGk1fT/HIZ3CXcQkZAUxYuocITweU3jh9zZ\njZjxt4CZ8BmWHOxjjNG0v+U74JC6hfP/+uoeoSXFIpFLxd8MpycFu3iFgcRh\nisBM7phsDl8WpFby1pAa+vU4Q7irQKqVEUPtfIxdnuvDBOnObd08zKKxSK5j\nKE+8XJH85K0IyoOVTx8wwWt6KC2Jb9kgYwJ4+33j7kV3YAJRQNaMuM3cCGcj\nDmK0f0jpOqgqjnVWXCwL+4cta7j4zcne/uXtSCARL21fn29uuBlcCn8jjslc\nHXPoEHxNwolT5PVCknK5LTwCjeU4P6Scl8u2yb5//is8FFifLv12iv2wX5ED\nfDR4/QnC+5RTiqo3cnlxeMWd2Bia18J2aj3ujzRoDfWvpk7ahj15zuJC1WSC\nPNvDnqvoVshVAMFXTkb+85Ct959OVF6aRlExGBX6MgsqXDTW3wCOwmjZoHJD\n82J3\r\n=KfMy\r\n-----END PGP SIGNATURE-----\r\n",
+  "shasum": "a6aad9489200b21fab31e49cf09277e5116fb9e7",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIQDd/DvIroPdagiu9k3aKlqYCRidYa/NcD/88ji7RgAYOgIgFarrMcdvJmaON61MGntHQnSL6xvQkpY6pWiZLi4Ywro="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/path-exists/-/path-exists-5.0.0.tgz",
+  "unpackedSize": 4118
+ },
+ "engines": {
+  "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+ },
+ "exports": "./index.js",
+ "gitHead": "7c95f5c1f5f811c7f4dac78ab5b9e258491f03af",
+ "homepage": "https://github.com/sindresorhus/path-exists#readme",
+ "keywords": [
+  "path",
+  "exists",
+  "exist",
+  "file",
+  "filepath",
+  "fs",
+  "filesystem",
+  "file-system",
+  "access",
+  "stat"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "path-exists",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/path-exists.git"
+ },
+ "scripts": {
+  "test": "xo && ava && tsd"
+ },
+ "type": "module",
+ "version": "5.0.0"
+}

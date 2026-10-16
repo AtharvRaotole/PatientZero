@@ -1,0 +1,106 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@ioredis/commands@2.1.1",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/commands_2.1.1_1790947612861_0.8741429617679168"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "8fde7774-1762-4b8c-9cbf-6b39f9c37218"
+  }
+ },
+ "_npmVersion": "11.21.0",
+ "author": {
+  "email": "i@zihua.li",
+  "name": "Zihua Li",
+  "url": "http://zihua.li"
+ },
+ "bugs": {
+  "url": "https://github.com/ioredis/commands/issues"
+ },
+ "description": "Redis commands",
+ "devDependencies": {
+  "@semantic-release/changelog": "6.0.3",
+  "@semantic-release/commit-analyzer": "13.0.1",
+  "@semantic-release/git": "10.0.1",
+  "@types/node": "^20.11.16",
+  "chai": "^4.3.6",
+  "ioredis": "5.11.1",
+  "mocha": "11.7.6",
+  "safe-stable-stringify": "^2.3.1",
+  "semantic-release": "25.0.5",
+  "snazzy": "^9.0.0",
+  "standard": "^16.0.4",
+  "typescript": "^5.3.3"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@ioredis%2fcommands@2.1.1"
+  },
+  "fileCount": 6,
+  "integrity": "sha512-ogakEVhpd4jfEgzn1ERHt3WwPWPAKv/QBOMNlVeuwX9zHzfx1L+gHi1Ghh1mLtNHSaJ4l+zvtbDkHszGZQ5ahA==",
+  "shasum": "97209ce599b9ff0e8034f028f4da806032a90992",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQDIBXyXnrfOGi63rdLCSZBSMFW0oiV9bNyZfusNGVK3tQIhAL9OezMs/TMUqRbAOC9t9R8L5aOMVik2h0dGjS7HWmJ9"
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQCz/MheSPXfpEZ2re1s1DU7uZtg9shqBkCiZbgwqHLKrwIhALeI511sZCQ2QrFvW0S0hlHjkK6J9MkJ3kRieaXFG0Q3"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@ioredis/commands/-/commands-2.1.1.tgz",
+  "unpackedSize": 114747
+ },
+ "gitHead": "46a995f2605b53f2eae5b1d50a021813376b9a39",
+ "homepage": "https://github.com/ioredis/commands",
+ "keywords": [
+  "redis",
+  "commands",
+  "prefix"
+ ],
+ "license": "MIT",
+ "main": "built/index.js",
+ "maintainers": [
+  {
+   "email": "ioredis-robot@zihua.li",
+   "name": "ioredis-robot"
+  },
+  {
+   "email": "david.maier@redis.com",
+   "name": "dmaier-redislabs"
+  },
+  {
+   "email": "nkaradzhov89@gmail.com",
+   "name": "nkaradzhov"
+  }
+ ],
+ "name": "@ioredis/commands",
+ "publishConfig": {
+  "access": "public",
+  "registry": "https://registry.npmjs.org/"
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/ioredis/commands.git"
+ },
+ "scripts": {
+  "build": "rm -rf built && tsc",
+  "gen": "node tools/build",
+  "lint": "standard --fix --verbose | snazzy",
+  "pretest": "npm run lint",
+  "test": "mocha"
+ },
+ "types": "./built/index.d.ts",
+ "version": "2.1.1"
+}

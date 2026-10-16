@@ -1,0 +1,80 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "typed-query-selector@2.12.3",
+ "_nodeVersion": "22.23.2",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/typed-query-selector_2.12.3_1790664049508_0.8315945252420149"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "39b67e8f-49e3-4575-9903-977c1ac61b45"
+  }
+ },
+ "_npmVersion": "12.1.0",
+ "author": {
+  "email": "g-plane@hotmail.com",
+  "name": "Pig Fang"
+ },
+ "bugs": {
+  "url": "https://github.com/g-plane/typed-query-selector/issues"
+ },
+ "description": "Better typed `querySelector` and `querySelectorAll`.",
+ "devDependencies": {
+  "@gplane/tsconfig": "^6.3.0",
+  "@type-challenges/utils": "^0.1.1",
+  "@typescript/typescript6": "^6.0.2",
+  "prettier": "~3.0.3",
+  "typescript": "^7.0.2"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/typed-query-selector@2.12.3"
+  },
+  "fileCount": 6,
+  "integrity": "sha512-/dtuMZyutHLlrxWhhC1uib00ELUr2dZ8C9B8YzZYsJmeE3V56OxRblrSM2UaF142pcMtak7ehZ6+poWGeehNIg==",
+  "shasum": "d7542a829b15bd6246a5c0c03daca41b21e40025",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQCWixmgcFEiUHfGnWnqvsZ0JUdIeYZ7UyAc/+HS//VMhAIgX0kIMvz1bqCISrI+tBx05AP3FeH+4v7ABK7MBlhGqUI="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIC0g1W6mM9drpz/cKvcEKvlFXDk0fSCbvGODBbSPjP1nAiEA8DgeUK6c1meTPeRgvHBLJ31X9ntP2Tl14CeOX5T8P9E="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/typed-query-selector/-/typed-query-selector-2.12.3.tgz",
+  "unpackedSize": 19074
+ },
+ "gitHead": "3a4f56957c709dfb31279ce6032b738a8b3fe0a5",
+ "homepage": "https://github.com/g-plane/typed-query-selector#readme",
+ "license": "MIT",
+ "main": "shim.d.ts",
+ "maintainers": [
+  {
+   "email": "g-plane@hotmail.com",
+   "name": "gplane"
+  }
+ ],
+ "name": "typed-query-selector",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/g-plane/typed-query-selector.git"
+ },
+ "scripts": {
+  "fmt": "prettier --write *.ts",
+  "fmt:check": "prettier --check *.ts",
+  "test": "tsc -p . && tsc6 -p ."
+ },
+ "sideEffects": false,
+ "types": "shim.d.ts",
+ "version": "2.12.3"
+}

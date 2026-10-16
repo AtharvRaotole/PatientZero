@@ -1,0 +1,86 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@babel/helper-plugin-utils@8.0.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/helper-plugin-utils_8.0.1_1781689450090_0.9349449874115636"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:4fb8cc72-78b7-4ff3-8063-33b2bd7a9cf3"
+  }
+ },
+ "author": "The Babel Team (https://babel.dev/team)",
+ "description": "General utilities for plugins to use",
+ "devDependencies": {
+  "@babel/core": "^8.0.1"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@babel%2fhelper-plugin-utils@8.0.1"
+  },
+  "fileCount": 6,
+  "integrity": "sha512-3PKFgjTyPlhFhorfP+SjKQxLViIL++zWjFOO4hGriYU+Bsm983DxEM1JmDRJVWXV0O9npu+xXRqz7Pbd3mh70g==",
+  "shasum": "d1c9d8ae225902c597deac8c79ace4227feac8af",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIGUKQ7wtefdRjzXiRhdofmxEKxFnNZNyIQfoPs9uU6OVAiB5YnJ1n0qeEU3gGfsLaI2W0JVWM58SwUWFqoqQRu04wA=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@babel/helper-plugin-utils/-/helper-plugin-utils-8.0.1.tgz",
+  "unpackedSize": 11230
+ },
+ "engines": {
+  "node": "^22.18.0 || >=24.11.0"
+ },
+ "exports": {
+  ".": {
+   "default": "./lib/index.js",
+   "types": "./lib/index.d.ts"
+  },
+  "./package.json": "./package.json"
+ },
+ "homepage": "https://babel.dev/docs/en/next/babel-helper-plugin-utils",
+ "license": "MIT",
+ "main": "./lib/index.js",
+ "maintainers": [
+  {
+   "email": "hi@henryzoo.com",
+   "name": "hzoo"
+  },
+  {
+   "email": "bng412@gmail.com",
+   "name": "existentialism"
+  },
+  {
+   "email": "hello+npm@nicr.dev",
+   "name": "nicolo-ribaudo"
+  },
+  {
+   "email": "jlhwung@gmail.com",
+   "name": "jlhwung"
+  }
+ ],
+ "name": "@babel/helper-plugin-utils",
+ "peerDependencies": {
+  "@babel/core": "^8.0.0"
+ },
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "directory": "packages/babel-helper-plugin-utils",
+  "type": "git",
+  "url": "https://github.com/babel/babel.git"
+ },
+ "type": "module",
+ "version": "8.0.1"
+}

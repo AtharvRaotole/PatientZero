@@ -1,0 +1,104 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "chokidar@5.0.0",
+ "_nodeVersion": "24.11.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/chokidar_5.0.0_1764113286647_0.9419155708641778"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:3c578f99-8a5f-43b8-8ffc-f100c274a5de"
+  }
+ },
+ "_npmVersion": "11.6.1",
+ "author": {
+  "name": "Paul Miller",
+  "url": "https://paulmillr.com"
+ },
+ "bugs": {
+  "url": "https://github.com/paulmillr/chokidar/issues"
+ },
+ "dependencies": {
+  "readdirp": "^5.0.0"
+ },
+ "description": "Minimal and efficient cross-platform file watching library",
+ "devDependencies": {
+  "@paulmillr/jsbt": "0.4.5",
+  "@types/node": "24.10.1",
+  "prettier": "3.5.2",
+  "tinyspy": "3.0.2",
+  "typescript": "5.9.2",
+  "upath": "2.0.1"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/chokidar@5.0.0"
+  },
+  "fileCount": 7,
+  "integrity": "sha512-TQMmc3w+5AxjpL8iIiwebF73dRDF4fBIieAqGn9RGCWaEVwQ6Fb2cGe31Yns0RRIzii5goJ1Y7xbMwo1TxMplw==",
+  "shasum": "949c126a9238a80792be9a0265934f098af369a5",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIH74rOiiziclwrLX6s65GCA0niBGM+7WTT4411bAISnOAiBka4apBLoKCiLn5IiGF20Efss/F11aLMaC5NHBfByR5w=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/chokidar/-/chokidar-5.0.0.tgz",
+  "unpackedSize": 82062
+ },
+ "engines": {
+  "node": ">= 20.19.0"
+ },
+ "exports": {
+  ".": {
+   "default": "./index.js"
+  },
+  "./handler.js": {
+   "default": "./handler.js"
+  }
+ },
+ "funding": "https://paulmillr.com/funding/",
+ "gitHead": "c0c8d20e49d337491891078d1081bf91bd178de6",
+ "homepage": "https://github.com/paulmillr/chokidar",
+ "keywords": [
+  "fs",
+  "watch",
+  "watchFile",
+  "watcher",
+  "watching",
+  "file",
+  "fsevents"
+ ],
+ "license": "MIT",
+ "main": "./index.js",
+ "maintainers": [
+  {
+   "email": "paul@paulmillr.com",
+   "name": "paulmillr"
+  }
+ ],
+ "name": "chokidar",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/paulmillr/chokidar.git"
+ },
+ "scripts": {
+  "build": "tsc",
+  "format": "prettier --write src",
+  "lint": "prettier --check src",
+  "test": "node index.test.js",
+  "test:bun1": "bun index.test.js"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "5.0.0"
+}

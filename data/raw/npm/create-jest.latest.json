@@ -1,0 +1,102 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "create-jest@30.5.2",
+ "_nodeVersion": "26.8.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/create-jest_30.5.2_1789739882802_0.8540871514758475"
+ },
+ "_npmUser": {
+  "email": "sbekkhus91@gmail.com",
+  "name": "simenb"
+ },
+ "_npmVersion": "lerna/4.11.5/node@v26.8.1+arm64 (darwin)",
+ "bin": {
+  "create-jest": "bin/create-jest.js"
+ },
+ "bugs": {
+  "url": "https://github.com/jestjs/jest/issues"
+ },
+ "dependencies": {
+  "@jest/types": "30.5.1",
+  "chalk": "^4.1.2",
+  "exit-x": "^0.2.2",
+  "graceful-fs": "^4.2.11",
+  "jest-config": "30.5.2",
+  "jest-util": "30.5.1",
+  "prompts": "^2.4.2"
+ },
+ "description": "Create a new Jest project",
+ "devDependencies": {
+  "@types/graceful-fs": "^4.1.9",
+  "@types/prompts": "^2.4.9"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 7,
+  "integrity": "sha512-/tI+jKaEmP8GlujnhfNixzp/tF26k9uEI0LrRGOqDEppbp08bANXnjTAmpYHZaq1yYgYm43TL9sG98HNBx9eKA==",
+  "shasum": "cec9ace912fd0fbca202c7f210a5c5cd30633947",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIA/6u9uh7KlVZ8y9fmdSyN9LKU0T7oniBrhq+MBGer+TAiEAj8HttuWc3dulQnGBPXnXKGKThsHq0ngC4QUagr01iAc="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIEbsttczGHa12w0aDxpo2Vq9+i5J1A9Y2p7XnqSVCtHOAiEA2gvxfpL8G64Sz3n+b+bbeTeTbBYjjXwonKPsBh3iM0o="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/create-jest/-/create-jest-30.5.2.tgz",
+  "unpackedSize": 17122
+ },
+ "engines": {
+  "node": "^18.14.0 || ^20.0.0 || ^22.0.0 || >=24.0.0"
+ },
+ "exports": {
+  ".": {
+   "default": "./build/index.js",
+   "import": "./build/index.mjs",
+   "require": "./build/index.js",
+   "types": "./build/index.d.ts"
+  },
+  "./bin/create-jest": "./bin/create-jest.js",
+  "./package.json": "./package.json"
+ },
+ "gitHead": "202dd8a14777c270607c2416bd5034c3c0abc984",
+ "homepage": "https://github.com/jestjs/jest#readme",
+ "license": "MIT",
+ "main": "./build/index.js",
+ "maintainers": [
+  {
+   "email": "aaron@abramov.io",
+   "name": "aaronabramov"
+  },
+  {
+   "email": "sbekkhus91@gmail.com",
+   "name": "simenb"
+  },
+  {
+   "email": "rickhanlonii@gmail.com",
+   "name": "rickhanlonii"
+  },
+  {
+   "email": "operations@openjsf.org",
+   "name": "openjs-operations"
+  },
+  {
+   "email": "christoph.pojer@gmail.com",
+   "name": "cpojer"
+  }
+ ],
+ "name": "create-jest",
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "directory": "packages/create-jest",
+  "type": "git",
+  "url": "git+https://github.com/jestjs/jest.git"
+ },
+ "types": "./build/index.d.ts",
+ "version": "30.5.2"
+}

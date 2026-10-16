@@ -1,0 +1,46 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@types/is-stream@2.0.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/is-stream_2.0.0_1556527266754_0.2814517558340053"
+ },
+ "_npmUser": {
+  "email": "ts-npm-types@microsoft.com",
+  "name": "types"
+ },
+ "author": "",
+ "dependencies": {
+  "is-stream": "*"
+ },
+ "deprecated": "This is a stub types definition. is-stream provides its own type definitions, so you do not need this installed.",
+ "description": "Stub TypeScript definitions entry for is-stream, which provides its own types definitions",
+ "directories": {},
+ "dist": {
+  "fileCount": 3,
+  "integrity": "sha512-ylk6pqia1IM23jBo4foOVnCE3zfYDZbpDF43sZrpmhnylWxS2I7FlJJWeySVP4w8RJhyrieP/CEACSFPkFQBLA==",
+  "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.4\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJcxrijCRA9TVsSAnZWagAAxpEP/36hzn2ckoQ7/Koi8hOb\nWhAGV5eToqI5FM7LRmFeCjlg6MenHM6JFCynrN++XzK2Tm6PsHTrdeTiV5Zy\nQ5ZkRoKF5FOWTiTptwozcgN5xDQMEFPa3SdIsn5LBwY/nw1AmUD8JlvB2/br\nFntnZi1e0Aj5mDJXqCqwoxI8qB0oUx8X/FPiszEw30Fm/J1XG0SFv7rzvdh8\nZYedgv+v66Hnk79PkMF1oYK6H5gYwrkEWuCtqSie6Cj+e2OVck50WMvemKcQ\nNEja6HUPqcSDDaB6nrabRNe4tV9xx5NuPB6S+4llA2kaz400PEWDUEAkUI5u\nw2MAG00XSEdOc9JASLb4jgrYh1x8qy388E+BOTFrmvB5/jewdGVeYhDAiXYC\nxQ16QlSoCGKcFXqVdoVsejPgi7Xz9TmkkpokLelos+dVL0OxMOKpweAGw3YW\n2PBDfMRp3SrQd/zWrrTuFz+6IaDlcPcNRFxRidlfAS9Qf9i7x0Uh1ce2fV3+\nPvfLeiyqm757hebU3b2ZrNHvFaLlq6rP7fNI8CA4R2XUrT7q7algsnYNfyL0\n8b1t9qvkvteNLvSJVmNjMZKGc4O9MPXHEuvcCL74mB3ASnHgEQOgEFmY66lv\nE2Pj/DBb5QAA66XqhDXBJueQYXGracnytcnT1vBStKZ76Kkq2KETiu+yR8XJ\nEY0C\r\n=uJAb\r\n-----END PGP SIGNATURE-----\r\n",
+  "shasum": "df84cce4558cc7d018eebeeff41403b2a468c074",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIQCug7OC/2g57uBU/4i3T8CqsS87Reskfvg9agtONkAwsQIgFEqIqRJ753CHkgImL2aRQkHWJUbBTFgM05RPwmT+hNI="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@types/is-stream/-/is-stream-2.0.0.tgz",
+  "unpackedSize": 1748
+ },
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "ts-npm-types@microsoft.com",
+   "name": "types"
+  }
+ ],
+ "name": "@types/is-stream",
+ "repository": "https://github.com/sindresorhus/is-stream",
+ "scripts": {},
+ "typings": null,
+ "version": "2.0.0"
+}

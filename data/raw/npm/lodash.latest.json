@@ -1,0 +1,79 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "lodash@4.18.1",
+ "_nodeVersion": "22.21.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/lodash_4.18.1_1775077280191_0.6534118914634555"
+ },
+ "_npmUser": {
+  "email": "john.david.dalton@gmail.com",
+  "name": "jdalton"
+ },
+ "_npmVersion": "10.9.4",
+ "author": {
+  "email": "john.david.dalton@gmail.com",
+  "name": "John-David Dalton"
+ },
+ "bugs": {
+  "url": "https://github.com/lodash/lodash/issues"
+ },
+ "contributors": [
+  {
+   "email": "john.david.dalton@gmail.com",
+   "name": "John-David Dalton"
+  },
+  {
+   "email": "mathias@qiwi.be",
+   "name": "Mathias Bynens"
+  }
+ ],
+ "description": "Lodash modular utilities.",
+ "directories": {},
+ "dist": {
+  "fileCount": 1051,
+  "integrity": "sha512-dMInicTPVE8d1e5otfwmmjlxkZoUpiVLwyeTdUsi/Caj/gfzzblBcCE5sRHV/AsjuCmxWrte2TNGSYuCeCq+0Q==",
+  "shasum": "ff2b66c1f6326d59513de2407bf881439812771c",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDZo+W4JJ5T/9RkS8Wz1uN7Gw+CBvP16yGeT8H9lnb+sAIgKM5Nqj636zyRL2YOUuhbSK2e1DhK2VBaMXiVNIYMq1M="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/lodash/-/lodash-4.18.1.tgz",
+  "unpackedSize": 1413741
+ },
+ "gitHead": "4f0b76e2eca13de1c1fe8b4305abc1f7d63f4b86",
+ "homepage": "https://lodash.com/",
+ "icon": "https://lodash.com/icon.svg",
+ "keywords": [
+  "modules",
+  "stdlib",
+  "util"
+ ],
+ "license": "MIT",
+ "main": "lodash.js",
+ "maintainers": [
+  {
+   "email": "mathias@qiwi.be",
+   "name": "mathias"
+  },
+  {
+   "email": "john.david.dalton@gmail.com",
+   "name": "jdalton"
+  },
+  {
+   "email": "benjamin@dev.ofcr.se",
+   "name": "bnjmnt4n"
+  }
+ ],
+ "name": "lodash",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/lodash/lodash.git"
+ },
+ "scripts": {
+  "test": "echo \"See https://travis-ci.org/lodash-archive/lodash-cli for testing details.\""
+ },
+ "version": "4.18.1"
+}

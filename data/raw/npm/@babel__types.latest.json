@@ -1,0 +1,94 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@babel/types@8.0.6",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/types_8.0.6_1789739448991_0.8118066885235178"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:0650f934-0614-4640-9743-606cd70da31a"
+  }
+ },
+ "author": "The Babel Team (https://babel.dev/team)",
+ "bugs": "https://github.com/babel/babel/issues?utf8=%E2%9C%93&q=is%3Aissue+label%3A%22pkg%3A%20types%22+is%3Aopen",
+ "dependencies": {
+  "@babel/helper-string-parser": "^8.0.6",
+  "@babel/helper-validator-identifier": "^8.0.6"
+ },
+ "description": "Babel Types is a Lodash-esque utility library for AST nodes",
+ "devDependencies": {
+  "@babel/generator": "^8.0.6",
+  "@babel/helper-fixtures": "^8.0.5",
+  "@babel/parser": "^8.0.6"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@babel%2ftypes@8.0.6"
+  },
+  "fileCount": 7,
+  "integrity": "sha512-c+xgSWboV2pdwXP67BUWDVRHi2BO5Q3KwxyFVs7taVTY+fsK47/L51ZXQoV9rozHJDNHvJ4v4WEsI/IlxV2l2A==",
+  "shasum": "7ab2de1f9891c712af9c4b640dc12a2d5dc6b6e7",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQD6sDYej1D2vOtOnhZeEgg/v+p0XBXH+ek0/0MOm16u+QIgIdSysHZVO6R5bpQ6YqEFzDBRpQjKzXkUtYpI40EiRpg="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIBkvK1zRFlclYe3byeaw7qWLEMDEFyP0ZvLzd8/bpDYRAiEA9ZW60uRnEHfx3zHtZ7YkNXg226VRN16s4jFYVdzeVaY="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@babel/types/-/types-8.0.6.tgz",
+  "unpackedSize": 1332375
+ },
+ "engines": {
+  "node": "^22.18.0 || >=24.11.0"
+ },
+ "exports": {
+  ".": {
+   "default": "./lib/index.js",
+   "types": "./lib/index.d.ts"
+  },
+  "./package.json": "./package.json"
+ },
+ "homepage": "https://babel.dev/docs/en/next/babel-types",
+ "license": "MIT",
+ "main": "./lib/index.js",
+ "maintainers": [
+  {
+   "email": "hi@henryzoo.com",
+   "name": "hzoo"
+  },
+  {
+   "email": "bng412@gmail.com",
+   "name": "existentialism"
+  },
+  {
+   "email": "hello+npm@nicr.dev",
+   "name": "nicolo-ribaudo"
+  },
+  {
+   "email": "jlhwung@gmail.com",
+   "name": "jlhwung"
+  }
+ ],
+ "name": "@babel/types",
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "directory": "packages/babel-types",
+  "type": "git",
+  "url": "https://github.com/babel/babel.git"
+ },
+ "type": "module",
+ "version": "8.0.6"
+}

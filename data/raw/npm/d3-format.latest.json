@@ -1,0 +1,101 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "d3-format@3.1.2",
+ "_nodeVersion": "24.12.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/d3-format_3.1.2_1768415785732_0.1243012886640451"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:6e0a37cb-7970-47d7-a1da-65b70216b844"
+  }
+ },
+ "_npmVersion": "11.6.2",
+ "author": {
+  "name": "Mike Bostock",
+  "url": "http://bost.ocks.org/mike"
+ },
+ "bugs": {
+  "url": "https://github.com/d3/d3-format/issues"
+ },
+ "description": "Format numbers for human consumption.",
+ "devDependencies": {
+  "@rollup/plugin-terser": "^0.4.4",
+  "eslint": "^9.39.2",
+  "globals": "^17.0.0",
+  "rollup": "^4.55.1",
+  "vitest": "^4.0.17"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/d3-format@3.1.2"
+  },
+  "fileCount": 80,
+  "integrity": "sha512-AJDdYOdnyRDV5b6ArilzCPPwc1ejkHcoyFarqlPqT7zRYjhavcT3uSrqcMvsgh2CgoPbK3RCwyHaVyxYcP2Arg==",
+  "shasum": "01fdb46b58beb1f55b10b42ad70b6e344d5eb2ae",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDsFEKP7I/yi/uRj5CiXWxPYvSMTVuoxdPahYmvoOP8HwIgeavqgFncVj7ibjsyUAB6V1P+c63U6EQmC9nmeyWTXUQ="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/d3-format/-/d3-format-3.1.2.tgz",
+  "unpackedSize": 42342
+ },
+ "engines": {
+  "node": ">=12"
+ },
+ "exports": {
+  ".": {
+   "default": "./src/index.js",
+   "umd": "./dist/d3-format.min.js"
+  },
+  "./locale/*": "./locale/*.json"
+ },
+ "gitHead": "ebdc2d530277df379157f82fee6ea5623d179bd7",
+ "homepage": "https://d3js.org/d3-format/",
+ "jsdelivr": "dist/d3-format.min.js",
+ "keywords": [
+  "d3",
+  "d3-module",
+  "format",
+  "localization"
+ ],
+ "license": "ISC",
+ "main": "src/index.js",
+ "maintainers": [
+  {
+   "email": "mike@ocks.org",
+   "name": "mbostock"
+  },
+  {
+   "email": "fil@rezo.net",
+   "name": "recifs"
+  }
+ ],
+ "module": "src/index.js",
+ "name": "d3-format",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/d3/d3-format.git"
+ },
+ "scripts": {
+  "lint": "eslint src test",
+  "prepublishOnly": "rm -rf dist && rollup -c",
+  "test": "vitest"
+ },
+ "sideEffects": [
+  "./src/defaultLocale.js"
+ ],
+ "type": "module",
+ "unpkg": "dist/d3-format.min.js",
+ "version": "3.1.2"
+}

@@ -1,0 +1,128 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "semver@7.8.5",
+ "_nodeVersion": "26.3.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/semver_7.8.5_1781893968841_0.7233670850228506"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:7a0c479c-0252-4ccd-81e5-c43546a76551"
+  }
+ },
+ "_npmVersion": "11.17.0",
+ "author": {
+  "name": "GitHub Inc."
+ },
+ "bin": {
+  "semver": "bin/semver.js"
+ },
+ "bugs": {
+  "url": "https://github.com/npm/node-semver/issues"
+ },
+ "description": "The semantic version parser used by npm.",
+ "devDependencies": {
+  "@npmcli/eslint-config": "^7.0.0",
+  "@npmcli/template-oss": "5.0.0",
+  "benchmark": "^2.1.4",
+  "tap": "^16.0.0"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/semver@7.8.5"
+  },
+  "fileCount": 53,
+  "integrity": "sha512-Y7/KDsb8LjooZpwaqGyulO6DQlksgCncchHGk+sZIY4SBvUocMBEFH5Ur1fI4dV+Jvl0w6cjvucaIi40puRioA==",
+  "shasum": "39b646037dd50c14fb451e7e4cac58ed8b863f69",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIA1IMvQVanynk4boyVwPRYxqwVyNO88VINzVnIEactQlAiB/YQz4fEE45VLTLw/CEEHBWzh+hzED63yilqQQZPcQ1Q=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/semver/-/semver-7.8.5.tgz",
+  "unpackedSize": 101065
+ },
+ "engines": {
+  "node": ">=10"
+ },
+ "gitHead": "6e05b7637396ac66522cff8731f07cfe0ef49a29",
+ "homepage": "https://github.com/npm/node-semver#readme",
+ "license": "ISC",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "saquibkhan@github.com",
+   "name": "saquibkhan"
+  },
+  {
+   "email": "npm-cli+bot@github.com",
+   "name": "npm-cli-ops"
+  },
+  {
+   "email": "reggi@github.com",
+   "name": "reggi"
+  },
+  {
+   "email": "owlstronaut@github.com",
+   "name": "owlstronaut"
+  }
+ ],
+ "name": "semver",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/npm/node-semver.git"
+ },
+ "scripts": {
+  "eslint": "eslint \"**/*.{js,cjs,ts,mjs,jsx,tsx}\"",
+  "lint": "npm run eslint",
+  "lintfix": "npm run eslint -- --fix",
+  "postlint": "template-oss-check",
+  "posttest": "npm run lint",
+  "snap": "tap",
+  "template-oss-apply": "template-oss-apply --force",
+  "test": "tap"
+ },
+ "tap": {
+  "coverage-map": "map.js",
+  "nyc-arg": [
+   "--exclude",
+   "tap-snapshots/**"
+  ],
+  "timeout": 30
+ },
+ "templateOSS": {
+  "//@npmcli/template-oss": "This file is partially managed by @npmcli/template-oss. Edits may be overwritten.",
+  "allowPaths": [
+   "/classes/",
+   "/functions/",
+   "/internal/",
+   "/ranges/",
+   "/index.js",
+   "/preload.js",
+   "/range.bnf",
+   "/benchmarks"
+  ],
+  "distPaths": [
+   "classes/",
+   "functions/",
+   "internal/",
+   "ranges/",
+   "index.js",
+   "preload.js",
+   "range.bnf"
+  ],
+  "engines": ">=10",
+  "publish": "true",
+  "version": "5.0.0"
+ },
+ "version": "7.8.5"
+}

@@ -1,0 +1,116 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "bare-stream@2.13.4",
+ "_nodeVersion": "24.19.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/bare-stream_2.13.4_1787731430993_0.9212432129438259"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:c67d9b07-daf2-44a3-8d8d-bef34916157b"
+  }
+ },
+ "_npmVersion": "11.17.0",
+ "author": {
+  "name": "Holepunch"
+ },
+ "bugs": {
+  "url": "https://github.com/holepunchto/bare-stream/issues"
+ },
+ "dependencies": {
+  "b4a": "^1.8.1",
+  "streamx": "^2.25.0",
+  "teex": "^1.0.1"
+ },
+ "description": "Streaming data for JavaScript",
+ "devDependencies": {
+  "bare-abort-controller": "^1.1.0",
+  "bare-buffer": "^3.0.0",
+  "bare-events": "^2.5.4",
+  "brittle": "^3.5.2",
+  "lunte": "^1.6.0",
+  "prettier": "^3.3.3",
+  "prettier-config-holepunch": "^2.0.0"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/bare-stream@2.13.4"
+  },
+  "fileCount": 10,
+  "integrity": "sha512-PcrQ8lVLbiJscNm1Kez+Yp4Gy4AHGcN1lzwjvf5NybWen7VvEgUfyfnXYJ2zNqWnzOfCb1Abq6lH8ti0syQszA==",
+  "shasum": "61d448a268d1efd992103aae6bd729332f278ac0",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQDuvupV0tArshWlktMwYPnoLqPzlvgkI842mp1i6H2mwwIhAJ8ucfDVVSU+3Of9Y+8PS8Babt19TRfb4AYst71VKDHt"
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDi+RTF90vBjngi9VlZ2o/BC+fj1/b3otyoO7wNUN3slQIgeozUytdVu275MYB9gr5eoAp7kmbHyU+tcbp//8tmdkE="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/bare-stream/-/bare-stream-2.13.4.tgz",
+  "unpackedSize": 60779
+ },
+ "exports": {
+  ".": {
+   "default": "./index.js",
+   "types": "./index.d.ts"
+  },
+  "./global": {
+   "default": "./global.js",
+   "types": "./global.d.ts"
+  },
+  "./package": "./package.json",
+  "./promises": "./promises.js",
+  "./web": {
+   "default": "./web.js",
+   "types": "./web.d.ts"
+  }
+ },
+ "gitHead": "e00cde60234e0b28599a5eeedfe0401ebf237ded",
+ "homepage": "https://github.com/holepunchto/bare-stream#readme",
+ "license": "Apache-2.0",
+ "maintainers": [
+  {
+   "email": "mathiasbuus@gmail.com",
+   "name": "mafintosh"
+  }
+ ],
+ "name": "bare-stream",
+ "peerDependencies": {
+  "bare-abort-controller": "*",
+  "bare-buffer": "*",
+  "bare-events": "*"
+ },
+ "peerDependenciesMeta": {
+  "bare-abort-controller": {
+   "optional": true
+  },
+  "bare-buffer": {
+   "optional": true
+  },
+  "bare-events": {
+   "optional": true
+  }
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/holepunchto/bare-stream.git"
+ },
+ "scripts": {
+  "format": "prettier --write . && lunte --fix",
+  "lint": "prettier --check . && lunte",
+  "test": "brittle-bare --coverage test.js"
+ },
+ "types": "./index.d.ts",
+ "version": "2.13.4"
+}

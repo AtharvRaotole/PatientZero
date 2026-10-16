@@ -1,0 +1,62 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@webassemblyjs/helper-buffer@1.14.1",
+ "_nodeVersion": "21.7.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/helper-buffer_1.14.1_1730930015496_0.7031442480477381"
+ },
+ "_npmUser": {
+  "email": "npm@sauleau.com",
+  "name": "xtuc"
+ },
+ "_npmVersion": "lerna/5.1.6/node@v21.7.1+x64 (linux)",
+ "author": {
+  "name": "Sven Sauleau"
+ },
+ "bugs": {
+  "url": "https://github.com/xtuc/webassemblyjs/issues"
+ },
+ "description": "Buffer manipulation utility",
+ "devDependencies": {
+  "@webassemblyjs/wasm-parser": "1.14.1",
+  "jest-diff": "^24.0.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 6,
+  "integrity": "sha512-jyH7wtcHiKssDtFPRB+iQdxlDf96m0E39yb0k5uJVhFGleZFoNw1c4aeIcVUPPbXUVJ94wwnMOAqUHyzoEPVMA==",
+  "shasum": "822a9bc603166531f7d5df84e67b5bf99b72b96b",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIQCfx8dBE0xWX3pDBsPApG9c46fCeW/7qnf4bgIyYa766QIgOjvQY5SLqrHE0g1gGtDeO7/080RQXNAOFwqKPPn4GaE="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@webassemblyjs/helper-buffer/-/helper-buffer-1.14.1.tgz",
+  "unpackedSize": 10781
+ },
+ "gitHead": "25d52b1296e151ac56244a7c3886661e6b4a69ea",
+ "homepage": "https://github.com/xtuc/webassemblyjs#readme",
+ "license": "MIT",
+ "main": "lib/index.js",
+ "maintainers": [
+  {
+   "email": "npm@sauleau.com",
+   "name": "xtuc"
+  }
+ ],
+ "module": "esm/index.js",
+ "name": "@webassemblyjs/helper-buffer",
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/xtuc/webassemblyjs.git"
+ },
+ "scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1"
+ },
+ "version": "1.14.1"
+}

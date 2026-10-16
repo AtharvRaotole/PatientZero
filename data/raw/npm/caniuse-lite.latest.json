@@ -1,0 +1,84 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "caniuse-lite@1.0.30001816",
+ "_nodeVersion": "26.11.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/caniuse-lite_1.0.30001816_1791893486728_0.39301217782838793"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "a777919a-a6b3-486a-8ed1-3386eee39517"
+  }
+ },
+ "_npmVersion": "11.20.0",
+ "author": {
+  "email": "beneb.info@gmail.com",
+  "name": "Ben Briggs",
+  "url": "http://beneb.info"
+ },
+ "bugs": {
+  "url": "https://github.com/browserslist/caniuse-lite/issues"
+ },
+ "description": "A smaller version of caniuse-db, with only the essentials!",
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/caniuse-lite@1.0.30001816"
+  },
+  "fileCount": 841,
+  "integrity": "sha512-+8Yx7BXCoqk6IF8yTicjfUR6D/ldJzdlsodlEOiOSPmhK844WIgk67/zIQaGAOxNkZyyvBlrRFnLvqKIoqbAFw==",
+  "shasum": "80567cffb179fd8a1702816bc80de8efc9784021",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIHSRYw3YXZDPgYONVzQVz1fabgOW23NoUlVd8OCgsIgfAiEApUMPZKnodXaH4MsUFhoovJrCvA6uNxlGjDQ3hp5DgGo="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIGnauR2hQycLY4z7dZwynpvITpPcBugO3ztKmnPdtVowAiEAv633a6hQQZ5PtTyF0NZP+KtRa+uQ9TG3BzUf4n/MCgg="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/caniuse-lite/-/caniuse-lite-1.0.30001816.tgz",
+  "unpackedSize": 1546311
+ },
+ "funding": [
+  {
+   "type": "opencollective",
+   "url": "https://opencollective.com/browserslist"
+  },
+  {
+   "type": "tidelift",
+   "url": "https://tidelift.com/funding/github/npm/caniuse-lite"
+  },
+  {
+   "type": "github",
+   "url": "https://github.com/sponsors/ai"
+  }
+ ],
+ "gitHead": "6301f4a091b7fe2ea8037c1aceb2b7239072b7d3",
+ "homepage": "https://github.com/browserslist/caniuse-lite#readme",
+ "keywords": [
+  "support"
+ ],
+ "license": "CC-BY-4.0",
+ "main": "dist/unpacker/index.js",
+ "maintainers": [
+  {
+   "email": "andrey@sitnik.es",
+   "name": "ai"
+  }
+ ],
+ "name": "caniuse-lite",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/browserslist/caniuse-lite.git"
+ },
+ "version": "1.0.30001816"
+}

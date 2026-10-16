@@ -1,0 +1,106 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "log-update@8.0.0",
+ "_nodeVersion": "25.8.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/log-update_8.0.0_1775375274249_0.6189580416260201"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "11.12.0",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/log-update/issues"
+ },
+ "dependencies": {
+  "ansi-escapes": "^7.3.0",
+  "cli-cursor": "^5.0.0",
+  "slice-ansi": "^9.0.0",
+  "string-width": "^8.2.0",
+  "strip-ansi": "^7.2.0",
+  "wrap-ansi": "^10.0.0"
+ },
+ "description": "Log by overwriting the previous output in the terminal. Useful for rendering progress bars, animations, etc.",
+ "devDependencies": {
+  "@types/node": "^25.5.2",
+  "terminal.js": "^1.0.11",
+  "tsd": "^0.33.0",
+  "wcwidth": "^1.0.1",
+  "xo": "^2.0.2"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-lddSgOt3bPASrylL54ZSpy8nBHns+vBVSoILlVOx+dei300pnLRN958rj/EdlVLKuWlSESU3qdnDZdAI7FXYGg==",
+  "shasum": "07d7bde6320dda8cf6fb12619e9d30695525b141",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQDwVDTxCfHecGr44J//LodW642gyzs64PYm2ZWh/OUAgAIhANtR/vyl00EXjhlB9Wdnts+UNiF6p9FRBl+mN/TQI/H1"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/log-update/-/log-update-8.0.0.tgz",
+  "unpackedSize": 18027
+ },
+ "engines": {
+  "node": ">=22"
+ },
+ "exports": {
+  "default": "./index.js",
+  "types": "./index.d.ts"
+ },
+ "funding": "https://github.com/sponsors/sindresorhus",
+ "gitHead": "4f7a1460893a7557aee8f7202956218c3e770a5a",
+ "homepage": "https://github.com/sindresorhus/log-update#readme",
+ "keywords": [
+  "log",
+  "logger",
+  "logging",
+  "cli",
+  "terminal",
+  "term",
+  "console",
+  "shell",
+  "update",
+  "refresh",
+  "overwrite",
+  "output",
+  "stdout",
+  "progress",
+  "bar",
+  "animation"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "log-update",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/log-update.git"
+ },
+ "scripts": {
+  "test": "xo && node --test && tsd"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "8.0.0",
+ "xo": {
+  "rules": {
+   "@typescript-eslint/no-unsafe-argument": "off",
+   "import-x/no-extraneous-dependencies": "off",
+   "n/no-extraneous-import": "off"
+  }
+ }
+}

@@ -1,0 +1,87 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "bare-path@3.1.2",
+ "_nodeVersion": "24.19.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/bare-path_3.1.2_1788246882742_0.4065589405753409"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:90c5f1c1-4532-43b4-8f94-060388dac5a5"
+  }
+ },
+ "_npmVersion": "11.17.0",
+ "addon": true,
+ "author": {
+  "name": "Holepunch"
+ },
+ "bugs": {
+  "url": "https://github.com/holepunchto/bare-path/issues"
+ },
+ "description": "Path manipulation library for JavaScript",
+ "devDependencies": {
+  "brittle": "^3.3.2",
+  "cmake-bare": "^1.1.6",
+  "lunte": "^1.8.0",
+  "prettier": "^3.6.2",
+  "prettier-config-holepunch": "^2.0.0"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/bare-path@3.1.2"
+  },
+  "fileCount": 26,
+  "integrity": "sha512-ZyKbsuuqK6Ag0K8pX6V5Txq6XeJRvY+wXucnFGRjiyVYP9YWDpIQugk/b+enRYrEYBJaqLzghRQpXPMR7341Nw==",
+  "shasum": "67261bc74a9ba0105ba139b8638f218c09e8d82e",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCICr7awxMXbHQgxR+QanSccqc9yAA/hJRvOQNeInlMw/bAiEApIV2FUCk4tzUbUpp5zbdcPcftlntbF2NgJ85S03lRuM="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCICl4nAo1w6wJy+PEGFO/zWtle/eNoNquwmhk8YMbtirXAiEAi7DpJ9inzcnTktxZIjklh5feDyd4OTDifhOkpgahmg4="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/bare-path/-/bare-path-3.1.2.tgz",
+  "unpackedSize": 511456
+ },
+ "exports": {
+  ".": {
+   "default": "./index.js",
+   "types": "./index.d.ts"
+  },
+  "./package": "./package.json",
+  "./posix": "./lib/posix.js",
+  "./win32": "./lib/win32.js"
+ },
+ "gitHead": "d7496b17df97c2f7b0562abf2b63cf31b984ea00",
+ "homepage": "https://github.com/holepunchto/bare-path#readme",
+ "license": "Apache-2.0",
+ "maintainers": [
+  {
+   "email": "mathiasbuus@gmail.com",
+   "name": "mafintosh"
+  }
+ ],
+ "name": "bare-path",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/holepunchto/bare-path.git"
+ },
+ "scripts": {
+  "format": "prettier --write . && lunte --fix",
+  "lint": "prettier --check . && lunte",
+  "test": "brittle-bare --coverage test.js"
+ },
+ "types": "./index.d.ts",
+ "version": "3.1.2"
+}

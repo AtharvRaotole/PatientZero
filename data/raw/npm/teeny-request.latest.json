@@ -1,0 +1,118 @@
+{
+ "_from": "file:/tmp/publishing-artifacts-443824278/teeny-request/11.1.1/teeny-request-11.1.1.tgz",
+ "_hasShrinkwrap": false,
+ "_id": "teeny-request@11.1.1",
+ "_integrity": "sha512-I5OLOkPN3QDN2l1H/eGueuKaq32CdAcXt91WOF/bOfadtZD1WQ8/Fk28WsqDcGjIyhAW/GQDagYhVEjhuZUFyQ==",
+ "_nodeVersion": "22.18.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/teeny-request_11.1.1_1792101493383_0.2178226355163515"
+ },
+ "_npmUser": {
+  "email": "node-team-npm+wombot@google.com",
+  "name": "google-wombot"
+ },
+ "_npmVersion": "10.9.3",
+ "_resolved": "/tmp/publishing-artifacts-443824278/teeny-request/11.1.1/teeny-request-11.1.1.tgz",
+ "author": {
+  "name": "fhinkel"
+ },
+ "bugs": {
+  "url": "https://github.com/googleapis/google-cloud-node/issues"
+ },
+ "dependencies": {
+  "http-proxy-agent": "^7.0.0",
+  "https-proxy-agent": "^7.0.1",
+  "node-fetch": "^3.3.2",
+  "stream-events": "^1.0.5"
+ },
+ "description": "Like request, but smaller.",
+ "devDependencies": {
+  "@babel/plugin-proposal-private-methods": "^7.18.6",
+  "@types/mocha": "^10.0.10",
+  "@types/node-fetch": "^2.6.12",
+  "@types/sinon": "^17.0.3",
+  "c8": "^10.1.3",
+  "codecov": "^3.8.3",
+  "gts": "^6.0.2",
+  "jsdoc": "^4.0.4",
+  "jsdoc-fresh": "^6.0.0",
+  "jsdoc-region-tag": "^5.0.0",
+  "mocha": "^11.1.0",
+  "nock": "^14.0.1",
+  "sinon": "^19.0.2",
+  "typescript": "^5.7.3"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 12,
+  "integrity": "sha512-I5OLOkPN3QDN2l1H/eGueuKaq32CdAcXt91WOF/bOfadtZD1WQ8/Fk28WsqDcGjIyhAW/GQDagYhVEjhuZUFyQ==",
+  "shasum": "b2a092daf8fb64cc0b84d2fca1f72380df13e776",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQDGqy2jhcjo3DNxsMMZFlDk+bN6l+w0+jdgKgjEtPpI2wIhAMBUZYp6mVufBH3OAYxNhVmZ76y7iajKoR7NSG4ZB82W"
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIEIU2Ej+cqWVlj8C+vxnTqvg7BVA6kD50RWcML/Wcyn1AiAjcTkZGIZnf7fv3oJiGFZmXK7IbmMy2xakZ2EiMtu8Vg=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/teeny-request/-/teeny-request-11.1.1.tgz",
+  "unpackedSize": 74414
+ },
+ "engines": {
+  "node": ">=22"
+ },
+ "homepage": "https://github.com/googleapis/google-cloud-node/tree/main/core/packages/teeny-request",
+ "keywords": [
+  "request",
+  "node-fetch",
+  "fetch"
+ ],
+ "license": "Apache-2.0",
+ "main": "./build/src/index.js",
+ "maintainers": [
+  {
+   "email": "justin.beckwith@gmail.com",
+   "name": "justinbeckwith"
+  },
+  {
+   "email": "fhinkel@vt.edu",
+   "name": "fhinkel"
+  },
+  {
+   "email": "kinwa91@msn.com",
+   "name": "kinwa91"
+  },
+  {
+   "email": "node-team-npm+wombot@google.com",
+   "name": "google-wombot"
+  }
+ ],
+ "name": "teeny-request",
+ "nyc": {
+  "exclude": [
+   "build/test"
+  ]
+ },
+ "repository": {
+  "directory": "core/packages/teeny-request",
+  "type": "git",
+  "url": "git+https://github.com/googleapis/google-cloud-node.git"
+ },
+ "scripts": {
+  "clean": "gts clean",
+  "compile": "tsc -p .",
+  "docs": "jsdoc -c .jsdoc.js",
+  "fix": "gts fix",
+  "lint": "gts check",
+  "precompile": "gts clean",
+  "pretest": "npm run compile",
+  "samples-test": "echo no samples",
+  "system-test": "echo no system test",
+  "test": "node ../../../bin/run-test.cjs build/test"
+ },
+ "types": "./build/src/index.d.ts",
+ "version": "11.1.1"
+}

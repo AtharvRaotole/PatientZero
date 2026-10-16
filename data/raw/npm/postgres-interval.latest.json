@@ -1,0 +1,70 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "postgres-interval@4.1.0",
+ "_nodeVersion": "26.4.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/postgres-interval_4.1.0_1782795235675_0.4367750335418028"
+ },
+ "_npmUser": {
+  "email": "bvdrucker@gmail.com",
+  "name": "bendrucker"
+ },
+ "_npmVersion": "11.17.0",
+ "author": {
+  "email": "bvdrucker@gmail.com",
+  "name": "Ben Drucker",
+  "url": "https://www.bendrucker.me"
+ },
+ "bugs": {
+  "url": "https://github.com/bendrucker/postgres-interval/issues"
+ },
+ "dependencies": {},
+ "description": "Parse Postgres interval columns",
+ "devDependencies": {
+  "standard": "^17.0.0",
+  "tape": "^5.0.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-nJLACcOHi2iyRuMJeW6CuIA0Dc0i1YEpRr26XDyHAfxPjYUJOFxwZjmOc5oFFctTTh/OlRAMlnlXEJvr170fJg==",
+  "shasum": "4fa34ec82bdf3d0a34a801e10fd4a03052e8d3f7",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIFVVkGykocMxSZpq9NNdnfiv2V5NVfuhwdhJoF+cpcQdAiEA1l5D76df3o8bJhemms4c4H3oD0HBuQShTwdlYhgzLV0="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/postgres-interval/-/postgres-interval-4.1.0.tgz",
+  "unpackedSize": 14318
+ },
+ "engines": {
+  "node": ">=12"
+ },
+ "gitHead": "3f03b016ecb9479f3532dcbde8c7aa8826d80986",
+ "homepage": "https://github.com/bendrucker/postgres-interval#readme",
+ "keywords": [
+  "postgres",
+  "interval",
+  "parser"
+ ],
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "bvdrucker@gmail.com",
+   "name": "bendrucker"
+  }
+ ],
+ "name": "postgres-interval",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/bendrucker/postgres-interval.git"
+ },
+ "scripts": {
+  "test": "standard && tape test.js"
+ },
+ "types": "./index.d.ts",
+ "version": "4.1.0"
+}

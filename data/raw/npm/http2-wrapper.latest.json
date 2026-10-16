@@ -1,0 +1,119 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "http2-wrapper@2.2.1",
+ "_nodeVersion": "21.1.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/http2-wrapper_2.2.1_1699632665705_0.8521568694677721"
+ },
+ "_npmUser": {
+  "email": "sz.marczak@gmail.com",
+  "name": "szmarczak"
+ },
+ "_npmVersion": "10.2.0",
+ "author": {
+  "name": "Szymon Marczak"
+ },
+ "ava": {
+  "timeout": "10s"
+ },
+ "bugs": {
+  "url": "https://github.com/szmarczak/http2-wrapper/issues"
+ },
+ "dependencies": {
+  "quick-lru": "^5.1.1",
+  "resolve-alpn": "^1.2.0"
+ },
+ "description": "HTTP2 client, just with the familiar `https` API",
+ "devDependencies": {
+  "@sindresorhus/is": "^4.0.1",
+  "ava": "^3.15.0",
+  "benchmark": "^2.1.4",
+  "get-stream": "^6.0.1",
+  "got": "^11.8.2",
+  "http2-proxy": "^5.0.53",
+  "https-proxy-agent": "^5.0.0",
+  "lolex": "^6.0.0",
+  "many-keys-map": "^1.0.3",
+  "nyc": "^15.1.0",
+  "p-event": "^4.2.0",
+  "tempy": "^1.0.1",
+  "to-readable-stream": "^2.1.0",
+  "tsd": "^0.17.0",
+  "websocket-stream": "^5.5.2",
+  "ws": "^7.5.3",
+  "xo": "0.39.1"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 26,
+  "integrity": "sha512-V5nVw1PAOgfI3Lmeaj2Exmeg7fenjhRUgz1lPSezy1CuhPYbgQtbQj4jZfEAEMlaL+vupsvhjqCyjzob0yxsmQ==",
+  "shasum": "310968153dcdedb160d8b72114363ef5fce1f64a",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEYCIQCSWn6UHmB1JuGxsbKnD39Bg77n9iMbig2LDRXlsCd8sAIhAK0FEMOL5fXHEMvOIPL0a1kUvcrbV6sxCIDBiLWKXCOH"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/http2-wrapper/-/http2-wrapper-2.2.1.tgz",
+  "unpackedSize": 75884
+ },
+ "engines": {
+  "node": ">=10.19.0"
+ },
+ "gitHead": "03bbcd2ddab06807e2f7bbd3d4de8a6831084d8f",
+ "homepage": "https://github.com/szmarczak/http2-wrapper#readme",
+ "keywords": [
+  "http2",
+  "https",
+  "http",
+  "request"
+ ],
+ "license": "MIT",
+ "main": "source",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  },
+  {
+   "email": "sz.marczak@gmail.com",
+   "name": "szmarczak"
+  }
+ ],
+ "name": "http2-wrapper",
+ "nyc": {
+  "include": [
+   "source"
+  ]
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/szmarczak/http2-wrapper.git"
+ },
+ "scripts": {
+  "test": "xo && nyc --reporter=lcovonly --reporter=text --reporter=html ava && tsd"
+ },
+ "types": "index.d.ts",
+ "version": "2.2.1",
+ "xo": {
+  "rules": {
+   "@typescript-eslint/comma-dangle": "off",
+   "comma-dangle": "off",
+   "operator-linebreak": [
+    "error",
+    "before"
+   ],
+   "quotes": [
+    "error",
+    "single",
+    {
+     "allowTemplateLiterals": true,
+     "avoidEscape": true
+    }
+   ],
+   "unicorn/no-for-loop": "off",
+   "unicorn/prefer-module": "off"
+  }
+ }
+}

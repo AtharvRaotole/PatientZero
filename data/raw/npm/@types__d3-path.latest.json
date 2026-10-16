@@ -1,0 +1,71 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@types/d3-path@3.1.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/d3-path_3.1.1_1738706557893_0.3378420073210362"
+ },
+ "_npmUser": {
+  "email": "ts-npm-types@microsoft.com",
+  "name": "types"
+ },
+ "contributors": [
+  {
+   "githubUsername": "tomwanzek",
+   "name": "Tom Wanzek",
+   "url": "https://github.com/tomwanzek"
+  },
+  {
+   "githubUsername": "gustavderdrache",
+   "name": "Alex Ford",
+   "url": "https://github.com/gustavderdrache"
+  },
+  {
+   "githubUsername": "borisyankov",
+   "name": "Boris Yankov",
+   "url": "https://github.com/borisyankov"
+  },
+  {
+   "githubUsername": "Methuselah96",
+   "name": "Nathan Bierema",
+   "url": "https://github.com/Methuselah96"
+  }
+ ],
+ "dependencies": {},
+ "description": "TypeScript definitions for d3-path",
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-VMZBYyQvbGmWyWVea0EHs/BwLgxc+MKi1zLDCONksozI4YJMcTt8ZEuIR4Sb1MMTE8MMW49v0IwI5+b7RmfWlg==",
+  "shasum": "f632b380c3aca1dba8e34aa049bcd6a4af23df8a",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIDK4uI47XPIElESbhswY8uXSW9swO8ItLPcHo9rPXYNYAiEAms2GSAhKs3nc9qxOYryli0A4FXQ6SHkG0c0BtMpncnw="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@types/d3-path/-/d3-path-3.1.1.tgz",
+  "unpackedSize": 8384
+ },
+ "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/d3-path",
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "ts-npm-types@microsoft.com",
+   "name": "types"
+  }
+ ],
+ "name": "@types/d3-path",
+ "peerDependencies": {},
+ "repository": {
+  "directory": "types/d3-path",
+  "type": "git",
+  "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+ },
+ "scripts": {},
+ "typeScriptVersion": "5.0",
+ "types": "index.d.ts",
+ "typesPublisherContentHash": "a49fc946781c1138c0dd932ed2a34ea60587bcc0b39790e4eb9a51cb32aaa90b",
+ "version": "3.1.1"
+}

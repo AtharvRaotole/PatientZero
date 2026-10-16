@@ -1,0 +1,100 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "eslint-visitor-keys@5.0.1",
+ "_nodeVersion": "24.13.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/eslint-visitor-keys_5.0.1_1771598447683_0.6409981393834834"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:3ac3bb05-c2c9-4018-a497-7a0787d66fe2"
+  }
+ },
+ "_npmVersion": "11.10.1",
+ "author": {
+  "name": "Toru Nagashima",
+  "url": "https://github.com/mysticatea"
+ },
+ "bugs": {
+  "url": "https://github.com/eslint/js/issues"
+ },
+ "description": "Constants and utilities about visitor keys to traverse AST.",
+ "devDependencies": {
+  "rollup-plugin-dts": "^6.2.3",
+  "tsd": "^0.33.0"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/eslint-visitor-keys@5.0.1"
+  },
+  "fileCount": 9,
+  "integrity": "sha512-tD40eHxA35h0PEIZNeIjkHoDR4YjjJp34biM0mDvplBe//mB+IHCqHDGV7pxF+7MklTvighcCPPZC7ynWyjdTA==",
+  "shasum": "9e3c9489697824d2d4ce3a8ad12628f91e9f59be",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQC/MkKkZDt1didyEscIrEBvxfB0xxm5vTuyW72wOzo9jQIgQssOJ9A7JCQAXo5hEuhZ3alENSqYfSzy/3CfvdWQmHg="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/eslint-visitor-keys/-/eslint-visitor-keys-5.0.1.tgz",
+  "unpackedSize": 31942
+ },
+ "engines": {
+  "node": "^20.19.0 || ^22.13.0 || >=24"
+ },
+ "exports": {
+  ".": [
+   {
+    "import": "./lib/index.js",
+    "require": "./dist/eslint-visitor-keys.cjs"
+   },
+   "./dist/eslint-visitor-keys.cjs"
+  ],
+  "./package.json": "./package.json"
+ },
+ "funding": "https://opencollective.com/eslint",
+ "gitHead": "a52a694e064952bd55cf6050049062464a0c1304",
+ "homepage": "https://github.com/eslint/js/blob/main/packages/eslint-visitor-keys/README.md",
+ "keywords": [
+  "eslint"
+ ],
+ "license": "Apache-2.0",
+ "main": "dist/eslint-visitor-keys.cjs",
+ "maintainers": [
+  {
+   "email": "npm@openjsf.org",
+   "name": "openjsfoundation"
+  },
+  {
+   "email": "contact@eslint.org",
+   "name": "eslintbot"
+  }
+ ],
+ "name": "eslint-visitor-keys",
+ "repository": {
+  "directory": "packages/eslint-visitor-keys",
+  "type": "git",
+  "url": "git+https://github.com/eslint/js.git"
+ },
+ "scripts": {
+  "build": "npm run build:cjs && npm run build:types",
+  "build:cjs": "rollup -c",
+  "build:debug": "npm run build:cjs -- -m && npm run build:types",
+  "build:types": "tsc -v && tsc",
+  "test": "mocha \"tests/**/*.test.cjs\" && mocha \"tests/**/*.test.js\" && npm run test:types",
+  "test:coverage": "c8 npm test",
+  "test:types": "tsd"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "./dist/index.d.ts",
+ "version": "5.0.1"
+}

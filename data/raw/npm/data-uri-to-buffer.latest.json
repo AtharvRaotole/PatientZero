@@ -1,0 +1,100 @@
+{
+ "_from": "file:data-uri-to-buffer-8.0.0.tgz",
+ "_hasShrinkwrap": false,
+ "_id": "data-uri-to-buffer@8.0.0",
+ "_integrity": "sha512-6UHfyCux51b8PTGDgveqtz1tvphBku5DrMKKJbFAZAJOI2zsjDpDoYE1+QGj7FOMS4BdTFNJsJiR3zEB0xH0yQ==",
+ "_nodeVersion": "20.20.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/data-uri-to-buffer_8.0.0_1775026656987_0.5139888183195218"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:42565514-968b-4724-a547-9b317c5d9bfb"
+  }
+ },
+ "_npmVersion": "11.12.1",
+ "_resolved": "/tmp/205b1ad854a9feadc72bb1f4bce43537/data-uri-to-buffer-8.0.0.tgz",
+ "author": {
+  "email": "nathan@tootallnate.net",
+  "name": "Nathan Rajlich",
+  "url": "http://n8.io/"
+ },
+ "bugs": {
+  "url": "https://github.com/TooTallNate/proxy-agents/issues"
+ },
+ "description": "Create an ArrayBuffer instance from a Data URI string",
+ "devDependencies": {
+  "@types/node": "^22.13.0",
+  "tsconfig": "0.0.0",
+  "typescript": "^5.1.6"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/data-uri-to-buffer@8.0.0"
+  },
+  "fileCount": 15,
+  "integrity": "sha512-6UHfyCux51b8PTGDgveqtz1tvphBku5DrMKKJbFAZAJOI2zsjDpDoYE1+QGj7FOMS4BdTFNJsJiR3zEB0xH0yQ==",
+  "shasum": "c642ffbc96d8fae76cccecbad43cbddd7818c785",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIFqxBtDCqHYnVUcOODx1SSbFHUafFnNJqo8UyJ+C+B0pAiBLARD8SJsOY9txQmyUAjz16IPbTDmt38k/6c++0T+Prg=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/data-uri-to-buffer/-/data-uri-to-buffer-8.0.0.tgz",
+  "unpackedSize": 14776
+ },
+ "engines": {
+  "node": ">= 20"
+ },
+ "exports": {
+  "default": {
+   "default": "./dist/index.js",
+   "types": "./dist/index.d.ts"
+  },
+  "node": {
+   "default": "./dist/node.js",
+   "types": "./dist/node.d.ts"
+  }
+ },
+ "homepage": "https://github.com/TooTallNate/proxy-agents#readme",
+ "keywords": [
+  "data",
+  "uri",
+  "datauri",
+  "data-uri",
+  "buffer",
+  "convert",
+  "rfc2397",
+  "2397"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "nathan@tootallnate.net",
+   "name": "tootallnate"
+  }
+ ],
+ "name": "data-uri-to-buffer",
+ "repository": {
+  "directory": "packages/data-uri-to-buffer",
+  "type": "git",
+  "url": "git+https://github.com/TooTallNate/proxy-agents.git"
+ },
+ "scripts": {
+  "build": "tsc",
+  "lint": "eslint . --ext .ts",
+  "pack": "node ../../scripts/pack.mjs",
+  "test": "vitest"
+ },
+ "type": "module",
+ "version": "8.0.0"
+}

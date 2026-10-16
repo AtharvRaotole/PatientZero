@@ -1,0 +1,57 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@types/responselike@1.0.3",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/responselike_1.0.3_1699371027593_0.4692311165447023"
+ },
+ "_npmUser": {
+  "email": "ts-npm-types@microsoft.com",
+  "name": "types"
+ },
+ "contributors": [
+  {
+   "githubUsername": "BendingBender",
+   "name": "BendingBender",
+   "url": "https://github.com/BendingBender"
+  }
+ ],
+ "dependencies": {
+  "@types/node": "*"
+ },
+ "description": "TypeScript definitions for responselike",
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-H/+L+UkTV33uf49PH5pCAUBVPNj2nDBXTN+qS1dOwyyg24l3CcicicCA7ca+HMvJBZcFgl5r8e+RR6elsb4Lyw==",
+  "shasum": "cc29706f0a397cfe6df89debfe4bf5cea159db50",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIEurCBU5l03Shg46kiO19Z6q8spPHzrjuinZE34BCk5XAiEAvPmS+ZCRKwKpG5qx3i+A04uzT2hBKwRN4myi21rVSQk="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@types/responselike/-/responselike-1.0.3.tgz",
+  "unpackedSize": 4604
+ },
+ "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/responselike",
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "ts-npm-types@microsoft.com",
+   "name": "types"
+  }
+ ],
+ "name": "@types/responselike",
+ "repository": {
+  "directory": "types/responselike",
+  "type": "git",
+  "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+ },
+ "scripts": {},
+ "typeScriptVersion": "4.5",
+ "types": "index.d.ts",
+ "typesPublisherContentHash": "ea1d581578b0ef6027b7cd6aa25990bb9ee8723d002d0617acf0aa4d3324aa49",
+ "version": "1.0.3"
+}

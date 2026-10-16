@@ -1,0 +1,99 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "chalk-template@1.1.3",
+ "_nodeVersion": "26.9.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/chalk-template_1.1.3_1790356856183_0.6444585478717895"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "12.0.1",
+ "bugs": {
+  "url": "https://github.com/chalk/chalk-template/issues"
+ },
+ "dependencies": {
+  "chalk": "^5.2.0"
+ },
+ "description": "Terminal string styling with tagged template literals",
+ "devDependencies": {
+  "ava": "^5.2.0",
+  "cross-env": "^7.0.3",
+  "tsd": "^0.28.1",
+  "xo": "^0.54.2"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-KDt7oQ+LRF2VLFsTAZd76ZNCKQa8LuW7SZkNJMkriMzvlSNj6dI+S+f41mfK9oTtil49seHVyabtt1753sFL2w==",
+  "shasum": "80bf50923cf24122dbbdf16b7a2662a970cbf173",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIAN2SRaQY+54C0m96tUY2C3fQiQ82pKNnMWydKieXa6/AiAiErnHP7vs1GvLGh2Cr6rWlGkAz5DfDcnd/8RbxU1s3w=="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQC+3TM9L+93fFPnGyruoFlqvq8HfSnEj7QU6PYo20zcOAIhAI8TinXHJ1xX75gpXi8grhmDgjdcFzWKcvqp8zBKDdYD"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/chalk-template/-/chalk-template-1.1.3.tgz",
+  "unpackedSize": 14413
+ },
+ "engines": {
+  "node": ">=14.16"
+ },
+ "exports": {
+  "default": "./index.js",
+  "types": "./index.d.ts"
+ },
+ "funding": "https://github.com/chalk/chalk-template?sponsor=1",
+ "gitHead": "b8e99f4fb0a01ff21a58a5733f626d5a7bdc8955",
+ "homepage": "https://github.com/chalk/chalk-template#readme",
+ "keywords": [
+  "chalk",
+  "template",
+  "templates",
+  "templating",
+  "ansi",
+  "styles",
+  "color",
+  "colour",
+  "colors",
+  "terminal",
+  "console",
+  "string",
+  "tty",
+  "escape",
+  "formatting",
+  "rgb",
+  "256",
+  "shell",
+  "xterm",
+  "log",
+  "logging",
+  "command-line",
+  "text"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "chalk-template",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/chalk/chalk-template.git"
+ },
+ "scripts": {
+  "test": "xo && ava test/index.js && cross-env FORCE_COLOR=0 ava test/no-color.js && cross-env FORCE_COLOR=3 TERM=dumb ava test/full-color.js && cross-env FORCE_COLOR=3 TERM=dumb ava test/template.js && tsd"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "1.1.3"
+}

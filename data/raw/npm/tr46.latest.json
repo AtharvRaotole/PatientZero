@@ -1,0 +1,121 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "tr46@7.0.0",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/tr46_7.0.0_1791102801199_0.9103534673007132"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "a91eb11a-de72-42d5-a7c1-771e9ba852d9"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "author": {
+  "email": "npm@smayr.name",
+  "name": "Sebastian Mayr"
+ },
+ "bugs": {
+  "url": "https://github.com/jsdom/tr46/issues"
+ },
+ "contributors": [
+  {
+   "email": "timothygu99@gmail.com",
+   "name": "Timothy Gu"
+  }
+ ],
+ "dependencies": {
+  "punycode": "^2.3.1"
+ },
+ "description": "An implementation of the Unicode UTS #46: Unicode IDNA Compatibility Processing",
+ "devDependencies": {
+  "@domenic/eslint-config": "^5.1.0",
+  "@stylistic/eslint-plugin": "^5.10.0",
+  "@unicode/unicode-18.0.0": "^2.0.7",
+  "eslint": "^10.12.0",
+  "globals": "^17.13.0",
+  "regenerate": "^1.4.2"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/tr46@7.0.0"
+  },
+  "fileCount": 7,
+  "integrity": "sha512-BcDSDW+SIGWVOns1Zm6Yg91q9AEj7eaID0QDY9oIqJD1A8dscNwMcl9Sms2DeuWCNov1X0/oXanHGYQBSLwZsg==",
+  "shasum": "af39140d4a8860868de4e16477a4a946bda03a62",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCID2JEJQry5dLy2MkP/m+wbBgN62VGm1L8hyRg3AQ7u3XAiEAt+JBKDd5UWYR2O426gea6g3/Sa4dQcV7x0ZZi0fWHMs="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIGvdDmnFUTweMsxGNVZPD6L+HX8kOuoXR8SKRMpTgYKKAiEAxpf5WbpXLsOqr/0ftxKsSAR3WR217eiKgNthjqY5Apo="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/tr46/-/tr46-7.0.0.tgz",
+  "unpackedSize": 231811
+ },
+ "engines": {
+  "node": "^22.14.0 || >=24.0.0"
+ },
+ "gitHead": "6d09104f21991d496aa2a8535d21bdea91a9c216",
+ "homepage": "https://github.com/jsdom/tr46#readme",
+ "keywords": [
+  "unicode",
+  "tr46",
+  "uts46",
+  "punycode",
+  "url",
+  "whatwg"
+ ],
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "timothygu99@gmail.com",
+   "name": "timothygu"
+  },
+  {
+   "email": "d@domenic.me",
+   "name": "domenic"
+  },
+  {
+   "email": "sebmaster16@gmail.com",
+   "name": "sebmaster"
+  },
+  {
+   "email": "code@zirro.se",
+   "name": "zirro"
+  },
+  {
+   "email": "tmpvar@gmail.com",
+   "name": "tmpvar"
+  },
+  {
+   "email": "joris@jorisvanderwel.com",
+   "name": "joris-van-der-wel"
+  }
+ ],
+ "name": "tr46",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/jsdom/tr46.git"
+ },
+ "scripts": {
+  "lint": "eslint",
+  "prepublish": "node scripts/generateMappingTable.mjs && node scripts/generateRegexes.mjs",
+  "pretest": "node scripts/getLatestTests.mjs",
+  "test": "node --test"
+ },
+ "unicodeVersion": "18.0.0",
+ "version": "7.0.0"
+}

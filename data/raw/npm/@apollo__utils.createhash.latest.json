@@ -1,0 +1,79 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@apollo/utils.createhash@3.0.1",
+ "_nodeVersion": "16.20.2",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/utils.createhash_3.0.1_1735842096286_0.015465057110086944"
+ },
+ "_npmUser": {
+  "email": "npm@apollographql.com",
+  "name": "apollo-bot"
+ },
+ "_npmVersion": "8.5.0",
+ "author": {
+  "email": "packages@apollographql.com",
+  "name": "Apollo"
+ },
+ "bugs": {
+  "url": "https://github.com/apollographql/apollo-utils/issues"
+ },
+ "dependencies": {
+  "@apollo/utils.isnodelike": "^3.0.0",
+  "sha.js": "^2.4.11"
+ },
+ "description": "Node-agnostic hashing utility",
+ "directories": {},
+ "dist": {
+  "fileCount": 11,
+  "integrity": "sha512-CKrlySj4eQYftBE5MJ8IzKwIibQnftDT7yGfsJy5KSEEnLlPASX0UTpbKqkjlVEwPPd4mEwI7WOM7XNxEuO05A==",
+  "shasum": "19fc6507e71d44303c2fffa51052305d689d288f",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCICH8JdW51IXNMEBPcrAqwjxngBU8S6kOkCeD89h/KW/NAiEA4hSlAjphC2VH+gHYdENNRjtrUTfDd/t5JGYXiKghEMg="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@apollo/utils.createhash/-/utils.createhash-3.0.1.tgz",
+  "unpackedSize": 4466
+ },
+ "engines": {
+  "node": ">=16"
+ },
+ "gitHead": "b1e940a4d7685d6abd469f66a7808d82cec834af",
+ "homepage": "https://github.com/apollographql/apollo-utils#readme",
+ "keywords": [
+  "apollo",
+  "graphql",
+  "typescript",
+  "node"
+ ],
+ "license": "MIT",
+ "main": "dist/index.js",
+ "maintainers": [
+  {
+   "email": "trevor.scheer@gmail.com",
+   "name": "trevor.scheer"
+  },
+  {
+   "email": "glasser@apollographql.com",
+   "name": "glasser"
+  },
+  {
+   "email": "dariusz_kuc@hotmail.com",
+   "name": "dkuc"
+  },
+  {
+   "email": "npm@apollographql.com",
+   "name": "apollo-bot"
+  }
+ ],
+ "name": "@apollo/utils.createhash",
+ "repository": {
+  "directory": "packages/createHash/",
+  "type": "git",
+  "url": "git+https://github.com/apollographql/apollo-utils.git"
+ },
+ "types": "dist/index.d.ts",
+ "version": "3.0.1"
+}

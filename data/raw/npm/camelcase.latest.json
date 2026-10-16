@@ -1,0 +1,90 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "camelcase@10.0.0",
+ "_nodeVersion": "26.11.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/camelcase_10.0.0_1791799212959_0.7289859696292451"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "12.2.0",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/camelcase/issues"
+ },
+ "description": "Convert a dash/dot/underscore/space separated string to camelCase or PascalCase: `foo-bar` \u2192 `fooBar`",
+ "devDependencies": {
+  "@typescript/native": "npm:typescript@^7.0.2",
+  "nz": "^0.1.0",
+  "xo": "^5.0.1"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-p1wew5BGDCONz/5R+xHF6ByqXQM2V+5r4e+FdlFUeROawuMPimdDOFLw5k2QSqp1rm5h2QAglToqJyvnsl3ArQ==",
+  "shasum": "5addfb5c555722bcebe71fe13e55a3992ae45ea3",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQC1x+smQZHvhxuOvuQqYa8WOUQmK6pMXHcZRaWLuDqDEgIgZ09bnsqQn7jp8pJUd+yVvq2kCBLFRg0zI1JJgaeIt0g="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIDjPGQvjjt3QvMsqWYBKv9fBAtTstU/SGLmQdUfHVtERAiEA93tQqHjhWvS8zO0oSv3z6n2NkWTThgH/yZkwnta2jW8="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/camelcase/-/camelcase-10.0.0.tgz",
+  "unpackedSize": 20500
+ },
+ "engines": {
+  "node": ">=22"
+ },
+ "exports": {
+  "default": "./index.js",
+  "types": "./index.d.ts"
+ },
+ "funding": "https://github.com/sponsors/sindresorhus",
+ "gitHead": "328428291b2f5c0e41dd4a2d0e5a942eb9de3b70",
+ "homepage": "https://github.com/sindresorhus/camelcase#readme",
+ "keywords": [
+  "camel-case",
+  "camel",
+  "case",
+  "dash",
+  "hyphen",
+  "dot",
+  "underscore",
+  "separator",
+  "string",
+  "text",
+  "convert",
+  "pascalcase",
+  "pascal-case"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "camelcase",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/camelcase.git"
+ },
+ "scripts": {
+  "test": "xo && node --test && nz"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "10.0.0"
+}

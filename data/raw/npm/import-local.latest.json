@@ -1,0 +1,90 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "import-local@3.2.0",
+ "_nodeVersion": "20.12.2",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/import-local_3.2.0_1721645808498_0.8746776811717698"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "10.6.0",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bin": {
+  "import-local-fixture": "fixtures/cli.js"
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/import-local/issues"
+ },
+ "dependencies": {
+  "pkg-dir": "^4.2.0",
+  "resolve-cwd": "^3.0.0"
+ },
+ "description": "Let a globally installed package use a locally installed version of itself if available",
+ "devDependencies": {
+  "ava": "2.1.0",
+  "cpy": "^7.0.1",
+  "del": "^4.1.1",
+  "execa": "^2.0.1",
+  "xo": "^0.24.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 6,
+  "integrity": "sha512-2SPlun1JUPWoM6t3F0dw0FkCF/jWY8kttcY4f599GLTSjh2OCuuhdTkJQsEcZzBqbXZGKMK2OqW1oZsjtf/gQA==",
+  "shasum": "c3d5c745798c02a6f8b897726aba5100186ee260",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEQCIDTjEz7a2j6L5wH/U0uHQu1PfDkWPMYML+C9zB4TaCDJAiA4CB0iDbihzJxx3hL08kYui/OKOmpGfhopqbWNzW+t6g=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/import-local/-/import-local-3.2.0.tgz",
+  "unpackedSize": 4730
+ },
+ "engines": {
+  "node": ">=8"
+ },
+ "funding": "https://github.com/sponsors/sindresorhus",
+ "gitHead": "ff3fb1541a40b629a22d2d21a4e1cf4605c6bb5a",
+ "homepage": "https://github.com/sindresorhus/import-local#readme",
+ "keywords": [
+  "import",
+  "local",
+  "require",
+  "resolve",
+  "global",
+  "version",
+  "prefer",
+  "cli"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "import-local",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/import-local.git"
+ },
+ "scripts": {
+  "test": "xo && ava"
+ },
+ "sideEffects": false,
+ "types": "./index.d.ts",
+ "version": "3.2.0",
+ "xo": {
+  "ignores": [
+   "fixtures"
+  ]
+ }
+}

@@ -1,0 +1,83 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@nodelib/fs.walk@3.0.1",
+ "_nodeVersion": "22.11.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/fs.walk_3.0.1_1733087316342_0.621986051844607"
+ },
+ "_npmUser": {
+  "email": "dmalinochkin@rambler.ru",
+  "name": "mrmlnc"
+ },
+ "_npmVersion": "lerna/3.10.0/node@v22.11.0+arm64 (darwin)",
+ "dependencies": {
+  "@nodelib/fs.scandir": "4.0.1",
+  "fastq": "^1.15.0"
+ },
+ "description": "A library for efficiently walking a directory recursively",
+ "devDependencies": {
+  "@nodelib/fs.macchiato": "3.0.0",
+  "@nodelib/fs.walk.previous": "npm:@nodelib/fs.walk@2"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 31,
+  "integrity": "sha512-nIh/M6Kh3ZtOmlY00DaUYB4xeeV6F3/ts1l29iwl3/cfyY/OuCfUx+v08zgx8TKPTifXRcjjqVQ4KB2zOYSbyw==",
+  "shasum": "717a03eb1d07c09db32f884a5d0c06ccd9b657f4",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIQD8OHYin3oNj3/BPhbwfrvGF2bezZxx/VYuarjxaEIatQIgS2zx4KG3w0Okyhrkt6KJmhzn82wOgoZvdcB5WpMnlPw="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@nodelib/fs.walk/-/fs.walk-3.0.1.tgz",
+  "unpackedSize": 29801
+ },
+ "engines": {
+  "node": ">=18.18.0"
+ },
+ "exports": {
+  ".": {
+   "default": "./out/index.js"
+  },
+  "./promises": {
+   "default": "./out/walk-promises.js"
+  }
+ },
+ "gitHead": "4750471fdceb6b90ac7c58a93872d61e3f7f143b",
+ "keywords": [
+  "NodeLib",
+  "fs",
+  "FileSystem",
+  "file system",
+  "walk",
+  "scanner",
+  "crawler"
+ ],
+ "license": "MIT",
+ "main": "out/index.js",
+ "maintainers": [
+  {
+   "email": "dmalinochkin@rambler.ru",
+   "name": "mrmlnc"
+  }
+ ],
+ "name": "@nodelib/fs.walk",
+ "repository": "https://github.com/nodelib/nodelib/tree/master/packages/fs/fs.walk",
+ "scripts": {
+  "bench": "npm run bench:sync && npm run bench:async && npm run bench:stream",
+  "bench:async": "hereby bench:async",
+  "bench:stream": "hereby bench:stream",
+  "bench:sync": "hereby bench:sync",
+  "build": "npm run clean && npm run compile && npm run lint && npm test",
+  "clean": "rimraf {tsconfig.tsbuildinfo,out}",
+  "compile": "tsc -b .",
+  "compile:watch": "tsc -b . --watch --sourceMap",
+  "lint": "eslint \"src/**/*.ts\" --cache",
+  "test": "mocha \"out/**/*.spec.js\" -s 0",
+  "watch": "npm run clean && npm run compile:watch"
+ },
+ "typings": "out/index.d.ts",
+ "version": "3.0.1"
+}

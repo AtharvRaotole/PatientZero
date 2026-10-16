@@ -1,0 +1,213 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "puppeteer-core@25.14.0",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/puppeteer-core_25.14.0_1791991831101_0.9196927106006507"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "74b1d4d0-ddfa-4d8c-bf43-c6714f025dad"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "author": {
+  "name": "The Chromium Authors"
+ },
+ "browser": "./lib/puppeteer/puppeteer-core-browser.js",
+ "bugs": {
+  "url": "https://github.com/puppeteer/puppeteer/issues"
+ },
+ "dependencies": {
+  "@puppeteer/browsers": "3.2.5",
+  "chromium-bidi": "157.0.8090-0",
+  "devtools-protocol": "0.0.1696802",
+  "typed-query-selector": "^2.12.3",
+  "webdriver-bidi-protocol": "1.0.1",
+  "ws": "^8.22.0"
+ },
+ "description": "A high-level API to control headless Chrome over the DevTools Protocol",
+ "devDependencies": {
+  "@types/chrome": "0.3.4",
+  "@types/node": "^18.17.15",
+  "@types/ws": "8.18.2",
+  "mitt": "3.0.1",
+  "parsel-js": "1.2.3",
+  "rxjs": "^7.8.2",
+  "urlpattern-polyfill": "10.1.0"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/puppeteer-core@25.14.0"
+  },
+  "fileCount": 927,
+  "integrity": "sha512-LQitnes3tBeVbdZ7V/4iwJPLZGgkl9uBVK0W7YYMh68j/3Y9eNuvj4yl+Fdo7zN0SuajOMrhd7aPj3DifK8k6A==",
+  "shasum": "b2527058cf024eda8749c74ace5a9f0916c9c2d8",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIGxpfgC5pq39QoZ9MKt4vSLvtuRkho81gwewsuteoq6XAiBdb/ZacQc57iPM0rozP0k1MxI9aT80QLOYc72Gp8qzmA=="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDu+qgawUJBL0ezkMokQJ3EIf7nybEYujY554PpFOZBOQIgV5e8VtjB2+ta7eKkLFL1Zzj5mpIw1XEQJC/vGFiG92g="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/puppeteer-core/-/puppeteer-core-25.14.0.tgz",
+  "unpackedSize": 6042470
+ },
+ "engines": {
+  "node": ">=22.12.0"
+ },
+ "exports": {
+  ".": {
+   "import": "./lib/puppeteer/puppeteer-core.js",
+   "require": "./lib/puppeteer/puppeteer-core.js",
+   "types": "./lib/types.d.ts"
+  },
+  "./*": {
+   "import": "./*",
+   "require": "./*"
+  },
+  "./internal/*": {
+   "import": "./lib/puppeteer/*",
+   "require": "./lib/puppeteer/*"
+  }
+ },
+ "gitHead": "d1b9a2162a0113356db5093f055b4a2e1979c6a8",
+ "homepage": "https://github.com/puppeteer/puppeteer/tree/main#readme",
+ "keywords": [
+  "puppeteer",
+  "chrome",
+  "headless",
+  "automation"
+ ],
+ "license": "Apache-2.0",
+ "main": "./lib/puppeteer/puppeteer-core.js",
+ "maintainers": [
+  {
+   "email": "mathias@qiwi.be",
+   "name": "mathias"
+  },
+  {
+   "email": "node-team-npm+wombot@google.com",
+   "name": "google-wombot"
+  }
+ ],
+ "module": "./lib/puppeteer/puppeteer-core.js",
+ "name": "puppeteer-core",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/puppeteer/puppeteer.git#main"
+ },
+ "scripts": {
+  "build": "wireit",
+  "build:docs": "wireit",
+  "check": "wireit",
+  "clean": "../../tools/clean.mjs",
+  "prepack": "wireit",
+  "unit": "wireit",
+  "unit:only": "wireit"
+ },
+ "type": "module",
+ "types": "./lib/types.d.ts",
+ "version": "25.14.0",
+ "wireit": {
+  "build": {
+   "dependencies": [
+    "build:tsc",
+    "build:types",
+    "build:es5"
+   ]
+  },
+  "build:docs": {
+   "command": "api-extractor run --local --config \"./api-extractor.docs.json\"",
+   "dependencies": [
+    "build:tsc"
+   ],
+   "files": [
+    "api-extractor.docs.json",
+    "lib/puppeteer/puppeteer-core.d.ts",
+    "tsconfig.json"
+   ]
+  },
+  "build:es5": {
+   "command": "rollup -c rollup.config.mjs && node ../../tools/patch.mjs lib/es5-iife/puppeteer-core-browser.js lib/es5-iife/puppeteer-core-browser.d.ts lib/types.d.ts",
+   "dependencies": [
+    "build:tsc",
+    "build:types"
+   ],
+   "files": [
+    "rollup.config.mjs"
+   ],
+   "output": [
+    "lib/es5-iife/puppeteer-core-browser.js"
+   ]
+  },
+  "build:tsc": {
+   "clean": "if-file-deleted",
+   "command": "hereby build",
+   "dependencies": [
+    "../browsers:build"
+   ],
+   "files": [
+    "{src,third_party}/**",
+    "../../versions.js",
+    "!src/generated",
+    "Herebyfile.mjs"
+   ],
+   "output": [
+    "lib/**"
+   ]
+  },
+  "build:types": {
+   "command": "api-extractor run --local && eslint --fix lib/types.d.ts --no-ignore",
+   "dependencies": [
+    "build:tsc"
+   ],
+   "files": [
+    "api-extractor.json",
+    "lib/puppeteer/types.d.ts",
+    "tsconfig.json"
+   ],
+   "output": [
+    "lib/types.d.ts"
+   ]
+  },
+  "check": {
+   "command": "node --experimental-strip-types tools/ensure-correct-devtools-protocol-package.mts",
+   "dependencies": [
+    "build"
+   ]
+  },
+  "prepack": {
+   "command": "node --experimental-strip-types ../../tools/cp.ts ../../README.md README.md",
+   "files": [
+    "../../README.md"
+   ],
+   "output": [
+    "README.md"
+   ]
+  },
+  "unit": {
+   "command": "node --test --test-reporter=spec \"lib/**/*.test.js\"",
+   "dependencies": [
+    "build"
+   ]
+  },
+  "unit:only": {
+   "command": "node --test --test-only --test-reporter=spec \"lib/**/*.test.js\"",
+   "dependencies": [
+    "build"
+   ]
+  }
+ }
+}

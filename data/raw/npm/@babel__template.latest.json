@@ -1,0 +1,86 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@babel/template@8.0.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/template_8.0.0_1781616789149_0.21789364658855126"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:3f5182b7-be38-4fbe-8743-933f023479c4"
+  }
+ },
+ "author": "The Babel Team (https://babel.dev/team)",
+ "bugs": "https://github.com/babel/babel/issues?utf8=%E2%9C%93&q=is%3Aissue+label%3A%22pkg%3A%20template%22+is%3Aopen",
+ "dependencies": {
+  "@babel/code-frame": "^8.0.0",
+  "@babel/parser": "^8.0.0",
+  "@babel/types": "^8.0.0"
+ },
+ "description": "Generate an AST from a string template.",
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@babel%2ftemplate@8.0.0"
+  },
+  "fileCount": 6,
+  "integrity": "sha512-eAD0QW/AlbamBbw0FeGiwasbCVPq5ncW0HNVyLP3B9czqLyh4gvw+5JTSNt6le9+ziAU7mqDZsKTHf3jTb4chQ==",
+  "shasum": "18c12626b0d6d23a0443771655864ed7566a3452",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIAK/NkzHn6hbY+0jqVmm4AU1NNdkkbSIDidpiPAcooMdAiB5wAfwdDpkgOOg8p4K3t4MX9Dle9hhtgXdu9FIsx0AEQ=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@babel/template/-/template-8.0.0.tgz",
+  "unpackedSize": 66952
+ },
+ "engines": {
+  "node": "^22.18.0 || >=24.11.0"
+ },
+ "exports": {
+  ".": {
+   "default": "./lib/index.js",
+   "types": "./lib/index.d.ts"
+  },
+  "./package.json": "./package.json"
+ },
+ "homepage": "https://babel.dev/docs/en/next/babel-template",
+ "license": "MIT",
+ "main": "./lib/index.js",
+ "maintainers": [
+  {
+   "email": "hi@henryzoo.com",
+   "name": "hzoo"
+  },
+  {
+   "email": "bng412@gmail.com",
+   "name": "existentialism"
+  },
+  {
+   "email": "hello+npm@nicr.dev",
+   "name": "nicolo-ribaudo"
+  },
+  {
+   "email": "jlhwung@gmail.com",
+   "name": "jlhwung"
+  }
+ ],
+ "name": "@babel/template",
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "directory": "packages/babel-template",
+  "type": "git",
+  "url": "https://github.com/babel/babel.git"
+ },
+ "type": "module",
+ "version": "8.0.0"
+}

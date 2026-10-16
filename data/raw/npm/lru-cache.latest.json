@@ -1,0 +1,221 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "lru-cache@11.5.3",
+ "_nodeVersion": "26.5.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/lru-cache_11.5.3_1789775192905_0.011726318946660985"
+ },
+ "_npmUser": {
+  "email": "i@izs.me",
+  "name": "isaacs"
+ },
+ "_npmVersion": "11.17.0",
+ "author": {
+  "email": "i@izs.me",
+  "name": "Isaac Z. Schlueter"
+ },
+ "bugs": {
+  "url": "https://github.com/isaacs/node-lru-cache/issues"
+ },
+ "description": "A cache object that deletes the least-recently-used items.",
+ "devDependencies": {
+  "benchmark": "^2.1.4",
+  "esbuild": "^0.28.0",
+  "marked": "^4.2.12",
+  "mkdirp": "^3.0.1",
+  "oxlint": "^1.65.0",
+  "oxlint-tsgolint": "^0.22.1",
+  "prettier": "^3.8.3",
+  "tap": "^21.7.4",
+  "tshy": "^4.1.2",
+  "typedoc": "^0.28.19"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 113,
+  "integrity": "sha512-U4N8FgzmWxc8k1VH8Kr6lQg18U7Fjvby6wXHVRX/ZZ7IwWbRMgrRbP0Wrb5q5NVinryp4SQampHKdvtecItxUg==",
+  "shasum": "a7767b4034e35269562d2b9da2b185b5df70c421",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQCp+iaRiyYDLhYT4k0c1Qxh3kY3/d803Vi2uai7xyUBcwIhAPMVbE7SUGDCh8hfrgiOQj3CiTH+9C+4uVhlae0FFiob"
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQC8P0AfFB/tVIBZ5QqArzIXWUbM/Jm0H9Nl19RwzTAJywIhAOILcho0B1LrCR2al7CvMlL0NjOWI4riahMl7sTzsWfi"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/lru-cache/-/lru-cache-11.5.3.tgz",
+  "unpackedSize": 3334485
+ },
+ "engines": {
+  "node": "20 || >=22"
+ },
+ "exports": {
+  ".": {
+   "import": {
+    "browser": {
+     "default": "./dist/esm/browser/index.min.js",
+     "types": "./dist/esm/browser/index.d.ts"
+    },
+    "default": "./dist/esm/index.min.js",
+    "node": {
+     "default": "./dist/esm/node/index.min.js",
+     "types": "./dist/esm/node/index.d.ts"
+    },
+    "react-native": {
+     "default": "./dist/esm/react-native/index.min.js",
+     "types": "./dist/esm/react-native/index.d.ts"
+    },
+    "types": "./dist/esm/index.d.ts"
+   },
+   "require": {
+    "browser": {
+     "default": "./dist/commonjs/browser/index.min.js",
+     "types": "./dist/commonjs/browser/index.d.ts"
+    },
+    "default": "./dist/commonjs/index.min.js",
+    "node": {
+     "default": "./dist/commonjs/node/index.min.js",
+     "types": "./dist/commonjs/node/index.d.ts"
+    },
+    "react-native": {
+     "default": "./dist/commonjs/react-native/index.min.js",
+     "types": "./dist/commonjs/react-native/index.d.ts"
+    },
+    "types": "./dist/commonjs/index.d.ts"
+   }
+  },
+  "./raw": {
+   "import": {
+    "browser": {
+     "default": "./dist/esm/browser/index.js",
+     "types": "./dist/esm/browser/index.d.ts"
+    },
+    "default": "./dist/esm/index.js",
+    "node": {
+     "default": "./dist/esm/node/index.js",
+     "types": "./dist/esm/node/index.d.ts"
+    },
+    "react-native": {
+     "default": "./dist/esm/react-native/index.js",
+     "types": "./dist/esm/react-native/index.d.ts"
+    },
+    "types": "./dist/esm/index.d.ts"
+   },
+   "require": {
+    "browser": {
+     "default": "./dist/commonjs/browser/index.js",
+     "types": "./dist/commonjs/browser/index.d.ts"
+    },
+    "default": "./dist/commonjs/index.js",
+    "node": {
+     "default": "./dist/commonjs/node/index.js",
+     "types": "./dist/commonjs/node/index.d.ts"
+    },
+    "react-native": {
+     "default": "./dist/commonjs/react-native/index.js",
+     "types": "./dist/commonjs/react-native/index.d.ts"
+    },
+    "types": "./dist/commonjs/index.d.ts"
+   }
+  }
+ },
+ "gitHead": "7e71a1f3babdc68dfbadde91f28eaeea919dad9b",
+ "homepage": "https://github.com/isaacs/node-lru-cache#readme",
+ "keywords": [
+  "mru",
+  "lru",
+  "cache"
+ ],
+ "license": "BlueOak-1.0.0",
+ "main": "./dist/commonjs/index.min.js",
+ "maintainers": [
+  {
+   "email": "i@izs.me",
+   "name": "isaacs"
+  }
+ ],
+ "module": "./dist/esm/index.min.js",
+ "name": "lru-cache",
+ "repository": {
+  "type": "git",
+  "url": "git+ssh://git@github.com/isaacs/node-lru-cache.git"
+ },
+ "scripts": {
+  "benchmark": "make -C benchmark",
+  "benchmark-results-typedoc": "bash scripts/benchmark-results-typedoc.sh",
+  "build": "npm run prepare",
+  "format": "prettier --write .",
+  "lint": "oxlint --fix src test",
+  "postlint": "npm run format",
+  "postsnap": "npm run lint",
+  "postversion": "npm publish",
+  "prebenchmark": "npm run prepare",
+  "prepare": "tshy && bash scripts/build.sh",
+  "preprofile": "npm run prepare",
+  "prepublishOnly": "git push origin --follow-tags",
+  "presnap": "npm run prepare",
+  "pretest": "npm run prepare",
+  "preversion": "npm test",
+  "profile": "make -C benchmark profile",
+  "snap": "tap",
+  "test": "tap",
+  "typedoc": "typedoc --tsconfig ./.tshy/esm.json ./src/*.ts"
+ },
+ "sideEffects": false,
+ "tshy": {
+  "commonjsDialects": [
+   "browser",
+   "react-native",
+   "node"
+  ],
+  "esmDialects": [
+   "browser",
+   "react-native",
+   "node"
+  ],
+  "exports": {
+   ".": {
+    "import": {
+     "browser": {
+      "default": "./dist/esm/browser/index.min.js",
+      "types": "./dist/esm/browser/index.d.ts"
+     },
+     "default": "./dist/esm/index.min.js",
+     "node": {
+      "default": "./dist/esm/node/index.min.js",
+      "types": "./dist/esm/node/index.d.ts"
+     },
+     "react-native": {
+      "default": "./dist/esm/react-native/index.min.js",
+      "types": "./dist/esm/react-native/index.d.ts"
+     },
+     "types": "./dist/esm/index.d.ts"
+    },
+    "require": {
+     "browser": {
+      "default": "./dist/commonjs/browser/index.min.js",
+      "types": "./dist/commonjs/browser/index.d.ts"
+     },
+     "default": "./dist/commonjs/index.min.js",
+     "node": {
+      "default": "./dist/commonjs/node/index.min.js",
+      "types": "./dist/commonjs/node/index.d.ts"
+     },
+     "react-native": {
+      "default": "./dist/commonjs/react-native/index.min.js",
+      "types": "./dist/commonjs/react-native/index.d.ts"
+     },
+     "types": "./dist/commonjs/index.d.ts"
+    }
+   },
+   "./raw": "./src/index.ts"
+  },
+  "selfLink": false
+ },
+ "type": "module",
+ "types": "./dist/commonjs/index.d.ts",
+ "version": "11.5.3"
+}

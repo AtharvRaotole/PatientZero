@@ -1,0 +1,61 @@
+{
+ "_from": ".",
+ "_id": "sparse-bitfield@3.0.3",
+ "_nodeVersion": "6.9.5",
+ "_npmOperationalInternal": {
+  "host": "packages-12-west.internal.npmjs.com",
+  "tmp": "tmp/sparse-bitfield-3.0.3.tgz_1488673063925_0.47190379025414586"
+ },
+ "_npmUser": {
+  "email": "mathiasbuus@gmail.com",
+  "name": "mafintosh"
+ },
+ "_npmVersion": "3.10.10",
+ "_shasum": "ff4ae6e68656056ba4b3e792ab3334d38273ca11",
+ "author": {
+  "name": "Mathias Buus",
+  "url": "@mafintosh"
+ },
+ "bugs": {
+  "url": "https://github.com/mafintosh/sparse-bitfield/issues"
+ },
+ "dependencies": {
+  "memory-pager": "^1.0.2"
+ },
+ "description": "Bitfield that allocates a series of small buffers to support sparse bits without allocating a massive buffer",
+ "devDependencies": {
+  "buffer-alloc": "^1.1.0",
+  "standard": "^9.0.0",
+  "tape": "^4.6.3"
+ },
+ "dist": {
+  "integrity": "sha512-kvzhi7vqKTfkh0PZU+2D2PIllw2ymqJKujUcyPMd9Y75Nv4nPbGJZXNhxsgdQab2BmlDct1YnfQCguEvHr7VsQ==",
+  "shasum": "ff4ae6e68656056ba4b3e792ab3334d38273ca11",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEQCIBTayLdZoJT0VPN4I5enpHWEz6/YFvXlhoulHVEgR7aTAiB+1qSZquCuqqb35zdGSgTIXcOJDBK3oLj0pbM+K8Rhfg=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/sparse-bitfield/-/sparse-bitfield-3.0.3.tgz"
+ },
+ "gitHead": "922ad0e94c4134fa1de17ae456551f950eef528f",
+ "homepage": "https://github.com/mafintosh/sparse-bitfield",
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "mathiasbuus@gmail.com",
+   "name": "mafintosh"
+  }
+ ],
+ "name": "sparse-bitfield",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/mafintosh/sparse-bitfield.git"
+ },
+ "scripts": {
+  "test": "standard && tape test.js"
+ },
+ "version": "3.0.3"
+}

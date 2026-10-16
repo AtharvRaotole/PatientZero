@@ -1,0 +1,150 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "light-my-request@6.8.0",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/light-my-request_6.8.0_1791624221657_0.9099283178944042"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "3b297e64-a87d-4987-989c-bfbdef3826ce"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "author": {
+  "name": "Tomas Della Vedova - @delvedor",
+  "url": "https://delvedor.dev"
+ },
+ "bugs": {
+  "url": "https://github.com/fastify/light-my-request/issues"
+ },
+ "contributors": [
+  {
+   "email": "hello@matteocollina.com",
+   "name": "Matteo Collina"
+  },
+  {
+   "email": "behemoth89@gmail.com",
+   "name": "Manuel Spigolon"
+  },
+  {
+   "email": "aras.abbasi@gmail.com",
+   "name": "Aras Abbasi"
+  },
+  {
+   "email": "frazer.dev@icloud.com",
+   "name": "Frazer Smith",
+   "url": "https://github.com/fdawgs"
+  }
+ ],
+ "dependencies": {
+  "@fastify/deepmerge": "^3.1.0",
+  "cookie": "^2.0.0",
+  "process-warning": "^5.0.0",
+  "set-cookie-parser": "^3.0.1"
+ },
+ "description": "Fake HTTP injection library",
+ "devDependencies": {
+  "@fastify/ajv-compiler": "^4.0.5",
+  "@types/node": "^26.0.0",
+  "c8": "^12.0.0",
+  "end-of-stream": "^1.4.5",
+  "eslint": "^9.39.2",
+  "express": "^5.2.1",
+  "form-auto-content": "^3.2.1",
+  "form-data": "^4.0.5",
+  "formdata-node": "^6.0.3",
+  "multer": "^2.0.2",
+  "neostandard": "^0.13.0",
+  "tstyche": "^7.0.0",
+  "undici": "^7.18.2"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/light-my-request@6.8.0"
+  },
+  "fileCount": 27,
+  "integrity": "sha512-5Q8PjoSEdtGIB8fikZsTem5vgRo4F2mR6vUKTDW/H1g6MtAt8e3duQbg/QxL5yzg6BZhor2KOUm3hhWMWLTZwg==",
+  "shasum": "332b19888b40988eca169bb67b465fb2f5418cc3",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIG1d+ui+z/syOmoi3knq+l463ECVgzUUZ1mRRaPDhi7OAiBhSQlIOOAR9KvdzicNzk5s5yXqK++8eNJNaQiXqO9B/w=="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCID1TqJKrsPLNAze4xAt3TztNge4SO8Vgh8q/IjnVd42aAiEA7AJDA2Jl5SPhKdMWPBVLXNfILTwAl55q5Qr7BJr0BJQ="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/light-my-request/-/light-my-request-6.8.0.tgz",
+  "unpackedSize": 182479
+ },
+ "funding": [
+  {
+   "type": "github",
+   "url": "https://github.com/sponsors/fastify"
+  },
+  {
+   "type": "opencollective",
+   "url": "https://opencollective.com/fastify"
+  }
+ ],
+ "gitHead": "6b17587fd5cc0daa6bf7b58daf747c030b0c949f",
+ "homepage": "https://github.com/fastify/light-my-request#readme",
+ "keywords": [
+  "http",
+  "inject",
+  "fake",
+  "request",
+  "server"
+ ],
+ "license": "BSD-3-Clause",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "james.sumners@gmail.com",
+   "name": "jsumners"
+  },
+  {
+   "email": "tommydelved@gmail.com",
+   "name": "delvedor"
+  },
+  {
+   "email": "hello@matteocollina.com",
+   "name": "matteo.collina"
+  },
+  {
+   "email": "behemoth89@gmail.com",
+   "name": "eomm"
+  },
+  {
+   "email": "kaka@kakawebsitedemo.com",
+   "name": "climba03003"
+  }
+ ],
+ "name": "light-my-request",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/fastify/light-my-request.git"
+ },
+ "scripts": {
+  "benchmark": "node benchmark/benchmark.js",
+  "coverage": "npm run unit -- --cov --coverage-report=html",
+  "lint": "eslint",
+  "lint:fix": "eslint --fix",
+  "test": "npm run lint && npm run test:unit && npm run test:typescript",
+  "test:typescript": "tstyche",
+  "test:unit": "c8 --100 node --test"
+ },
+ "type": "commonjs",
+ "types": "types/index.d.ts",
+ "version": "6.8.0"
+}

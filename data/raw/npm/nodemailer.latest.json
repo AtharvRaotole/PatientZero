@@ -1,0 +1,220 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "nodemailer@10.1.1",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/nodemailer_10.1.1_1791956310261_0.8047407656019676"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "9b3dbbf4-b114-4d87-83b0-66aaed74ae96"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "author": {
+  "name": "Andris Reinman"
+ },
+ "bugs": {
+  "url": "https://github.com/nodemailer/nodemailer/issues"
+ },
+ "description": "Easy as cake e-mail sending from your Node.js applications",
+ "devDependencies": {
+  "@aws-sdk/client-sesv2": "3.1151.0",
+  "@types/node": "20.19.43",
+  "bunyan": "1.8.15",
+  "c8": "12.0.0",
+  "eslint": "10.12.0",
+  "eslint-config-prettier": "10.1.8",
+  "globals": "17.13.0",
+  "libbase64": "1.3.2",
+  "libmime": "5.4.7",
+  "libqp": "2.1.2",
+  "mailauth": "7.3.0",
+  "prettier": "3.9.10",
+  "proxy": "1.0.2",
+  "proxy-test-server": "1.0.0",
+  "smtp-server": "3.19.21",
+  "tsx": "4.23.15",
+  "typescript": "6.0.3",
+  "typescript-eslint": "8.71.2"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/nodemailer@10.1.1"
+  },
+  "fileCount": 161,
+  "integrity": "sha512-pbqZRoeYUO+1E8TJ/11WeY4D2EVujj1hsYjz3qff/vUFDtGnmi7p3iqzTFslYOfQ6PnjVcWxx/CIUSHCSrO/QA==",
+  "shasum": "c2cc02c3aef8a1697bae6501d362a594551fdd6b",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDStIr6G3Arq/em7nTpLqA8zoZLxlgSsR/SswuhHJMNPQIgdhp8dXTYd1riLDqsf5NzpmJNgc4/ikbRd4CKiRJmTEY="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIHgoMiu4a2WNMym4Q3RQd0XY85NY+mNA5mttgJV/OsDBAiBUfKAAMAaj5seJAd6xYShepnX0Q/4gpadmwCk7j4Cxbg=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/nodemailer/-/nodemailer-10.1.1.tgz",
+  "unpackedSize": 1664440
+ },
+ "engines": {
+  "node": ">=20.0.0"
+ },
+ "exports": {
+  ".": {
+   "import": "./dist/esm/nodemailer.js",
+   "require": "./dist/cjs/nodemailer.js"
+  },
+  "./lib/*": {
+   "import": "./dist/esm/*.js",
+   "require": "./dist/cjs/*.js"
+  },
+  "./lib/*.js": {
+   "import": "./dist/esm/*.js",
+   "require": "./dist/cjs/*.js"
+  },
+  "./lib/addressparser": {
+   "import": "./dist/esm/addressparser/index.js",
+   "require": "./dist/cjs/addressparser/index.js"
+  },
+  "./lib/base64": {
+   "import": "./dist/esm/base64/index.js",
+   "require": "./dist/cjs/base64/index.js"
+  },
+  "./lib/dkim": {
+   "import": "./dist/esm/dkim/index.js",
+   "require": "./dist/cjs/dkim/index.js"
+  },
+  "./lib/fetch": {
+   "import": "./dist/esm/fetch/index.js",
+   "require": "./dist/cjs/fetch/index.js"
+  },
+  "./lib/json-transport": {
+   "import": "./dist/esm/json-transport/index.js",
+   "require": "./dist/cjs/json-transport/index.js"
+  },
+  "./lib/mail-composer": {
+   "import": "./dist/esm/mail-composer/index.js",
+   "require": "./dist/cjs/mail-composer/index.js"
+  },
+  "./lib/mailer": {
+   "import": "./dist/esm/mailer/index.js",
+   "require": "./dist/cjs/mailer/index.js"
+  },
+  "./lib/mime-funcs": {
+   "import": "./dist/esm/mime-funcs/index.js",
+   "require": "./dist/cjs/mime-funcs/index.js"
+  },
+  "./lib/mime-node": {
+   "import": "./dist/esm/mime-node/index.js",
+   "require": "./dist/cjs/mime-node/index.js"
+  },
+  "./lib/punycode": {
+   "import": "./dist/esm/punycode/index.js",
+   "require": "./dist/cjs/punycode/index.js"
+  },
+  "./lib/qp": {
+   "import": "./dist/esm/qp/index.js",
+   "require": "./dist/cjs/qp/index.js"
+  },
+  "./lib/sendmail-transport": {
+   "import": "./dist/esm/sendmail-transport/index.js",
+   "require": "./dist/cjs/sendmail-transport/index.js"
+  },
+  "./lib/ses-transport": {
+   "import": "./dist/esm/ses-transport/index.js",
+   "require": "./dist/cjs/ses-transport/index.js"
+  },
+  "./lib/shared": {
+   "import": "./dist/esm/shared/index.js",
+   "require": "./dist/cjs/shared/index.js"
+  },
+  "./lib/smtp-connection": {
+   "import": "./dist/esm/smtp-connection/index.js",
+   "require": "./dist/cjs/smtp-connection/index.js"
+  },
+  "./lib/smtp-pool": {
+   "import": "./dist/esm/smtp-pool/index.js",
+   "require": "./dist/cjs/smtp-pool/index.js"
+  },
+  "./lib/smtp-transport": {
+   "import": "./dist/esm/smtp-transport/index.js",
+   "require": "./dist/cjs/smtp-transport/index.js"
+  },
+  "./lib/stream-transport": {
+   "import": "./dist/esm/stream-transport/index.js",
+   "require": "./dist/cjs/stream-transport/index.js"
+  },
+  "./lib/well-known": {
+   "import": "./dist/esm/well-known/index.js",
+   "require": "./dist/cjs/well-known/index.js"
+  },
+  "./lib/well-known/services": "./dist/well-known/services.json",
+  "./lib/well-known/services.json": "./dist/well-known/services.json",
+  "./lib/xoauth2": {
+   "import": "./dist/esm/xoauth2/index.js",
+   "require": "./dist/cjs/xoauth2/index.js"
+  },
+  "./package.json": "./package.json"
+ },
+ "gitHead": "9396ccac77d4f78c34437eecda2c0cd146fad891",
+ "homepage": "https://nodemailer.com/",
+ "keywords": [
+  "Nodemailer"
+ ],
+ "license": "MIT-0",
+ "main": "./dist/cjs/nodemailer.js",
+ "maintainers": [
+  {
+   "email": "andris@kreata.ee",
+   "name": "andris"
+  }
+ ],
+ "name": "nodemailer",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/nodemailer/nodemailer.git"
+ },
+ "scripts": {
+  "build": "node scripts/build.js",
+  "format": "prettier --write \"**/*.{js,cjs,ts,json,md}\"",
+  "format:check": "prettier --check \"**/*.{js,cjs,ts,json,md}\"",
+  "lint": "eslint . && npm run typecheck",
+  "lint:fix": "eslint . --fix",
+  "prepare": "npm run build",
+  "pretest": "npm run build",
+  "pretest:bun": "npm run build",
+  "pretest:coverage": "npm run build",
+  "test": "node --import tsx --test --test-concurrency=1 $(find test \\( -name '*-test.ts' -o -name '*.test.ts' \\))",
+  "test:bun": "bun test --timeout 60000 $(find ./test \\( -name '*-test.ts' -o -name '*.test.ts' \\))",
+  "test:coverage": "c8 node --import tsx --test --test-concurrency=1 $(find test \\( -name '*-test.ts' -o -name '*.test.ts' \\))",
+  "typecheck": "node scripts/build.js --generate-only && tsc -p tsconfig.json",
+  "update": "rm -rf node_modules/ package-lock.json && ncu -u && npm install"
+ },
+ "type": "module",
+ "types": "./dist/cjs/nodemailer.d.ts",
+ "typesVersions": {
+  "*": {
+   "lib/*": [
+    "dist/cjs/*/index.d.ts",
+    "dist/cjs/*.d.ts"
+   ],
+   "lib/well-known/services": [
+    "dist/well-known/services.json"
+   ],
+   "lib/well-known/services.json": [
+    "dist/well-known/services.json"
+   ]
+  }
+ },
+ "version": "10.1.1"
+}

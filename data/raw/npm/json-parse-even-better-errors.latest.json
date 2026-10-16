@@ -1,0 +1,103 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "json-parse-even-better-errors@6.0.0",
+ "_nodeVersion": "26.1.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/json-parse-even-better-errors_6.0.0_1778265395013_0.10871167454284714"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:81004c3d-a27a-42f7-a842-20a21d713263"
+  }
+ },
+ "_npmVersion": "11.14.1",
+ "author": {
+  "name": "GitHub Inc."
+ },
+ "bugs": {
+  "url": "https://github.com/npm/json-parse-even-better-errors/issues"
+ },
+ "description": "JSON.parse with context information on error",
+ "devDependencies": {
+  "@npmcli/eslint-config": "^6.0.0",
+  "@npmcli/template-oss": "5.0.0"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/json-parse-even-better-errors@6.0.0"
+  },
+  "fileCount": 4,
+  "integrity": "sha512-2/8adwnK1/+Fdjyts4r6wSpfANWw8zdNhU9U/Llk59c6O+DjSisPWPykwoL8gZmocP9Dy64S7oie2g+Mia123A==",
+  "shasum": "9e5289a06286e65d5be15cb4dc178aecbf222196",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDWzr0YhDVxhRtVw9XUEnofTfaN3ZN90qMpvERiJF4CFAIgGGf9msIKWkrTA8i09iEPhKdE9Js2EQ/IB9B7nzUFxDQ="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/json-parse-even-better-errors/-/json-parse-even-better-errors-6.0.0.tgz",
+  "unpackedSize": 10230
+ },
+ "engines": {
+  "node": "^22.22.2 || ^24.15.0 || >=26.0.0"
+ },
+ "gitHead": "805476ea7998dafbc37e90867aebdd47816c0b1a",
+ "homepage": "https://github.com/npm/json-parse-even-better-errors#readme",
+ "keywords": [
+  "JSON",
+  "parser"
+ ],
+ "license": "MIT",
+ "main": "lib/index.js",
+ "maintainers": [
+  {
+   "email": "saquibkhan@github.com",
+   "name": "saquibkhan"
+  },
+  {
+   "email": "npm-cli+bot@github.com",
+   "name": "npm-cli-ops"
+  },
+  {
+   "email": "reggi@github.com",
+   "name": "reggi"
+  },
+  {
+   "email": "owlstronaut@github.com",
+   "name": "owlstronaut"
+  }
+ ],
+ "name": "json-parse-even-better-errors",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/npm/json-parse-even-better-errors.git"
+ },
+ "scripts": {
+  "eslint": "eslint \"**/*.{js,cjs,ts,mjs,jsx,tsx}\"",
+  "lint": "npm run eslint",
+  "lintfix": "npm run eslint -- --fix",
+  "postlint": "template-oss-check",
+  "posttest": "npm run lint",
+  "snap": "node --test --test-update-snapshots './test/**/*.js'",
+  "template-oss-apply": "template-oss-apply --force",
+  "test": "node --test './test/**/*.js'",
+  "test:cover": "node --test --experimental-test-coverage --test-timeout=3000 --test-coverage-lines=100 --test-coverage-functions=100 --test-coverage-branches=100 './test/**/*.js'",
+  "test:node20": "node --test test"
+ },
+ "templateOSS": {
+  "//@npmcli/template-oss": "This file is partially managed by @npmcli/template-oss. Edits may be overwritten.",
+  "latestCiVersion": 24,
+  "publish": true,
+  "testRunner": "node:test",
+  "version": "5.0.0"
+ },
+ "version": "6.0.0"
+}

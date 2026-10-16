@@ -1,0 +1,85 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@babel/plugin-syntax-import-meta@7.10.4",
+ "_nodeVersion": "14.4.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/plugin-syntax-import-meta_7.10.4_1593522706107_0.8781805696200315"
+ },
+ "_npmUser": {
+  "email": "i@jhuang.me",
+  "name": "jlhwung"
+ },
+ "_npmVersion": "lerna/3.19.0/node@v14.4.0+x64 (darwin)",
+ "bugs": {
+  "url": "https://github.com/babel/babel/issues"
+ },
+ "dependencies": {
+  "@babel/helper-plugin-utils": "^7.10.4"
+ },
+ "description": "Allow parsing of import.meta",
+ "devDependencies": {
+  "@babel/core": "^7.10.4"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 4,
+  "integrity": "sha512-Yqfm+XDx0+Prh3VSeEQCPU81yC+JWZ2pDPFSS4ZdpfZhp4MkFMaDC1UqseovEKwSUpnIL7+vK+Clp7bfh0iD7g==",
+  "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.4\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJe+zoSCRA9TVsSAnZWagAANg4P+QEIyGFm4B742siLDUI2\nuDE2GLdVBNxZqRzHMNLj1MIZmgiuLRL4pljSgGGqQ/7qYl049ieGBBQkI3RB\nqA+3sy48FCGSXBDCH4ggW/l3mP+pz3L8xTTyfQceP4LGy+UxsVPRLAdLu1Fx\nnWrVIK5gMeHna1ncLP45AhnFGgTjZ1rsX/G3LaodltIkXFmyQQr9DCo6wlCY\ni3PagaGk0wqXirOJK8+LPht6WZO2/gSemk5bMPRJMypl90r9LbAtyDjXrKVg\nUDPpDC+Qb/MC0iTR7BRirBhMkOJvfEEAyiqi9zjFqmJeKcjv78MF8+EkrZ7b\nNpFfUCoJr1dhM2a+ZQC4qqt+F/kfUHHjKOaYQY1Z3qwlJDUhhvyiuUGR7NBu\nmy6+r9cuIJVsB3nKqCBuOqb0bx64E8hqA1/Sk1Su/8bC9To7ye9VrIjGPms8\nFcp/c9u7VUiPoNL1or8Qg6mbA8Ei3WWvzuhG1T6hYc/OhT9y0nY89tZHphd2\nxpvcXCNIFtv1ZzjncJCr8Ezk2+inZyUGUCiZdDQmyT+6+ifpebL0uhhSKabJ\n5fJUSgQwBTh0u//4HrzyJ3e4RLdjxB0sEB+EKO4B9fHY3GxF5nn2JSyOn4Ew\ncQEDN4iuOdbZU5b3r4CgUwOEBIpnN83p3GZP8oP3PbQk5Ef0s7O7zTFBfY4X\njq42\r\n=9EUm\r\n-----END PGP SIGNATURE-----\r\n",
+  "shasum": "ee601348c370fa334d2207be158777496521fd51",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIQCLT5A2PlK2jeD/DYzOa5S+TOoloKIRGr/xRNE1pMNoPQIgC2GLqeUUrRx7RXpkCxBpVxjbDOet8jW7uVDZ1tDVOVw="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@babel/plugin-syntax-import-meta/-/plugin-syntax-import-meta-7.10.4.tgz",
+  "unpackedSize": 2559
+ },
+ "gitHead": "7fd40d86a0d03ff0e9c3ea16b29689945433d4df",
+ "homepage": "https://github.com/babel/babel#readme",
+ "keywords": [
+  "babel-plugin"
+ ],
+ "license": "MIT",
+ "main": "lib/index.js",
+ "maintainers": [
+  {
+   "email": "daniel@tschinder.de",
+   "name": "danez"
+  },
+  {
+   "email": "bng412@gmail.com",
+   "name": "existentialism"
+  },
+  {
+   "email": "hi@henryzoo.com",
+   "name": "hzoo"
+  },
+  {
+   "email": "i@jhuang.me",
+   "name": "jlhwung"
+  },
+  {
+   "email": "loganfsmyth@gmail.com",
+   "name": "loganfsmyth"
+  },
+  {
+   "email": "nicolo.ribaudo@gmail.com",
+   "name": "nicolo-ribaudo"
+  }
+ ],
+ "name": "@babel/plugin-syntax-import-meta",
+ "peerDependencies": {
+  "@babel/core": "^7.0.0-0"
+ },
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "directory": "packages/babel-plugin-syntax-import-meta",
+  "type": "git",
+  "url": "git+https://github.com/babel/babel.git"
+ },
+ "version": "7.10.4"
+}

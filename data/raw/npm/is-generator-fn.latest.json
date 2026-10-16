@@ -1,0 +1,78 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "is-generator-fn@3.0.0",
+ "_nodeVersion": "16.2.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/is-generator-fn_3.0.0_1628686015543_0.7798368784710901"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "7.10.0",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/is-generator-fn/issues"
+ },
+ "description": "Check if something is a generator function",
+ "devDependencies": {
+  "ava": "^3.15.0",
+  "tsd": "^0.17.0",
+  "xo": "^0.44.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-Kn+4AXo1HHewGjikHNfxCFv58+XGeXAalWE5Ci1bgm/DkmDte9zFyqMn6xrzQKCgyhefxz9I8rseWUGI0jSecQ==",
+  "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.13\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJhE8a/CRA9TVsSAnZWagAAekUP+QCIPyj202RibdAU9lr+\nJYpqRu5gWCtC2C17DmcmvKaTncrdjvwugJskQYvtInEszUDQohAK7o0s2gtw\nO/SDdDc6Q6N8xpCaEOiauWCgMBHfS8rPDpu3Ha56gImiAHfVjE2VzJLEenir\nJ1RxvS62IDe1BelS3GquPj+bMSMr+HdHpQYSKz04XfzIUwODgF6wkbq1tbln\n4ieKauskLPr+Osr2zG56Eck+neL8z7YvI5BSSZsM6FrYyG4mMAELUZpnftSG\np5AVSX+gwSSA3aLG/1g8sH2zu5SRrR+8zJIrPdiZuudCSJDsnABB7NmCeaDc\nbxceBeNkmqxv/kT/bB99a2EAiQ1v+7WO5fzLD0v4g9+rFy6x22Xb7nPpbfbp\nqvWGAtH1UNHqQ4P+H2Sm4j/LEwLi8UbSwpbv0zaHwy+OgWoeBvdlA3Pp+qpQ\nufrvIsjljo7ByCfK6Blaxjc8yOu8qxEUuFrm4jBvniOUUMT0zP7yveqprBTY\nMuwVEVFr4ytgTgARqYaJv84GOtbXvtf+GSJEGC2SlAq/AZOCyso+3jQiIe7H\nu0xRAAzHi5yeep97taHttxhp30bXhHxgk8VbR27veTm0GPdykcsPNdnhArP1\n0RNGG6uf2G4WgeqdpKLxJ7LpSYFOhwBToSA+oNVMiWhX9RI+gpwKSi1eAXmk\n5WQ0\r\n=YeHv\r\n-----END PGP SIGNATURE-----\r\n",
+  "shasum": "196814cf2e44a75212d34c12f3ce6f43a7821e7c",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIQC0Vp47c+ANnln6M8sfzTtmAXi5MxYWQMCMv0S6PJpekwIgBS9D8Ll/fal5Btq6uUiPUnQKlPEvayMnFEVmyU1ZqXU="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/is-generator-fn/-/is-generator-fn-3.0.0.tgz",
+  "unpackedSize": 2918
+ },
+ "engines": {
+  "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+ },
+ "exports": "./index.js",
+ "funding": "https://github.com/sponsors/sindresorhus",
+ "gitHead": "346a838d9c4bb5fcf68673bbbedb8746e9dffef4",
+ "homepage": "https://github.com/sindresorhus/is-generator-fn#readme",
+ "keywords": [
+  "generator",
+  "function",
+  "func",
+  "fn",
+  "is",
+  "check",
+  "detect",
+  "yield",
+  "type"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "is-generator-fn",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/is-generator-fn.git"
+ },
+ "scripts": {
+  "test": "xo && ava && tsd"
+ },
+ "type": "module",
+ "version": "3.0.0"
+}

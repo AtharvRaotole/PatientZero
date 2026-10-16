@@ -1,0 +1,144 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "ioredis@6.0.0",
+ "_nodeVersion": "24.18.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/ioredis_6.0.0_1785510195346_0.9434960855564531"
+ },
+ "_npmUser": {
+  "email": "david.maier@redis.com",
+  "name": "dmaier-redislabs"
+ },
+ "_npmVersion": "11.18.0",
+ "author": {
+  "email": "i@zihua.li",
+  "name": "Zihua Li",
+  "url": "http://zihua.li"
+ },
+ "bugs": {
+  "url": "https://github.com/redis/ioredis/issues"
+ },
+ "dependencies": {
+  "@ioredis/commands": "2.0.0",
+  "cluster-key-slot": "1.1.1",
+  "debug": "4.4.3",
+  "denque": "2.1.0",
+  "redis-errors": "1.2.0",
+  "standard-as-callback": "2.1.0"
+ },
+ "description": "A robust, performance-focused and full-featured Redis client for Node.js.",
+ "devDependencies": {
+  "@ioredis/interface-generator": "1.4.0",
+  "@semantic-release/changelog": "6.0.3",
+  "@semantic-release/commit-analyzer": "13.0.1",
+  "@semantic-release/exec": "7.1.0",
+  "@semantic-release/git": "10.0.1",
+  "@types/chai": "^4.3.0",
+  "@types/chai-as-promised": "^7.1.5",
+  "@types/debug": "^4.1.5",
+  "@types/mocha": "^9.1.0",
+  "@types/node": "^20.11.16",
+  "@types/redis-errors": "^1.2.1",
+  "@types/sinon": "^10.0.11",
+  "@typescript-eslint/eslint-plugin": "^6.21.0",
+  "@typescript-eslint/parser": "^6.21.0",
+  "chai": "^4.3.6",
+  "chai-as-promised": "^7.1.1",
+  "eslint": "^8.31.0",
+  "eslint-config-prettier": "^8.6.0",
+  "mocha": "^11.7.6",
+  "nyc": "^15.1.0",
+  "prettier": "^2.6.1",
+  "semantic-release": "25.0.5",
+  "server-destroy": "^1.0.1",
+  "sinon": "^13.0.1",
+  "ts-node": "^10.9.2",
+  "tsd": "^0.31.2",
+  "typedoc": "^0.25.7",
+  "typescript": "^5.3.3",
+  "uuid": "^9.0.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 105,
+  "integrity": "sha512-f+Dtubxfpf6KYFq7WVXJoOLn0bk4TJrMrN9SzeE+jrWrCWj7XX3fA6vkryafhADX+GMymRxgDJDOI33COkJc0w==",
+  "shasum": "b757c590547c43a5e18ea9c312d05c5c46c7e6fa",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIBHyvjKf8Kpmfyw8QUg8XM6oqoyEZX8BNvs59ButYlDCAiAWu+2XPRNmnz/kwExx2+Wb69/Jf1C7rQ46uslKgQxjPA=="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQCO6+4A11lr0f0J0QDpFRTGkX+zySv5sMZ8Zk8FmZiWjwIgDA4i6z6aqHTFSQ0zXaP0mhT6ma9T//fnkLmJ3sMs2GE="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/ioredis/-/ioredis-6.0.0.tgz",
+  "unpackedSize": 1290811
+ },
+ "engines": {
+  "node": ">=20.0.0"
+ },
+ "funding": {
+  "type": "opencollective",
+  "url": "https://opencollective.com/ioredis"
+ },
+ "gitHead": "8ed2946504a36ae9b1e186b9dccc56afcd046d78",
+ "homepage": "https://github.com/redis/ioredis#readme",
+ "keywords": [
+  "redis",
+  "cluster",
+  "sentinel",
+  "pipelining"
+ ],
+ "license": "MIT",
+ "main": "./built/index.js",
+ "maintainers": [
+  {
+   "email": "ioredis-robot@zihua.li",
+   "name": "ioredis-robot"
+  },
+  {
+   "email": "david.maier@redis.com",
+   "name": "dmaier-redislabs"
+  }
+ ],
+ "mocha": {
+  "exit": true,
+  "recursive": true,
+  "require": "ts-node/register",
+  "timeout": 8000
+ },
+ "name": "ioredis",
+ "nyc": {
+  "reporter": [
+   "lcov"
+  ]
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/redis/ioredis.git"
+ },
+ "scripts": {
+  "build": "rm -rf built && tsc",
+  "docker:setup": "docker compose -f test/docker-compose.yml up -d --wait",
+  "docker:teardown": "docker compose -f test/docker-compose.yml down --volumes --remove-orphans",
+  "docs": "npx typedoc --logLevel Error --excludeExternals --excludeProtected --excludePrivate --readme none lib/index.ts",
+  "format": "prettier --write \"{,!(node_modules)/**/}*.{js,ts}\"",
+  "format-check": "prettier --check \"{,!(node_modules)/**/}*.{js,ts}\"",
+  "lint": "eslint --ext .js,.ts ./lib",
+  "prepublishOnly": "node bin/generate-version.js && npm run build",
+  "semantic-release": "semantic-release",
+  "test": "npm run test:js && npm run test:tsd",
+  "test:cluster": "TS_NODE_TRANSPILE_ONLY=true NODE_ENV=test mocha --no-experimental-strip-types \"test/cluster/**/*.ts\"",
+  "test:cov": "nyc npm run test:js",
+  "test:js": "TS_NODE_TRANSPILE_ONLY=true NODE_ENV=test mocha --no-experimental-strip-types \"test/helpers/*.ts\" \"test/unit/**/*.ts\" \"test/functional/**/*.ts\"",
+  "test:tsd": "npm run build && tsd"
+ },
+ "tsd": {
+  "directory": "test/typing"
+ },
+ "types": "./built/index.d.ts",
+ "version": "6.0.0"
+}

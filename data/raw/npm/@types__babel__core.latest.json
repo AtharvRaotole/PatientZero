@@ -1,0 +1,81 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@types/babel__core@7.20.5",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/babel__core_7.20.5_1700523850564_0.7919218994006494"
+ },
+ "_npmUser": {
+  "email": "ts-npm-types@microsoft.com",
+  "name": "types"
+ },
+ "contributors": [
+  {
+   "githubUsername": "yortus",
+   "name": "Troy Gerwien",
+   "url": "https://github.com/yortus"
+  },
+  {
+   "githubUsername": "marvinhagemeister",
+   "name": "Marvin Hagemeister",
+   "url": "https://github.com/marvinhagemeister"
+  },
+  {
+   "githubUsername": "mgroenhoff",
+   "name": "Melvin Groenhoff",
+   "url": "https://github.com/mgroenhoff"
+  },
+  {
+   "githubUsername": "Jessidhia",
+   "name": "Jessica Franco",
+   "url": "https://github.com/Jessidhia"
+  },
+  {
+   "githubUsername": "ifiokjr",
+   "name": "Ifiok Jr.",
+   "url": "https://github.com/ifiokjr"
+  }
+ ],
+ "dependencies": {
+  "@babel/parser": "^7.20.7",
+  "@babel/types": "^7.20.7",
+  "@types/babel__generator": "*",
+  "@types/babel__template": "*",
+  "@types/babel__traverse": "*"
+ },
+ "description": "TypeScript definitions for @babel/core",
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-qoQprZvz5wQFJwMDqeseRXWv3rqMvhgpbXFfVyWhbx9X47POIA6i/+dXefEmZKoAgOaTdaIgNSMqMIU61yRyzA==",
+  "shasum": "3df15f27ba85319caa07ba08d0721889bb39c017",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEQCICZunIbpZ83F4tI8FM0UoHLJFGt9tqJVps+2rfErtJGrAiAPqBBeCFFv2ZyYkw5fVK3gUixvRaroWHc+012gr912yg=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@types/babel__core/-/babel__core-7.20.5.tgz",
+  "unpackedSize": 33020
+ },
+ "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/babel__core",
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "ts-npm-types@microsoft.com",
+   "name": "types"
+  }
+ ],
+ "name": "@types/babel__core",
+ "repository": {
+  "directory": "types/babel__core",
+  "type": "git",
+  "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+ },
+ "scripts": {},
+ "typeScriptVersion": "4.5",
+ "types": "index.d.ts",
+ "typesPublisherContentHash": "3ece429b02ff9f70503a5644f2b303b04d10e6da7940c91a9eff5e52f2c76b91",
+ "version": "7.20.5"
+}

@@ -1,0 +1,97 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "p-locate@7.0.0",
+ "_nodeVersion": "25.3.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/p-locate_7.0.0_1770105469769_0.22464266465257876"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "11.7.0",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/p-locate/issues"
+ },
+ "dependencies": {
+  "p-limit": "^7.2.0"
+ },
+ "description": "Get the first fulfilled promise that satisfies the provided testing function",
+ "devDependencies": {
+  "ava": "^6.4.1",
+  "delay": "^7.0.0",
+  "in-range": "^3.0.0",
+  "time-span": "^5.1.0",
+  "tsd": "^0.33.0",
+  "xo": "^1.2.3"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-FRPW2lT1b/B8/CNkCOZ/Xl4mz52CWzwb+/dLa0GcCrH7u7djFf36VftuRJ5w/eCr1YXtbTGPuGoEDVSk14EwNQ==",
+  "shasum": "424e50a4031542ee7ca1937c06f12b93dcf2f7b3",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQCwTXfsOswVTrF/Qrw52HVV9I1kC4P1VPTW5d2ehmX2hQIhAP5EuK0nNHYZibljlDmWZkwBMgSSIDv1X4tL2YuOXISX"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/p-locate/-/p-locate-7.0.0.tgz",
+  "unpackedSize": 8195
+ },
+ "engines": {
+  "node": ">=20"
+ },
+ "exports": {
+  "default": "./index.js",
+  "types": "./index.d.ts"
+ },
+ "funding": "https://github.com/sponsors/sindresorhus",
+ "gitHead": "b9ccdaaa83f8d2f53f8acf8ff3c97b7aa21f655b",
+ "homepage": "https://github.com/sindresorhus/p-locate#readme",
+ "keywords": [
+  "promise",
+  "locate",
+  "find",
+  "finder",
+  "search",
+  "searcher",
+  "test",
+  "array",
+  "collection",
+  "iterable",
+  "iterator",
+  "race",
+  "fulfilled",
+  "fastest",
+  "async",
+  "await",
+  "promises",
+  "bluebird"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "p-locate",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/p-locate.git"
+ },
+ "scripts": {
+  "test": "xo && ava && tsd"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "7.0.0"
+}

@@ -1,0 +1,74 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "char-regex@2.0.2",
+ "_nodeVersion": "20.15.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/char-regex_2.0.2_1732112722213_0.692578100107337"
+ },
+ "_npmUser": {
+  "email": "richiebendall@gmail.com",
+  "name": "richienb"
+ },
+ "_npmVersion": "10.7.0",
+ "author": {
+  "email": "richiebendall@gmail.com",
+  "name": "Richie Bendall"
+ },
+ "bugs": {
+  "url": "https://github.com/Richienb/char-regex/issues"
+ },
+ "dependencies": {},
+ "description": "A regex to match any full character, considering weird character ranges.",
+ "devDependencies": {
+  "all-chars": "^1.0.0",
+  "ava": "^6.2.0",
+  "tsd": "^0.31.2",
+  "xo": "^0.59.3"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-cbGOjAptfM2LVmWhwRFHEKTPkLwNddVmuqYZQt895yXwAsWsXObCG+YN4DGQ/JBtT4GP1a1lPPdio2z413LmTg==",
+  "shasum": "81385bb071af4df774bff8721d0ca15ef29ea0bb",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEYCIQCPh/Z2pVBsb6j+c6ykG4OfGCgv6AmGbEHW2l1sw3HbCgIhAJ7fKczY//brwJiUVYpMgiQP/Pu+SJ9cnNRhFVgF1kPI"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/char-regex/-/char-regex-2.0.2.tgz",
+  "unpackedSize": 5416
+ },
+ "engines": {
+  "node": ">=12.20"
+ },
+ "exports": "./index.js",
+ "gitHead": "b2a1dc9967b556f9a576ce0f7ded2a457ba4aefa",
+ "homepage": "https://github.com/Richienb/char-regex#readme",
+ "keywords": [
+  "character",
+  "regex",
+  "match",
+  "split",
+  "length"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "richiebendall@gmail.com",
+   "name": "richienb"
+  }
+ ],
+ "name": "char-regex",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/Richienb/char-regex.git"
+ },
+ "scripts": {
+  "test": "xo && ava && tsd"
+ },
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "2.0.2"
+}

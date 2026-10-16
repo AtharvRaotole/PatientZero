@@ -1,0 +1,138 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "raw-body@4.0.0",
+ "_nodeVersion": "26.5.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/raw-body_4.0.0_1783825098546_0.6293868429105498"
+ },
+ "_npmUser": {
+  "approver": {
+   "email": "bjohansebas@gmail.com",
+   "name": "bsebas"
+  },
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:79817a4b-4d84-40ec-9ee5-c213f35c6573"
+  }
+ },
+ "_npmVersion": "11.17.0",
+ "author": {
+  "email": "me@jongleberry.com",
+  "name": "Jonathan Ong",
+  "url": "http://jongleberry.com"
+ },
+ "bugs": {
+  "url": "https://github.com/stream-utils/raw-body/issues"
+ },
+ "contributors": [
+  {
+   "email": "doug@somethingdoug.com",
+   "name": "Douglas Christopher Wilson"
+  },
+  {
+   "email": "raynos2@gmail.com",
+   "name": "Raynos"
+  }
+ ],
+ "dependencies": {
+  "bytes": "^3.1.2",
+  "http-errors": "^2.0.1"
+ },
+ "description": "Get and validate the raw body of a readable stream.",
+ "devDependencies": {
+  "@size-limit/preset-small-lib": "^12.1.0",
+  "@types/bytes": "^3.1.5",
+  "@types/http-errors": "^2.0.5",
+  "@types/node": "^26.1.0",
+  "@vitest/coverage-v8": "^4.1.10",
+  "eslint": "^9.0.0",
+  "iconv-lite": "^0.7.0",
+  "neostandard": "^0.13.0",
+  "size-limit": "^12.1.0",
+  "typescript": "^6.0.3",
+  "vitest": "^4.1.10"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/raw-body@4.0.0"
+  },
+  "fileCount": 5,
+  "integrity": "sha512-TMHtwexrgOt9VJ2E5JF9RO8mRXGNgC5wXvKkc5AVSJUt1L5gxvjg7eiCQl96EqUEpCWrnNEkCnbAplYtyuq1IA==",
+  "shasum": "cac8f69773de2e704d02be7bd3d61270a8130750",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIClM2endsxiQEJn+eJpomyrFFyD5y9qopvYLiOlw+oXRAiAjuAkOUXyPFpOk6/9Zs49fPccftV6sFrHJY9lEta3UMQ=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/raw-body/-/raw-body-4.0.0.tgz",
+  "unpackedSize": 30081
+ },
+ "engines": {
+  "node": ">=22"
+ },
+ "exports": "./dist/index.js",
+ "gitHead": "c3949f885af40733c680eb410b7d1f5aeddc2877",
+ "homepage": "https://github.com/stream-utils/raw-body#readme",
+ "license": "MIT",
+ "main": "./dist/index.js",
+ "maintainers": [
+  {
+   "email": "bjohansebas@gmail.com",
+   "name": "bsebas"
+  },
+  {
+   "email": "hello@blakeembrey.com",
+   "name": "blakeembrey"
+  },
+  {
+   "email": "doug@somethingdoug.com",
+   "name": "dougwilson"
+  },
+  {
+   "email": "jonathanrichardong@gmail.com",
+   "name": "jongleberry"
+  },
+  {
+   "email": "ljharb@gmail.com",
+   "name": "ljharb"
+  }
+ ],
+ "name": "raw-body",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/stream-utils/raw-body.git"
+ },
+ "scripts": {
+  "bench": "vitest bench --run",
+  "build": "tsc -p tsconfig.build.json",
+  "lint": "eslint",
+  "lint:fix": "eslint --fix",
+  "prepublishOnly": "npm run build",
+  "size": "size-limit",
+  "test": "vitest run",
+  "test:ci": "vitest run --coverage --coverage.reporter=lcovonly --coverage.reporter=text",
+  "test:cov": "vitest run --coverage --coverage.reporter=html --coverage.reporter=text",
+  "typecheck": "tsc -p tsconfig.json"
+ },
+ "size-limit": [
+  {
+   "ignore": [
+    "node:async_hooks",
+    "node:stream"
+   ],
+   "limit": "4.56 KB",
+   "path": "dist/index.js"
+  }
+ ],
+ "type": "module",
+ "types": "./dist/index.d.ts",
+ "version": "4.0.0"
+}

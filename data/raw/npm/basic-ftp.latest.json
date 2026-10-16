@@ -1,0 +1,92 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "basic-ftp@6.2.3",
+ "_nodeVersion": "25.9.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/basic-ftp_6.2.3_1791534677042_0.9432255212650864"
+ },
+ "_npmUser": {
+  "email": "patrickjuchli@gmail.com",
+  "name": "patrickjuchli"
+ },
+ "_npmVersion": "11.12.1",
+ "author": {
+  "email": "patrickjuchli@gmail.com",
+  "name": "Patrick Juchli"
+ },
+ "bugs": {
+  "url": "https://github.com/patrickjuchli/basic-ftp/issues"
+ },
+ "description": "FTP client for Node.js, supports FTPS over TLS, IPv6, Async/Await, and Typescript.",
+ "devDependencies": {
+  "@eslint/eslintrc": "3.3.7",
+  "@eslint/js": "10.0.1",
+  "@types/node": "26.6.4",
+  "@typescript-eslint/eslint-plugin": "8.71.1",
+  "@typescript-eslint/parser": "8.71.1",
+  "eslint": "10.12.0",
+  "testcontainers": "12.2.0",
+  "typescript": "6.0.3"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 33,
+  "integrity": "sha512-T7GYtQ2eKJUN5YORG7A8u2WfB9JMN0a4/wl3MI64qq2qTRfa3FXzoNq0DDojZDkDyStcL+TkfKsz4JHEZx5kGQ==",
+  "shasum": "452e25a101380a8c69cdf94d7da17e7fe7bccbaa",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQD3SExssbcgQriAItV767COX4XrZWIRfcOKOuzyKI4ljQIgHQbgrWIKYKB/lMsj6+ZE8bI+21YDTUD3+EMLgD21UGc="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCICe0n2hCUhMf4mr8mFYI9FCbxN9YoQLAzMytnW6X3H+gAiEAshZm88LPVdGS7JHG6OKcDlzrqgcNwxWKDCSYL7yOWBY="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/basic-ftp/-/basic-ftp-6.2.3.tgz",
+  "unpackedSize": 156084
+ },
+ "engines": {
+  "node": ">=10.0.0"
+ },
+ "gitHead": "c6d277c560eaefab377bc98393da9093faf94a8f",
+ "homepage": "https://github.com/patrickjuchli/basic-ftp#readme",
+ "keywords": [
+  "ftp",
+  "ftps",
+  "promise",
+  "async",
+  "await",
+  "tls",
+  "ipv6",
+  "typescript"
+ ],
+ "license": "MIT",
+ "main": "dist/index",
+ "maintainers": [
+  {
+   "email": "patrickjuchli@gmail.com",
+   "name": "patrickjuchli"
+  }
+ ],
+ "name": "basic-ftp",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/patrickjuchli/basic-ftp.git"
+ },
+ "scripts": {
+  "buildOnly": "tsc",
+  "clean": "rm -rf dist",
+  "dev": "npm run clean && tsc --watch",
+  "lint": "eslint \"./src/**/*.ts\"",
+  "lint-fix": "eslint --fix \"./src/**/*.ts\"",
+  "prepare": "tsc",
+  "prepublishOnly": "npm run clean && npm run lint && tsc && node --test test/*Spec.js",
+  "tdd": "node --test --watch test/*Spec.js",
+  "test": "npm run prepublishOnly",
+  "test:integration": "npm run buildOnly && node --test test/integration/*Spec.js"
+ },
+ "types": "dist/index",
+ "version": "6.2.3"
+}

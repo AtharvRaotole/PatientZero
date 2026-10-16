@@ -1,0 +1,114 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "pg@8.23.1",
+ "_nodeVersion": "24.14.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/pg_8.23.1_1790782798413_0.8640637307288872"
+ },
+ "_npmUser": {
+  "email": "brian.m.carlson@gmail.com",
+  "name": "brianc"
+ },
+ "_npmVersion": "lerna/3.22.1/node@v24.14.0+arm64 (darwin)",
+ "author": {
+  "email": "brian.m.carlson@gmail.com",
+  "name": "Brian Carlson"
+ },
+ "bugs": {
+  "url": "https://github.com/brianc/node-postgres/issues"
+ },
+ "dependencies": {
+  "pg-cloudflare": "^1.4.1",
+  "pg-connection-string": "^2.14.1",
+  "pg-pool": "^3.14.0",
+  "pg-protocol": "^1.16.1",
+  "pg-types": "2.2.0",
+  "pgpass": "1.0.5"
+ },
+ "description": "PostgreSQL client - pure javascript & libpq with the same API",
+ "devDependencies": {
+  "@cloudflare/vitest-pool-workers": "0.8.23",
+  "@cloudflare/workers-types": "^4.20230404.0",
+  "async": "2.6.4",
+  "bluebird": "3.7.2",
+  "co": "4.6.0",
+  "pg-copy-streams": "0.3.0",
+  "typescript": "^6.0.3",
+  "vitest": "~3.0.9",
+  "wrangler": "^3.x"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 20,
+  "integrity": "sha512-aL96AHANtWjPLDOLqnhx+ngp9+UK7ETEU8VJrDCGvsSSi/mGLcWYsS6Herg7lmaBJe4uwrfqsa7gTEFaSizDoQ==",
+  "shasum": "e4848051a04aa2f968fd5671d075f89e5e7918b9",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQCaQ7YY2yU8gtOVUdpEmdwhMZX8RimNffuKliyHO8GPcQIgdnqtDpcBEkCylJPazoNxAcwG0J+2ErEXsbGHsceQDbQ="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQCoTOteRl6SbOEx95tHOsn0FgIOYsb5wPdT77A0PUDC8wIgUGnJrpGJKdY8o6QUGoU0GRtQVHfVx3aHN7ChoRaAMmo="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/pg/-/pg-8.23.1.tgz",
+  "unpackedSize": 102632
+ },
+ "engines": {
+  "node": ">= 16.0.0"
+ },
+ "exports": {
+  ".": {
+   "default": "./lib/index.js",
+   "import": "./esm/index.mjs",
+   "require": "./lib/index.js"
+  },
+  "./lib/*": "./lib/*.js",
+  "./lib/*.js": "./lib/*.js",
+  "./package.json": {
+   "default": "./package.json"
+  }
+ },
+ "gitHead": "0980cefebe0ae461da8883703be049fe13ca96cf",
+ "homepage": "https://github.com/brianc/node-postgres",
+ "keywords": [
+  "database",
+  "libpq",
+  "pg",
+  "postgre",
+  "postgres",
+  "postgresql",
+  "rdbms"
+ ],
+ "license": "MIT",
+ "main": "./lib",
+ "maintainers": [
+  {
+   "email": "brian.m.carlson@gmail.com",
+   "name": "brianc"
+  }
+ ],
+ "name": "pg",
+ "optionalDependencies": {
+  "pg-cloudflare": "^1.4.1"
+ },
+ "peerDependencies": {
+  "pg-native": ">=3.0.1"
+ },
+ "peerDependenciesMeta": {
+  "pg-native": {
+   "optional": true
+  }
+ },
+ "repository": {
+  "directory": "packages/pg",
+  "type": "git",
+  "url": "git://github.com/brianc/node-postgres.git"
+ },
+ "scripts": {
+  "test": "make test-all"
+ },
+ "version": "8.23.1"
+}

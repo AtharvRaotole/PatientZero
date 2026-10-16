@@ -1,0 +1,166 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "bson@7.3.3",
+ "_nodeVersion": "24.20.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/bson_7.3.3_1789508409570_0.39115656265755794"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:f07ca4fe-d189-48e1-8213-8eedb0d633eb"
+  }
+ },
+ "_npmVersion": "12.0.2",
+ "author": {
+  "email": "dbx-node@mongodb.com",
+  "name": "The MongoDB NodeJS Team"
+ },
+ "bugs": {
+  "url": "https://jira.mongodb.org/projects/NODE/issues/"
+ },
+ "compass:exports": {
+  "import": "./lib/bson.cjs",
+  "require": "./lib/bson.cjs"
+ },
+ "config": {
+  "native": false
+ },
+ "contributors": [],
+ "description": "A bson parser for node.js and the browser",
+ "devDependencies": {
+  "@istanbuljs/nyc-config-typescript": "^1.0.2",
+  "@microsoft/api-extractor": "^7.52.5",
+  "@rollup/plugin-node-resolve": "^16.0.1",
+  "@rollup/plugin-typescript": "^12.1.2",
+  "@types/chai": "^4.3.17",
+  "@types/mocha": "^10.0.7",
+  "@types/node": "^24.2.1",
+  "@types/sinon": "^21.0.0",
+  "@types/sinon-chai": "^3.2.12",
+  "@typescript-eslint/eslint-plugin": "^8.31.1",
+  "@typescript-eslint/parser": "^8.31.1",
+  "benchmark": "^2.1.4",
+  "chai": "^4.4.1",
+  "chalk": "^5.3.0",
+  "dbx-js-tools": "github:mongodb-js/dbx-js-tools#main",
+  "eslint": "^9.33.0",
+  "eslint-config-prettier": "^10.1.2",
+  "eslint-plugin-prettier": "^5.2.6",
+  "eslint-plugin-tsdoc": "^0.5.2",
+  "magic-string": "^0.30.11",
+  "mocha": "^11.7.1",
+  "node-fetch": "^3.3.2",
+  "nyc": "^18.0.0",
+  "prettier": "^3.5.3",
+  "rollup": "^4.40.1",
+  "sinon": "^21.0.0",
+  "sinon-chai": "^3.7.0",
+  "source-map-support": "^0.5.21",
+  "tar": "^7.4.3",
+  "ts-node": "^10.9.2",
+  "tsd": "^0.33.0",
+  "typescript": "^5.8.3",
+  "typescript-cached-transpile": "0.0.6",
+  "uuid": "^14.0.2"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/bson@7.3.3"
+  },
+  "fileCount": 47,
+  "integrity": "sha512-oz3LwE3qGEhTCSyhzQRLY3Bj1NLOsjFMf6tcmY5J8M+3R7EVcmoBfSHWvjUK3yXCLDUsGpIuB3aQL4nDZ1EV/g==",
+  "shasum": "c0183c023d02e81b528275129ef4b23ad7d449dd",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDkHqrwnaSfrE/KShyrAQHjVs3JkJyGh7d51+z6pIvUeAIgR8bTYQ3vIRjtofc+vhx3UWmLOHzdOndi9yoxiKshVEY="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCICkm6rzV3W0cDoktN2Y2Nf0USUWBz8/gtvimNO4EqqD0AiEA5HQFuVRsnpUsfGHmkpEx70eskjg7jJD0ofmrai16ic8="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/bson/-/bson-7.3.3.tgz",
+  "unpackedSize": 2233362
+ },
+ "engines": {
+  "node": ">=20.19.0"
+ },
+ "exports": {
+  "browser": {
+   "default": "./lib/bson.mjs",
+   "types": "./bson.d.ts"
+  },
+  "default": {
+   "import": "./lib/bson.node.mjs",
+   "require": "./lib/bson.cjs",
+   "types": "./bson.d.ts"
+  },
+  "react-native": "./lib/bson.rn.cjs"
+ },
+ "gitHead": "7b8f7b7e0081f3caf0e37896adf573b22247d553",
+ "homepage": "https://github.com/mongodb/js-bson#readme",
+ "keywords": [
+  "mongodb",
+  "bson",
+  "parser"
+ ],
+ "license": "Apache-2.0",
+ "main": "./lib/bson.cjs",
+ "maintainers": [
+  {
+   "email": "daria.pardue@mongodb.com",
+   "name": "dariakp"
+  },
+  {
+   "email": "dbx-node@mongodb.com",
+   "name": "dbx-node"
+  }
+ ],
+ "module": "./lib/bson.node.mjs",
+ "name": "bson",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/mongodb/js-bson.git"
+ },
+ "scripts": {
+  "build": "npm run build:dts && npm run build:bundle",
+  "build:bench": "cd test/bench && npx tsc",
+  "build:bundle": "rollup -c rollup.config.mjs",
+  "build:dts": "npm run build:ts && api-extractor run --typescript-compiler-folder node_modules/typescript --local && node etc/clean_definition_files.cjs",
+  "build:ts": "node ./node_modules/typescript/bin/tsc",
+  "check:baseline-bench": "node ./test/bench/etc/cpuBaseline.js",
+  "check:coverage": "nyc --check-coverage npm run check:node",
+  "check:custom-bench": "npm run build && npm run check:baseline-bench && node ./test/bench/custom/main.mjs",
+  "check:granular-bench": "npm run build:bench && npm run check:baseline-bench && node ./test/bench/etc/run_granular_benchmarks.js",
+  "check:lint": "ESLINT_USE_FLAT_CONFIG=false eslint -v && ESLINT_USE_FLAT_CONFIG=false eslint --ext '.js,.ts' --max-warnings=0 src test && npm run build:dts && npm run check:tsd",
+  "check:node": "WEB=false mocha test/node",
+  "check:spec-bench": "npm run build:bench && npm run check:baseline-bench && node ./test/bench/lib/spec/bsonBench.js",
+  "check:tsd": "npm run build:dts && tsd",
+  "check:web": "WEB=true mocha test/node",
+  "format": "ESLINT_USE_FLAT_CONFIG=false eslint --ext '.js,.ts' src test --fix",
+  "prepare": "node etc/prepare.js",
+  "pretest": "npm run build",
+  "release": "standard-version -i HISTORY.md",
+  "test": "npm run check:node && npm run check:web"
+ },
+ "tsd": {
+  "compilerOptions": {
+   "module": "commonjs",
+   "moduleResolution": "node",
+   "strict": true,
+   "target": "esnext"
+  },
+  "directory": "test/types"
+ },
+ "types": "bson.d.ts",
+ "version": "7.3.3"
+}

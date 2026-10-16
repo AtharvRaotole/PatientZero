@@ -1,0 +1,90 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "hpagent@1.2.0",
+ "_nodeVersion": "16.14.2",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/hpagent_1.2.0_1667052664655_0.8829102317636501"
+ },
+ "_npmUser": {
+  "email": "tommydelved@gmail.com",
+  "name": "delvedor"
+ },
+ "_npmVersion": "8.5.0",
+ "author": {
+  "name": "Tomas Della Vedova"
+ },
+ "bugs": {
+  "url": "https://github.com/delvedor/hpagent/issues"
+ },
+ "description": "A ready to use http and https agent for working with proxies that keeps connections alive!",
+ "devDependencies": {
+  "ava": "^4.2.0",
+  "got": "^11.8.3",
+  "needle": "^3.1.0",
+  "node-fetch": "^2.6.7",
+  "proxy": "^1.0.2",
+  "simple-get": "^4.0.1",
+  "standard": "^17.0.0",
+  "tsd": "^0.24.1"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 21,
+  "integrity": "sha512-A91dYTeIB6NoXG+PxTQpCCDDnfHsW9kc06Lvpu1TEe9gnd6ZFeiBoRO9JvzEv6xK7EX97/dUE8g/vBMTqTS3CA==",
+  "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v4.10.10\r\nComment: https://openpgpjs.org\r\n\r\nwsFzBAEBCAAGBQJjXTR4ACEJED1NWxICdlZqFiEECWMYAoorWMhJKdjhPU1b\r\nEgJ2VmoPFQ//Y8jcojHHOZ8jaYj7SM/0LyD8Z8EHtCG5m2me+h9mNVbj8h5a\r\nbSdVaR/vvDf+JPnRfcHqO2QlIAvw29ulft8JKF6j1Bd2drEMGm/1NaCaDjj3\r\nBdVbpi6uRDOV6QbAEURteurW+6o9Fpu/nopCwENA1+Fepj6uGo8dulba6J9i\r\nmC/JC8cLbW2ExGsHZKFSCXAKaASddONul7QydGN63Yu+6mHtLQidqxwWQmZq\r\nxqNkLP7FAwahvwYMe3REO1i1oXcbnwfN7AMAzKh8OlZyVp4A1ghL2uYoa7sL\r\nAekvAzfLZlXRyCbuGvY97BoaFGl5HCXv4qXckMnEFyXXRzbNB2sRS+gZdCKo\r\ndFiMgN0loI5FgpGu8324NtK1lB1zEH8LyIbJ+P4v3NF5Zl2Q1FmIVAXFfpMF\r\nfA1T2aAC5bBGG2d3T/d+1XKcg8kKB4r40EqwFu/Zm5BfDP2WVEDTkKO8Em0/\r\nQ4zWkCk1FQ2xe3YHAcq/0dJyPG0RqAkCU6dtqy2PE4DE66INhN456XWMZtSV\r\noKIyBs/JC0aGsOzgDQff0xycANrNzZKIyZCBdOgjDb9thCFE7DldXK4MQWPb\r\nQ/OL3PeYHB58ERKY/RB1BGkHPZzSpJ0OlBtfLP0JCTPrvEIz8LZL0c7rj3Sj\r\nUrgPMxzGUOOGRh+LtL+s4Ojgc5fqyQqsbNk=\r\n=Mz/k\r\n-----END PGP SIGNATURE-----\r\n",
+  "shasum": "0ae417895430eb3770c03443456b8d90ca464903",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEYCIQD8FQAJajrMRsWbqNgBf+OF5NvkPvjKXN4xB0axejz1OwIhANpuktfyMsjdH5gobaOEYKdsBPtnG2hrGD9k4AyLsOUv"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/hpagent/-/hpagent-1.2.0.tgz",
+  "unpackedSize": 73875
+ },
+ "engines": {
+  "node": ">=14"
+ },
+ "exports": {
+  ".": {
+   "import": "./index.mjs",
+   "require": "./index.js",
+   "types": "./index.d.ts"
+  },
+  "./*": "./*.js"
+ },
+ "gitHead": "96f45f1d40bfbdfd0fcc84cdba056be6e0fb8f4c",
+ "homepage": "https://github.com/delvedor/hpagent#readme",
+ "keywords": [
+  "agent",
+  "http",
+  "https",
+  "secure",
+  "proxy",
+  "alive",
+  "keep-alive"
+ ],
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "tommydelved@gmail.com",
+   "name": "delvedor"
+  }
+ ],
+ "name": "hpagent",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/delvedor/hpagent.git"
+ },
+ "scripts": {
+  "test": "standard && NODE_EXTRA_CA_CERTS=test/fixtures/certs_unit_test.pem ava -v test/*.test.js && NODE_EXTRA_CA_CERTS=test/fixtures/certs_unit_test.pem ./test/hang-socket/runner.sh && tsd",
+  "test-ci": "standard && ava -v test/*.test.js && tsd"
+ },
+ "tsd": {
+  "directory": "test"
+ },
+ "types": "index.d.ts",
+ "version": "1.2.0"
+}

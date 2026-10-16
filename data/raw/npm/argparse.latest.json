@@ -1,0 +1,79 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "argparse@3.0.3",
+ "_nodeVersion": "24.16.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/argparse_3.0.3_1792101530420_0.9883361074722614"
+ },
+ "_npmUser": {
+  "email": "vitaly@rcopen.com",
+  "name": "vitaly"
+ },
+ "_npmVersion": "11.13.0",
+ "bugs": {
+  "url": "https://github.com/nodeca/argparse/issues"
+ },
+ "description": "CLI arguments parser. Native port of python's argparse.",
+ "devDependencies": {
+  "c8": "^11.0.0",
+  "neostandard": "^0.13.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 9,
+  "integrity": "sha512-Sn98ftV3KfsO8xfLPHG6oT8y+b0yvbrLgZjgPDXsharNY15tTAjqIsIju4S32nl6/iEUNNE4v+yL2Zhm8ooP3w==",
+  "shasum": "2527ed88cbaac60f7d7af28a5cf620a80f07d90b",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQCmUeH5BeAsq3QumE5GMivdadvlIOaeoysiU04geUbEagIhAMDQ72gh9i69ITUT0HZ/jZfUzZYbaFRle2RwakBy7GsR"
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIEqNpYX8zUs8HqMmN0jz9RNc4kVyc3214BpeEOQ1YxbPAiAn1oNoXjD8izStuVmDMimzuylxQ8gB91NYNWvbPhqnNg=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/argparse/-/argparse-3.0.3.tgz",
+  "unpackedSize": 177249
+ },
+ "funding": [
+  {
+   "type": "github",
+   "url": "https://github.com/sponsors/puzrin"
+  },
+  {
+   "type": "github",
+   "url": "https://github.com/sponsors/nodeca"
+  }
+ ],
+ "gitHead": "40086eae96bbc62f21d9fb95aea7bf212b05779b",
+ "homepage": "https://github.com/nodeca/argparse#readme",
+ "keywords": [
+  "cli",
+  "parser",
+  "argparse",
+  "option",
+  "args"
+ ],
+ "license": "PSF-2.0",
+ "main": "lib/argparse.js",
+ "maintainers": [
+  {
+   "email": "vitaly@rcopen.com",
+   "name": "vitaly"
+  }
+ ],
+ "name": "argparse",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/nodeca/argparse.git"
+ },
+ "scripts": {
+  "coverage": "c8 --reporter html npm test",
+  "lint": "eslint .",
+  "test": "npm run lint && node --test"
+ },
+ "types": "lib/argparse.d.ts",
+ "version": "3.0.3"
+}

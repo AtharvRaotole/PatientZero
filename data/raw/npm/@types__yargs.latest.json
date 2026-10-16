@@ -1,0 +1,118 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@types/yargs@17.0.35",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/yargs_17.0.35_1763143474544_0.8630751508547005"
+ },
+ "_npmUser": {
+  "email": "ts-npm-types@microsoft.com",
+  "name": "types"
+ },
+ "contributors": [
+  {
+   "githubUsername": "poelstra",
+   "name": "Martin Poelstra",
+   "url": "https://github.com/poelstra"
+  },
+  {
+   "githubUsername": "mizunashi-mana",
+   "name": "Mizunashi Mana",
+   "url": "https://github.com/mizunashi-mana"
+  },
+  {
+   "githubUsername": "pushplay",
+   "name": "Jeffery Grajkowski",
+   "url": "https://github.com/pushplay"
+  },
+  {
+   "githubUsername": "JimiC",
+   "name": "Jimi (Dimitris) Charalampidis",
+   "url": "https://github.com/JimiC"
+  },
+  {
+   "githubUsername": "steffenvv",
+   "name": "Steffen Viken Valv\u00e5g",
+   "url": "https://github.com/steffenvv"
+  },
+  {
+   "githubUsername": "forivall",
+   "name": "Emily Marigold Klassen",
+   "url": "https://github.com/forivall"
+  },
+  {
+   "githubUsername": "ExE-Boss",
+   "name": "ExE Boss",
+   "url": "https://github.com/ExE-Boss"
+  },
+  {
+   "githubUsername": "Aankhen",
+   "name": "Aankhen",
+   "url": "https://github.com/Aankhen"
+  },
+  {
+   "githubUsername": "bcoe",
+   "name": "Ben Coe",
+   "url": "https://github.com/bcoe"
+  }
+ ],
+ "dependencies": {
+  "@types/yargs-parser": "*"
+ },
+ "description": "TypeScript definitions for yargs",
+ "directories": {},
+ "dist": {
+  "fileCount": 9,
+  "integrity": "sha512-qUHkeCyQFxMXg79wQfTtfndEC+N9ZZg76HJftDJp+qH2tV7Gj4OJi7l+PiWwJ+pWtW8GwSmqsDj/oymhrTWXjg==",
+  "shasum": "07013e46aa4d7d7d50a49e15604c1c5340d4eb24",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQDXBUG8cNPoUITEKpBTJxroTlyykgRsdMGDrvJ3MsDVrAIhALE7zHPYPC3Ds50ZYHSYuZL29b2uq4t6Ixs6W0AaCDr4"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@types/yargs/-/yargs-17.0.35.tgz",
+  "unpackedSize": 60437
+ },
+ "exports": {
+  ".": {
+   "types": {
+    "default": "./index.d.ts",
+    "import": "./index.d.mts"
+   }
+  },
+  "./helpers": {
+   "types": {
+    "default": "./helpers.d.ts",
+    "import": "./helpers.d.mts"
+   }
+  },
+  "./package.json": "./package.json",
+  "./yargs": {
+   "types": {
+    "default": "./yargs.d.ts"
+   }
+  }
+ },
+ "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/yargs",
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "ts-npm-types@microsoft.com",
+   "name": "types"
+  }
+ ],
+ "name": "@types/yargs",
+ "peerDependencies": {},
+ "repository": {
+  "directory": "types/yargs",
+  "type": "git",
+  "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+ },
+ "scripts": {},
+ "typeScriptVersion": "5.2",
+ "types": "index.d.ts",
+ "typesPublisherContentHash": "97aedf9e2626357f7e4f88f32eea281bf257c4028e16386c3582cf0d7669ab86",
+ "version": "17.0.35"
+}

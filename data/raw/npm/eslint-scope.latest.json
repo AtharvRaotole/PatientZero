@@ -1,0 +1,107 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "eslint-scope@9.1.2",
+ "_nodeVersion": "24.14.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/eslint-scope_9.1.2_1772836369771_0.7576311826726863"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:e018eed7-b35c-4e95-a0eb-7da5ae42c19c"
+  }
+ },
+ "_npmVersion": "11.11.0",
+ "bugs": {
+  "url": "https://github.com/eslint/js/issues"
+ },
+ "dependencies": {
+  "@types/esrecurse": "^4.3.1",
+  "@types/estree": "^1.0.8",
+  "esrecurse": "^4.3.0",
+  "estraverse": "^5.2.0"
+ },
+ "description": "ECMAScript scope analyzer for ESLint",
+ "devDependencies": {
+  "@typescript-eslint/parser": "^8.7.0",
+  "chai": "^6.0.0",
+  "eslint": ">=10.0.0-rc.0 <10.0.0 || ^10.0.0",
+  "eslint-visitor-keys": "^5.0.1",
+  "espree": "^11.2.0",
+  "npm-license": "^0.3.3",
+  "shelljs": "^0.8.5"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/eslint-scope@9.1.2"
+  },
+  "fileCount": 15,
+  "integrity": "sha512-xS90H51cKw0jltxmvmHy2Iai1LIqrfbw57b79w/J7MfvDfkIkFZ+kj6zC3BjtUwh150HsSSdxXZcsuv72miDFQ==",
+  "shasum": "b9de6ace2fab1cff24d2e58d85b74c8fcea39802",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCICOUTAHWKrJRy9z6nyVknCxHRS6JVlnHOJVsW0/xRz0kAiEAnAisrMOkXRirdFwEnJMm5mUyDnOaKe1bdjIdqqvGidg="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/eslint-scope/-/eslint-scope-9.1.2.tgz",
+  "unpackedSize": 173495
+ },
+ "engines": {
+  "node": "^20.19.0 || ^22.13.0 || >=24"
+ },
+ "exports": {
+  ".": {
+   "import": {
+    "default": "./lib/index.js",
+    "types": "./lib/index.d.ts"
+   },
+   "require": {
+    "default": "./dist/eslint-scope.cjs",
+    "types": "./lib/index.d.cts"
+   }
+  },
+  "./package.json": "./package.json"
+ },
+ "funding": "https://opencollective.com/eslint",
+ "gitHead": "a73b94be20835cd52379a43629fa2225e3f18763",
+ "homepage": "https://github.com/eslint/js/blob/main/packages/eslint-scope/README.md",
+ "keywords": [
+  "eslint"
+ ],
+ "license": "BSD-2-Clause",
+ "main": "./dist/eslint-scope.cjs",
+ "maintainers": [
+  {
+   "email": "npm@openjsf.org",
+   "name": "openjsfoundation"
+  },
+  {
+   "email": "contact@eslint.org",
+   "name": "eslintbot"
+  }
+ ],
+ "name": "eslint-scope",
+ "repository": {
+  "directory": "packages/eslint-scope",
+  "type": "git",
+  "url": "git+https://github.com/eslint/js.git"
+ },
+ "scripts": {
+  "build": "rollup -c",
+  "lint:types": "attw --pack",
+  "pretest": "npm run build",
+  "test": "node Makefile.js test && npm run test:types",
+  "test:types": "tsc -p tsconfig.json && tsc -p tests/types/tsconfig.json"
+ },
+ "type": "module",
+ "types": "./lib/index.d.cts",
+ "version": "9.1.2"
+}

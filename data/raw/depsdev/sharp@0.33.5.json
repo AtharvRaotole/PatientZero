@@ -1,0 +1,497 @@
+{
+ "edges": [
+  {
+   "fromNode": 0,
+   "requirement": "0.33.5",
+   "toNode": 2
+  },
+  {
+   "fromNode": 0,
+   "requirement": "0.33.5",
+   "toNode": 3
+  },
+  {
+   "fromNode": 0,
+   "requirement": "1.0.4",
+   "toNode": 4
+  },
+  {
+   "fromNode": 0,
+   "requirement": "1.0.4",
+   "toNode": 5
+  },
+  {
+   "fromNode": 0,
+   "requirement": "1.0.5",
+   "toNode": 6
+  },
+  {
+   "fromNode": 0,
+   "requirement": "1.0.4",
+   "toNode": 7
+  },
+  {
+   "fromNode": 0,
+   "requirement": "1.0.4",
+   "toNode": 8
+  },
+  {
+   "fromNode": 0,
+   "requirement": "1.0.4",
+   "toNode": 9
+  },
+  {
+   "fromNode": 0,
+   "requirement": "1.0.4",
+   "toNode": 10
+  },
+  {
+   "fromNode": 0,
+   "requirement": "1.0.4",
+   "toNode": 11
+  },
+  {
+   "fromNode": 0,
+   "requirement": "0.33.5",
+   "toNode": 12
+  },
+  {
+   "fromNode": 0,
+   "requirement": "0.33.5",
+   "toNode": 13
+  },
+  {
+   "fromNode": 0,
+   "requirement": "0.33.5",
+   "toNode": 14
+  },
+  {
+   "fromNode": 0,
+   "requirement": "0.33.5",
+   "toNode": 15
+  },
+  {
+   "fromNode": 0,
+   "requirement": "0.33.5",
+   "toNode": 16
+  },
+  {
+   "fromNode": 0,
+   "requirement": "0.33.5",
+   "toNode": 17
+  },
+  {
+   "fromNode": 0,
+   "requirement": "0.33.5",
+   "toNode": 18
+  },
+  {
+   "fromNode": 0,
+   "requirement": "0.33.5",
+   "toNode": 19
+  },
+  {
+   "fromNode": 0,
+   "requirement": "0.33.5",
+   "toNode": 20
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^4.2.3",
+   "toNode": 21
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^2.0.3",
+   "toNode": 25
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^7.6.3",
+   "toNode": 27
+  },
+  {
+   "fromNode": 1,
+   "requirement": "^2.4.0",
+   "toNode": 29
+  },
+  {
+   "fromNode": 2,
+   "requirement": "1.0.4",
+   "toNode": 4
+  },
+  {
+   "fromNode": 3,
+   "requirement": "1.0.4",
+   "toNode": 5
+  },
+  {
+   "fromNode": 12,
+   "requirement": "1.0.5",
+   "toNode": 6
+  },
+  {
+   "fromNode": 13,
+   "requirement": "1.0.4",
+   "toNode": 7
+  },
+  {
+   "fromNode": 14,
+   "requirement": "1.0.4",
+   "toNode": 8
+  },
+  {
+   "fromNode": 15,
+   "requirement": "1.0.4",
+   "toNode": 9
+  },
+  {
+   "fromNode": 16,
+   "requirement": "1.0.4",
+   "toNode": 10
+  },
+  {
+   "fromNode": 17,
+   "requirement": "1.0.4",
+   "toNode": 11
+  },
+  {
+   "fromNode": 18,
+   "requirement": "^1.2.0",
+   "toNode": 1
+  },
+  {
+   "fromNode": 21,
+   "requirement": "^2.0.1",
+   "toNode": 22
+  },
+  {
+   "fromNode": 21,
+   "requirement": "^1.9.0",
+   "toNode": 24
+  },
+  {
+   "fromNode": 22,
+   "requirement": "~1.1.4",
+   "toNode": 23
+  },
+  {
+   "fromNode": 24,
+   "requirement": "^1.0.0",
+   "toNode": 23
+  },
+  {
+   "fromNode": 24,
+   "requirement": "^0.2.2",
+   "toNode": 28
+  },
+  {
+   "fromNode": 28,
+   "requirement": "^0.3.1",
+   "toNode": 26
+  }
+ ],
+ "error": "",
+ "nodes": [
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "SELF",
+   "versionKey": {
+    "name": "sharp",
+    "system": "NPM",
+    "version": "0.33.5"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "@emnapi/runtime",
+    "system": "NPM",
+    "version": "1.11.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "@img/sharp-darwin-arm64",
+    "system": "NPM",
+    "version": "0.33.5"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "@img/sharp-darwin-x64",
+    "system": "NPM",
+    "version": "0.33.5"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "@img/sharp-libvips-darwin-arm64",
+    "system": "NPM",
+    "version": "1.0.4"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "@img/sharp-libvips-darwin-x64",
+    "system": "NPM",
+    "version": "1.0.4"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "@img/sharp-libvips-linux-arm",
+    "system": "NPM",
+    "version": "1.0.5"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "@img/sharp-libvips-linux-arm64",
+    "system": "NPM",
+    "version": "1.0.4"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "@img/sharp-libvips-linux-s390x",
+    "system": "NPM",
+    "version": "1.0.4"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "@img/sharp-libvips-linux-x64",
+    "system": "NPM",
+    "version": "1.0.4"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "@img/sharp-libvips-linuxmusl-arm64",
+    "system": "NPM",
+    "version": "1.0.4"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "@img/sharp-libvips-linuxmusl-x64",
+    "system": "NPM",
+    "version": "1.0.4"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "@img/sharp-linux-arm",
+    "system": "NPM",
+    "version": "0.33.5"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "@img/sharp-linux-arm64",
+    "system": "NPM",
+    "version": "0.33.5"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "@img/sharp-linux-s390x",
+    "system": "NPM",
+    "version": "0.33.5"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "@img/sharp-linux-x64",
+    "system": "NPM",
+    "version": "0.33.5"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "@img/sharp-linuxmusl-arm64",
+    "system": "NPM",
+    "version": "0.33.5"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "@img/sharp-linuxmusl-x64",
+    "system": "NPM",
+    "version": "0.33.5"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "@img/sharp-wasm32",
+    "system": "NPM",
+    "version": "0.33.5"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "@img/sharp-win32-ia32",
+    "system": "NPM",
+    "version": "0.33.5"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "@img/sharp-win32-x64",
+    "system": "NPM",
+    "version": "0.33.5"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "color",
+    "system": "NPM",
+    "version": "4.2.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "color-convert",
+    "system": "NPM",
+    "version": "2.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "color-name",
+    "system": "NPM",
+    "version": "1.1.4"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "color-string",
+    "system": "NPM",
+    "version": "1.9.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "detect-libc",
+    "system": "NPM",
+    "version": "2.1.2"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "is-arrayish",
+    "system": "NPM",
+    "version": "0.3.4"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "semver",
+    "system": "NPM",
+    "version": "7.8.5"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "simple-swizzle",
+    "system": "NPM",
+    "version": "0.2.4"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "tslib",
+    "system": "NPM",
+    "version": "2.8.1"
+   }
+  }
+ ]
+}

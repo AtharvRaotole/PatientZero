@@ -1,0 +1,83 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@babel/plugin-syntax-private-property-in-object@7.14.5",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/plugin-syntax-private-property-in-object_7.14.5_1623280313003_0.7659614816942493"
+ },
+ "_npmUser": {
+  "email": "nicolo.ribaudo@gmail.com",
+  "name": "nicolo-ribaudo"
+ },
+ "author": "The Babel Team (https://babel.dev/team)",
+ "dependencies": {
+  "@babel/helper-plugin-utils": "^7.14.5"
+ },
+ "description": "Allow parsing of '#foo in obj' brand checks",
+ "directories": {},
+ "dist": {
+  "fileCount": 4,
+  "integrity": "sha512-0wVnp9dxJ72ZUJDV27ZfbSj6iHLoytYZmh3rFcxNnvsJF3ktkzLDZPy/mA17HGsaQT3/DQsWYX1f1QGWkCoVUg==",
+  "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.13\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJgwUq5CRA9TVsSAnZWagAAM1MP/3NEfJOgmfeIe/RtBg7V\nsvPhVOiiRyjF/OZvgmROL9cTP4ctIa9ZkKz81kbWlxIcVyZ5jXxC2Yw3s+pH\nY6vTBN81e5MkUuU85+DCaJonwQNgKAqxyzcnIIkrbR1q1dWGnqcky0GGqb1N\nGgloIqBnHoKG7FSCuF2VLg5s3lOpI6rIz0uHozaJLPaex1Bb90vpLd+P9Gke\nfKoSG8ObMobGmehJlk7cqQHegM9PSLSFnMICghvnVfHLs0gL1qIoG8sCT/3i\nbtk+ODJrXMFlsSgj5UoAYFLyJ1JWwXyFIcHksTie/w1revxZaQnCXQ5CIkpt\n9+SujWztCmrB0zLqGebziqYtZw0Uxo9tA6h3sOnmMMMOhYtz6BMp5ngWxb+S\ncL/SMYZiZLqrWw24gcQ3brwkwCSol9AYUnmN35HyU2YqYK8fkCmk1h0XCFw+\nnU7CLOjohOWv9Th3yk0ZWLzbLAgjks15Yu969KSF+dMn9lXT5vZdnoqvh35M\nN14SMyZGE1eGhhjFjQWDbNoFZC+pqLlCzBMlB1BA2J3ZhkXoqFKMGUY2db2Z\nLlXZbcze2CdzzgFRZzWeyeOSWc2Vio2ZR3MlNOVZXtg3j0PYbyEdXcKODxvA\n55Dm4y4PiXGsWlAXTVNy6qZtPFetu1J6FIHwaUT8Uuv5P9/A1ocfYItBrR1e\nv4Sr\r\n=oZwU\r\n-----END PGP SIGNATURE-----\r\n",
+  "shasum": "0dc6671ec0ea22b6e94a1114f857970cd39de1ad",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEYCIQCWCAloKlxo/Q3s6ue9f70a+MjJ+TzmiNu1jYzgKnb6nwIhAKElrPpZQZN982BUjBFNofV3hevBzPW6zIv3LO80ANtx"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@babel/plugin-syntax-private-property-in-object/-/plugin-syntax-private-property-in-object-7.14.5.tgz",
+  "unpackedSize": 2823
+ },
+ "engines": {
+  "node": ">=6.9.0"
+ },
+ "exports": {
+  ".": "./lib/index.js"
+ },
+ "homepage": "https://babel.dev/docs/en/next/babel-plugin-syntax-private-property-in-object",
+ "keywords": [
+  "babel-plugin"
+ ],
+ "license": "MIT",
+ "main": "./lib/index.js",
+ "maintainers": [
+  {
+   "email": "hi@henryzoo.com",
+   "name": "hzoo"
+  },
+  {
+   "email": "loganfsmyth@gmail.com",
+   "name": "loganfsmyth"
+  },
+  {
+   "email": "npm@tschinder.de",
+   "name": "danez"
+  },
+  {
+   "email": "bng412@gmail.com",
+   "name": "existentialism"
+  },
+  {
+   "email": "nicolo.ribaudo@gmail.com",
+   "name": "nicolo-ribaudo"
+  },
+  {
+   "email": "i@jhuang.me",
+   "name": "jlhwung"
+  }
+ ],
+ "name": "@babel/plugin-syntax-private-property-in-object",
+ "peerDependencies": {
+  "@babel/core": "^7.0.0-0"
+ },
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "directory": "packages/babel-plugin-syntax-private-property-in-object",
+  "type": "git",
+  "url": "https://github.com/babel/babel.git"
+ },
+ "version": "7.14.5"
+}

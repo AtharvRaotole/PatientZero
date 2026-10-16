@@ -1,0 +1,82 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@webassemblyjs/wasm-parser@1.14.1",
+ "_nodeVersion": "21.7.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/wasm-parser_1.14.1_1730930018330_0.9752271580288046"
+ },
+ "_npmUser": {
+  "email": "npm@sauleau.com",
+  "name": "xtuc"
+ },
+ "_npmVersion": "lerna/5.1.6/node@v21.7.1+x64 (linux)",
+ "author": {
+  "name": "Sven Sauleau"
+ },
+ "bugs": {
+  "url": "https://github.com/xtuc/webassemblyjs/issues"
+ },
+ "dependencies": {
+  "@webassemblyjs/ast": "1.14.1",
+  "@webassemblyjs/helper-api-error": "1.13.2",
+  "@webassemblyjs/helper-wasm-bytecode": "1.13.2",
+  "@webassemblyjs/ieee754": "1.13.2",
+  "@webassemblyjs/leb128": "1.13.2",
+  "@webassemblyjs/utf8": "1.13.2"
+ },
+ "description": "WebAssembly binary format parser",
+ "devDependencies": {
+  "@webassemblyjs/helper-buffer": "1.14.1",
+  "@webassemblyjs/helper-test-framework": "1.14.1",
+  "@webassemblyjs/helper-wasm-bytecode": "1.13.2",
+  "@webassemblyjs/wasm-gen": "1.14.1",
+  "@webassemblyjs/wast-parser": "1.14.1",
+  "mamacro": "^0.0.7",
+  "wabt": "1.0.12"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 9,
+  "integrity": "sha512-JLBl+KZ0R5qB7mCnud/yyX08jWFw5MsoalJ1pQ4EdFlgj9VdXKGuENGsiCIjegI1W7p91rUlcB/LB5yRJKNTcQ==",
+  "shasum": "b3e13f1893605ca78b52c68e54cf6a865f90b9fb",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEQCIEqMGbgHH7gU9lWPTN1PIhggEkmylfj3MmLN0xkThKsVAiBW5y+A37fOJEEcE7B7GhwpvCy7k435uNAr0HQCZTQgiQ=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@webassemblyjs/wasm-parser/-/wasm-parser-1.14.1.tgz",
+  "unpackedSize": 137455
+ },
+ "gitHead": "25d52b1296e151ac56244a7c3886661e6b4a69ea",
+ "homepage": "https://github.com/xtuc/webassemblyjs#readme",
+ "keywords": [
+  "webassembly",
+  "javascript",
+  "ast",
+  "parser",
+  "wasm"
+ ],
+ "license": "MIT",
+ "main": "lib/index.js",
+ "maintainers": [
+  {
+   "email": "npm@sauleau.com",
+   "name": "xtuc"
+  }
+ ],
+ "module": "esm/index.js",
+ "name": "@webassemblyjs/wasm-parser",
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/xtuc/webassemblyjs.git"
+ },
+ "scripts": {
+  "test": "mocha"
+ },
+ "version": "1.14.1"
+}

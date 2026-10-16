@@ -1,0 +1,110 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "listr2@11.2.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/listr2_11.2.0_1791804041678_0.6631583784588606"
+ },
+ "_npmUser": {
+  "approver": {
+   "email": "cenk@kilic.dev",
+   "name": "cenk1cenk2"
+  },
+  "email": "cenk@kilic.dev",
+  "name": "cenk1cenk2"
+ },
+ "author": {
+  "email": "cenk@kilic.dev",
+  "name": "Cenk Kilic",
+  "url": "https://cenk.kilic.dev"
+ },
+ "dependencies": {
+  "cli-truncate": "^6.1.1",
+  "log-update": "^8.0.0",
+  "wrap-ansi": "^10.0.2"
+ },
+ "description": "Terminal task list reborn! Create beautiful CLI interfaces via easy and logical to implement task lists that feel alive and interactive.",
+ "devDependencies": {
+  "@types/zen-observable": "^0.8.7",
+  "rxjs": "^7.8.2",
+  "zen-observable": "^0.10.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-+H/hEo9EA7tyLY0ZihpDg76jHWolc0nCjbjnXFguSm4Epk+WYtL1w1tYs1kjEo229NmhgLmUrncyn81K1vBoRw==",
+  "shasum": "637aad2bd88a778f8c8806fb0f4f469744e49823",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIDXSKjF3/HzwAeIkWPz1N7R1UmKDKHY9MkSsWF7GKWfbAiB850NOEihpdZKuJahhsBVP729u7ASabuPAQ+aWnoAJog=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/listr2/-/listr2-11.2.0.tgz",
+  "unpackedSize": 135477
+ },
+ "engines": {
+  "node": ">=22.13.0"
+ },
+ "exports": {
+  ".": {
+   "import": {
+    "default": "./dist/index.mjs",
+    "types": "./dist/index.d.mts"
+   },
+   "require": {
+    "default": "./dist/index.mjs",
+    "types": "./dist/index.d.mts"
+   }
+  },
+  "./package.json": "./package.json"
+ },
+ "keywords": [
+  "listr",
+  "listr2",
+  "cli",
+  "task",
+  "list",
+  "tasklist",
+  "terminal",
+  "term",
+  "console",
+  "ascii",
+  "unicode",
+  "loading",
+  "indicator",
+  "progress",
+  "busy",
+  "wait",
+  "idle"
+ ],
+ "license": "MIT",
+ "main": "./dist/index.mjs",
+ "maintainers": [
+  {
+   "email": "cenk@kilic.dev",
+   "name": "cenk1cenk2"
+  }
+ ],
+ "module": "./dist/index.mjs",
+ "name": "listr2",
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "type": "git",
+  "url": "https://github.com/listr2/listr2"
+ },
+ "scripts": {
+  "build": "tsdown",
+  "dev:start": "tsdown --watch",
+  "format": "prettier --log-level warn --write src/ tests/ && pnpm run lint --fix",
+  "lint": "eslint src/ tests/",
+  "test": "NODE_OPTIONS='--no-warnings --experimental-vm-modules' jest --config tests/jest.config.ts",
+  "test:cov": "pnpm run test --coverage",
+  "test:dev": "NODE_OPTIONS='--no-warnings --experimental-vm-modules --inspect=0.0.0.0:9229' pnpm run test --verbose --watchAll"
+ },
+ "type": "module",
+ "types": "./dist/index.d.mts",
+ "version": "11.2.0"
+}

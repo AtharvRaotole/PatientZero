@@ -1,0 +1,130 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "type-is@3.0.0",
+ "_nodeVersion": "26.9.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/type-is_3.0.0_1790033528159_0.676489204206449"
+ },
+ "_npmUser": {
+  "approver": {
+   "email": "hello@blakeembrey.com",
+   "name": "blakeembrey"
+  },
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:483eb0b6-62fa-4e1f-8724-f5da84019dad"
+  }
+ },
+ "_npmVersion": "11.19.1",
+ "bugs": {
+  "url": "https://github.com/jshttp/type-is/issues"
+ },
+ "contributors": [
+  {
+   "email": "doug@somethingdoug.com",
+   "name": "Douglas Christopher Wilson"
+  },
+  {
+   "email": "me@jongleberry.com",
+   "name": "Jonathan Ong",
+   "url": "http://jongleberry.com"
+  }
+ ],
+ "dependencies": {
+  "content-type": "^3.1.1"
+ },
+ "description": "Infer the content-type of a request.",
+ "devDependencies": {
+  "@borderless/ts-scripts": "^0.15.0",
+  "@types/node": "^22.13.10",
+  "@vitest/coverage-v8": "^5.0.1",
+  "typescript": "^7.0.2",
+  "vitest": "^5.0.1"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/type-is@3.0.0"
+  },
+  "fileCount": 6,
+  "integrity": "sha512-txjx+lbH40MgknWZzdizD8FjUukflN5xG/i8t6tggtJuHkEjHD1t6eYE4LwJRDImCbzU6FCg/IAsoyy/BoFIfw==",
+  "shasum": "65707510f628cc6bb37dae9e3c392fdde7926a72",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIHwaRruFHPC1syN2zTR0Qpvt7HX3O9W2PWs7xAUDp9VrAiB0pwc1bzT7l8lDJ8U8muiobVG6k2jGIzHcuPbK86bJBg=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/type-is/-/type-is-3.0.0.tgz",
+  "unpackedSize": 27670
+ },
+ "engines": {
+  "node": ">= 22"
+ },
+ "exports": "./dist/index.js",
+ "funding": {
+  "type": "opencollective",
+  "url": "https://opencollective.com/express"
+ },
+ "gitHead": "f61fd0318c775d8e4a9590143eb92487c23afe58",
+ "homepage": "https://github.com/jshttp/type-is#readme",
+ "keywords": [
+  "content",
+  "type",
+  "checking"
+ ],
+ "license": "MIT",
+ "main": "./dist/index.js",
+ "maintainers": [
+  {
+   "email": "ulisesgascondev@gmail.com",
+   "name": "ulisesgascon"
+  },
+  {
+   "email": "hello@blakeembrey.com",
+   "name": "blakeembrey"
+  },
+  {
+   "email": "wes@wesleytodd.com",
+   "name": "wesleytodd"
+  },
+  {
+   "email": "doug@somethingdoug.com",
+   "name": "dougwilson"
+  },
+  {
+   "email": "jonathanrichardong@gmail.com",
+   "name": "jongleberry"
+  }
+ ],
+ "name": "type-is",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/jshttp/type-is.git"
+ },
+ "scripts": {
+  "bench": "vitest bench",
+  "build": "ts-scripts build",
+  "format": "ts-scripts format",
+  "prepare": "ts-scripts install && npm run build",
+  "specs": "ts-scripts specs",
+  "test": "ts-scripts test"
+ },
+ "ts-scripts": {
+  "dist": [
+   "dist"
+  ],
+  "project": [
+   "tsconfig.build.json"
+  ]
+ },
+ "type": "module",
+ "typings": "./dist/index.d.ts",
+ "version": "3.0.0"
+}

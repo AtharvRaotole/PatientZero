@@ -1,0 +1,73 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "standard-as-callback@2.1.0",
+ "_nodeVersion": "12.18.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/standard-as-callback_2.1.0_1615706264293_0.8446599350961577"
+ },
+ "_npmUser": {
+  "email": "i@zihua.li",
+  "name": "luin"
+ },
+ "_npmVersion": "6.14.4",
+ "author": {
+  "email": "i@zihua.li",
+  "name": "luin"
+ },
+ "bugs": {
+  "url": "https://github.com/luin/asCallback/issues"
+ },
+ "description": "A performant and standard (Bluebird) library that registers a node-style callback on a promise",
+ "devDependencies": {
+  "mocha": "^8.3.2",
+  "promise-timeout": "^1.3.0",
+  "sinon": "^9.2.4",
+  "typescript": "^4.2.3"
+ },
+ "directories": {
+  "lib": "built"
+ },
+ "dist": {
+  "fileCount": 9,
+  "integrity": "sha512-qoRRSyROncaz1z0mvYqIE4lCd9p2R90i6GxW3uZv5ucSu8tU7B5HXUP1gG8pVZsYNVaXjk8ClXHPttLyxAL48A==",
+  "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.13\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJgTbiYCRA9TVsSAnZWagAAEjgP/jNdRepUsC7s7hZWMuM8\nhAepD8IVm0OYnMYxWbl1rIUflP2YK0Tp4JxzH6ln2bKVCNmIHhqo6sqnuvqQ\ngwU1xk0ir3FeNCOXgXLfJ9/Wf1vKx/7erscA86SrAcB0fqUeB8KWJI9gEUwY\npaa3y/DN5NUwGPxDjMkf62StX9jAOBOjPaoTHAOSUbR6UfCLyuCVhHHD9sxU\nO7xGNK1Uw9yrjY9pMQMNdcHj4S2lPTUQLdQiQSMMawWa1lAqj14Mb4/yfgmS\njg7JhKgtTU9p1U4TmYV+aaSpSORleWFKCpbTmvaLe/YuDsyTCgn/Jim2dBjB\nhUzpryewk+9vQnJ4FN1j+VuBQlqk44BP/qBk1/ris6VjEIwTwiP4CgAIYnqL\nAtDv79zDieS2mOMLE7h3Ad688FQtVOhK4EO1BFsg9Tupk3lJKRtwen66hnN6\nww9ml5x5YERE7z94stUxzBjNdkhiFAEbMCLQHKK5042JdRoNmey3HYGlbdFp\nAM9qSkEsMdYuxMy+lpiU6VNO/ohg2wHpBhJgU5ZLzSdHWrLd1LeYjjxaTRDm\nRp4gHHLHH6dtXwMQC/C4YWp50V9U/nKYdNB7uolULUlnnksUVmvhdRNQJDkB\nt3qDLQCjlXiLUQs01WMLzf+HkgN1PhySYb6Ti84pgKk5o/9vizeR11oyXwFt\nSt90\r\n=eFfc\r\n-----END PGP SIGNATURE-----\r\n",
+  "shasum": "8953fc05359868a77b5b9739a665c5977bb7df45",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIQD0m4nuF836qGHgy2E5tFuAe2jMP2xmjRrysUIvHUP27gIgISQTH2YQ5cQSFSs9ONJWSboqAXbbJRuXrxkZeOdFuA0="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/standard-as-callback/-/standard-as-callback-2.1.0.tgz",
+  "unpackedSize": 5303
+ },
+ "gitHead": "2a2b0f28dda928a3c8436d110bb4c3db46015f86",
+ "homepage": "https://github.com/luin/asCallback#readme",
+ "keywords": [
+  "ascallback",
+  "nodeify",
+  "promise",
+  "bluebird"
+ ],
+ "license": "MIT",
+ "main": "built/index.js",
+ "maintainers": [
+  {
+   "email": "i@zihua.li",
+   "name": "luin"
+  }
+ ],
+ "name": "standard-as-callback",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/luin/asCallback.git"
+ },
+ "scripts": {
+  "build": "rm -rf built && tsc",
+  "prepublishOnly": "npm test",
+  "test": "npm run build && mocha"
+ },
+ "types": "built/index.d.ts",
+ "version": "2.1.0"
+}

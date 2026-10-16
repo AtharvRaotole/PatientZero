@@ -1,0 +1,154 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@opentelemetry/core@2.12.0",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/core_2.12.0_1791293878362_0.008930311329044649"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "7c607cc5-6dc7-4144-9589-51c7945bba16"
+  }
+ },
+ "_npmVersion": "lerna/10.0.1/node@v24.21.0+x64 (linux)",
+ "author": {
+  "name": "OpenTelemetry Authors"
+ },
+ "browser": {
+  "./build/esm/platform/index.js": "./build/esm/platform/browser/index.js",
+  "./build/esnext/platform/index.js": "./build/esnext/platform/browser/index.js",
+  "./build/src/platform/index.js": "./build/src/platform/browser/index.js",
+  "./src/platform/index.ts": "./src/platform/browser/index.ts"
+ },
+ "bugs": {
+  "url": "https://github.com/open-telemetry/opentelemetry-js/issues"
+ },
+ "dependencies": {
+  "@opentelemetry/semantic-conventions": "^1.29.0"
+ },
+ "description": "OpenTelemetry Core provides constants and utilities shared by all OpenTelemetry SDK packages.",
+ "devDependencies": {
+  "@opentelemetry/api": ">=1.0.0 <1.10.0",
+  "@types/mocha": "10.0.10",
+  "@types/node": "18.19.130",
+  "@types/sinon": "17.0.4",
+  "@types/webpack-env": "1.18.8",
+  "babel-plugin-istanbul": "8.0.0",
+  "karma": "6.4.4",
+  "karma-chrome-launcher": "3.2.0",
+  "karma-coverage": "2.2.1",
+  "karma-mocha": "2.0.1",
+  "karma-spec-reporter": "0.0.36",
+  "karma-webpack": "5.0.1",
+  "mocha": "11.8.0",
+  "nyc": "17.1.0",
+  "sinon": "18.0.1",
+  "ts-loader": "9.5.7",
+  "typescript": "5.2.2",
+  "webpack": "5.108.4"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@opentelemetry%2fcore@2.12.0"
+  },
+  "fileCount": 327,
+  "integrity": "sha512-1HsSAuvT4/my0QrXWsyXFdWjKaPeCHsismKZgEEIb8NK13LP6DrMRlsUbvD/0F9mDWK3xDom9AMv3IscxgOnOQ==",
+  "shasum": "b44e9806111f066a2df578e37fc88ef46ccdfe20",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQDeAhv0e5vXCbvoxYJ3JSO7D0ktuW427K92G0QmHy8G1QIhANEBHKBvfUSjlV4eLaUV/CfmJOZqppVySDvQ1H5C3s4T"
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQD+Bl5TUV2KbjZHh2wr2ITwqQkvh0PrHX1UpznCYWSsRQIhAKw3BvCYw8QY5ZQJ6TX0YnE4r+w/MlSjDXQXjIaIC4mj"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@opentelemetry/core/-/core-2.12.0.tgz",
+  "unpackedSize": 583971
+ },
+ "engines": {
+  "node": "^18.19.0 || >=20.6.0"
+ },
+ "esnext": "build/esnext/index.js",
+ "gitHead": "92b844e8aa7d9655e4b3560154e912c4c1ced64d",
+ "homepage": "https://github.com/open-telemetry/opentelemetry-js/tree/main/packages/opentelemetry-core",
+ "keywords": [
+  "opentelemetry",
+  "nodejs",
+  "browser",
+  "tracing",
+  "profiling",
+  "metrics",
+  "stats"
+ ],
+ "license": "Apache-2.0",
+ "main": "build/src/index.js",
+ "maintainers": [
+  {
+   "email": "dyladan@gmail.com",
+   "name": "dyladan"
+  },
+  {
+   "email": "marc.pichler@dynatrace.com",
+   "name": "pichlermarc"
+  },
+  {
+   "email": "overbalancedev@proton.me",
+   "name": "overbalance"
+  },
+  {
+   "email": "npmjs-account@opentelemetry.io",
+   "name": "npmjs-account"
+  },
+  {
+   "email": "trentm@gmail.com",
+   "name": "trentm"
+  },
+  {
+   "email": "martin@martinkuba.com",
+   "name": "martinkuba"
+  }
+ ],
+ "module": "build/esm/index.js",
+ "name": "@opentelemetry/core",
+ "peerDependencies": {
+  "@opentelemetry/api": ">=1.0.0 <1.10.0"
+ },
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/open-telemetry/opentelemetry-js.git"
+ },
+ "scripts": {
+  "align-api-deps": "node ../../scripts/align-api-deps.js",
+  "clean": "tsc --build --clean tsconfig.json tsconfig.esm.json tsconfig.esnext.json",
+  "compile": "tsc --build tsconfig.json tsconfig.esm.json tsconfig.esnext.json",
+  "lint": "eslint .",
+  "lint:fix": "eslint . --fix",
+  "peer-api-check": "node ../../scripts/peer-api-check.js",
+  "prepublishOnly": "npm run compile",
+  "prewatch": "npm run precompile",
+  "tdd": "npm run tdd:node",
+  "tdd:browser": "karma start",
+  "tdd:node": "npm run test -- --watch-extensions ts --watch",
+  "test": "nyc mocha 'test/**/*.test.ts' --exclude 'test/browser/**/*.ts'",
+  "test:bench": "node test/performance/benchmark/public-benchmarks.js | tee .benchmark-results.txt",
+  "test:browser": "karma start --single-run",
+  "version": "node ../../scripts/version-update.js",
+  "watch": "tsc --build --watch tsconfig.json tsconfig.esm.json tsconfig.esnext.json"
+ },
+ "sideEffects": false,
+ "types": "build/src/index.d.ts",
+ "version": "2.12.0"
+}

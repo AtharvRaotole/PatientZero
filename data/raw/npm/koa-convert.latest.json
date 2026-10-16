@@ -1,0 +1,112 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "koa-convert@2.0.0",
+ "_nodeVersion": "12.18.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/koa-convert_2.0.0_1599763421219_0.8541355303430036"
+ },
+ "_npmUser": {
+  "email": "niftylettuce@gmail.com",
+  "name": "niftylettuce"
+ },
+ "_npmVersion": "6.14.4",
+ "author": {
+  "email": "eilian.yunsong@gmail.com",
+  "name": "gyson"
+ },
+ "bugs": {
+  "url": "https://github.com/gyson/koa-convert/issues"
+ },
+ "contributors": [
+  {
+   "email": "eilian.yunsong@gmail.com",
+   "name": "gyson"
+  },
+  {
+   "email": "75pound@gmail.com",
+   "name": "Lloyd Brookes"
+  },
+  {
+   "email": "imed-jaberi@outlook.com",
+   "name": "Imed Jaberi",
+   "url": "https://www.3imed-jaberi.com"
+  }
+ ],
+ "dependencies": {
+  "co": "^4.6.0",
+  "koa-compose": "^4.1.0"
+ },
+ "description": "convert modern Koa legacy generator-based middleware to promise-based middleware",
+ "devDependencies": {
+  "koa": "^2.13.0",
+  "koa-v1": "npm:koa@1.7.0",
+  "mocha": "^7.1.1",
+  "nyc": "^15.1.0",
+  "rimraf": "^3.0.2",
+  "standard": "^14.3.4",
+  "supertest": "^4.0.2"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 4,
+  "integrity": "sha512-asOvN6bFlSnxewce2e/DK3p4tltyfC4VM7ZwuTuepI7dEQVcvpyFuBcEARu1+Hxg8DIwytce2n7jrZtRlPrARA==",
+  "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.4\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJfWnPdCRA9TVsSAnZWagAAyB4P/AoeRv7OiaaYKi7g6Md9\nFnc2W0HvAd7rLBpGLB27WjP7DuQGjCz0RtMBGQRksoZYLt8mop81/Xgmpton\nRWolyctA0+aXXmvC48ZBI1q52k8W2g5C13tjL/x66YScRkmROW+FHbPeIJfC\nw8vZZ6BxxKDgBlA7YjPvvhRxwcrAc0/648sfyHB5BPh2WfsOZzue53WQxFwd\nPYXVxJMRwsAH3FWAY52GIcrhTTM1jj103iWPWHVW4wTXrS4Se0FMIXs4M+d3\nEUBwwv4YGl7aCLH9PiaZWBcGE0ERODmCXiKbwIgqONJDPiNsRbb1V8TGATDG\nZo9/8xf1Sd0oaGfge4j1JptuIq04ipXCwLWAmCdbKr5yHc5Mg5Z6gNi/NSG1\nrJRNV2eme19h6uGOg3wQMBFUWAfHiUGibLAsstSiZl8Z+4E7EULMcD3MSpcO\nIZ2ZLhq3UYSPhheZ6IINXzdGfBN3egIE9hKz8XfHHUFUDPwSp8h1w3vs6fOA\neo9qKW/8Xr/w3Z2JZn6Trj7dvTdmdZ3dRROpnsjVgpZmksr6sOz0CZKdLpvr\nbr4ufi/F5gbNVMCYh1fjrP7lclMAw8ALbxcsAESfMqRvedirbhgEFCFGZMhk\nk2sLIva8MSNC0L73LXx9Nm/RpWs7xIcZ1bLYlYMHUj5iuKNPOsoiB4PBeXaW\nbFfg\r\n=0Mx0\r\n-----END PGP SIGNATURE-----\r\n",
+  "shasum": "86a0c44d81d40551bae22fee6709904573eea4f5",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIQDR+F0SN87IIyRln/IRSNOrxj7pF7Fp8Iy4RvIzeWhDkwIgPRt19kk09J/xi/mgNchmXe7tT1UCnJ3H75VR/4iOgpc="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/koa-convert/-/koa-convert-2.0.0.tgz",
+  "unpackedSize": 9262
+ },
+ "engines": {
+  "node": ">= 10"
+ },
+ "gitHead": "bb06e77c8cf45d9afcbe5019c7fa9104631d5207",
+ "homepage": "https://github.com/gyson/koa-convert#readme",
+ "keywords": [
+  "koa",
+  "middleware",
+  "convert",
+  "back",
+  "generator",
+  "promise",
+  "generator-based-middleware",
+  "promise-based-middleware",
+  "support"
+ ],
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "eilian.yunsong@gmail.com",
+   "name": "gyson"
+  },
+  {
+   "email": "niftylettuce@gmail.com",
+   "name": "niftylettuce"
+  }
+ ],
+ "name": "koa-convert",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/gyson/koa-convert.git"
+ },
+ "scripts": {
+  "ci": "npm run coverage",
+  "coverage": "nyc npm run test",
+  "lint": "standard",
+  "precoverage": "rimraf .nyc_output coverage",
+  "pretest": "npm run lint",
+  "test": "mocha index.spec.js --exit"
+ },
+ "standard": {
+  "ignore": [
+   "index.spec.js"
+  ]
+ },
+ "version": "2.0.0"
+}

@@ -1,0 +1,93 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "bare-url@2.5.5",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/bare-url_2.5.5_1791817761729_0.935329821102572"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "6baa2f2a-919b-4a9e-b5b9-48ad9c05e115"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "addon": true,
+ "author": {
+  "name": "Holepunch"
+ },
+ "bugs": {
+  "url": "https://github.com/holepunchto/bare-url/issues"
+ },
+ "dependencies": {
+  "bare-path": "^3.0.0"
+ },
+ "description": "WHATWG URL implementation for JavaScript",
+ "devDependencies": {
+  "brittle": "^3.3.2",
+  "cmake-bare": "^1.8.1",
+  "cmake-fetch": "^1.0.0",
+  "lunte": "^1.6.0",
+  "prettier": "^3.3.3",
+  "prettier-config-holepunch": "^2.0.0"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/bare-url@2.5.5"
+  },
+  "fileCount": 27,
+  "integrity": "sha512-iM9qJCruvpt2rPaLsrumVDru9pogI7PHziHIa9kTNRFt8C8HuSa+kI9kFezK+NvHEFnnz71rKGZ1EAilq/3V/Q==",
+  "shasum": "2e8c18db11393aa6cae6ff246fdcda34615aacd3",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIDfwNgEyjqKPQTOrLLVttj5+OH8tkOjwus19OvGqzNIVAiAYpflmAmCc5TIY03r7s/AyFzsppnRQSzFoVN1JU8WfZg=="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIAgU0Ney+RfdHHFipxsDRHLNSJ9t5nYjFzvaW4MUCeqjAiEA3x+QYQemPD9uTMDO7r+9D51AbfysL1lzNtgWtVxgCQc="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/bare-url/-/bare-url-2.5.5.tgz",
+  "unpackedSize": 3730192
+ },
+ "exports": {
+  ".": {
+   "default": "./index.js",
+   "types": "./index.d.ts"
+  },
+  "./global": {
+   "default": "./global.js",
+   "types": "./global.d.ts"
+  },
+  "./package": "./package.json"
+ },
+ "gitHead": "a2399105bc37f38f9290cc5f673ca11c06e50be2",
+ "homepage": "https://github.com/holepunchto/bare-url",
+ "license": "Apache-2.0",
+ "maintainers": [
+  {
+   "email": "mathiasbuus@gmail.com",
+   "name": "mafintosh"
+  }
+ ],
+ "name": "bare-url",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/holepunchto/bare-url.git"
+ },
+ "scripts": {
+  "format": "prettier --write . && lunte --fix",
+  "lint": "prettier --check . && lunte",
+  "test": "brittle-bare --coverage test.js"
+ },
+ "types": "./index.d.ts",
+ "version": "2.5.5"
+}

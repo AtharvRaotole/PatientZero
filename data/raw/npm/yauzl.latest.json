@@ -1,0 +1,75 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "yauzl@3.4.0",
+ "_nodeVersion": "22.22.2",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/yauzl_3.4.0_1780837048193_0.7676204079620956"
+ },
+ "_npmUser": {
+  "email": "thejoshwolfe@gmail.com",
+  "name": "thejoshwolfe"
+ },
+ "_npmVersion": "10.9.7",
+ "author": {
+  "email": "thejoshwolfe@gmail.com",
+  "name": "Josh Wolfe"
+ },
+ "bugs": {
+  "url": "https://github.com/thejoshwolfe/yauzl/issues"
+ },
+ "dependencies": {
+  "pend": "~1.2.0"
+ },
+ "description": "yet another unzip library for node",
+ "devDependencies": {
+  "bl": "^6.0.11"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 6,
+  "integrity": "sha512-jIH9yLR9wqr0wOS0TpBvo/g/2UgZH5qePVbjgRliiF0BYvOZyaBknKsF+x9Iht0O6sqgnB93rCICdOZFecJuDw==",
+  "shasum": "88b2a21455f37ca7dccf2eeb33bacb4392322719",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIAryCA/YldNOUaI+uMPErdGkEtaa0WT8/jNaEdG/79Y0AiAsqjFoWFD/xiEZcaSUb8EwPqTtEYwi7NMaqbtdVMiI/Q=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/yauzl/-/yauzl-3.4.0.tgz",
+  "unpackedSize": 109901
+ },
+ "engines": {
+  "node": ">=12"
+ },
+ "gitHead": "f5798e15204ffbb9a428b00217e4659684a41b0f",
+ "homepage": "https://github.com/thejoshwolfe/yauzl",
+ "keywords": [
+  "unzip",
+  "zip",
+  "stream",
+  "archive",
+  "file"
+ ],
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "andrew@ziglang.org",
+   "name": "superjoe"
+  },
+  {
+   "email": "thejoshwolfe@gmail.com",
+   "name": "thejoshwolfe"
+  }
+ ],
+ "name": "yauzl",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/thejoshwolfe/yauzl.git"
+ },
+ "scripts": {
+  "test": "node test/test.js"
+ },
+ "version": "3.4.0"
+}

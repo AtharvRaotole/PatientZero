@@ -1,0 +1,75 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@types/express@5.0.6",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/express_5.0.6_1764621351309_0.39245408346585364"
+ },
+ "_npmUser": {
+  "email": "ts-npm-types@microsoft.com",
+  "name": "types"
+ },
+ "contributors": [
+  {
+   "githubUsername": "borisyankov",
+   "name": "Boris Yankov",
+   "url": "https://github.com/borisyankov"
+  },
+  {
+   "githubUsername": "puneetar",
+   "name": "Puneet Arora",
+   "url": "https://github.com/puneetar"
+  },
+  {
+   "githubUsername": "dfrankland",
+   "name": "Dylan Frankland",
+   "url": "https://github.com/dfrankland"
+  },
+  {
+   "githubUsername": "bjohansebas",
+   "name": "Sebastian Beltran",
+   "url": "https://github.com/bjohansebas"
+  }
+ ],
+ "dependencies": {
+  "@types/body-parser": "*",
+  "@types/express-serve-static-core": "^5.0.0",
+  "@types/serve-static": "^2"
+ },
+ "description": "TypeScript definitions for express",
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-sKYVuV7Sv9fbPIt/442koC7+IIwK5olP1KWeD88e/idgoJqDm3JV/YUiPwkoKK92ylff2MGxSz1CSjsXelx0YA==",
+  "shasum": "2d724b2c990dcb8c8444063f3580a903f6d500cc",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDm1AMsQNzbpWGocN6VjjMu2pSr2QB3HkZHmLzr3K8qYAIgd9Y+k5HxoaSSFb3oz6dqnw3YBAAceyMCA4Hn4oamxgs="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@types/express/-/express-5.0.6.tgz",
+  "unpackedSize": 7576
+ },
+ "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/express",
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "ts-npm-types@microsoft.com",
+   "name": "types"
+  }
+ ],
+ "name": "@types/express",
+ "peerDependencies": {},
+ "repository": {
+  "directory": "types/express",
+  "type": "git",
+  "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+ },
+ "scripts": {},
+ "typeScriptVersion": "5.2",
+ "types": "index.d.ts",
+ "typesPublisherContentHash": "d4b85097ff826bcd411f53fe4b61bcdfa304d54cc0efb8e64b184f65d149d2f8",
+ "version": "5.0.6"
+}

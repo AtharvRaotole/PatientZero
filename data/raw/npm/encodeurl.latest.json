@@ -1,0 +1,81 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "encodeurl@2.0.0",
+ "_nodeVersion": "21.0.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/encodeurl_2.0.0_1711670621995_0.1569270866269692"
+ },
+ "_npmUser": {
+  "email": "hello@blakeembrey.com",
+  "name": "blakeembrey"
+ },
+ "_npmVersion": "10.2.0",
+ "bugs": {
+  "url": "https://github.com/pillarjs/encodeurl/issues"
+ },
+ "contributors": [
+  {
+   "email": "doug@somethingdoug.com",
+   "name": "Douglas Christopher Wilson"
+  }
+ ],
+ "description": "Encode a URL to a percent-encoded form, excluding already-encoded sequences",
+ "devDependencies": {
+  "eslint": "5.11.1",
+  "eslint-config-standard": "12.0.0",
+  "eslint-plugin-import": "2.14.0",
+  "eslint-plugin-node": "7.0.1",
+  "eslint-plugin-promise": "4.0.1",
+  "eslint-plugin-standard": "4.0.0",
+  "istanbul": "0.4.5",
+  "mocha": "2.5.3"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 4,
+  "integrity": "sha512-Q0n9HRi4m6JuGIV1eFlmvJB7ZEVxu93IrMyiMsGC0lrMJMWzRgx6WGquyfQgZVb31vhGgXnfmPNNXmxnOkRBrg==",
+  "shasum": "7b8ea898077d7e409d3ac45474ea38eaf0857a58",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIBOFos/fjObZakhslwkYNCRgy3lxta+k4AJdNDf+lDfaAiEArFwkiXZR7H08jnrMnVmch2fkcCs8hSToYkixEEgpsVA="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/encodeurl/-/encodeurl-2.0.0.tgz",
+  "unpackedSize": 6980
+ },
+ "engines": {
+  "node": ">= 0.8"
+ },
+ "gitHead": "5f2205efe622fc7972c4e45ed7cbe7f8d652c299",
+ "homepage": "https://github.com/pillarjs/encodeurl#readme",
+ "keywords": [
+  "encode",
+  "encodeurl",
+  "url"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "hello@blakeembrey.com",
+   "name": "blakeembrey"
+  },
+  {
+   "email": "doug@somethingdoug.com",
+   "name": "dougwilson"
+  }
+ ],
+ "name": "encodeurl",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/pillarjs/encodeurl.git"
+ },
+ "scripts": {
+  "lint": "eslint .",
+  "test": "mocha --reporter spec --bail --check-leaks test/",
+  "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --reporter dot --check-leaks test/",
+  "test-travis": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --reporter spec --check-leaks test/"
+ },
+ "version": "2.0.0"
+}

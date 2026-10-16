@@ -1,0 +1,55 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@types/yargs-parser@21.0.3",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/yargs-parser_21.0.3_1699393024900_0.013638488282131656"
+ },
+ "_npmUser": {
+  "email": "ts-npm-types@microsoft.com",
+  "name": "types"
+ },
+ "contributors": [
+  {
+   "githubUsername": "milesj",
+   "name": "Miles Johnson",
+   "url": "https://github.com/milesj"
+  }
+ ],
+ "dependencies": {},
+ "description": "TypeScript definitions for yargs-parser",
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-I4q9QU9MQv4oEOz4tAHJtNz1cwuLxn2F3xcc2iV5WdqLPpUnj30aUuxt1mAxYTG+oe8CZMV/+6rU4S4gRDzqtQ==",
+  "shasum": "815e30b786d2e8f0dcd85fd5bcf5e1a04d008f15",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIQDmt4zZGqX+f9EUHxytww9Ey57AOMYIDVE27BgxYlsBEwIgHPjJJE3+b3+ZOErWjlgqRiva15H98YsG3cYhn+SaxGc="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@types/yargs-parser/-/yargs-parser-21.0.3.tgz",
+  "unpackedSize": 8649
+ },
+ "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/yargs-parser",
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "ts-npm-types@microsoft.com",
+   "name": "types"
+  }
+ ],
+ "name": "@types/yargs-parser",
+ "repository": {
+  "directory": "types/yargs-parser",
+  "type": "git",
+  "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+ },
+ "scripts": {},
+ "typeScriptVersion": "4.5",
+ "types": "index.d.ts",
+ "typesPublisherContentHash": "c8ba48d493937115b81658ba71ff9ae3452d2f1b86a9fea357703f8745fa34d7",
+ "version": "21.0.3"
+}

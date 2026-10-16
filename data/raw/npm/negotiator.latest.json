@@ -1,0 +1,115 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "negotiator@1.1.0",
+ "_nodeVersion": "24.19.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/negotiator_1.1.0_1787244305147_0.4692876768726657"
+ },
+ "_npmUser": {
+  "email": "hello@blakeembrey.com",
+  "name": "blakeembrey"
+ },
+ "_npmVersion": "11.17.0",
+ "bugs": {
+  "url": "https://github.com/jshttp/negotiator/issues"
+ },
+ "contributors": [
+  {
+   "email": "doug@somethingdoug.com",
+   "name": "Douglas Christopher Wilson"
+  },
+  {
+   "email": "federico.romero@outboxlabs.com",
+   "name": "Federico Romero"
+  },
+  {
+   "email": "i@izs.me",
+   "name": "Isaac Z. Schlueter",
+   "url": "http://blog.izs.me/"
+  }
+ ],
+ "dependencies": {
+  "content-type": "^2.1.0"
+ },
+ "description": "HTTP content negotiation",
+ "devDependencies": {
+  "eslint": "7.32.0",
+  "eslint-plugin-markdown": "2.2.1",
+  "mocha": "^11.7.0",
+  "nyc": "^17.1.0",
+  "vitest": "3.2.4"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 9,
+  "integrity": "sha512-NMPBRMJgiQHjbd8phG3Vebdx4kZ1H121rbl5IkMqeOsahptB9BKo/d7oJ3zTXqTgagn2bWlNSXkh0QUGM31RYg==",
+  "shasum": "16e003d0db4ac24fd9df168edf871625deeae3df",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDW6n2+Fx5TgLQzENiKKyAW1sEELBZtdL31eNU4hu+TTgIgVW1qMfBMwBb9O8MF2IhgeFFiQ78o74OL0PXGSKtSfXw="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQCPYOF3dLHt5gLvnfueQDk3oRsBF+Kcfb/bYCeC+arDUQIhALAO8nraWa1OlMl3W4IXKKvHRwOjIutWVoIqQBwfqq7I"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/negotiator/-/negotiator-1.1.0.tgz",
+  "unpackedSize": 24407
+ },
+ "engines": {
+  "node": ">=18"
+ },
+ "funding": {
+  "type": "opencollective",
+  "url": "https://opencollective.com/express"
+ },
+ "gitHead": "14b0a7b88e7e7bb1cae38681195951bff29ca2fd",
+ "homepage": "https://github.com/jshttp/negotiator#readme",
+ "keywords": [
+  "http",
+  "content negotiation",
+  "accept",
+  "accept-language",
+  "accept-encoding",
+  "accept-charset"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "ulisesgascondev@gmail.com",
+   "name": "ulisesgascon"
+  },
+  {
+   "email": "hello@blakeembrey.com",
+   "name": "blakeembrey"
+  },
+  {
+   "email": "wes@wesleytodd.com",
+   "name": "wesleytodd"
+  },
+  {
+   "email": "doug@somethingdoug.com",
+   "name": "dougwilson"
+  },
+  {
+   "email": "jonathanrichardong@gmail.com",
+   "name": "jongleberry"
+  }
+ ],
+ "name": "negotiator",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/jshttp/negotiator.git"
+ },
+ "scripts": {
+  "bench": "vitest bench",
+  "lint": "eslint .",
+  "test": "mocha --reporter spec --check-leaks test/",
+  "test-ci": "nyc --reporter=lcovonly --reporter=text npm test",
+  "test-cov": "nyc --reporter=html --reporter=text npm test",
+  "test:debug": "mocha --reporter spec --check-leaks --inspect --inspect-brk test/"
+ },
+ "version": "1.1.0"
+}

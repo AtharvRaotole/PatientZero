@@ -1,0 +1,110 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "mime-types@3.0.2",
+ "_nodeVersion": "22.10.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/mime-types_3.0.2_1763637149491_0.7813911579487047"
+ },
+ "_npmUser": {
+  "email": "ulisesgascondev@gmail.com",
+  "name": "ulisesgascon"
+ },
+ "_npmVersion": "10.9.0",
+ "bugs": {
+  "url": "https://github.com/jshttp/mime-types/issues"
+ },
+ "contributors": [
+  {
+   "email": "doug@somethingdoug.com",
+   "name": "Douglas Christopher Wilson"
+  },
+  {
+   "email": "fishrock123@rocketmail.com",
+   "name": "Jeremiah Senkpiel",
+   "url": "https://searchbeam.jit.su"
+  },
+  {
+   "email": "me@jongleberry.com",
+   "name": "Jonathan Ong",
+   "url": "http://jongleberry.com"
+  }
+ ],
+ "dependencies": {
+  "mime-db": "^1.54.0"
+ },
+ "description": "The ultimate javascript content-type utility.",
+ "devDependencies": {
+  "eslint": "8.33.0",
+  "eslint-config-standard": "14.1.1",
+  "eslint-plugin-import": "2.32.0",
+  "eslint-plugin-markdown": "3.0.1",
+  "eslint-plugin-node": "11.1.0",
+  "eslint-plugin-promise": "6.6.0",
+  "eslint-plugin-standard": "4.1.0",
+  "mocha": "10.8.2",
+  "nyc": "15.1.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 6,
+  "integrity": "sha512-Lbgzdk0h4juoQ9fCKXW4by0UJqj+nOOrI9MJ1sSj4nI8aI2eo1qmvQEie4VD1glsS250n15LsWsYtCugiStS5A==",
+  "shasum": "39002d4182575d5af036ffa118100f2524b2e2ab",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIEv/Kil5Yz5jzq6zgHTj7Vd94BB6YF8Bz6qESjiWEWiOAiAmyFUQk856UgUz6Tc6mA2SSpe+ebxd3w47gzS1hWAxqA=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/mime-types/-/mime-types-3.0.2.tgz",
+  "unpackedSize": 22871
+ },
+ "engines": {
+  "node": ">=18"
+ },
+ "funding": {
+  "type": "opencollective",
+  "url": "https://opencollective.com/express"
+ },
+ "gitHead": "29a0302d799933a45384892df0722f3c5bb1b033",
+ "homepage": "https://github.com/jshttp/mime-types#readme",
+ "keywords": [
+  "mime",
+  "types"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "hello@blakeembrey.com",
+   "name": "blakeembrey"
+  },
+  {
+   "email": "wes@wesleytodd.com",
+   "name": "wesleytodd"
+  },
+  {
+   "email": "doug@somethingdoug.com",
+   "name": "dougwilson"
+  },
+  {
+   "email": "ulisesgascondev@gmail.com",
+   "name": "ulisesgascon"
+  },
+  {
+   "email": "jonathanrichardong@gmail.com",
+   "name": "jongleberry"
+  }
+ ],
+ "name": "mime-types",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/jshttp/mime-types.git"
+ },
+ "scripts": {
+  "lint": "eslint .",
+  "test": "mocha --reporter spec test/test.js",
+  "test-ci": "nyc --reporter=lcov --reporter=text npm test",
+  "test-cov": "nyc --reporter=html --reporter=text npm test"
+ },
+ "version": "3.0.2"
+}

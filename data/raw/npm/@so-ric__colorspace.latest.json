@@ -1,0 +1,80 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@so-ric/colorspace@1.1.6",
+ "_nodeVersion": "24.5.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/colorspace_1.1.6_1759237999148_0.8329151861584212"
+ },
+ "_npmUser": {
+  "email": "sofiericker@gmail.com",
+  "name": "so-ric"
+ },
+ "_npmVersion": "11.5.1",
+ "author": {
+  "name": "Arnout Kazemier"
+ },
+ "bugs": {
+  "url": "https://github.com/so-ric/colorspace/issues"
+ },
+ "dependencies": {
+  "color": "^5.0.2",
+  "text-hex": "1.0.x"
+ },
+ "description": "Generate HEX colors for a given namespace using color v5",
+ "devDependencies": {
+  "@rollup/plugin-babel": "^6.0.0",
+  "@rollup/plugin-commonjs": "^25.0.0",
+  "@rollup/plugin-json": "^5.0.0",
+  "@rollup/plugin-node-resolve": "^15.0.0",
+  "assume": "2.3.x",
+  "mocha": "11.7.x",
+  "pre-commit": "1.2.x",
+  "rimraf": "^5.0.0",
+  "rollup": "^3.0.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 7,
+  "integrity": "sha512-/KiKkpHNOBgkFJwu9sh48LkHSMYGyuTcSFK/qMBdnOAlrRJzRSXAOFB5qwzaVQuDl8wAvHVMkaASQDReTahxuw==",
+  "shasum": "62515d8b9f27746b76950a83bde1af812d91923b",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIB0oWExyce+OmVbUiOmwKMnsj2LCjEDCjAI802aSrHZHAiAL5bGauHGHlp7RrG0UD46pYEx4g/9n4Y5/Oc4pMAOzzQ=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@so-ric/colorspace/-/colorspace-1.1.6.tgz",
+  "unpackedSize": 51716
+ },
+ "gitHead": "4f6ddd7d158905246e3e282b29d4c9100216dc2b",
+ "homepage": "https://github.com/so-ric/colorspace",
+ "keywords": [
+  "namespace",
+  "color",
+  "hex",
+  "colorize",
+  "name",
+  "space",
+  "colorspace"
+ ],
+ "license": "MIT",
+ "main": "dist/index.cjs.js",
+ "maintainers": [
+  {
+   "email": "sofiericker@gmail.com",
+   "name": "so-ric"
+  }
+ ],
+ "name": "@so-ric/colorspace",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/so-ric/colorspace.git"
+ },
+ "scripts": {
+  "build": "rollup -c",
+  "prepare": "npm run build",
+  "test": "mocha test.js"
+ },
+ "version": "1.1.6"
+}

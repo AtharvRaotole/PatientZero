@@ -1,0 +1,184 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@elastic/elasticsearch@9.5.1",
+ "_nodeVersion": "24.19.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/elasticsearch_9.5.1_1788195430145_0.4393393815305979"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:58add49e-f65f-4386-bc9f-0b2c28050653"
+  }
+ },
+ "_npmVersion": "12.0.2",
+ "bugs": {
+  "url": "https://github.com/elastic/elasticsearch-js/issues"
+ },
+ "contributors": [
+  {
+   "name": "Elastic Client Library Maintainers"
+  }
+ ],
+ "dependencies": {
+  "@elastic/transport": "^9.4.0",
+  "tslib": "^2.4.0"
+ },
+ "description": "The official Elasticsearch client for Node.js",
+ "devDependencies": {
+  "@elastic/request-converter": "9.3.0",
+  "@opentelemetry/sdk-trace-base": "1.30.1",
+  "@sinonjs/fake-timers": "14.0.0",
+  "@types/debug": "4.1.13",
+  "@types/ms": "2.1.0",
+  "@types/node": "22.19.19",
+  "@types/sinonjs__fake-timers": "8.1.5",
+  "@types/split2": "4.2.3",
+  "@types/stoppable": "1.1.3",
+  "apache-arrow": "21.1.0",
+  "c8": "10.1.3",
+  "cross-zip": "4.0.1",
+  "desm": "1.3.1",
+  "eslint": "9.39.4",
+  "inly": "5.0.1",
+  "js-yaml": "4.1.1",
+  "jsfuzz": "1.0.15",
+  "license-checker": "25.0.1",
+  "minimist": "1.2.8",
+  "ms": "2.1.3",
+  "neostandard": "0.13.0",
+  "node-abort-controller": "3.1.1",
+  "ora": "9.0.0",
+  "proxy": "2.2.0",
+  "rimraf": "6.1.2",
+  "semver": "7.7.3",
+  "split2": "4.2.0",
+  "stoppable": "1.1.0",
+  "tap": "21.5.0",
+  "ts-node": "10.9.2",
+  "tsc-esm-fix": "3.1.2",
+  "typescript": "5.9.3",
+  "workq": "3.0.0",
+  "xmlbuilder2": "4.0.3",
+  "zx": "8.8.5"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@elastic%2felasticsearch@9.5.1"
+  },
+  "fileCount": 711,
+  "integrity": "sha512-2ZZqCmgGPjSYn+OphFRYm9g46KVINA0i8fRmlPHJC60RvJeFB6NSHO0nKKOOYhm3WRXyGkLu1xkdXe724fnmnA==",
+  "shasum": "99566332aad4f2dc12e9fd0b2d87afb71e49591d",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIDm/6K0kqgzO5RE3AVRfUPflaVADGpWBXdJd21j+hWqvAiB+pGKVDLE1dQ5s8nMj0Cp1M/SqyW6+QtL3j1jUz3ks+Q=="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQC8yOzGxQZUSSKJVLSIYt5xDGAlG6V62PuRGQQ37h63XwIhAK6penZet1624jNw2TypTaPZJuoVj5Lu8sZIrvr6U0hT"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@elastic/elasticsearch/-/elasticsearch-9.5.1.tgz",
+  "unpackedSize": 12619751
+ },
+ "engines": {
+  "node": ">=22"
+ },
+ "exports": {
+  ".": {
+   "import": "./esm/index.js",
+   "require": "./index.js",
+   "types": "./index.d.ts"
+  },
+  "./*": {
+   "import": "./esm/*.js",
+   "require": "./lib/*.js",
+   "types": "./lib/*.d.ts"
+  },
+  "./lib/*": {
+   "import": "./esm/*.js",
+   "require": "./lib/*.js",
+   "types": "./lib/*.d.ts"
+  },
+  "./package.json": "./package.json"
+ },
+ "gitHead": "dce730c5d28ae072a8ffd61d2c511c87fcc49973",
+ "homepage": "http://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/index.html",
+ "keywords": [
+  "elasticsearch",
+  "elastic",
+  "kibana",
+  "mapping",
+  "REST",
+  "search",
+  "client",
+  "index"
+ ],
+ "license": "Apache-2.0",
+ "main": "./index.js",
+ "maintainers": [
+  {
+   "email": "npm3@gregback.net",
+   "name": "gtback"
+  },
+  {
+   "email": "ioannis.kakavas+elastic-npm-admin@elastic.co",
+   "name": "elastic-npm-admin"
+  },
+  {
+   "email": "ioannis.kakavas@elastic.co",
+   "name": "ikakavas"
+  }
+ ],
+ "name": "@elastic/elasticsearch",
+ "peerDependencies": {
+  "apache-arrow": "18.x - 21.x"
+ },
+ "peerDependenciesMeta": {
+  "apache-arrow": {
+   "optional": true
+  }
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/elastic/elasticsearch-js.git"
+ },
+ "scripts": {
+  "build": "npm run build:cjs && npm run build:esm",
+  "build:cjs": "tsc && rm -f lib/package.json lib/index.js lib/index.d.ts",
+  "build:esm": "tsc -p tsconfig.esm.json && npm run build:esm-fix && npm run build:esm-package",
+  "build:esm-fix": "tsc-esm-fix --target=esm && node scripts/fix-esm-require.js",
+  "build:esm-package": "node -e \"require('fs').writeFileSync('esm/package.json', JSON.stringify({type:'module'}, null, 2))\"",
+  "clean-build": "rimraf ./lib && mkdir lib && rimraf ./esm && mkdir esm",
+  "generate-version": "node scripts/generate-version.js",
+  "license-checker": "license-checker --production --onlyAllow='MIT;Apache-2.0;Apache1.1;ISC;BSD-3-Clause;BSD-2-Clause;0BSD'",
+  "license-header": "./scripts/check-spdx",
+  "lint": "eslint",
+  "lint:fix": "eslint . --fix ",
+  "prebuild": "npm run clean-build && npm run generate-version && npm run lint",
+  "prepublishOnly": "npm run build",
+  "test": "npm run build && npm run lint && c8 --exclude='**/api/**' --exclude='**/test/**' --check-coverage --statements=96 --branches=90 --lines=96 --functions=91 tap --disable-coverage",
+  "test:bundler": "npm run build && cd test/bundlers/repro && npm install file:../../.. && npx esbuild@0.24 --bundle --platform=node repro.mjs --outfile=bundled.js && node bundled.js",
+  "test:coverage-100": "npm run build && tap --coverage --100",
+  "test:coverage-report": "npm run build && tap --coverage && nyc report --reporter=text-lcov > coverage.lcov",
+  "test:coverage-ui": "npm run build && tap --coverage --coverage-report=html",
+  "test:esm": "npm run build:esm && c8 --exclude='**/api/**' --exclude='**/test/**' tap --disable-coverage test/esm/",
+  "test:fuzz": "npm run build && node test/fuzz/run.mjs",
+  "test:integration": "npm run test:integration-build && env tap run --jobs=1 --allow-empty-coverage --allow-incomplete-coverage --reporter=junit --reporter-file=report-junit.xml generated-tests/",
+  "test:integration-build": "npm run build && node test/integration/index.js",
+  "test:unit": "npm run build && tap",
+  "test:unit-bun": "bun run build && c8 --exclude='**/api/**' --exclude='**/test/**' bunx tap --disable-coverage"
+ },
+ "type": "commonjs",
+ "types": "index.d.ts",
+ "version": "9.5.1",
+ "versionCanary": "9.3.4-canary.0"
+}

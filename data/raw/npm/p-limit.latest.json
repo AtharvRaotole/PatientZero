@@ -1,0 +1,99 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "p-limit@7.3.3",
+ "_nodeVersion": "22.23.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/p-limit_7.3.3_1789756074867_0.3555768306196012"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "12.0.1",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/p-limit/issues"
+ },
+ "dependencies": {
+  "yocto-queue": "^1.2.1"
+ },
+ "description": "Run multiple promise-returning & async functions with limited concurrency",
+ "devDependencies": {
+  "ava": "^6.4.1",
+  "in-range": "^3.0.0",
+  "random-int": "^3.0.0",
+  "time-span": "^5.1.0",
+  "tsd": "^0.33.0",
+  "xo": "^1.2.1"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-SKgVvDU5TNIxQ4r30U75BNLC6a+6GOEjngrk/ysM5+Zu3oJuk1SC5ApzIzY/7PjCEjoVPMWJ0zho/4QUiEB7TQ==",
+  "shasum": "43464e7094180d03bb0f53f576d9f2cd457b2921",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIE+x/0PVX6aZnm7XFbWqTU+ySXCRee5ziAhttIO5z6DIAiAREJcmFFCvqVf1qiIRVYSw20/lLLUA60R3wUW6yfqOMQ=="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQCgSD4h9Xf1bX+1vWK9znqRUm39Q+ZUN1BNpTtGv5IeowIgQoFW0tB5p6L6MLQ8nAxN2C8u7G9f5GyKUovmqUwaaIk="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/p-limit/-/p-limit-7.3.3.tgz",
+  "unpackedSize": 16103
+ },
+ "engines": {
+  "node": ">=20"
+ },
+ "exports": {
+  "default": "./index.js",
+  "types": "./index.d.ts"
+ },
+ "funding": "https://github.com/sponsors/sindresorhus",
+ "gitHead": "4d4ec71803d8736567249c3dde06ea82795ae7c7",
+ "homepage": "https://github.com/sindresorhus/p-limit#readme",
+ "keywords": [
+  "promise",
+  "limit",
+  "limited",
+  "concurrency",
+  "throttle",
+  "throat",
+  "rate",
+  "batch",
+  "ratelimit",
+  "task",
+  "queue",
+  "async",
+  "await",
+  "promises",
+  "bluebird"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "p-limit",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/p-limit.git"
+ },
+ "scripts": {
+  "benchmark": "node benchmark.js",
+  "test": "xo && ava && tsd"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "7.3.3"
+}

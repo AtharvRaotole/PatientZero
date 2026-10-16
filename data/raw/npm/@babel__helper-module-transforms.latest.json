@@ -1,0 +1,95 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@babel/helper-module-transforms@8.0.6",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/helper-module-transforms_8.0.6_1789739372556_0.2964343710325581"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:78c59458-4201-4324-a0fd-b0568e808c01"
+  }
+ },
+ "author": "The Babel Team (https://babel.dev/team)",
+ "dependencies": {
+  "@babel/helper-module-imports": "^8.0.0",
+  "@babel/helper-validator-identifier": "^8.0.6",
+  "@babel/traverse": "^8.0.6"
+ },
+ "description": "Babel helper functions for implementing ES6 module transformations",
+ "devDependencies": {
+  "@babel/core": "^8.0.6"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@babel%2fhelper-module-transforms@8.0.6"
+  },
+  "fileCount": 5,
+  "integrity": "sha512-YUi+3X0cb0v97xKhuqkLdrwQtP6XXv1eVbhLRCFyMwG481UskbMQk4mjH7K/Jg3oJ1KLskvFwwq4kF/QnABkWQ==",
+  "shasum": "e8b304bcdaaa2d70443b54f634c2bfe9797b8eca",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIBsteaooLi6iTEcRfTuIlilKw+3GTh260D/f8SNfC4g1AiEAh1Kz78GSB3GLdYxq5ftgLSx3CGMGpId3C8oUQpUoUsE="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIFyP0IlzAFSxiEOZxmlA/GW2qTjjYORe1e0h1LnWqSEQAiEApSc8WkpUz0FpZoVzAHZVTpzUqUyhGKRZH7cVjhayhyk="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@babel/helper-module-transforms/-/helper-module-transforms-8.0.6.tgz",
+  "unpackedSize": 49581
+ },
+ "engines": {
+  "node": "^22.18.0 || >=24.11.0"
+ },
+ "exports": {
+  ".": {
+   "default": "./lib/index.js",
+   "types": "./lib/index.d.ts"
+  },
+  "./package.json": "./package.json"
+ },
+ "homepage": "https://babel.dev/docs/en/next/babel-helper-module-transforms",
+ "license": "MIT",
+ "main": "./lib/index.js",
+ "maintainers": [
+  {
+   "email": "hi@henryzoo.com",
+   "name": "hzoo"
+  },
+  {
+   "email": "bng412@gmail.com",
+   "name": "existentialism"
+  },
+  {
+   "email": "hello+npm@nicr.dev",
+   "name": "nicolo-ribaudo"
+  },
+  {
+   "email": "jlhwung@gmail.com",
+   "name": "jlhwung"
+  }
+ ],
+ "name": "@babel/helper-module-transforms",
+ "peerDependencies": {
+  "@babel/core": "^8.0.0"
+ },
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "directory": "packages/babel-helper-module-transforms",
+  "type": "git",
+  "url": "https://github.com/babel/babel.git"
+ },
+ "type": "module",
+ "version": "8.0.6"
+}

@@ -1,0 +1,60 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@types/retry@0.12.5",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/retry_0.12.5_1699371122416_0.5528557484486465"
+ },
+ "_npmUser": {
+  "email": "ts-npm-types@microsoft.com",
+  "name": "types"
+ },
+ "contributors": [
+  {
+   "githubUsername": "krenor",
+   "name": "Stan Goldmann",
+   "url": "https://github.com/krenor"
+  },
+  {
+   "githubUsername": "BendingBender",
+   "name": "BendingBender",
+   "url": "https://github.com/BendingBender"
+  }
+ ],
+ "dependencies": {},
+ "description": "TypeScript definitions for retry",
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-3xSjTp3v03X/lSQLkczaN9UIEwJMoMCA1+Nb5HfbJEQWogdeQIyVtTvxPXDQjZ5zws8rFQfVfRdz03ARihPJgw==",
+  "shasum": "f090ff4bd8d2e5b940ff270ab39fd5ca1834a07e",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIQDVtNanJyOSDTyFdgQ7MRA0mAl3M02iqYez6YzF/LbJIAIgNjdx9lUoStLrJ5BFGCzOBqMI2GcXbxuM0Uxfc6gVHcw="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@types/retry/-/retry-0.12.5.tgz",
+  "unpackedSize": 7573
+ },
+ "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/retry",
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "ts-npm-types@microsoft.com",
+   "name": "types"
+  }
+ ],
+ "name": "@types/retry",
+ "repository": {
+  "directory": "types/retry",
+  "type": "git",
+  "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+ },
+ "scripts": {},
+ "typeScriptVersion": "4.5",
+ "types": "index.d.ts",
+ "typesPublisherContentHash": "aa54558b4adab882512b32e89d71a59d1864fa79684a3ef317002d0e144cba11",
+ "version": "0.12.5"
+}

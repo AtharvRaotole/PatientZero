@@ -1,0 +1,85 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@img/sharp-wasm32@0.35.5",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/sharp-wasm32_0.35.5_1790516780566_0.721671753297001"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:e30109fa-afcc-4d05-a745-856f05426c21"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "author": {
+  "email": "npm@lovell.info",
+  "name": "Lovell Fuller"
+ },
+ "bugs": {
+  "url": "https://github.com/lovell/sharp/issues"
+ },
+ "dependencies": {
+  "@emnapi/runtime": "^1.11.3"
+ },
+ "description": "Prebuilt sharp for use with WebAssembly",
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@img%2fsharp-wasm32@0.35.5"
+  },
+  "fileCount": 7,
+  "integrity": "sha512-Ptsga1su4tQx+LLF1ECS9U6nz5kmrXKo6XVbtR48Ke3ZRxxgaWBu7IDtEe1quo8hiupwm6WFqxVlXaSf7IINGQ==",
+  "shasum": "5369559c3a4c32e08ce92b6ffba2434175a45a62",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQCD0EdTUxgQGmTtCiRlmBtS+sELqrGyjhslGauBvZSZ9QIgYhbE9fqRMNlBB1+xRcpff/J83xZDW7VMEmZHRlop+yY="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIDtRkuE4yOGLPN5stkwVNIlk8I41QDoAmPLb67Z75TyNAiEA76yw6jAtPd57PfCnkXuSNKM7wOHZ27qqpabtWV3sz5Y="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@img/sharp-wasm32/-/sharp-wasm32-0.35.5.tgz",
+  "unpackedSize": 9325870
+ },
+ "engines": {
+  "node": ">=20.9.0"
+ },
+ "exports": {
+  "./package": "./package.json",
+  "./sharp.node": "./index.cjs",
+  "./versions": "./versions.json"
+ },
+ "funding": {
+  "url": "https://opencollective.com/libvips"
+ },
+ "gitHead": "51a990faa26ade5586a4934ac9673c98d8893326",
+ "homepage": "https://sharp.pixelplumbing.com",
+ "license": "Apache-2.0 AND LGPL-3.0-or-later AND MIT",
+ "maintainers": [
+  {
+   "email": "npm@lovell.info",
+   "name": "lovell"
+  }
+ ],
+ "name": "@img/sharp-wasm32",
+ "preferUnplugged": true,
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "directory": "npm/wasm32",
+  "type": "git",
+  "url": "git+https://github.com/lovell/sharp.git"
+ },
+ "type": "commonjs",
+ "version": "0.35.5"
+}

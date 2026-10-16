@@ -1,0 +1,92 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "cjs-module-lexer@2.3.0",
+ "_nodeVersion": "26.2.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/cjs-module-lexer_2.3.0_1791187044192_0.2756021293119433"
+ },
+ "_npmUser": {
+  "email": "guybedford@gmail.com",
+  "name": "guybedford"
+ },
+ "_npmVersion": "11.13.0",
+ "author": {
+  "name": "Guy Bedford"
+ },
+ "bugs": {
+  "url": "https://github.com/nodejs/cjs-module-lexer/issues"
+ },
+ "description": "Lexes CommonJS modules, returning their named exports metadata",
+ "devDependencies": {
+  "@babel/cli": "^7.5.5",
+  "@babel/core": "^7.5.5",
+  "@babel/plugin-transform-modules-commonjs": "^7.5.0",
+  "cross-env": "^7.0.3",
+  "kleur": "^2.0.2",
+  "mocha": "^11.8.0",
+  "terser": "^4.1.4"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 8,
+  "integrity": "sha512-lmNyBzi6iYiqyrExTctfmjd8tInx+dHu9PBomTfH5RXS53c27JMFJgzNv5TyAnm3PgGf+MLy0+Ws41/HlVxdKQ==",
+  "shasum": "4eb71c63d5f70f0b1d8a39a595c134a6692493f2",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIBDW+JVCaBPxHu16t3NOY0VRO2k+LYxCU7Fj1ml2ce75AiB+i5wDUidMqPgLdTcAjIOYM5VclkzWknCd+dQY5M6YDQ=="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIFu5kBuTp8a0cQXSiTKwiZmj3o+lr+Wv2buXbcnQYQWzAiBtmIJkEFZpmV4tkS8pS17OVRKDR95H+kDNQGcJqq0iXw=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/cjs-module-lexer/-/cjs-module-lexer-2.3.0.tgz",
+  "unpackedSize": 142405
+ },
+ "exports": {
+  "default": "./lexer.js",
+  "import": {
+   "default": "./dist/lexer.mjs",
+   "types": "./lexer.d.mts"
+  }
+ },
+ "gitHead": "70d33c7a332a31fa1542de9b8737f2d23acfc184",
+ "homepage": "https://github.com/nodejs/cjs-module-lexer#readme",
+ "license": "MIT",
+ "main": "lexer.js",
+ "maintainers": [
+  {
+   "email": "guybedford@gmail.com",
+   "name": "guybedford"
+  },
+  {
+   "email": "mdawson@devrus.com",
+   "name": "mhdawson1"
+  },
+  {
+   "email": "build@iojs.org",
+   "name": "nodejs-foundation"
+  }
+ ],
+ "name": "cjs-module-lexer",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/nodejs/cjs-module-lexer.git"
+ },
+ "scripts": {
+  "bench": "node --expose-gc bench/index.mjs",
+  "build": "node build.js ; babel dist/lexer.mjs -o dist/lexer.js ; terser dist/lexer.js -o dist/lexer.js",
+  "build-wasm": "make lib/lexer.wasm ; node build.js",
+  "build-wasm-local": "node build/wasm.js --local",
+  "footprint": "npm run build && cat dist/lexer.js | gzip -9f | wc -c",
+  "prepublishOnly": "npm run build",
+  "test": "npm run test-wasm && npm run test-wasm-sync && npm run test-js",
+  "test-js": "cross-env NODE_OPTIONS=--disallow-code-generation-from-strings mocha -b -u tdd test/*.js",
+  "test-wasm": "cross-env WASM=1 NODE_OPTIONS=--disallow-code-generation-from-strings mocha -b -u tdd test/*.js",
+  "test-wasm-sync": "cross-env WASM_SYNC=1 NODE_OPTIONS=--disallow-code-generation-from-strings mocha -b -u tdd test/*.js"
+ },
+ "types": "lexer.d.ts",
+ "version": "2.3.0"
+}

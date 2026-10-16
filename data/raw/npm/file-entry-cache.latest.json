@@ -1,0 +1,93 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "file-entry-cache@11.1.5",
+ "_nodeVersion": "22.23.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/file-entry-cache_11.1.5_1782584433366_0.5273814759163988"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:0d9e205f-4c97-4efa-a94a-76b576651e5c"
+  }
+ },
+ "author": "Jared Wray <me@jaredwray.com>",
+ "dependencies": {
+  "flat-cache": "^6.1.23"
+ },
+ "description": "A lightweight cache for file metadata, ideal for processes that work on a specific set of files and only need to reprocess files that have changed since the last run",
+ "devDependencies": {
+  "pino": "^10.3.1",
+  "tsdown": "^0.22.0",
+  "typescript": "^5.9.3"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/file-entry-cache@11.1.5"
+  },
+  "fileCount": 7,
+  "integrity": "sha512-+PFTHITI08JIGhnNpGNI8T8inUpgZfk3GNEqfT9R2zZV2iFXg3CvqzSl/uEhs7TSGujYRELEANyDvS8Fj7+S7Q==",
+  "shasum": "c8210eb055de63e68685ccfb6a017e386d4577d0",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCICpyz6sQP+oiNkWQCy0psZcuqlrh9AYf+3N8plyCE+AvAiBpyZzTO0xU+PZR3ntxdRqg+wdFNHC2nnokj/E9kfoZQA=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/file-entry-cache/-/file-entry-cache-11.1.5.tgz",
+  "unpackedSize": 89300
+ },
+ "exports": {
+  ".": {
+   "import": {
+    "default": "./dist/index.mjs",
+    "types": "./dist/index.d.mts"
+   },
+   "require": {
+    "default": "./dist/index.cjs",
+    "types": "./dist/index.d.cts"
+   }
+  }
+ },
+ "keywords": [
+  "file cache",
+  "task cache files",
+  "file cache",
+  "key par",
+  "key value",
+  "cache"
+ ],
+ "license": "MIT",
+ "main": "./dist/index.cjs",
+ "maintainers": [
+  {
+   "email": "me@jaredwray.com",
+   "name": "jaredwray"
+  }
+ ],
+ "module": "./dist/index.mjs",
+ "name": "file-entry-cache",
+ "private": false,
+ "repository": {
+  "directory": "packages/file-entry-cache",
+  "type": "git",
+  "url": "git+https://github.com/jaredwray/cacheable.git"
+ },
+ "scripts": {
+  "build": "rimraf ./dist && tsdown src/index.ts --format cjs,esm --dts --clean",
+  "clean": "rimraf ./dist ./coverage ./node_modules",
+  "lint": "biome check --write --error-on-warnings",
+  "test": "pnpm lint && vitest run --coverage",
+  "test:ci": "biome check --error-on-warnings && vitest run --coverage"
+ },
+ "type": "module",
+ "types": "./dist/index.d.mts",
+ "version": "11.1.5"
+}

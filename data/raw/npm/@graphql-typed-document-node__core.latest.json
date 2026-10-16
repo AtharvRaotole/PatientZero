@@ -1,0 +1,69 @@
+{
+ "_from": "file:graphql-typed-document-node-core-3.2.0.tgz",
+ "_hasShrinkwrap": false,
+ "_id": "@graphql-typed-document-node/core@3.2.0",
+ "_integrity": "sha512-mB9oAsNCm9aM3/SOv4YtBMqZbYj10R7dkq8byBqxGY/ncFwhf2oQzMV+LCRlWoDSEBJ3COiR1yeDvMtsoOsuFQ==",
+ "_nodeVersion": "18.15.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/core_3.2.0_1679293670722_0.6905970520859441"
+ },
+ "_npmUser": {
+  "email": "dotansimha@gmail.com",
+  "name": "dotansimha"
+ },
+ "_npmVersion": "9.5.0",
+ "_resolved": "/tmp/d06b017341e938e5c55b730c2262136c/graphql-typed-document-node-core-3.2.0.tgz",
+ "author": {
+  "email": "dotansimha@gmail.com",
+  "name": "Dotan Simha"
+ },
+ "bugs": {
+  "url": "https://github.com/dotansimha/graphql-typed-document-node/issues"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 3,
+  "integrity": "sha512-mB9oAsNCm9aM3/SOv4YtBMqZbYj10R7dkq8byBqxGY/ncFwhf2oQzMV+LCRlWoDSEBJ3COiR1yeDvMtsoOsuFQ==",
+  "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v4.10.10\r\nComment: https://openpgpjs.org\r\n\r\nwsFzBAEBCAAGBQJkF/znACEJED1NWxICdlZqFiEECWMYAoorWMhJKdjhPU1b\r\nEgJ2VmprvA/9G5Q27OcmvJ+S1ki7sAmCZcbrsvSbrRsuK5ZddGfAY0ebAV7z\r\n5ICtCLERQ9ycHZFyxgaLOTXRdzqqZRePjl6yr0BoOFE5aVMR2RoL6JdYzu8r\r\nE2d1suqoCjCtKLXLBVEGMsw7y86DEihwdjM/kfzOq9JVkcHILJzODo1+tEUL\r\nx+gmLrKmyjrGf+J7MyqOynVXTvZn5/yHeFjsoh8dyuVPwIFEESpuH733+kRb\r\nhSnjMA9kI2jHm1JfcGcf1rLBX8QfDSJ1L/r8r4PJs7BqCZy1I+NPx9D7NJl3\r\n00nImjkRrpzFi2QMPMjbVyJ2Alf2qqpuSSLHOzeLT7O/mUCvXeMrLwe4Duyc\r\n/71TExSqwuyt6HmAOn3jgv61PKpFuM4tqqRXNiOFUoUl9InQpUgPcUtq/5vj\r\n55p9tb5+fkOIh+D6xIVfGvczJzsVY9uM+PaWuW3J49lbMtvamRzt2JWx8CH8\r\nSFRhH3q2fZ1MzfHUU45ApVkgQVXj9hIt0kTYUcuLDZ3b0Vd93mDfdEnEBbJo\r\nwvXKcXXQu/Csr8E42H3SiJ4P5rjexn1PZGgmD5sYL+oOFbFcSrQbL882d++l\r\nPlmt1i8EebS8O4tCK0F+RKxR/CCMhAYV2lYu3e4/TFcAFDZ1gZVrUjLBOx4d\r\ntRJ39xqB/dyGaCY8gvivgr3NAa8M8eLA28s=\r\n=eYWo\r\n-----END PGP SIGNATURE-----\r\n",
+  "shasum": "5f3d96ec6b2354ad6d8a28bf216a1d97b5426861",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIGCZAsFaiYeG6AeTIKus/T9VvzrXKsCaWeUEf3RgBbI+AiEAlq+8kRfeU6vFE9X30GndabD/ctZsI7Siw/vVE0ULg+E="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@graphql-typed-document-node/core/-/core-3.2.0.tgz",
+  "unpackedSize": 2959
+ },
+ "homepage": "https://github.com/dotansimha/graphql-typed-document-node#readme",
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "dotansimha@gmail.com",
+   "name": "dotansimha"
+  },
+  {
+   "email": "uri.goldshtein@gmail.com",
+   "name": "urigo"
+  },
+  {
+   "email": "kamil.kisiela@gmail.com",
+   "name": "kamilkisiela"
+  }
+ ],
+ "name": "@graphql-typed-document-node/core",
+ "peerDependencies": {
+  "graphql": "^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0 || ^17.0.0"
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+ssh://git@github.com/dotansimha/graphql-typed-document-node.git"
+ },
+ "typescript": {
+  "definition": "typings/index.d.ts"
+ },
+ "typings": "typings/index.d.ts",
+ "version": "3.2.0"
+}

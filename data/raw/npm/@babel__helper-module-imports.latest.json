@@ -1,0 +1,87 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@babel/helper-module-imports@8.0.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/helper-module-imports_8.0.0_1781616801329_0.5790226790691135"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:5dc292fc-7375-440a-908e-3326f271c737"
+  }
+ },
+ "author": "The Babel Team (https://babel.dev/team)",
+ "dependencies": {
+  "@babel/traverse": "^8.0.0",
+  "@babel/types": "^8.0.0"
+ },
+ "description": "Babel helper functions for inserting module loads",
+ "devDependencies": {
+  "@babel/core": "^8.0.0"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@babel%2fhelper-module-imports@8.0.0"
+  },
+  "fileCount": 6,
+  "integrity": "sha512-NZ7mSS93o4ndX4KrbD7W8Sf3QT8Qe24PrnFyUcuOPDzK6faqDFKjY9RG7he7+I7FdiQ4llpnosFqzrXa+Vy3Ew==",
+  "shasum": "b6b16c75f80616b545f72e842d8224b981fd41d5",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDQoJ+JwKLsAOGLJIhURkvwl/5uFzfrbzlI6pCqQOAgpgIgSOALVMqHwC7o/PfxANlTu7gnb3X0988b9AsRcHxuPjU="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@babel/helper-module-imports/-/helper-module-imports-8.0.0.tgz",
+  "unpackedSize": 66245
+ },
+ "engines": {
+  "node": "^22.18.0 || >=24.11.0"
+ },
+ "exports": {
+  ".": {
+   "default": "./lib/index.js",
+   "types": "./lib/index.d.ts"
+  },
+  "./package.json": "./package.json"
+ },
+ "homepage": "https://babel.dev/docs/en/next/babel-helper-module-imports",
+ "license": "MIT",
+ "main": "./lib/index.js",
+ "maintainers": [
+  {
+   "email": "hi@henryzoo.com",
+   "name": "hzoo"
+  },
+  {
+   "email": "bng412@gmail.com",
+   "name": "existentialism"
+  },
+  {
+   "email": "hello+npm@nicr.dev",
+   "name": "nicolo-ribaudo"
+  },
+  {
+   "email": "jlhwung@gmail.com",
+   "name": "jlhwung"
+  }
+ ],
+ "name": "@babel/helper-module-imports",
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "directory": "packages/babel-helper-module-imports",
+  "type": "git",
+  "url": "https://github.com/babel/babel.git"
+ },
+ "type": "module",
+ "version": "8.0.0"
+}

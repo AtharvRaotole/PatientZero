@@ -1,0 +1,75 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@types/d3-timer@3.0.2",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/d3-timer_3.0.2_1699387073843_0.6794414139325893"
+ },
+ "_npmUser": {
+  "email": "ts-npm-types@microsoft.com",
+  "name": "types"
+ },
+ "contributors": [
+  {
+   "githubUsername": "tomwanzek",
+   "name": "Tom Wanzek",
+   "url": "https://github.com/tomwanzek"
+  },
+  {
+   "githubUsername": "gustavderdrache",
+   "name": "Alex Ford",
+   "url": "https://github.com/gustavderdrache"
+  },
+  {
+   "githubUsername": "borisyankov",
+   "name": "Boris Yankov",
+   "url": "https://github.com/borisyankov"
+  },
+  {
+   "githubUsername": "denisname",
+   "name": "denisname",
+   "url": "https://github.com/denisname"
+  },
+  {
+   "githubUsername": "Methuselah96",
+   "name": "Nathan Bierema",
+   "url": "https://github.com/Methuselah96"
+  }
+ ],
+ "dependencies": {},
+ "description": "TypeScript definitions for d3-timer",
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-Ps3T8E8dZDam6fUyNiMkekK3XUsaUEik+idO9/YjPtfj2qruF8tFBXS7XhtE4iIXBLxhmLjP3SXpLhVf21I9Lw==",
+  "shasum": "70bbda77dc23aa727413e22e214afa3f0e852f70",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIQD3Tizt9+h5XYrEdeEgCZ7H0WQYNSW0CzoVn623YYq+pwIgW4zXkH5irvhQyBy9dLh3zQrpUZr7vqJsbo0JwiA6fko="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@types/d3-timer/-/d3-timer-3.0.2.tgz",
+  "unpackedSize": 6755
+ },
+ "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/d3-timer",
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "ts-npm-types@microsoft.com",
+   "name": "types"
+  }
+ ],
+ "name": "@types/d3-timer",
+ "repository": {
+  "directory": "types/d3-timer",
+  "type": "git",
+  "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+ },
+ "scripts": {},
+ "typeScriptVersion": "4.5",
+ "types": "index.d.ts",
+ "typesPublisherContentHash": "a51fc6981e6d12715fd052f7e598dd291c354465025cbb33ece1895bdab4109c",
+ "version": "3.0.2"
+}

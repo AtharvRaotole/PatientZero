@@ -1,0 +1,139 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "winston@3.19.0",
+ "_nodeVersion": "24.2.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/winston_3.19.0_1765093035873_0.43200504438279763"
+ },
+ "_npmUser": {
+  "email": "dabh@alumni.stanford.edu",
+  "name": "dabh"
+ },
+ "_npmVersion": "11.3.0",
+ "author": {
+  "email": "charlie.robbins@gmail.com",
+  "name": "Charlie Robbins"
+ },
+ "browser": "./dist/winston",
+ "bugs": {
+  "url": "https://github.com/winstonjs/winston/issues"
+ },
+ "dependencies": {
+  "@colors/colors": "^1.6.0",
+  "@dabh/diagnostics": "^2.0.8",
+  "async": "^3.2.3",
+  "is-stream": "^2.0.0",
+  "logform": "^2.7.0",
+  "one-time": "^1.0.0",
+  "readable-stream": "^3.4.0",
+  "safe-stable-stringify": "^2.3.1",
+  "stack-trace": "0.0.x",
+  "triple-beam": "^1.3.0",
+  "winston-transport": "^4.9.0"
+ },
+ "description": "A logger for just about everything.",
+ "devDependencies": {
+  "@babel/cli": "^7.23.9",
+  "@babel/core": "^7.24.0",
+  "@babel/preset-env": "^7.24.0",
+  "@dabh/eslint-config-populist": "^4.4.0",
+  "@types/node": "^20.11.24",
+  "abstract-winston-transport": "^0.5.1",
+  "assume": "^2.2.0",
+  "cross-spawn-async": "^2.2.5",
+  "eslint": "^8.57.0",
+  "hock": "^1.4.1",
+  "jest": "^29.7.0",
+  "rimraf": "5.0.10",
+  "split2": "^4.1.0",
+  "std-mocks": "^2.0.0",
+  "through2": "^4.0.2",
+  "winston-compat": "^0.1.5"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 40,
+  "integrity": "sha512-LZNJgPzfKR+/J3cHkxcpHKpKKvGfDZVPS4hfJCc4cCG0CgYzvlD6yE/S3CIL/Yt91ak327YCpiF/0MyeZHEHKA==",
+  "shasum": "cc1d1262f5f45946904085cfffe73efb4b7a581d",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIDYwoZbvQlninAPAFTtxo7CiyNZOd51NC1UzPqw77WxMAiBhHxQtqh8QWmJ2/as9WtM1p6RB0ENCv3dH6WcBWVX+NQ=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/winston/-/winston-3.19.0.tgz",
+  "unpackedSize": 274893
+ },
+ "engines": {
+  "node": ">= 12.0.0"
+ },
+ "gitHead": "ed45345f01b8ceb1d436e4791d95469c5213a0cf",
+ "homepage": "https://github.com/winstonjs/winston#readme",
+ "keywords": [
+  "winston",
+  "logger",
+  "logging",
+  "logs",
+  "sysadmin",
+  "bunyan",
+  "pino",
+  "loglevel",
+  "tools",
+  "json",
+  "stream"
+ ],
+ "license": "MIT",
+ "main": "./lib/winston.js",
+ "maintainers": [
+  {
+   "email": "chjjeffrey@gmail.com",
+   "name": "chjj"
+  },
+  {
+   "email": "jcrugzz@gmail.com",
+   "name": "jcrugzz"
+  },
+  {
+   "email": "npm@3rd-Eden.com",
+   "name": "v1"
+  },
+  {
+   "email": "charlie.robbins@gmail.com",
+   "name": "indexzero"
+  },
+  {
+   "email": "npmjs@3rd-Eden.com",
+   "name": "3rdeden"
+  },
+  {
+   "email": "dabh@alumni.stanford.edu",
+   "name": "dabh"
+  },
+  {
+   "email": "wbt@alumni.cmu.edu",
+   "name": "w-b-t"
+  },
+  {
+   "email": "whipper1872@proton.me",
+   "name": "maverick18722"
+  }
+ ],
+ "name": "winston",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/winstonjs/winston.git"
+ },
+ "scripts": {
+  "build": "babel lib -d dist",
+  "lint": "eslint lib/*.js lib/winston/*.js lib/winston/**/*.js --resolve-plugins-relative-to ./node_modules/@dabh/eslint-config-populist",
+  "prebuild": "rimraf dist",
+  "prepublishOnly": "npm run build",
+  "test": "jest",
+  "test:integration": "jest -c test/jest.config.integration.js",
+  "test:typescript": "npx --package typescript tsc --project test",
+  "test:unit": "jest -c test/jest.config.unit.js"
+ },
+ "types": "./index.d.ts",
+ "version": "3.19.0"
+}

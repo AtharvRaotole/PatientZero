@@ -1,0 +1,63 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@webassemblyjs/helper-numbers@1.14.1",
+ "_nodeVersion": "21.7.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/helper-numbers_1.14.1_1730930018071_0.35216145579298885"
+ },
+ "_npmUser": {
+  "email": "npm@sauleau.com",
+  "name": "xtuc"
+ },
+ "_npmVersion": "lerna/5.1.6/node@v21.7.1+x64 (linux)",
+ "author": {
+  "name": "Sven Sauleau"
+ },
+ "bugs": {
+  "url": "https://github.com/xtuc/webassemblyjs/issues"
+ },
+ "dependencies": {
+  "@webassemblyjs/floating-point-hex-parser": "1.14.1",
+  "@webassemblyjs/helper-api-error": "1.14.1",
+  "@xtuc/long": "4.2.2"
+ },
+ "description": "Number parsing utility",
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-BZIfoxfSeyGg2zGGn2Mi0LxZ6aMJdGFFu8/DyI0FQtF5URPx6xJXuXiiRETUn5SZy8kNLOKTxGTNzZFX8xQFqA==",
+  "shasum": "118c9d547f349469de72317efd5fe2c35a4e8568",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIF0jM1Mq7gUKlf7uwAQcLuaRViyq/K3FKfFrkZK0LlESAiEAymB/c952CnCxfPSySFyf7hvsd3haOmGzx2BzhqvJ9zM="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@webassemblyjs/helper-numbers/-/helper-numbers-1.14.1.tgz",
+  "unpackedSize": 10464
+ },
+ "gitHead": "25d52b1296e151ac56244a7c3886661e6b4a69ea",
+ "homepage": "https://github.com/xtuc/webassemblyjs#readme",
+ "license": "MIT",
+ "main": "lib/index.js",
+ "maintainers": [
+  {
+   "email": "npm@sauleau.com",
+   "name": "xtuc"
+  }
+ ],
+ "module": "esm/index.js",
+ "name": "@webassemblyjs/helper-numbers",
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/xtuc/webassemblyjs.git"
+ },
+ "scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1"
+ },
+ "version": "1.14.1"
+}

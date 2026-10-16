@@ -1,0 +1,129 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "safe-regex2@5.1.2",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/safe-regex2_5.1.2_1791628365765_0.8779036715308473"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "49f1b77c-9a25-4039-b124-c0ea26f0b3e6"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "author": {
+  "email": "mail@substack.net",
+  "name": "James Halliday",
+  "url": "https://substack.net"
+ },
+ "bin": {
+  "safe-regex2": "bin/safe-regex2.js"
+ },
+ "bugs": {
+  "url": "https://github.com/fastify/safe-regex2/issues"
+ },
+ "contributors": [
+  {
+   "email": "hello@matteocollina.com",
+   "name": "Matteo Collina"
+  },
+  {
+   "email": "hey@gurgun.day",
+   "name": "G\u00fcrg\u00fcn Day\u0131o\u011flu",
+   "url": "https://heyhey.to/G"
+  },
+  {
+   "name": "James Sumners",
+   "url": "https://james.sumners.info"
+  },
+  {
+   "email": "frazer.dev@icloud.com",
+   "name": "Frazer Smith",
+   "url": "https://github.com/fdawgs"
+  }
+ ],
+ "dependencies": {
+  "ret": "~0.5.0"
+ },
+ "description": "detect possibly catastrophic, exponential-time regular expressions",
+ "devDependencies": {
+  "c8": "^12.0.0",
+  "eslint": "^9.17.0",
+  "neostandard": "^0.13.0",
+  "tstyche": "^7.0.0"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/safe-regex2@5.1.2"
+  },
+  "fileCount": 15,
+  "integrity": "sha512-tAtCGFPPP02VroDVzp4daGi6bC7jWG+41D47GKf18FeH/ubvKQHT9VmhAkvtjNOmJwqtApzWeUpEhkyEYULvmw==",
+  "shasum": "23388c1ad8b2e44bacdf764dab0b8f510e9ffe83",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDQN4btBNNVhAMNHalg717pwiy/z7Db1EVaGC7ZT+8aegIgajshUmTYrIK+B4W8OpaHW+lazOfEYqUSNEmLv6iCxLo="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQDsHVFJKehSgIdv7nS7BWLHAOdSlrvVxkx4m8bwrjnIYgIhAKBAF2pq2YrGlmvZXy8DaLBgfdsqAaFvUhGer6Ejnott"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/safe-regex2/-/safe-regex2-5.1.2.tgz",
+  "unpackedSize": 13454
+ },
+ "funding": [
+  {
+   "type": "github",
+   "url": "https://github.com/sponsors/fastify"
+  },
+  {
+   "type": "opencollective",
+   "url": "https://opencollective.com/fastify"
+  }
+ ],
+ "gitHead": "d90e4be755f60897eb4f3d99611fd4e58f3574fa",
+ "homepage": "https://github.com/fastify/safe-regex2",
+ "keywords": [
+  "catastrophic",
+  "exponential",
+  "regex",
+  "safe",
+  "sandbox"
+ ],
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "behemoth89@gmail.com",
+   "name": "eomm"
+  },
+  {
+   "email": "hello@matteocollina.com",
+   "name": "matteo.collina"
+  }
+ ],
+ "name": "safe-regex2",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/fastify/safe-regex2.git"
+ },
+ "scripts": {
+  "lint": "eslint",
+  "lint:fix": "eslint --fix",
+  "test": "npm run test:unit && npm run test:typescript",
+  "test:typescript": "tstyche",
+  "test:unit": "c8 --100 node --test"
+ },
+ "type": "commonjs",
+ "types": "types/index.d.ts",
+ "version": "5.1.2"
+}

@@ -1,0 +1,100 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@babel/generator@8.0.6",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/generator_8.0.6_1789739264163_0.9933850435407028"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:40d64d2e-ba49-43ac-9a7c-5267bd2409d3"
+  }
+ },
+ "author": "The Babel Team (https://babel.dev/team)",
+ "bugs": "https://github.com/babel/babel/issues?utf8=%E2%9C%93&q=is%3Aissue+label%3A%22pkg%3A%20generator%22+is%3Aopen",
+ "dependencies": {
+  "@babel/parser": "^8.0.6",
+  "@babel/types": "^8.0.6",
+  "@jridgewell/gen-mapping": "0.4.0-beta.0",
+  "@jridgewell/trace-mapping": "^0.3.31",
+  "@types/jsesc": "^2.5.0",
+  "jsesc": "^3.0.2"
+ },
+ "description": "Turns an AST into code.",
+ "devDependencies": {
+  "@babel/core": "^8.0.6",
+  "@babel/helper-fixtures": "^8.0.5",
+  "@babel/plugin-transform-typescript": "^8.0.6",
+  "@jridgewell/sourcemap-codec": "1.6.0-beta.0",
+  "charcodes": "^0.2.0"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@babel%2fgenerator@8.0.6"
+  },
+  "fileCount": 5,
+  "integrity": "sha512-/pcanjdRsonCexCuxgGD8fKnBLLzk2i9uM4kmcmGyyev2R5YDs+rafMYZ89RvaGY1mW8T7C5au0TyYaEeHBGng==",
+  "shasum": "a2027d70276bd721aa5b85fc2424852976d5d474",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIGNRV0AQGOROb+wIGGw6G77f/aPrYuhKmwluZtkEXPGZAiBhkPhsU2139uPtjvf30MpZXgr/96VmLBScDF6Yp0jMBQ=="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCICQRHyTN90GXR/4DtJvXVzeRAwTLvwj3iZeGZTZLPd+HAiEA5zeFwSVo8UzTgxfVeYgJkkDeqjAAWTdDi0sqSjE06W0="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@babel/generator/-/generator-8.0.6.tgz",
+  "unpackedSize": 131839
+ },
+ "engines": {
+  "node": "^22.18.0 || >=24.11.0"
+ },
+ "exports": {
+  ".": {
+   "default": "./lib/index.js",
+   "types": "./lib/index.d.ts"
+  },
+  "./package.json": "./package.json"
+ },
+ "homepage": "https://babel.dev/docs/en/next/babel-generator",
+ "license": "MIT",
+ "main": "./lib/index.js",
+ "maintainers": [
+  {
+   "email": "hi@henryzoo.com",
+   "name": "hzoo"
+  },
+  {
+   "email": "bng412@gmail.com",
+   "name": "existentialism"
+  },
+  {
+   "email": "hello+npm@nicr.dev",
+   "name": "nicolo-ribaudo"
+  },
+  {
+   "email": "jlhwung@gmail.com",
+   "name": "jlhwung"
+  }
+ ],
+ "name": "@babel/generator",
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "directory": "packages/babel-generator",
+  "type": "git",
+  "url": "https://github.com/babel/babel.git"
+ },
+ "type": "module",
+ "version": "8.0.6"
+}

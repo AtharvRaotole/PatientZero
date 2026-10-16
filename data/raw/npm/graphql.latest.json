@@ -1,0 +1,266 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "graphql@17.0.2",
+ "_nodeVersion": "26.4.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/graphql_17.0.2_1783060129797_0.58954345720857"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:c34e1ada-54c3-4c26-a3ca-7ae8a2994f76"
+  }
+ },
+ "_npmVersion": "11.17.0",
+ "bugs": {
+  "url": "https://github.com/graphql/graphql-js/issues"
+ },
+ "description": "A Query Language and Runtime which can target any service.",
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/graphql@17.0.2"
+  },
+  "fileCount": 1744,
+  "integrity": "sha512-FRWbddMxfkjiB7z+aQDWIR+E34xo9I8c9mtK2RPv8PmMzKRvrdsreHL/Ui/TmwHJfhHChEtsFPyMHKI+xuarQQ==",
+  "shasum": "05ff6f18e0801e8d040d46957eba712c1459d5d7",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIGPysyF8LdW+cikok0jc6a5TMVceaGyPzeCYHVM7sP4OAiEAkWZuf/iCW3f8EyHypNF6JE8uBMGOjiHK79oY6v0E83Q="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/graphql/-/graphql-17.0.2.tgz",
+  "unpackedSize": 6516767
+ },
+ "engines": {
+  "node": "^22.0.0 || ^24.0.0 || ^25.0.0 || >=26.0.0"
+ },
+ "exports": {
+  ".": {
+   "default": {
+    "bun": "./index.mjs",
+    "default": "./index.mjs",
+    "module": "./index.mjs",
+    "module-sync": "./index.mjs",
+    "node": "./index.js",
+    "require": "./index.js"
+   },
+   "development": {
+    "bun": "./__dev__/index.mjs",
+    "default": "./__dev__/index.mjs",
+    "module": "./__dev__/index.mjs",
+    "module-sync": "./__dev__/index.mjs",
+    "node": "./__dev__/index.js",
+    "require": "./__dev__/index.js"
+   }
+  },
+  "./*": {
+   "default": {
+    "bun": "./*.mjs",
+    "default": "./*.mjs",
+    "module": "./*.mjs",
+    "module-sync": "./*.mjs",
+    "node": "./*.js",
+    "require": "./*.js"
+   },
+   "development": {
+    "bun": "./__dev__/*.mjs",
+    "default": "./__dev__/*.mjs",
+    "module": "./__dev__/*.mjs",
+    "module-sync": "./__dev__/*.mjs",
+    "node": "./__dev__/*.js",
+    "require": "./__dev__/*.js"
+   }
+  },
+  "./*.js": {
+   "default": {
+    "bun": "./*.mjs",
+    "default": "./*.mjs",
+    "module": "./*.mjs",
+    "module-sync": "./*.mjs",
+    "node": "./*.js",
+    "require": "./*.js"
+   },
+   "development": {
+    "bun": "./__dev__/*.mjs",
+    "default": "./__dev__/*.mjs",
+    "module": "./__dev__/*.mjs",
+    "module-sync": "./__dev__/*.mjs",
+    "node": "./__dev__/*.js",
+    "require": "./__dev__/*.js"
+   }
+  },
+  "./error": {
+   "default": {
+    "bun": "./error/index.mjs",
+    "default": "./error/index.mjs",
+    "module": "./error/index.mjs",
+    "module-sync": "./error/index.mjs",
+    "node": "./error/index.js",
+    "require": "./error/index.js"
+   },
+   "development": {
+    "bun": "./__dev__/error/index.mjs",
+    "default": "./__dev__/error/index.mjs",
+    "module": "./__dev__/error/index.mjs",
+    "module-sync": "./__dev__/error/index.mjs",
+    "node": "./__dev__/error/index.js",
+    "require": "./__dev__/error/index.js"
+   }
+  },
+  "./execution": {
+   "default": {
+    "bun": "./execution/index.mjs",
+    "default": "./execution/index.mjs",
+    "module": "./execution/index.mjs",
+    "module-sync": "./execution/index.mjs",
+    "node": "./execution/index.js",
+    "require": "./execution/index.js"
+   },
+   "development": {
+    "bun": "./__dev__/execution/index.mjs",
+    "default": "./__dev__/execution/index.mjs",
+    "module": "./__dev__/execution/index.mjs",
+    "module-sync": "./__dev__/execution/index.mjs",
+    "node": "./__dev__/execution/index.js",
+    "require": "./__dev__/execution/index.js"
+   }
+  },
+  "./language": {
+   "default": {
+    "bun": "./language/index.mjs",
+    "default": "./language/index.mjs",
+    "module": "./language/index.mjs",
+    "module-sync": "./language/index.mjs",
+    "node": "./language/index.js",
+    "require": "./language/index.js"
+   },
+   "development": {
+    "bun": "./__dev__/language/index.mjs",
+    "default": "./__dev__/language/index.mjs",
+    "module": "./__dev__/language/index.mjs",
+    "module-sync": "./__dev__/language/index.mjs",
+    "node": "./__dev__/language/index.js",
+    "require": "./__dev__/language/index.js"
+   }
+  },
+  "./type": {
+   "default": {
+    "bun": "./type/index.mjs",
+    "default": "./type/index.mjs",
+    "module": "./type/index.mjs",
+    "module-sync": "./type/index.mjs",
+    "node": "./type/index.js",
+    "require": "./type/index.js"
+   },
+   "development": {
+    "bun": "./__dev__/type/index.mjs",
+    "default": "./__dev__/type/index.mjs",
+    "module": "./__dev__/type/index.mjs",
+    "module-sync": "./__dev__/type/index.mjs",
+    "node": "./__dev__/type/index.js",
+    "require": "./__dev__/type/index.js"
+   }
+  },
+  "./utilities": {
+   "default": {
+    "bun": "./utilities/index.mjs",
+    "default": "./utilities/index.mjs",
+    "module": "./utilities/index.mjs",
+    "module-sync": "./utilities/index.mjs",
+    "node": "./utilities/index.js",
+    "require": "./utilities/index.js"
+   },
+   "development": {
+    "bun": "./__dev__/utilities/index.mjs",
+    "default": "./__dev__/utilities/index.mjs",
+    "module": "./__dev__/utilities/index.mjs",
+    "module-sync": "./__dev__/utilities/index.mjs",
+    "node": "./__dev__/utilities/index.js",
+    "require": "./__dev__/utilities/index.js"
+   }
+  },
+  "./validation": {
+   "default": {
+    "bun": "./validation/index.mjs",
+    "default": "./validation/index.mjs",
+    "module": "./validation/index.mjs",
+    "module-sync": "./validation/index.mjs",
+    "node": "./validation/index.js",
+    "require": "./validation/index.js"
+   },
+   "development": {
+    "bun": "./__dev__/validation/index.mjs",
+    "default": "./__dev__/validation/index.mjs",
+    "module": "./__dev__/validation/index.mjs",
+    "module-sync": "./__dev__/validation/index.mjs",
+    "node": "./__dev__/validation/index.js",
+    "require": "./__dev__/validation/index.js"
+   }
+  }
+ },
+ "gitHead": "71606d736c79b77588a15b32b9c9497e397adae0",
+ "homepage": "https://github.com/graphql/graphql-js",
+ "keywords": [
+  "graphql",
+  "graphql-js"
+ ],
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "npm@benjiegillam.com",
+   "name": "benjie"
+  },
+  {
+   "email": "lee@leebyron.com",
+   "name": "leebyron"
+  },
+  {
+   "email": "yaacovcr@gmail.com",
+   "name": "yaacovcr"
+  },
+  {
+   "email": "ivan.goncharov.ua@gmail.com",
+   "name": "i1g"
+  },
+  {
+   "email": "mahoney.mattj@gmail.com",
+   "name": "mjmahone"
+  },
+  {
+   "email": "badurinadenis@gmail.com",
+   "name": "enisdenjo"
+  }
+ ],
+ "module": "index.mjs",
+ "name": "graphql",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/graphql/graphql-js.git"
+ },
+ "sideEffects": [
+  "__dev__/*"
+ ],
+ "types": "index.d.ts",
+ "typesVersions": {
+  "*": {
+   "*": [
+    "NotSupportedTSVersion.d.ts"
+   ]
+  },
+  ">=4.4.0": {
+   "*": [
+    "*"
+   ]
+  }
+ },
+ "version": "17.0.2"
+}

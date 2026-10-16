@@ -1,0 +1,147 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "schema-utils@4.5.0",
+ "_nodeVersion": "24.20.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/schema-utils_4.5.0_1789300841077_0.3224537939684857"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:707a03c9-e56a-4ea4-970d-3db2ec94e997"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "author": {
+  "name": "webpack Contrib",
+  "url": "https://github.com/webpack-contrib"
+ },
+ "bugs": {
+  "url": "https://github.com/webpack/schema-utils/issues"
+ },
+ "dependencies": {
+  "@types/json-schema": "^7.0.15",
+  "ajv": "^8.20.0",
+  "ajv-formats": "^3.0.1",
+  "ajv-keywords": "^5.1.0"
+ },
+ "description": "webpack Validation Utils",
+ "devDependencies": {
+  "@babel/cli": "^8.0.4",
+  "@babel/core": "^8.0.1",
+  "@babel/preset-env": "^8.0.1",
+  "@changesets/cli": "^2.31.1",
+  "@changesets/get-github-info": "^0.8.0",
+  "@types/node": "^26.5.0",
+  "babel-jest": "^30.3.0",
+  "del": "^8.0.1",
+  "del-cli": "^7.0.0",
+  "eslint": "^10.10.0",
+  "eslint-config-webpack": "^4.9.6",
+  "husky": "^9.1.7",
+  "jest": "^30.3.0",
+  "lint-staged": "^17.5.0",
+  "npm-run-all": "^4.1.5",
+  "prettier": "^3.9.6",
+  "typescript": "^6.0.3",
+  "webpack": "^5.110.3"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/schema-utils@4.5.0"
+  },
+  "fileCount": 23,
+  "integrity": "sha512-zJlMCZ0cAR5p/Y4oVpRoqioDMJcGxaXRrQ/4rP4WyR84vc5z/DolXdbvXeDpTwbtocDFr2rhPqHPErDCUtz2kA==",
+  "shasum": "aaf8d588bd2b19511175175a5222baef648c009c",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIA98fTkHtpvF4vxPb2+J23dAOKl2gfnQwm6Hm+iNJtbyAiEAm70ezIJ7p+3I/R3jWNfcrj/ZTAwS+Hy6Vv49CX5kWB8="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIGA678M6sX9fzwkrzG9vu2I9aU35qxbDxMbyJP1JuqmzAiEAr1AXN/bljLT6mdKkmi18c7Dv732Jw8v+XPCo9C2vYv4="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/schema-utils/-/schema-utils-4.5.0.tgz",
+  "unpackedSize": 95453
+ },
+ "engines": {
+  "node": ">= 10.13.0"
+ },
+ "funding": {
+  "type": "opencollective",
+  "url": "https://opencollective.com/webpack"
+ },
+ "gitHead": "1cb9c8d72028e89ba80706c3f2d81ab5a93c858c",
+ "homepage": "https://github.com/webpack/schema-utils",
+ "keywords": [
+  "webpack"
+ ],
+ "license": "MIT",
+ "main": "dist/index.js",
+ "maintainers": [
+  {
+   "email": "784487301@qq.com",
+   "name": "15000621931"
+  },
+  {
+   "email": "evenstensberg@gmail.com",
+   "name": "ev1stensberg"
+  },
+  {
+   "email": "haijie0619@gmail.com",
+   "name": "__hai"
+  },
+  {
+   "email": "tobias.koppers@googlemail.com",
+   "name": "sokra"
+  },
+  {
+   "email": "me@aviv.sh",
+   "name": "avivkeller"
+  },
+  {
+   "email": "sheo13666q@gmail.com",
+   "name": "evilebottnawi"
+  }
+ ],
+ "name": "schema-utils",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/webpack/schema-utils.git"
+ },
+ "scripts": {
+  "build": "npm-run-all -p \"build:**\"",
+  "build:code": "babel src -d dist --copy-files",
+  "build:types": "tsc --declaration --emitDeclarationOnly --outDir declarations && prettier \"declarations/**/*.ts\" --write",
+  "clean": "del-cli dist declarations",
+  "fix": "npm-run-all fix:code fmt",
+  "fix:code": "npm run lint:code -- --fix",
+  "fmt": "npm run fmt:check -- --write",
+  "fmt:check": "prettier \"{**/*,*}.{js,json,md,yml,css,ts}\" --list-different",
+  "lint": "npm-run-all lint:code lint:types fmt:check",
+  "lint:code": "eslint --cache .",
+  "lint:types": "tsc --pretty --noEmit",
+  "prebuild": "npm run clean",
+  "prepare": "husky && npm run build",
+  "pretest": "npm run lint",
+  "release": "npm run build && changeset publish",
+  "security": "npm audit --production",
+  "start": "npm run build -- -w",
+  "test": "npm run test:coverage",
+  "test:coverage": "npm run test:only -- --collectCoverageFrom=\"src/**/*.js\" --coverage",
+  "test:only": "jest",
+  "test:watch": "npm run test:only -- --watch",
+  "version": "changeset version"
+ },
+ "types": "declarations/index.d.ts",
+ "version": "4.5.0"
+}

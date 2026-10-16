@@ -1,0 +1,134 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "webpack-sources@3.6.0",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/webpack-sources_3.6.0_1790443377445_0.2681880732564095"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:705ff66b-3334-40dd-a026-57d03879e87e"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "author": {
+  "name": "Tobias Koppers @sokra"
+ },
+ "bugs": {
+  "url": "https://github.com/webpack/webpack-sources/issues"
+ },
+ "description": "Source code handling classes for webpack",
+ "devDependencies": {
+  "@changesets/cli": "^3.0.3",
+  "@changesets/get-github-info": "^1.0.1",
+  "@codspeed/core": "^5.5.0",
+  "del-cli": "^7.0.0",
+  "eslint": "^9.39.5",
+  "eslint-config-webpack": "^4.14.0",
+  "jest": "^30.5.2",
+  "prettier": "^3.9.9",
+  "source-map": "^0.8.0",
+  "sourcemap-validator": "^2.1.0",
+  "tinybench": "^6.0.0",
+  "typescript": "^6.0.2",
+  "webpack": "^5.107.2"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/webpack-sources@3.6.0"
+  },
+  "fileCount": 56,
+  "integrity": "sha512-EIMmPVvNI0CYXyRPp34F2Qk7W37/BZVZIofS6LAUnrNjCVahS+hO4mxwFJDjQjODTGZDtVzLYoN2+1dYkhk9qA==",
+  "shasum": "b2e4a4f1aef1a0d60f3011eb47736c5bf7f1ed7f",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIA5cxm9ml6u5BpB4aiYllNa8ySPqcE3uconr0ynLVYuPAiAA5Pr3MhLPjaI1vW27CpYT+/FKAd1UwFtqITMCnv2v8w=="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIHnVFRLJQNF+GGuWQ699+AO28tSbqcJKOGa5iVGlxYfxAiEA58Z9VjcACd/S3wYKKh8otWO6Jx+9ptXyCx0sgWzmCng="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/webpack-sources/-/webpack-sources-3.6.0.tgz",
+  "unpackedSize": 246797
+ },
+ "engines": {
+  "node": ">=10.13.0"
+ },
+ "gitHead": "50fc1db79b31694c68d386a8126ff5bfdc80faea",
+ "homepage": "https://github.com/webpack/webpack-sources#readme",
+ "keywords": [
+  "webpack",
+  "source-map"
+ ],
+ "license": "MIT",
+ "main": "lib/index.js",
+ "maintainers": [
+  {
+   "email": "784487301@qq.com",
+   "name": "15000621931"
+  },
+  {
+   "email": "evenstensberg@gmail.com",
+   "name": "ev1stensberg"
+  },
+  {
+   "email": "haijie0619@gmail.com",
+   "name": "__hai"
+  },
+  {
+   "email": "tobias.koppers@googlemail.com",
+   "name": "sokra"
+  },
+  {
+   "email": "me@aviv.sh",
+   "name": "avivkeller"
+  },
+  {
+   "email": "sheo13666q@gmail.com",
+   "name": "evilebottnawi"
+  },
+  {
+   "email": "mail@johannesewald.de",
+   "name": "jhnns"
+  }
+ ],
+ "name": "webpack-sources",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/webpack/webpack-sources.git"
+ },
+ "scripts": {
+  "benchmark": "node --max-old-space-size=4096 --hash-seed=1 --random-seed=1 --no-opt --predictable --predictable-gc-schedule --interpreted-frames-native-stack --allow-natives-syntax --expose-gc --no-concurrent-sweeping ./benchmark/run.mjs cases",
+  "benchmark:memory": "node --expose-gc --max-old-space-size=4096 ./benchmark/run.mjs memory",
+  "build:types": "del-cli types && tsc -p tsconfig.types.json && prettier --log-level warn --write types",
+  "fix": "npm run fix:code && npm run build:types",
+  "fix:code": "npm run lint:code -- --fix",
+  "fmt": "npm run fmt:base -- --loglevel warn --write",
+  "fmt:base": "prettier --cache --ignore-unknown .",
+  "fmt:check": "npm run fmt:base -- --check",
+  "lint": "npm run lint:code && npm run lint:types && npm run lint:types-test",
+  "lint:code": "eslint --cache .",
+  "lint:types": "tsc",
+  "lint:types-test": "tsc -p tsconfig.types.test.json",
+  "pretest": "npm run lint",
+  "release": "changeset publish",
+  "test": "node --require ./test/helpers/validate-mappings.js --test --test-reporter=dot \"test/*.js\"",
+  "test:coverage": "node --require ./test/helpers/validate-mappings.js --test --experimental-test-coverage --test-coverage-include=\"lib/**\" --test-reporter=dot --test-reporter-destination=stdout --test-reporter=lcov --test-reporter-destination=lcov.info \"test/*.js\"",
+  "test:legacy": "jest",
+  "test:legacy:coverage": "jest --coverage",
+  "test:update-snapshots": "node --require ./test/helpers/validate-mappings.js --test --test-reporter=dot --test-update-snapshots \"test/*.js\"",
+  "version": "changeset version && npm run fmt"
+ },
+ "types": "types.d.ts",
+ "version": "3.6.0"
+}

@@ -1,0 +1,128 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@slack/logger@5.0.0",
+ "_nodeVersion": "24.18.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/logger_5.0.0_1784051602864_0.577403675752935"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:87d4450c-e0e8-4388-ba94-e377eb679c93"
+  }
+ },
+ "_npmVersion": "11.16.0",
+ "author": {
+  "name": "Slack Technologies, LLC"
+ },
+ "bugs": {
+  "url": "https://github.com/slackapi/node-slack-sdk/issues"
+ },
+ "dependencies": {
+  "@types/node": ">=20"
+ },
+ "description": "Logging utility used by Node Slack SDK",
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@slack%2flogger@5.0.0"
+  },
+  "fileCount": 7,
+  "integrity": "sha512-VGXhmmgsAo9shdQYh4tFDndd+7nsgp0Y5h0UPDaUp8K359pBasI6YdkMqFW3mCOxLQkq09qj7o7cq6f3DuXcJQ==",
+  "shasum": "d3fb03c1237d1d4fa8f51812843d6bab41352705",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCICIsUDnAXjSBaS/nGAgtj65JgU/DHTgyvguG5jVBRjKqAiEA4bJIPI10VKK+NlK8qAqZR0rKC7Caa6/DjVFDuhGl194="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@slack/logger/-/logger-5.0.0.tgz",
+  "unpackedSize": 14077
+ },
+ "engines": {
+  "node": ">= 20",
+  "npm": ">=9.6.4"
+ },
+ "gitHead": "70e15b8442745d215f9ae259a2c970b306aff51a",
+ "homepage": "https://docs.slack.dev/tools/node-slack-sdk/",
+ "keywords": [
+  "slack",
+  "logging"
+ ],
+ "license": "MIT",
+ "main": "dist/index.js",
+ "maintainers": [
+  {
+   "email": "opensource@slack.com",
+   "name": "slackhq"
+  },
+  {
+   "email": "macdonald.andrew@gmail.com",
+   "name": "ajm"
+  },
+  {
+   "email": "sgorbachov@slack-corp.com",
+   "name": "sgorbach0v"
+  },
+  {
+   "email": "stevengill97@gmail.com",
+   "name": "stevegill"
+  },
+  {
+   "email": "it@slack-corp.com",
+   "name": "slack_biztech"
+  },
+  {
+   "email": "alissa.renz@gmail.com",
+   "name": "misscoded"
+  },
+  {
+   "email": "michael@michaelbrooks.ca",
+   "name": "mwbrooks"
+  },
+  {
+   "email": "cchensh88@gmail.com",
+   "name": "cchensh"
+  },
+  {
+   "email": "shelby.spencer@salesforce.com",
+   "name": "sspencer-slack"
+  },
+  {
+   "email": "evegeris@salesforce.com",
+   "name": "evegeris"
+  },
+  {
+   "email": "eden.zimbelman@salesforce.com",
+   "name": "e-zim"
+  },
+  {
+   "email": "farhanjk@gmail.com",
+   "name": "farhanjk"
+  }
+ ],
+ "name": "@slack/logger",
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/slackapi/node-slack-sdk.git"
+ },
+ "scripts": {
+  "build": "npm run build:clean && tsc",
+  "build:clean": "shx rm -rf ./dist",
+  "docs": "npx typedoc --plugin typedoc-plugin-markdown",
+  "prepack": "npm run build",
+  "test": "npm run build && node --test-reporter=spec --test-reporter-destination=stdout --test-reporter=junit --test-reporter-destination=test-results.xml --import tsx --test src/index.test.ts",
+  "test:coverage": "npm run build && node --experimental-test-coverage --test-reporter=spec --test-reporter-destination=stdout --test-reporter=lcov --test-reporter-destination=lcov.info --test-reporter=junit --test-reporter-destination=test-results.xml --import tsx --test src/index.test.ts"
+ },
+ "types": "dist/index.d.ts",
+ "version": "5.0.0"
+}

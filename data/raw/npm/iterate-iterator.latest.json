@@ -1,0 +1,110 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "iterate-iterator@1.0.2",
+ "_nodeVersion": "16.10.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/iterate-iterator_1.0.2_1633125384533_0.16568454323155124"
+ },
+ "_npmUser": {
+  "email": "ljharb@gmail.com",
+  "name": "ljharb"
+ },
+ "_npmVersion": "7.24.0",
+ "author": {
+  "email": "ljharb@gmail.com",
+  "name": "Jordan Harband"
+ },
+ "auto-changelog": {
+  "backfillLimit": false,
+  "commitLimit": false,
+  "output": "CHANGELOG.md",
+  "template": "keepachangelog",
+  "unreleased": false
+ },
+ "bugs": {
+  "url": "https://github.com/ljharb/iterate-iterator/issues"
+ },
+ "description": "Iterate any JS iterator. Works robustly in all environments, all versions.",
+ "devDependencies": {
+  "@ljharb/eslint-config": "^18.0.0",
+  "aud": "^1.1.5",
+  "auto-changelog": "^2.3.0",
+  "es-get-iterator": "^1.1.2",
+  "eslint": "^7.32.0",
+  "evalmd": "^0.0.19",
+  "for-each": "^0.3.3",
+  "nyc": "^10.3.2",
+  "object-inspect": "^1.11.0",
+  "safe-publish-latest": "^1.1.4",
+  "tape": "^5.3.1"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 10,
+  "integrity": "sha512-t91HubM4ZDQ70M9wqp+pcNpu8OyJ9UAtXntT/Bcsvp5tZMnz9vRa+IunKXeI8AnfZMTv0jNuVEmGeLSMjVvfPw==",
+  "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.13\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJh2wMvCRA9TVsSAnZWagAApNUP/j0N8bvvfwYPlhx9O0xU\ncuHoWjIcUf1rzFgIsmeJCs01gwBF2APr/oNHdWR1vnztjSZmZYvonciTgPvA\nv3Y6ElQW1zMnc1EMg4Av5bkbYGKOSoF3AAV3KKUbigpUEN7eIKFnWfL5B3Ti\n6GnYw9iTgJzjmgpsrOwa+ZigOG5E27Zh6m+Gwo6XuNX7RMAHljF0CAMwOn6T\nNqo4+FNCGadPG3CXvZGSV6NLxQ8gOrcnVfyfoJseNtVUdS9CMZWbvpzuLY3X\nbPSCXPbbyx/q3V4PfvhwtmXRTQeqpgK9wqmJRFqjwzRKv5/927OFhrkXBfM+\n+KwVzd3RU7qM9O2jFrejVav6gToa7gQSFsBbj7pIJnf9FF3HLkwZUs6aZcKr\nkxW9InnOTHPYRdfGyb1nw7N9pYcw+JtPQoUvukg8wpkUA9NHOFwjQ3UID5b9\n50XLGppTFRxF5fKkTnCYDamSqvhFBoORdV2uwSFto+N7tDHtnabPrvS43HD9\ntQdiY/EjpUXLP6k00us20QbWhsTRBhSqjsVcYP3xkPLEblceGB5EL7sBMa3W\nJjxX5Cnwvj6J+zN7J8V/MDTZBESrHfyvtFuoUatnHlV+AWkWIcVLp0p/Fs7Y\nCUdlvQ2qzyXzh+KFuSs2TsZK2Go/TOVzNuBIqvr8mG6gI6wpjSYvEAkOBPd7\nfrhJ\r\n=fEaU\r\n-----END PGP SIGNATURE-----\r\n",
+  "shasum": "551b804c9eaa15b847ea6a7cdc2f5bf1ec150f91",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEYCIQCK7ukQ4JKYkuudx5Nmv2/y8RJFLVFeObUG3rUn602dKAIhALUIZb8NY3phycbbE3R7xn61RpsLwdrbj9EBQUQaFe5q"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/iterate-iterator/-/iterate-iterator-1.0.2.tgz",
+  "unpackedSize": 16201
+ },
+ "exports": {
+  ".": [
+   {
+    "default": "./index.js"
+   },
+   "./index.js"
+  ],
+  "./package.json": "./package.json"
+ },
+ "funding": {
+  "url": "https://github.com/sponsors/ljharb"
+ },
+ "gitHead": "f9faae764cac92130015cf0cd0c214c468a3b32f",
+ "homepage": "https://github.com/ljharb/iterate-iterator#readme",
+ "keywords": [
+  "iterate",
+  "iterator",
+  "iterable",
+  "es2015",
+  "es6",
+  "symbol.iterator",
+  "symbol",
+  "next"
+ ],
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "ljharb@gmail.com",
+   "name": "ljharb"
+  }
+ ],
+ "name": "iterate-iterator",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/ljharb/iterate-iterator.git"
+ },
+ "scripts": {
+  "lint": "eslint .",
+  "posttest": "aud --production",
+  "postversion": "auto-changelog && git add CHANGELOG.md && git commit --no-edit --amend && git tag -f \"v$(node -e \"console.log(require('./package.json').version)\")\"",
+  "prelint": "evalmd README.md",
+  "prepublish": "not-in-publish || npm run prepublishOnly",
+  "prepublishOnly": "safe-publish-latest",
+  "pretest": "npm run lint",
+  "test": "npm run tests-only",
+  "tests-only": "nyc tape 'test/**/*.js'",
+  "version": "auto-changelog && git add CHANGELOG.md"
+ },
+ "testling": {
+  "files": "test/index.js"
+ },
+ "version": "1.0.2"
+}

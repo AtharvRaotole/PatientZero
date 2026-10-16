@@ -1,0 +1,100 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "fast-querystring@1.1.2",
+ "_nodeVersion": "20.2.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/fast-querystring_1.1.2_1685999728197_0.906911023314737"
+ },
+ "_npmUser": {
+  "email": "yagiz@nizipli.com",
+  "name": "anonrig"
+ },
+ "_npmVersion": "9.6.6",
+ "author": {
+  "email": "yagiz@nizipli.com",
+  "name": "Yagiz Nizipli"
+ },
+ "bugs": {
+  "url": "https://github.com/anonrig/fast-querystring/issues"
+ },
+ "dependencies": {
+  "fast-decode-uri-component": "^1.0.1"
+ },
+ "description": "A fast alternative to legacy querystring module",
+ "devDependencies": {
+  "@aws-sdk/querystring-builder": "^3.342.0",
+  "@aws-sdk/querystring-parser": "^3.342.0",
+  "@edge-runtime/vm": "^3.0.1",
+  "@types/node": "^20.2.5",
+  "@vitest/coverage-c8": "^0.31.4",
+  "benchmark": "^2.1.4",
+  "cli-select": "^1.1.2",
+  "cronometro": "^1.1.5",
+  "http-querystring-stringify": "^2.1.0",
+  "jsdom": "^22.1.0",
+  "qs": "^6.11.2",
+  "query-string": "^8.1.0",
+  "querystringify": "^2.2.0",
+  "querystringify-ts": "^0.1.5",
+  "querystringparser": "^0.1.1",
+  "rome": "12.1.3",
+  "simple-git": "^3.19.0",
+  "vitest": "^0.31.4"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 8,
+  "integrity": "sha512-g6KuKWmFXc0fID8WWH0jit4g0AGBoJhCkJMb1RmbsSEUNvQ+ZC8D6CUZ+GtF8nMzSPXnhiePyyqqipzNNEnHjg==",
+  "shasum": "a6d24937b4fc6f791b4ee31dcb6f53aeafb89f53",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIQDCHoXst6Pgr4ELze+59+mvocX3BvqzuVX5yEoU9tNFaAIgDKT7z3WLkQw55toQPPf3PnJXorA8z9FnoFM/bOcNIWo="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/fast-querystring/-/fast-querystring-1.1.2.tgz",
+  "unpackedSize": 19065
+ },
+ "gitHead": "ecf9c8a2d1aa34a0aef903e4a568d4dc6544e5fd",
+ "homepage": "https://github.com/anonrig/fast-querystring#readme",
+ "keywords": [
+  "querystring",
+  "qs",
+  "parser"
+ ],
+ "license": "MIT",
+ "main": "./lib/index.js",
+ "maintainers": [
+  {
+   "email": "hello@matteocollina.com",
+   "name": "matteo.collina"
+  },
+  {
+   "email": "yagiz@nizipli.com",
+   "name": "anonrig"
+  }
+ ],
+ "name": "fast-querystring",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/anonrig/fast-querystring.git"
+ },
+ "scripts": {
+  "benchmark": "node benchmark/bench.js",
+  "benchmark:cmp-branch": "node benchmark/bench-cmp-branch.js",
+  "benchmark:import": "node benchmark/import.mjs",
+  "benchmark:parse": "node benchmark/parse.mjs",
+  "benchmark:stringify": "node benchmark/stringify.mjs",
+  "coverage": "vitest run --coverage",
+  "format": "rome format . --write",
+  "format:ci": "rome ci .",
+  "test": "vitest",
+  "test:coverage": "vitest --coverage",
+  "test:environment:browser": "vitest --environment=jsdom",
+  "test:environment:edge": "vitest --environment=edge-runtime",
+  "test:watch": "vitest --watch"
+ },
+ "types": "./lib/index.d.ts",
+ "version": "1.1.2"
+}

@@ -1,0 +1,96 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "media-typer@2.0.0",
+ "_nodeVersion": "26.2.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/media-typer_2.0.0_1779918597204_0.601628468578983"
+ },
+ "_npmUser": {
+  "email": "hello@blakeembrey.com",
+  "name": "blakeembrey"
+ },
+ "_npmVersion": "11.13.0",
+ "author": {
+  "email": "doug@somethingdoug.com",
+  "name": "Douglas Christopher Wilson"
+ },
+ "bugs": {
+  "url": "https://github.com/jshttp/media-typer/issues"
+ },
+ "description": "Simple RFC 6838 media type parser and formatter",
+ "devDependencies": {
+  "@borderless/ts-scripts": "^0.15.0",
+  "@size-limit/preset-small-lib": "^12.0.0",
+  "@vitest/coverage-v8": "^3.2.4",
+  "size-limit": "^12.0.0",
+  "typescript": "^5.6.2",
+  "vitest": "^3.2.4"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 6,
+  "integrity": "sha512-kOy3OxT2HH39N70UnKgu4NWDZjLOz8W/mfyvniHjRH/DrL3f2pOfvWQ4p60offbbtDAnXWp0v9LfMIqMec269Q==",
+  "shasum": "5f43742a44d474b83ad4d1bd0f0c5cf56c0cd280",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQD/B+bK6m/5jLztwylEcH+Ozui5Q2rHb4kViPPZSF623AIgXoKfC1A49bwfycg37Kn+a/4FC8c0yZtdKBpWsXzsDn4="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/media-typer/-/media-typer-2.0.0.tgz",
+  "unpackedSize": 11829
+ },
+ "engines": {
+  "node": ">=18"
+ },
+ "exports": "./dist/index.js",
+ "funding": {
+  "type": "opencollective",
+  "url": "https://opencollective.com/express"
+ },
+ "gitHead": "102bab110bdbc87c76bc0bd585a5f5e754204b13",
+ "homepage": "https://github.com/jshttp/media-typer#readme",
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "ulisesgascondev@gmail.com",
+   "name": "ulisesgascon"
+  },
+  {
+   "email": "hello@blakeembrey.com",
+   "name": "blakeembrey"
+  },
+  {
+   "email": "doug@somethingdoug.com",
+   "name": "dougwilson"
+  }
+ ],
+ "name": "media-typer",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/jshttp/media-typer.git"
+ },
+ "scripts": {
+  "bench": "vitest bench",
+  "build": "ts-scripts build",
+  "format": "ts-scripts format",
+  "prepare": "ts-scripts install",
+  "prepublishOnly": "npm run build",
+  "size": "size-limit",
+  "specs": "ts-scripts specs",
+  "test": "ts-scripts test && npm run size"
+ },
+ "sideEffects": false,
+ "size-limit": [
+  {
+   "limit": "600 B",
+   "path": "dist/index.js"
+  }
+ ],
+ "ts-scripts": {
+  "project": "tsconfig.build.json"
+ },
+ "type": "module",
+ "version": "2.0.0"
+}

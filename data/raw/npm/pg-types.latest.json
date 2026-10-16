@@ -1,0 +1,93 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "pg-types@4.1.0",
+ "_nodeVersion": "22.14.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/pg-types_4.1.0_1753889821648_0.7706212068626346"
+ },
+ "_npmUser": {
+  "email": "bvdrucker@gmail.com",
+  "name": "bendrucker"
+ },
+ "_npmVersion": "11.4.2",
+ "author": {
+  "name": "Brian M. Carlson"
+ },
+ "bugs": {
+  "url": "https://github.com/brianc/node-pg-types/issues"
+ },
+ "dependencies": {
+  "pg-int8": "1.0.1",
+  "pg-numeric": "1.0.2",
+  "postgres-array": "~3.0.1",
+  "postgres-bytea": "~3.0.0",
+  "postgres-date": "~2.1.0",
+  "postgres-interval": "^3.0.0",
+  "postgres-range": "^1.1.1"
+ },
+ "description": "Query result type converters for node-postgres",
+ "devDependencies": {
+  "@types/node": "^14.14.33",
+  "codecov": "^3.8.1",
+  "nyc": "^15.1.0",
+  "open-cli": "^6.0.1",
+  "pg": "^8.11.3",
+  "standard": "^16.0.3",
+  "tap-spec": "^5.0.0",
+  "tape": "^5.2.2",
+  "tsd": "^0.14.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 8,
+  "integrity": "sha512-o2XFanIMy/3+mThw69O8d4n1E5zsLhdO+OPqswezu7Z5ekP4hYDqlDjlmOpYMbzY2Br0ufCwJLdDIXeNVwcWFg==",
+  "shasum": "49138d5ff1c94634d7eed42aa9ccba78ea2e52f0",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQCY+DJZPvRNutFZ0gA8pZYogF9ICd3NPpXlx1s6VHmubQIgb2lYOT5zXw/yVYBn2uC6KBs98M32lfNDH8Y4uX4KBtg="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/pg-types/-/pg-types-4.1.0.tgz",
+  "unpackedSize": 19717
+ },
+ "engines": {
+  "node": ">=10"
+ },
+ "gitHead": "26bfe645a8ddc0c73830b1b8c63f2c4f8265b24f",
+ "homepage": "https://github.com/brianc/node-pg-types",
+ "keywords": [
+  "postgres",
+  "PostgreSQL",
+  "pg"
+ ],
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "bvdrucker@gmail.com",
+   "name": "bendrucker"
+  },
+  {
+   "email": "brian.m.carlson@gmail.com",
+   "name": "brianc"
+  }
+ ],
+ "name": "pg-types",
+ "repository": {
+  "type": "git",
+  "url": "git://github.com/brianc/node-pg-types.git"
+ },
+ "scripts": {
+  "coverage": "nyc --reporter=html npm test && open-cli coverage/index.html",
+  "coverage-ci": "nyc --reporter=lcov npm test && codecov",
+  "generate": "docker compose --project-directory generator run --rm generator",
+  "lint": "standard",
+  "test": "npm run test-js && npm run test-ts && npm run lint",
+  "test-js": "tape test/*.js | tap-spec",
+  "test-ts": "tsd"
+ },
+ "types": "./index.d.ts",
+ "version": "4.1.0"
+}

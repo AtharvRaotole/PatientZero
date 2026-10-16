@@ -1,0 +1,86 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "responselike@4.0.2",
+ "_nodeVersion": "20.19.5",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/responselike_4.0.2_1760084021158_0.10718217476989222"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "11.6.1",
+ "bugs": {
+  "url": "https://github.com/sindresorhus/responselike/issues"
+ },
+ "dependencies": {
+  "lowercase-keys": "^3.0.0"
+ },
+ "description": "A response-like object for mocking a Node.js HTTP response stream",
+ "devDependencies": {
+  "@types/node": "^24.7.1",
+  "ava": "^6.4.1",
+  "decompress-response": "^9.0.0",
+  "get-stream": "^9.0.1",
+  "tsd": "^0.33.0",
+  "xo": "^1.2.3"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-cGk8IbWEAnaCpdAt1BHzJ3Ahz5ewDJa0KseTsE3qIRMJ3C698W8psM7byCeWVpd/Ha7FUYzuRVzXoKoM6nRUbA==",
+  "shasum": "d99a1105aeca5909c1e93156a839c7f3173e26c2",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCID7OfOrDnJXv7JvrrgLkGxhdpdHanIQ73ZfwyfZgwbhyAiEAzZOCKstdTpqgLLm+LmEmT/x2/wD+7FfYNk9Mh6Q0044="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/responselike/-/responselike-4.0.2.tgz",
+  "unpackedSize": 6104
+ },
+ "engines": {
+  "node": ">=20"
+ },
+ "exports": {
+  "default": "./index.js",
+  "types": "./index.d.ts"
+ },
+ "funding": "https://github.com/sponsors/sindresorhus",
+ "gitHead": "e0739da83ed0c86b658e85a94e8e5ce50d145d8a",
+ "homepage": "https://github.com/sindresorhus/responselike#readme",
+ "keywords": [
+  "http",
+  "https",
+  "response",
+  "mock",
+  "test",
+  "request",
+  "responselike"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "responselike",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/responselike.git"
+ },
+ "scripts": {
+  "test": "xo && ava && tsd"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "4.0.2",
+ "xo": {
+  "rules": {
+   "@typescript-eslint/no-restricted-types": "off"
+  }
+ }
+}

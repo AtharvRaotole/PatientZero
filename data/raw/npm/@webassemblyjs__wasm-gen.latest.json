@@ -1,0 +1,65 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@webassemblyjs/wasm-gen@1.14.1",
+ "_nodeVersion": "21.7.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/wasm-gen_1.14.1_1730930018094_0.5782532479780951"
+ },
+ "_npmUser": {
+  "email": "npm@sauleau.com",
+  "name": "xtuc"
+ },
+ "_npmVersion": "lerna/5.1.6/node@v21.7.1+x64 (linux)",
+ "author": {
+  "name": "Sven Sauleau"
+ },
+ "bugs": {
+  "url": "https://github.com/xtuc/webassemblyjs/issues"
+ },
+ "dependencies": {
+  "@webassemblyjs/ast": "1.14.1",
+  "@webassemblyjs/helper-wasm-bytecode": "1.13.2",
+  "@webassemblyjs/ieee754": "1.13.2",
+  "@webassemblyjs/leb128": "1.13.2",
+  "@webassemblyjs/utf8": "1.13.2"
+ },
+ "description": "WebAssembly binary format printer",
+ "directories": {},
+ "dist": {
+  "fileCount": 6,
+  "integrity": "sha512-AmomSIjP8ZbfGQhumkNvgC33AY7qtMCXnN6bL2u2Js4gVCg8fp735aEiMSBbDR7UQIj90n4wKAFUSEd0QN2Ukg==",
+  "shasum": "991e7f0c090cb0bb62bbac882076e3d219da9570",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEQCIEml6kkAYyw27l4Vx8BtluRAej6waVoF/dbGMKOWdLOlAiBeCSxuI3YAoivltsVG0shDaQQAr7quR/owy6PWRndXww=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@webassemblyjs/wasm-gen/-/wasm-gen-1.14.1.tgz",
+  "unpackedSize": 28065
+ },
+ "gitHead": "25d52b1296e151ac56244a7c3886661e6b4a69ea",
+ "homepage": "https://github.com/xtuc/webassemblyjs#readme",
+ "license": "MIT",
+ "main": "lib/index.js",
+ "maintainers": [
+  {
+   "email": "npm@sauleau.com",
+   "name": "xtuc"
+  }
+ ],
+ "module": "esm/index.js",
+ "name": "@webassemblyjs/wasm-gen",
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/xtuc/webassemblyjs.git"
+ },
+ "scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1"
+ },
+ "version": "1.14.1"
+}

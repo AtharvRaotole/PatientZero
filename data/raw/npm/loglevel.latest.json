@@ -1,0 +1,96 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "loglevel@1.9.2",
+ "_nodeVersion": "20.11.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/loglevel_1.9.2_1725635388362_0.9846999091330522"
+ },
+ "_npmUser": {
+  "email": "pimterry@gmail.com",
+  "name": "pimterry"
+ },
+ "_npmVersion": "10.2.4",
+ "author": {
+  "email": "pimterry@gmail.com",
+  "name": "Tim Perry",
+  "url": "http://tim-perry.co.uk"
+ },
+ "bugs": {
+  "url": "https://github.com/pimterry/loglevel/issues"
+ },
+ "dependencies": {},
+ "description": "Minimal lightweight logging for JavaScript, adding reliable log level methods to any available console.log methods",
+ "devDependencies": {
+  "@types/core-js": "2.5.0",
+  "@types/node": "^12.0.4",
+  "grunt": "~1.5.3",
+  "grunt-cli": "^1.4.3",
+  "grunt-contrib-clean": "^1.1.0",
+  "grunt-contrib-concat": "~0.5.0",
+  "grunt-contrib-connect": "^3.0.0",
+  "grunt-contrib-jasmine": "^4.0.0",
+  "grunt-contrib-jshint": "^3.2.0",
+  "grunt-contrib-uglify": "^3.4.0",
+  "grunt-contrib-watch": "^1.1.0",
+  "grunt-open": "~0.2.3",
+  "grunt-preprocess": "^5.1.0",
+  "jasmine": "^2.4.1",
+  "ts-node": "^10.9.2",
+  "typescript": "^3.5.1"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 15,
+  "integrity": "sha512-HgMmCqIJSAKqo68l0rS2AanEWfkxaZ5wNiEFb5ggm08lDs9Xl2KxBlX3PTcaD2chBM1gXAYf491/M2Rv8Jwayg==",
+  "shasum": "c2e028d6c757720107df4e64508530db6621ba08",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEQCIFzbX4cCU82jkQ05mx+SdzzBsG+o0nVO6+MpzoBQ6evDAiBmkU0YoODL3KT+ywvvbQduP3tSPNIkQbuElrxGaGVoTw=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/loglevel/-/loglevel-1.9.2.tgz",
+  "unpackedSize": 86169
+ },
+ "engines": {
+  "node": ">= 0.6.0"
+ },
+ "funding": {
+  "type": "tidelift",
+  "url": "https://tidelift.com/funding/github/npm/loglevel"
+ },
+ "gitHead": "40d10ef1917710afcc70b5f2115bb336ab4b0580",
+ "homepage": "https://github.com/pimterry/loglevel",
+ "keywords": [
+  "log",
+  "logger",
+  "logging",
+  "browser"
+ ],
+ "license": "MIT",
+ "main": "lib/loglevel.js",
+ "maintainers": [
+  {
+   "email": "pimterry@gmail.com",
+   "name": "pimterry"
+  }
+ ],
+ "name": "loglevel",
+ "repository": {
+  "type": "git",
+  "url": "git://github.com/pimterry/loglevel.git"
+ },
+ "scripts": {
+  "dist": "grunt dist",
+  "dist-build": "grunt dist-build",
+  "lint": "grunt jshint",
+  "test": "grunt test && npm run test-types",
+  "test-browser": "grunt test-browser",
+  "test-node": "grunt test-node",
+  "test-types": "tsc --noEmit ./test/type-test.ts && ts-node ./test/type-test.ts",
+  "watch": "grunt watch"
+ },
+ "types": "./index.d.ts",
+ "version": "1.9.2"
+}

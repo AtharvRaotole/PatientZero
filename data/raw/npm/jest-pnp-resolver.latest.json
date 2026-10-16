@@ -1,0 +1,62 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "jest-pnp-resolver@1.2.3",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/jest-pnp-resolver_1.2.3_1668505796507_0.2971541770683124"
+ },
+ "_npmUser": {
+  "email": "nison.mael@gmail.com",
+  "name": "arcanis"
+ },
+ "bugs": {
+  "url": "https://github.com/arcanis/jest-pnp-resolver/issues"
+ },
+ "description": "plug'n'play resolver for Webpack",
+ "directories": {},
+ "dist": {
+  "fileCount": 7,
+  "integrity": "sha512-+3NpwQEnRoIBtx4fyhblQDPgJI0H1IEIkX7ShLUjPGA7TtUTvI1oiKi3SR4oBR0hQhQR80l4WAe5RrXBwWMA8w==",
+  "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v4.10.10\r\nComment: https://openpgpjs.org\r\n\r\nwsFzBAEBCAAGBQJjc2DEACEJED1NWxICdlZqFiEECWMYAoorWMhJKdjhPU1b\r\nEgJ2VmoX9hAAmPPum4924svQoaH4H9HUL/XfWJFCJ+9QZAOLv7l+QDBbdMW7\r\nV4bT1PvcsHwQtf3IZ+lqLc5ZQkV0/oTMx7pu2NUFbnVrbY3xb6yfuiro+3Lg\r\nLF9ACUc0Dh84LqdHXEMMdf2paDu1j/wqhm3HKazrP4VSMUQmKxEmHAvTe8xw\r\nC17u8KcUPHkrWERLM+QBoRL/wajSYsacVrGJOArL71Cb+/63G7/5aMDOZwVv\r\ngEe6d7KROnevMLToZ8BGnblMThgkQbJkKHZyG9sHGeAkphLYcUqAslBEZ8w1\r\nyLkEsCKJJGe/+CWP6Qldx3xWYyPoKnnbYl9/cBPPJlCxiQ9wsdae0aoZ5FJ+\r\nhHyGa6dx1gL0kHJkLExwVJmTWya0ZhFDfm1XQ5jlAquc9/Pae+UpwRSnt8Dc\r\nTWPfU1WFD0v27ngnG/a9VIIYYjzSndafI1ReaBbh9fovmDQJwI2IWQ1w/9aj\r\nuuTMaSGBNUUc3/cZ4P2bHeKus+JYgm1nEV6vijS91w5D6re7fw/BuBJTiWWk\r\nWXzRsG8E+H36AQPQ2/GUP8E0NJRtakvSLJ6Pc8hw1TL48eah4E9RzT1YqZhS\r\nCZ6RH6YDpMuXOprL3VcAtSf8r7bMoi0IjzaeslrdAc6S/FtDKJxhrda0dEFN\r\nGF542mX6ZWZg+I2BPEAwy82Cbrtk0wbMg4I=\r\n=DUAE\r\n-----END PGP SIGNATURE-----\r\n",
+  "shasum": "930b1546164d4ad5937d5540e711d4d38d4cad2e",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIFmErbLrkJPwixISL4sbfYJI/duiciluO2p8ha0ZOOpDAiEAzWWJFqjuBM83M4F3fB2EbCKr/TXLu5xEcTWB1UTc7A8="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/jest-pnp-resolver/-/jest-pnp-resolver-1.2.3.tgz",
+  "unpackedSize": 5676
+ },
+ "engines": {
+  "node": ">=6"
+ },
+ "homepage": "https://github.com/arcanis/jest-pnp-resolver",
+ "keywords": [
+  "jest",
+  "yarn",
+  "plugnplay",
+  "pnp"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "nison.mael@gmail.com",
+   "name": "arcanis"
+  }
+ ],
+ "name": "jest-pnp-resolver",
+ "peerDependencies": {
+  "jest-resolve": "*"
+ },
+ "peerDependenciesMeta": {
+  "jest-resolve": {
+   "optional": true
+  }
+ },
+ "repository": {
+  "type": "git",
+  "url": "https://github.com/arcanis/jest-pnp-resolver.git"
+ },
+ "version": "1.2.3"
+}

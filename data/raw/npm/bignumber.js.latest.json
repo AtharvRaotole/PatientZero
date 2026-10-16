@@ -1,0 +1,99 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "bignumber.js@11.1.5",
+ "_nodeVersion": "22.20.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/bignumber.js_11.1.5_1783264605900_0.49518980081727837"
+ },
+ "_npmUser": {
+  "email": "M8ch88l@gmail.com",
+  "name": "mikemcl"
+ },
+ "_npmVersion": "10.9.3",
+ "author": {
+  "email": "M8ch88l@gmail.com",
+  "name": "Michael Mclaughlin"
+ },
+ "browser": "dist/bignumber.js",
+ "bugs": {
+  "url": "https://github.com/MikeMcl/bignumber.js/issues"
+ },
+ "description": "A library for arbitrary-precision decimal and non-decimal arithmetic",
+ "devDependencies": {
+  "typescript": "^5.1.6"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 9,
+  "integrity": "sha512-6WmzCNtUnfKpbozq+hOgWaZMMzORmYBwF1xZScyoIX3QRYWeKTtxxwDOW5tIz7C9BdjkIYHGTcelCLkXg0mndw==",
+  "shasum": "0f678769f989e6947138d16adaaaa475a9b0bc65",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCICRSa/n+a0nIESskHU0ZYU8YHdZv1G8WdS6is2UyIxnvAiEAsNKWPGIfW9Xbic9r3uXAwDaetZZvOzEU5NDo/Q1GPvc="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/bignumber.js/-/bignumber.js-11.1.5.tgz",
+  "unpackedSize": 500493
+ },
+ "exports": {
+  ".": {
+   "browser": {
+    "default": "./dist/bignumber.js",
+    "types": "./dist/bignumber.d.ts"
+   },
+   "import": {
+    "default": "./dist/bignumber.mjs",
+    "types": "./dist/bignumber.d.mts"
+   },
+   "require": {
+    "default": "./dist/bignumber.cjs",
+    "types": "./dist/bignumber.d.cts"
+   }
+  },
+  "./package.json": "./package.json"
+ },
+ "gitHead": "275cd85181041d7b6bebf8ef9b70ee0b1bf056b0",
+ "homepage": "https://github.com/MikeMcl/bignumber.js#readme",
+ "keywords": [
+  "arbitrary",
+  "precision",
+  "arithmetic",
+  "big",
+  "number",
+  "decimal",
+  "float",
+  "biginteger",
+  "bigdecimal",
+  "bignumber",
+  "bigint",
+  "bignum"
+ ],
+ "license": "MIT",
+ "main": "dist/bignumber.cjs",
+ "maintainers": [
+  {
+   "email": "M8ch88l@gmail.com",
+   "name": "mikemcl"
+  }
+ ],
+ "module": "dist/bignumber.mjs",
+ "name": "bignumber.js",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/MikeMcl/bignumber.js.git"
+ },
+ "scripts": {
+  "build": "node build.js",
+  "clean": "node -e \"require('fs').rmSync('dist',{ recursive: true, force: true })\"",
+  "test": "node test/test.js",
+  "typecheck": "npm run typecheck:cjs && npm run typecheck:esm && npm run typecheck:global && npm run typecheck:api",
+  "typecheck:api": "tsc -p test/typescript/tsconfig.api.json",
+  "typecheck:cjs": "tsc -p test/typescript/tsconfig.cjs.json",
+  "typecheck:esm": "tsc -p test/typescript/tsconfig.esm.json",
+  "typecheck:global": "tsc -p test/typescript/tsconfig.global.json"
+ },
+ "types": "./dist/bignumber.d.ts",
+ "version": "11.1.5"
+}

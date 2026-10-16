@@ -1,0 +1,97 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "has-ansi@6.0.2",
+ "_nodeVersion": "22.12.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/has-ansi_6.0.2_1757344133069_0.6146199115128055"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "10.9.2",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/chalk/has-ansi/issues"
+ },
+ "dependencies": {
+  "ansi-regex": "^6.0.1"
+ },
+ "description": "Check if a string has ANSI escape codes",
+ "devDependencies": {
+  "ava": "^6.1.3",
+  "tsd": "^0.31.1",
+  "xo": "^0.58.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-vAyM+6+jAYwSwz0/M0jYKfU9AvAMCz0kH791RsUhvMKGUHXled/3FjcQB3YiQ4Astj5srHdb6B2FHGIfZkOQNg==",
+  "shasum": "f246fe923a734f19cdd26fe264610d1aece5965b",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIE6J+vm4SmaiK8gNOBtIVR7tdOaclwWnIo2eHIeeeOUlAiAwnx1HObRyWVKkRiOKtY3d3wqpb5gCuW+iyZe/6UfNtw=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/has-ansi/-/has-ansi-6.0.2.tgz",
+  "unpackedSize": 3150
+ },
+ "engines": {
+  "node": ">=18"
+ },
+ "exports": {
+  "default": "./index.js",
+  "types": "./index.d.ts"
+ },
+ "funding": "https://github.com/chalk/has-ansi?sponsor=1",
+ "gitHead": "8ad46b5ecc1f66de8e526c506d72fbe3e092ef20",
+ "homepage": "https://github.com/chalk/has-ansi#readme",
+ "keywords": [
+  "ansi",
+  "styles",
+  "color",
+  "colour",
+  "colors",
+  "terminal",
+  "console",
+  "string",
+  "tty",
+  "escape",
+  "shell",
+  "xterm",
+  "command-line",
+  "text",
+  "regex",
+  "regexp",
+  "match",
+  "test",
+  "find",
+  "pattern",
+  "has"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "has-ansi",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/chalk/has-ansi.git"
+ },
+ "scripts": {
+  "test": "xo && ava && tsd"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "6.0.2"
+}

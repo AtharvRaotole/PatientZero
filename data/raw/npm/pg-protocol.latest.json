@@ -1,0 +1,79 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "pg-protocol@1.16.1",
+ "_nodeVersion": "24.14.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/pg-protocol_1.16.1_1790782918691_0.4953907989379478"
+ },
+ "_npmUser": {
+  "email": "brian.m.carlson@gmail.com",
+  "name": "brianc"
+ },
+ "_npmVersion": "lerna/3.22.1/node@v24.14.0+arm64 (darwin)",
+ "bugs": {
+  "url": "https://github.com/brianc/node-postgres/issues"
+ },
+ "description": "The postgres client/server binary protocol, implemented in TypeScript",
+ "devDependencies": {
+  "@types/chai": "^4.2.7",
+  "@types/mocha": "^10.0.10",
+  "@types/node": "^16",
+  "chai": "^4.2.0",
+  "mocha": "^11.7.5",
+  "ts-node": "^8.5.4",
+  "typescript": "^6.0.3"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 42,
+  "integrity": "sha512-p9VOFMiHB/ZbJATetbg+99PxssTVSQRnyuPSQ67mN1+1KBOjZaZ83ZQzltnxPhJwSsC3nwVjJ10DVJlerbFzLg==",
+  "shasum": "87a3951b57002682d63166c029859bd834e64bf1",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQDSK1AzYlNczZhUTHSE6jZK/nWRsfAi4pbuW53CMmBv4QIhAPQiiemRDS26RvDlz605yrjuWEeQLGpG4WkuzmxH1FGj"
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIBg4lLAIkXN2B+CSgGl2xEwlWn5domXI6oNHYK0Iy6YDAiARjM0EzxvfgdjP2tpYwGevZRJNwfbDAoIzk397GBiDOQ=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/pg-protocol/-/pg-protocol-1.16.1.tgz",
+  "unpackedSize": 202040
+ },
+ "exports": {
+  ".": {
+   "default": "./dist/index.js",
+   "import": "./esm/index.js",
+   "require": "./dist/index.js"
+  },
+  "./dist/*": "./dist/*.js",
+  "./dist/*.js": "./dist/*.js"
+ },
+ "gitHead": "0980cefebe0ae461da8883703be049fe13ca96cf",
+ "homepage": "https://github.com/brianc/node-postgres#readme",
+ "license": "MIT",
+ "main": "dist/index.js",
+ "maintainers": [
+  {
+   "email": "brian.m.carlson@gmail.com",
+   "name": "brianc"
+  }
+ ],
+ "name": "pg-protocol",
+ "repository": {
+  "directory": "packages/pg-protocol",
+  "type": "git",
+  "url": "git://github.com/brianc/node-postgres.git"
+ },
+ "scripts": {
+  "build": "tsc",
+  "build:watch": "tsc --watch",
+  "prepublish": "yarn build",
+  "pretest": "yarn build",
+  "test": "mocha dist/**/*.test.js"
+ },
+ "types": "dist/index.d.ts",
+ "version": "1.16.1"
+}

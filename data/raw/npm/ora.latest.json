@@ -1,0 +1,99 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "ora@9.4.1",
+ "_nodeVersion": "22.22.3",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/ora_9.4.1_1782131089067_0.782993490518658"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "11.17.0",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/ora/issues"
+ },
+ "dependencies": {
+  "chalk": "^5.6.2",
+  "cli-cursor": "^5.0.0",
+  "cli-spinners": "^3.2.0",
+  "is-interactive": "^2.0.0",
+  "is-unicode-supported": "^2.1.0",
+  "log-symbols": "^7.0.1",
+  "stdin-discarder": "^0.3.2",
+  "string-width": "^8.1.0"
+ },
+ "description": "Elegant terminal spinner",
+ "devDependencies": {
+  "@types/node": "^24.5.0",
+  "ava": "^6.4.1",
+  "get-stream": "^9.0.1",
+  "tsd": "^0.33.0",
+  "xo": "^1.2.2"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-6VlU9MLXbjVQD04AZCMX28hVtA5bUoadvUqO76MUCVA0ilwJbMiHsITRPfyVm6p/BC0Av/BXMujx39WCe1LEqw==",
+  "shasum": "ba7644f3c7c92a8f830fbc48ca770b9eaf4bc55c",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDnEWHf5XNfJC6YKi/k6a8qTXyFBN2A92S5B9IB+TbsuQIgGIErdgy14O0rlzTu/zagfvjn1bLj0104//IiFrehYxA="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/ora/-/ora-9.4.1.tgz",
+  "unpackedSize": 40673
+ },
+ "engines": {
+  "node": ">=20"
+ },
+ "exports": {
+  "default": "./index.js",
+  "types": "./index.d.ts"
+ },
+ "funding": "https://github.com/sponsors/sindresorhus",
+ "gitHead": "79cd8c15ac34572cffb3ab53e3d4b6bab6d59ea8",
+ "homepage": "https://github.com/sindresorhus/ora#readme",
+ "keywords": [
+  "cli",
+  "spinner",
+  "spinners",
+  "terminal",
+  "term",
+  "console",
+  "ascii",
+  "unicode",
+  "loading",
+  "indicator",
+  "progress",
+  "busy",
+  "wait",
+  "idle"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "ora",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/ora.git"
+ },
+ "scripts": {
+  "test": "xo && NODE_ENV=test node --test test.js && tsd"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "9.4.1"
+}

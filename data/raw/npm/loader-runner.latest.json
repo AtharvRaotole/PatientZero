@@ -1,0 +1,118 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "loader-runner@4.3.2",
+ "_nodeVersion": "24.14.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/loader-runner_4.3.2_1777040278607_0.051986146510258235"
+ },
+ "_npmUser": {
+  "email": "sheo13666q@gmail.com",
+  "name": "evilebottnawi"
+ },
+ "_npmVersion": "11.11.0",
+ "author": {
+  "name": "Tobias Koppers @sokra"
+ },
+ "bugs": {
+  "url": "https://github.com/webpack/loader-runner/issues"
+ },
+ "description": "Runs (webpack) loaders",
+ "devDependencies": {
+  "@eslint/js": "^9.28.0",
+  "@eslint/markdown": "^8.0.1",
+  "@stylistic/eslint-plugin": "^5.2.3",
+  "eslint": "^9.28.0",
+  "eslint-config-prettier": "^10.1.5",
+  "eslint-config-webpack": "^4.6.1",
+  "eslint-plugin-import": "^2.31.0",
+  "eslint-plugin-jest": "^29.15.2",
+  "eslint-plugin-jsdoc": "^62.9.0",
+  "eslint-plugin-n": "^17.19.0",
+  "eslint-plugin-prettier": "^5.4.1",
+  "eslint-plugin-unicorn": "^64.0.0",
+  "globals": "^17.0.0",
+  "mocha": "^3.2.0",
+  "nyc": "^14.1.1",
+  "prettier": "^3.5.3",
+  "should": "^8.0.2"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 6,
+  "integrity": "sha512-DFEqQ3ihfS9blba08cLfYf1NRAIEm+dDjic073DRDc3/JspI/8wYmtDsHwd3+4hwvdxSK7PGaElfTmm0awWJ4w==",
+  "shasum": "9913d3a15971f8f635915e601fb5c9d495d918e9",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIB6umF1GDQbi9kVXewkDnzT3APSTOgL5FUgsEVXTafw3AiEAwz+v+kl7F1U/ir+q7PVMn55AC2hnzJNqW1QVqfa375c="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/loader-runner/-/loader-runner-4.3.2.tgz",
+  "unpackedSize": 21025
+ },
+ "engines": {
+  "node": ">=6.11.5"
+ },
+ "funding": {
+  "type": "opencollective",
+  "url": "https://opencollective.com/webpack"
+ },
+ "gitHead": "a1a38886eeb46d0ce66bd96839bdb18c34f78301",
+ "homepage": "https://github.com/webpack/loader-runner#readme",
+ "keywords": [
+  "webpack",
+  "loader"
+ ],
+ "license": "MIT",
+ "main": "lib/LoaderRunner.js",
+ "maintainers": [
+  {
+   "email": "784487301@qq.com",
+   "name": "15000621931"
+  },
+  {
+   "email": "evenstensberg@gmail.com",
+   "name": "ev1stensberg"
+  },
+  {
+   "email": "haijie0619@gmail.com",
+   "name": "__hai"
+  },
+  {
+   "email": "tobias.koppers@googlemail.com",
+   "name": "sokra"
+  },
+  {
+   "email": "me@aviv.sh",
+   "name": "avivkeller"
+  },
+  {
+   "email": "sheo13666q@gmail.com",
+   "name": "evilebottnawi"
+  },
+  {
+   "email": "mail@johannesewald.de",
+   "name": "jhnns"
+  }
+ ],
+ "name": "loader-runner",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/webpack/loader-runner.git"
+ },
+ "scripts": {
+  "fix": "npm run fix:code && npm run fmt",
+  "fix:code": "npm run lint:code -- --fix",
+  "fmt": "npm run fmt:base -- --log-level warn --write",
+  "fmt:base": "prettier --cache --ignore-unknown .",
+  "fmt:check": "npm run fmt:base -- --check",
+  "lint": "npm run lint:code && npm run fmt:check",
+  "lint:code": "eslint --cache .",
+  "pretest": "npm run lint",
+  "test": "npm run test:basic",
+  "test:basic": "mocha --reporter spec",
+  "test:cover": "nyc --reporter=lcov npm run test:basic"
+ },
+ "version": "4.3.2"
+}

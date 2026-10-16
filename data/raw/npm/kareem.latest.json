@@ -1,0 +1,73 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "kareem@3.4.1",
+ "_nodeVersion": "22.12.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/kareem_3.4.1_1791813895995_0.8568553998178916"
+ },
+ "_npmUser": {
+  "email": "val@karpov.io",
+  "name": "vkarpov15"
+ },
+ "_npmVersion": "10.9.0",
+ "author": {
+  "email": "val@karpov.io",
+  "name": "Valeri Karpov"
+ },
+ "bugs": {
+  "url": "https://github.com/mongoosejs/kareem/issues"
+ },
+ "description": "Next-generation take on pre/post function hooks",
+ "devDependencies": {
+  "acquit": "1.x",
+  "acquit-ignore": "0.2.x",
+  "eslint": "8.20.0",
+  "mocha": "11.x",
+  "nyc": "15.1.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 7,
+  "integrity": "sha512-UlgCAFNAdk/HLSsbfkmbH8pJqpEN52Ek8RG53Ys1i3Q3gbCQruSrWpplZlgIGyDHX/LNoLW97ei3OG43s7UhUA==",
+  "shasum": "468c10416476f86bcef127d00f937cbb0a029e3b",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQCr5cDfVqfq1MkN4YCEnbD2nbYbgxvIUm6LLJhkzv1KWwIhAK5LCg3Wt6sAYfMWH+3a47YJrh3kywfFQRVLY8UsN6vr"
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDS+wwMnhuSoPkmePiWYTQ2ln6xP8svCI+8UxwJEnJM5wIgCdzXqhdW8Rrt+9Gb5BRHxGmC6pEzsPZ/l9Rd4wglPqk="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/kareem/-/kareem-3.4.1.tgz",
+  "unpackedSize": 78101
+ },
+ "engines": {
+  "node": ">=18.0.0"
+ },
+ "gitHead": "4e615e10c554462b823b2a6e0fa408b885e03a6a",
+ "homepage": "https://github.com/mongoosejs/kareem#readme",
+ "license": "Apache-2.0",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "val@karpov.io",
+   "name": "vkarpov15"
+  }
+ ],
+ "name": "kareem",
+ "repository": {
+  "type": "git",
+  "url": "git://github.com/mongoosejs/kareem.git"
+ },
+ "scripts": {
+  "docs": "node ./docs.js",
+  "lint": "eslint .",
+  "test": "mocha ./test/*",
+  "test-coverage": "nyc --reporter lcov mocha ./test/*"
+ },
+ "types": "index.d.ts",
+ "version": "3.4.1"
+}

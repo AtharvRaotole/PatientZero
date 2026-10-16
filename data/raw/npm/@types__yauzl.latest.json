@@ -1,0 +1,59 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@types/yauzl@3.4.0",
+ "_nodeVersion": "24.16.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/yauzl_3.4.0_1781372265164_0.8534775464249287"
+ },
+ "_npmUser": {
+  "email": "ts-npm-types@microsoft.com",
+  "name": "types"
+ },
+ "contributors": [
+  {
+   "githubUsername": "ffflorian",
+   "name": "Florian Keller",
+   "url": "https://github.com/ffflorian"
+  }
+ ],
+ "dependencies": {
+  "@types/node": "*"
+ },
+ "description": "TypeScript definitions for yauzl",
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-NRPn5w6h8dhcnmx3YIRQcqMywY/+nND/uOkJessedcrowO3C0AssHp3tMJpxKAwOhFOo0OV1y9VtsC5hbKKBAw==",
+  "shasum": "93de17db1589472d30b4e106c5e7711bcf32a5e9",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIFwtmeqZKD/GhMpL5lMC0JcuHVv9NVGY9Hoe60PcO9AKAiEAyq6+H4HCMPZ4BqvC4b/6sYzCfpz4XTmXIbWzKQPAsGg="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@types/yauzl/-/yauzl-3.4.0.tgz",
+  "unpackedSize": 9181
+ },
+ "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/yauzl",
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "ts-npm-types@microsoft.com",
+   "name": "types"
+  }
+ ],
+ "name": "@types/yauzl",
+ "peerDependencies": {},
+ "repository": {
+  "directory": "types/yauzl",
+  "type": "git",
+  "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+ },
+ "scripts": {},
+ "typeScriptVersion": "5.3",
+ "types": "index.d.ts",
+ "typesPublisherContentHash": "e9203ed529006c4f266b5f544872574a9ff84a01f8499e7142a9bbd89eea84fe",
+ "version": "3.4.0"
+}

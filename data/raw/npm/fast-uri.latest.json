@@ -1,0 +1,139 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "fast-uri@4.2.2",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/fast-uri_4.2.2_1791627125858_0.669117565636153"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "3e3519a6-3796-481a-83b4-491b920a2e44"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "author": {
+  "email": "vince.legoff@gmail.com",
+  "name": "Vincent Le Goff",
+  "url": "https://github.com/zekth"
+ },
+ "bugs": {
+  "url": "https://github.com/fastify/fast-uri/issues"
+ },
+ "contributors": [
+  {
+   "email": "hello@matteocollina.com",
+   "name": "Matteo Collina"
+  },
+  {
+   "email": "hey@gurgun.day",
+   "name": "G\u00fcrg\u00fcn Day\u0131o\u011flu",
+   "url": "https://heyhey.to/G"
+  },
+  {
+   "email": "aras.abbasi@gmail.com",
+   "name": "Aras Abbasi"
+  },
+  {
+   "email": "frazer.dev@icloud.com",
+   "name": "Frazer Smith",
+   "url": "https://github.com/fdawgs"
+  }
+ ],
+ "description": "Dependency-free RFC 3986 URI toolbox",
+ "devDependencies": {
+  "ajv": "^8.16.0",
+  "eslint": "^9.17.0",
+  "neostandard": "^0.13.0",
+  "playwright-test": "^15.0.1",
+  "tape": "^5.8.1",
+  "tstyche": "^7.0.0"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/fast-uri@4.2.2"
+  },
+  "fileCount": 53,
+  "integrity": "sha512-EwVpUMzLVNOmcWW0zi5G3JJwkopB6XXjnVvNBGfqrMMsVew2hkQWl5e/pe/CfYUeS6jt4cIO2MnamEW7v/7wPw==",
+  "shasum": "428437b7ff49d069f1e16be3bdb6597e8cd72cb9",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIGE4Wen80I4hiyiUyGmh1FEM2Shd8sNXP1wW276h8hoBAiEAyGrT3tY5ALnjhjvM3uR+n1bbVxzVYkneUifqZAlBgdc="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQCNT29A5xP74O5w5QIbTFKdGa5TyiCXoRS3NeiMjm/N4QIhAJf7g1CKYNohnwV+J2j2tmmm0YY+0NBHJFVSKADHI7Yc"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/fast-uri/-/fast-uri-4.2.2.tgz",
+  "unpackedSize": 312483
+ },
+ "funding": [
+  {
+   "type": "github",
+   "url": "https://github.com/sponsors/fastify"
+  },
+  {
+   "type": "opencollective",
+   "url": "https://opencollective.com/fastify"
+  }
+ ],
+ "gitHead": "be1803e771e8413c680b6febdcf3fa352258fdb1",
+ "homepage": "https://github.com/fastify/fast-uri",
+ "license": "BSD-3-Clause",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "james.sumners@gmail.com",
+   "name": "jsumners"
+  },
+  {
+   "email": "tommydelved@gmail.com",
+   "name": "delvedor"
+  },
+  {
+   "email": "hello@matteocollina.com",
+   "name": "matteo.collina"
+  },
+  {
+   "email": "behemoth89@gmail.com",
+   "name": "eomm"
+  },
+  {
+   "email": "kaka@kakawebsitedemo.com",
+   "name": "climba03003"
+  },
+  {
+   "email": "vince.legoff@gmail.com",
+   "name": "zekth"
+  }
+ ],
+ "name": "fast-uri",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/fastify/fast-uri.git"
+ },
+ "scripts": {
+  "lint": "eslint",
+  "lint:fix": "eslint --fix",
+  "test": "npm run test:unit",
+  "test:browser": "npm run test:browser:chromium && npm run test:browser:firefox && npm run test:browser:webkit",
+  "test:browser:chromium": "playwright-test ./test/* --runner tape --browser=chromium",
+  "test:browser:firefox": "playwright-test ./test/* --runner tape --browser=firefox",
+  "test:browser:webkit": "playwright-test ./test/* --runner tape --browser=webkit",
+  "test:typescript": "tstyche",
+  "test:unit": "tape test/**/*.js",
+  "test:unit:dev": "npm run test:unit -- --coverage-report=html"
+ },
+ "type": "commonjs",
+ "types": "types/index.d.ts",
+ "version": "4.2.2"
+}

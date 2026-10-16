@@ -1,0 +1,113 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "baseline-browser-mapping@2.11.29",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/baseline-browser-mapping_2.11.29_1792087924464_0.6401149871505736"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "8c224d14-d1a3-4abf-b900-81368f562ccb"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "bin": {
+  "baseline-browser-mapping": "dist/cli.cjs"
+ },
+ "bugs": {
+  "url": "https://github.com/web-platform-dx/baseline-browser-mapping/issues"
+ },
+ "description": "A library for obtaining browser versions with their maximum supported Baseline feature set and Widely Available status.",
+ "devDependencies": {
+  "@mdn/browser-compat-data": "^8.1.6",
+  "@rollup/plugin-terser": "^1.0.0",
+  "@rollup/plugin-typescript": "^12.1.3",
+  "@types/node": "^22.19.21",
+  "eslint-plugin-new-with-error": "^5.0.0",
+  "jasmine": "^5.8.0",
+  "jasmine-browser-runner": "^3.0.0",
+  "jasmine-spec-reporter": "^7.0.0",
+  "prettier": "^3.5.3",
+  "rollup": "^4.44.0",
+  "tslib": "^2.8.1",
+  "typescript": "^5.7.2",
+  "typescript-eslint": "^8.35.0",
+  "web-features": "^3.43.0"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/baseline-browser-mapping@2.11.29"
+  },
+  "fileCount": 9,
+  "integrity": "sha512-YeesxhUmR4h5y5V8KF8iBCqJb8YFrBJ++XBTeGcWIaQOYXGN19JM0FoiOjAhwuDoln8owMgXcWBmgHtYSkky2w==",
+  "shasum": "dbed0ed2c17943aa4427863c91300865d9d8ca23",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDgKmn5HcbB0vFtVBXUY1gMMHmjBz8425VD6Yl7qy5xSQIgDign0qYuc4ita1wNfetHv5X3vg9P23d/B90nIAwF76s="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQDf9CO7Y8tfWx9ZUj+MXQK0bTJlCuePfVhqmq4sDvi+MAIhAKcATHjc+PV7EkiuhEQAUimovAzcYvM1aZ4y6O6z4ZFg"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/baseline-browser-mapping/-/baseline-browser-mapping-2.11.29.tgz",
+  "unpackedSize": 136030
+ },
+ "engines": {
+  "node": ">=6.0.0"
+ },
+ "exports": {
+  ".": {
+   "default": "./dist/index.js",
+   "require": "./dist/index.cjs",
+   "types": "./dist/index.d.ts"
+  },
+  "./legacy": {
+   "require": "./dist/index.cjs",
+   "types": "./dist/index.d.ts"
+  }
+ },
+ "gitHead": "c9ca9986d680895b91d73683f6c7d47b3e6e9ae0",
+ "homepage": "https://github.com/web-platform-dx/baseline-browser-mapping#readme",
+ "jsdelivr": "./dist/index.js",
+ "license": "Apache-2.0",
+ "main": "./dist/index.cjs",
+ "maintainers": [
+  {
+   "email": "tony.p.conway@gmail.com",
+   "name": "tonypconway"
+  }
+ ],
+ "name": "baseline-browser-mapping",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/web-platform-dx/baseline-browser-mapping.git"
+ },
+ "scripts": {
+  "build": "rm -rf dist; npx prettier . --write; rollup -c; rm -rf ./dist/scripts/expose-data.d.ts ./dist/cli.d.ts",
+  "check-timeline-changes": "git diff --name-only | grep -q '^src/data/timeline.js$' && echo 'changes-available=TRUE' || echo 'changes-available=FALSE'",
+  "fix-cli-permissions": "output=$(npx baseline-browser-mapping 2>&1); path=$(printf '%s\n' \"$output\" | sed -n 's/^.*: \\(.*\\): Permission denied$/\\1/p; t; s/^\\(.*\\): Permission denied$/\\1/p'); if [ -n \"$path\" ]; then echo \"Permission denied for: $path\"; echo \"Removing $path ...\"; rm -rf \"$path\"; else echo \"$output\"; fi",
+  "refresh-downstream": "npx tsx scripts/refresh-downstream.ts",
+  "refresh-static": "npx tsx scripts/refresh-static.ts",
+  "test": "npm run build && npm run fix-cli-permissions && npm run test:format && npm run test:lint && npm run test:jasmine && npm run test:jasmine-browser",
+  "test:format": "npx prettier --check .",
+  "test:jasmine": "npx jasmine",
+  "test:jasmine-browser": "npx jasmine-browser-runner runSpecs --config ./spec/support/jasmine-browser.js",
+  "test:legacy-test": "node spec/legacy-tests/legacy-test.cjs; node dist/cli.cjs",
+  "test:lint": "npx eslint .",
+  "update-data-dependencies": "npm i @mdn/browser-compat-data@latest web-features@latest -D",
+  "update-timeline": "npx tsx scripts/create-timeline.ts; npx prettier ./src/data/timeline.js --write"
+ },
+ "type": "module",
+ "types": "./dist/index.d.ts",
+ "version": "2.11.29"
+}

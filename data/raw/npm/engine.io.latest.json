@@ -1,0 +1,120 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "engine.io@6.6.11",
+ "_nodeVersion": "26.10.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/engine.io_6.6.11_1790245055099_0.4502982984565542"
+ },
+ "_npmUser": {
+  "approver": {
+   "email": "damien.arrachequesne@gmail.com",
+   "name": "darrachequesne"
+  },
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:302a14f4-45f2-4f04-8e81-4e6072fb1e3f"
+  }
+ },
+ "_npmVersion": "11.19.1",
+ "author": {
+  "email": "guillermo@learnboost.com",
+  "name": "Guillermo Rauch"
+ },
+ "bugs": {
+  "url": "https://github.com/socketio/socket.io/issues"
+ },
+ "contributors": [
+  {
+   "name": "Eugen Dueck",
+   "url": "https://github.com/EugenDueck"
+  },
+  {
+   "name": "Afshin Mehrabani",
+   "url": "https://github.com/afshinm"
+  },
+  {
+   "name": "Christoph Dorn",
+   "url": "https://github.com/cadorn"
+  },
+  {
+   "email": "mokesmokes@gmail.com",
+   "name": "Mark Mokryn"
+  }
+ ],
+ "dependencies": {
+  "@types/cors": "^2.8.12",
+  "@types/node": ">=10.0.0",
+  "@types/ws": "^8.5.12",
+  "accepts": "~1.3.4",
+  "cookie": "~0.7.2",
+  "cors": "~2.8.5",
+  "debug": "~4.4.1",
+  "engine.io-parser": "~5.2.1",
+  "ws": "~8.21.0"
+ },
+ "description": "The realtime engine behind Socket.IO. Provides the foundation of a bidirectional connection between client and server",
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/engine.io@6.6.11"
+  },
+  "fileCount": 40,
+  "integrity": "sha512-z34mGpLoY/82ZbkX1LqGMIaf3wjVMPL6gVC681QDqnmzJ26synI8qAE32P+a7UazmpJZ8UGrFIeAavgRfXzYrg==",
+  "shasum": "05203f76be9c63489cdf52aadab4200a201315fd",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIE1OerSMdlb0YD237Whcv+okjUzzXTRbMqbdkwWc5tkhAiBqvGV+B6l/dhonGIKHTnMVXHspwJsLGr2/AxtrzrS0yA=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/engine.io/-/engine.io-6.6.11.tgz",
+  "unpackedSize": 162973
+ },
+ "engines": {
+  "node": ">=10.2.0"
+ },
+ "exports": {
+  "import": "./wrapper.mjs",
+  "require": "./build/engine.io.js",
+  "types": "./build/engine.io.d.ts"
+ },
+ "gitHead": "973833304c7c195c2d0d99b72e4ac9f149e3ca94",
+ "homepage": "https://github.com/socketio/socket.io/tree/main/packages/engine.io#readme",
+ "license": "MIT",
+ "main": "./build/engine.io.js",
+ "maintainers": [
+  {
+   "email": "rauchg@gmail.com",
+   "name": "rauchg"
+  },
+  {
+   "email": "damien.arrachequesne@gmail.com",
+   "name": "darrachequesne"
+  }
+ ],
+ "name": "engine.io",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/socketio/socket.io.git"
+ },
+ "scripts": {
+  "compile": "rimraf ./build && tsc",
+  "format:check": "prettier --check \"wrapper.mjs\" \"lib/**/*.ts\" \"test/**/*.js\" \"test/webtransport.mjs\"",
+  "format:fix": "prettier --write \"wrapper.mjs\" \"lib/**/*.ts\" \"test/**/*.js\" \"test/webtransport.mjs\"",
+  "prepack": "npm run compile",
+  "test": "npm run compile && npm run format:check && npm run test:default && npm run test:compat-v3",
+  "test:compat-v3": "EIO_CLIENT=3 mocha --exit",
+  "test:default": "mocha --bail --exit",
+  "test:eiows": "EIO_WS_ENGINE=eiows mocha --exit",
+  "test:uws": "EIO_WS_ENGINE=uws mocha --exit"
+ },
+ "type": "commonjs",
+ "types": "./build/engine.io.d.ts",
+ "version": "6.6.11"
+}

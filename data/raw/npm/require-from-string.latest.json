@@ -1,0 +1,66 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "require-from-string@2.0.2",
+ "_nodeVersion": "9.5.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/require-from-string_2.0.2_1523267387201_0.3738099631330949"
+ },
+ "_npmUser": {
+  "email": "floatdrop@gmail.com",
+  "name": "floatdrop"
+ },
+ "_npmVersion": "5.6.0",
+ "author": {
+  "email": "floatdrop@gmail.com",
+  "name": "Vsevolod Strukchinsky",
+  "url": "github.com/floatdrop"
+ },
+ "bugs": {
+  "url": "https://github.com/floatdrop/require-from-string/issues"
+ },
+ "dependencies": {},
+ "description": "Require module from string",
+ "devDependencies": {
+  "mocha": "*"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 4,
+  "integrity": "sha512-Xf0nWe6RseziFMu+Ap9biiUbmplq6S9/p+7w7YXP/JBHhrUDDUhwa+vANyubuqfZWTveU//DYVGsDG7RKL/vEw==",
+  "shasum": "89a7fdd938261267318eafe14f9c32e598c36909",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIE2jrMs9LEA5YwPbB+k86fiEWbTiZrILb/xQp2cSIEePAiEApTYU69t0eG1qFeeVayYDlVRtYxsT4vFi9gJB5pqvtXE="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/require-from-string/-/require-from-string-2.0.2.tgz",
+  "unpackedSize": 3422
+ },
+ "engines": {
+  "node": ">=0.10.0"
+ },
+ "files": [
+  "index.js"
+ ],
+ "gitHead": "d1575a49065eb7a49b86b4de963f04f1a14dfd60",
+ "homepage": "https://github.com/floatdrop/require-from-string#readme",
+ "keywords": [],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "floatdrop@gmail.com",
+   "name": "floatdrop"
+  }
+ ],
+ "name": "require-from-string",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/floatdrop/require-from-string.git"
+ },
+ "scripts": {
+  "test": "mocha"
+ },
+ "version": "2.0.2"
+}

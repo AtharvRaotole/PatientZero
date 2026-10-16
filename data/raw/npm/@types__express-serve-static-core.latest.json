@@ -1,0 +1,86 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@types/express-serve-static-core@5.1.3",
+ "_nodeVersion": "24.18.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/express-serve-static-core_5.1.3_1785519252315_0.12761064542603617"
+ },
+ "_npmUser": {
+  "email": "ts-npm-types@microsoft.com",
+  "name": "types"
+ },
+ "contributors": [
+  {
+   "githubUsername": "borisyankov",
+   "name": "Boris Yankov",
+   "url": "https://github.com/borisyankov"
+  },
+  {
+   "githubUsername": "micksatana",
+   "name": "Satana Charuwichitratana",
+   "url": "https://github.com/micksatana"
+  },
+  {
+   "githubUsername": "JoseLion",
+   "name": "Jose Luis Leon",
+   "url": "https://github.com/JoseLion"
+  },
+  {
+   "githubUsername": "dwrss",
+   "name": "David Stephens",
+   "url": "https://github.com/dwrss"
+  },
+  {
+   "githubUsername": "andoshin11",
+   "name": "Shin Ando",
+   "url": "https://github.com/andoshin11"
+  }
+ ],
+ "dependencies": {
+  "@types/node": "*",
+  "@types/qs": "*",
+  "@types/range-parser": "*",
+  "@types/send": "*"
+ },
+ "description": "TypeScript definitions for express-serve-static-core",
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-dPfW8NFiOF4wOHc7+N/QSxlY9cfSsenewGbAz8C8U/MULPd/YZ27LvJUIlzaXie7e6Ove9YunJGgC9tbHD2cKw==",
+  "shasum": "9d34c88c0c9ee62b9a6e4d9f8ab8d7e29688e6b4",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQCylc6TtQIx72xqfHYYfpp2TjRRzM+haxeQ9ezi+05Q4AIgJDuP9hjJPPR/dL0GV0oddQOOykyJPzMiNZ1dlp2L+lY="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIBjSYp0VBcuerQwOxNkKW9WFTw7B6UT9Nxey4+PRYLGFAiBg4jOo7hl8l6/+pmrDakwBfiaEDqa4xBRq9++LLzDtnw=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@types/express-serve-static-core/-/express-serve-static-core-5.1.3.tgz",
+  "unpackedSize": 45367
+ },
+ "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/express-serve-static-core",
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "ts-npm-types@microsoft.com",
+   "name": "types"
+  }
+ ],
+ "name": "@types/express-serve-static-core",
+ "peerDependencies": {},
+ "repository": {
+  "directory": "types/express-serve-static-core",
+  "type": "git",
+  "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+ },
+ "scripts": {},
+ "typeScriptVersion": "5.6",
+ "types": "index.d.ts",
+ "typesPublisherContentHash": "fedd6cea4372216807550bdc3daf16a59e4d830e27daf2eb59c3f13c43627f53",
+ "version": "5.1.3"
+}

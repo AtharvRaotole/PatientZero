@@ -1,0 +1,91 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "d3-path@3.1.0",
+ "_nodeVersion": "18.12.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/d3-path_3.1.0_1671486620162_0.022112539546327303"
+ },
+ "_npmUser": {
+  "email": "mike@ocks.org",
+  "name": "mbostock"
+ },
+ "_npmVersion": "8.19.2",
+ "author": {
+  "name": "Mike Bostock",
+  "url": "http://bost.ocks.org/mike"
+ },
+ "bugs": {
+  "url": "https://github.com/d3/d3-path/issues"
+ },
+ "description": "Serialize Canvas path commands to SVG.",
+ "devDependencies": {
+  "eslint": "8",
+  "mocha": "10",
+  "rollup": "3",
+  "rollup-plugin-terser": "7"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 7,
+  "integrity": "sha512-p3KP5HCf/bvjBSSKuXid6Zqijx7wIfNW+J/maPs+iwR35at5JCbLUT0LzF1cnjbCHWhqzQTIN2Jpe8pRebIEFQ==",
+  "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v4.10.10\r\nComment: https://openpgpjs.org\r\n\r\nwsFzBAEBCAAGBQJjoNydACEJED1NWxICdlZqFiEECWMYAoorWMhJKdjhPU1b\r\nEgJ2Vmr+Sg//RvFHSzv7sNV8xfNRFOpdpRbQZN9YoSVJAegO0wdVZUP79afo\r\nOPlJsGKbKvHL5sfxgb7SbSacHlEOFyXwovFfXn3xJuyWUF25vATdvpY4JiZI\r\nfzV8vbgU48YhqPP9pRKxWWwXSgMx8GrmlA2hAeFCPafy+cYC7gFVobEiZ7P3\r\n/93FIGOPXiTPJEM7iTxqiVKpMDQO2BMOs8NpUB3L1q+lz0G9yDAhV6NsVjsW\r\nUaPNgczP2NTOYWbSDJkCCeNYHb78cMJbJ6pSBlG/TZz7beqfKeWUnP3WjrMg\r\ntSkRSEV/Ni8QVo1fcBDiGTFOB+tqHWNt0QuJarufSHkmDrQQzzCPZ8MDrJcx\r\n+dfmwMxdv2vYKnGBXoKlFzE0YhVU6Lo6eCVWuCSVLv6MS/nrqee5S9DfsPgR\r\nj0w5mYCenUydWPpQA7XdW/zKTjAkgJ/Y7CxXAj7S/PP0k/m5I0aHvQpr41RP\r\nelaHXOvoAOZrRsFAQKdlomDcKr4h/SJHR2QAFDRiFDAsL/6En0syilsSOFiU\r\nPvtl5/QvFJ2BXzTnPMFl96GbQAMUtkqEFOktXnlqzsPx8nFsLc1B8USZw5dh\r\nody8KZVrBz2qqu12MWMaEzNEpAVEJ7gp8JKeHCxlQtYeE6cF9n/AM19A8Lsd\r\nFTj6kLYpmIjVxGgxXjGYLuYXOsB9KfptYRM=\r\n=KWRq\r\n-----END PGP SIGNATURE-----\r\n",
+  "shasum": "22df939032fb5a71ae8b1800d61ddb7851c42526",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIB0sFa5Jb76PeadU+R6EHHayMdiUVh8p41Av1Dwvb3GOAiEA4zg76bK+ddCr49c4Ej6FYE2wKHBD+MQJuKxvEJFU2ZA="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/d3-path/-/d3-path-3.1.0.tgz",
+  "unpackedSize": 20858
+ },
+ "engines": {
+  "node": ">=12"
+ },
+ "exports": {
+  "default": "./src/index.js",
+  "umd": "./dist/d3-path.min.js"
+ },
+ "gitHead": "58bce7a53df2b03f70092a9b00b78055c4ffee04",
+ "homepage": "https://d3js.org/d3-path/",
+ "jsdelivr": "dist/d3-path.min.js",
+ "keywords": [
+  "d3",
+  "d3-module",
+  "canvas",
+  "path",
+  "svg",
+  "graphics",
+  "CanvasRenderingContext2D",
+  "CanvasPathMethods",
+  "Path2D"
+ ],
+ "license": "ISC",
+ "main": "src/index.js",
+ "maintainers": [
+  {
+   "email": "mike@ocks.org",
+   "name": "mbostock"
+  },
+  {
+   "email": "fil@rezo.net",
+   "name": "recifs"
+  }
+ ],
+ "module": "src/index.js",
+ "name": "d3-path",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/d3/d3-path.git"
+ },
+ "scripts": {
+  "postpublish": "git push && git push --tags && cd ../d3.github.com && git pull && cp ../${npm_package_name}/dist/${npm_package_name}.js ${npm_package_name}.v${npm_package_version%%.*}.js && cp ../${npm_package_name}/dist/${npm_package_name}.min.js ${npm_package_name}.v${npm_package_version%%.*}.min.js && git add ${npm_package_name}.v${npm_package_version%%.*}.js ${npm_package_name}.v${npm_package_version%%.*}.min.js && git commit -m \"${npm_package_name} ${npm_package_version}\" && git push && cd -",
+  "prepublishOnly": "rm -rf dist && yarn test && rollup -c",
+  "test": "mocha 'test/**/*-test.js' && eslint src test"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "unpkg": "dist/d3-path.min.js",
+ "version": "3.1.0"
+}

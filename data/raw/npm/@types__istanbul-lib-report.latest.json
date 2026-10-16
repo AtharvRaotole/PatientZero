@@ -1,0 +1,62 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@types/istanbul-lib-report@3.0.3",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/istanbul-lib-report_3.0.3_1699344668186_0.9229101953786232"
+ },
+ "_npmUser": {
+  "email": "ts-npm-types@microsoft.com",
+  "name": "types"
+ },
+ "contributors": [
+  {
+   "githubUsername": "jason0x43",
+   "name": "Jason Cheatham",
+   "url": "https://github.com/jason0x43"
+  },
+  {
+   "githubUsername": "zache",
+   "name": "Zacharias Bj\u00f6rngren",
+   "url": "https://github.com/zache"
+  }
+ ],
+ "dependencies": {
+  "@types/istanbul-lib-coverage": "*"
+ },
+ "description": "TypeScript definitions for istanbul-lib-report",
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-NQn7AHQnk/RSLOxrBbGyJM/aVQ+pjj5HCgasFxc0K/KhoATfQ/47AyUl15I2yBUpihjmas+a+VJBOqecrFH+uA==",
+  "shasum": "53047614ae72e19fc0401d872de3ae2b4ce350bf",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEQCIBflvyw624aj5AGUXWnmz7hCK1pwnshw6GvQiPWwaTZiAiAE/qge1pZp1HL4Z5NiNswpaC1RJBFd+dC/90Bp1d1pKA=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@types/istanbul-lib-report/-/istanbul-lib-report-3.0.3.tgz",
+  "unpackedSize": 7917
+ },
+ "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/istanbul-lib-report",
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "ts-npm-types@microsoft.com",
+   "name": "types"
+  }
+ ],
+ "name": "@types/istanbul-lib-report",
+ "repository": {
+  "directory": "types/istanbul-lib-report",
+  "type": "git",
+  "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+ },
+ "scripts": {},
+ "typeScriptVersion": "4.5",
+ "types": "index.d.ts",
+ "typesPublisherContentHash": "7036cfd1108c02c3ceec9ffab2cbc424c76e2cafd694c550037d808bf66e3946",
+ "version": "3.0.3"
+}

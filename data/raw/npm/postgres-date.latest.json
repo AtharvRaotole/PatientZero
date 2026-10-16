@@ -1,0 +1,72 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "postgres-date@2.1.0",
+ "_nodeVersion": "16.10.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/postgres-date_2.1.0_1638981502424_0.4718802054373974"
+ },
+ "_npmUser": {
+  "email": "bvdrucker@gmail.com",
+  "name": "bendrucker"
+ },
+ "_npmVersion": "7.24.0",
+ "author": {
+  "email": "bvdrucker@gmail.com",
+  "name": "Ben Drucker",
+  "url": "bendrucker.me"
+ },
+ "bugs": {
+  "url": "https://github.com/bendrucker/postgres-date/issues"
+ },
+ "dependencies": {},
+ "description": "Postgres date column parser",
+ "devDependencies": {
+  "standard": "^16.0.0",
+  "tape": "^5.0.0",
+  "tsd": "^0.19.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-K7Juri8gtgXVcDfZttFKVmhglp7epKb1K4pgrkLxehjqkrgPhfG6OO8LHLkfaqkbpjNRnra018XwAr1yQFWGcA==",
+  "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.13\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJhsN9+CRA9TVsSAnZWagAAZLoQAI9RhPKXo7aHM2ifw3fH\no/2bNO5OJHBO5F3Lo/VW0NTJojn+uGHCWFKZuO2V845b24Fsd2rhbX9QMW8g\n5teqc6tGs7thHDh/HZvrecOXHzoZyAGe6J0Hg/BScG38UdBHhKc7kVVUbppa\n9xlzpJc4HPOSu9PTtkPuqOd6wWomDukKwcfeJ2I3YdB9iYCYJeAHvQr9TtCl\np3r5aBUcxHKhWCpmcWoaMmFRJ7CfV3bClgMPMZ+Q4XQjD28wFF5KKPfX6/uD\ndklQVDKGBGVl7slIio/QoQHS3I399ynDKbMXru1fyJ7jlOHkNJWsoUv85Xyu\nCGe5qKgWk0OD9fAl34FYW2O5fG31UVyZ8a4LesfUU1HBXag+BHPnbgEXa21N\n+BN8Kt5DSdVzDfiAiVPks76JQOyJb8B8QRL57uWwVh0sZ5iNJBtWvywwEc2B\nJ/jag/qtX8ZpVKDPbFDSLpxjZsgVq3v4xE41spqWeSxAr7owykq/ar+yx1vC\nQ+bj4jskkL0G4JU1jKq1Aq08bLZrQjVPmQSui7TfH7Q8YN5bA8+2OijI8F18\nK+P+nuxlSCjpq8Bxx2BvDSGH4FdZ0d41MTZGnpix0xHstkDYl8sYTRa6/RLn\nnl7eRQKLtw6oR+7X0li2WaL7nfp2Yn1Hxi1k1VnYcSeHXYUTPPJdWJinLVYP\nFp25\r\n=nFxz\r\n-----END PGP SIGNATURE-----\r\n",
+  "shasum": "b85d3c1fb6fb3c6c8db1e9942a13a3bf625189d0",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIQDWERwMKUJVXaA4hAAcwKUqh/qTOrZ2mAqDmxbX+3KPwQIgFhiXhLya7O4X6t9+6wAz+x8V24ZT7+9UudWhc+9N9c8="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/postgres-date/-/postgres-date-2.1.0.tgz",
+  "unpackedSize": 9861
+ },
+ "engines": {
+  "node": ">=12"
+ },
+ "gitHead": "40dc4f66d74dbc4b9b2926fb628aad7fd1563d11",
+ "homepage": "https://github.com/bendrucker/postgres-date#readme",
+ "keywords": [
+  "postgres",
+  "date",
+  "parser"
+ ],
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "bvdrucker@gmail.com",
+   "name": "bendrucker"
+  }
+ ],
+ "name": "postgres-date",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/bendrucker/postgres-date.git"
+ },
+ "scripts": {
+  "test": "standard && tape test.js && tsd"
+ },
+ "types": "./index.d.ts",
+ "version": "2.1.0"
+}

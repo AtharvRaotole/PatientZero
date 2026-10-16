@@ -1,0 +1,91 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "quick-lru@7.3.0",
+ "_nodeVersion": "20.19.5",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/quick-lru_7.3.0_1760082964933_0.3331962167082485"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "11.6.1",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/quick-lru/issues"
+ },
+ "description": "Simple \u201cLeast Recently Used\u201d (LRU) cache",
+ "devDependencies": {
+  "ava": "^5.3.1",
+  "nyc": "^15.1.0",
+  "tsd": "^0.29.0",
+  "xo": "^0.56.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-k9lSsjl36EJdK7I06v7APZCbyGT2vMTsYSRX1Q2nbYmnkBqgUhRkAuzH08Ciotteu/PLJmIF2+tti7o3C/ts2g==",
+  "shasum": "2af7e0fc72b66b7496251f6226cc723662c50665",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDBgxbnQTsHRYvsEAqwV0SYyYuT7Xgr7YwT0SgKY7rBaQIgI+rEdIMuUaJKaagHXitPazdLoFW60WkqnjtpfTJFqb0="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/quick-lru/-/quick-lru-7.3.0.tgz",
+  "unpackedSize": 20427
+ },
+ "engines": {
+  "node": ">=18"
+ },
+ "exports": {
+  "default": "./index.js",
+  "types": "./index.d.ts"
+ },
+ "funding": "https://github.com/sponsors/sindresorhus",
+ "gitHead": "070bdf331d9e451f75f5335c127255a124d4270d",
+ "homepage": "https://github.com/sindresorhus/quick-lru#readme",
+ "keywords": [
+  "lru",
+  "quick",
+  "cache",
+  "caching",
+  "least",
+  "recently",
+  "used",
+  "fast",
+  "map",
+  "hash",
+  "buffer"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "quick-lru",
+ "nyc": {
+  "reporter": [
+   "text",
+   "lcov"
+  ]
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/quick-lru.git"
+ },
+ "scripts": {
+  "test": "xo && nyc ava && tsd"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "7.3.0"
+}

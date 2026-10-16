@@ -1,0 +1,73 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@types/babel__generator@7.27.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/babel__generator_7.27.0_1743696162307_0.7723026552429384"
+ },
+ "_npmUser": {
+  "email": "ts-npm-types@microsoft.com",
+  "name": "types"
+ },
+ "contributors": [
+  {
+   "githubUsername": "yortus",
+   "name": "Troy Gerwien",
+   "url": "https://github.com/yortus"
+  },
+  {
+   "githubUsername": "mgroenhoff",
+   "name": "Melvin Groenhoff",
+   "url": "https://github.com/mgroenhoff"
+  },
+  {
+   "githubUsername": "khell",
+   "name": "Cameron Yan",
+   "url": "https://github.com/khell"
+  },
+  {
+   "githubUsername": "Lyanbin",
+   "name": "Lyanbin",
+   "url": "https://github.com/Lyanbin"
+  }
+ ],
+ "dependencies": {
+  "@babel/types": "^7.0.0"
+ },
+ "description": "TypeScript definitions for @babel/generator",
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-ufFd2Xi92OAVPYsy+P4n7/U7e68fex0+Ee8gSG9KX7eo084CWiQ4sdxktvdl0bOPupXtVJPY19zk6EwWqUQ8lg==",
+  "shasum": "b5819294c51179957afaec341442f9341e4108a9",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDtnK6Npptc4TD8KmTdaov1fLjeK4pBAeUmnaZQ7VM1IAIgBI1VjzGHLha4r//R2LvwZ9FcIYzMugsd4+jZlHOWapM="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@types/babel__generator/-/babel__generator-7.27.0.tgz",
+  "unpackedSize": 11441
+ },
+ "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/babel__generator",
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "ts-npm-types@microsoft.com",
+   "name": "types"
+  }
+ ],
+ "name": "@types/babel__generator",
+ "peerDependencies": {},
+ "repository": {
+  "directory": "types/babel__generator",
+  "type": "git",
+  "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+ },
+ "scripts": {},
+ "typeScriptVersion": "5.1",
+ "types": "index.d.ts",
+ "typesPublisherContentHash": "b5c7deac65dbd6ab9b313d1d71c86afe4383b881dcb4e3b3ac51dab07b8f95fb",
+ "version": "7.27.0"
+}

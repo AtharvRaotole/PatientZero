@@ -1,0 +1,61 @@
+{
+ "_from": ".",
+ "_id": "node-int64@0.4.0",
+ "_npmUser": {
+  "email": "robert@broofa.com",
+  "name": "broofa"
+ },
+ "_npmVersion": "1.4.28",
+ "_shasum": "87a9065cdb355d3182d8f94ce11188b825c68a3b",
+ "author": {
+  "email": "robert@broofa.com",
+  "name": "Robert Kieffer"
+ },
+ "bugs": {
+  "url": "https://github.com/broofa/node-int64/issues"
+ },
+ "contributors": [],
+ "dependencies": {},
+ "description": "Support for representing 64-bit integers in JavaScript",
+ "devDependencies": {
+  "nodeunit": "^0.9.0"
+ },
+ "directories": {},
+ "dist": {
+  "integrity": "sha512-O5lz91xSOeoXP6DulyHfllpq+Eg00MWitZIbtPfoSEvqIHdl5gfcY6hYzDWnj0qD5tz52PI08u9qUvSVeUBeHw==",
+  "shasum": "87a9065cdb355d3182d8f94ce11188b825c68a3b",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIDfg4kjKAf8n+lW22IaEScPlFzwmL/aUAGYvm4EfJGwVAiEAlWDIudaBo4CVef834sQL/82VP6kUbImYrwY9g5QpRVw="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/node-int64/-/node-int64-0.4.0.tgz"
+ },
+ "gitHead": "c1567475712cb1cfe100c96813c2a2a92e2b42ce",
+ "homepage": "https://github.com/broofa/node-int64",
+ "keywords": [
+  "math",
+  "integer",
+  "int64"
+ ],
+ "lib": ".",
+ "license": "MIT",
+ "main": "./Int64.js",
+ "maintainers": [
+  {
+   "email": "robert@broofa.com",
+   "name": "broofa"
+  }
+ ],
+ "name": "node-int64",
+ "repository": {
+  "type": "git",
+  "url": "https://github.com/broofa/node-int64"
+ },
+ "scripts": {
+  "test": "nodeunit test.js"
+ },
+ "url": "http://github.com/broofa/node-int64",
+ "version": "0.4.0"
+}

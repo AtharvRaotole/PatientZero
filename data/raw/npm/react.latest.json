@@ -1,0 +1,92 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "react@19.3.1",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/react_19.3.1_1791996435215_0.328829163279329"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "19f8086e-9f33-439e-8cce-d73997f53038"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "bugs": {
+  "url": "https://github.com/react/react/issues"
+ },
+ "description": "React is a JavaScript library for building user interfaces.",
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/react@19.3.1"
+  },
+  "fileCount": 27,
+  "integrity": "sha512-QNhWdt7nrgVWWQG58QuGsAR3jv3Hbe4mb4vz7w2csnHavciZJgda1CPNaldF6eVxv90ud3jUXpKlHL69gO38yw==",
+  "shasum": "26e9523fc36ea06be5050ebb780249a133260ad7",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIDFKwsaTXLOJNpD3WJ6dy5E7wkTf2QNrZgmlItJn3Cy4AiEAoAvLd5MEj+CHKGO1a81NFTiC79fQLibq7JqAPGvPC0w="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIG60Jz/rQm93/m8ZTZvxX3fxIhTqB5EnASV642pG4n94AiA8XxzTRyCDS6L54HKPSciJX3l/dcW5MjgnFd4plotjSg=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/react/-/react-19.3.1.tgz",
+  "unpackedSize": 178663
+ },
+ "engines": {
+  "node": ">=0.10.0"
+ },
+ "exports": {
+  ".": {
+   "default": "./index.js",
+   "react-server": "./react.react-server.js"
+  },
+  "./compiler-runtime": {
+   "default": "./compiler-runtime.js",
+   "react-server": "./compiler-runtime.js"
+  },
+  "./jsx-dev-runtime": {
+   "default": "./jsx-dev-runtime.js",
+   "react-server": "./jsx-dev-runtime.react-server.js"
+  },
+  "./jsx-runtime": {
+   "default": "./jsx-runtime.js",
+   "react-server": "./jsx-runtime.react-server.js"
+  },
+  "./package.json": "./package.json"
+ },
+ "gitHead": "61aa00df822d0eb76d0362eb8b6fdd3527693efe",
+ "homepage": "https://react.dev/",
+ "keywords": [
+  "react"
+ ],
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "opensource+npm@fb.com",
+   "name": "fb"
+  },
+  {
+   "email": "react-core@meta.com",
+   "name": "react-bot"
+  }
+ ],
+ "name": "react",
+ "repository": {
+  "directory": "packages/react",
+  "type": "git",
+  "url": "git+https://github.com/react/react.git"
+ },
+ "version": "19.3.1"
+}

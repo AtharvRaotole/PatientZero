@@ -1,0 +1,226 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "cron-parser@5.10.2",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/cron-parser_5.10.2_1791535349331_0.695051643950152"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "e5b13d5e-05c1-4ae8-8120-15479b363890"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "author": {
+  "name": "Harri Siirak"
+ },
+ "browser": {
+  "fs": false,
+  "fs/promises": false
+ },
+ "bugs": {
+  "url": "https://github.com/harrisiirak/cron-parser/issues"
+ },
+ "contributors": [
+  {
+   "name": "Nicholas Clawson"
+  },
+  {
+   "email": "daniel@salsitasoft.com",
+   "name": "Daniel Prentis"
+  },
+  {
+   "name": "Renault John Lecoultre"
+  },
+  {
+   "email": "richard.astbury@gmail.com",
+   "name": "Richard Astbury"
+  },
+  {
+   "email": "Meaglin.wasabi@gmail.com",
+   "name": "Meaglin Wasabi"
+  },
+  {
+   "email": "hello@mikekusold.com",
+   "name": "Mike Kusold"
+  },
+  {
+   "email": "alex.kit@atmajs.com",
+   "name": "Alex Kit"
+  },
+  {
+   "email": "santiago.gimeno@gmail.com",
+   "name": "Santiago Gimeno"
+  },
+  {
+   "email": "darc.tec@gmail.com",
+   "name": "Daniel"
+  },
+  {
+   "email": "christian.steininger.cs@gmail.com",
+   "name": "Christian Steininger"
+  },
+  {
+   "email": "m.piskovyi@gmail.com",
+   "name": "Mykola Piskovyi"
+  },
+  {
+   "email": "brian.david.vaughn@gmail.com",
+   "name": "Brian Vaughn"
+  },
+  {
+   "email": "nickclaw@gmail.com",
+   "name": "Nicholas Clawson"
+  },
+  {
+   "email": "yasuhiroki.duck@gmail.com",
+   "name": "Yasuhiroki"
+  },
+  {
+   "email": "nickclaw@gmail.com",
+   "name": "Nicholas Clawson"
+  },
+  {
+   "email": "faazshift@gmail.com",
+   "name": "Brendan Warkentin"
+  },
+  {
+   "email": "fishcharlie.code@gmail.com",
+   "name": "Charlie Fish"
+  },
+  {
+   "email": "ian+diskimage@iangrav.es",
+   "name": "Ian Graves"
+  },
+  {
+   "email": "me@andytson.com",
+   "name": "Andy Thompson"
+  },
+  {
+   "email": "regevbr@gmail.com",
+   "name": "Regev Brody"
+  },
+  {
+   "email": "michael.lee.hobbs@gmail.com",
+   "name": "Michael Hobbs"
+  }
+ ],
+ "dependencies": {
+  "luxon": "^3.7.2"
+ },
+ "description": "Node.js library for parsing crontab instructions",
+ "devDependencies": {
+  "@tsd/typescript": "^6.0.3",
+  "@types/jest": "^30.0.0",
+  "@types/luxon": "^3.7.6",
+  "@types/node": "^26.6.4",
+  "@typescript-eslint/eslint-plugin": "^8.71.1",
+  "@typescript-eslint/parser": "^8.71.1",
+  "badge-maker": "^6.0.0",
+  "chalk": "^6.0.1",
+  "cli-table3": "^0.6.5",
+  "cross-env": "^10.1.0",
+  "eslint": "^10.12.0",
+  "eslint-config-prettier": "^10.1.8",
+  "eslint-plugin-prettier": "^5.5.6",
+  "husky": "^9.1.7",
+  "jest": "^30.5.2",
+  "lint-staged": "^17.6.0",
+  "prettier": "^3.9.9",
+  "rimraf": "^6.1.3",
+  "sinon": "^22.1.0",
+  "ts-jest": "^29.4.14",
+  "ts-node": "^10.9.2",
+  "tsd": "^0.33.0",
+  "typedoc": "^0.28.20",
+  "typescript": "^6.0.3"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/cron-parser@5.10.2"
+  },
+  "fileCount": 35,
+  "integrity": "sha512-JfAYMY0LZaWQTuict8PhtF/ksSnq8xefSDmQUnnoqvkPYkU/y3UP0DTWzJKFBz0P1IXsDG8q0vY3zHkoFZOhvw==",
+  "shasum": "a88afc3f47cd600f05e1193efa3d8535faaccf2b",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIBYVZrizawxOGvRORAl2BBq3OMTPRVbzP0IcS34VYMy0AiBHyWX2ogCgv/OvV4Fj+ob/6sl4Z7TILaPPzgPh9Q+H8w=="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIBqR8YhhykzbPdecF6urCQB+aEbn768SC7ek9bl5189NAiEAuF4dcoOsneA+cRt6soTTLGWoIVv3ghJcQ4MZfYVWl7Q="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/cron-parser/-/cron-parser-5.10.2.tgz",
+  "unpackedSize": 155712
+ },
+ "engines": {
+  "node": ">=18"
+ },
+ "gitHead": "5033a312f1fe04665060eacf4378f16c48ca4ea8",
+ "homepage": "https://github.com/harrisiirak/cron-parser#readme",
+ "husky": {
+  "hooks": {
+   "pre-commit": "lint-staged"
+  }
+ },
+ "keywords": [
+  "cron",
+  "crontab",
+  "parser"
+ ],
+ "license": "MIT",
+ "lint-staged": {
+  "*.{ts,js,json}": [
+   "prettier --write"
+  ]
+ },
+ "main": "dist/index.js",
+ "maintainers": [
+  {
+   "email": "harri@siirak.ee",
+   "name": "harrisiirak"
+  }
+ ],
+ "name": "cron-parser",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/harrisiirak/cron-parser.git"
+ },
+ "scripts": {
+  "bench": "cross-env node -r ts-node/register benchmarks/index.ts",
+  "bench:clean": "rimraf benchmarks/versions && rimraf benchmarks/results",
+  "bench:pattern": "cross-env node -r ts-node/register benchmarks/pattern.ts",
+  "build": "npm run clean && tsc -p tsconfig.json",
+  "clean": "rimraf dist",
+  "docs": "rimraf docs && typedoc --out docs --readme none --name 'CronParser' src",
+  "format": "prettier --write \"**/*.{ts,mjs,js,json,md}\"",
+  "format:check": "prettier --check \"**/*.{ts,mjs,js,json,md}\"",
+  "generate-badges": "node scripts/generate-coverage-badges.mjs",
+  "lint": "eslint .",
+  "lint:debug": "cross-env DEBUG=eslint:cli-engine eslint .",
+  "lint:fix": "eslint --fix .",
+  "precommit": "lint-staged",
+  "prepare": "husky && npm run build",
+  "prepublishOnly": "npm run build",
+  "test": "cross-env TZ=UTC npm run lint && npm run test:types && npm run test:coverage",
+  "test:coverage": "cross-env TZ=UTC jest --coverage",
+  "test:types": "npm run build && tsd",
+  "test:unit": "cross-env TZ=UTC jest"
+ },
+ "tsd": {
+  "directory": "tests"
+ },
+ "type": "commonjs",
+ "types": "dist/types/index.d.ts",
+ "version": "5.10.2"
+}

@@ -1,0 +1,74 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@types/serve-static@2.2.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/serve-static_2.2.0_1761597369608_0.882062405821785"
+ },
+ "_npmUser": {
+  "email": "ts-npm-types@microsoft.com",
+  "name": "types"
+ },
+ "contributors": [
+  {
+   "githubUsername": "urossmolnik",
+   "name": "Uros Smolnik",
+   "url": "https://github.com/urossmolnik"
+  },
+  {
+   "githubUsername": "LinusU",
+   "name": "Linus Unneb\u00e4ck",
+   "url": "https://github.com/LinusU"
+  },
+  {
+   "githubUsername": "devanshj",
+   "name": "Devansh Jethmalani",
+   "url": "https://github.com/devanshj"
+  },
+  {
+   "githubUsername": "bjohansebas",
+   "name": "Sebastian Beltran",
+   "url": "https://github.com/bjohansebas"
+  }
+ ],
+ "dependencies": {
+  "@types/http-errors": "*",
+  "@types/node": "*"
+ },
+ "description": "TypeScript definitions for serve-static",
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-8mam4H1NHLtu7nmtalF7eyBH14QyOASmcxHhSfEoRyr0nP/YdoesEtU+uSRvMe96TW/HPTtkoKqQLl53N7UXMQ==",
+  "shasum": "d4a447503ead0d1671132d1ab6bd58b805d8de6a",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIEWwry6plCCRR/0Z7SGvtb6fgtA5Oi2W1zslD4QMLb0RAiAiF5w7e4jauZgdklG7PlBk6y8oWSiKgM8saalBJ/3p1g=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@types/serve-static/-/serve-static-2.2.0.tgz",
+  "unpackedSize": 8660
+ },
+ "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/serve-static",
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "ts-npm-types@microsoft.com",
+   "name": "types"
+  }
+ ],
+ "name": "@types/serve-static",
+ "peerDependencies": {},
+ "repository": {
+  "directory": "types/serve-static",
+  "type": "git",
+  "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+ },
+ "scripts": {},
+ "typeScriptVersion": "5.2",
+ "types": "index.d.ts",
+ "typesPublisherContentHash": "2b9f0fc410d8328fd2fa43368ffb4c00c1321f91568bd833f289e57161f1771e",
+ "version": "2.2.0"
+}

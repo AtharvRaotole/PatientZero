@@ -1,0 +1,142 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "lint-staged@17.6.0",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/lint-staged_17.6.0_1790402499405_0.8789178675565454"
+ },
+ "_npmUser": {
+  "approver": {
+   "email": "iiro@jappinen.fi",
+   "name": "iiroj"
+  },
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:73588299-b066-4d29-8676-e890b6f92292"
+  }
+ },
+ "_npmVersion": "12.1.0",
+ "author": {
+  "email": "andrey@okonet.ru",
+  "name": "Andrey Okonetchnikov"
+ },
+ "bin": {
+  "lint-staged": "bin/lint-staged.js"
+ },
+ "bugs": {
+  "url": "https://github.com/lint-staged/lint-staged/issues"
+ },
+ "dependencies": {
+  "picomatch": "^4.0.7",
+  "string-argv": "^0.3.2",
+  "tinyexec": "^1.3.1"
+ },
+ "description": "Lint files staged by git",
+ "devDependencies": {
+  "@changesets/changelog-github": "1.0.1",
+  "@changesets/cli": "3.0.3",
+  "@commitlint/cli": "21.2.3",
+  "@commitlint/config-conventional": "21.2.3",
+  "@e18e/eslint-plugin": "0.8.1",
+  "@vitest/coverage-istanbul": "5.0.1",
+  "consolemock": "1.1.0",
+  "cross-env": "10.1.0",
+  "husky": "9.1.7",
+  "mock-stdin": "1.0.0",
+  "oxfmt": "0.70.0",
+  "oxlint": "1.85.0",
+  "semver": "7.8.5",
+  "vitest": "5.0.1"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/lint-staged@17.6.0"
+  },
+  "fileCount": 47,
+  "integrity": "sha512-nOhBfYkZEwkFtNzD5pK9s9LkcWoxJ+whLzEnhqi9nl7zTB5n7tg8+9iYgMGx2Wm3VlLu8cbNj0RACzY+nWi5iQ==",
+  "shasum": "756fa50b4d4d9032ab05f64ef899eee81e44d421",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIHWbqYL/kjacrdL2TN2pDOpde8SZfc3X7pCvOscLuatNAiAv4D1hm3/ghIfSURSW4uJ6fggbyIn/6y5ePEQ7S12N8Q=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/lint-staged/-/lint-staged-17.6.0.tgz",
+  "unpackedSize": 168006
+ },
+ "engines": {
+  "node": ">=22.22.1"
+ },
+ "exports": {
+  ".": {
+   "default": "./lib/index.js",
+   "types": "./lib/index.d.ts"
+  },
+  "./bin": "./bin/lint-staged.js",
+  "./config": {
+   "default": "./lib/config.js",
+   "types": "./lib/config.d.ts"
+  },
+  "./package.json": "./package.json"
+ },
+ "funding": {
+  "url": "https://opencollective.com/lint-staged"
+ },
+ "gitHead": "48f9f4ea4b88eb605de3546e4599083de7a394b2",
+ "homepage": "https://github.com/lint-staged/lint-staged#readme",
+ "keywords": [
+  "check",
+  "code",
+  "eslint",
+  "format",
+  "git",
+  "lint",
+  "oxlint",
+  "oxfmt",
+  "prettier",
+  "quality",
+  "staged",
+  "stylelint",
+  "validate"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "andrey@okonet.dev",
+   "name": "okonet"
+  },
+  {
+   "email": "iiro@jappinen.fi",
+   "name": "iiroj"
+  }
+ ],
+ "name": "lint-staged",
+ "optionalDependencies": {
+  "yaml": "^2.9.1"
+ },
+ "publishConfig": {
+  "access": "public",
+  "provenance": true
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/lint-staged/lint-staged.git"
+ },
+ "scripts": {
+  "lint": "oxfmt && oxlint",
+  "tag": "changeset tag",
+  "test": "vitest",
+  "typecheck": "tsc",
+  "version": "changeset version && npm i --package-lock-only && git commit -am \"chore(changeset): release\""
+ },
+ "type": "module",
+ "types": "./lib/index.d.ts",
+ "version": "17.6.0"
+}

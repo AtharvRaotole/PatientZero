@@ -1,0 +1,120 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "toad-cache@3.7.4",
+ "_nodeVersion": "24.18.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/toad-cache_3.7.4_1783083512765_0.0037370628430513086"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:1a510f5b-e770-4fe5-8511-1bc10d55a065"
+  }
+ },
+ "author": "Igor Savin <kibertoad@gmail.com>",
+ "bugs": {
+  "url": "https://github.com/kibertoad/toad-cache/issues"
+ },
+ "description": "LRU and FIFO caches for Client or Server",
+ "devDependencies": {
+  "@biomejs/biome": "^2.5.2",
+  "@vitest/coverage-v8": "^4.1.9",
+  "auto-changelog": "^2.6.0",
+  "del-cli": "^7.0.0",
+  "precise": "^5.0.1",
+  "rollup": "^4.62.2",
+  "tsd": "^0.33.0",
+  "typescript": "~6.0.3",
+  "vitest": "^4.1.9"
+ },
+ "devEngines": {
+  "runtime": {
+   "name": "node",
+   "onFail": "error",
+   "version": ">=22.13"
+  }
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/toad-cache@3.7.4"
+  },
+  "fileCount": 7,
+  "integrity": "sha512-m1TdR/rvT7kgGJZhspNtXdsdYk0fddFpJJFlG5s+UkPFo6lkLoZ3YLOaovPYjq1R75NP5JfeTlSHaOsE09peCg==",
+  "shasum": "211e72605bb7862dfc68e1c0df9d0fe3dc2dec07",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQCtFEWd/EWBZ2ynU+UcbL52DuppQgurw5ZIm0zWiEfkswIhALZgesKzB+ONXC/xRZb8w45M+z2eI9IbbXs0Vr/737uz"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/toad-cache/-/toad-cache-3.7.4.tgz",
+  "unpackedSize": 51085
+ },
+ "engineStrict": true,
+ "engines": {
+  "node": ">=20"
+ },
+ "exports": {
+  ".": {
+   "import": {
+    "default": "./dist/toad-cache.mjs",
+    "types": "./toad-cache.d.ts"
+   },
+   "require": {
+    "default": "./dist/toad-cache.cjs",
+    "types": "./toad-cache.d.cts"
+   }
+  }
+ },
+ "homepage": "https://github.com/kibertoad/toad-cache",
+ "keywords": [
+  "LRU",
+  "FIFO",
+  "cache",
+  "client",
+  "server",
+  "least",
+  "recently",
+  "used",
+  "first",
+  "browser"
+ ],
+ "license": "MIT",
+ "main": "dist/toad-cache.cjs",
+ "maintainers": [
+  {
+   "email": "iselwin@gmail.com",
+   "name": "kibertoad"
+  }
+ ],
+ "name": "toad-cache",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/kibertoad/toad-cache.git"
+ },
+ "scripts": {
+  "benchmark": "pnpm run build && node benchmark.js",
+  "build": "del-cli dist && del-cli coverage && pnpm run rollup",
+  "changelog": "auto-changelog -p",
+  "lint": "biome lint index.js benchmark.js src test biome.json",
+  "lint:fix": "biome check --apply index.js benchmark.js src test biome.json",
+  "rollup": "rollup --config",
+  "test": "vitest",
+  "test:ci": "pnpm run lint && pnpm run test:coverage && pnpm run test:typescript",
+  "test:coverage": "pnpm run rollup && vitest --coverage",
+  "test:typescript": "tsd",
+  "types:generate": "pnpm exec tsc index.js --declaration --allowJs --emitDeclarationOnly --outDir ."
+ },
+ "source": "index.js",
+ "sourceType": "module",
+ "type": "module",
+ "types": "./toad-cache.d.ts",
+ "version": "3.7.4"
+}

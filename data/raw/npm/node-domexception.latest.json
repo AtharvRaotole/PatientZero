@@ -1,0 +1,65 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "node-domexception@2.0.2",
+ "_nodeVersion": "23.6.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/node-domexception_2.0.2_1745069064441_0.35558923055921543"
+ },
+ "_npmUser": {
+  "email": "jimmy@warting.se",
+  "name": "endless"
+ },
+ "_npmVersion": "10.9.2",
+ "author": {
+  "name": "Jimmy W\u00e4rting"
+ },
+ "bugs": {
+  "url": "https://github.com/jimmywarting/node-domexception/issues"
+ },
+ "deprecated": "Use your platform's native DOMException instead",
+ "description": "An implementation of the DOMException class from NodeJS",
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-Qf9vHK9c5MGgUXj8SnucCIS4oEPuUstjRaMplLGeZpbWMfNV1rvEcXuwoXfN51dUfD1b4muPHPQtCx/5Dj/QAA==",
+  "shasum": "9ac29eb0b97ce65d4c647c1ebcd314d4c2859c4a",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQD7jr8IkKvSCZIoLBywCXy5c9nx+Aoy1awSt810/3gYWQIgTcgvQQfORz6VrKwmwCgkaO1D6artxB0OHZ4S6hrsq0c="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/node-domexception/-/node-domexception-2.0.2.tgz",
+  "unpackedSize": 5451
+ },
+ "engines": {
+  "node": ">=16"
+ },
+ "funding": [
+  {
+   "type": "github",
+   "url": "https://github.com/sponsors/jimmywarting"
+  },
+  {
+   "type": "github",
+   "url": "https://paypal.me/jimmywarting"
+  }
+ ],
+ "gitHead": "ca9b0e0948f5ea3aaf7191143a95fc34894bc413",
+ "homepage": "https://github.com/jimmywarting/node-domexception#readme",
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "jimmy@warting.se",
+   "name": "endless"
+  }
+ ],
+ "name": "node-domexception",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/jimmywarting/node-domexception.git"
+ },
+ "version": "2.0.2"
+}

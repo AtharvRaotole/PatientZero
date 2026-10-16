@@ -1,0 +1,130 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "fast-content-type-parse@4.0.1",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/fast-content-type-parse_4.0.1_1791626843288_0.918204101410613"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "1d104072-7e20-48a1-b636-1e23e53373e6"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "author": {
+  "email": "aras.abbasi@gmail.com",
+  "name": "Aras Abbasi"
+ },
+ "bugs": {
+  "url": "https://github.com/fastify/fast-content-type-parse/issues"
+ },
+ "contributors": [
+  {
+   "email": "hey@gurgun.day",
+   "name": "G\u00fcrg\u00fcn Day\u0131o\u011flu",
+   "url": "https://heyhey.to/G"
+  },
+  {
+   "email": "behemoth89@gmail.com",
+   "name": "Manuel Spigolon"
+  },
+  {
+   "name": "James Sumners",
+   "url": "https://james.sumners.info"
+  },
+  {
+   "email": "frazer.dev@icloud.com",
+   "name": "Frazer Smith",
+   "url": "https://github.com/fdawgs"
+  }
+ ],
+ "description": "Parse HTTP Content-Type header according to RFC 9110",
+ "devDependencies": {
+  "@jazzer.js/core": "^4.0.0",
+  "benchmark": "^2.1.4",
+  "busboy": "^1.6.0",
+  "c8": "^12.0.0",
+  "content-type": "^3.0.0",
+  "eslint": "^9.17.0",
+  "neostandard": "^0.13.0",
+  "tstyche": "^7.0.0"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/fast-content-type-parse@4.0.1"
+  },
+  "fileCount": 21,
+  "integrity": "sha512-AAu9Ey/t6KDFqqeCfbwdlASlv7rQBG57gXYf2YU+MXJx1OIJn2q3BEJKmtnZaeGm1y5AYxLzRMmq9VWWXrfRcA==",
+  "shasum": "29917c0c58d2faae692f50d7d78e966070cd6733",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIGRPemvRgCbbk4VoFUIWsTDR8PI1loWrk90Y95vSyJlcAiAFaX3tBPjmWKyvlxR6t0IcU2vKpNZgNMsU++nLvAlQOQ=="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIEN2/Uq7Nh2J7KCXp8Z+lRQszLBUQ7LKnt+ziW4YunsbAiBqRK7EBPHHn6IVPiScp6zGrpyXJ7k8Ib8So9vEyqTWYw=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/fast-content-type-parse/-/fast-content-type-parse-4.0.1.tgz",
+  "unpackedSize": 38538
+ },
+ "funding": [
+  {
+   "type": "github",
+   "url": "https://github.com/sponsors/fastify"
+  },
+  {
+   "type": "opencollective",
+   "url": "https://opencollective.com/fastify"
+  }
+ ],
+ "gitHead": "8ecfb7be98d6ec9278bea176098f0a768064db5d",
+ "homepage": "https://github.com/fastify/fast-content-type-parse#readme",
+ "keywords": [
+  "content-type",
+  "rfc9110"
+ ],
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "behemoth89@gmail.com",
+   "name": "eomm"
+  },
+  {
+   "email": "hello@matteocollina.com",
+   "name": "matteo.collina"
+  },
+  {
+   "email": "aras.abbasi@googlemail.com",
+   "name": "uzlopak"
+  }
+ ],
+ "name": "fast-content-type-parse",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/fastify/fast-content-type-parse.git"
+ },
+ "scripts": {
+  "benchmark": "node benchmarks/simple.js && node benchmarks/simple-ows.js && node benchmarks/with-param.js && node benchmarks/with-param-quoted.js",
+  "jazzer:errors": "npm rebuild @jazzer.js/core && jazzer benchmarks/fuzzer-check-errors --sync --timeout=100 -- -max_total_time=120",
+  "jazzer:performance": "npm rebuild @jazzer.js/core && jazzer benchmarks/fuzzer-check-performance --sync --timeout=100 -- -max_total_time=120",
+  "lint": "eslint",
+  "lint:fix": "eslint --fix",
+  "test": "npm run test:unit && npm run test:typescript",
+  "test:typescript": "tstyche",
+  "test:unit": "c8 --100 node --test"
+ },
+ "type": "commonjs",
+ "types": "./types/index.d.ts",
+ "version": "4.0.1"
+}

@@ -1,0 +1,85 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@apollo/server-gateway-interface@2.0.0",
+ "_nodeVersion": "22.17.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/server-gateway-interface_2.0.0_1752771496867_0.04734942560586508"
+ },
+ "_npmUser": {
+  "email": "npm@apollographql.com",
+  "name": "apollo-bot"
+ },
+ "_npmVersion": "10.9.2",
+ "author": {
+  "email": "packages@apollographql.com",
+  "name": "Apollo"
+ },
+ "bugs": {
+  "url": "https://github.com/apollographql/apollo-server/issues"
+ },
+ "dependencies": {
+  "@apollo/usage-reporting-protobuf": "^4.1.1",
+  "@apollo/utils.fetcher": "^3.0.0",
+  "@apollo/utils.keyvaluecache": "^4.0.0",
+  "@apollo/utils.logger": "^3.0.0"
+ },
+ "description": "Interface used to connect Apollo Gateway to Apollo Server",
+ "directories": {},
+ "dist": {
+  "fileCount": 15,
+  "integrity": "sha512-3HEMD6fSantG2My3jWkb9dvfkF9vJ4BDLRjMgsnD790VINtuPaEp+h3Hg9HOHiWkML6QsOhnaRqZ+gvhp3y8Nw==",
+  "shasum": "16e375f8edd302641ac60815f6c448e93a2a48a0",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIEcoz2ZvjGWaduBOhf3d71wHl3eas5z6m6rELtRPoUsvAiEA3Vg3JFtR1wzg4JEaGveTly/vWbl7YbsioejGM0FuTMo="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@apollo/server-gateway-interface/-/server-gateway-interface-2.0.0.tgz",
+  "unpackedSize": 121915
+ },
+ "exports": {
+  ".": {
+   "types": {
+    "default": "./dist/esm/index.d.ts",
+    "require": "./dist/cjs/index.d.ts"
+   }
+  }
+ },
+ "gitHead": "6f54cbeb015db1fe7acf082cfa6e8bf3d45b58f1",
+ "homepage": "https://github.com/apollographql/apollo-server#readme",
+ "keywords": [],
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "trevor.scheer@gmail.com",
+   "name": "trevor.scheer"
+  },
+  {
+   "email": "glasser@apollographql.com",
+   "name": "glasser"
+  },
+  {
+   "email": "dariusz_kuc@hotmail.com",
+   "name": "dkuc"
+  },
+  {
+   "email": "npm@apollographql.com",
+   "name": "apollo-bot"
+  }
+ ],
+ "name": "@apollo/server-gateway-interface",
+ "peerDependencies": {
+  "graphql": "14.x || 15.x || 16.x"
+ },
+ "repository": {
+  "directory": "packages/gateway-interface",
+  "type": "git",
+  "url": "git+https://github.com/apollographql/apollo-server.git"
+ },
+ "type": "module",
+ "types": "dist/esm/index.d.ts",
+ "version": "2.0.0"
+}

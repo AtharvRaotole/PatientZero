@@ -1,0 +1,81 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "fast-levenshtein@3.0.0",
+ "_nodeVersion": "12.13.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/fast-levenshtein_3.0.0_1595427981926_0.6198370966231346"
+ },
+ "_npmUser": {
+  "email": "ram@hiddentao.com",
+  "name": "hiddentao"
+ },
+ "_npmVersion": "6.14.5",
+ "author": {
+  "email": "ram@hiddentao.com",
+  "name": "Ramesh Nair",
+  "url": "http://www.hiddentao.com/"
+ },
+ "bugs": {
+  "url": "https://github.com/hiddentao/fast-levenshtein/issues"
+ },
+ "dependencies": {
+  "fastest-levenshtein": "^1.0.7"
+ },
+ "description": "Efficient implementation of Levenshtein algorithm  with locale-specific collator support.",
+ "devDependencies": {
+  "chai": "~1.5.0",
+  "grunt": "~0.4.1",
+  "grunt-benchmark": "~0.2.0",
+  "grunt-cli": "^1.2.0",
+  "grunt-contrib-jshint": "~0.4.3",
+  "grunt-contrib-uglify": "~0.2.0",
+  "grunt-mocha-test": "~0.2.2",
+  "grunt-npm-install": "~0.1.0",
+  "load-grunt-tasks": "~0.6.0",
+  "lodash": "^4.0.1",
+  "mocha": "~1.9.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 4,
+  "integrity": "sha512-hKKNajm46uNmTlhHSyZkmToAc56uZJwYq7yrciZjqOxnlfQwERDQJmHPUp7m1m9wx8vgOe8IaCKZ5Kv2k1DdCQ==",
+  "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.4\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJfGEyOCRA9TVsSAnZWagAA9wkP/0OtwmE7r4Zttrw5HjFF\n+KZR9XY29uR8BLdqoPYZRnP+FVthRNVQDCI/W69ufVL8RjFwaBXgYHHAC6NV\n/gO1N4O6P0RSRrSESlqek/0OWNmsRN+YKi0QCavD1qgRPtiJRUp/wmO5Z4lQ\necWnVaCn0J19gLlxW9qPkeF0TFwHKCQZW1D66M2bxrdkkyxGEcXWW8E/xMjr\nryas7hWZWHFolz4v3xarqjBMuFHYf0Ia6KC7NAp7mOMdjp7245p38cm+oMfC\n0n9KJJaeFvuslsdV3ggaKWTUyZ4afuVaoxxK2twcR3CvFgTRPGihhG03zGc/\n9YwMtPb0q3Gg0pvguUPPhtJ4FW+G2Rg5pMsPov90CsX8GAqAJu0tnm+Ezdvo\nXKeVM4LChO3KrBXnjbfsfbuhm52uD6gZrQhkEkNkNwmrcC8YkXqZ1jF5s5Um\nZ71gHQXAOp4RR3weT+3YT6zFJcBQcE+SN2AVPlDpofOccxTJ+URxX8AUbKk2\neQo8oXsJUtSojiJN5f5Py5s8eIApGNxljnKg1mCh9UnSUtpYzgYSW2EhxEcl\nmqTVCgqwvikfQvrP+3a+jtqt548ES3vG6svIfwI4EZsl6O2EYoi53JoQmLci\numAV8s4I+T3L35vB+jwkiuE80DrRKkbJI1DYi8aTjd3OJTHllxfrYZqUNM9/\n4kYD\r\n=sqfc\r\n-----END PGP SIGNATURE-----\r\n",
+  "shasum": "37b899ae47e1090e40e3fd2318e4d5f0142ca912",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIHsSsc5Rk4bKSA2O9rbMGbXUqlftlrZiOel4PnufXCp4AiEAkFTOISsdiiHtd1Emw8RSxzjhqKm1AUOzvrcbqQnsREg="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/fast-levenshtein/-/fast-levenshtein-3.0.0.tgz",
+  "unpackedSize": 7625
+ },
+ "gitHead": "d2434d324e56c9ef70d6f8330382e7ff758f9911",
+ "homepage": "https://github.com/hiddentao/fast-levenshtein#readme",
+ "keywords": [
+  "levenshtein",
+  "distance",
+  "string"
+ ],
+ "license": "MIT",
+ "main": "levenshtein.js",
+ "maintainers": [
+  {
+   "email": "ram@hiddentao.com",
+   "name": "hiddentao"
+  }
+ ],
+ "name": "fast-levenshtein",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/hiddentao/fast-levenshtein.git"
+ },
+ "scripts": {
+  "benchmark": "grunt benchmark",
+  "build": "grunt build",
+  "prepublish": "npm run build",
+  "test": "mocha"
+ },
+ "version": "3.0.0"
+}

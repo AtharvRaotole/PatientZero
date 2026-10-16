@@ -1,0 +1,83 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@types/d3-scale@4.0.9",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/d3-scale_4.0.9_1738716419632_0.4958173241452093"
+ },
+ "_npmUser": {
+  "email": "ts-npm-types@microsoft.com",
+  "name": "types"
+ },
+ "contributors": [
+  {
+   "githubUsername": "tomwanzek",
+   "name": "Tom Wanzek",
+   "url": "https://github.com/tomwanzek"
+  },
+  {
+   "githubUsername": "gustavderdrache",
+   "name": "Alex Ford",
+   "url": "https://github.com/gustavderdrache"
+  },
+  {
+   "githubUsername": "borisyankov",
+   "name": "Boris Yankov",
+   "url": "https://github.com/borisyankov"
+  },
+  {
+   "githubUsername": "denisname",
+   "name": "denisname",
+   "url": "https://github.com/denisname"
+  },
+  {
+   "githubUsername": "rulonder",
+   "name": "rulonder",
+   "url": "https://github.com/rulonder"
+  },
+  {
+   "githubUsername": "Methuselah96",
+   "name": "Nathan Bierema",
+   "url": "https://github.com/Methuselah96"
+  }
+ ],
+ "dependencies": {
+  "@types/d3-time": "*"
+ },
+ "description": "TypeScript definitions for d3-scale",
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-dLmtwB8zkAeO/juAMfnV+sItKjlsw2lKdZVVy6LRr0cBmegxSABiLEpGVmSJJ8O08i4+sGR6qQtb6WtuwJdvVw==",
+  "shasum": "57a2f707242e6fe1de81ad7bfcccaaf606179afb",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIAdiL4WTAf8ItJfO4bLnkKOddH1jHBAQBhccu0c+gc96AiEAmmyEABqrC9KfCAZGJEizYKYYLuv3AUWDoecOAnfdWyM="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@types/d3-scale/-/d3-scale-4.0.9.tgz",
+  "unpackedSize": 134973
+ },
+ "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/d3-scale",
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "ts-npm-types@microsoft.com",
+   "name": "types"
+  }
+ ],
+ "name": "@types/d3-scale",
+ "peerDependencies": {},
+ "repository": {
+  "directory": "types/d3-scale",
+  "type": "git",
+  "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+ },
+ "scripts": {},
+ "typeScriptVersion": "5.0",
+ "types": "index.d.ts",
+ "typesPublisherContentHash": "c7eb4d63d0dfb659f0f8e359a4de33ed1f690bdea8051641bffa941f06a92f4d",
+ "version": "4.0.9"
+}

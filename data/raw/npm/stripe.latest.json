@@ -1,0 +1,172 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "stripe@23.0.0",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/stripe_23.0.0_1790815927310_0.6640659821512735"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "a107ea50-9480-41ed-9323-c698b35e9e4a"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "author": {
+  "email": "support@stripe.com",
+  "name": "Stripe",
+  "url": "https://stripe.com/"
+ },
+ "bugs": {
+  "url": "https://github.com/stripe/stripe-node/issues"
+ },
+ "contributors": [
+  {
+   "email": "ask@develooper.com",
+   "name": "Ask Bj\u00f8rn Hansen",
+   "url": "http://www.askask.com/"
+  },
+  {
+   "email": "michelle@stripe.com",
+   "name": "Michelle Bu"
+  },
+  {
+   "email": "alex@stripe.com",
+   "name": "Alex Sexton"
+  },
+  {
+   "name": "James Padolsey"
+  }
+ ],
+ "dependencies": {},
+ "description": "Stripe API wrapper",
+ "devDependencies": {
+  "@types/chai": "^4.3.4",
+  "@types/chai-as-promised": "^7.1.5",
+  "@types/mocha": "^10.0.1",
+  "@types/node": "~22",
+  "@typescript-eslint/eslint-plugin": "^4.33.0",
+  "@typescript-eslint/parser": "^4.33.0",
+  "chai": "^4.3.6",
+  "chai-as-promised": "~7.1.1",
+  "eslint": "^7.32.0",
+  "eslint-config-prettier": "^8.5.0",
+  "eslint-plugin-chai-friendly": "^0.7.2",
+  "eslint-plugin-import": "^2.27.5",
+  "eslint-plugin-prettier": "^3.4.1",
+  "mocha": "^8.4.0",
+  "mocha-junit-reporter": "^2.1.0",
+  "nock": "^14.0.17",
+  "node-fetch": "^2.6.7",
+  "nyc": "^15.1.0",
+  "prettier": "^1.16.4",
+  "ts-node": "^10.9.1",
+  "typescript": "^4.9.4",
+  "undici-types": "^7.8.0"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/stripe@23.0.0"
+  },
+  "fileCount": 1502,
+  "integrity": "sha512-MDE2A5ZVVluYURORaZEVghSmnLJc3w6aHAlZSxDQMsOjOb3V0O6ro/CiaeFlJS4N7uIVmsg98ocRsPmUK6YfyA==",
+  "shasum": "4730d07671871986e6e5b31e018668e9743676da",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQC2RvH7EPUO0DYOoMqDIAJJEBMV8XjuY1oozhi8McMnxAIgecTTt1Ij6/+13gjZnk8pM0g9bm+TG5/miB3ECRj2eZg="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIFVHwOkfsa1zgpRISu0yK4L2I5Tge+qieokfItURd2acAiEA8RFttZg78qnHWAlNyOResQ/9w29GJwVWvyMIbUGC0Y8="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/stripe/-/stripe-23.0.0.tgz",
+  "unpackedSize": 17340468
+ },
+ "engines": {
+  "node": ">=20"
+ },
+ "exports": {
+  "browser": {
+   "import": "./esm/stripe.esm.worker.js",
+   "require": "./cjs/stripe.cjs.worker.js"
+  },
+  "bun": {
+   "import": "./esm/stripe.esm.worker.js",
+   "require": "./cjs/stripe.cjs.worker.js"
+  },
+  "default": {
+   "import": {
+    "default": "./esm/stripe.esm.node.js",
+    "types": "./esm/stripe.esm.node.d.ts"
+   },
+   "require": {
+    "default": "./cjs/stripe.cjs.node.js",
+    "types": "./cjs/stripe.cjs.node.d.ts"
+   }
+  },
+  "deno": {
+   "import": "./esm/stripe.esm.worker.js",
+   "require": "./cjs/stripe.cjs.worker.js"
+  },
+  "extensibility": {
+   "import": "./esm/stripe.esm.extensibility.js",
+   "require": "./cjs/stripe.cjs.extensibility.js"
+  },
+  "worker": {
+   "import": "./esm/stripe.esm.worker.js",
+   "require": "./cjs/stripe.cjs.worker.js"
+  },
+  "workerd": {
+   "import": "./esm/stripe.esm.worker.js",
+   "require": "./cjs/stripe.cjs.worker.js"
+  }
+ },
+ "gitHead": "fe645f63d645011aca38dff9e245c1cf7b9ae60e",
+ "homepage": "https://github.com/stripe/stripe-node",
+ "keywords": [
+  "stripe",
+  "payment processing",
+  "credit cards",
+  "api"
+ ],
+ "license": "MIT",
+ "main": "cjs/stripe.cjs.node.js",
+ "maintainers": [
+  {
+   "email": "dev-platform-bots@stripe.com",
+   "name": "stripe-bindings"
+  }
+ ],
+ "name": "stripe",
+ "peerDependencies": {
+  "@types/node": ">=20"
+ },
+ "peerDependenciesMeta": {
+  "@types/node": {
+   "optional": true
+  }
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/stripe/stripe-node.git"
+ },
+ "resolutions": {
+  "minimist": "1.2.6",
+  "nanoid": "^3.2.0"
+ },
+ "scripts": {
+  "prepack": "just install && just build",
+  "test": "tsc -p tsconfig.cjs.json && mocha"
+ },
+ "types": "./cjs/stripe.cjs.node.d.ts",
+ "version": "23.0.0"
+}

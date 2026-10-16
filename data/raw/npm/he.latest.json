@@ -1,0 +1,107 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "he@2.0.0",
+ "_nodeVersion": "26.10.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/he_2.0.0_1791112790040_0.5648783317639503"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "562104c6-b412-45cc-9eef-342fdf72b521"
+  }
+ },
+ "_npmVersion": "11.19.1",
+ "author": {
+  "name": "Mathias Bynens",
+  "url": "https://mathiasbynens.be/"
+ },
+ "bin": {
+  "he": "bin/he.mjs"
+ },
+ "bugs": {
+  "url": "https://github.com/mathiasbynens/he/issues"
+ },
+ "description": "A robust HTML entities encoder/decoder with full Unicode support.",
+ "devDependencies": {
+  "jsesc": "^3.1.0",
+  "linkedom": "^0.18.13",
+  "oxfmt": "^0.71.0",
+  "regenerate": "^1.4.2"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/he@2.0.0"
+  },
+  "fileCount": 7,
+  "integrity": "sha512-0jE+JPv08nhXWmI1dULybzqNt34RbkH6Ul6V4cmDONpjYx1SfyObKF38FJLaJ1K7WWD93LWL9lewzk4E1Ria4A==",
+  "shasum": "fcbb797908ada37e168cac3ec27ce8da975ff082",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIELkLhZkdnfI5QQBYAhDJbcaM6UFkSIobTXhC98Sw9i+AiAsVUgqPsWFxC2NnW7CuRSNr9fi/u91drBRFic12zmqCQ=="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIB7dRfRKzv3aV4ZNQr9M/0/cDzn5QPyRoTqMyW+A2DQbAiEAoeLm8LI3TCecBFyW99dtqy7+FcWMUfPfK9oVo7vdWGk="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/he/-/he-2.0.0.tgz",
+  "unpackedSize": 141567
+ },
+ "engines": {
+  "node": ">=22"
+ },
+ "exports": {
+  ".": "./src/he.mjs",
+  "./package.json": "./package.json"
+ },
+ "gitHead": "e5658eccfecf6dfccee8797ca5126a3f22855609",
+ "homepage": "https://mths.be/he",
+ "keywords": [
+  "decode",
+  "encode",
+  "entities",
+  "entity",
+  "html",
+  "string",
+  "unicode"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "mathias@qiwi.be",
+   "name": "mathias"
+  },
+  {
+   "email": "node-team-npm+wombot@google.com",
+   "name": "google-wombot"
+  }
+ ],
+ "man": [
+  "man/he.1"
+ ],
+ "name": "he",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/mathiasbynens/he.git"
+ },
+ "scripts": {
+  "build": "node scripts/process-data.mjs && node scripts/build.mjs && oxfmt data src/data.mjs",
+  "coverage": "node --test --experimental-test-coverage --test-coverage-include=\"src/**\" \"tests/**/*.test.mjs\"",
+  "fetch": "npm run fetch:entities && node scripts/fetch-spec.mjs && npm run build",
+  "fetch:entities": "curl --fail --silent --show-error --location https://html.spec.whatwg.org/entities.json --output data/entities.json && oxfmt data/entities.json",
+  "format": "oxfmt",
+  "format:check": "oxfmt --check",
+  "test": "node --test \"tests/**/*.test.mjs\""
+ },
+ "type": "module",
+ "version": "2.0.0"
+}

@@ -1,0 +1,83 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "jest-get-type@29.6.3",
+ "_nodeVersion": "18.17.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/jest-get-type_29.6.3_1692621537590_0.04331502665648235"
+ },
+ "_npmUser": {
+  "email": "sbekkhus91@gmail.com",
+  "name": "simenb"
+ },
+ "_npmVersion": "lerna/1.13.0/node@v18.17.1+arm64 (darwin)",
+ "bugs": {
+  "url": "https://github.com/jestjs/jest/issues"
+ },
+ "description": "A utility function to get the type of a value",
+ "directories": {},
+ "dist": {
+  "fileCount": 4,
+  "integrity": "sha512-zrteXnqYxfQh7l5FHyL38jL39di8H8rHoecLH3JNxH3BwOrBsNeabdap5e0I23lD4HHI8W5VFBZqG4Eaq5LNcw==",
+  "shasum": "36f499fdcea197c1045a127319c0481723908fd1",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIEJogJd5OD9bG6F/UJRDZHESZOx/pMDFq6ra/Y0kD/wIAiEAglLckbU3i0ZovCUt+GUpjhzCHJsghsMq3fxcfsDfGto="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/jest-get-type/-/jest-get-type-29.6.3.tgz",
+  "unpackedSize": 3794
+ },
+ "engines": {
+  "node": "^14.15.0 || ^16.10.0 || >=18.0.0"
+ },
+ "exports": {
+  ".": {
+   "default": "./build/index.js",
+   "types": "./build/index.d.ts"
+  },
+  "./package.json": "./package.json"
+ },
+ "gitHead": "fb7d95c8af6e0d65a8b65348433d8a0ea0725b5b",
+ "homepage": "https://github.com/jestjs/jest#readme",
+ "license": "MIT",
+ "main": "./build/index.js",
+ "maintainers": [
+  {
+   "email": "scott.hovestadt@gmail.com",
+   "name": "scotthovestadt"
+  },
+  {
+   "email": "rubennorte@gmail.com",
+   "name": "rubennorte"
+  },
+  {
+   "email": "sbekkhus91@gmail.com",
+   "name": "simenb"
+  },
+  {
+   "email": "opensource+npm@fb.com",
+   "name": "fb"
+  },
+  {
+   "email": "aaron@abramov.io",
+   "name": "aaronabramov"
+  },
+  {
+   "email": "davidzilburg@gmail.com",
+   "name": "davidzilburg"
+  }
+ ],
+ "name": "jest-get-type",
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "directory": "packages/jest-get-type",
+  "type": "git",
+  "url": "git+https://github.com/jestjs/jest.git"
+ },
+ "types": "./build/index.d.ts",
+ "version": "29.6.3"
+}

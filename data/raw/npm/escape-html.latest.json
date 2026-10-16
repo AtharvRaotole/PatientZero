@@ -1,0 +1,62 @@
+{
+ "_from": ".",
+ "_id": "escape-html@1.0.3",
+ "_npmUser": {
+  "email": "doug@somethingdoug.com",
+  "name": "dougwilson"
+ },
+ "_npmVersion": "1.4.28",
+ "_shasum": "0258eae4d3d0c0974de1c169188ef0051d1d1988",
+ "bugs": {
+  "url": "https://github.com/component/escape-html/issues"
+ },
+ "description": "Escape string for use in HTML",
+ "devDependencies": {
+  "beautify-benchmark": "0.2.4",
+  "benchmark": "1.0.0"
+ },
+ "directories": {},
+ "dist": {
+  "integrity": "sha512-NiSupZ4OeuGwr68lGIeym/ksIZMJodUGOSCZ/FSnTxcrekbvqrgdUxlJOMpijaKZVjAJrWrGs/6Jy8OMuyj9ow==",
+  "shasum": "0258eae4d3d0c0974de1c169188ef0051d1d1988",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEYCIQCTGg/6nY8LmCbKojGALSVEsZ/nLzu4iibasvRSRY18LgIhAMh/99YA/q2JoZwOY9Hei0TEv8FxjxaHcSJ3ejfvELXk"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/escape-html/-/escape-html-1.0.3.tgz"
+ },
+ "files": [
+  "LICENSE",
+  "Readme.md",
+  "index.js"
+ ],
+ "gitHead": "7ac2ea3977fcac3d4c5be8d2a037812820c65f28",
+ "homepage": "https://github.com/component/escape-html",
+ "keywords": [
+  "escape",
+  "html",
+  "utility"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "tj@vision-media.ca",
+   "name": "tjholowaychuk"
+  },
+  {
+   "email": "doug@somethingdoug.com",
+   "name": "dougwilson"
+  }
+ ],
+ "name": "escape-html",
+ "repository": {
+  "type": "git",
+  "url": "https://github.com/component/escape-html"
+ },
+ "scripts": {
+  "bench": "node benchmark/index.js"
+ },
+ "version": "1.0.3"
+}

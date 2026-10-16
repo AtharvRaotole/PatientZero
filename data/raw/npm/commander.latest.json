@@ -1,0 +1,102 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "commander@15.0.0",
+ "_nodeVersion": "18.19.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/commander_15.0.0_1780046182936_0.2685107429035176"
+ },
+ "_npmUser": {
+  "email": "abe@enzou.tokyo",
+  "name": "abetomo"
+ },
+ "_npmVersion": "9.2.0",
+ "author": {
+  "email": "tj@vision-media.ca",
+  "name": "TJ Holowaychuk"
+ },
+ "bugs": {
+  "url": "https://github.com/tj/commander.js/issues"
+ },
+ "description": "the complete solution for node.js command-line programs",
+ "devDependencies": {
+  "@eslint/js": "^10.0.1",
+  "@types/node": "^22.7.4",
+  "eslint": "^10.0.2",
+  "eslint-config-prettier": "^10.0.1",
+  "globals": "^17.3.0",
+  "prettier": "^3.2.5",
+  "tsd": "^0.33.0",
+  "typescript": "^6.0.2",
+  "typescript-eslint": "^8.12.2"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 12,
+  "integrity": "sha512-z67u4ZhzCL/Tydu1lJARtEZYWbWaN7oYLHbsuzocr6y4N6WZAagG3RQ4FW61V1/0+jImpj293XfrcYnd1qxtPg==",
+  "shasum": "96f3961f12adac1799ef3fbd8bc61d40572d1b11",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIHbcPIoW/2H1COiKh18xNP9Hj/L/kyYiMyFnc5mawsIhAiAuIUy3aUtzkIuhVJyC/fWjiXoMnV8IQeBv8XXMza7iVw=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/commander/-/commander-15.0.0.tgz",
+  "unpackedSize": 207368
+ },
+ "engines": {
+  "node": ">=22.12.0"
+ },
+ "exports": {
+  ".": {
+   "default": "./index.js",
+   "types": "./typings/index.d.ts"
+  }
+ },
+ "gitHead": "ba6d13ddb4243e5913367734f8c159089ffe7834",
+ "homepage": "https://github.com/tj/commander.js#readme",
+ "keywords": [
+  "commander",
+  "command",
+  "option",
+  "parser",
+  "cli",
+  "argument",
+  "args",
+  "argv"
+ ],
+ "license": "MIT",
+ "main": "./index.js",
+ "maintainers": [
+  {
+   "email": "npm_j@ruru.gen.nz",
+   "name": "shadowspawn"
+  },
+  {
+   "email": "abe@enzou.tokyo",
+   "name": "abetomo"
+  }
+ ],
+ "name": "commander",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/tj/commander.js.git"
+ },
+ "scripts": {
+  "check": "npm run check:type && npm run check:lint && npm run check:format",
+  "check:format": "prettier --check .",
+  "check:lint": "eslint .",
+  "check:type": "npm run check:type:js && npm run check:type:ts",
+  "check:type:js": "tsc -p tsconfig.js.json",
+  "check:type:ts": "tsd && tsc -p tsconfig.ts.json",
+  "fix": "npm run fix:lint && npm run fix:format",
+  "fix:format": "prettier --write .",
+  "fix:lint": "eslint --fix .",
+  "test": "node --test && npm run check:type:ts",
+  "test-all": "node --test && npm run check"
+ },
+ "support": true,
+ "type": "module",
+ "types": "typings/index.d.ts",
+ "version": "15.0.0"
+}

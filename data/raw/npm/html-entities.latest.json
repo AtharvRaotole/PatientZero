@@ -1,0 +1,138 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "html-entities@2.6.0",
+ "_nodeVersion": "20.11.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/html-entities_2.6.0_1743349210654_0.14666497103302523"
+ },
+ "_npmUser": {
+  "email": "npmjs@maratd.com",
+  "name": "mdevils"
+ },
+ "_npmVersion": "10.2.4",
+ "author": {
+  "email": "mdevils@yandex.ru",
+  "name": "Marat Dulin"
+ },
+ "bugs": {
+  "url": "https://github.com/mdevils/html-entities/issues"
+ },
+ "description": "Fastest HTML entities encode/decode library.",
+ "devDependencies": {
+  "@commitlint/cli": "^17.6.6",
+  "@commitlint/config-conventional": "^17.6.6",
+  "@types/benchmark": "^2.1.0",
+  "@types/he": "^1.1.1",
+  "@types/jest": "^29.5.14",
+  "@types/node": "^22.13.14",
+  "benchmark": "^2.1.4",
+  "entities": "^6.0.0",
+  "eslint": "^9.23.0",
+  "eslint-config-prettier": "^10.1.1",
+  "eslint-plugin-import": "^2.31.0",
+  "flowgen": "^1.13.0",
+  "he": "^1.2.0",
+  "husky": "^4.3.6",
+  "prettier": "^3.5.3",
+  "standard-version": "^9.5.0",
+  "ts-jest": "^29.3.0",
+  "tshy": "^3.0.2",
+  "tsx": "^4.19.3",
+  "typescript": "^5.8.2",
+  "typescript-eslint": "^8.28.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 28,
+  "integrity": "sha512-kig+rMn/QOVRvr7c86gQ8lWXq+Hkv6CbAH1hLu+RG338StTpE8Z0b44SDVaqVu7HGKf27frdmUYEs9hTUX/cLQ==",
+  "shasum": "7c64f1ea3b36818ccae3d3fb48b6974208e984f8",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIBW6xDPZGFKM/FkRU3WGScLt9jd9uY2X4AJFLSOBtSieAiAZZ2xJ7/NdMyeMmNHiECYR815aCd100HUk097wGkXycw=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/html-entities/-/html-entities-2.6.0.tgz",
+  "unpackedSize": 132312
+ },
+ "exports": {
+  ".": {
+   "import": {
+    "default": "./dist/esm/index.js",
+    "types": "./dist/esm/index.d.ts"
+   },
+   "require": {
+    "default": "./dist/commonjs/index.js",
+    "types": "./dist/commonjs/index.d.ts"
+   }
+  },
+  "./package.json": "./package.json"
+ },
+ "funding": [
+  {
+   "type": "github",
+   "url": "https://github.com/sponsors/mdevils"
+  },
+  {
+   "type": "patreon",
+   "url": "https://patreon.com/mdevils"
+  }
+ ],
+ "gitHead": "58d1635d40d858efd5b6540f7b62c3a382a35bf1",
+ "homepage": "https://github.com/mdevils/html-entities#readme",
+ "husky": {
+  "hooks": {
+   "pre-commit": "npm run lint && npm run test"
+  }
+ },
+ "keywords": [
+  "html",
+  "html entities",
+  "html entities encode",
+  "html entities decode",
+  "entities",
+  "entities encode",
+  "entities decode"
+ ],
+ "license": "MIT",
+ "main": "./dist/commonjs/index.js",
+ "maintainers": [
+  {
+   "email": "npmjs@maratd.com",
+   "name": "mdevils"
+  }
+ ],
+ "module": "./dist/esm/index.js",
+ "name": "html-entities",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/mdevils/html-entities.git"
+ },
+ "scripts": {
+  "benchmark": "tsx benchmark/benchmark",
+  "build": "rm -Rf dist && tsc --noEmit && tshy && tsc --declaration --emitDeclarationOnly -p tsconfig.json && tsc --emitDeclarationOnly -p tsconfig.esm.json && npm run remove-unused-declarations && npm run flow-type-gen",
+  "flow-type-gen": "flowgen --add-flow-header dist/esm/index.d.ts -o dist/commonjs/index.js.flow",
+  "lint": "eslint src/**.ts",
+  "prepublishOnly": "npm run build && npm run test && npm run test:dist",
+  "release": "standard-version",
+  "remove-unused-declarations": "find dist -type f \\( -name '*.d.ts' ! -name index.d.ts \\) | xargs rm",
+  "test": "jest",
+  "test:dist": "npm run test:dist:commonjs && npm run test:dist:esm",
+  "test:dist:commonjs": "TEST_DIST=commonjs npm run test",
+  "test:dist:esm": "TEST_DIST=esm node --experimental-vm-modules node_modules/.bin/jest",
+  "test:watch": "jest --watch"
+ },
+ "sideEffects": false,
+ "tshy": {
+  "exports": {
+   ".": "./src/index.ts",
+   "./package.json": "./package.json"
+  },
+  "selfLink": false
+ },
+ "type": "module",
+ "types": "./dist/commonjs/index.d.ts",
+ "typings": "./dist/commonjs/index.d.ts",
+ "version": "2.6.0"
+}

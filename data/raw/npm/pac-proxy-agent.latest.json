@@ -1,0 +1,108 @@
+{
+ "_from": "file:pac-proxy-agent-9.1.0.tgz",
+ "_hasShrinkwrap": false,
+ "_id": "pac-proxy-agent@9.1.0",
+ "_integrity": "sha512-1aU+1mpj3DrQPfo3gh+3Gap3G5x+axnMx1P/y0ZF2ch7kb2meyOCAH8K2k9d27ROsTE7TnAerzxqF9aon2jqnA==",
+ "_nodeVersion": "20.20.2",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/pac-proxy-agent_9.1.0_1780937255164_0.5189115635934063"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:0c9b0e86-053e-492c-8143-fadba9307954"
+  }
+ },
+ "_npmVersion": "11.16.0",
+ "_resolved": "/tmp/84743edd31d6b8a2d556efd8494f38de/pac-proxy-agent-9.1.0.tgz",
+ "author": {
+  "email": "nathan@tootallnate.net",
+  "name": "Nathan Rajlich",
+  "url": "http://n8.io/"
+ },
+ "bugs": {
+  "url": "https://github.com/TooTallNate/proxy-agents/issues"
+ },
+ "dependencies": {
+  "agent-base": "9.0.0",
+  "debug": "^4.3.4",
+  "get-uri": "8.0.1",
+  "http-proxy-agent": "9.1.0",
+  "https-proxy-agent": "9.1.0",
+  "pac-resolver": "9.0.1",
+  "quickjs-wasi": "^2.2.0",
+  "socks-proxy-agent": "10.1.0"
+ },
+ "description": "A PAC file proxy `http.Agent` implementation for HTTP",
+ "devDependencies": {
+  "@types/debug": "^4.1.7",
+  "@types/node": "^22.13.0",
+  "async-listen": "^3.0.0",
+  "proxy": "4.1.0",
+  "socksv5": "github:TooTallNate/socksv5#d937368b28e929396166d77a06d387a4a902bd51",
+  "tsconfig": "0.0.0",
+  "typescript": "^5.1.6"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/pac-proxy-agent@9.1.0"
+  },
+  "fileCount": 7,
+  "integrity": "sha512-1aU+1mpj3DrQPfo3gh+3Gap3G5x+axnMx1P/y0ZF2ch7kb2meyOCAH8K2k9d27ROsTE7TnAerzxqF9aon2jqnA==",
+  "shasum": "cafd7bb54905de0b6804283cd273eb22028c6abd",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIGRtGEB6keqe1sHNAMMqfP6hPg1DgQepccXqV7UsB25rAiEA2fYGiI55UVSVpTNLtbNdjVbGz7JkIDJCWhza0fwEvAk="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/pac-proxy-agent/-/pac-proxy-agent-9.1.0.tgz",
+  "unpackedSize": 24081
+ },
+ "engines": {
+  "node": ">= 20"
+ },
+ "exports": {
+  "default": "./dist/index.js",
+  "types": "./dist/index.d.ts"
+ },
+ "homepage": "https://github.com/TooTallNate/proxy-agents#readme",
+ "keywords": [
+  "pac",
+  "proxy",
+  "agent",
+  "http",
+  "https",
+  "socks",
+  "request",
+  "access"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "nathan@tootallnate.net",
+   "name": "tootallnate"
+  }
+ ],
+ "name": "pac-proxy-agent",
+ "repository": {
+  "directory": "packages/pac-proxy-agent",
+  "type": "git",
+  "url": "git+https://github.com/TooTallNate/proxy-agents.git"
+ },
+ "scripts": {
+  "build": "tsc",
+  "lint": "eslint --ext .ts",
+  "pack": "node ../../scripts/pack.mjs",
+  "test": "vitest"
+ },
+ "type": "module",
+ "version": "9.1.0"
+}

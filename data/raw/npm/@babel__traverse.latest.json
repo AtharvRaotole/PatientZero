@@ -1,0 +1,98 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@babel/traverse@8.0.7",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/traverse_8.0.7_1791367162361_0.9137033729226747"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "1d25ffa2-3338-4a39-8b74-83e97997033e"
+  }
+ },
+ "author": "The Babel Team (https://babel.dev/team)",
+ "bugs": "https://github.com/babel/babel/issues?utf8=%E2%9C%93&q=is%3Aissue+label%3A%22pkg%3A%20traverse%22+is%3Aopen",
+ "dependencies": {
+  "@babel/code-frame": "^8.0.6",
+  "@babel/generator": "^8.0.6",
+  "@babel/helper-globals": "^8.0.6",
+  "@babel/parser": "^8.0.7",
+  "@babel/template": "^8.0.0",
+  "@babel/types": "^8.0.6",
+  "obug": "^3.0.0"
+ },
+ "description": "The Babel Traverse module maintains the overall tree state, and is responsible for replacing, removing, and adding nodes",
+ "devDependencies": {
+  "@babel/core": "^8.0.7",
+  "@babel/helper-plugin-test-runner": "^8.0.0"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@babel%2ftraverse@8.0.7"
+  },
+  "fileCount": 5,
+  "integrity": "sha512-bVV0brinsTWgc6ptSIoQo3GbITtl0VZAqEUJbHHcyfDPEu+q/fEvlYEa+6H85HoK8IdksKBFtKJbJFZ6Kff+zg==",
+  "shasum": "8be67c3c8b6bebcdba134633dd48c33234cef7bc",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQDHIXpY/oNGH4kZsDGaDZc5kTLwtOaltJzQxuQe77ZMfgIhAKUaFjXmPN5QPOVVUUt/wMKEfQpGdWnqoYzOBE7KGAgg"
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCICkBCidhOYZZLW02V48X6V4lLJFtI3nAiBcmbCwBf4oHAiEAoeCoNx39hzla/aDEcIYExI7SK+sPOQ8ezkrx8TzilVo="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@babel/traverse/-/traverse-8.0.7.tgz",
+  "unpackedSize": 800606
+ },
+ "engines": {
+  "node": "^22.18.0 || >=24.11.0"
+ },
+ "exports": {
+  ".": {
+   "default": "./lib/index.js",
+   "types": "./lib/index.d.ts"
+  },
+  "./package.json": "./package.json"
+ },
+ "homepage": "https://babel.dev/docs/en/next/babel-traverse",
+ "license": "MIT",
+ "main": "./lib/index.js",
+ "maintainers": [
+  {
+   "email": "hi@henryzoo.com",
+   "name": "hzoo"
+  },
+  {
+   "email": "bng412@gmail.com",
+   "name": "existentialism"
+  },
+  {
+   "email": "hello+npm@nicr.dev",
+   "name": "nicolo-ribaudo"
+  },
+  {
+   "email": "jlhwung@gmail.com",
+   "name": "jlhwung"
+  }
+ ],
+ "name": "@babel/traverse",
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "directory": "packages/babel-traverse",
+  "type": "git",
+  "url": "https://github.com/babel/babel.git"
+ },
+ "type": "module",
+ "version": "8.0.7"
+}

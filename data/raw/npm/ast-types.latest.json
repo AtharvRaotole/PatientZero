@@ -1,0 +1,120 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "ast-types@0.16.3",
+ "_nodeVersion": "24.19.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/ast-types_0.16.3_1788122414880_0.32166566934130114"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:fd972442-1c2a-4508-8515-b8ad29e636da"
+  }
+ },
+ "_npmVersion": "12.0.2",
+ "author": {
+  "email": "bn@cs.stanford.edu",
+  "name": "Ben Newman"
+ },
+ "bugs": {
+  "url": "https://github.com/benjamn/ast-types/issues"
+ },
+ "dependencies": {
+  "tslib": "^2.0.1"
+ },
+ "description": "Esprima-compatible implementation of the Mozilla JS Parser API",
+ "devDependencies": {
+  "@babel/parser": "7.29.8",
+  "@babel/types": "7.20.5",
+  "@types/esprima": "4.0.6",
+  "@types/mocha": "10.0.10",
+  "espree": "9.4.1",
+  "esprima": "4.0.1",
+  "esprima-fb": "15001.1001.0-dev-harmony-fb",
+  "flow-parser": "0.195.2",
+  "glob": "10.4.4",
+  "mocha": "11.8.0",
+  "recast": "^0.23.0",
+  "reify": "0.20.12",
+  "rimraf": "5.0.9",
+  "ts-node": "10.9.2",
+  "typescript": "4.9.4"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/ast-types@0.16.3"
+  },
+  "fileCount": 105,
+  "integrity": "sha512-FvWoWYfSCM6kRxCSH+MGLHIKKGRL6A6AW7Zek2O32REPQRdg131428uRTKMBYAeRd3XXAaHDS60Wpri7CdKDrA==",
+  "shasum": "a518d2018aa350c1133cf1044b724af4fd1971eb",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCID46KQlj38gAqKinFlTCokj8P/hal4BWYgeHPfXwnBOqAiBGGxiyUVHSVPHE9GH0s9e3/dopg4PCaQXYF5omcy/nBQ=="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIASoqyE7pdVx0bMs43JC98ZHEKCAReBzl/ugAOZVlFpkAiEAjSzIQzXuCg5gJfvJ566uquALVAqQoNGLdL/5Xf4Zp5w="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/ast-types/-/ast-types-0.16.3.tgz",
+  "unpackedSize": 681919
+ },
+ "engines": {
+  "node": ">=4"
+ },
+ "exports": {
+  ".": "./lib/main.js",
+  "./*": "./lib/*.js",
+  "./*.js": "./lib/*.js",
+  "./lib/*": "./lib/*.js",
+  "./lib/*.js": "./lib/*.js"
+ },
+ "gitHead": "fa582476022e9b358f0967604faba9adfb3b60b9",
+ "homepage": "https://github.com/benjamn/ast-types",
+ "keywords": [
+  "ast",
+  "abstract syntax tree",
+  "hierarchy",
+  "mozilla",
+  "spidermonkey",
+  "parser api",
+  "esprima",
+  "types",
+  "type system",
+  "type checking",
+  "dynamic types",
+  "parsing",
+  "transformation",
+  "syntax"
+ ],
+ "license": "MIT",
+ "main": "lib/main.js",
+ "maintainers": [
+  {
+   "email": "ben@benjamn.com",
+   "name": "benjamn"
+  }
+ ],
+ "name": "ast-types",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/benjamn/ast-types.git"
+ },
+ "scripts": {
+  "build": "tsc",
+  "clean": "rimraf lib/",
+  "gen": "ts-node --transpile-only script/gen-types.ts",
+  "prepare": "npm run clean && npm run build",
+  "test": "npm run gen && npm run build && script/run-tests.sh"
+ },
+ "types": "lib/main.d.ts",
+ "version": "0.16.3"
+}

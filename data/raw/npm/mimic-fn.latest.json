@@ -1,0 +1,83 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "mimic-fn@5.0.0",
+ "_nodeVersion": "20.9.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/mimic-fn_5.0.0_1699214099162_0.20470565228903603"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "9.2.0",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/mimic-fn/issues"
+ },
+ "deprecated": "Renamed to mimic-function",
+ "description": "Make a function mimic another one",
+ "devDependencies": {
+  "ava": "^3.15.0",
+  "tsd": "^0.14.0",
+  "xo": "^0.38.2"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-VqpBkpWXT3jLrdlFSgrx0z9r1kuIqEudeXDGWTTaOhIKEny5XYqLesgGQSa7Nlsde1jrMqGM/zF3w0zhQUc6Ag==",
+  "shasum": "a2bdb66dcd0731d0ad9c9a2235b43582f9d71564",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIQDJQkIpE53IdVufWo10bSZgJm61EbrzeRwObi67vdYIpAIgbL3hFYOriV0wwEN3HrIc1BjPPBQX92IcuvyYRd9fzqc="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/mimic-fn/-/mimic-fn-5.0.0.tgz",
+  "unpackedSize": 8179
+ },
+ "engines": {
+  "node": ">=12"
+ },
+ "exports": "./index.js",
+ "funding": "https://github.com/sponsors/sindresorhus",
+ "gitHead": "c8994d7c70a5e1e74efe97e12394b9878f943dab",
+ "homepage": "https://github.com/sindresorhus/mimic-fn#readme",
+ "keywords": [
+  "function",
+  "mimic",
+  "imitate",
+  "rename",
+  "copy",
+  "inherit",
+  "properties",
+  "name",
+  "func",
+  "fn",
+  "set",
+  "infer",
+  "change"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "mimic-fn",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/mimic-fn.git"
+ },
+ "scripts": {
+  "test": "xo && ava && tsd"
+ },
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "5.0.0"
+}

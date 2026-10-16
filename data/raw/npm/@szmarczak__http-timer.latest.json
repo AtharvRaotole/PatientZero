@@ -1,0 +1,122 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@szmarczak/http-timer@5.0.1",
+ "_nodeVersion": "16.6.2",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/http-timer_5.0.1_1629501971094_0.9473692551089752"
+ },
+ "_npmUser": {
+  "email": "sz.marczak@gmail.com",
+  "name": "szmarczak"
+ },
+ "_npmVersion": "7.20.3",
+ "author": {
+  "name": "Szymon Marczak"
+ },
+ "ava": {
+  "extensions": {
+   "ts": "module"
+  },
+  "files": [
+   "tests/*"
+  ],
+  "nodeArguments": [
+   "--loader=ts-node/esm"
+  ],
+  "nonSemVerExperiments": {
+   "configurableModuleFormat": true,
+   "nextGenConfig": true
+  },
+  "timeout": "1m"
+ },
+ "bugs": {
+  "url": "https://github.com/szmarczak/http-timer/issues"
+ },
+ "dependencies": {
+  "defer-to-connect": "^2.0.1"
+ },
+ "description": "Timings for HTTP requests",
+ "devDependencies": {
+  "@ava/typescript": "^2.0.0",
+  "@sindresorhus/tsconfig": "^1.0.2",
+  "@types/node": "^16.7.0",
+  "ava": "^3.15.0",
+  "coveralls": "^3.1.1",
+  "del-cli": "^4.0.1",
+  "http2-wrapper": "^2.1.4",
+  "nyc": "^15.1.0",
+  "p-event": "^4.2.0",
+  "ts-node": "^10.2.1",
+  "typescript": "^4.3.5",
+  "xo": "^0.44.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-+PmQX0PiAYPMeVYe237LJAYvOMYW1j2rH5YROyS3b4CTVJum34HfRvKvAzozHAQG0TnHNdUfY9nCeUyRAs//cw==",
+  "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.13\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJhIDoTCRA9TVsSAnZWagAAU/cP/0QBOlcsqItX4c6nHGYU\nze3dEQQ8h8Ba7gACmLCaG3v7bPiOI6juOpTQW//XbD/DeS4/cS13a3c79nmm\n93C51pTqv/p/oD415wprzQgvz21df8JjzbecMFJUsubLtRLfgBrmxVfKM9gZ\nLs+RLQgErGkOu6mQr06bm1xLgcA0YZehXh/eyy+Y6i8xutAhWLwySecn7sQd\ndD82IamzYUtyFiSV3N8IslOu7GPzlP5GD7VPGL0Wi5MD/jXqMZ8Px8FVOGvQ\nAU0QGECmdpy74qjxjH2mLNJTzi7KDHOc9PJLRg3srY3zbb+OBp7tVbsEX4xx\nk4z6G8I8MkwtFsTpnO4BOIQQ/gatG5gO89/RlSj3dvuSvQn1cy5Us95ysCQw\n17ikf1k/hH1fYFHuYJ5FeKiILXbz93jFw04Q5WIFi0hqVpE86StfPBtM2+TV\nWSP7BSluURnrIfvsr3w8Sz5bhMRRjPRT5HO6Sic+jOIdjvKqBwiznfWxoYug\nOCbCsmOydsdLMX2HuVCE+ZK17boFumQ5SUkZxDhfweqsxD0AAAUM7nTvdqVV\n7VfBKR8Uu7w1Kt2xb1YWrk55j2ymyHbCfZSQuRHnUt8N/tNgOfOmkXOQs3pR\nM+YBPVcBBuBg4nnmCXI6RIqzMcrj6C3Ul8SeFXGnyjYrXUdrZOkS4S/nqMLM\n7y2w\r\n=yOTC\r\n-----END PGP SIGNATURE-----\r\n",
+  "shasum": "c7c1bf1141cdd4751b0399c8fc7b8b664cd5be3a",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIDFDGBWP+OMcGhqusm8h0a3macaIZYYYX6LhEBaT3PjtAiEA4zKtJCOig0UzeZrw4q2RshtM6Gh65tuiJE/V/5lpAwU="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@szmarczak/http-timer/-/http-timer-5.0.1.tgz",
+  "unpackedSize": 10201
+ },
+ "engines": {
+  "node": ">=14.16"
+ },
+ "exports": "./dist/source/index.js",
+ "gitHead": "b8dabf9bbd64c71ed702064bb78123a70e7c069c",
+ "homepage": "https://github.com/szmarczak/http-timer#readme",
+ "keywords": [
+  "http",
+  "https",
+  "http2",
+  "timer",
+  "timings",
+  "performance",
+  "measure"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sz.marczak@gmail.com",
+   "name": "szmarczak"
+  }
+ ],
+ "name": "@szmarczak/http-timer",
+ "nyc": {
+  "exclude": [
+   "**/tests/**"
+  ],
+  "extension": [
+   ".ts"
+  ]
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/szmarczak/http-timer.git"
+ },
+ "scripts": {
+  "build": "del-cli dist && tsc",
+  "coveralls": "exit 0 && nyc report --reporter=text-lcov | coveralls",
+  "prepare": "npm run build",
+  "test": "xo && ava"
+ },
+ "type": "module",
+ "types": "dist/source",
+ "version": "5.0.1",
+ "xo": {
+  "rules": {
+   "@typescript-eslint/no-non-null-assertion": "off",
+   "@typescript-eslint/no-unsafe-assignment": "off",
+   "@typescript-eslint/no-unsafe-call": "off",
+   "@typescript-eslint/no-unsafe-member-access": "off",
+   "unicorn/prefer-node-protocol": "off"
+  }
+ }
+}

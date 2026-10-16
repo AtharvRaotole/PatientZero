@@ -1,0 +1,71 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@webassemblyjs/wasm-edit@1.14.1",
+ "_nodeVersion": "21.7.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/wasm-edit_1.14.1_1730930022713_0.2449484169132572"
+ },
+ "_npmUser": {
+  "email": "npm@sauleau.com",
+  "name": "xtuc"
+ },
+ "_npmVersion": "lerna/5.1.6/node@v21.7.1+x64 (linux)",
+ "author": {
+  "name": "Sven Sauleau"
+ },
+ "bugs": {
+  "url": "https://github.com/xtuc/webassemblyjs/issues"
+ },
+ "dependencies": {
+  "@webassemblyjs/ast": "1.14.1",
+  "@webassemblyjs/helper-buffer": "1.14.1",
+  "@webassemblyjs/helper-wasm-bytecode": "1.13.2",
+  "@webassemblyjs/helper-wasm-section": "1.14.1",
+  "@webassemblyjs/wasm-gen": "1.14.1",
+  "@webassemblyjs/wasm-opt": "1.14.1",
+  "@webassemblyjs/wasm-parser": "1.14.1",
+  "@webassemblyjs/wast-printer": "1.14.1"
+ },
+ "description": "> Rewrite a WASM binary",
+ "devDependencies": {
+  "@webassemblyjs/helper-test-framework": "1.14.1"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 7,
+  "integrity": "sha512-RNJUIQH/J8iA/1NzlE4N7KtyZNHi3w7at7hDjvRNm5rcUXa00z1vRz3glZoULfJ5mpvYhLybmVcwcjGrC1pRrQ==",
+  "shasum": "ac6689f502219b59198ddec42dcd496b1004d597",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEQCICe8RADGPIzio8npNhhDkBdtRHoN8WVazhadOK4BLVtTAiAPydJER4FOuSGuzSFT1QpmN6X2WIkNLN/hjABF9VXJVg=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@webassemblyjs/wasm-edit/-/wasm-edit-1.14.1.tgz",
+  "unpackedSize": 34634
+ },
+ "gitHead": "25d52b1296e151ac56244a7c3886661e6b4a69ea",
+ "homepage": "https://github.com/xtuc/webassemblyjs#readme",
+ "license": "MIT",
+ "main": "lib/index.js",
+ "maintainers": [
+  {
+   "email": "npm@sauleau.com",
+   "name": "xtuc"
+  }
+ ],
+ "module": "esm/index.js",
+ "name": "@webassemblyjs/wasm-edit",
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/xtuc/webassemblyjs.git"
+ },
+ "scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1"
+ },
+ "version": "1.14.1"
+}

@@ -1,0 +1,67 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@bcoe/v8-coverage@1.0.2",
+ "_nodeVersion": "22.5.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/v8-coverage_1.0.2_1736962244087_0.4750662028524004"
+ },
+ "_npmUser": {
+  "email": "bencoe@gmail.com",
+  "name": "bcoe"
+ },
+ "_npmVersion": "10.8.2",
+ "author": {
+  "email": "demurgos@demurgos.net",
+  "name": "Charles Samborski",
+  "url": "https://demurgos.net"
+ },
+ "bugs": {
+  "url": "https://github.com/bcoe/v8-coverage/issues"
+ },
+ "description": "Helper functions for V8 coverage files.",
+ "devDependencies": {
+  "c8": "^10.1.2",
+  "chai": "^4.5.0",
+  "mocha": "^11.0.1",
+  "prettier": "3.4.2"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 11,
+  "integrity": "sha512-6zABk/ECA/QYSCQ1NGiVwwbQerUCZ+TQbp64Q3AgmfNvurHH0j8TtXa1qbShXA6qqkpAj4V5W8pP6mLe1mcMqA==",
+  "shasum": "bbe12dca5b4ef983a0d0af4b07b9bc90ea0ababa",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIQCIH1DWgwqRcLNNSlkwANqSTnvOBIAWPN73p0ZhBjTWBAIgJ/APgUF6w3ou4XNc2+O4o4UUcKttkoEgeJg9ic5ubpE="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@bcoe/v8-coverage/-/v8-coverage-1.0.2.tgz",
+  "unpackedSize": 25764
+ },
+ "engines": {
+  "node": ">=18"
+ },
+ "gitHead": "afd9fde183bf65fda8ea4cb27bcf470ae51a33f7",
+ "homepage": "https://github.com/bcoe/v8-coverage#readme",
+ "license": "MIT",
+ "main": "./src/lib/index.js",
+ "maintainers": [
+  {
+   "email": "bencoe@gmail.com",
+   "name": "bcoe"
+  }
+ ],
+ "name": "@bcoe/v8-coverage",
+ "repository": {
+  "type": "git",
+  "url": "git://github.com/bcoe/v8-coverage.git"
+ },
+ "scripts": {
+  "fix": "prettier --write ./src/lib/*.js",
+  "posttest": "prettier --check ./src/lib/*.js",
+  "test": "c8 mocha ./src/test/*.js"
+ },
+ "version": "1.0.2"
+}

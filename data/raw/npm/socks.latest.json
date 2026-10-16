@@ -1,0 +1,98 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "socks@2.8.10",
+ "_nodeVersion": "22.16.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/socks_2.8.10_1788385369505_0.4776305262578737"
+ },
+ "_npmUser": {
+  "email": "npm@joshglazebrook.com",
+  "name": "joshglazebrook"
+ },
+ "_npmVersion": "10.9.2",
+ "author": {
+  "name": "Josh Glazebrook"
+ },
+ "bugs": {
+  "url": "https://github.com/JoshGlazebrook/socks/issues"
+ },
+ "contributors": [
+  {
+   "name": "castorw"
+  }
+ ],
+ "dependencies": {
+  "ip-address": "^10.1.1",
+  "smart-buffer": "^4.2.0"
+ },
+ "description": "Fully featured SOCKS proxy client supporting SOCKSv4, SOCKSv4a, and SOCKSv5. Includes Bind and Associate functionality.",
+ "devDependencies": {
+  "@eslint/js": "^10.0.1",
+  "@types/mocha": "^10.0.6",
+  "@types/node": "^26.4.1",
+  "eslint": "^10.9.1",
+  "mocha": "^12.0.0",
+  "prettier": "^3.2.5",
+  "ts-node": "^10.9.1",
+  "typescript": "^5.3.3",
+  "typescript-eslint": "^8.69.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 31,
+  "integrity": "sha512-e0VyvkVTwVYViNovRkZ9aodhxVlyoMn7eJhVUPxZ+eK9P/7CBkxvvsBOHqFPEH416726W8tLXXXjKwqgTErrCQ==",
+  "shasum": "23aab4dccc1fdae110aaf4fa51cd190552432dc5",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQDCqE+1jilIebBZe7fww4w4aGpKzovm61f1KWbx2wgskgIhANB13/DhaS9GlOLDpuQzn97JXSxgpB81m/ZkRUvslM7U"
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQD5ZIg2zc056wiNegj6xkkJrX++9zHPXFkyAjAuA1OsngIgURgxG7qyrm7Uj9TluBayWA1cB4s8ZBBoSjO7LftdNCU="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/socks/-/socks-2.8.10.tgz",
+  "unpackedSize": 156009
+ },
+ "engines": {
+  "node": ">= 10.0.0",
+  "npm": ">= 3.0.0"
+ },
+ "gitHead": "ff3347684f29e68eb67d04e23d1ed466e7e55c76",
+ "homepage": "https://github.com/JoshGlazebrook/socks/",
+ "keywords": [
+  "socks",
+  "proxy",
+  "tor",
+  "socks 4",
+  "socks 5",
+  "socks4",
+  "socks5"
+ ],
+ "license": "MIT",
+ "main": "build/index.js",
+ "maintainers": [
+  {
+   "email": "npm@joshglazebrook.com",
+   "name": "joshglazebrook"
+  }
+ ],
+ "name": "socks",
+ "private": false,
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/JoshGlazebrook/socks.git"
+ },
+ "scripts": {
+  "build": "rm -rf build typings && prettier --write ./src/**/*.ts --config .prettierrc.yaml && tsc -p .",
+  "build-raw": "rm -rf build typings && tsc -p .",
+  "lint": "eslint 'src/**/*.ts'",
+  "prepublish": "npm install -g typescript && npm run build",
+  "prettier": "prettier --write ./src/**/*.ts --config .prettierrc.yaml",
+  "test": "NODE_ENV=test mocha --recursive --require ts-node/register test/**/*.ts"
+ },
+ "typings": "typings/index.d.ts",
+ "version": "2.8.10"
+}

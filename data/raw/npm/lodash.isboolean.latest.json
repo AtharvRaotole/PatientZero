@@ -1,0 +1,82 @@
+{
+ "_from": ".",
+ "_id": "lodash.isboolean@3.0.3",
+ "_nodeVersion": "5.4.0",
+ "_npmOperationalInternal": {
+  "host": "packages-9-west.internal.npmjs.com",
+  "tmp": "tmp/lodash.isboolean-3.0.3.tgz_1454484499476_0.9152139471843839"
+ },
+ "_npmUser": {
+  "email": "john.david.dalton@gmail.com",
+  "name": "jdalton"
+ },
+ "_npmVersion": "2.14.15",
+ "_shasum": "6c2e171db2a257cd96802fd43b01b20d5f5870f6",
+ "author": {
+  "email": "john.david.dalton@gmail.com",
+  "name": "John-David Dalton",
+  "url": "http://allyoucanleet.com/"
+ },
+ "bugs": {
+  "url": "https://github.com/lodash/lodash/issues"
+ },
+ "contributors": [
+  {
+   "email": "john.david.dalton@gmail.com",
+   "name": "John-David Dalton",
+   "url": "http://allyoucanleet.com/"
+  },
+  {
+   "email": "blaine@iceddev.com",
+   "name": "Blaine Bublitz",
+   "url": "https://github.com/phated"
+  },
+  {
+   "email": "mathias@qiwi.be",
+   "name": "Mathias Bynens",
+   "url": "https://mathiasbynens.be/"
+  }
+ ],
+ "description": "The lodash method `_.isBoolean` exported as a module.",
+ "dist": {
+  "integrity": "sha512-Bz5mupy2SVbPHURB98VAcw+aHh4vRV5IPNhILUCsOzRmsTmSQ17jIuqopAentWoehktxGd9e/hbIXq980/1QJg==",
+  "shasum": "6c2e171db2a257cd96802fd43b01b20d5f5870f6",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEYCIQDTW2zqH3Q53UV1jAOEttC5dV0ChBDYTmqGULIniMOpCgIhAKUW3IzdIxdC1dYFEiVCqBWX7vB7i/NasDXWRhD+JxbW"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/lodash.isboolean/-/lodash.isboolean-3.0.3.tgz"
+ },
+ "homepage": "https://lodash.com/",
+ "icon": "https://lodash.com/icon.svg",
+ "keywords": [
+  "lodash-modularized",
+  "isboolean"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "john.david.dalton@gmail.com",
+   "name": "jdalton"
+  },
+  {
+   "email": "mathias@qiwi.be",
+   "name": "mathias"
+  },
+  {
+   "email": "blaine@iceddev.com",
+   "name": "phated"
+  }
+ ],
+ "name": "lodash.isboolean",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/lodash/lodash.git"
+ },
+ "scripts": {
+  "test": "echo \"See https://travis-ci.org/lodash/lodash-cli for testing details.\""
+ },
+ "version": "3.0.3"
+}

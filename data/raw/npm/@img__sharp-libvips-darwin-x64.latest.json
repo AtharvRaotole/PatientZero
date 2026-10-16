@@ -1,0 +1,86 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@img/sharp-libvips-darwin-x64@1.3.4",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/sharp-libvips-darwin-x64_1.3.4_1790511037487_0.3001750111674406"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:a5cd5bcc-cbcf-4a86-9031-76f3ba49feae"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "author": {
+  "email": "npm@lovell.info",
+  "name": "Lovell Fuller"
+ },
+ "bugs": {
+  "url": "https://github.com/lovell/sharp-libvips/issues"
+ },
+ "cpu": [
+  "x64"
+ ],
+ "description": "Prebuilt libvips and dependencies for use with sharp on macOS x64",
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@img%2fsharp-libvips-darwin-x64@1.3.4"
+  },
+  "fileCount": 6,
+  "integrity": "sha512-iR2OKH80yi0U+dUplyh3/xdpFvps6YkCwsXenIJxqxR1v9o+xtKTGbS9H7cps+2Vxjc8B1j96p75NmTGjIhtpQ==",
+  "shasum": "527f52721a89dd75614663aef87162a781739bab",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQCNMzgqUhSQKxUbRiWMhYd6hEd1wCGkrqLRLEU1pWSMGQIgcyzhKs7crjLpYRA87UgyliRX7PbjgloGHBpkxE8M918="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIBK+EeDCFl9TxHU0BygKwmuUGeYEtcjXKOXNxRO34ykyAiB2OHoDl76sH0EONg16Rv1N67JUIEgE6Q4AtoqWrcauNw=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@img/sharp-libvips-darwin-x64/-/sharp-libvips-darwin-x64-1.3.4.tgz",
+  "unpackedSize": 20381445
+ },
+ "exports": {
+  "./binary": "./lib/libvips-cpp.8.18.7.dylib",
+  "./lib": "./lib/index.js",
+  "./package": "./package.json",
+  "./versions": "./versions.json"
+ },
+ "funding": {
+  "url": "https://opencollective.com/libvips"
+ },
+ "gitHead": "ebb95f8add54eee8bed840e3fb587e4cbec857d7",
+ "homepage": "https://sharp.pixelplumbing.com",
+ "license": "LGPL-3.0-or-later",
+ "maintainers": [
+  {
+   "email": "npm@lovell.info",
+   "name": "lovell"
+  }
+ ],
+ "name": "@img/sharp-libvips-darwin-x64",
+ "os": [
+  "darwin"
+ ],
+ "preferUnplugged": true,
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "directory": "npm/darwin-x64",
+  "type": "git",
+  "url": "git+https://github.com/lovell/sharp-libvips.git"
+ },
+ "type": "commonjs",
+ "version": "1.3.4"
+}

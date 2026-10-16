@@ -1,0 +1,87 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@babel/helper-string-parser@8.0.6",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/helper-string-parser_8.0.6_1789739244904_0.9546176155844617"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:d9a13b9a-9a5c-4723-9564-ffb879a0bb35"
+  }
+ },
+ "author": "The Babel Team (https://babel.dev/team)",
+ "description": "A utility package to parse strings",
+ "devDependencies": {
+  "charcodes": "^0.2.0"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@babel%2fhelper-string-parser@8.0.6"
+  },
+  "fileCount": 5,
+  "integrity": "sha512-+6HYEBnsDRZHJtUTAEfMQd0zMDqdFHS7C+5vAsEZqBUr3vEMWOWlHJ0Jz1gS8jJIlCvLsuA6ivmeoqzH936YcA==",
+  "shasum": "5dd27135235502b6e141821a00a0e14de69af3b6",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIAwCbl+aJuld8oVb8L9GM7KvLvyOqVTsldoBWW9UFAtLAiAeOH6S0mmHyrmklhVSJdBOSF362D698Jqv/JA2PCvEPg=="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCICqIGYO8XWRu9RqBQmRu3Psgi9UB1yhdrY2yIBwTRaVfAiBg3ecmV7pnSMdhukIC+OkEcBe/1uBP0b26Z541UFVh6w=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@babel/helper-string-parser/-/helper-string-parser-8.0.6.tgz",
+  "unpackedSize": 11747
+ },
+ "engines": {
+  "node": "^22.18.0 || >=24.11.0"
+ },
+ "exports": {
+  ".": {
+   "default": "./lib/index.js",
+   "types": "./lib/index.d.ts"
+  },
+  "./package.json": "./package.json"
+ },
+ "homepage": "https://babel.dev/docs/en/next/babel-helper-string-parser",
+ "license": "MIT",
+ "main": "./lib/index.js",
+ "maintainers": [
+  {
+   "email": "hi@henryzoo.com",
+   "name": "hzoo"
+  },
+  {
+   "email": "bng412@gmail.com",
+   "name": "existentialism"
+  },
+  {
+   "email": "hello+npm@nicr.dev",
+   "name": "nicolo-ribaudo"
+  },
+  {
+   "email": "jlhwung@gmail.com",
+   "name": "jlhwung"
+  }
+ ],
+ "name": "@babel/helper-string-parser",
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "directory": "packages/babel-helper-string-parser",
+  "type": "git",
+  "url": "https://github.com/babel/babel.git"
+ },
+ "type": "module",
+ "version": "8.0.6"
+}

@@ -1,0 +1,60 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@types/webidl-conversions@7.0.3",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/webidl-conversions_7.0.3_1699383700700_0.9752700700320378"
+ },
+ "_npmUser": {
+  "email": "ts-npm-types@microsoft.com",
+  "name": "types"
+ },
+ "contributors": [
+  {
+   "githubUsername": "ExE-Boss",
+   "name": "ExE Boss",
+   "url": "https://github.com/ExE-Boss"
+  },
+  {
+   "githubUsername": "BendingBender",
+   "name": "BendingBender",
+   "url": "https://github.com/BendingBender"
+  }
+ ],
+ "dependencies": {},
+ "description": "TypeScript definitions for webidl-conversions",
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-CiJJvcRtIgzadHCYXw7dqEnMNRjhGZlYK05Mj9OyktqV8uVT8fD2BFOB7S1uwBE3Kj2Z+4UyPmFw/Ixgw/LAlA==",
+  "shasum": "1306dbfa53768bcbcfc95a1c8cde367975581859",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEYCIQC43K3ZqC6A29WFq90LE+923Ky7TVvxzulCzD9kN34hEAIhAPo6jAWzDIl1GkVSYjOUMrUyYnL049sGR6IGJtPS+c0i"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@types/webidl-conversions/-/webidl-conversions-7.0.3.tgz",
+  "unpackedSize": 6767
+ },
+ "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/webidl-conversions",
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "ts-npm-types@microsoft.com",
+   "name": "types"
+  }
+ ],
+ "name": "@types/webidl-conversions",
+ "repository": {
+  "directory": "types/webidl-conversions",
+  "type": "git",
+  "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+ },
+ "scripts": {},
+ "typeScriptVersion": "4.5",
+ "types": "index.d.ts",
+ "typesPublisherContentHash": "ff1514e10869784e8b7cca9c4099a4213d3f14b48c198b1bf116300df94bf608",
+ "version": "7.0.3"
+}

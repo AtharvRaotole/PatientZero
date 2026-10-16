@@ -1,0 +1,59 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@webassemblyjs/leb128@1.14.1",
+ "_nodeVersion": "21.7.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/leb128_1.14.1_1730930015903_0.5658346647426904"
+ },
+ "_npmUser": {
+  "email": "npm@sauleau.com",
+  "name": "xtuc"
+ },
+ "_npmVersion": "lerna/5.1.6/node@v21.7.1+x64 (linux)",
+ "bugs": {
+  "url": "https://github.com/xtuc/webassemblyjs/issues"
+ },
+ "dependencies": {
+  "@xtuc/long": "4.2.2"
+ },
+ "description": "LEB128 decoder and encoder",
+ "directories": {},
+ "dist": {
+  "fileCount": 10,
+  "integrity": "sha512-SxIMbt0XzSD/wmkbCdU0Efy4xSlKe0M7DJOoFimyAPBJ5BI6E1RaSQSloU7aKk8ZaCz3T/FFy3MEbAyyYLQI9A==",
+  "shasum": "5553813332ff85f5636785f3a427cf1e4c363ef4",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEYCIQCdCu6n7wqEqQwW9c8gqinAoXuvVxXsfHYyTTP+p8Y2mAIhANJivmyjBPLeVawxxtj10Bi1HGWcX6x6cAShM+nJ0unv"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@webassemblyjs/leb128/-/leb128-1.14.1.tgz",
+  "unpackedSize": 48526
+ },
+ "gitHead": "25d52b1296e151ac56244a7c3886661e6b4a69ea",
+ "homepage": "https://github.com/xtuc/webassemblyjs#readme",
+ "license": "Apache-2.0",
+ "main": "lib/index.js",
+ "maintainers": [
+  {
+   "email": "npm@sauleau.com",
+   "name": "xtuc"
+  }
+ ],
+ "module": "esm/index.js",
+ "name": "@webassemblyjs/leb128",
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "directory": "packages/leb128",
+  "type": "git",
+  "url": "git+https://github.com/xtuc/webassemblyjs.git"
+ },
+ "scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1"
+ },
+ "version": "1.14.1"
+}

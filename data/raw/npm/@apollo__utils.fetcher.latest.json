@@ -1,0 +1,75 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@apollo/utils.fetcher@3.1.0",
+ "_nodeVersion": "16.20.2",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/utils.fetcher_3.1.0_1699468499147_0.6765092549530769"
+ },
+ "_npmUser": {
+  "email": "npm@apollographql.com",
+  "name": "apollo-bot"
+ },
+ "_npmVersion": "8.5.0",
+ "author": {
+  "email": "packages@apollographql.com",
+  "name": "Apollo"
+ },
+ "bugs": {
+  "url": "https://github.com/apollographql/apollo-utils/issues"
+ },
+ "description": "Minimal web-style fetch TypeScript typings",
+ "directories": {},
+ "dist": {
+  "fileCount": 10,
+  "integrity": "sha512-Z3QAyrsQkvrdTuHAFwWDNd+0l50guwoQUoaDQssLOjkmnmVuvXlJykqlEJolio+4rFwBnWdoY1ByFdKaQEcm7A==",
+  "shasum": "0639c30a5ac57e3e62784b180495023f5e886fe0",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEQCIG7lyrMzTLR1pmMC6KpELW9ufaqjv4yJXIhPcmYdEdXXAiB8D9CqurtupPFW3zaA2JvdpbVZ8BwAI9kxrGxvocOz/g=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@apollo/utils.fetcher/-/utils.fetcher-3.1.0.tgz",
+  "unpackedSize": 10870
+ },
+ "engines": {
+  "node": ">=16"
+ },
+ "gitHead": "3e4fe742140cc028f56d9187bd35f386536257f7",
+ "homepage": "https://github.com/apollographql/apollo-utils#readme",
+ "keywords": [
+  "apollo",
+  "graphql",
+  "typescript",
+  "node"
+ ],
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "dariusz_kuc@hotmail.com",
+   "name": "dkuc"
+  },
+  {
+   "email": "glasser@apollographql.com",
+   "name": "glasser"
+  },
+  {
+   "email": "trevor.scheer@gmail.com",
+   "name": "trevor.scheer"
+  },
+  {
+   "email": "npm@apollographql.com",
+   "name": "apollo-bot"
+  }
+ ],
+ "name": "@apollo/utils.fetcher",
+ "repository": {
+  "directory": "packages/fetcher/",
+  "type": "git",
+  "url": "git+https://github.com/apollographql/apollo-utils.git"
+ },
+ "types": "dist/index.d.ts",
+ "version": "3.1.0"
+}

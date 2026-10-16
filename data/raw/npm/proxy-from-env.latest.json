@@ -1,0 +1,79 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "proxy-from-env@2.1.0",
+ "_nodeVersion": "25.7.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/proxy-from-env_2.1.0_1773513167766_0.3427019055310345"
+ },
+ "_npmUser": {
+  "email": "rob@robwu.nl",
+  "name": "rob-w"
+ },
+ "_npmVersion": "11.10.1",
+ "author": {
+  "email": "rob@robwu.nl",
+  "name": "Rob Wu",
+  "url": "https://robwu.nl/"
+ },
+ "bugs": {
+  "url": "https://github.com/Rob--W/proxy-from-env/issues"
+ },
+ "description": "Offers getProxyForUrl to get the proxy URL for a URL, respecting the *_PROXY (e.g. HTTP_PROXY) and NO_PROXY environment variables.",
+ "devDependencies": {
+  "eslint": "^9.39.2"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-cJ+oHTW1VAEa8cJslgmUZrc+sjRKgAKl3Zyse6+PV38hZe/V6Z14TbCuXcan9F9ghlz4QrFr2c92TNF82UkYHA==",
+  "shasum": "a7487568adad577cfaaa7e88c49cab3ab3081aba",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQC0TVWmsz3LYt7f4GZsdRq+f+EWV7qBr2VQc3wuOpJO4QIhAMnKjVPwjAksINEGppzLvKDlNI4qDKisbocnFXQiPHnv"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/proxy-from-env/-/proxy-from-env-2.1.0.tgz",
+  "unpackedSize": 15643
+ },
+ "engines": {
+  "node": ">=10"
+ },
+ "exports": {
+  "import": "./index.js",
+  "require": "./index.cjs"
+ },
+ "gitHead": "570ce3a4279d83af3ff13e7600a347d01c453394",
+ "homepage": "https://github.com/Rob--W/proxy-from-env#readme",
+ "keywords": [
+  "proxy",
+  "http_proxy",
+  "https_proxy",
+  "no_proxy",
+  "environment"
+ ],
+ "license": "MIT",
+ "main": "index.cjs",
+ "maintainers": [
+  {
+   "email": "rob@robwu.nl",
+   "name": "rob-w"
+  }
+ ],
+ "name": "proxy-from-env",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/Rob--W/proxy-from-env.git"
+ },
+ "scripts": {
+  "lint": "eslint *.js *.mjs *.cjs",
+  "test": "node --test ./test.js",
+  "test-coverage": "node --experimental-test-coverage --test-reporter=lcov --test-reporter-destination=lcov.info ./test.js",
+  "test-coverage-as-html": "npm run test-coverage && genhtml lcov.info -o coverage/",
+  "test-require": "node ./test-require.cjs"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "version": "2.1.0"
+}

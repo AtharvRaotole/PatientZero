@@ -1,0 +1,158 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "enhanced-resolve@5.26.0",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/enhanced-resolve_5.26.0_1790684945453_0.19799273812600915"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "f9180a1e-4232-454c-9485-121d7a38b9b8"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "author": {
+  "name": "Tobias Koppers @sokra"
+ },
+ "browser": {
+  "graceful-fs": "./lib/util/graceful-fs-browser.js",
+  "module": "./lib/util/module-browser.js",
+  "path": "./lib/util/path-browser.js",
+  "process": "./lib/util/process-browser.js",
+  "url": "./lib/util/url-browser.js"
+ },
+ "bugs": {
+  "url": "https://github.com/webpack/enhanced-resolve/issues"
+ },
+ "dependencies": {
+  "graceful-fs": "^4.2.4",
+  "tapable": "^2.3.3"
+ },
+ "description": "Offers a async require.resolve function. It's highly configurable.",
+ "devDependencies": {
+  "@changesets/cli": "^3.0.2",
+  "@changesets/get-github-info": "^1.0.1",
+  "@codspeed/core": "^5.7.1",
+  "@types/graceful-fs": "^4.1.6",
+  "@types/node": "^24.10.4",
+  "cspell": "^10.0.0",
+  "eslint": "^9.39.2",
+  "eslint-config-webpack": "^4.9.5",
+  "husky": "^9.1.7",
+  "lint-staged": "^17.0.4",
+  "memfs": "^4.56.11",
+  "prettier": "^3.7.4",
+  "tinybench": "^6.0.0",
+  "typescript": "^6.0.2",
+  "webpack": "^5.107.2"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/enhanced-resolve@5.26.0"
+  },
+  "fileCount": 118,
+  "integrity": "sha512-9vhedylFonb2YGogzUKX6+Ja72gOJbN1QHAqdrvqLwhdl/QWbKopzoUC9EbQNVsAns/bx/4uyqalrQAoy1IByw==",
+  "shasum": "9dfb47d050ed6c87f2c6d43b4d7e30f8c0a91ed7",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQCCNLlsFAKWRQm1QqOqs7G2Ew3Hej8riUo71wtxyZ71wAIgFgbghr3MnXAVJ7RlEVa5zrbUa71hyiJWy67+aTUorHc="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIEho7PbxUFz+bOZMnKV4CYNXNaUM9hTTidbNt5WDyrg+AiB6fv58v0u1QQKQ9RDG9JDdkYkeWqt9ew919xyOcvr89A=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/enhanced-resolve/-/enhanced-resolve-5.26.0.tgz",
+  "unpackedSize": 543900
+ },
+ "engines": {
+  "node": ">=10.13.0"
+ },
+ "gitHead": "c65e40ac1b77a58d1bcbc883953974236991a833",
+ "homepage": "https://github.com/webpack/enhanced-resolve#readme",
+ "license": "MIT",
+ "lint-staged": {
+  "*": [
+   "prettier --cache --write --ignore-unknown",
+   "cspell --cache --no-must-find-files"
+  ],
+  "*.{js,cjs,mjs}": [
+   "eslint --cache --fix"
+  ]
+ },
+ "main": "lib/index.js",
+ "maintainers": [
+  {
+   "email": "784487301@qq.com",
+   "name": "15000621931"
+  },
+  {
+   "email": "evenstensberg@gmail.com",
+   "name": "ev1stensberg"
+  },
+  {
+   "email": "haijie0619@gmail.com",
+   "name": "__hai"
+  },
+  {
+   "email": "tobias.koppers@googlemail.com",
+   "name": "sokra"
+  },
+  {
+   "email": "me@aviv.sh",
+   "name": "avivkeller"
+  },
+  {
+   "email": "sheo13666q@gmail.com",
+   "name": "evilebottnawi"
+  },
+  {
+   "email": "mail@johannesewald.de",
+   "name": "jhnns"
+  },
+  {
+   "email": "sean.larkin1@gmail.com",
+   "name": "thelarkinn"
+  }
+ ],
+ "name": "enhanced-resolve",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/webpack/enhanced-resolve.git"
+ },
+ "scripts": {
+  "benchmark": "node --max-old-space-size=4096 --hash-seed=1 --random-seed=1 --no-opt --predictable --predictable-gc-schedule --interpreted-frames-native-stack --allow-natives-syntax --expose-gc --no-concurrent-sweeping ./benchmark/run.mjs",
+  "build:types": "node -e \"require('fs').rmSync('types', { recursive: true, force: true })\" && tsc -p tsconfig.types.json && prettier --log-level warn --write \"types/**/*.d.ts\"",
+  "fix": "npm run fix:code && npm run build:types",
+  "fix:code": "npm run lint:code -- --fix",
+  "fmt": "npm run fmt:base -- --log-level warn --write",
+  "fmt:base": "node_modules/prettier/bin/prettier.cjs --cache --ignore-unknown .",
+  "fmt:check": "npm run fmt:base -- --check",
+  "lint": "npm run lint:code && npm run lint:types && npm run lint:types-test && npm run fmt:check && npm run lint:spellcheck",
+  "lint:code": "eslint --cache .",
+  "lint:spellcheck": "cspell --cache --no-must-find-files --quiet \"**/*.*\"",
+  "lint:types": "tsc",
+  "lint:types-test": "tsc -p tsconfig.types.test.json",
+  "prepare": "husky",
+  "pretest": "npm run lint",
+  "release": "changeset publish",
+  "test": "npm run test:only",
+  "test:browser": "node --experimental-vm-modules test/smoke/browser-run.cjs",
+  "test:coverage": "node scripts/test.js --experimental-test-coverage --test-coverage-include=\"lib/**\" --test-reporter=spec --test-reporter-destination=stdout --test-reporter=lcov --test-reporter-destination=coverage/lcov.info",
+  "test:only": "node scripts/test.js",
+  "test:watch": "node scripts/test.js --watch",
+  "type-report": "rimraf coverage && npm run cover:types && npm run cover:report && open-cli coverage/lcov-report/index.html",
+  "version": "changeset version"
+ },
+ "types": "types.d.ts",
+ "version": "5.26.0"
+}

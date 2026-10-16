@@ -1,0 +1,97 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@babel/helpers@8.0.7",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/helpers_8.0.7_1791367196971_0.3869965970530249"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "b388827b-09ab-4119-9b66-1f8880c7230f"
+  }
+ },
+ "author": "The Babel Team (https://babel.dev/team)",
+ "dependencies": {
+  "@babel/template": "^8.0.0",
+  "@babel/types": "^8.0.6"
+ },
+ "description": "Collection of helper functions used by Babel transforms.",
+ "devDependencies": {
+  "@babel/generator": "^8.0.6",
+  "@babel/helper-plugin-test-runner": "^8.0.0",
+  "@babel/helper-transform-fixture-test-runner": "^8.0.6",
+  "@babel/parser": "^8.0.7",
+  "@babel/traverse": "^8.0.7",
+  "regenerator-runtime": "^0.14.0",
+  "terser": "^5.46.2"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@babel%2fhelpers@8.0.7"
+  },
+  "fileCount": 5,
+  "integrity": "sha512-5dMj5kFwS2AY7Dt4PZp4px3c5ThMbbEa7tZfuHTncCGSFYq8uoA1ufDE1IS/lYpQedE+3+GQ3cPZUiplIu195w==",
+  "shasum": "9a3771a3dbf416f7936c1aa46749b4e2c6853cbf",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQCACYLhprpN0kHTU9lnVibp6gteUlG37C1yB69rBJVo7wIgIcGVxeHTh7LZDWgjnEQsJ1YAU05zAIX840r3IP4+QJs="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIEdIOU+50IdWg9IbPuq57uwXn6H54QgrxWSWPkh+vldtAiA0xY8PzwyNrt1ccZKAeiMQoMDDFGKPUupsb2x6fqhO5w=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@babel/helpers/-/helpers-8.0.7.tgz",
+  "unpackedSize": 69113
+ },
+ "engines": {
+  "node": "^22.18.0 || >=24.11.0"
+ },
+ "exports": {
+  ".": {
+   "default": "./lib/index.js",
+   "types": "./lib/index.d.ts"
+  },
+  "./package.json": "./package.json"
+ },
+ "homepage": "https://babel.dev/docs/en/next/babel-helpers",
+ "license": "MIT",
+ "main": "./lib/index.js",
+ "maintainers": [
+  {
+   "email": "hi@henryzoo.com",
+   "name": "hzoo"
+  },
+  {
+   "email": "bng412@gmail.com",
+   "name": "existentialism"
+  },
+  {
+   "email": "hello+npm@nicr.dev",
+   "name": "nicolo-ribaudo"
+  },
+  {
+   "email": "jlhwung@gmail.com",
+   "name": "jlhwung"
+  }
+ ],
+ "name": "@babel/helpers",
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "directory": "packages/babel-helpers",
+  "type": "git",
+  "url": "https://github.com/babel/babel.git"
+ },
+ "type": "module",
+ "version": "8.0.7"
+}

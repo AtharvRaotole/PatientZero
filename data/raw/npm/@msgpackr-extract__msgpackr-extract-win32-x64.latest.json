@@ -1,0 +1,56 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@msgpackr-extract/msgpackr-extract-win32-x64@3.0.4",
+ "_nodeVersion": "24.10.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/msgpackr-extract-win32-x64_3.0.4_1779714724182_0.3197931033268264"
+ },
+ "_npmUser": {
+  "email": "kriszyp@gmail.com",
+  "name": "kriszyp"
+ },
+ "_npmVersion": "11.14.1",
+ "author": {
+  "name": "Kris Zyp"
+ },
+ "bugs": {
+  "url": "https://github.com/kriszyp/msgpackr-extract/issues"
+ },
+ "cpu": [
+  "x64"
+ ],
+ "description": "Platform specific binary for msgpackr-extract on win32 OS with x64 architecture",
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-CmCXPQrkbwExx3j946/PtHWHbYJiCRBRDl4BlkRQcJB/YOwQxJRTpoo7aTsortjgoJ1x7opzTSxn7C+ASSLVjQ==",
+  "shasum": "a1c79dcc9ae5f8c02aea8c2f144e5af6a822e5e8",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDatcwZK8xePYOiPlo451XvryFccCsnKCM/A4qYdUQLVQIge7Es9zvzf6RjiWtQ+QgMC9RTrpUwiUMqbBbkkCKNyss="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@msgpackr-extract/msgpackr-extract-win32-x64/-/msgpackr-extract-win32-x64-3.0.4.tgz",
+  "unpackedSize": 225736
+ },
+ "gitHead": "d735f3057015d3f67747e0dfbb22adf01abfe5fb",
+ "homepage": "https://github.com/kriszyp/msgpackr-extract#readme",
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "kriszyp@gmail.com",
+   "name": "kriszyp"
+  }
+ ],
+ "name": "@msgpackr-extract/msgpackr-extract-win32-x64",
+ "os": [
+  "win32"
+ ],
+ "repository": {
+  "type": "git",
+  "url": "git+ssh://git@github.com/kriszyp/msgpackr-extract.git"
+ },
+ "version": "3.0.4"
+}

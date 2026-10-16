@@ -1,0 +1,1152 @@
+{
+ "edges": [
+  {
+   "fromNode": 0,
+   "requirement": "^4.1.3",
+   "toNode": 1
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^1.3.1",
+   "toNode": 10
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^3.5.3",
+   "toNode": 13
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^4.3.5",
+   "toNode": 17
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^5.2.0",
+   "toNode": 19
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^4.0.0",
+   "toNode": 22
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^5.0.0",
+   "toNode": 24
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^8.1.0",
+   "toNode": 29
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^1.2.0",
+   "toNode": 32
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^4.1.0",
+   "toNode": 42
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^4.1.0",
+   "toNode": 44
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^5.1.6",
+   "toNode": 45
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^2.1.3",
+   "toNode": 46
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^6.0.2",
+   "toNode": 57
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^3.1.1",
+   "toNode": 60
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^8.1.1",
+   "toNode": 62
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^6.5.1",
+   "toNode": 64
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^16.2.0",
+   "toNode": 68
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^20.2.9",
+   "toNode": 69
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^2.0.0",
+   "toNode": 70
+  },
+  {
+   "fromNode": 3,
+   "requirement": "^2.0.1",
+   "toNode": 15
+  },
+  {
+   "fromNode": 4,
+   "requirement": "^3.0.0",
+   "toNode": 47
+  },
+  {
+   "fromNode": 4,
+   "requirement": "^2.0.4",
+   "toNode": 52
+  },
+  {
+   "fromNode": 8,
+   "requirement": "^1.0.0",
+   "toNode": 6
+  },
+  {
+   "fromNode": 9,
+   "requirement": "^7.1.1",
+   "toNode": 23
+  },
+  {
+   "fromNode": 12,
+   "requirement": "^4.1.0",
+   "toNode": 3
+  },
+  {
+   "fromNode": 12,
+   "requirement": "^7.1.0",
+   "toNode": 61
+  },
+  {
+   "fromNode": 13,
+   "requirement": "~3.1.2",
+   "toNode": 4
+  },
+  {
+   "fromNode": 13,
+   "requirement": "~3.0.2",
+   "toNode": 9
+  },
+  {
+   "fromNode": 13,
+   "requirement": "~2.3.2",
+   "toNode": 27
+  },
+  {
+   "fromNode": 13,
+   "requirement": "~5.1.2",
+   "toNode": 30
+  },
+  {
+   "fromNode": 13,
+   "requirement": "~2.1.0",
+   "toNode": 35
+  },
+  {
+   "fromNode": 13,
+   "requirement": "~4.0.1",
+   "toNode": 38
+  },
+  {
+   "fromNode": 13,
+   "requirement": "~3.0.0",
+   "toNode": 47
+  },
+  {
+   "fromNode": 13,
+   "requirement": "~3.6.0",
+   "toNode": 54
+  },
+  {
+   "fromNode": 14,
+   "requirement": "^4.2.0",
+   "toNode": 58
+  },
+  {
+   "fromNode": 14,
+   "requirement": "^6.0.0",
+   "toNode": 59
+  },
+  {
+   "fromNode": 14,
+   "requirement": "^7.0.0",
+   "toNode": 65
+  },
+  {
+   "fromNode": 15,
+   "requirement": "~1.1.4",
+   "toNode": 16
+  },
+  {
+   "fromNode": 17,
+   "requirement": "^2.1.3",
+   "toNode": 46
+  },
+  {
+   "fromNode": 23,
+   "requirement": "^5.0.1",
+   "toNode": 63
+  },
+  {
+   "fromNode": 24,
+   "requirement": "^6.0.0",
+   "toNode": 43
+  },
+  {
+   "fromNode": 24,
+   "requirement": "^4.0.0",
+   "toNode": 51
+  },
+  {
+   "fromNode": 29,
+   "requirement": "^1.0.0",
+   "toNode": 26
+  },
+  {
+   "fromNode": 29,
+   "requirement": "^1.0.4",
+   "toNode": 33
+  },
+  {
+   "fromNode": 29,
+   "requirement": "2",
+   "toNode": 34
+  },
+  {
+   "fromNode": 29,
+   "requirement": "^5.0.1",
+   "toNode": 45
+  },
+  {
+   "fromNode": 29,
+   "requirement": "^1.3.0",
+   "toNode": 48
+  },
+  {
+   "fromNode": 30,
+   "requirement": "^4.0.1",
+   "toNode": 38
+  },
+  {
+   "fromNode": 33,
+   "requirement": "^1.3.0",
+   "toNode": 48
+  },
+  {
+   "fromNode": 33,
+   "requirement": "1",
+   "toNode": 66
+  },
+  {
+   "fromNode": 35,
+   "requirement": "^2.0.0",
+   "toNode": 7
+  },
+  {
+   "fromNode": 38,
+   "requirement": "^2.1.1",
+   "toNode": 36
+  },
+  {
+   "fromNode": 42,
+   "requirement": "^2.0.1",
+   "toNode": 5
+  },
+  {
+   "fromNode": 43,
+   "requirement": "^5.0.0",
+   "toNode": 50
+  },
+  {
+   "fromNode": 44,
+   "requirement": "^4.1.0",
+   "toNode": 12
+  },
+  {
+   "fromNode": 44,
+   "requirement": "^0.1.0",
+   "toNode": 41
+  },
+  {
+   "fromNode": 45,
+   "requirement": "^2.0.1",
+   "toNode": 8
+  },
+  {
+   "fromNode": 48,
+   "requirement": "1",
+   "toNode": 66
+  },
+  {
+   "fromNode": 49,
+   "requirement": "^0.1.0",
+   "toNode": 71
+  },
+  {
+   "fromNode": 50,
+   "requirement": "^3.0.2",
+   "toNode": 49
+  },
+  {
+   "fromNode": 53,
+   "requirement": "^5.1.0",
+   "toNode": 56
+  },
+  {
+   "fromNode": 54,
+   "requirement": "^2.2.1",
+   "toNode": 52
+  },
+  {
+   "fromNode": 57,
+   "requirement": "^2.1.0",
+   "toNode": 53
+  },
+  {
+   "fromNode": 58,
+   "requirement": "^8.0.0",
+   "toNode": 20
+  },
+  {
+   "fromNode": 58,
+   "requirement": "^3.0.0",
+   "toNode": 37
+  },
+  {
+   "fromNode": 58,
+   "requirement": "^6.0.1",
+   "toNode": 59
+  },
+  {
+   "fromNode": 59,
+   "requirement": "^5.0.1",
+   "toNode": 2
+  },
+  {
+   "fromNode": 61,
+   "requirement": "^4.0.0",
+   "toNode": 31
+  },
+  {
+   "fromNode": 62,
+   "requirement": "^4.0.0",
+   "toNode": 31
+  },
+  {
+   "fromNode": 63,
+   "requirement": "^7.0.0",
+   "toNode": 39
+  },
+  {
+   "fromNode": 65,
+   "requirement": "^4.0.0",
+   "toNode": 3
+  },
+  {
+   "fromNode": 65,
+   "requirement": "^4.1.0",
+   "toNode": 58
+  },
+  {
+   "fromNode": 65,
+   "requirement": "^6.0.0",
+   "toNode": 59
+  },
+  {
+   "fromNode": 68,
+   "requirement": "^7.0.2",
+   "toNode": 14
+  },
+  {
+   "fromNode": 68,
+   "requirement": "^3.1.1",
+   "toNode": 21
+  },
+  {
+   "fromNode": 68,
+   "requirement": "^2.0.5",
+   "toNode": 28
+  },
+  {
+   "fromNode": 68,
+   "requirement": "^2.1.1",
+   "toNode": 55
+  },
+  {
+   "fromNode": 68,
+   "requirement": "^4.2.0",
+   "toNode": 58
+  },
+  {
+   "fromNode": 68,
+   "requirement": "^5.0.5",
+   "toNode": 67
+  },
+  {
+   "fromNode": 68,
+   "requirement": "^20.2.2",
+   "toNode": 69
+  },
+  {
+   "fromNode": 70,
+   "requirement": "^6.0.0",
+   "toNode": 11
+  },
+  {
+   "fromNode": 70,
+   "requirement": "^4.0.0",
+   "toNode": 18
+  },
+  {
+   "fromNode": 70,
+   "requirement": "^5.0.2",
+   "toNode": 25
+  },
+  {
+   "fromNode": 70,
+   "requirement": "^2.1.0",
+   "toNode": 40
+  }
+ ],
+ "error": "",
+ "nodes": [
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "SELF",
+   "versionKey": {
+    "name": "mocha",
+    "system": "NPM",
+    "version": "10.7.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "ansi-colors",
+    "system": "NPM",
+    "version": "4.1.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "ansi-regex",
+    "system": "NPM",
+    "version": "5.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "ansi-styles",
+    "system": "NPM",
+    "version": "4.3.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "anymatch",
+    "system": "NPM",
+    "version": "3.1.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "argparse",
+    "system": "NPM",
+    "version": "2.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "balanced-match",
+    "system": "NPM",
+    "version": "1.0.2"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "binary-extensions",
+    "system": "NPM",
+    "version": "2.3.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "brace-expansion",
+    "system": "NPM",
+    "version": "2.1.7"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "braces",
+    "system": "NPM",
+    "version": "3.0.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "browser-stdout",
+    "system": "NPM",
+    "version": "1.3.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "camelcase",
+    "system": "NPM",
+    "version": "6.3.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "chalk",
+    "system": "NPM",
+    "version": "4.1.2"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "chokidar",
+    "system": "NPM",
+    "version": "3.6.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "cliui",
+    "system": "NPM",
+    "version": "7.0.4"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "color-convert",
+    "system": "NPM",
+    "version": "2.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "color-name",
+    "system": "NPM",
+    "version": "1.1.4"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "debug",
+    "system": "NPM",
+    "version": "4.4.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "decamelize",
+    "system": "NPM",
+    "version": "4.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "diff",
+    "system": "NPM",
+    "version": "5.2.2"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "emoji-regex",
+    "system": "NPM",
+    "version": "8.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "escalade",
+    "system": "NPM",
+    "version": "3.2.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "escape-string-regexp",
+    "system": "NPM",
+    "version": "4.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "fill-range",
+    "system": "NPM",
+    "version": "7.1.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "find-up",
+    "system": "NPM",
+    "version": "5.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "flat",
+    "system": "NPM",
+    "version": "5.0.2"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "fs.realpath",
+    "system": "NPM",
+    "version": "1.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "fsevents",
+    "system": "NPM",
+    "version": "2.3.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "get-caller-file",
+    "system": "NPM",
+    "version": "2.0.5"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "glob",
+    "system": "NPM",
+    "version": "8.1.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "glob-parent",
+    "system": "NPM",
+    "version": "5.1.2"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "has-flag",
+    "system": "NPM",
+    "version": "4.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "he",
+    "system": "NPM",
+    "version": "1.2.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "inflight",
+    "system": "NPM",
+    "version": "1.0.6"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "inherits",
+    "system": "NPM",
+    "version": "2.0.4"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "is-binary-path",
+    "system": "NPM",
+    "version": "2.1.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "is-extglob",
+    "system": "NPM",
+    "version": "2.1.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "is-fullwidth-code-point",
+    "system": "NPM",
+    "version": "3.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "is-glob",
+    "system": "NPM",
+    "version": "4.0.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "is-number",
+    "system": "NPM",
+    "version": "7.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "is-plain-obj",
+    "system": "NPM",
+    "version": "2.1.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "is-unicode-supported",
+    "system": "NPM",
+    "version": "0.1.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "js-yaml",
+    "system": "NPM",
+    "version": "4.3.2"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "locate-path",
+    "system": "NPM",
+    "version": "6.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "log-symbols",
+    "system": "NPM",
+    "version": "4.1.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "minimatch",
+    "system": "NPM",
+    "version": "5.1.9"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "ms",
+    "system": "NPM",
+    "version": "2.1.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "normalize-path",
+    "system": "NPM",
+    "version": "3.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "once",
+    "system": "NPM",
+    "version": "1.4.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "p-limit",
+    "system": "NPM",
+    "version": "3.1.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "p-locate",
+    "system": "NPM",
+    "version": "5.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "path-exists",
+    "system": "NPM",
+    "version": "4.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "picomatch",
+    "system": "NPM",
+    "version": "2.3.2"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "randombytes",
+    "system": "NPM",
+    "version": "2.1.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "readdirp",
+    "system": "NPM",
+    "version": "3.6.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "require-directory",
+    "system": "NPM",
+    "version": "2.1.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "safe-buffer",
+    "system": "NPM",
+    "version": "5.2.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "serialize-javascript",
+    "system": "NPM",
+    "version": "6.0.2"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "string-width",
+    "system": "NPM",
+    "version": "4.2.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "strip-ansi",
+    "system": "NPM",
+    "version": "6.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "strip-json-comments",
+    "system": "NPM",
+    "version": "3.1.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "supports-color",
+    "system": "NPM",
+    "version": "7.2.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "supports-color",
+    "system": "NPM",
+    "version": "8.1.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "to-regex-range",
+    "system": "NPM",
+    "version": "5.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "workerpool",
+    "system": "NPM",
+    "version": "6.5.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "wrap-ansi",
+    "system": "NPM",
+    "version": "7.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "wrappy",
+    "system": "NPM",
+    "version": "1.0.2"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "y18n",
+    "system": "NPM",
+    "version": "5.0.8"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "yargs",
+    "system": "NPM",
+    "version": "16.2.2"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "yargs-parser",
+    "system": "NPM",
+    "version": "20.2.9"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "yargs-unparser",
+    "system": "NPM",
+    "version": "2.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "yocto-queue",
+    "system": "NPM",
+    "version": "0.1.0"
+   }
+  }
+ ]
+}

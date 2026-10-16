@@ -1,0 +1,114 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "type-fest@5.10.0",
+ "_nodeVersion": "22.23.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/type-fest_5.10.0_1789636278088_0.4962238597850992"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "12.0.1",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/type-fest/issues"
+ },
+ "dependencies": {
+  "tagged-tag": "^1.0.0"
+ },
+ "description": "A collection of essential TypeScript types",
+ "devDependencies": {
+  "@eslint/markdown": "^8.0.1",
+  "@sindresorhus/tsconfig": "^8.0.1",
+  "@types/node": "^25.5.0",
+  "@typescript-eslint/parser": "^8.44.0",
+  "@typescript/vfs": "^1.6.1",
+  "dedent": "^1.7.0",
+  "eslint": "^10.1.0",
+  "expect-type": "^1.2.2",
+  "npm-run-all2": "^8.0.4",
+  "tsd": "^0.33.0",
+  "typescript": "^5.9.2",
+  "typescript-eslint": "^8.47.0",
+  "xo": "^2.0.2"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 222,
+  "integrity": "sha512-NoSdpq/WEiAg5sjmBkmV/hfxv6HJH4NqPNrqjtSO5CwRmpsDfaf4begxW34KdJykH/l1yHtwBWQkCRdoXO8mPA==",
+  "shasum": "bf0131fdf662889c94c409d37402e364fb2016f7",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQCULUrss/oxLG6LKhPbzxEEvKw3GSZ/foxIejTtNn7zpAIhAL+hJVwnRoUaZD6lIkhAUVu9UU2Dbug0rrI5UxQozmCE"
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQCrtYXhigb3O2xFCQB9f+a1ShIbSpHfTZ91MpNrOGosLwIgOWoDRbn4JgT1JLrFDNq33D1LoJW471tafbleF96TN/Y="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/type-fest/-/type-fest-5.10.0.tgz",
+  "unpackedSize": 580732
+ },
+ "engines": {
+  "node": ">=20"
+ },
+ "exports": {
+  ".": {
+   "types": "./index.d.ts"
+  },
+  "./globals": {
+   "types": "./source/globals/index.d.ts"
+  }
+ },
+ "funding": "https://github.com/sponsors/sindresorhus",
+ "gitHead": "1329cb5387bd37f9d5b679f09fe10670ec256e81",
+ "homepage": "https://github.com/sindresorhus/type-fest#readme",
+ "keywords": [
+  "typescript",
+  "ts",
+  "types",
+  "utility",
+  "util",
+  "utilities",
+  "omit",
+  "merge",
+  "json",
+  "generics"
+ ],
+ "license": "(MIT OR CC0-1.0)",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "type-fest",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/type-fest.git"
+ },
+ "scripts": {
+  "test": "run-p test:*",
+  "test:linter": "node --test",
+  "test:minimum-lib": "node --max-old-space-size=6144 ./node_modules/.bin/tsc -p tsconfig.minimum-lib.json",
+  "test:tsc": "node --max-old-space-size=6144 ./node_modules/.bin/tsc",
+  "test:tsd": "node --max-old-space-size=6144 ./node_modules/.bin/tsd",
+  "test:xo": "node --max-old-space-size=6144 ./node_modules/.bin/xo --ignores=lint-processors/fixtures/**/*.d.ts '**/*.{js,ts,md}'"
+ },
+ "sideEffects": false,
+ "tsd": {
+  "compilerOptions": {
+   "noUnusedLocals": false
+  }
+ },
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "5.10.0"
+}

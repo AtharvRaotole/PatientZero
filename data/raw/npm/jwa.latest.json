@@ -1,0 +1,104 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "jwa@2.0.1",
+ "_nodeVersion": "22.15.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/jwa_2.0.1_1746618169954_0.6941724263193607"
+ },
+ "_npmUser": {
+  "email": "panva.ip@gmail.com",
+  "name": "panva"
+ },
+ "_npmVersion": "11.3.0",
+ "author": {
+  "email": "brianloveswords@gmail.com",
+  "name": "Brian J. Brennan"
+ },
+ "bugs": {
+  "url": "https://github.com/brianloveswords/node-jwa/issues"
+ },
+ "dependencies": {
+  "buffer-equal-constant-time": "^1.0.1",
+  "ecdsa-sig-formatter": "1.0.11",
+  "safe-buffer": "^5.0.1"
+ },
+ "description": "JWA implementation (supports all JWS algorithms)",
+ "devDependencies": {
+  "base64url": "^2.0.0",
+  "jwk-to-pem": "^2.0.1",
+  "semver": "4.3.6",
+  "tap": "6.2.0"
+ },
+ "directories": {
+  "test": "test"
+ },
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-hRF04fqJIP8Abbkq5NKGN0Bbr3JxlQ+qhZufXVr0DvujKy93ZCbXZMHDL4EOtodSbCWxOqR8MS1tXA5hwqCXDg==",
+  "shasum": "bf8176d1ad0cd72e0f3f58338595a13e110bc804",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQC9F0Ze7ctXkWT4nsDvyEEk7U4+T9GNbaiOwF6e46FvTgIhAJJmLMbXzMj76+IBDlp7tU06UWdV9m4OaZILkGjCLyzw"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/jwa/-/jwa-2.0.1.tgz",
+  "unpackedSize": 14052
+ },
+ "gitHead": "02f44f3bfaacb43d5b4199157bfdc715ee2e70f0",
+ "homepage": "https://github.com/brianloveswords/node-jwa#readme",
+ "keywords": [
+  "jwa",
+  "jws",
+  "jwt",
+  "rsa",
+  "ecdsa",
+  "hmac"
+ ],
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "shane@shanetomlinson.com",
+   "name": "stomlinson"
+  },
+  {
+   "email": "owen@omsmith.ca",
+   "name": "omsmith"
+  },
+  {
+   "email": "panva.ip@gmail.com",
+   "name": "panva"
+  },
+  {
+   "email": "marcos.castany@revenuecat.com",
+   "name": "texeira"
+  },
+  {
+   "email": "julien.wollscheid@auth0.com",
+   "name": "julien.wollscheid"
+  },
+  {
+   "email": "charles.rea@auth0.com",
+   "name": "charlesrea"
+  },
+  {
+   "email": "david.lozano@okta.com",
+   "name": "lozano.okta"
+  },
+  {
+   "email": "jquevedo@gmail.com",
+   "name": "javierquevedo"
+  }
+ ],
+ "name": "jwa",
+ "repository": {
+  "type": "git",
+  "url": "git://github.com/brianloveswords/node-jwa.git"
+ },
+ "scripts": {
+  "test": "make test"
+ },
+ "version": "2.0.1"
+}

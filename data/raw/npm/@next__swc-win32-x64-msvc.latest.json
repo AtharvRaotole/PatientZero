@@ -1,0 +1,78 @@
+{
+ "_from": "file:next-swc-win32-x64-msvc-16.4.2.tgz",
+ "_hasShrinkwrap": false,
+ "_id": "@next/swc-win32-x64-msvc@16.4.2",
+ "_integrity": "sha512-AA4edyWHDko3NCSo0x6GomsdgFb0oR1J3MXU1b5xt6FRFg4AucrMPW3S0hCe/9onU0O1BbpGQBsqo1r0Gneu1g==",
+ "_nodeVersion": "24.22.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/swc-win32-x64-msvc_16.4.2_1792096981968_0.15230280118806094"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "4d12fde8-b164-4303-8e2b-52cf9966ee8b"
+  }
+ },
+ "_npmVersion": "11.19.1",
+ "_resolved": "/tmp/cda292f82d295f75346830e49ba9fcf0/next-swc-win32-x64-msvc-16.4.2.tgz",
+ "bugs": {
+  "url": "https://github.com/vercel/next.js/issues"
+ },
+ "cpu": [
+  "x64"
+ ],
+ "description": "This is the **x86_64-pc-windows-msvc** binary for `@next/swc`",
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@next%2fswc-win32-x64-msvc@16.4.2"
+  },
+  "fileCount": 3,
+  "integrity": "sha512-AA4edyWHDko3NCSo0x6GomsdgFb0oR1J3MXU1b5xt6FRFg4AucrMPW3S0hCe/9onU0O1BbpGQBsqo1r0Gneu1g==",
+  "shasum": "8c8945faa0e82b51d128563a008185d4d3d16693",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIAfTcRcgUHi+sEYAmBXNWrXBebHtExmtPy7I22/oh/kbAiEAhZK5fKe8/X32ZZ9AvmxCxd9oI3JxPwMv60oM+iRbTfY="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDGM/sSOXnbW7aC7LHZS4coGDCb96VgYnDpyUVHUXA1IQIgEJjLl4OjjNTK6Q/efRW3lxXYXzlbuG/G8Ed37S0RlNM="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@next/swc-win32-x64-msvc/-/swc-win32-x64-msvc-16.4.2.tgz",
+  "unpackedSize": 110265861
+ },
+ "engines": {
+  "node": ">= 10"
+ },
+ "homepage": "https://github.com/vercel/next.js#readme",
+ "license": "MIT",
+ "main": "next-swc.win32-x64-msvc.node",
+ "maintainers": [
+  {
+   "email": "infra+release@vercel.com",
+   "name": "vercel-release-bot"
+  },
+  {
+   "email": "matt.j.straka@gmail.com",
+   "name": "matt.straka"
+  }
+ ],
+ "name": "@next/swc-win32-x64-msvc",
+ "os": [
+  "win32"
+ ],
+ "repository": {
+  "directory": "crates/next-napi-bindings/npm/win32-x64-msvc",
+  "type": "git",
+  "url": "git+https://github.com/vercel/next.js.git"
+ },
+ "version": "16.4.2"
+}

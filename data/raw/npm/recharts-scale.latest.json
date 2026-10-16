@@ -1,0 +1,124 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "recharts-scale@0.4.5",
+ "_nodeVersion": "15.7.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/recharts-scale_0.4.5_1616639418480_0.37877109511771767"
+ },
+ "_npmUser": {
+  "email": "arthurtemptation@gmail.com",
+  "name": "arcthur"
+ },
+ "_npmVersion": "7.4.3",
+ "author": {
+  "name": "recharts group"
+ },
+ "ava": {
+  "babel": {
+   "testOptions": {
+    "presets": [
+     "@babel/preset-env"
+    ]
+   }
+  },
+  "failFast": true,
+  "files": [
+   "test/**/*.test.js"
+  ],
+  "ignoredByWatcher": [
+   "umd/**/*"
+  ],
+  "require": [
+   "esm",
+   "@babel/register"
+  ],
+  "tap": true
+ },
+ "bugs": {
+  "url": "https://github.com/recharts/recharts-scale/issues"
+ },
+ "dependencies": {
+  "decimal.js-light": "^2.4.1"
+ },
+ "description": "Scale of Cartesian Coordinates",
+ "devDependencies": {
+  "@ava/babel": "^1.0.1",
+  "@babel/cli": "^7.1.0",
+  "@babel/core": "^7.0.0",
+  "@babel/plugin-proposal-class-properties": "^7.0.0",
+  "@babel/plugin-proposal-export-default-from": "^7.0.0",
+  "@babel/plugin-proposal-export-namespace-from": "^7.0.0",
+  "@babel/polyfill": "^7.0.0",
+  "@babel/preset-env": "^7.0.0",
+  "@babel/register": "^7.0.0",
+  "ava": "^3.15.0",
+  "babel-eslint": "^10.0.0",
+  "babel-loader": "^8.0.0",
+  "cross-env": "^7.0.3",
+  "eslint": "^7.17.0",
+  "eslint-config-airbnb": "^18.2.0",
+  "eslint-plugin-import": "^2.14.0",
+  "eslint-plugin-jsx-a11y": "^6.1.1",
+  "eslint-plugin-react": "^7.11.1",
+  "esm": "^3.2.25",
+  "nyc": "^15.1.0",
+  "pre-commit": "^1.1.3",
+  "webpack": "^5.15.0",
+  "webpack-cli": "^4.3.1"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 19,
+  "integrity": "sha512-kivNFO+0OcUNu7jQquLXAxz1FIwZj8nrj+YkOKc5694NbjCvcT6aSZiIzNzd2Kul4o4rTto8QVR9lMNtxD4G1w==",
+  "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.13\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJgW/W7CRA9TVsSAnZWagAAePAQAIZsGrVrk3dpuIeSG1CY\nBQrigvcUmvku3pJHe1MWQvKFYnxRoskkkEu8iWB2Xuy4fDdB5rTemeFPcHbf\nt0y1otyVG+k6227V07zAC/V5jJQHvdhPftOAadCW34y+Ykm2KKtq9bAt/ZRb\np2JII6O1fBHdvaqDWq/ie1uS0YAv8mO73ngWhiC8WNXlWIBI+agLzOFynLph\n75SdpHA3AUrd1kGBR41z1iYh9ww2K1ozb7x+pePCuDkjgBhl7Sgdx1Mr0rX4\nd42WHCXuKe0NPOGYT2fLHvqYjrzE5+1ejMyxwtxjJNYp7ln3EP5vToP7Drjf\nqcwNqNfvy5RSGcVFrAZ4xjrCXKvAp1603h9MIdgkvkY0/JnabNqPIN6//gWx\nxGljTholiMD3FgMSLnbEj9f5aHiLXRjAvmqhlIakOkfR41nDLhfZjQce81lf\nJEHauTalckBqbXAqZscvS/FQLi0+q2rkkVKvJM0yNp7Cqtj9Yra48WQLhPKB\nLHgnnAxhavf63sZH9H8qkAOhpjQkUtF65W1vlgcHPSplx1q104EZEvFD9nDy\nDiV72bD3Vkw9IJ84L53jzuVKHQX1YLaWSDSg0DYq0tX1wpM49hJw+3RPdkoY\n8rfrlDfCgth5ioI9UthtpqZyfPw2RorevkZ6g2CKvRcLa9l2QN0gJyPNkPk2\nA4dZ\r\n=u+C9\r\n-----END PGP SIGNATURE-----\r\n",
+  "shasum": "0969271f14e732e642fcc5bd4ab270d6e87dd1d9",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEYCIQD6CrOW9b3I+X1gZ1eyrib4fyq8nzPG9vcznmfNYEbYmAIhAPx5M4Eum/8fTqnDrJYBTT9PZebhWP7YejLQU3oI9DwI"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/recharts-scale/-/recharts-scale-0.4.5.tgz",
+  "unpackedSize": 162004
+ },
+ "gitHead": "8e181785d20a686ce4f3f83a4b789fb61a32806f",
+ "homepage": "https://github.com/recharts/recharts-scale",
+ "jsnext:main": "es6/index",
+ "keywords": [
+  "Scale",
+  "Cartesian Coordinates"
+ ],
+ "license": "MIT",
+ "main": "lib/index",
+ "maintainers": [
+  {
+   "email": "arthurtemptation@gmail.com",
+   "name": "arcthur"
+  },
+  {
+   "email": "327197681@qq.com",
+   "name": "xile611"
+  }
+ ],
+ "module": "es6/index.js",
+ "name": "recharts-scale",
+ "pre-commit": [
+  "lint"
+ ],
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/recharts/recharts-scale.git"
+ },
+ "scripts": {
+  "autofix": "eslint src test --fix",
+  "build": "npm run build-cjs && npm run build-es6 && rimraf umd && npm run build-umd && npm run build-min",
+  "build-cjs": "rimraf lib && cross-env BABEL_ENV=commonjs babel ./src -d lib",
+  "build-es6": "rimraf es6 && cross-env babel ./src -d es6",
+  "build-min": "cross-env NODE_ENV=production BABEL_ENV=commonjs webpack --entry ./src/index.js -o umd",
+  "build-umd": "cross-env NODE_ENV=development BABEL_ENV=commonjs webpack --entry ./src/index.js -o umd",
+  "lint": "eslint src test",
+  "test": "nyc ava --verbose"
+ },
+ "version": "0.4.5"
+}

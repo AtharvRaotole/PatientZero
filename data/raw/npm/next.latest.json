@@ -1,0 +1,139 @@
+{
+ "_from": "file:next-16.4.2.tgz",
+ "_hasShrinkwrap": false,
+ "_id": "next@16.4.2",
+ "_integrity": "sha512-r+oBJojfefUjOiWkBhXgLS+igxX/7BWyK59uHnyOyplMSLtBZ+QLP3okrdYTbrfrbrmNTVWLBPaHDX9KRaIt3w==",
+ "_nodeVersion": "24.22.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/next_16.4.2_1792097843350_0.28357670743607954"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "039db690-17a2-461b-adae-5f3631687d35"
+  }
+ },
+ "_npmVersion": "11.19.1",
+ "_resolved": "/tmp/9acab0fa3bf6ccca6fa7727da11e4ab5/next-16.4.2.tgz",
+ "bin": {
+  "next": "dist/bin/next"
+ },
+ "bugs": {
+  "url": "https://github.com/vercel/next.js/issues"
+ },
+ "dependencies": {
+  "@next/env": "16.4.2",
+  "@swc/helpers": "0.5.23",
+  "baseline-browser-mapping": "^2.9.19",
+  "caniuse-lite": "^1.0.30001579",
+  "postcss": "8.5.23",
+  "styled-jsx": "5.1.6"
+ },
+ "description": "The React Framework",
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/next@16.4.2"
+  },
+  "fileCount": 8690,
+  "integrity": "sha512-r+oBJojfefUjOiWkBhXgLS+igxX/7BWyK59uHnyOyplMSLtBZ+QLP3okrdYTbrfrbrmNTVWLBPaHDX9KRaIt3w==",
+  "shasum": "5b35585834dd7ed338099723eefe117eb6ab497b",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIBJU9xbb/wbuS42idTzzcSnj16UvCTgWEGkp+o4Rdm9VAiEAmjiQqhr3ATBa1NE8dtE2LwHxAiUd997VjXfe3LHoCkM="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIB5fOb32vsM4KMVNpbscR16j3peCrChqvXCB79dqnAHZAiEA8c0cJxXsGKDTasckOeGDDvoejmvr+utP9JFYtaK3oEM="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/next/-/next-16.4.2.tgz",
+  "unpackedSize": 192517704
+ },
+ "engines": {
+  "node": ">=20.9.0"
+ },
+ "homepage": "https://nextjs.org",
+ "keywords": [
+  "react",
+  "framework",
+  "nextjs",
+  "web",
+  "server",
+  "node",
+  "front-end",
+  "backend",
+  "cli",
+  "vercel"
+ ],
+ "license": "MIT",
+ "main": "./dist/server/next.js",
+ "maintainers": [
+  {
+   "email": "infra+release@vercel.com",
+   "name": "vercel-release-bot"
+  },
+  {
+   "email": "matt.j.straka@gmail.com",
+   "name": "matt.straka"
+  },
+  {
+   "email": "matheus.frndes@gmail.com",
+   "name": "matheuss"
+  },
+  {
+   "email": "team@zeit.co",
+   "name": "zeit-bot"
+  }
+ ],
+ "name": "next",
+ "optionalDependencies": {
+  "@next/swc-darwin-arm64": "16.4.2",
+  "@next/swc-darwin-x64": "16.4.2",
+  "@next/swc-linux-arm64-gnu": "16.4.2",
+  "@next/swc-linux-arm64-musl": "16.4.2",
+  "@next/swc-linux-x64-gnu": "16.4.2",
+  "@next/swc-linux-x64-musl": "16.4.2",
+  "@next/swc-win32-arm64-msvc": "16.4.2",
+  "@next/swc-win32-x64-msvc": "16.4.2",
+  "sharp": "^0.35.5"
+ },
+ "peerDependencies": {
+  "@opentelemetry/api": "^1.1.0",
+  "@playwright/test": "^1.51.1",
+  "babel-plugin-react-compiler": "*",
+  "react": "^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0",
+  "react-dom": "^18.2.0 || 19.0.0-rc-de68d2f4-20241204 || ^19.0.0",
+  "sass": "^1.3.0"
+ },
+ "peerDependenciesMeta": {
+  "@opentelemetry/api": {
+   "optional": true
+  },
+  "@playwright/test": {
+   "optional": true
+  },
+  "babel-plugin-react-compiler": {
+   "optional": true
+  },
+  "sass": {
+   "optional": true
+  }
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/vercel/next.js.git"
+ },
+ "scripts": {
+  "start": "node server.js"
+ },
+ "types": "index.d.ts",
+ "version": "16.4.2"
+}

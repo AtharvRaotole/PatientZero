@@ -1,0 +1,107 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "follow-redirects@1.16.1",
+ "_nodeVersion": "24.16.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/follow-redirects_1.16.1_1790862751691_0.5341497383448428"
+ },
+ "_npmUser": {
+  "email": "ruben@verborgh.org",
+  "name": "rubenverborgh"
+ },
+ "_npmVersion": "11.13.0",
+ "author": {
+  "email": "ruben@verborgh.org",
+  "name": "Ruben Verborgh",
+  "url": "https://ruben.verborgh.org/"
+ },
+ "bugs": {
+  "url": "https://github.com/follow-redirects/follow-redirects/issues"
+ },
+ "contributors": [
+  {
+   "email": "olalonde@gmail.com",
+   "name": "Olivier Lalonde",
+   "url": "http://www.syskall.com"
+  },
+  {
+   "email": "james@talmage.io",
+   "name": "James Talmage"
+  }
+ ],
+ "description": "HTTP and HTTPS modules that follow redirects.",
+ "devDependencies": {
+  "concat-stream": "^2.0.0",
+  "eslint": "^5.16.0",
+  "express": "^4.16.4",
+  "lolex": "^3.1.0",
+  "mocha": "^6.0.2",
+  "nyc": "^14.1.1"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 7,
+  "integrity": "sha512-FNvFGzoMLWmE6Yj9spb/zjd7yiNCHiAW9/Tg9CXrQ8wuu32HtlJOwWO11OJafl5FfY3DxTdQ0vj42zU1kvv5jg==",
+  "shasum": "6e0efa40a727fb369b98dab15883ec34787d675e",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIDlLW9TqaQ0J7J+MavDgYbB7jO3NhnQIiJb85kbsKqiZAiEAshgQ8tx69DCCFfb3VaEsgdGX9Pam35+QlnBc64S0lWw="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIEedyKTGE1ZH4memHkLDQ7OK4sHupa6u58g2pkWGdVaQAiEA9NxDuPOtkYCAKO2bAlvuNKcw8v8NPg5H/zzJ6sUZZq8="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/follow-redirects/-/follow-redirects-1.16.1.tgz",
+  "unpackedSize": 30959
+ },
+ "engines": {
+  "node": ">=4.0"
+ },
+ "funding": [
+  {
+   "type": "individual",
+   "url": "https://github.com/sponsors/RubenVerborgh"
+  }
+ ],
+ "gitHead": "46301256333c90b7faac7aa126effe72ec16d16e",
+ "homepage": "https://github.com/follow-redirects/follow-redirects",
+ "keywords": [
+  "http",
+  "https",
+  "url",
+  "redirect",
+  "client",
+  "location",
+  "utility"
+ ],
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "ruben@verborgh.org",
+   "name": "rubenverborgh"
+  },
+  {
+   "email": "olalonde@gmail.com",
+   "name": "olalonde"
+  }
+ ],
+ "name": "follow-redirects",
+ "peerDependenciesMeta": {
+  "debug": {
+   "optional": true
+  }
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+ssh://git@github.com/follow-redirects/follow-redirects.git"
+ },
+ "scripts": {
+  "lint": "eslint *.js test",
+  "test": "nyc mocha"
+ },
+ "version": "1.16.1"
+}

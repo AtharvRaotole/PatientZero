@@ -1,0 +1,81 @@
+{
+ "_from": "file:next-swc-linux-arm64-musl-16.4.2.tgz",
+ "_hasShrinkwrap": false,
+ "_id": "@next/swc-linux-arm64-musl@16.4.2",
+ "_integrity": "sha512-T1PNmfbPcxr5ndtWUL/3wQtLXsz808lq6sc2GrNT5k2oquF7UyqZddHSuAewHVsWsGXe6nsl9HoN1YNriVjuSg==",
+ "_nodeVersion": "24.22.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/swc-linux-arm64-musl_16.4.2_1792096926042_0.9113234674176369"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "2cc147ce-4ad9-4a0c-9a93-8c37def00a78"
+  }
+ },
+ "_npmVersion": "11.19.1",
+ "_resolved": "/tmp/9a669fcbf9f9fd9863e110d0903910eb/next-swc-linux-arm64-musl-16.4.2.tgz",
+ "bugs": {
+  "url": "https://github.com/vercel/next.js/issues"
+ },
+ "cpu": [
+  "arm64"
+ ],
+ "description": "This is the **linux-arm64-musl** binary for `@next/swc`",
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@next%2fswc-linux-arm64-musl@16.4.2"
+  },
+  "fileCount": 3,
+  "integrity": "sha512-T1PNmfbPcxr5ndtWUL/3wQtLXsz808lq6sc2GrNT5k2oquF7UyqZddHSuAewHVsWsGXe6nsl9HoN1YNriVjuSg==",
+  "shasum": "b4e888f983e55e91bd107b6499550caaea3eaf1e",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIASF08uiJFaAgGls7o4pRXRLvwV8jLU16ci5N18LrOHsAiEAvmAgEu02MTJwjEmlfD/OHWelsxCL7/Y8Z7cWmBqMmqY="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQC0kA+OA+MHLSVYJFPIeuVaYFmKKo/LHEIg0A+zuEP47QIhALMLbeHhyMqts8BtfSdqfKeTMG6Z+72q4JtXmVGSPtoI"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@next/swc-linux-arm64-musl/-/swc-linux-arm64-musl-16.4.2.tgz",
+  "unpackedSize": 90426607
+ },
+ "engines": {
+  "node": ">= 10"
+ },
+ "homepage": "https://github.com/vercel/next.js#readme",
+ "libc": [
+  "musl"
+ ],
+ "license": "MIT",
+ "main": "next-swc.linux-arm64-musl.node",
+ "maintainers": [
+  {
+   "email": "infra+release@vercel.com",
+   "name": "vercel-release-bot"
+  },
+  {
+   "email": "matt.j.straka@gmail.com",
+   "name": "matt.straka"
+  }
+ ],
+ "name": "@next/swc-linux-arm64-musl",
+ "os": [
+  "linux"
+ ],
+ "repository": {
+  "directory": "crates/next-napi-bindings/npm/linux-arm64-musl",
+  "type": "git",
+  "url": "git+https://github.com/vercel/next.js.git"
+ },
+ "version": "16.4.2"
+}

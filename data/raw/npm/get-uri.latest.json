@@ -1,0 +1,108 @@
+{
+ "_from": "file:get-uri-8.0.1.tgz",
+ "_hasShrinkwrap": false,
+ "_id": "get-uri@8.0.1",
+ "_integrity": "sha512-/5N/P4Lrh0p/mDwlDRi7Y1+P2o/OyzZI3l6Iz1Ov6XXwwm1y3RlZLuo3gVgML99djrEDtV980bBxSuOeHLk8ww==",
+ "_nodeVersion": "20.20.2",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/get-uri_8.0.1_1780937240440_0.012142181843036282"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:161f169d-7deb-4a01-b2c4-3efe441e06ad"
+  }
+ },
+ "_npmVersion": "11.16.0",
+ "_resolved": "/tmp/a5c58c8dfc93e668506e51017c9e1d09/get-uri-8.0.1.tgz",
+ "author": {
+  "email": "nathan@tootallnate.net",
+  "name": "Nathan Rajlich",
+  "url": "http://n8.io/"
+ },
+ "bugs": {
+  "url": "https://github.com/TooTallNate/proxy-agents/issues"
+ },
+ "dependencies": {
+  "basic-ftp": "^5.3.1",
+  "data-uri-to-buffer": "8.0.0",
+  "debug": "^4.3.4"
+ },
+ "description": "Returns a `stream.Readable` from a URI string",
+ "devDependencies": {
+  "@types/debug": "^4.1.7",
+  "@types/ftpd": "^0.2.35",
+  "@types/node": "^22.13.0",
+  "async-listen": "^3.0.0",
+  "ftpd": "^0.2.14",
+  "st": "^3.0.0",
+  "tsconfig": "0.0.0",
+  "typescript": "^5.1.6"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/get-uri@8.0.1"
+  },
+  "fileCount": 39,
+  "integrity": "sha512-/5N/P4Lrh0p/mDwlDRi7Y1+P2o/OyzZI3l6Iz1Ov6XXwwm1y3RlZLuo3gVgML99djrEDtV980bBxSuOeHLk8ww==",
+  "shasum": "772b1418bf034c2c43ddd6a41af24a4262e135ee",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQDrTbURwZIN1In31PKOSsJKXDMSXgKx0R8paDKBJlh+dwIhAKBbW3l8Kp0XJR3SF4BaWUmm3oTTKN6xEXA6CCWc99zR"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/get-uri/-/get-uri-8.0.1.tgz",
+  "unpackedSize": 44722
+ },
+ "engines": {
+  "node": ">= 20"
+ },
+ "exports": {
+  "default": "./dist/index.js",
+  "types": "./dist/index.d.ts"
+ },
+ "homepage": "https://github.com/TooTallNate/proxy-agents#readme",
+ "keywords": [
+  "uri",
+  "read",
+  "readstream",
+  "stream",
+  "get",
+  "http",
+  "https",
+  "ftp",
+  "file",
+  "data",
+  "protocol",
+  "url"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "nathan@tootallnate.net",
+   "name": "tootallnate"
+  }
+ ],
+ "name": "get-uri",
+ "repository": {
+  "directory": "packages/get-uri",
+  "type": "git",
+  "url": "git+https://github.com/TooTallNate/proxy-agents.git"
+ },
+ "scripts": {
+  "build": "tsc",
+  "lint": "eslint . --ext .ts",
+  "pack": "node ../../scripts/pack.mjs",
+  "test": "vitest"
+ },
+ "type": "module",
+ "version": "8.0.1"
+}

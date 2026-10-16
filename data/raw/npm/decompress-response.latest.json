@@ -1,0 +1,96 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "decompress-response@10.0.0",
+ "_nodeVersion": "24.9.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/decompress-response_10.0.0_1760378644634_0.3352585651171254"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "11.6.1",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/decompress-response/issues"
+ },
+ "dependencies": {
+  "mimic-response": "^4.0.0"
+ },
+ "description": "Decompress a HTTP response if needed",
+ "devDependencies": {
+  "@types/node": "^24.7.2",
+  "ava": "^6.4.1",
+  "get-stream": "^8.0.1",
+  "pify": "^6.1.0",
+  "tsd": "^0.33.0",
+  "xo": "^1.2.3"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-oj7KWToJuuxlPr7VV0vabvxEIiqNMo+q0NueIiL3XhtwC6FVOX7Hr1c0C4eD0bmf7Zr+S/dSf2xvkH3Ad6sU3Q==",
+  "shasum": "d8abd2a4c136c3b99b49a08d1f9a709fe35675a4",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQD3JdAZVr+wy66juPQC8KAVJj3EyRH/iDT5iHhUzGI1gQIgeT4i8rbgoD6Y8kqEIE87PjH1IQYsnvEsQ5rcThoA2cQ="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/decompress-response/-/decompress-response-10.0.0.tgz",
+  "unpackedSize": 5965
+ },
+ "engines": {
+  "node": ">=20"
+ },
+ "exports": {
+  "default": "./index.js",
+  "types": "./index.d.ts"
+ },
+ "funding": "https://github.com/sponsors/sindresorhus",
+ "gitHead": "6e405435f5f1932875b2855048f7eff23d861314",
+ "homepage": "https://github.com/sindresorhus/decompress-response#readme",
+ "keywords": [
+  "decompress",
+  "response",
+  "http",
+  "https",
+  "zlib",
+  "gzip",
+  "zip",
+  "deflate",
+  "unzip",
+  "ungzip",
+  "incoming",
+  "message",
+  "stream",
+  "compressed",
+  "brotli",
+  "zstd",
+  "zstandard"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "decompress-response",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/decompress-response.git"
+ },
+ "scripts": {
+  "test": "xo && ava && tsd"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "10.0.0"
+}

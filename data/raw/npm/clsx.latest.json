@@ -1,0 +1,95 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "clsx@2.1.1",
+ "_nodeVersion": "20.10.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/clsx_2.1.1_1713849964398_0.6560632619757865"
+ },
+ "_npmUser": {
+  "email": "luke@lukeed.com",
+  "name": "lukeed"
+ },
+ "_npmVersion": "10.2.3",
+ "author": {
+  "email": "luke.edwards05@gmail.com",
+  "name": "Luke Edwards",
+  "url": "https://lukeed.com"
+ },
+ "bugs": {
+  "url": "https://github.com/lukeed/clsx/issues"
+ },
+ "description": "A tiny (239B) utility for constructing className strings conditionally.",
+ "devDependencies": {
+  "esm": "3.2.25",
+  "terser": "4.8.0",
+  "uvu": "0.5.4"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 10,
+  "integrity": "sha512-eYm0QWBtUrBWZWG0d386OGAw16Z995PiOVo2B7bjWSbHedGl5e0ZWaq65kOGgUSNesEIDkB9ISbTg/JK9dhCZA==",
+  "shasum": "eed397c9fd8bd882bfb18deab7102049a2f32999",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIQCt4cimtFNdDPY5NOqLXbuPrCyxPFP7Pym/n1+tTeA16wIgUvCZBteiHTXv3GZRuhWQ2BqaV+qtiZYbi4c0T7jw87M="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/clsx/-/clsx-2.1.1.tgz",
+  "unpackedSize": 8555
+ },
+ "engines": {
+  "node": ">=6"
+ },
+ "exports": {
+  ".": {
+   "default": {
+    "default": "./dist/clsx.js",
+    "types": "./clsx.d.ts"
+   },
+   "import": {
+    "default": "./dist/clsx.mjs",
+    "types": "./clsx.d.mts"
+   }
+  },
+  "./lite": {
+   "default": {
+    "default": "./dist/lite.js",
+    "types": "./clsx.d.ts"
+   },
+   "import": {
+    "default": "./dist/lite.mjs",
+    "types": "./clsx.d.mts"
+   }
+  }
+ },
+ "gitHead": "925494cf31bcd97d3337aacd34e659e80cae7fe2",
+ "homepage": "https://github.com/lukeed/clsx#readme",
+ "keywords": [
+  "classes",
+  "classname",
+  "classnames"
+ ],
+ "license": "MIT",
+ "main": "dist/clsx.js",
+ "maintainers": [
+  {
+   "email": "luke@lukeed.com",
+   "name": "lukeed"
+  }
+ ],
+ "module": "dist/clsx.mjs",
+ "name": "clsx",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/lukeed/clsx.git"
+ },
+ "scripts": {
+  "build": "node bin",
+  "test": "uvu -r esm test"
+ },
+ "types": "clsx.d.ts",
+ "unpkg": "dist/clsx.min.js",
+ "version": "2.1.1"
+}

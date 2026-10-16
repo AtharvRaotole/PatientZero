@@ -1,0 +1,96 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "leven@4.1.0",
+ "_nodeVersion": "20.19.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/leven_4.1.0_1757593672111_0.10203871312336643"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "10.9.2",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/leven/issues"
+ },
+ "description": "Measure the difference between two strings using the Levenshtein distance algorithm",
+ "devDependencies": {
+  "ava": "^3.15.0",
+  "fast-levenshtein": "^3.0.0",
+  "ld": "^0.1.0",
+  "levdist": "^2.2.10",
+  "levenshtein": "^1.0.5",
+  "levenshtein-component": "^0.0.1",
+  "levenshtein-edit-distance": "^3.0.0",
+  "natural": "^5.0.4",
+  "talisman": "^1.1.4",
+  "tinybench": "^4.0.1",
+  "xo": "^0.44.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-KZ9W9nWDT7rF7Dazg8xyLHGLrmpgq2nVNFUckhqdW3szVP6YhCpp/RAnpmVExA9JvrMynjwSLVrEj3AepHR6ew==",
+  "shasum": "1e37150e1711d18bb14e380a5c779995235a710e",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQCwQpkSHbbPmLFTBEo4xk3ZfLICzhJv3FbdR+l6vsomZQIhAN9D624Zr971IZWF02A9kEi6eSC1N/A5C70AdVE3swSi"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/leven/-/leven-4.1.0.tgz",
+  "unpackedSize": 10206
+ },
+ "engines": {
+  "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+ },
+ "exports": "./index.js",
+ "funding": "https://github.com/sponsors/sindresorhus",
+ "gitHead": "235e7758c8ec95fc3a30ef32528ce1fa409c040a",
+ "homepage": "https://github.com/sindresorhus/leven#readme",
+ "keywords": [
+  "leven",
+  "levenshtein",
+  "distance",
+  "algorithm",
+  "string",
+  "difference",
+  "diff",
+  "fast",
+  "fuzzy",
+  "similar",
+  "similarity",
+  "compare",
+  "comparison",
+  "edit",
+  "text",
+  "match",
+  "matching"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "leven",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/leven.git"
+ },
+ "scripts": {
+  "bench": "node bench.js",
+  "test": "xo && ava"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "4.1.0"
+}

@@ -1,0 +1,62 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@types/connect@3.4.38",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/connect_3.4.38_1699318654498_0.3916900081065784"
+ },
+ "_npmUser": {
+  "email": "ts-npm-types@microsoft.com",
+  "name": "types"
+ },
+ "contributors": [
+  {
+   "githubUsername": "SomaticIT",
+   "name": "Maxime LUCE",
+   "url": "https://github.com/SomaticIT"
+  },
+  {
+   "githubUsername": "EvanHahn",
+   "name": "Evan Hahn",
+   "url": "https://github.com/EvanHahn"
+  }
+ ],
+ "dependencies": {
+  "@types/node": "*"
+ },
+ "description": "TypeScript definitions for connect",
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-K6uROf1LD88uDQqJCktA4yzL1YYAK6NgfsI0v/mTgyPKWsX1CnJ0XPSDhViejru1GcRkLWb8RlzFYJRqGUbaug==",
+  "shasum": "5ba7f3bc4fbbdeaff8dded952e5ff2cc53f8d858",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIQDMQ4sLEO34WGyAb+bW9b7ptcEbIWgkUHea2fN3KwugPQIgDGQnNblrwP1B4oA3NRN8OSvcl0bcua3F7U+BvchS7Lo="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@types/connect/-/connect-3.4.38.tgz",
+  "unpackedSize": 5907
+ },
+ "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/connect",
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "ts-npm-types@microsoft.com",
+   "name": "types"
+  }
+ ],
+ "name": "@types/connect",
+ "repository": {
+  "directory": "types/connect",
+  "type": "git",
+  "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+ },
+ "scripts": {},
+ "typeScriptVersion": "4.5",
+ "types": "index.d.ts",
+ "typesPublisherContentHash": "8990242237504bdec53088b79e314b94bec69286df9de56db31f22de403b4092",
+ "version": "3.4.38"
+}

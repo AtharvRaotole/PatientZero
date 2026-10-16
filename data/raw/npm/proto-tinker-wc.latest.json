@@ -1,0 +1,104 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "proto-tinker-wc@0.1.297",
+ "_nodeVersion": "22.23.3",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/proto-tinker-wc_0.1.297_1792070314903_0.07597075196200764"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "ff5b7ed0-d03b-4991-8cc8-273c0bbdabf0"
+  }
+ },
+ "_npmVersion": "11.21.0",
+ "bugs": {
+  "url": "https://github.com/eswat2/proto-tinker-wc/issues"
+ },
+ "collection": "dist/collection/collection-manifest.json",
+ "collection:main": "dist/collection/index.js",
+ "dependencies": {
+  "@stencil/core": "4.45.2",
+  "@stencil/store": "2.2.5"
+ },
+ "description": "prototype - simple demo built from Stencil & Tailwind",
+ "devDependencies": {
+  "autoprefixer": "10.6.1",
+  "bumpp": "12.3.0",
+  "concurrently": "10.0.6",
+  "cspell": "10.4.0",
+  "eslint": "10.12.0",
+  "only-allow": "1.2.2",
+  "postcss": "8.5.30",
+  "prettier": "3.9.10",
+  "prettier-plugin-tailwindcss": "0.8.1",
+  "proto-tailwindcss-clrs": "0.0.564",
+  "tailwindcss": "4.3.3",
+  "typescript": "5.9.3",
+  "workbox-build": "7.4.1",
+  "yoctocolors": "2.2.0"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/proto-tinker-wc@0.1.297"
+  },
+  "fileCount": 84,
+  "integrity": "sha512-tefmPkdPFI3JDbc8+ZpB32huQmoO02zSlMnTb9F9UTgxww80HHrdwEAU4udCmGYQBAdzbslGbEsZKqng6npjcw==",
+  "shasum": "7f70135ec1fe97ec4f2e9e8e243cd56de77d8fd8",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDirZQOyQpBsMT7J5dylXDTH+tHkGwTAscWoW2dRnrIEwIgE0HH03mJQyD+ABBozzhAhLeYp1Hrl8Rqw/bLsgbWn5k="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQDkqP8C99KhehhMBm6uFr/9NGnPVLE5CiZSRYh78dtGjgIhAOlS45C4AynbdI7TEF582L7oK83sWrRwHH0M7/HIjKtm"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/proto-tinker-wc/-/proto-tinker-wc-0.1.297.tgz",
+  "unpackedSize": 621646
+ },
+ "es2015": "dist/esm/index.mjs",
+ "es2017": "dist/esm/index.mjs",
+ "gitHead": "c70da1927b507498cda8b455b799a20cc82293e3",
+ "homepage": "https://github.com/eswat2/proto-tinker-wc#readme",
+ "license": "MIT",
+ "main": "dist/index.cjs.js",
+ "maintainers": [
+  {
+   "email": "eswat2@gmail.com",
+   "name": "eswat2"
+  }
+ ],
+ "module": "dist/index.js",
+ "name": "proto-tinker-wc",
+ "packageManager": "pnpm@12.11.2",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/eswat2/proto-tinker-wc.git"
+ },
+ "scripts": {
+  "build": "pnpm twx; pnpm format; stencil build --docs",
+  "bump": "bumpp patch --commit --tag --push --yes",
+  "cc": "prettier --check src",
+  "dev": "concurrently \"pnpm:twx --watch\" \"pnpm:start\"",
+  "format": "prettier --write src",
+  "generate": "stencil generate",
+  "preinstall": "npx only-allow pnpm",
+  "release": "pnpm bump && pnpm build",
+  "spell": "cspell 'src/**/*.{ts,tsx,html,css,md}' ",
+  "start": "stencil build --dev --watch --serve",
+  "test": "echo --skip",
+  "twx": "twx"
+ },
+ "types": "dist/types/components.d.ts",
+ "unpkg": "dist/proto-tinker-wc/proto-tinker-wc.js",
+ "version": "0.1.297"
+}

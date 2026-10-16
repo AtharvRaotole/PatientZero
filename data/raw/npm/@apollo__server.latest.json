@@ -1,0 +1,218 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@apollo/server@5.5.1",
+ "_nodeVersion": "24.13.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/server_5.5.1_1777997158731_0.32361638904822043"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:8743e379-91fc-4e3b-b932-1c3cfda08986"
+  }
+ },
+ "_npmVersion": "11.6.2",
+ "author": {
+  "email": "packages@apollographql.com",
+  "name": "Apollo"
+ },
+ "bugs": {
+  "url": "https://github.com/apollographql/apollo-server/issues"
+ },
+ "dependencies": {
+  "@apollo/cache-control-types": "^1.0.3",
+  "@apollo/server-gateway-interface": "^2.0.0",
+  "@apollo/usage-reporting-protobuf": "^4.1.1",
+  "@apollo/utils.createhash": "^3.0.0",
+  "@apollo/utils.fetcher": "^3.0.0",
+  "@apollo/utils.isnodelike": "^3.0.0",
+  "@apollo/utils.keyvaluecache": "^4.0.0",
+  "@apollo/utils.logger": "^3.0.0",
+  "@apollo/utils.usagereporting": "^2.1.0",
+  "@apollo/utils.withrequired": "^3.0.0",
+  "@graphql-tools/schema": "^10.0.0",
+  "async-retry": "^1.2.1",
+  "body-parser": "^2.2.2",
+  "content-type": "^1.0.5",
+  "cors": "^2.8.5",
+  "finalhandler": "^2.1.0",
+  "loglevel": "^1.6.8",
+  "lru-cache": "^11.1.0",
+  "negotiator": "^1.0.0",
+  "whatwg-mimetype": "^4.0.0"
+ },
+ "description": "Core engine for Apollo GraphQL server",
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@apollo%2fserver@5.5.1"
+  },
+  "fileCount": 556,
+  "integrity": "sha512-Rn3g5TJQsMSUY23CWZTghWdBWyjX7dP1eaEBPkvmM2RHi82cDcpgTIkSCbGvtTUEGjwopLv1AAooU/n7iIZ20A==",
+  "shasum": "60123c85249384dd3701ea6261e0bfd8d58ee292",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDNDBuyYYn+HRquzIx/VqkByCE5/yPPTST6KwOAebb0jAIgUNqYkqamwzqGudPGsOUEu+jgU9MTV0Txqtq0otocm6U="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@apollo/server/-/server-5.5.1.tgz",
+  "unpackedSize": 2223368
+ },
+ "engines": {
+  "node": ">=20"
+ },
+ "exports": {
+  ".": {
+   "import": "./dist/esm/index.js",
+   "require": "./dist/cjs/index.js",
+   "types": {
+    "default": "./dist/esm/index.d.ts",
+    "require": "./dist/cjs/index.d.ts"
+   }
+  },
+  "./errors": {
+   "import": "./dist/esm/errors/index.js",
+   "require": "./dist/cjs/errors/index.js",
+   "types": {
+    "default": "./dist/esm/errors/index.d.ts",
+    "require": "./dist/cjs/errors/index.d.ts"
+   }
+  },
+  "./plugin/cacheControl": {
+   "import": "./dist/esm/plugin/cacheControl/index.js",
+   "require": "./dist/cjs/plugin/cacheControl/index.js",
+   "types": {
+    "default": "./dist/esm/plugin/cacheControl/index.d.ts",
+    "require": "./dist/cjs/plugin/cacheControl/index.d.ts"
+   }
+  },
+  "./plugin/disableSuggestions": {
+   "import": "./dist/esm/plugin/disableSuggestions/index.js",
+   "require": "./dist/cjs/plugin/disableSuggestions/index.js",
+   "types": {
+    "default": "./dist/esm/plugin/disableSuggestions/index.d.ts",
+    "require": "./dist/cjs/plugin/disableSuggestions/index.d.ts"
+   }
+  },
+  "./plugin/disabled": {
+   "import": "./dist/esm/plugin/disabled/index.js",
+   "require": "./dist/cjs/plugin/disabled/index.js",
+   "types": {
+    "default": "./dist/esm/plugin/disabled/index.d.ts",
+    "require": "./dist/cjs/plugin/disabled/index.d.ts"
+   }
+  },
+  "./plugin/drainHttpServer": {
+   "import": "./dist/esm/plugin/drainHttpServer/index.js",
+   "require": "./dist/cjs/plugin/drainHttpServer/index.js",
+   "types": {
+    "default": "./dist/esm/plugin/drainHttpServer/index.d.ts",
+    "require": "./dist/cjs/plugin/drainHttpServer/index.d.ts"
+   }
+  },
+  "./plugin/inlineTrace": {
+   "import": "./dist/esm/plugin/inlineTrace/index.js",
+   "require": "./dist/cjs/plugin/inlineTrace/index.js",
+   "types": {
+    "default": "./dist/esm/plugin/inlineTrace/index.d.ts",
+    "require": "./dist/cjs/plugin/inlineTrace/index.d.ts"
+   }
+  },
+  "./plugin/landingPage/default": {
+   "import": "./dist/esm/plugin/landingPage/default/index.js",
+   "require": "./dist/cjs/plugin/landingPage/default/index.js",
+   "types": {
+    "default": "./dist/esm/plugin/landingPage/default/index.d.ts",
+    "require": "./dist/cjs/plugin/landingPage/default/index.d.ts"
+   }
+  },
+  "./plugin/schemaReporting": {
+   "import": "./dist/esm/plugin/schemaReporting/index.js",
+   "require": "./dist/cjs/plugin/schemaReporting/index.js",
+   "types": {
+    "default": "./dist/esm/plugin/schemaReporting/index.d.ts",
+    "require": "./dist/cjs/plugin/schemaReporting/index.d.ts"
+   }
+  },
+  "./plugin/subscriptionCallback": {
+   "import": "./dist/esm/plugin/subscriptionCallback/index.js",
+   "require": "./dist/cjs/plugin/subscriptionCallback/index.js",
+   "types": {
+    "default": "./dist/esm/plugin/subscriptionCallback/index.d.ts",
+    "require": "./dist/cjs/plugin/subscriptionCallback/index.d.ts"
+   }
+  },
+  "./plugin/usageReporting": {
+   "import": "./dist/esm/plugin/usageReporting/index.js",
+   "require": "./dist/cjs/plugin/usageReporting/index.js",
+   "types": {
+    "default": "./dist/esm/plugin/usageReporting/index.d.ts",
+    "require": "./dist/cjs/plugin/usageReporting/index.d.ts"
+   }
+  },
+  "./standalone": {
+   "import": "./dist/esm/standalone/index.js",
+   "require": "./dist/cjs/standalone/index.js",
+   "types": {
+    "default": "./dist/esm/standalone/index.d.ts",
+    "require": "./dist/cjs/standalone/index.d.ts"
+   }
+  }
+ },
+ "gitHead": "4f154060bbe57d3bd612cb09ab63467f319d4ba5",
+ "homepage": "https://github.com/apollographql/apollo-server#readme",
+ "keywords": [
+  "GraphQL",
+  "Apollo",
+  "Server",
+  "Javascript"
+ ],
+ "license": "MIT",
+ "main": "dist/cjs/index.js",
+ "maintainers": [
+  {
+   "email": "glasser@apollographql.com",
+   "name": "glasser"
+  },
+  {
+   "email": "dariusz_kuc@hotmail.com",
+   "name": "dkuc"
+  },
+  {
+   "email": "mail@lenzw.de",
+   "name": "phryneas"
+  },
+  {
+   "email": "jerelmiller@gmail.com",
+   "name": "jerelmiller"
+  },
+  {
+   "email": "npm@apollographql.com",
+   "name": "apollo-bot"
+  },
+  {
+   "email": "npmjs@jro.cc",
+   "name": "abernix"
+  }
+ ],
+ "module": "dist/esm/index.js",
+ "name": "@apollo/server",
+ "peerDependencies": {
+  "graphql": "^16.11.0"
+ },
+ "repository": {
+  "directory": "packages/server",
+  "type": "git",
+  "url": "git+https://github.com/apollographql/apollo-server.git"
+ },
+ "type": "module",
+ "types": "dist/esm/index.d.ts",
+ "version": "5.5.1"
+}

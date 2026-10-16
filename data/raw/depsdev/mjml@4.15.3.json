@@ -1,0 +1,3247 @@
+{
+ "edges": [
+  {
+   "fromNode": 0,
+   "requirement": "^7.23.9",
+   "toNode": 1
+  },
+  {
+   "fromNode": 0,
+   "requirement": "4.15.3",
+   "toNode": 2
+  },
+  {
+   "fromNode": 0,
+   "requirement": "4.15.3",
+   "toNode": 3
+  },
+  {
+   "fromNode": 0,
+   "requirement": "4.15.3",
+   "toNode": 4
+  },
+  {
+   "fromNode": 0,
+   "requirement": "4.15.3",
+   "toNode": 5
+  },
+  {
+   "fromNode": 0,
+   "requirement": "4.15.3",
+   "toNode": 6
+  },
+  {
+   "fromNode": 2,
+   "requirement": "^7.23.9",
+   "toNode": 1
+  },
+  {
+   "fromNode": 2,
+   "requirement": "4.15.3",
+   "toNode": 3
+  },
+  {
+   "fromNode": 2,
+   "requirement": "4.15.3",
+   "toNode": 4
+  },
+  {
+   "fromNode": 2,
+   "requirement": "4.15.3",
+   "toNode": 6
+  },
+  {
+   "fromNode": 2,
+   "requirement": "^3.0.0",
+   "toNode": 7
+  },
+  {
+   "fromNode": 2,
+   "requirement": "^10.3.10",
+   "toNode": 8
+  },
+  {
+   "fromNode": 2,
+   "requirement": "^4.0.0",
+   "toNode": 9
+  },
+  {
+   "fromNode": 2,
+   "requirement": "^1.6.14",
+   "toNode": 10
+  },
+  {
+   "fromNode": 2,
+   "requirement": "^4.17.21",
+   "toNode": 11
+  },
+  {
+   "fromNode": 2,
+   "requirement": "^9.0.3",
+   "toNode": 12
+  },
+  {
+   "fromNode": 2,
+   "requirement": "4.15.3",
+   "toNode": 13
+  },
+  {
+   "fromNode": 2,
+   "requirement": "^17.7.2",
+   "toNode": 14
+  },
+  {
+   "fromNode": 3,
+   "requirement": "^7.23.9",
+   "toNode": 1
+  },
+  {
+   "fromNode": 3,
+   "requirement": "4.15.3",
+   "toNode": 4
+  },
+  {
+   "fromNode": 3,
+   "requirement": "4.15.3",
+   "toNode": 6
+  },
+  {
+   "fromNode": 3,
+   "requirement": "^4.0.0",
+   "toNode": 9
+  },
+  {
+   "fromNode": 3,
+   "requirement": "^1.6.14",
+   "toNode": 10
+  },
+  {
+   "fromNode": 3,
+   "requirement": "^4.17.21",
+   "toNode": 11
+  },
+  {
+   "fromNode": 3,
+   "requirement": "4.15.3",
+   "toNode": 13
+  },
+  {
+   "fromNode": 3,
+   "requirement": "1.0.0-rc.12",
+   "toNode": 15
+  },
+  {
+   "fromNode": 3,
+   "requirement": "^2.0.4",
+   "toNode": 16
+  },
+  {
+   "fromNode": 3,
+   "requirement": "^10.0.0",
+   "toNode": 17
+  },
+  {
+   "fromNode": 4,
+   "requirement": "^7.23.9",
+   "toNode": 1
+  },
+  {
+   "fromNode": 4,
+   "requirement": "4.15.3",
+   "toNode": 3
+  },
+  {
+   "fromNode": 4,
+   "requirement": "^1.6.14",
+   "toNode": 10
+  },
+  {
+   "fromNode": 4,
+   "requirement": "^4.17.21",
+   "toNode": 11
+  },
+  {
+   "fromNode": 4,
+   "requirement": "4.15.3",
+   "toNode": 13
+  },
+  {
+   "fromNode": 4,
+   "requirement": "^17.7.2",
+   "toNode": 14
+  },
+  {
+   "fromNode": 5,
+   "requirement": "^7.23.9",
+   "toNode": 1
+  },
+  {
+   "fromNode": 5,
+   "requirement": "4.15.3",
+   "toNode": 18
+  },
+  {
+   "fromNode": 5,
+   "requirement": "4.15.3",
+   "toNode": 19
+  },
+  {
+   "fromNode": 5,
+   "requirement": "4.15.3",
+   "toNode": 20
+  },
+  {
+   "fromNode": 5,
+   "requirement": "4.15.3",
+   "toNode": 21
+  },
+  {
+   "fromNode": 5,
+   "requirement": "4.15.3",
+   "toNode": 22
+  },
+  {
+   "fromNode": 5,
+   "requirement": "4.15.3",
+   "toNode": 23
+  },
+  {
+   "fromNode": 5,
+   "requirement": "4.15.3",
+   "toNode": 24
+  },
+  {
+   "fromNode": 5,
+   "requirement": "4.15.3",
+   "toNode": 25
+  },
+  {
+   "fromNode": 5,
+   "requirement": "4.15.3",
+   "toNode": 26
+  },
+  {
+   "fromNode": 5,
+   "requirement": "4.15.3",
+   "toNode": 27
+  },
+  {
+   "fromNode": 5,
+   "requirement": "4.15.3",
+   "toNode": 28
+  },
+  {
+   "fromNode": 5,
+   "requirement": "4.15.3",
+   "toNode": 29
+  },
+  {
+   "fromNode": 5,
+   "requirement": "4.15.3",
+   "toNode": 30
+  },
+  {
+   "fromNode": 5,
+   "requirement": "4.15.3",
+   "toNode": 31
+  },
+  {
+   "fromNode": 5,
+   "requirement": "4.15.3",
+   "toNode": 32
+  },
+  {
+   "fromNode": 5,
+   "requirement": "4.15.3",
+   "toNode": 33
+  },
+  {
+   "fromNode": 5,
+   "requirement": "4.15.3",
+   "toNode": 34
+  },
+  {
+   "fromNode": 5,
+   "requirement": "4.15.3",
+   "toNode": 35
+  },
+  {
+   "fromNode": 5,
+   "requirement": "4.15.3",
+   "toNode": 36
+  },
+  {
+   "fromNode": 5,
+   "requirement": "4.15.3",
+   "toNode": 37
+  },
+  {
+   "fromNode": 5,
+   "requirement": "4.15.3",
+   "toNode": 38
+  },
+  {
+   "fromNode": 5,
+   "requirement": "4.15.3",
+   "toNode": 39
+  },
+  {
+   "fromNode": 5,
+   "requirement": "4.15.3",
+   "toNode": 40
+  },
+  {
+   "fromNode": 5,
+   "requirement": "4.15.3",
+   "toNode": 41
+  },
+  {
+   "fromNode": 5,
+   "requirement": "4.15.3",
+   "toNode": 42
+  },
+  {
+   "fromNode": 6,
+   "requirement": "^7.23.9",
+   "toNode": 1
+  },
+  {
+   "fromNode": 7,
+   "requirement": "~3.1.2",
+   "toNode": 43
+  },
+  {
+   "fromNode": 7,
+   "requirement": "~3.0.2",
+   "toNode": 44
+  },
+  {
+   "fromNode": 7,
+   "requirement": "~2.3.2",
+   "toNode": 45
+  },
+  {
+   "fromNode": 7,
+   "requirement": "~5.1.2",
+   "toNode": 46
+  },
+  {
+   "fromNode": 7,
+   "requirement": "~2.1.0",
+   "toNode": 47
+  },
+  {
+   "fromNode": 7,
+   "requirement": "~4.0.1",
+   "toNode": 48
+  },
+  {
+   "fromNode": 7,
+   "requirement": "~3.0.0",
+   "toNode": 49
+  },
+  {
+   "fromNode": 7,
+   "requirement": "~3.6.0",
+   "toNode": 50
+  },
+  {
+   "fromNode": 8,
+   "requirement": "^9.0.4",
+   "toNode": 12
+  },
+  {
+   "fromNode": 8,
+   "requirement": "^3.1.0",
+   "toNode": 51
+  },
+  {
+   "fromNode": 8,
+   "requirement": "^3.1.2",
+   "toNode": 52
+  },
+  {
+   "fromNode": 8,
+   "requirement": "^7.1.2",
+   "toNode": 53
+  },
+  {
+   "fromNode": 8,
+   "requirement": "^1.0.0",
+   "toNode": 54
+  },
+  {
+   "fromNode": 8,
+   "requirement": "^1.11.1",
+   "toNode": 55
+  },
+  {
+   "fromNode": 9,
+   "requirement": "^3.0.0",
+   "toNode": 56
+  },
+  {
+   "fromNode": 9,
+   "requirement": "^4.2.1",
+   "toNode": 57
+  },
+  {
+   "fromNode": 9,
+   "requirement": "^2.19.0",
+   "toNode": 58
+  },
+  {
+   "fromNode": 9,
+   "requirement": "^1.2.0",
+   "toNode": 59
+  },
+  {
+   "fromNode": 9,
+   "requirement": "^2.1.1",
+   "toNode": 60
+  },
+  {
+   "fromNode": 9,
+   "requirement": "^0.2.7",
+   "toNode": 61
+  },
+  {
+   "fromNode": 9,
+   "requirement": "^3.5.1",
+   "toNode": 62
+  },
+  {
+   "fromNode": 10,
+   "requirement": "^10.4.2",
+   "toNode": 8
+  },
+  {
+   "fromNode": 10,
+   "requirement": "^1.1.13",
+   "toNode": 63
+  },
+  {
+   "fromNode": 10,
+   "requirement": "^1.0.4",
+   "toNode": 64
+  },
+  {
+   "fromNode": 10,
+   "requirement": "^3.0.5",
+   "toNode": 65
+  },
+  {
+   "fromNode": 10,
+   "requirement": "^7.2.1",
+   "toNode": 66
+  },
+  {
+   "fromNode": 12,
+   "requirement": "^2.0.2",
+   "toNode": 67
+  },
+  {
+   "fromNode": 13,
+   "requirement": "^7.23.9",
+   "toNode": 1
+  },
+  {
+   "fromNode": 13,
+   "requirement": "^4.17.15",
+   "toNode": 11
+  },
+  {
+   "fromNode": 13,
+   "requirement": "2.1.0",
+   "toNode": 16
+  },
+  {
+   "fromNode": 13,
+   "requirement": "^9.1.0",
+   "toNode": 68
+  },
+  {
+   "fromNode": 14,
+   "requirement": "^8.0.1",
+   "toNode": 69
+  },
+  {
+   "fromNode": 14,
+   "requirement": "^3.1.1",
+   "toNode": 70
+  },
+  {
+   "fromNode": 14,
+   "requirement": "^2.0.5",
+   "toNode": 71
+  },
+  {
+   "fromNode": 14,
+   "requirement": "^2.1.1",
+   "toNode": 72
+  },
+  {
+   "fromNode": 14,
+   "requirement": "^4.2.3",
+   "toNode": 73
+  },
+  {
+   "fromNode": 14,
+   "requirement": "^5.0.5",
+   "toNode": 74
+  },
+  {
+   "fromNode": 14,
+   "requirement": "^21.1.1",
+   "toNode": 75
+  },
+  {
+   "fromNode": 15,
+   "requirement": "^2.1.0",
+   "toNode": 76
+  },
+  {
+   "fromNode": 15,
+   "requirement": "^2.0.0",
+   "toNode": 77
+  },
+  {
+   "fromNode": 15,
+   "requirement": "^5.0.3",
+   "toNode": 78
+  },
+  {
+   "fromNode": 15,
+   "requirement": "^3.0.1",
+   "toNode": 79
+  },
+  {
+   "fromNode": 15,
+   "requirement": "^8.0.1",
+   "toNode": 80
+  },
+  {
+   "fromNode": 15,
+   "requirement": "^7.0.0",
+   "toNode": 81
+  },
+  {
+   "fromNode": 15,
+   "requirement": "^7.0.0",
+   "toNode": 82
+  },
+  {
+   "fromNode": 17,
+   "requirement": "1.0.0-rc.12",
+   "toNode": 15
+  },
+  {
+   "fromNode": 17,
+   "requirement": "^6.1.0",
+   "toNode": 83
+  },
+  {
+   "fromNode": 17,
+   "requirement": "^0.3.4",
+   "toNode": 84
+  },
+  {
+   "fromNode": 17,
+   "requirement": "^1.12.2",
+   "toNode": 85
+  },
+  {
+   "fromNode": 17,
+   "requirement": "^6.0.1",
+   "toNode": 86
+  },
+  {
+   "fromNode": 18,
+   "requirement": "^7.23.9",
+   "toNode": 1
+  },
+  {
+   "fromNode": 18,
+   "requirement": "4.15.3",
+   "toNode": 3
+  },
+  {
+   "fromNode": 18,
+   "requirement": "^4.17.21",
+   "toNode": 11
+  },
+  {
+   "fromNode": 19,
+   "requirement": "^7.23.9",
+   "toNode": 1
+  },
+  {
+   "fromNode": 19,
+   "requirement": "4.15.3",
+   "toNode": 3
+  },
+  {
+   "fromNode": 19,
+   "requirement": "^4.17.21",
+   "toNode": 11
+  },
+  {
+   "fromNode": 20,
+   "requirement": "^7.23.9",
+   "toNode": 1
+  },
+  {
+   "fromNode": 20,
+   "requirement": "4.15.3",
+   "toNode": 3
+  },
+  {
+   "fromNode": 20,
+   "requirement": "^4.17.21",
+   "toNode": 11
+  },
+  {
+   "fromNode": 21,
+   "requirement": "^7.23.9",
+   "toNode": 1
+  },
+  {
+   "fromNode": 21,
+   "requirement": "4.15.3",
+   "toNode": 3
+  },
+  {
+   "fromNode": 21,
+   "requirement": "^4.17.21",
+   "toNode": 11
+  },
+  {
+   "fromNode": 22,
+   "requirement": "^7.23.9",
+   "toNode": 1
+  },
+  {
+   "fromNode": 22,
+   "requirement": "4.15.3",
+   "toNode": 3
+  },
+  {
+   "fromNode": 22,
+   "requirement": "^4.17.21",
+   "toNode": 11
+  },
+  {
+   "fromNode": 23,
+   "requirement": "^7.23.9",
+   "toNode": 1
+  },
+  {
+   "fromNode": 23,
+   "requirement": "4.15.3",
+   "toNode": 3
+  },
+  {
+   "fromNode": 23,
+   "requirement": "^4.17.21",
+   "toNode": 11
+  },
+  {
+   "fromNode": 24,
+   "requirement": "^7.23.9",
+   "toNode": 1
+  },
+  {
+   "fromNode": 24,
+   "requirement": "4.15.3",
+   "toNode": 3
+  },
+  {
+   "fromNode": 24,
+   "requirement": "^4.17.21",
+   "toNode": 11
+  },
+  {
+   "fromNode": 25,
+   "requirement": "^7.23.9",
+   "toNode": 1
+  },
+  {
+   "fromNode": 25,
+   "requirement": "4.15.3",
+   "toNode": 3
+  },
+  {
+   "fromNode": 25,
+   "requirement": "^4.17.21",
+   "toNode": 11
+  },
+  {
+   "fromNode": 26,
+   "requirement": "^7.23.9",
+   "toNode": 1
+  },
+  {
+   "fromNode": 26,
+   "requirement": "4.15.3",
+   "toNode": 3
+  },
+  {
+   "fromNode": 26,
+   "requirement": "^4.17.21",
+   "toNode": 11
+  },
+  {
+   "fromNode": 27,
+   "requirement": "^7.23.9",
+   "toNode": 1
+  },
+  {
+   "fromNode": 27,
+   "requirement": "4.15.3",
+   "toNode": 3
+  },
+  {
+   "fromNode": 27,
+   "requirement": "^4.17.21",
+   "toNode": 11
+  },
+  {
+   "fromNode": 28,
+   "requirement": "^7.23.9",
+   "toNode": 1
+  },
+  {
+   "fromNode": 28,
+   "requirement": "4.15.3",
+   "toNode": 3
+  },
+  {
+   "fromNode": 28,
+   "requirement": "^4.17.21",
+   "toNode": 11
+  },
+  {
+   "fromNode": 29,
+   "requirement": "^7.23.9",
+   "toNode": 1
+  },
+  {
+   "fromNode": 29,
+   "requirement": "4.15.3",
+   "toNode": 3
+  },
+  {
+   "fromNode": 29,
+   "requirement": "^4.17.21",
+   "toNode": 11
+  },
+  {
+   "fromNode": 30,
+   "requirement": "^7.23.9",
+   "toNode": 1
+  },
+  {
+   "fromNode": 30,
+   "requirement": "4.15.3",
+   "toNode": 3
+  },
+  {
+   "fromNode": 30,
+   "requirement": "^4.17.21",
+   "toNode": 11
+  },
+  {
+   "fromNode": 31,
+   "requirement": "^7.23.9",
+   "toNode": 1
+  },
+  {
+   "fromNode": 31,
+   "requirement": "4.15.3",
+   "toNode": 3
+  },
+  {
+   "fromNode": 31,
+   "requirement": "^4.17.21",
+   "toNode": 11
+  },
+  {
+   "fromNode": 32,
+   "requirement": "^7.23.9",
+   "toNode": 1
+  },
+  {
+   "fromNode": 32,
+   "requirement": "4.15.3",
+   "toNode": 3
+  },
+  {
+   "fromNode": 32,
+   "requirement": "^4.17.21",
+   "toNode": 11
+  },
+  {
+   "fromNode": 33,
+   "requirement": "^7.23.9",
+   "toNode": 1
+  },
+  {
+   "fromNode": 33,
+   "requirement": "4.15.3",
+   "toNode": 3
+  },
+  {
+   "fromNode": 33,
+   "requirement": "^4.17.21",
+   "toNode": 11
+  },
+  {
+   "fromNode": 34,
+   "requirement": "^7.23.9",
+   "toNode": 1
+  },
+  {
+   "fromNode": 34,
+   "requirement": "4.15.3",
+   "toNode": 3
+  },
+  {
+   "fromNode": 34,
+   "requirement": "^4.17.21",
+   "toNode": 11
+  },
+  {
+   "fromNode": 35,
+   "requirement": "^7.23.9",
+   "toNode": 1
+  },
+  {
+   "fromNode": 35,
+   "requirement": "4.15.3",
+   "toNode": 3
+  },
+  {
+   "fromNode": 35,
+   "requirement": "^4.17.21",
+   "toNode": 11
+  },
+  {
+   "fromNode": 36,
+   "requirement": "^7.23.9",
+   "toNode": 1
+  },
+  {
+   "fromNode": 36,
+   "requirement": "4.15.3",
+   "toNode": 3
+  },
+  {
+   "fromNode": 36,
+   "requirement": "^4.17.21",
+   "toNode": 11
+  },
+  {
+   "fromNode": 37,
+   "requirement": "^7.23.9",
+   "toNode": 1
+  },
+  {
+   "fromNode": 37,
+   "requirement": "4.15.3",
+   "toNode": 3
+  },
+  {
+   "fromNode": 37,
+   "requirement": "^4.17.21",
+   "toNode": 11
+  },
+  {
+   "fromNode": 38,
+   "requirement": "^7.23.9",
+   "toNode": 1
+  },
+  {
+   "fromNode": 38,
+   "requirement": "4.15.3",
+   "toNode": 3
+  },
+  {
+   "fromNode": 38,
+   "requirement": "^4.17.21",
+   "toNode": 11
+  },
+  {
+   "fromNode": 39,
+   "requirement": "^7.23.9",
+   "toNode": 1
+  },
+  {
+   "fromNode": 39,
+   "requirement": "4.15.3",
+   "toNode": 3
+  },
+  {
+   "fromNode": 39,
+   "requirement": "^4.17.21",
+   "toNode": 11
+  },
+  {
+   "fromNode": 40,
+   "requirement": "^7.23.9",
+   "toNode": 1
+  },
+  {
+   "fromNode": 40,
+   "requirement": "4.15.3",
+   "toNode": 3
+  },
+  {
+   "fromNode": 40,
+   "requirement": "^4.17.21",
+   "toNode": 11
+  },
+  {
+   "fromNode": 41,
+   "requirement": "^7.23.9",
+   "toNode": 1
+  },
+  {
+   "fromNode": 41,
+   "requirement": "4.15.3",
+   "toNode": 3
+  },
+  {
+   "fromNode": 41,
+   "requirement": "^4.17.21",
+   "toNode": 11
+  },
+  {
+   "fromNode": 42,
+   "requirement": "^7.23.9",
+   "toNode": 1
+  },
+  {
+   "fromNode": 42,
+   "requirement": "4.15.3",
+   "toNode": 3
+  },
+  {
+   "fromNode": 42,
+   "requirement": "^4.17.21",
+   "toNode": 11
+  },
+  {
+   "fromNode": 42,
+   "requirement": "4.15.3",
+   "toNode": 37
+  },
+  {
+   "fromNode": 43,
+   "requirement": "^3.0.0",
+   "toNode": 49
+  },
+  {
+   "fromNode": 43,
+   "requirement": "^2.0.4",
+   "toNode": 87
+  },
+  {
+   "fromNode": 44,
+   "requirement": "^7.1.1",
+   "toNode": 88
+  },
+  {
+   "fromNode": 46,
+   "requirement": "^4.0.1",
+   "toNode": 48
+  },
+  {
+   "fromNode": 47,
+   "requirement": "^2.0.0",
+   "toNode": 89
+  },
+  {
+   "fromNode": 48,
+   "requirement": "^2.1.1",
+   "toNode": 90
+  },
+  {
+   "fromNode": 50,
+   "requirement": "^2.2.1",
+   "toNode": 87
+  },
+  {
+   "fromNode": 51,
+   "requirement": "^7.0.6",
+   "toNode": 91
+  },
+  {
+   "fromNode": 51,
+   "requirement": "^4.0.1",
+   "toNode": 92
+  },
+  {
+   "fromNode": 52,
+   "requirement": "^8.0.2",
+   "toNode": 93
+  },
+  {
+   "fromNode": 52,
+   "requirement": "^0.11.0",
+   "toNode": 94
+  },
+  {
+   "fromNode": 55,
+   "requirement": "^5.0.0 || ^6.0.2 || ^7.0.0",
+   "toNode": 53
+  },
+  {
+   "fromNode": 55,
+   "requirement": "^10.2.0",
+   "toNode": 95
+  },
+  {
+   "fromNode": 56,
+   "requirement": "^2.2.0",
+   "toNode": 96
+  },
+  {
+   "fromNode": 56,
+   "requirement": "^1.1.1",
+   "toNode": 97
+  },
+  {
+   "fromNode": 57,
+   "requirement": "~0.6.0",
+   "toNode": 98
+  },
+  {
+   "fromNode": 60,
+   "requirement": "^2.2.0",
+   "toNode": 96
+  },
+  {
+   "fromNode": 63,
+   "requirement": "^1.3.4",
+   "toNode": 99
+  },
+  {
+   "fromNode": 63,
+   "requirement": "~1.2.1",
+   "toNode": 100
+  },
+  {
+   "fromNode": 64,
+   "requirement": "^9.0.1",
+   "toNode": 12
+  },
+  {
+   "fromNode": 64,
+   "requirement": "0.1.1",
+   "toNode": 101
+  },
+  {
+   "fromNode": 64,
+   "requirement": "^10.0.0",
+   "toNode": 102
+  },
+  {
+   "fromNode": 64,
+   "requirement": "^7.5.3",
+   "toNode": 103
+  },
+  {
+   "fromNode": 66,
+   "requirement": "^2.0.0",
+   "toNode": 104
+  },
+  {
+   "fromNode": 67,
+   "requirement": "^1.0.0",
+   "toNode": 105
+  },
+  {
+   "fromNode": 68,
+   "requirement": "^5.0.3",
+   "toNode": 78
+  },
+  {
+   "fromNode": 68,
+   "requirement": "^3.1.0",
+   "toNode": 79
+  },
+  {
+   "fromNode": 68,
+   "requirement": "^2.3.0",
+   "toNode": 106
+  },
+  {
+   "fromNode": 68,
+   "requirement": "^4.5.0",
+   "toNode": 107
+  },
+  {
+   "fromNode": 69,
+   "requirement": "^4.2.0",
+   "toNode": 108
+  },
+  {
+   "fromNode": 69,
+   "requirement": "^6.0.1",
+   "toNode": 109
+  },
+  {
+   "fromNode": 69,
+   "requirement": "^7.0.0",
+   "toNode": 110
+  },
+  {
+   "fromNode": 73,
+   "requirement": "^8.0.0",
+   "toNode": 111
+  },
+  {
+   "fromNode": 73,
+   "requirement": "^3.0.0",
+   "toNode": 112
+  },
+  {
+   "fromNode": 73,
+   "requirement": "^6.0.1",
+   "toNode": 113
+  },
+  {
+   "fromNode": 76,
+   "requirement": "^5.0.3",
+   "toNode": 78
+  },
+  {
+   "fromNode": 76,
+   "requirement": "^3.0.1",
+   "toNode": 79
+  },
+  {
+   "fromNode": 76,
+   "requirement": "^2.3.0",
+   "toNode": 106
+  },
+  {
+   "fromNode": 76,
+   "requirement": "^1.0.0",
+   "toNode": 114
+  },
+  {
+   "fromNode": 76,
+   "requirement": "^5.1.0",
+   "toNode": 115
+  },
+  {
+   "fromNode": 76,
+   "requirement": "^6.1.0",
+   "toNode": 116
+  },
+  {
+   "fromNode": 77,
+   "requirement": "^5.0.2",
+   "toNode": 78
+  },
+  {
+   "fromNode": 77,
+   "requirement": "^2.3.0",
+   "toNode": 106
+  },
+  {
+   "fromNode": 77,
+   "requirement": "^4.2.0",
+   "toNode": 107
+  },
+  {
+   "fromNode": 78,
+   "requirement": "^2.3.0",
+   "toNode": 106
+  },
+  {
+   "fromNode": 79,
+   "requirement": "^2.0.0",
+   "toNode": 77
+  },
+  {
+   "fromNode": 79,
+   "requirement": "^5.0.3",
+   "toNode": 78
+  },
+  {
+   "fromNode": 79,
+   "requirement": "^2.3.0",
+   "toNode": 106
+  },
+  {
+   "fromNode": 80,
+   "requirement": "^5.0.3",
+   "toNode": 78
+  },
+  {
+   "fromNode": 80,
+   "requirement": "^3.0.1",
+   "toNode": 79
+  },
+  {
+   "fromNode": 80,
+   "requirement": "^2.3.0",
+   "toNode": 106
+  },
+  {
+   "fromNode": 80,
+   "requirement": "^4.4.0",
+   "toNode": 107
+  },
+  {
+   "fromNode": 81,
+   "requirement": "^6.0.0",
+   "toNode": 117
+  },
+  {
+   "fromNode": 82,
+   "requirement": "^5.0.3",
+   "toNode": 78
+  },
+  {
+   "fromNode": 82,
+   "requirement": "^7.0.0",
+   "toNode": 81
+  },
+  {
+   "fromNode": 86,
+   "requirement": "^4.1.1",
+   "toNode": 118
+  },
+  {
+   "fromNode": 86,
+   "requirement": "^3.0.0",
+   "toNode": 119
+  },
+  {
+   "fromNode": 86,
+   "requirement": "^5.0.0",
+   "toNode": 120
+  },
+  {
+   "fromNode": 86,
+   "requirement": "^2.4.6",
+   "toNode": 121
+  },
+  {
+   "fromNode": 86,
+   "requirement": "^2.6.0",
+   "toNode": 122
+  },
+  {
+   "fromNode": 86,
+   "requirement": "^3.0.0",
+   "toNode": 123
+  },
+  {
+   "fromNode": 88,
+   "requirement": "^5.0.1",
+   "toNode": 124
+  },
+  {
+   "fromNode": 91,
+   "requirement": "^3.1.0",
+   "toNode": 125
+  },
+  {
+   "fromNode": 91,
+   "requirement": "^2.0.0",
+   "toNode": 126
+  },
+  {
+   "fromNode": 91,
+   "requirement": "^2.0.1",
+   "toNode": 127
+  },
+  {
+   "fromNode": 93,
+   "requirement": "^4.2.0",
+   "toNode": 128
+  },
+  {
+   "fromNode": 93,
+   "requirement": "^5.1.2",
+   "toNode": 129
+  },
+  {
+   "fromNode": 93,
+   "requirement": "^6.0.1",
+   "toNode": 130
+  },
+  {
+   "fromNode": 93,
+   "requirement": "^7.0.1",
+   "toNode": 131
+  },
+  {
+   "fromNode": 93,
+   "requirement": "^7.0.0",
+   "toNode": 132
+  },
+  {
+   "fromNode": 93,
+   "requirement": "^8.1.0",
+   "toNode": 133
+  },
+  {
+   "fromNode": 96,
+   "requirement": "^1.1.1",
+   "toNode": 134
+  },
+  {
+   "fromNode": 108,
+   "requirement": "^6.0.1",
+   "toNode": 109
+  },
+  {
+   "fromNode": 108,
+   "requirement": "^3.0.0",
+   "toNode": 112
+  },
+  {
+   "fromNode": 108,
+   "requirement": "^8.0.0",
+   "toNode": 135
+  },
+  {
+   "fromNode": 109,
+   "requirement": "^5.0.1",
+   "toNode": 136
+  },
+  {
+   "fromNode": 110,
+   "requirement": "^4.1.0",
+   "toNode": 108
+  },
+  {
+   "fromNode": 110,
+   "requirement": "^6.0.0",
+   "toNode": 109
+  },
+  {
+   "fromNode": 110,
+   "requirement": "^4.0.0",
+   "toNode": 137
+  },
+  {
+   "fromNode": 113,
+   "requirement": "^5.0.1",
+   "toNode": 138
+  },
+  {
+   "fromNode": 115,
+   "requirement": "^5.0.2",
+   "toNode": 78
+  },
+  {
+   "fromNode": 115,
+   "requirement": "^3.0.1",
+   "toNode": 79
+  },
+  {
+   "fromNode": 115,
+   "requirement": "^1.0.0",
+   "toNode": 114
+  },
+  {
+   "fromNode": 115,
+   "requirement": "^6.1.0",
+   "toNode": 116
+  },
+  {
+   "fromNode": 115,
+   "requirement": "^2.0.1",
+   "toNode": 139
+  },
+  {
+   "fromNode": 120,
+   "requirement": "^2.0.1",
+   "toNode": 106
+  },
+  {
+   "fromNode": 120,
+   "requirement": "^3.3.0",
+   "toNode": 140
+  },
+  {
+   "fromNode": 120,
+   "requirement": "^2.4.2",
+   "toNode": 141
+  },
+  {
+   "fromNode": 120,
+   "requirement": "^2.0.0",
+   "toNode": 142
+  },
+  {
+   "fromNode": 122,
+   "requirement": "^5.0.0",
+   "toNode": 143
+  },
+  {
+   "fromNode": 124,
+   "requirement": "^7.0.0",
+   "toNode": 144
+  },
+  {
+   "fromNode": 126,
+   "requirement": "^3.0.0",
+   "toNode": 145
+  },
+  {
+   "fromNode": 127,
+   "requirement": "^2.0.0",
+   "toNode": 146
+  },
+  {
+   "fromNode": 128,
+   "requirement": "^3.0.0",
+   "toNode": 112
+  },
+  {
+   "fromNode": 128,
+   "requirement": "^8.0.0",
+   "toNode": 147
+  },
+  {
+   "fromNode": 128,
+   "requirement": "^6.0.1",
+   "toNode": 148
+  },
+  {
+   "fromNode": 129,
+   "requirement": "^7.0.1",
+   "toNode": 131
+  },
+  {
+   "fromNode": 129,
+   "requirement": "^0.2.0",
+   "toNode": 149
+  },
+  {
+   "fromNode": 129,
+   "requirement": "^9.2.2",
+   "toNode": 150
+  },
+  {
+   "fromNode": 130,
+   "requirement": "^5.0.1",
+   "toNode": 151
+  },
+  {
+   "fromNode": 131,
+   "requirement": "^6.2.2",
+   "toNode": 152
+  },
+  {
+   "fromNode": 132,
+   "requirement": "^4.0.0",
+   "toNode": 153
+  },
+  {
+   "fromNode": 132,
+   "requirement": "^4.1.0",
+   "toNode": 154
+  },
+  {
+   "fromNode": 132,
+   "requirement": "^6.0.0",
+   "toNode": 155
+  },
+  {
+   "fromNode": 133,
+   "requirement": "^5.0.1",
+   "toNode": 129
+  },
+  {
+   "fromNode": 133,
+   "requirement": "^7.0.1",
+   "toNode": 131
+  },
+  {
+   "fromNode": 133,
+   "requirement": "^6.1.0",
+   "toNode": 156
+  },
+  {
+   "fromNode": 137,
+   "requirement": "^2.0.1",
+   "toNode": 157
+  },
+  {
+   "fromNode": 139,
+   "requirement": "^1.0.0",
+   "toNode": 114
+  },
+  {
+   "fromNode": 140,
+   "requirement": "^2.0.1",
+   "toNode": 106
+  },
+  {
+   "fromNode": 141,
+   "requirement": "^2.2.0",
+   "toNode": 106
+  },
+  {
+   "fromNode": 141,
+   "requirement": "^1.0.1",
+   "toNode": 158
+  },
+  {
+   "fromNode": 141,
+   "requirement": "^4.2.0",
+   "toNode": 159
+  },
+  {
+   "fromNode": 143,
+   "requirement": "~0.0.3",
+   "toNode": 160
+  },
+  {
+   "fromNode": 143,
+   "requirement": "^3.0.0",
+   "toNode": 161
+  },
+  {
+   "fromNode": 148,
+   "requirement": "^5.0.1",
+   "toNode": 162
+  },
+  {
+   "fromNode": 153,
+   "requirement": "^2.0.1",
+   "toNode": 157
+  },
+  {
+   "fromNode": 154,
+   "requirement": "^3.0.0",
+   "toNode": 112
+  },
+  {
+   "fromNode": 154,
+   "requirement": "^6.0.1",
+   "toNode": 155
+  },
+  {
+   "fromNode": 154,
+   "requirement": "^8.0.0",
+   "toNode": 163
+  },
+  {
+   "fromNode": 155,
+   "requirement": "^5.0.1",
+   "toNode": 164
+  },
+  {
+   "fromNode": 157,
+   "requirement": "~1.1.4",
+   "toNode": 165
+  },
+  {
+   "fromNode": 158,
+   "requirement": "^2.0.1",
+   "toNode": 106
+  },
+  {
+   "fromNode": 158,
+   "requirement": "^2.0.0",
+   "toNode": 142
+  },
+  {
+   "fromNode": 158,
+   "requirement": "^4.2.0",
+   "toNode": 166
+  },
+  {
+   "fromNode": 159,
+   "requirement": "^2.2.0",
+   "toNode": 106
+  },
+  {
+   "fromNode": 166,
+   "requirement": "^2.2.0",
+   "toNode": 106
+  }
+ ],
+ "error": "",
+ "nodes": [
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "SELF",
+   "versionKey": {
+    "name": "mjml",
+    "system": "NPM",
+    "version": "4.15.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "@babel/runtime",
+    "system": "NPM",
+    "version": "7.29.10"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "mjml-cli",
+    "system": "NPM",
+    "version": "4.15.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "mjml-core",
+    "system": "NPM",
+    "version": "4.15.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "mjml-migrate",
+    "system": "NPM",
+    "version": "4.15.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "mjml-preset-core",
+    "system": "NPM",
+    "version": "4.15.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "mjml-validator",
+    "system": "NPM",
+    "version": "4.15.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "chokidar",
+    "system": "NPM",
+    "version": "3.6.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "glob",
+    "system": "NPM",
+    "version": "10.5.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "html-minifier",
+    "system": "NPM",
+    "version": "4.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "js-beautify",
+    "system": "NPM",
+    "version": "1.15.4"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "lodash",
+    "system": "NPM",
+    "version": "4.18.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "minimatch",
+    "system": "NPM",
+    "version": "9.0.9"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "mjml-parser-xml",
+    "system": "NPM",
+    "version": "4.15.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "yargs",
+    "system": "NPM",
+    "version": "17.7.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "cheerio",
+    "system": "NPM",
+    "version": "1.0.0-rc.12"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "detect-node",
+    "system": "NPM",
+    "version": "2.1.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "juice",
+    "system": "NPM",
+    "version": "10.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "mjml-accordion",
+    "system": "NPM",
+    "version": "4.15.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "mjml-body",
+    "system": "NPM",
+    "version": "4.15.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "mjml-button",
+    "system": "NPM",
+    "version": "4.15.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "mjml-carousel",
+    "system": "NPM",
+    "version": "4.15.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "mjml-column",
+    "system": "NPM",
+    "version": "4.15.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "mjml-divider",
+    "system": "NPM",
+    "version": "4.15.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "mjml-group",
+    "system": "NPM",
+    "version": "4.15.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "mjml-head",
+    "system": "NPM",
+    "version": "4.15.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "mjml-head-attributes",
+    "system": "NPM",
+    "version": "4.15.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "mjml-head-breakpoint",
+    "system": "NPM",
+    "version": "4.15.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "mjml-head-font",
+    "system": "NPM",
+    "version": "4.15.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "mjml-head-html-attributes",
+    "system": "NPM",
+    "version": "4.15.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "mjml-head-preview",
+    "system": "NPM",
+    "version": "4.15.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "mjml-head-style",
+    "system": "NPM",
+    "version": "4.15.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "mjml-head-title",
+    "system": "NPM",
+    "version": "4.15.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "mjml-hero",
+    "system": "NPM",
+    "version": "4.15.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "mjml-image",
+    "system": "NPM",
+    "version": "4.15.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "mjml-navbar",
+    "system": "NPM",
+    "version": "4.15.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "mjml-raw",
+    "system": "NPM",
+    "version": "4.15.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "mjml-section",
+    "system": "NPM",
+    "version": "4.15.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "mjml-social",
+    "system": "NPM",
+    "version": "4.15.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "mjml-spacer",
+    "system": "NPM",
+    "version": "4.15.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "mjml-table",
+    "system": "NPM",
+    "version": "4.15.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "mjml-text",
+    "system": "NPM",
+    "version": "4.15.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "mjml-wrapper",
+    "system": "NPM",
+    "version": "4.15.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "anymatch",
+    "system": "NPM",
+    "version": "3.1.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "braces",
+    "system": "NPM",
+    "version": "3.0.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "fsevents",
+    "system": "NPM",
+    "version": "2.3.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "glob-parent",
+    "system": "NPM",
+    "version": "5.1.2"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "is-binary-path",
+    "system": "NPM",
+    "version": "2.1.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "is-glob",
+    "system": "NPM",
+    "version": "4.0.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "normalize-path",
+    "system": "NPM",
+    "version": "3.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "readdirp",
+    "system": "NPM",
+    "version": "3.6.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "foreground-child",
+    "system": "NPM",
+    "version": "3.3.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "jackspeak",
+    "system": "NPM",
+    "version": "3.4.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "minipass",
+    "system": "NPM",
+    "version": "7.1.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "package-json-from-dist",
+    "system": "NPM",
+    "version": "1.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "path-scurry",
+    "system": "NPM",
+    "version": "1.11.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "camel-case",
+    "system": "NPM",
+    "version": "3.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "clean-css",
+    "system": "NPM",
+    "version": "4.2.4"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "commander",
+    "system": "NPM",
+    "version": "2.20.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "he",
+    "system": "NPM",
+    "version": "1.2.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "param-case",
+    "system": "NPM",
+    "version": "2.1.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "relateurl",
+    "system": "NPM",
+    "version": "0.2.7"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "uglify-js",
+    "system": "NPM",
+    "version": "3.19.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "config-chain",
+    "system": "NPM",
+    "version": "1.1.13"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "editorconfig",
+    "system": "NPM",
+    "version": "1.0.7"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "js-cookie",
+    "system": "NPM",
+    "version": "3.0.8"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "nopt",
+    "system": "NPM",
+    "version": "7.2.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "brace-expansion",
+    "system": "NPM",
+    "version": "2.1.7"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "htmlparser2",
+    "system": "NPM",
+    "version": "9.1.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "cliui",
+    "system": "NPM",
+    "version": "8.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "escalade",
+    "system": "NPM",
+    "version": "3.2.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "get-caller-file",
+    "system": "NPM",
+    "version": "2.0.5"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "require-directory",
+    "system": "NPM",
+    "version": "2.1.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "string-width",
+    "system": "NPM",
+    "version": "4.2.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "y18n",
+    "system": "NPM",
+    "version": "5.0.8"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "yargs-parser",
+    "system": "NPM",
+    "version": "21.1.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "cheerio-select",
+    "system": "NPM",
+    "version": "2.1.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "dom-serializer",
+    "system": "NPM",
+    "version": "2.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "domhandler",
+    "system": "NPM",
+    "version": "5.0.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "domutils",
+    "system": "NPM",
+    "version": "3.2.2"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "htmlparser2",
+    "system": "NPM",
+    "version": "8.0.2"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "parse5",
+    "system": "NPM",
+    "version": "7.3.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "parse5-htmlparser2-tree-adapter",
+    "system": "NPM",
+    "version": "7.1.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "commander",
+    "system": "NPM",
+    "version": "6.2.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "mensch",
+    "system": "NPM",
+    "version": "0.3.4"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "slick",
+    "system": "NPM",
+    "version": "1.12.2"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "web-resource-inliner",
+    "system": "NPM",
+    "version": "6.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "picomatch",
+    "system": "NPM",
+    "version": "2.3.2"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "fill-range",
+    "system": "NPM",
+    "version": "7.1.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "binary-extensions",
+    "system": "NPM",
+    "version": "2.3.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "is-extglob",
+    "system": "NPM",
+    "version": "2.1.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "cross-spawn",
+    "system": "NPM",
+    "version": "7.0.6"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "signal-exit",
+    "system": "NPM",
+    "version": "4.1.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "@isaacs/cliui",
+    "system": "NPM",
+    "version": "8.0.2"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "@pkgjs/parseargs",
+    "system": "NPM",
+    "version": "0.11.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "lru-cache",
+    "system": "NPM",
+    "version": "10.4.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "no-case",
+    "system": "NPM",
+    "version": "2.3.2"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "upper-case",
+    "system": "NPM",
+    "version": "1.1.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "source-map",
+    "system": "NPM",
+    "version": "0.6.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "ini",
+    "system": "NPM",
+    "version": "1.3.8"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "proto-list",
+    "system": "NPM",
+    "version": "1.2.4"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "@one-ini/wasm",
+    "system": "NPM",
+    "version": "0.1.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "commander",
+    "system": "NPM",
+    "version": "10.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "semver",
+    "system": "NPM",
+    "version": "7.8.5"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "abbrev",
+    "system": "NPM",
+    "version": "2.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "balanced-match",
+    "system": "NPM",
+    "version": "1.0.2"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "domelementtype",
+    "system": "NPM",
+    "version": "2.3.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "entities",
+    "system": "NPM",
+    "version": "4.5.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "string-width",
+    "system": "NPM",
+    "version": "4.2.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "strip-ansi",
+    "system": "NPM",
+    "version": "6.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "wrap-ansi",
+    "system": "NPM",
+    "version": "7.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "emoji-regex",
+    "system": "NPM",
+    "version": "8.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "is-fullwidth-code-point",
+    "system": "NPM",
+    "version": "3.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "strip-ansi",
+    "system": "NPM",
+    "version": "6.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "boolbase",
+    "system": "NPM",
+    "version": "1.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "css-select",
+    "system": "NPM",
+    "version": "5.2.2"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "css-what",
+    "system": "NPM",
+    "version": "6.2.2"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "entities",
+    "system": "NPM",
+    "version": "6.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "ansi-colors",
+    "system": "NPM",
+    "version": "4.1.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "escape-goat",
+    "system": "NPM",
+    "version": "3.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "htmlparser2",
+    "system": "NPM",
+    "version": "5.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "mime",
+    "system": "NPM",
+    "version": "2.6.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "node-fetch",
+    "system": "NPM",
+    "version": "2.7.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "valid-data-url",
+    "system": "NPM",
+    "version": "3.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "to-regex-range",
+    "system": "NPM",
+    "version": "5.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "path-key",
+    "system": "NPM",
+    "version": "3.1.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "shebang-command",
+    "system": "NPM",
+    "version": "2.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "which",
+    "system": "NPM",
+    "version": "2.0.2"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "string-width",
+    "system": "NPM",
+    "version": "4.2.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "string-width",
+    "system": "NPM",
+    "version": "5.1.2"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "strip-ansi",
+    "system": "NPM",
+    "version": "6.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "strip-ansi",
+    "system": "NPM",
+    "version": "7.2.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "wrap-ansi",
+    "system": "NPM",
+    "version": "7.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "wrap-ansi",
+    "system": "NPM",
+    "version": "8.1.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "lower-case",
+    "system": "NPM",
+    "version": "1.1.4"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "emoji-regex",
+    "system": "NPM",
+    "version": "8.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "ansi-regex",
+    "system": "NPM",
+    "version": "5.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "ansi-styles",
+    "system": "NPM",
+    "version": "4.3.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "ansi-regex",
+    "system": "NPM",
+    "version": "5.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "nth-check",
+    "system": "NPM",
+    "version": "2.1.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "domhandler",
+    "system": "NPM",
+    "version": "3.3.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "domutils",
+    "system": "NPM",
+    "version": "2.8.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "entities",
+    "system": "NPM",
+    "version": "2.2.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "whatwg-url",
+    "system": "NPM",
+    "version": "5.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "is-number",
+    "system": "NPM",
+    "version": "7.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "shebang-regex",
+    "system": "NPM",
+    "version": "3.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "isexe",
+    "system": "NPM",
+    "version": "2.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "emoji-regex",
+    "system": "NPM",
+    "version": "8.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "strip-ansi",
+    "system": "NPM",
+    "version": "6.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "eastasianwidth",
+    "system": "NPM",
+    "version": "0.2.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "emoji-regex",
+    "system": "NPM",
+    "version": "9.2.2"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "ansi-regex",
+    "system": "NPM",
+    "version": "5.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "ansi-regex",
+    "system": "NPM",
+    "version": "6.4.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "ansi-styles",
+    "system": "NPM",
+    "version": "4.3.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "string-width",
+    "system": "NPM",
+    "version": "4.2.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "strip-ansi",
+    "system": "NPM",
+    "version": "6.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "ansi-styles",
+    "system": "NPM",
+    "version": "6.2.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "color-convert",
+    "system": "NPM",
+    "version": "2.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "dom-serializer",
+    "system": "NPM",
+    "version": "1.4.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "domhandler",
+    "system": "NPM",
+    "version": "4.3.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "tr46",
+    "system": "NPM",
+    "version": "0.0.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "webidl-conversions",
+    "system": "NPM",
+    "version": "3.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "ansi-regex",
+    "system": "NPM",
+    "version": "5.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "emoji-regex",
+    "system": "NPM",
+    "version": "8.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "ansi-regex",
+    "system": "NPM",
+    "version": "5.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "color-name",
+    "system": "NPM",
+    "version": "1.1.4"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "domhandler",
+    "system": "NPM",
+    "version": "4.3.1"
+   }
+  }
+ ]
+}

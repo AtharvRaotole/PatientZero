@@ -1,0 +1,90 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@img/sharp-darwin-arm64@0.35.5",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/sharp-darwin-arm64_0.35.5_1790516721307_0.27658611102867714"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:30e986d5-3d07-4164-8967-b8a2c7b2feec"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "author": {
+  "email": "npm@lovell.info",
+  "name": "Lovell Fuller"
+ },
+ "bugs": {
+  "url": "https://github.com/lovell/sharp/issues"
+ },
+ "cpu": [
+  "arm64"
+ ],
+ "description": "Prebuilt sharp for use with macOS 64-bit ARM",
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@img%2fsharp-darwin-arm64@0.35.5"
+  },
+  "fileCount": 5,
+  "integrity": "sha512-QRUlFQ0WxvdWyqqG/WtI3iupfD5rBzmCHXSdPsY91sAtVtTo7Q4cb6zOccZ3gqEqkr0f1As1ehLqmEpDsRf+lg==",
+  "shasum": "b1e0276d4e9bf26a7fde7b2adcbe076c71015fc2",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIC1v6p9wvbWzZo/E9VsMYaVhtgN/2wSJ3Fqgyd/4RWdEAiB3+fVEASiA1/Ik5ubhd5hnJCSC7MSbuO+DDmS9MnVqqA=="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQD0rJizeUKDYrmxnmSQD9nBYa0PxjXTVCuDkzlof5EG0wIgW0pG79yLo3bl5w6+F2l/dR00a6edaid+1rCvxKfSo2A="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@img/sharp-darwin-arm64/-/sharp-darwin-arm64-0.35.5.tgz",
+  "unpackedSize": 292231
+ },
+ "engines": {
+  "node": ">=20.9.0"
+ },
+ "exports": {
+  "./package": "./package.json",
+  "./sharp.node": "./index.cjs"
+ },
+ "funding": {
+  "url": "https://opencollective.com/libvips"
+ },
+ "gitHead": "51a990faa26ade5586a4934ac9673c98d8893326",
+ "homepage": "https://sharp.pixelplumbing.com",
+ "license": "Apache-2.0",
+ "maintainers": [
+  {
+   "email": "npm@lovell.info",
+   "name": "lovell"
+  }
+ ],
+ "name": "@img/sharp-darwin-arm64",
+ "optionalDependencies": {
+  "@img/sharp-libvips-darwin-arm64": "1.3.4"
+ },
+ "os": [
+  "darwin"
+ ],
+ "preferUnplugged": true,
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "directory": "npm/darwin-arm64",
+  "type": "git",
+  "url": "git+https://github.com/lovell/sharp.git"
+ },
+ "type": "commonjs",
+ "version": "0.35.5"
+}

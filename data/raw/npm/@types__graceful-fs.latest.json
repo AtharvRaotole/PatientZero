@@ -1,0 +1,62 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@types/graceful-fs@4.1.9",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/graceful-fs_4.1.9_1699339058330_0.5330916017262843"
+ },
+ "_npmUser": {
+  "email": "ts-npm-types@microsoft.com",
+  "name": "types"
+ },
+ "contributors": [
+  {
+   "githubUsername": "Bartvds",
+   "name": "Bart van der Schoor",
+   "url": "https://github.com/Bartvds"
+  },
+  {
+   "githubUsername": "BendingBender",
+   "name": "BendingBender",
+   "url": "https://github.com/BendingBender"
+  }
+ ],
+ "dependencies": {
+  "@types/node": "*"
+ },
+ "description": "TypeScript definitions for graceful-fs",
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-olP3sd1qOEe5dXTSaFvQG+02VdRXcdytWLAZsAq1PecU8uqQAhkrnbli7DagjtXKW/Bl7YJbUsa8MPcuc8LHEQ==",
+  "shasum": "2a06bc0f68a20ab37b3e36aa238be6abdf49e8b4",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEQCIHn28BzvuHNzXIC0Gwf6m4MAj1rQsD+7orDbKBNMxpwNAiA7vG9rn/8/AqWOu007cqSN12vVO66tdXrix473Xw1mZA=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@types/graceful-fs/-/graceful-fs-4.1.9.tgz",
+  "unpackedSize": 3899
+ },
+ "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/graceful-fs",
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "ts-npm-types@microsoft.com",
+   "name": "types"
+  }
+ ],
+ "name": "@types/graceful-fs",
+ "repository": {
+  "directory": "types/graceful-fs",
+  "type": "git",
+  "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+ },
+ "scripts": {},
+ "typeScriptVersion": "4.5",
+ "types": "index.d.ts",
+ "typesPublisherContentHash": "4e85fab24364f5c04bc484efb612d1c679702932e21e6f4f30c297aa14e21b36",
+ "version": "4.1.9"
+}

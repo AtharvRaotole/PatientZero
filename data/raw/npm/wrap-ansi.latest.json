@@ -1,0 +1,107 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "wrap-ansi@10.0.2",
+ "_nodeVersion": "26.9.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/wrap-ansi_10.0.2_1789963772182_0.548713483073429"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "12.0.1",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/chalk/wrap-ansi/issues"
+ },
+ "dependencies": {
+  "ansi-styles": "^6.2.3",
+  "string-width": "^8.2.0"
+ },
+ "description": "Wordwrap a string with ANSI escape codes",
+ "devDependencies": {
+  "chalk": "^5.6.2",
+  "has-ansi": "^6.0.2",
+  "strip-ansi": "^7.1.2",
+  "tsd": "^0.33.0",
+  "xo": "^1.2.3"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-6OLRNZqRntVGBm26ghZ5eZhCuWWyOkRCSn8XsOIuq5stpCE/tjLbdozd93naILZig0lmD8ANfRwnhn0DLeXGlg==",
+  "shasum": "92f8f14b014136d034389a8700d6ce3df79c65d5",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIATDgbAg5x6ZRCd7iARI3SLL8d6chrBB+QqctaL6+46EAiAyiG2WG7GVLhNWVQtZ0oXMfpqrcbnp0EjGg4iuPkJgHg=="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQC72TUscUJN516GlIFOgkea2KhM3Qwsd6+/SfpTdLnS2AIgHs5lDfRMvaOO2UVaFcpJxQttYw0MER36kkKktdNZ8gg="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/wrap-ansi/-/wrap-ansi-10.0.2.tgz",
+  "unpackedSize": 25896
+ },
+ "engines": {
+  "node": ">=20"
+ },
+ "exports": {
+  "default": "./index.js",
+  "types": "./index.d.ts"
+ },
+ "funding": "https://github.com/chalk/wrap-ansi?sponsor=1",
+ "gitHead": "4e44ec236852ac3ca28a554dbc3b5fc396346f1d",
+ "homepage": "https://github.com/chalk/wrap-ansi#readme",
+ "keywords": [
+  "wrap",
+  "break",
+  "wordwrap",
+  "wordbreak",
+  "linewrap",
+  "ansi",
+  "styles",
+  "color",
+  "colour",
+  "colors",
+  "terminal",
+  "console",
+  "cli",
+  "string",
+  "tty",
+  "escape",
+  "formatting",
+  "rgb",
+  "256",
+  "shell",
+  "xterm",
+  "log",
+  "logging",
+  "command-line",
+  "text"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "wrap-ansi",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/chalk/wrap-ansi.git"
+ },
+ "scripts": {
+  "test": "xo && node --test && tsd"
+ },
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "10.0.2"
+}

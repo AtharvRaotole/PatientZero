@@ -1,0 +1,112 @@
+{
+ "_from": "file:cacheable-request-13.0.19.tgz",
+ "_hasShrinkwrap": false,
+ "_id": "cacheable-request@13.0.19",
+ "_integrity": "sha512-SVXGH037+Mo1aIMO5B2UcleR43FGjFdN+M8JObSyEoQ2Mn4CODRWx28gN5jiTF0n5ItsgtIZfyargMNs8GX4kg==",
+ "_nodeVersion": "24.11.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/cacheable-request_13.0.19_1778182949768_0.2616848809599097"
+ },
+ "_npmUser": {
+  "email": "me@jaredwray.com",
+  "name": "jaredwray"
+ },
+ "_npmVersion": "11.6.2",
+ "_resolved": "/private/var/folders/h1/n3vxgc0n1sn5_9pxftc4p6l80000gn/T/a61ccc125b3f3cf566b8aa70c3bea17b/cacheable-request-13.0.19.tgz",
+ "author": {
+  "email": "me@jaredwray.com",
+  "name": "Jared Wray",
+  "url": "http://jaredwray.com"
+ },
+ "bugs": {
+  "url": "https://github.com/jaredwray/cacheable/issues"
+ },
+ "dependencies": {
+  "@types/http-cache-semantics": "^4.2.0",
+  "get-stream": "^9.0.1",
+  "http-cache-semantics": "^4.2.0",
+  "keyv": "^5.6.0",
+  "mimic-response": "^4.0.0",
+  "normalize-url": "^8.1.1",
+  "responselike": "^4.0.2"
+ },
+ "dependenciesComments": {
+  "@types/http-cache-semantics": "It needs to be in the dependencies list and not devDependencies because otherwise projects that use this one will be getting `Could not find a declaration file for module 'http-cache-semantics'` error when running `tsc`, see https://github.com/jaredwray/cacheable-request/issues/194 for details"
+ },
+ "description": "Wrap native HTTP requests with RFC compliant cache support",
+ "devDependencies": {
+  "@keyv/sqlite": "^4.0.8",
+  "@types/express": "^5.0.6",
+  "@types/responselike": "^1.0.3",
+  "body-parser": "^2.2.2",
+  "delay": "^7.0.0",
+  "express": "^5.2.1",
+  "pify": "^6.1.0",
+  "sqlite3": "^6.0.1",
+  "tsup": "^8.5.1",
+  "typescript": "^5.9.3"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 11,
+  "integrity": "sha512-SVXGH037+Mo1aIMO5B2UcleR43FGjFdN+M8JObSyEoQ2Mn4CODRWx28gN5jiTF0n5ItsgtIZfyargMNs8GX4kg==",
+  "shasum": "2c8a3b6b4cc37ea6906cc182f5b838e5822b2f97",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIErq6e+YjB5YjHcVPgamri9jIh2bMmdaDxPCMhWVWhF3AiEArsX3CA/RVmRAL4+R+/Tao+QbQHhY1b0F7Crm6NxyFOE="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/cacheable-request/-/cacheable-request-13.0.19.tgz",
+  "unpackedSize": 79349
+ },
+ "engines": {
+  "node": ">=18"
+ },
+ "exports": "./dist/index.js",
+ "homepage": "https://github.com/jaredwray/cacheable#readme",
+ "keywords": [
+  "HTTP",
+  "HTTPS",
+  "cache",
+  "caching",
+  "layer",
+  "cacheable",
+  "RFC 7234",
+  "RFC",
+  "7234",
+  "compliant"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "lukechilds123@gmail.com",
+   "name": "lukechilds"
+  },
+  {
+   "email": "me@jaredwray.com",
+   "name": "jaredwray"
+  },
+  {
+   "email": "sz.marczak@gmail.com",
+   "name": "szmarczak"
+  }
+ ],
+ "name": "cacheable-request",
+ "repository": {
+  "directory": "packages/cacheable-request",
+  "type": "git",
+  "url": "git+https://github.com/jaredwray/cacheable.git"
+ },
+ "scripts": {
+  "build": "rimraf ./dist && tsc --project tsconfig.build.json",
+  "clean": "rimraf node_modules ./coverage ./test/testdb.sqlite ./dist",
+  "lint": "biome check --write --error-on-warnings",
+  "test": "pnpm lint && vitest run --coverage",
+  "test:ci": "biome check --error-on-warnings && vitest run --coverage"
+ },
+ "type": "module",
+ "types": "./dist/index.d.ts",
+ "version": "13.0.19"
+}

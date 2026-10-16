@@ -1,0 +1,69 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@protobufjs/eventemitter@1.1.1",
+ "_nodeVersion": "24.15.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/eventemitter_1.1.1_1779417183088_0.8412785973477814"
+ },
+ "_npmUser": {
+  "email": "dcode+npm@dcode.io",
+  "name": "dcode"
+ },
+ "_npmVersion": "11.12.1",
+ "author": {
+  "email": "dcode+protobufjs@dcode.io",
+  "name": "Daniel Wirtz"
+ },
+ "bugs": {
+  "url": "https://github.com/dcodeIO/protobuf.js/issues"
+ },
+ "description": "A minimal event emitter.",
+ "devDependencies": {
+  "istanbul": "^0.4.5",
+  "tape": "^5.0.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 7,
+  "integrity": "sha512-vW1GmwMZNnL+gMRaovlh9yZX74kc+TTU3FObkkurpMaRtBfLP3ldjS9KQWlwZgraRE0+dheEEoAxdzcJQ8eXZg==",
+  "shasum": "d512cb26c0ae026091ee2c1167f1be6faf5c842a",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDc6xNFdYNDiGi8yyqTgVBmVhXE2Nqw5Hs+IpCc5d7twwIgXsrLAHSOtZeGyJe6TLelfgRam32e3NO8TpxNHQYFVXo="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@protobufjs/eventemitter/-/eventemitter-1.1.1.tgz",
+  "unpackedSize": 10310
+ },
+ "gitHead": "bfdf15c1e9e59ee001110685dd15616fd68a8742",
+ "homepage": "https://github.com/dcodeIO/protobuf.js#readme",
+ "license": "BSD-3-Clause",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "dcode+npm@dcode.io",
+   "name": "dcode"
+  },
+  {
+   "email": "dcode+protobufjs@dcode.io",
+   "name": "protobufjs"
+  },
+  {
+   "email": "node-team-npm+wombot@google.com",
+   "name": "google-wombot"
+  }
+ ],
+ "name": "@protobufjs/eventemitter",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/dcodeIO/protobuf.js.git"
+ },
+ "scripts": {
+  "coverage": "istanbul cover node_modules/tape/bin/tape tests/*.js",
+  "test": "tape tests/*.js"
+ },
+ "types": "index.d.ts",
+ "version": "1.1.1"
+}

@@ -1,0 +1,98 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "uglify-js@3.19.3",
+ "_nodeVersion": "22.2.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/uglify-js_3.19.3_1724939341116_0.15985108879765675"
+ },
+ "_npmUser": {
+  "email": "alexlamsl@gmail.com",
+  "name": "alexlamsl"
+ },
+ "_npmVersion": "10.7.0",
+ "author": {
+  "email": "mihai.bazon@gmail.com",
+  "name": "Mihai Bazon",
+  "url": "http://lisperator.net/"
+ },
+ "bin": {
+  "uglifyjs": "bin/uglifyjs"
+ },
+ "bugs": {
+  "url": "https://github.com/mishoo/UglifyJS/issues"
+ },
+ "description": "JavaScript parser, mangler/compressor and beautifier toolkit",
+ "devDependencies": {
+  "acorn": "~8.7.1",
+  "semver": "~6.3.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 20,
+  "integrity": "sha512-v3Xu+yuwBXisp6QYTcH4UbH+xYJXqnq2m/LtQVWKWzYc1iehYnLixoQDN9FH6/j9/oybfd6W9Ghwkl8+UMKTKQ==",
+  "shasum": "82315e9bbc6f2b25888858acd1fff8441035b77f",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIAv4Yr5467BSkvLII/apXlWjuT1onnKJVIKxg7h0kDAcAiEApXufn6zBy/nKLDQXXAv3MrkrtuKeTNOBp1auDJs3evw="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/uglify-js/-/uglify-js-3.19.3.tgz",
+  "unpackedSize": 1304556
+ },
+ "engines": {
+  "node": ">=0.8.0"
+ },
+ "gitHead": "3ea33afc72462a470466473208a33379b7204765",
+ "homepage": "https://github.com/mishoo/UglifyJS#readme",
+ "keywords": [
+  "cli",
+  "compress",
+  "compressor",
+  "ecma",
+  "ecmascript",
+  "es",
+  "es5",
+  "javascript",
+  "js",
+  "jsmin",
+  "min",
+  "minification",
+  "minifier",
+  "minify",
+  "optimize",
+  "optimizer",
+  "pack",
+  "packer",
+  "parse",
+  "parser",
+  "uglifier",
+  "uglify"
+ ],
+ "license": "BSD-2-Clause",
+ "main": "tools/node.js",
+ "maintainers": [
+  {
+   "email": "alexlamsl@gmail.com",
+   "name": "alexlamsl"
+  },
+  {
+   "email": "mihai.bazon@gmail.com",
+   "name": "mishoo"
+  },
+  {
+   "email": "rvanvelzen1@gmail.com",
+   "name": "rvanvelzen1"
+  }
+ ],
+ "name": "uglify-js",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/mishoo/UglifyJS.git"
+ },
+ "scripts": {
+  "test": "node test/compress.js && node test/mocha.js"
+ },
+ "version": "3.19.3"
+}

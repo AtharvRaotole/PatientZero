@@ -1,0 +1,99 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "find-my-way@9.10.0",
+ "_nodeVersion": "24.18.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/find-my-way_9.10.0_1791626672280_0.005653805113412735"
+ },
+ "_npmUser": {
+  "email": "hello@matteocollina.com",
+  "name": "matteo.collina"
+ },
+ "_npmVersion": "11.16.0",
+ "author": {
+  "name": "Tomas Della Vedova - @delvedor",
+  "url": "http://delved.org"
+ },
+ "bugs": {
+  "url": "https://github.com/delvedor/find-my-way/issues"
+ },
+ "dependencies": {
+  "fast-deep-equal": "^3.1.3",
+  "fast-querystring": "^1.0.0",
+  "safe-regex2": "^5.0.0"
+ },
+ "description": "Crazy fast http radix based router",
+ "devDependencies": {
+  "@types/node": "^26.1.0",
+  "benchmark": "^2.1.4",
+  "borp": "^1.0.0",
+  "chalk": "^6.0.0",
+  "eslint": "^9.39.5",
+  "inquirer": "^14.0.2",
+  "neostandard": "^0.13.0",
+  "pre-commit": "^2.0.0",
+  "proxyquire": "^2.1.3",
+  "rfdc": "^1.3.0",
+  "simple-git": "^3.7.1",
+  "tstyche": "^7.0.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 105,
+  "integrity": "sha512-eru+uCPQ2g+nLBkf84MHP/KyNNMar0BDy0j+i8Fb72GF9/YHBZ58q7FODUtfVV7XU9nfRUHXSmaM8NmZcIbZ4Q==",
+  "shasum": "4e91651f61f9fed7af95d436e5beb8de762e1fb7",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQDqrMkzxQRhHa/tUyPlQlzqqIeYKhBZdIM9N5Ni0RwmBAIhAJyE45ApCDoX0TC4EHMScraEvYhR210R0Zupbfld9+Ec"
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQD7U7otuJf53AkwKlmR1wsOnf1nIuc1c/ZMq6Rl8X6moAIgQWylkNuXrYX8yzq6ZO90rx1fG5omlclbx7Zx0FoLXeI="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/find-my-way/-/find-my-way-9.10.0.tgz",
+  "unpackedSize": 498239
+ },
+ "engines": {
+  "node": ">=20"
+ },
+ "gitHead": "c47c38df20e4c983c1d5983fd528b1efd0312524",
+ "homepage": "https://github.com/delvedor/find-my-way#readme",
+ "keywords": [
+  "http",
+  "router",
+  "radix",
+  "fast",
+  "speed"
+ ],
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "hello@matteocollina.com",
+   "name": "matteo.collina"
+  },
+  {
+   "email": "tommydelved@gmail.com",
+   "name": "delvedor"
+  }
+ ],
+ "name": "find-my-way",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/delvedor/find-my-way.git"
+ },
+ "scripts": {
+  "bench": "node ./benchmark/bench.js",
+  "bench:cmp": "node ./benchmark/compare-branches.js",
+  "bench:cmp:ci": "node ./benchmark/compare-branches.js --ci",
+  "test": "npm run test:lint && borp && npm run test:typescript",
+  "test:lint": "eslint .",
+  "test:typescript": "tstyche"
+ },
+ "type": "commonjs",
+ "types": "index.d.ts",
+ "version": "9.10.0"
+}

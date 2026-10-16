@@ -1,0 +1,129 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "tapable@2.3.3",
+ "_nodeVersion": "24.14.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/tapable_2.3.3_1776778650048_0.6399570916587127"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:084460e7-d316-4f7e-8d2b-839ecd9c3833"
+  }
+ },
+ "_npmVersion": "11.11.0",
+ "author": {
+  "name": "Tobias Koppers @sokra"
+ },
+ "browser": {
+  "util": "./lib/util-browser.js"
+ },
+ "bugs": {
+  "url": "https://github.com/webpack/tapable/issues"
+ },
+ "description": "Just a little module for plugins.",
+ "devDependencies": {
+  "@babel/core": "^7.4.4",
+  "@babel/preset-env": "^7.4.4",
+  "@changesets/cli": "^2.31.0",
+  "@changesets/get-github-info": "^0.8.0",
+  "@codspeed/core": "^5.3.0",
+  "@stylistic/eslint-plugin": "^5.2.3",
+  "babel-jest": "^30.3.0",
+  "eslint": "^9.28.0",
+  "eslint-config-webpack": "^4.6.3",
+  "jest": "^30.3.0",
+  "prettier": "^3.8.3",
+  "prettier-1": "npm:prettier@^1",
+  "tinybench": "^6.0.0"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/tapable@2.3.3"
+  },
+  "fileCount": 20,
+  "integrity": "sha512-uxc/zpqFg6x7C8vOE7lh6Lbda8eEL9zmVm/PLeTPBRhh1xCgdWaQ+J1CUieGpIfm2HdtsUpRv+HshiasBMcc6A==",
+  "shasum": "5da7c9992c46038221267985ab28421a8879f160",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQCO4IKtVuajXyWWB5vPqkY8gMTIz+D/OH2cldumP9RbXQIhAKy3rk1uh4bmDBfUV79876tBYXlh5WySfjwcXvnt3n6R"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/tapable/-/tapable-2.3.3.tgz",
+  "unpackedSize": 73418
+ },
+ "engines": {
+  "node": ">=6"
+ },
+ "funding": {
+  "type": "opencollective",
+  "url": "https://opencollective.com/webpack"
+ },
+ "gitHead": "429601243bca39b4678c1dd4d2d6a84005977b2e",
+ "homepage": "https://github.com/webpack/tapable",
+ "jest": {
+  "snapshotFormat": {
+   "escapeString": true,
+   "printBasicPrototype": true
+  },
+  "transform": {
+   "test[\\\\/].+\\.js$": "babel-jest"
+  }
+ },
+ "license": "MIT",
+ "main": "lib/index.js",
+ "maintainers": [
+  {
+   "email": "784487301@qq.com",
+   "name": "15000621931"
+  },
+  {
+   "email": "evenstensberg@gmail.com",
+   "name": "ev1stensberg"
+  },
+  {
+   "email": "haijie0619@gmail.com",
+   "name": "__hai"
+  },
+  {
+   "email": "tobias.koppers@googlemail.com",
+   "name": "sokra"
+  },
+  {
+   "email": "me@aviv.sh",
+   "name": "avivkeller"
+  },
+  {
+   "email": "sheo13666q@gmail.com",
+   "name": "evilebottnawi"
+  }
+ ],
+ "name": "tapable",
+ "repository": {
+  "type": "git",
+  "url": "git+ssh://git@github.com/webpack/tapable.git"
+ },
+ "scripts": {
+  "benchmark": "node --max-old-space-size=4096 --hash-seed=1 --random-seed=1 --no-opt --predictable --predictable-gc-schedule --interpreted-frames-native-stack --allow-natives-syntax --expose-gc --no-concurrent-sweeping ./benchmark/run.mjs",
+  "fix": "npm run fix:code && npm run fmt",
+  "fix:code": "npm run lint:code -- --fix",
+  "fmt": "npm run fmt:base -- --log-level warn --write",
+  "fmt:base": "node ./node_modules/prettier/bin/prettier.cjs --cache --ignore-unknown .",
+  "fmt:check": "npm run fmt:base -- --check",
+  "lint": "npm run lint:code && npm run fmt:check",
+  "lint:code": "eslint --cache .",
+  "release": "changeset publish",
+  "test": "jest",
+  "version": "changeset version"
+ },
+ "types": "./tapable.d.ts",
+ "version": "2.3.3"
+}

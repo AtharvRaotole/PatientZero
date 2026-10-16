@@ -1,0 +1,97 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@emnapi/runtime@1.11.3",
+ "_nodeVersion": "24.18.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/runtime_1.11.3_1784962808421_0.2862357273710461"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:87df32fe-ee52-45aa-aa57-97b7ccbdf27b"
+  }
+ },
+ "_npmVersion": "11.16.0",
+ "author": {
+  "name": "toyobayashi"
+ },
+ "bugs": {
+  "url": "https://github.com/toyobayashi/emnapi/issues"
+ },
+ "dependencies": {
+  "tslib": "^2.4.0"
+ },
+ "description": "emnapi runtime",
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@emnapi%2fruntime@1.11.3"
+  },
+  "fileCount": 17,
+  "integrity": "sha512-Xz4Tpyki7XyrpbUK1jR1AhdAdaXyhhY4lZ3neLodmhpuWfy2PAQN5B46sAiU4liOXGLkHypn/qU+jvfWSCYYLA==",
+  "shasum": "84257ae3b0531eb2aec1ffa23d70700da007ba95",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIB8A6N45bbXcp+oCyg560JsxZlXWVB8fwK5VAa/ADK9bAiBEO4lqKOqBLwDnBG1rsLEdgC8Sv8IJASoDzfctkpE8dA=="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIFka0RlVA92mx6qxeVux6yN5HO9D4CR8vbjFclJK8XY9AiAKJNuRwkSXbFgIchdNrSsUxeb3Fc0JotO0frWMJ+e7eg=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@emnapi/runtime/-/runtime-1.11.3.tgz",
+  "unpackedSize": 436901
+ },
+ "exports": {
+  ".": {
+   "default": "./index.js",
+   "import": "./dist/emnapi.mjs",
+   "module": "./dist/emnapi.esm-bundler.js",
+   "types": {
+    "default": "./dist/emnapi.d.ts",
+    "import": "./dist/emnapi.d.mts",
+    "module": "./dist/emnapi.d.ts"
+   }
+  },
+  "./dist/emnapi.cjs.min": {
+   "default": "./dist/emnapi.cjs.min.js",
+   "types": "./dist/emnapi.d.ts"
+  },
+  "./dist/emnapi.min.mjs": {
+   "default": "./dist/emnapi.min.mjs",
+   "types": "./dist/emnapi.d.mts"
+  }
+ },
+ "gitHead": "b2011ea96d28fe60a6b8eabb82c2d6264daf7460",
+ "homepage": "https://github.com/toyobayashi/emnapi#readme",
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "lifenglin314@outlook.com",
+   "name": "toyobayashi"
+  }
+ ],
+ "module": "./dist/emnapi.esm-bundler.js",
+ "name": "@emnapi/runtime",
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/toyobayashi/emnapi.git"
+ },
+ "scripts": {
+  "build": "node ./script/build.js"
+ },
+ "sideEffects": false,
+ "types": "./dist/emnapi.d.ts",
+ "version": "1.11.3"
+}

@@ -1,0 +1,140 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "msgpackr@2.1.0",
+ "_nodeVersion": "24.18.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/msgpackr_2.1.0_1787861839372_0.7350743469651084"
+ },
+ "_npmUser": {
+  "email": "kriszyp@gmail.com",
+  "name": "kriszyp"
+ },
+ "_npmVersion": "11.16.0",
+ "author": {
+  "name": "Kris Zyp"
+ },
+ "bugs": {
+  "url": "https://github.com/kriszyp/msgpackr/issues"
+ },
+ "description": "Ultra-fast MessagePack implementation with extensions for records and structured cloning",
+ "devDependencies": {
+  "@rollup/plugin-json": "^5.0.1",
+  "@rollup/plugin-replace": "^5.0.1",
+  "@rollup/plugin-terser": "^0.1.0",
+  "@types/node": "latest",
+  "async": "^3",
+  "chai": "^4.3.4",
+  "cpy-cli": "^4.1.0",
+  "esm": "^3.2.25",
+  "mocha": "^10.1.0",
+  "rollup": "^3.2.5"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 33,
+  "integrity": "sha512-p/pBCVO63CsvvpkomUnNNag6+n38rULuDA6HHe70o2gtC8ODI52foF/4ko2qQcp6OiErJXTmrZeXmsGGHsIQNQ==",
+  "shasum": "63618adb9f5ab185cccd0536609fad0731b9feb3",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQC0tmEhK4ZM5CeNjJhf6XWVM9iNHBAk03Sy8pqrsSz+iAIhALrSLseUbPUaB74RFz/1HyU5NW53cMeGsqah56B466cb"
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQCwEcpciWzFXZoJCQVSayAC1QakcxQoPH4wBukbt9DCKgIgbQxd9njukhYO7nfgGjEa5f8IbP7eKUALYr6xhOoKLa0="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/msgpackr/-/msgpackr-2.1.0.tgz",
+  "unpackedSize": 1911232
+ },
+ "exports": {
+  ".": {
+   "browser": "./index.js",
+   "bun": {
+    "import": "./node-index.js",
+    "require": "./dist/node.cjs"
+   },
+   "default": "./index.js",
+   "node": {
+    "import": "./node-index.js",
+    "require": "./dist/node.cjs"
+   },
+   "types": {
+    "import": "./index.d.ts",
+    "require": "./index.d.cts"
+   }
+  },
+  "./index-no-eval": "./dist/index-no-eval.cjs",
+  "./pack": {
+   "browser": "./pack.js",
+   "bun": {
+    "import": "./index.js",
+    "require": "./dist/node.cjs"
+   },
+   "default": "./pack.js",
+   "node": {
+    "import": "./index.js",
+    "require": "./dist/node.cjs"
+   },
+   "types": {
+    "import": "./pack.d.ts",
+    "require": "./pack.d.cts"
+   }
+  },
+  "./unpack": {
+   "browser": "./unpack.js",
+   "bun": {
+    "import": "./index.js",
+    "require": "./dist/node.cjs"
+   },
+   "default": "./unpack.js",
+   "node": {
+    "import": "./index.js",
+    "require": "./dist/node.cjs"
+   },
+   "types": {
+    "import": "./unpack.d.ts",
+    "require": "./unpack.d.cts"
+   }
+  },
+  "./unpack-no-eval": "./dist/unpack-no-eval.cjs"
+ },
+ "gitHead": "a9b9f1aa062461b333b48e66288da00e89ca8035",
+ "homepage": "https://github.com/kriszyp/msgpackr#readme",
+ "keywords": [
+  "MessagePack",
+  "msgpack",
+  "performance",
+  "structured",
+  "clone"
+ ],
+ "license": "MIT",
+ "main": "./dist/node.cjs",
+ "maintainers": [
+  {
+   "email": "kriszyp@gmail.com",
+   "name": "kriszyp"
+  }
+ ],
+ "module": "./index.js",
+ "name": "msgpackr",
+ "optionalDependencies": {
+  "msgpackr-extract": "^3.0.4"
+ },
+ "react-native": "./index.js",
+ "repository": {
+  "type": "git",
+  "url": "git+ssh://git@github.com/kriszyp/msgpackr.git"
+ },
+ "scripts": {
+  "benchmark": "node ./tests/benchmark.cjs",
+  "build": "rollup -c && cpy index.d.ts . --rename=index.d.cts && cpy pack.d.ts . --rename=pack.d.cts && cpy unpack.d.ts . --rename=unpack.d.cts",
+  "dry-run": "npm publish --dry-run",
+  "prepare": "npm run build",
+  "test": "mocha tests/test**.*js -u tdd --experimental-json-modules"
+ },
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "2.1.0"
+}

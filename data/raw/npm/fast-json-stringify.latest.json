@@ -1,0 +1,154 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "fast-json-stringify@7.1.0",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/fast-json-stringify_7.1.0_1791627012162_0.8703931090489239"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "3afe719c-ac3e-45e1-9c28-398d078ff0bf"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "author": {
+  "email": "hello@matteocollina.com",
+  "name": "Matteo Collina"
+ },
+ "bugs": {
+  "url": "https://github.com/fastify/fast-json-stringify/issues"
+ },
+ "contributors": [
+  {
+   "name": "Tomas Della Vedova",
+   "url": "https://delvedor.dev"
+  },
+  {
+   "email": "aras.abbasi@gmail.com",
+   "name": "Aras Abbasi"
+  },
+  {
+   "email": "behemoth89@gmail.com",
+   "name": "Manuel Spigolon"
+  },
+  {
+   "email": "frazer.dev@icloud.com",
+   "name": "Frazer Smith",
+   "url": "https://github.com/fdawgs"
+  }
+ ],
+ "dependencies": {
+  "@fastify/merge-json-schemas": "^0.2.0",
+  "ajv": "^8.12.0",
+  "ajv-formats": "^3.0.1",
+  "fast-uri": "^4.0.0",
+  "json-schema-ref-resolver": "^3.0.0",
+  "rfdc": "^1.2.0"
+ },
+ "description": "Stringify your JSON at max speed",
+ "devDependencies": {
+  "c8": "^12.0.0",
+  "cli-select": "^1.1.2",
+  "compile-json-stringify": "^0.1.2",
+  "eslint": "^9.39.2",
+  "fast-json-stringify": ".",
+  "json-accelerator": "^0.1.7",
+  "neostandard": "^0.13.0",
+  "simple-git": "^4.0.2",
+  "tinybench": "^6.0.0",
+  "tstyche": "^7.1.0",
+  "typebox": "^1.0.81",
+  "typescript": "~6.0.2",
+  "webpack": "^5.104.1"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/fast-json-stringify@7.1.0"
+  },
+  "fileCount": 94,
+  "integrity": "sha512-wAhAQ+es0aH+x5OofdCHlZZFdqwtiM6lpEosaRIwfg271WYeEQ/tPcXdu5vpzlqZpbJ4WNqaW4QR5UjfG4Dc2w==",
+  "shasum": "ca7e0254446af4b51bc49c969af138186818af85",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQCScCDVF9lcT7qt9APddV30dqWD6F4P/5yz9jgAfuc/zAIgGo2QE10D0D03nTX5OpKvX7HZvPKKKz54eJy8LM2s6Bg="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIHK49CmidwmdVfwaNv50Ig6jcYnOVw2lveBI2EGPMILBAiEA7DrXWsaNzQQ+ss9VWJlFZ14y3y7ESnf7LqLrtw4j4cw="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/fast-json-stringify/-/fast-json-stringify-7.1.0.tgz",
+  "unpackedSize": 469669
+ },
+ "funding": [
+  {
+   "type": "github",
+   "url": "https://github.com/sponsors/fastify"
+  },
+  {
+   "type": "opencollective",
+   "url": "https://opencollective.com/fastify"
+  }
+ ],
+ "gitHead": "95083de83e6121197b7910a8da8cbab7064b8355",
+ "homepage": "https://github.com/fastify/fast-json-stringify#readme",
+ "keywords": [
+  "json",
+  "stringify",
+  "schema",
+  "fast"
+ ],
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "james.sumners@gmail.com",
+   "name": "jsumners"
+  },
+  {
+   "email": "tommydelved@gmail.com",
+   "name": "delvedor"
+  },
+  {
+   "email": "hello@matteocollina.com",
+   "name": "matteo.collina"
+  },
+  {
+   "email": "behemoth89@gmail.com",
+   "name": "eomm"
+  },
+  {
+   "email": "kaka@kakawebsitedemo.com",
+   "name": "climba03003"
+  }
+ ],
+ "name": "fast-json-stringify",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/fastify/fast-json-stringify.git"
+ },
+ "runkitExampleFilename": "./examples/example.js",
+ "scripts": {
+  "bench": "node --expose-gc ./benchmark/bench.js",
+  "bench:cmp": "node ./benchmark/bench-cmp-branch.js",
+  "bench:cmp:ci": "node ./benchmark/bench-cmp-branch.js --ci",
+  "benchmark": "node --expose-gc ./benchmark/bench-cmp-lib.js",
+  "lint": "eslint",
+  "lint:fix": "eslint --fix",
+  "test": "npm run test:unit && npm run test:typescript",
+  "test:typescript": "tstyche",
+  "test:unit": "c8 --100 --all --include=index.js --include=lib/**/*.js --exclude=lib/schema-validator.js node --test"
+ },
+ "type": "commonjs",
+ "types": "types/index.d.ts",
+ "version": "7.1.0"
+}

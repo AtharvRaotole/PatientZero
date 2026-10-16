@@ -1,0 +1,106 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "yallist@5.0.0",
+ "_nodeVersion": "20.11.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/yallist_5.0.0_1712690504676_0.029932400139861093"
+ },
+ "_npmUser": {
+  "email": "i@izs.me",
+  "name": "isaacs"
+ },
+ "_npmVersion": "10.5.0",
+ "author": {
+  "email": "i@izs.me",
+  "name": "Isaac Z. Schlueter",
+  "url": "http://blog.izs.me/"
+ },
+ "bugs": {
+  "url": "https://github.com/isaacs/yallist/issues"
+ },
+ "description": "Yet Another Linked List",
+ "devDependencies": {
+  "prettier": "^3.2.5",
+  "tap": "^18.7.2",
+  "tshy": "^1.13.1",
+  "typedoc": "^0.25.13"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 13,
+  "integrity": "sha512-YgvUTfwqyc7UXVMrB+SImsVYSmTS8X/tSrtdNZMImM+n7+QTriRXyXim0mBrTXNeqzVF0KWGgHPeiyViFFrNDw==",
+  "shasum": "00e2de443639ed0d78fd87de0d27469fbcffb533",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIQD6e4G4ytvhoms+0w0K9/h69xTaFaNhKrrQtsadvn51egIgFDoo7A3fA8NgnwexxWK9dLURqTrJhW0gluarpuWEJhI="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/yallist/-/yallist-5.0.0.tgz",
+  "unpackedSize": 80297
+ },
+ "engines": {
+  "node": ">=18"
+ },
+ "exports": {
+  ".": {
+   "import": {
+    "default": "./dist/esm/index.js",
+    "types": "./dist/esm/index.d.ts"
+   },
+   "require": {
+    "default": "./dist/commonjs/index.js",
+    "types": "./dist/commonjs/index.d.ts"
+   }
+  },
+  "./package.json": "./package.json"
+ },
+ "gitHead": "a082c2dd872bb3cd8fb92359ed66605064957cd4",
+ "homepage": "https://github.com/isaacs/yallist#readme",
+ "license": "BlueOak-1.0.0",
+ "main": "./dist/commonjs/index.js",
+ "maintainers": [
+  {
+   "email": "i@izs.me",
+   "name": "isaacs"
+  }
+ ],
+ "name": "yallist",
+ "prettier": {
+  "arrowParens": "avoid",
+  "bracketSameLine": true,
+  "endOfLine": "lf",
+  "jsxSingleQuote": false,
+  "printWidth": 70,
+  "semi": false,
+  "singleQuote": true,
+  "tabWidth": 2,
+  "useTabs": false
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/isaacs/yallist.git"
+ },
+ "scripts": {
+  "format": "prettier --write . --loglevel warn --ignore-path ../../.prettierignore --cache",
+  "postversion": "npm publish",
+  "prepare": "tshy",
+  "prepublishOnly": "git push origin --follow-tags",
+  "presnap": "npm run prepare",
+  "pretest": "npm run prepare",
+  "preversion": "npm test",
+  "snap": "tap",
+  "test": "tap",
+  "typedoc": "typedoc"
+ },
+ "tshy": {
+  "exports": {
+   ".": "./src/index.ts",
+   "./package.json": "./package.json"
+  }
+ },
+ "type": "module",
+ "types": "./dist/commonjs/index.d.ts",
+ "version": "5.0.0"
+}

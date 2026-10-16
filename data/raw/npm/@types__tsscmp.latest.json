@@ -1,0 +1,55 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@types/tsscmp@1.0.2",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/tsscmp_1.0.2_1699380678589_0.49491620406092984"
+ },
+ "_npmUser": {
+  "email": "ts-npm-types@microsoft.com",
+  "name": "types"
+ },
+ "contributors": [
+  {
+   "githubUsername": "g-rath",
+   "name": "Gareth Jones",
+   "url": "https://github.com/g-rath"
+  }
+ ],
+ "dependencies": {},
+ "description": "TypeScript definitions for tsscmp",
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-cy7BRSU8GYYgxjcx0Py+8lo5MthuDhlyu076KUcYzVNXL23luYgRHkMG2fIFEc6neckeh/ntP82mw+U4QjZq+g==",
+  "shasum": "5f4679b5681bcf916a383ca9245371ce9748db5a",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEQCIAZbqeBljFeUGp617XrZIrA2Pr5UzeqGXIgums8JF8fwAiB4bjPJcm/niWlLQdK0qiqRO1s134LVjWqMq1MrcWKVJg=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@types/tsscmp/-/tsscmp-1.0.2.tgz",
+  "unpackedSize": 2820
+ },
+ "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/tsscmp",
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "ts-npm-types@microsoft.com",
+   "name": "types"
+  }
+ ],
+ "name": "@types/tsscmp",
+ "repository": {
+  "directory": "types/tsscmp",
+  "type": "git",
+  "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+ },
+ "scripts": {},
+ "typeScriptVersion": "4.5",
+ "types": "index.d.ts",
+ "typesPublisherContentHash": "bf0b7afbd36c56f849dd6935814c576ae256bfad1a75b9760d09557446003420",
+ "version": "1.0.2"
+}

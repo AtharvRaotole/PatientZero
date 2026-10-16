@@ -1,0 +1,94 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@jest/test-sequencer@30.5.2",
+ "_nodeVersion": "26.8.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/test-sequencer_30.5.2_1789739791529_0.7118660222696545"
+ },
+ "_npmUser": {
+  "email": "sbekkhus91@gmail.com",
+  "name": "simenb"
+ },
+ "_npmVersion": "lerna/4.11.5/node@v26.8.1+arm64 (darwin)",
+ "bugs": {
+  "url": "https://github.com/jestjs/jest/issues"
+ },
+ "dependencies": {
+  "@jest/test-result": "30.5.2",
+  "graceful-fs": "^4.2.11",
+  "jest-haste-map": "30.5.1",
+  "slash": "^3.0.0"
+ },
+ "devDependencies": {
+  "@jest/test-utils": "30.5.2",
+  "@types/graceful-fs": "^4.1.9"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-bmij8jZyYAC47ExT2GeP7PcrlwSNS+Bp3KeRuBH88gpcxqDv6fljN8PemS4J/lLZ79xb6mpaennQTTq0zUAVVg==",
+  "shasum": "6ddef45f8f8be150482e6e8a58eaae24f114495a",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQCtjbLz6yw5hGKTXZxxXH2JK7TgsJju1WJ9UO+ZCULFVQIgThY7xLpVTzBr8x2W4Z3Z/d0rqPkfkJY5b6aeYyGpBfU="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQCfFub26kKNPLGZC70VNauMLieISgjJ3X/uM8R6bQEh7gIhALRYcqi6KXqGRH07mHhl2hlzCpw/9A0Hhu+rSNFAOCBM"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@jest/test-sequencer/-/test-sequencer-30.5.2.tgz",
+  "unpackedSize": 13834
+ },
+ "engines": {
+  "node": "^18.14.0 || ^20.0.0 || ^22.0.0 || >=24.0.0"
+ },
+ "exports": {
+  ".": {
+   "default": "./build/index.js",
+   "import": "./build/index.mjs",
+   "require": "./build/index.js",
+   "types": "./build/index.d.ts"
+  },
+  "./package.json": "./package.json"
+ },
+ "gitHead": "202dd8a14777c270607c2416bd5034c3c0abc984",
+ "homepage": "https://github.com/jestjs/jest#readme",
+ "license": "MIT",
+ "main": "./build/index.js",
+ "maintainers": [
+  {
+   "email": "aaron@abramov.io",
+   "name": "aaronabramov"
+  },
+  {
+   "email": "sbekkhus91@gmail.com",
+   "name": "simenb"
+  },
+  {
+   "email": "rickhanlonii@gmail.com",
+   "name": "rickhanlonii"
+  },
+  {
+   "email": "operations@openjsf.org",
+   "name": "openjs-operations"
+  },
+  {
+   "email": "christoph.pojer@gmail.com",
+   "name": "cpojer"
+  }
+ ],
+ "name": "@jest/test-sequencer",
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "directory": "packages/jest-test-sequencer",
+  "type": "git",
+  "url": "git+https://github.com/jestjs/jest.git"
+ },
+ "types": "./build/index.d.ts",
+ "version": "30.5.2"
+}

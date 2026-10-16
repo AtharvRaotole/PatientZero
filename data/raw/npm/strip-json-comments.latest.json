@@ -1,0 +1,92 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "strip-json-comments@5.0.3",
+ "_nodeVersion": "20.19.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/strip-json-comments_5.0.3_1754662444880_0.42329154462048413"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "10.9.2",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/strip-json-comments/issues"
+ },
+ "description": "Strip comments from JSON. Lets you use comments in your JSON files!",
+ "devDependencies": {
+  "ava": "^4.3.1",
+  "matcha": "^0.7.0",
+  "tsd": "^0.22.0",
+  "xo": "^0.54.2"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-1tB5mhVo7U+ETBKNf92xT4hrQa3pm0MZ0PQvuDnWgAAGHDsfp4lPSpiS6psrSiet87wyGPh9ft6wmhOMQ0hDiw==",
+  "shasum": "b7304249dd402ee67fd518ada993ab3593458bcf",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIDcVQqNGwGM4F9Bo5MsfcFN/+HpEtrXUPD787GcNO4ckAiANu7m+9YrIRQ3X1Ki3NoOe2oSEQo1sU3aB9AQ98yV5rw=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/strip-json-comments/-/strip-json-comments-5.0.3.tgz",
+  "unpackedSize": 8200
+ },
+ "engines": {
+  "node": ">=14.16"
+ },
+ "exports": "./index.js",
+ "funding": "https://github.com/sponsors/sindresorhus",
+ "gitHead": "7355ba42e0ad6e5cd27cc984add85355df50fa34",
+ "homepage": "https://github.com/sindresorhus/strip-json-comments#readme",
+ "keywords": [
+  "json",
+  "strip",
+  "comments",
+  "remove",
+  "delete",
+  "trim",
+  "multiline",
+  "parse",
+  "config",
+  "configuration",
+  "settings",
+  "util",
+  "env",
+  "environment",
+  "jsonc"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "strip-json-comments",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/strip-json-comments.git"
+ },
+ "scripts": {
+  "bench": "matcha benchmark.js",
+  "test": "xo && ava && tsd"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "5.0.3",
+ "xo": {
+  "rules": {
+   "complexity": "off"
+  }
+ }
+}

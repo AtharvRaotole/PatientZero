@@ -1,0 +1,58 @@
+{
+ "_from": ".",
+ "_id": "stubs@3.0.0",
+ "_nodeVersion": "6.9.1",
+ "_npmOperationalInternal": {
+  "host": "packages-18-east.internal.npmjs.com",
+  "tmp": "tmp/stubs-3.0.0.tgz_1484320348722_0.21513390797190368"
+ },
+ "_npmUser": {
+  "email": "sawchuk@gmail.com",
+  "name": "stephenplusplus"
+ },
+ "_npmVersion": "4.0.5",
+ "_shasum": "e8d2ba1fa9c90570303c030b6900f7d5f89abe5b",
+ "author": {
+  "name": "Stephen Sawchuk"
+ },
+ "bugs": {
+  "url": "https://github.com/stephenplusplus/stubs/issues"
+ },
+ "description": "Easy method stubber.",
+ "devDependencies": {
+  "tess": "^1.0.0"
+ },
+ "dist": {
+  "integrity": "sha512-PdHt7hHUJKxvTCgbKX9C1V/ftOcjJQgz8BZwNfV5c4B6dcGqlpelTbJ999jBGZ2jYiPAwcX5dP6oBwVlBlUbxw==",
+  "shasum": "e8d2ba1fa9c90570303c030b6900f7d5f89abe5b",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIQCa6TzYzKdceD9wdpsYUWcHTWslNKUVKqVOqt46ynDWNQIgbTyirjROMNI7Uho/9HTUg1N88aPYm7rBHIV+0tU4PkQ="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/stubs/-/stubs-3.0.0.tgz"
+ },
+ "gitHead": "2d41d3ae487d3bb0b8c7511d254783eaad862d8f",
+ "homepage": "https://github.com/stephenplusplus/stubs",
+ "keywords": [
+  "stubs"
+ ],
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "sawchuk@gmail.com",
+   "name": "stephenplusplus"
+  }
+ ],
+ "name": "stubs",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/stephenplusplus/stubs.git"
+ },
+ "scripts": {
+  "test": "node ./test"
+ },
+ "version": "3.0.0"
+}

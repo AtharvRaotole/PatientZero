@@ -1,0 +1,161 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@slack/web-api@8.2.0",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/web-api_8.2.0_1790806279754_0.2282549758360899"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "82c05c94-276b-4b36-be3b-65e054e64a8d"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "author": {
+  "name": "Slack Technologies, LLC"
+ },
+ "bugs": {
+  "url": "https://github.com/slackapi/node-slack-sdk/issues"
+ },
+ "dependencies": {
+  "@slack/logger": "^5.0.0",
+  "@slack/types": "^3.2.0",
+  "@types/node": ">=20",
+  "@types/retry": "0.12.5",
+  "eventemitter3": "^5.0.1",
+  "p-queue": "^6.6.2",
+  "p-retry": "^4.6.2",
+  "retry": "^0.13.1"
+ },
+ "description": "Official library for using the Slack Platform's Web API",
+ "devDependencies": {
+  "@types/busboy": "^1.5.4",
+  "@types/sinon": "^22.0.0",
+  "busboy": "^1",
+  "nock": "^14.0.17",
+  "sinon": "^22.1.0",
+  "tsd": "^0.33.0"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@slack%2fweb-api@8.2.0"
+  },
+  "fileCount": 1619,
+  "integrity": "sha512-bIW8/8BLD/HLuHLIA2LfA7AhSokzui4swCbMJuwoRJxn/kzHVla6YEKLvN1nCFHK/DfX7g+4Wj3ess/ZSh/tWQ==",
+  "shasum": "a84f9a34aae73a57c51f6fa7ac543112c60f5c01",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIDpOcHd6uOK2mclNAZp2YO7MQuvEXWdmlmemHVZW/Q7hAiBW+EQSLFSgXqN9HobnYO74Q2nkuGU2ZF7kNjfedOvK8w=="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQC/MGhqKbPE19I/yjr1nYwbUps4Cv2fZKEhW5s+tN3TjAIgFLZfiM4JC9pLLSR50d0+qa7vO46xprL+n2qN9XvDeiQ="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@slack/web-api/-/web-api-8.2.0.tgz",
+  "unpackedSize": 2974324
+ },
+ "engines": {
+  "node": ">= 20",
+  "npm": ">=9.6.4"
+ },
+ "gitHead": "a98047a7f27149812664c78e2dccfe4155b0e145",
+ "homepage": "https://docs.slack.dev/tools/node-slack-sdk/web-api/",
+ "keywords": [
+  "slack",
+  "web-api",
+  "bot",
+  "client",
+  "http",
+  "api",
+  "proxy",
+  "rate-limiting",
+  "pagination"
+ ],
+ "license": "MIT",
+ "main": "dist/index.js",
+ "maintainers": [
+  {
+   "email": "opensource@slack.com",
+   "name": "slackhq"
+  },
+  {
+   "email": "macdonald.andrew@gmail.com",
+   "name": "ajm"
+  },
+  {
+   "email": "sgorbachov@slack-corp.com",
+   "name": "sgorbach0v"
+  },
+  {
+   "email": "stevengill97@gmail.com",
+   "name": "stevegill"
+  },
+  {
+   "email": "it@slack-corp.com",
+   "name": "slack_biztech"
+  },
+  {
+   "email": "alissa.renz@gmail.com",
+   "name": "misscoded"
+  },
+  {
+   "email": "michael@michaelbrooks.ca",
+   "name": "mwbrooks"
+  },
+  {
+   "email": "cchensh88@gmail.com",
+   "name": "cchensh"
+  },
+  {
+   "email": "shelby.spencer@salesforce.com",
+   "name": "sspencer-slack"
+  },
+  {
+   "email": "evegeris@salesforce.com",
+   "name": "evegeris"
+  },
+  {
+   "email": "eden.zimbelman@salesforce.com",
+   "name": "e-zim"
+  },
+  {
+   "email": "farhanjk@gmail.com",
+   "name": "farhanjk"
+  }
+ ],
+ "name": "@slack/web-api",
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/slackapi/node-slack-sdk.git"
+ },
+ "scripts": {
+  "build": "npm run build:clean && tsc",
+  "build:clean": "shx rm -rf ./dist",
+  "docs": "npx typedoc --plugin typedoc-plugin-markdown",
+  "prepack": "npm run build",
+  "test": "npm run build && bash -c 'node --test-reporter=spec --test-reporter-destination=stdout --test-reporter=junit --test-reporter-destination=test-results.xml --import tsx --test src/*.test.ts'",
+  "test:coverage": "npm run build && node --experimental-test-coverage --test-reporter=spec --test-reporter-destination=stdout --test-reporter=lcov --test-reporter-destination=lcov.info --test-reporter=junit --test-reporter-destination=test-results.xml --import tsx --test src/*.test.ts",
+  "test:integration": "npm run build && node test/integration/commonjs-project/index.js && node test/integration/esm-project/index.mjs && npm run test:integration:ts",
+  "test:integration:ts": "cd test/integration/ts-4.7-project && npm i && npm run build",
+  "test:types": "tsd",
+  "watch": "npx nodemon --watch 'src' --ext 'ts' --exec npm run build"
+ },
+ "tsd": {
+  "directory": "test/types"
+ },
+ "types": "./dist/index.d.ts",
+ "version": "8.2.0"
+}

@@ -1,0 +1,160 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@mongodb-js/saslprep@1.6.1",
+ "_nodeVersion": "22.21.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/saslprep_1.6.1_1792091590345_0.6223922462178595"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "9ff7c1a1-2471-4e90-a93b-101f97780fa6"
+  }
+ },
+ "_npmVersion": "lerna/9.0.7/node@v22.21.1+x64 (linux)",
+ "author": {
+  "email": "me@reklatsmasters.com",
+  "name": "Dmitry Tsvettsikh"
+ },
+ "bugs": {
+  "email": "compass@mongodb.com",
+  "url": "https://jira.mongodb.org/projects/COMPASS/issues"
+ },
+ "dependencies": {
+  "sparse-bitfield": "^3.0.3"
+ },
+ "description": "SASLprep: Stringprep Profile for User Names and Passwords, rfc4013",
+ "devDependencies": {
+  "@mongodb-js/eslint-config-devtools": "^0.11.14",
+  "@mongodb-js/mocha-config-devtools": "^3.0.0",
+  "@mongodb-js/prettier-config-devtools": "^1.0.6",
+  "@mongodb-js/tsconfig-devtools": "^1.1.5",
+  "@types/chai": "^4.2.21",
+  "@types/mocha": "^9.1.1",
+  "@types/node": "^25.5.2",
+  "@types/sparse-bitfield": "^3.0.4",
+  "chai": "^4.5.0",
+  "depcheck": "^1.4.7",
+  "eslint": "^7.25.0 || ^8.0.0",
+  "gen-esm-wrapper": "^1.1.3",
+  "mocha": "^8.4.0",
+  "nyc": "^15.1.0",
+  "prettier": "^3.8.1",
+  "sinon": "^9.2.3",
+  "typescript": "^5.9.3"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@mongodb-js%2fsaslprep@1.6.1"
+  },
+  "fileCount": 40,
+  "integrity": "sha512-D4CQtk9IwjCLAvCf1xvHEod3960q8XMUzfmdRU9qjUNlHnesGuTOvJcOTaPm9koZ1caUKA2aTbszZiAkcmSgmg==",
+  "shasum": "c3da2d4013e5fe3d22661da3f8ec36b231a30de7",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDoqM8ekyKVo9Aic/KQ48HgKSyyvXCoPOCwMnA9Tt5vewIgYscs43vXRO2AVxQcSqu6WonaSR9Tb7zAcoHRDXq8WqY="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQDRl43hEwYJBrSVnJ1r+7OtAnEzgKcBx7j2eChan2zKawIhALgAucsWmuW2d6qFVuQpUH4IXNiOYyVRlUjUIR/Ae6hG"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@mongodb-js/saslprep/-/saslprep-1.6.1.tgz",
+  "unpackedSize": 648597
+ },
+ "exports": {
+  "browser": {
+   "default": "./dist/browser.js",
+   "types": "./dist/browser.d.ts"
+  },
+  "import": {
+   "default": "./dist/.esm-wrapper.mjs",
+   "types": "./dist/node.d.ts"
+  },
+  "require": {
+   "default": "./dist/node.js",
+   "types": "./dist/node.d.ts"
+  }
+ },
+ "gitHead": "3b5d33a8cfccc462839801ea61db49fd76491dde",
+ "homepage": "https://github.com/mongodb-js/devtools-shared/tree/main/packages/saslprep",
+ "keywords": [
+  "sasl",
+  "saslprep",
+  "stringprep",
+  "rfc4013",
+  "4013"
+ ],
+ "license": "MIT",
+ "main": "dist/node.js",
+ "maintainers": [
+  {
+   "email": "satya@mongodb.com",
+   "name": "satyasinha"
+  },
+  {
+   "email": "kristina.stefanova@mongodb.com",
+   "name": "kristina.stefano"
+  },
+  {
+   "email": "nathan.smyth@10gen.com",
+   "name": "jarjee"
+  },
+  {
+   "email": "iteng@mongodb.com",
+   "name": "devtoolsbot"
+  },
+  {
+   "email": "james.wang@mongodb.com",
+   "name": "mongo-j"
+  },
+  {
+   "email": "neal.beeken@mongodb.com",
+   "name": "nbbeeken"
+  },
+  {
+   "email": "dbx-node@mongodb.com",
+   "name": "dbx-node"
+  },
+  {
+   "email": "devtools-npm-user@mongodb.com",
+   "name": "devtools-npm-user"
+  }
+ ],
+ "name": "@mongodb-js/saslprep",
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/mongodb-js/devtools-shared.git"
+ },
+ "scripts": {
+  "bootstrap": "npm run compile",
+  "check": "npm run typecheck && npm run lint && npm run depcheck",
+  "check-ci": "npm run check",
+  "compile": "npm run gen-code-points && tsc -p tsconfig.json && gen-esm-wrapper . ./dist/.esm-wrapper.mjs",
+  "depcheck": "depcheck",
+  "eslint": "eslint",
+  "gen-code-points": "ts-node src/generate-code-points.ts src/code-points-data.ts src/code-points-data-browser.ts",
+  "lint": "npm run eslint . && npm run prettier -- --check .",
+  "prepublishOnly": "npm run compile",
+  "prettier": "prettier",
+  "reformat": "npm run prettier -- --write .",
+  "test": "mocha",
+  "test-ci": "npm run test-cov",
+  "test-cov": "nyc -x \"**/*.spec.*\" --reporter=lcov --reporter=text --reporter=html npm run test",
+  "test-watch": "npm run test -- --watch",
+  "typecheck": "tsc --noEmit"
+ },
+ "types": "./dist/node.d.ts",
+ "version": "1.6.1"
+}

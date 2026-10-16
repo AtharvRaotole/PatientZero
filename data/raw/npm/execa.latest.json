@@ -1,0 +1,181 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "execa@10.1.1",
+ "_nodeVersion": "26.11.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/execa_10.1.1_1791874814184_0.3993748906392225"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "12.2.0",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/execa/issues"
+ },
+ "c8": {
+  "exclude": [
+   "**/fixtures/**",
+   "**/test.js",
+   "**/test/**"
+  ],
+  "reporter": [
+   "text",
+   "lcov"
+  ]
+ },
+ "dependencies": {
+  "@sindresorhus/merge-streams": "^4.0.0",
+  "figures": "^6.1.0",
+  "get-stream": "^9.0.1",
+  "human-signals": "^8.0.1",
+  "is-plain-obj": "^4.1.0",
+  "is-stream": "^4.0.1",
+  "npm-run-path": "^6.0.0",
+  "pretty-ms": "^9.3.1",
+  "signal-exit": "^4.1.0",
+  "strip-final-newline": "^4.0.0",
+  "which-command": "^0.1.0",
+  "yoctocolors": "^2.2.0"
+ },
+ "description": "Process execution for humans",
+ "devDependencies": {
+  "@types/node": "^26.6.2",
+  "@typescript/native": "npm:typescript@^7.0.2",
+  "c8": "^12.0.0",
+  "get-node": "^15.0.4",
+  "is-in-ci": "^2.0.0",
+  "is-running": "^2.1.0",
+  "log-process-errors": "^12.0.1",
+  "nz": "^0.1.0",
+  "path-exists": "^5.0.0",
+  "path-key": "^4.0.0",
+  "tempfile": "^6.0.1",
+  "typescript": "^6.0.3",
+  "xo": "^5.0.1"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 147,
+  "integrity": "sha512-yJAC9ulsE6fU0K6wzJBIH+wI+KAtMeu6Ck8rs23OVzvEhqXjGADdI6K+YNIDAjcQQ6AwXTD96cKExJo6xFJXyg==",
+  "shasum": "1898d15765b2c34bbf618549d80c3590a9d0ed87",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQD2Cr+3xETAOSh7lK2Jt5MVVYtpmG/gyQtuor8rEsHk6wIhAIZvEx3B4p83k8Ngmm3z4rE4yvpcOoldN7hyOeqNodqo"
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIDaIpz5Wy7pHQqnvqe/5cj5i4IUvKd3O4n2961phd2N5AiEAzQlzE0hBhW751isOmRrj9SUeNsvbIsmgquXNfMU0epU="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/execa/-/execa-10.1.1.tgz",
+  "unpackedSize": 413410
+ },
+ "engines": {
+  "node": ">=22"
+ },
+ "exports": {
+  "default": "./index.js",
+  "types": "./index.d.ts"
+ },
+ "funding": "https://github.com/sindresorhus/execa?sponsor=1",
+ "gitHead": "cc7bcab5650cb3c95ccb3e5d484159cc748a0133",
+ "homepage": "https://github.com/sindresorhus/execa#readme",
+ "keywords": [
+  "exec",
+  "child",
+  "process",
+  "subprocess",
+  "execute",
+  "fork",
+  "execfile",
+  "spawn",
+  "file",
+  "shell",
+  "bin",
+  "binary",
+  "binaries",
+  "npm",
+  "path",
+  "local",
+  "zx"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  },
+  {
+   "email": "ehmicky@gmail.com",
+   "name": "ehmicky"
+  }
+ ],
+ "name": "execa",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/execa.git"
+ },
+ "scripts": {
+  "lint": "xo",
+  "test": "npm run lint && npm run unit && npm run type",
+  "type": "nz && tsc",
+  "unit": "c8 --merge-async node --test --test-concurrency=1 --test-timeout=240000 \"test/!(fixtures|helpers)/*.js\""
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "10.1.1",
+ "xo": [
+  {
+   "rules": {
+    "@stylistic/max-len": "off",
+    "@typescript-eslint/await-thenable": "off",
+    "@typescript-eslint/ban-types": "off",
+    "@typescript-eslint/no-empty-object-type": "off",
+    "@typescript-eslint/no-restricted-types": "off",
+    "@typescript-eslint/no-unnecessary-type-assertion": "off",
+    "@typescript-eslint/no-unsafe-assignment": "off",
+    "@typescript-eslint/no-unsafe-call": "off",
+    "@typescript-eslint/no-unsafe-member-access": "off",
+    "jsdoc/require-asterisk-prefix": "off",
+    "no-shadow": "off",
+    "node-test/no-conditional-tests": "off",
+    "node-test/no-import-test-files": "off",
+    "node-test/no-process-env-mutation": "off",
+    "node-test/no-useless-assertion": "off",
+    "node-test/prefer-test-context-assert": "off",
+    "node-test/require-assertion": "off",
+    "regexp/strict": "off",
+    "require-unicode-regexp": "off",
+    "unicorn/max-nested-calls": "off",
+    "unicorn/no-array-from-fill": "off",
+    "unicorn/no-array-reverse": "off",
+    "unicorn/no-array-sort": "off",
+    "unicorn/no-computed-property-existence-check": "off",
+    "unicorn/no-empty-file": "off",
+    "unicorn/no-useless-template-literals": "off",
+    "unicorn/prefer-minimal-ternary": "off",
+    "unicorn/prefer-number-is-safe-integer": "off",
+    "unicorn/prefer-string-raw": "off",
+    "unicorn/require-array-sort-compare": "off",
+    "unicorn/require-module-specifiers": "off"
+   }
+  },
+  {
+   "files": [
+    "**/*.md"
+   ],
+   "rules": {
+    "markdown/fenced-code-language": "off"
+   }
+  }
+ ]
+}

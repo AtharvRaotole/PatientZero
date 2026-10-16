@@ -1,0 +1,133 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@fastify/fast-json-stringify-compiler@5.1.1",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/fast-json-stringify-compiler_5.1.1_1791626895665_0.014504301200656933"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "1c62f346-b055-44e5-a635-a0979fc49d71"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "author": {
+  "email": "manuel.spigolon@nearform.com",
+  "name": "Manuel Spigolon",
+  "url": "https://github.com/Eomm"
+ },
+ "bugs": {
+  "url": "https://github.com/fastify/fast-json-stringify-compiler/issues"
+ },
+ "contributors": [
+  {
+   "email": "hello@matteocollina.com",
+   "name": "Matteo Collina"
+  },
+  {
+   "email": "aras.abbasi@gmail.com",
+   "name": "Aras Abbasi"
+  },
+  {
+   "name": "James Sumners",
+   "url": "https://james.sumners.info"
+  },
+  {
+   "email": "frazer.dev@icloud.com",
+   "name": "Frazer Smith",
+   "url": "https://github.com/fdawgs"
+  }
+ ],
+ "dependencies": {
+  "fast-json-stringify": "^7.0.0"
+ },
+ "description": "Build and manage the fast-json-stringify instances for the fastify framework",
+ "devDependencies": {
+  "c8": "^12.0.0",
+  "eslint": "^9.17.0",
+  "fastify": "^5.0.0",
+  "neostandard": "^0.13.0",
+  "sanitize-filename": "^1.6.3",
+  "tstyche": "^7.1.0"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@fastify%2ffast-json-stringify-compiler@5.1.1"
+  },
+  "fileCount": 16,
+  "integrity": "sha512-pyxRKk7UpUnnrztP9pF4+ZYxusEQ4LifTyzRdiXmyql1QezNHxO02D25MVU2o4kMeAMYWAjG6RKRlojgkbiDAw==",
+  "shasum": "e15a1c0b2f0e237bec364012d4a5e33baf40d44a",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQCxJ5PnAYr2eGxBYKygo63x05n8BmQTUotUD/16s3X+LAIhALO6l1Mzo9BDcoz9xL8ppekUCV4NYmpW32S6RTK3e6ad"
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQCI9x2XbqwWzf2m6O+SxvokjeMGC7TU+tfRoTdllam8qwIhAIeHfBF03ZW8iMQUzeCCm8jEj6gDic4GMp1C/fIQb1cM"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@fastify/fast-json-stringify-compiler/-/fast-json-stringify-compiler-5.1.1.tgz",
+  "unpackedSize": 26811
+ },
+ "funding": [
+  {
+   "type": "github",
+   "url": "https://github.com/sponsors/fastify"
+  },
+  {
+   "type": "opencollective",
+   "url": "https://opencollective.com/fastify"
+  }
+ ],
+ "gitHead": "9daaaf142c3a536c8e3918e6f8508c3b58ff5eb9",
+ "homepage": "https://github.com/fastify/fast-json-stringify-compiler#readme",
+ "keywords": [],
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "tommydelved@gmail.com",
+   "name": "delvedor"
+  },
+  {
+   "email": "hello@matteocollina.com",
+   "name": "matteo.collina"
+  },
+  {
+   "email": "james.sumners@gmail.com",
+   "name": "jsumners"
+  },
+  {
+   "email": "behemoth89@gmail.com",
+   "name": "eomm"
+  },
+  {
+   "email": "kaka@kakawebsitedemo.com",
+   "name": "climba03003"
+  }
+ ],
+ "name": "@fastify/fast-json-stringify-compiler",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/fastify/fast-json-stringify-compiler.git"
+ },
+ "scripts": {
+  "lint": "eslint",
+  "lint:fix": "eslint --fix",
+  "test": "npm run unit && npm run test:typescript",
+  "test:typescript": "tstyche",
+  "unit": "c8 --100 node --test"
+ },
+ "type": "commonjs",
+ "types": "types/index.d.ts",
+ "version": "5.1.1"
+}

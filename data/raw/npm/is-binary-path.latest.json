@@ -1,0 +1,87 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "is-binary-path@3.0.0",
+ "_nodeVersion": "18.20.2",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/is-binary-path_3.0.0_1714495825713_0.6348061795707021"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "10.6.0",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/is-binary-path/issues"
+ },
+ "dependencies": {
+  "binary-extensions": "^3.0.0"
+ },
+ "description": "Check if a file path is a binary file",
+ "devDependencies": {
+  "ava": "^6.1.2",
+  "xo": "^0.58.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-eSkpSYbqKip82Uw4z0iBK/5KmVzL2pf36kNKRtu6+mKvrow9sqF4w5hocQ9yV5v+9+wzHt620x3B7Wws/8lsGg==",
+  "shasum": "5d1918d62169c2a12d07bb71062c5f3070411779",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCICSph8KDb3vIe45Plx/ysPniPNjzD6NGrmf7CKX25AIZAiEApSyV+ja6Khv23s3JSgwpb3X24IE+/g+Jfr4ifH69X+M="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/is-binary-path/-/is-binary-path-3.0.0.tgz",
+  "unpackedSize": 2982
+ },
+ "engines": {
+  "node": ">=18.20"
+ },
+ "exports": {
+  "default": "./index.js",
+  "types": "./index.d.ts"
+ },
+ "funding": "https://github.com/sponsors/sindresorhus",
+ "gitHead": "193564a81d4eeea5a29ddde7609b601b4a44898c",
+ "homepage": "https://github.com/sindresorhus/is-binary-path#readme",
+ "keywords": [
+  "binary",
+  "extensions",
+  "extension",
+  "file",
+  "path",
+  "check",
+  "detect",
+  "is"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "paul@paulmillr.com",
+   "name": "paulmillr"
+  },
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "is-binary-path",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/is-binary-path.git"
+ },
+ "scripts": {
+  "test": "xo && ava"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "3.0.0"
+}

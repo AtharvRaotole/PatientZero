@@ -1,0 +1,66 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@types/http-errors@2.0.5",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/http-errors_2.0.5_1749262653244_0.2992151691745788"
+ },
+ "_npmUser": {
+  "email": "ts-npm-types@microsoft.com",
+  "name": "types"
+ },
+ "contributors": [
+  {
+   "githubUsername": "tkrotoff",
+   "name": "Tanguy Krotoff",
+   "url": "https://github.com/tkrotoff"
+  },
+  {
+   "githubUsername": "BendingBender",
+   "name": "BendingBender",
+   "url": "https://github.com/BendingBender"
+  },
+  {
+   "githubUsername": "bjohansebas",
+   "name": "Sebastian Beltran",
+   "url": "https://github.com/bjohansebas"
+  }
+ ],
+ "dependencies": {},
+ "description": "TypeScript definitions for http-errors",
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-r8Tayk8HJnX0FztbZN7oVqGccWgw98T/0neJphO91KkmOzug1KkofZURD4UaD5uH8AqcFLfdPErnBod0u71/qg==",
+  "shasum": "5b749ab2b16ba113423feb1a64a95dcd30398472",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQCjcw2MCuWYNrTXJ5k2ZSs+GBL5uaI0l+XazQL14SvIIgIhAMp1xCsxIx/Q7Ho94AOCcYcZaDYlfcgDXClLzc6cXIZC"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@types/http-errors/-/http-errors-2.0.5.tgz",
+  "unpackedSize": 6827
+ },
+ "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/http-errors",
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "ts-npm-types@microsoft.com",
+   "name": "types"
+  }
+ ],
+ "name": "@types/http-errors",
+ "peerDependencies": {},
+ "repository": {
+  "directory": "types/http-errors",
+  "type": "git",
+  "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+ },
+ "scripts": {},
+ "typeScriptVersion": "5.1",
+ "types": "index.d.ts",
+ "typesPublisherContentHash": "621b9125a6493a2fa928b9150e335cb57429fb00e3bc0257426f1173903f7a4a",
+ "version": "2.0.5"
+}

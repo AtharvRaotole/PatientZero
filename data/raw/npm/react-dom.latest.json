@@ -1,0 +1,148 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "react-dom@19.3.1",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/react-dom_19.3.1_1791996549929_0.009845542040066046"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "d9cd0825-8595-47d6-b8ae-76fbc589cbd8"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "browser": {
+  "./server.js": "./server.browser.js",
+  "./static.js": "./static.browser.js"
+ },
+ "bugs": {
+  "url": "https://github.com/react/react/issues"
+ },
+ "dependencies": {
+  "scheduler": "^0.28.0"
+ },
+ "description": "React package for working with the DOM.",
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/react-dom@19.3.1"
+  },
+  "fileCount": 43,
+  "integrity": "sha512-Y0bARz53lhEC1NMCASs0/j+faB/zqt3R8hpvg1e8+61ZVJ4UL0UdC4cBbXfZMcIuhrfgeILTLe+ZeBCavQPtKQ==",
+  "shasum": "b384c53cfcbe9c2a5d09d863b98455de9d68afe2",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQDKhj2WJ0+n7p8mYN1rC0wCt9+cD0S58A7JGp6iSDsusgIhAIzdEcBxzxMDJ5pGXlJ1Qw+Utal8MwAbfud/9Fm04N1N"
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQCVaB5TV8fUMl1DUqtKZxsqf+6v/itdKfx9lY/4yHu8kwIhANkvM3hU52XEwXbe6/xrseK88Q6blbENfk+peCPY6Ih4"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/react-dom/-/react-dom-19.3.1.tgz",
+  "unpackedSize": 8067632
+ },
+ "exports": {
+  ".": {
+   "default": "./index.js",
+   "react-server": "./react-dom.react-server.js"
+  },
+  "./client": {
+   "default": "./client.js",
+   "react-server": "./client.react-server.js"
+  },
+  "./package.json": "./package.json",
+  "./profiling": {
+   "default": "./profiling.js",
+   "react-server": "./profiling.react-server.js"
+  },
+  "./server": {
+   "browser": "./server.browser.js",
+   "bun": "./server.bun.js",
+   "default": "./server.node.js",
+   "deno": "./server.node.js",
+   "edge-light": "./server.edge.js",
+   "node": "./server.node.js",
+   "react-server": "./server.react-server.js",
+   "worker": "./server.browser.js",
+   "workerd": "./server.edge.js"
+  },
+  "./server.browser": {
+   "default": "./server.browser.js",
+   "react-server": "./server.react-server.js"
+  },
+  "./server.bun": {
+   "default": "./server.bun.js",
+   "react-server": "./server.react-server.js"
+  },
+  "./server.edge": {
+   "default": "./server.edge.js",
+   "react-server": "./server.react-server.js"
+  },
+  "./server.node": {
+   "default": "./server.node.js",
+   "react-server": "./server.react-server.js"
+  },
+  "./static": {
+   "browser": "./static.browser.js",
+   "default": "./static.node.js",
+   "deno": "./static.browser.js",
+   "edge-light": "./static.edge.js",
+   "node": "./static.node.js",
+   "react-server": "./static.react-server.js",
+   "worker": "./static.browser.js",
+   "workerd": "./static.edge.js"
+  },
+  "./static.browser": {
+   "default": "./static.browser.js",
+   "react-server": "./static.react-server.js"
+  },
+  "./static.edge": {
+   "default": "./static.edge.js",
+   "react-server": "./static.react-server.js"
+  },
+  "./static.node": {
+   "default": "./static.node.js",
+   "react-server": "./static.react-server.js"
+  },
+  "./test-utils": "./test-utils.js"
+ },
+ "gitHead": "61aa00df822d0eb76d0362eb8b6fdd3527693efe",
+ "homepage": "https://react.dev/",
+ "keywords": [
+  "react"
+ ],
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "opensource+npm@fb.com",
+   "name": "fb"
+  },
+  {
+   "email": "react-core@meta.com",
+   "name": "react-bot"
+  }
+ ],
+ "name": "react-dom",
+ "peerDependencies": {
+  "react": "^19.3.1"
+ },
+ "repository": {
+  "directory": "packages/react-dom",
+  "type": "git",
+  "url": "git+https://github.com/react/react.git"
+ },
+ "scripts": {
+  "start": "node server.js"
+ },
+ "version": "19.3.1"
+}

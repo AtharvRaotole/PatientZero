@@ -1,0 +1,144 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "event-target-shim@6.0.2",
+ "_nodeVersion": "15.2.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/event-target-shim_6.0.2_1610007073080_0.043426754362076325"
+ },
+ "_npmUser": {
+  "email": "public@mysticatea.dev",
+  "name": "mysticatea"
+ },
+ "_npmVersion": "6.14.8",
+ "author": {
+  "name": "Toru Nagashima"
+ },
+ "bugs": {
+  "url": "https://github.com/mysticatea/event-target-shim/issues"
+ },
+ "dependencies": {},
+ "description": "An implementation of WHATWG EventTarget interface.",
+ "devDependencies": {
+  "@babel/core": "^7.12.10",
+  "@babel/plugin-transform-runtime": "^7.12.10",
+  "@babel/preset-env": "^7.12.11",
+  "@mysticatea/eslint-plugin": "^13.0.0",
+  "@mysticatea/spy": "^0.1.2",
+  "@mysticatea/tools": "^0.1.1",
+  "@rollup/plugin-babel": "^5.2.2",
+  "@rollup/plugin-typescript": "^8.1.0",
+  "@types/istanbul-lib-coverage": "^2.0.3",
+  "@types/istanbul-lib-report": "^3.0.0",
+  "@types/istanbul-lib-source-maps": "^4.0.1",
+  "@types/istanbul-reports": "^3.0.0",
+  "@types/mocha": "^8.2.0",
+  "@types/rimraf": "^3.0.0",
+  "assert": "^2.0.0",
+  "babel-loader": "^8.2.2",
+  "babel-plugin-istanbul": "^6.0.0",
+  "buffer": "^6.0.3",
+  "chalk": "^4.1.0",
+  "codecov": "^3.8.1",
+  "cpx": "^1.5.0",
+  "dts-bundle-generator": "^5.5.0",
+  "eslint": "^7.15.0",
+  "istanbul-lib-coverage": "^3.0.0",
+  "istanbul-lib-report": "^3.0.0",
+  "istanbul-lib-source-maps": "^4.0.0",
+  "istanbul-reports": "^3.0.2",
+  "mocha": "^7.2.0",
+  "npm-run-all": "^4.1.5",
+  "path-browserify": "^1.0.1",
+  "playwright": "^1.7.0",
+  "prettier": "~2.2.1",
+  "process": "^0.11.10",
+  "rimraf": "^3.0.2",
+  "rollup": "^2.35.1",
+  "rollup-plugin-terser": "^7.0.2",
+  "rollup-watch": "^4.3.1",
+  "stream-browserify": "^3.0.0",
+  "ts-loader": "^8.0.12",
+  "ts-node": "^9.1.1",
+  "tslib": "^2.0.3",
+  "typescript": "~4.1.3",
+  "url": "^0.11.0",
+  "util": "^0.12.3",
+  "webpack": "^5.11.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 12,
+  "integrity": "sha512-8q3LsZjRezbFZ2PN+uP+Q7pnHUMmAOziU2vA2OwoFaKIXxlxl38IylhSSgUorWu/rf4er67w0ikBqjBFk/pomA==",
+  "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.13\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJf9sIhCRA9TVsSAnZWagAAumMQAJ4iL3VmIyJnmpb81QAW\ne8AMkntVnaCtE7WetZvrdw8bS/yrl4cx9jFwvCxfNRmq9PpEW7mXG5YLWP4J\nkLfn7i0KOx7dpWjroE2u2OMlvj0flU09fYEnsFPxek7pLYAHJquAMIUuaT/f\niBmxP6CCHHyXwXlZ2pAnIko7Hk62Ua8pZDjiRxMEQv6AFPk0AvtlY+6Jn6xr\npKdtIicyVpcnwWCt9wghVQFfXx/YyH14ivMpcKiOHz17keA0mUjVrQq4FlMe\nRPUKUPWIQuFGWukiF05dIQXSYpMvFy2hky2azxxCxBWijANK4QdBmex2+moe\nT8H8ljZcaJpsJW4m+VIrIZzarL0LzrIu0VIImRcM3wXnvDJmpDlZNNp9l8GQ\nCCKVcoiBMzrmndrG2i3b1k8aHYfUVAhZfTh8oN4g8OFpsRhekd/IWDZMihkm\nOak+BIUhH1YMcvdPs8OODtRmon1DRbjqzqf2QXi8Iq9PQxGEMW6fxzxbhyEr\nB0NgKtLasfEHY1HS1Q4t24pE//oNVsdvoDSqiWpS8D4SrseAV+7+eNCWPWQS\nebdjNA9P44IQXUXP0AKWSO2o4IOcHf5ooT5HMqFmARHx2W+BdZjm42ho08d0\nMXv2rKD0Nrlt7w3kA+bGUtxoegUQeTGvNpmldlkRMn5JOKDIk03wvc61AhKU\nyo80\r\n=soFT\r\n-----END PGP SIGNATURE-----\r\n",
+  "shasum": "ea5348c3618ee8b62ff1d344f01908ee2b8a2b71",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEQCIHPJDcE/kIj5yiwrfiqF/Esym571BO2G8Z7n0CszwTuWAiB3Wu/zZDxs3dlmO1uuXNUWH1QdUEM3NFbe3o/M+F8YLQ=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/event-target-shim/-/event-target-shim-6.0.2.tgz",
+  "unpackedSize": 390440
+ },
+ "engines": {
+  "node": ">=10.13.0"
+ },
+ "exports": {
+  ".": {
+   "import": "./index.mjs",
+   "require": "./index.js"
+  },
+  "./es5": {
+   "import": "./es5.mjs",
+   "require": "./es5.js"
+  },
+  "./package.json": "./package.json",
+  "./umd": "./umd.js"
+ },
+ "funding": "https://github.com/sponsors/mysticatea",
+ "homepage": "https://github.com/mysticatea/event-target-shim",
+ "keywords": [
+  "w3c",
+  "whatwg",
+  "eventtarget",
+  "event",
+  "events",
+  "shim"
+ ],
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "public@mysticatea.dev",
+   "name": "mysticatea"
+  }
+ ],
+ "name": "event-target-shim",
+ "readme": "# event-target-shim\n\n[![npm version](https://img.shields.io/npm/v/event-target-shim.svg)](https://www.npmjs.com/package/event-target-shim)\n[![Downloads/month](https://img.shields.io/npm/dm/event-target-shim.svg)](http://www.npmtrends.com/event-target-shim)\n[![Build Status](https://github.com/mysticatea/event-target-shim/workflows/CI/badge.svg)](https://github.com/mysticatea/event-target-shim/actions)\n[![Coverage Status](https://codecov.io/gh/mysticatea/event-target-shim/branch/master/graph/badge.svg)](https://codecov.io/gh/mysticatea/event-target-shim)\n[![Dependency Status](https://david-dm.org/mysticatea/event-target-shim.svg)](https://david-dm.org/mysticatea/event-target-shim)\n\nAn implementation of [WHATWG `EventTarget` interface](https://dom.spec.whatwg.org/#interface-eventtarget) and [WHATWG `Event` interface](https://dom.spec.whatwg.org/#interface-event). This implementation supports constructor, `passive`, `once`, and `signal`.\n\nThis implementation is designed ...\n\n- Working fine on both browsers and Node.js.\n- TypeScript friendly.\n\n## \ud83d\udcbf Installation\n\nUse [npm](https://www.npmjs.com/) or a compatible tool.\n\n```\nnpm install event-target-shim\n```\n\n## \ud83d\udcd6 Getting started\n\n```js\nimport { EventTarget, Event } from \"event-target-shim\";\n\n// constructor (was added to the standard on 8 Jul 2017)\nconst myNode = new EventTarget();\n\n// passive flag (was added to the standard on 6 Jan 2016)\nmyNode.addEventListener(\n  \"hello\",\n  (e) => {\n    e.preventDefault(); // ignored and print warning on console.\n  },\n  { passive: true }\n);\n\n// once flag (was added to the standard on 15 Apr 2016)\nmyNode.addEventListener(\"hello\", listener, { once: true });\nmyNode.dispatchEvent(new Event(\"hello\")); // remove the listener after call.\n\n// signal (was added to the standard on 4 Dec 2020)\nconst ac = new AbortController();\nmyNode.addEventListener(\"hello\", listener, { signal: ac.signal });\nac.abort(); // remove the listener.\n```\n\n- For browsers, use a bundler such as [Webpack](https://webpack.js.org/) to bundle.\n  - If you want to support IE11, use `import {} from \"event-target-shim/es5\"` instead. It's a transpiled code by babel. It depends on `@baebl/runtime` (`^7.12.0`) package.\n- The `AbortController` class was added to the standard on 14 Jul 2017. If you want the shim of that, use [abort-controller](https://www.npmjs.com/package/abort-controller) package.\n\n## \ud83d\udcda API Reference\n\nSee [docs/reference.md](docs/reference.md).\n\n## \ud83d\udca5 Migrating to v6\n\nSee [docs/migrating-to-v6.md](docs/migrating-to-v6.md).\n\n## \ud83d\udcf0 Changelog\n\nSee [GitHub releases](https://github.com/mysticatea/event-target-shim/releases).\n\n## \ud83c\udf7b Contributing\n\nContributing is welcome \u2764\ufe0f\n\nPlease use GitHub issues/PRs.\n\n### Development tools\n\n- `npm install` installs dependencies for development.\n- `npm test` runs tests and measures code coverage.\n- `npm run watch:mocha` runs tests on each file change.\n",
+ "readmeFilename": "README.md",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/mysticatea/event-target-shim.git"
+ },
+ "scripts": {
+  "build": "run-s \"build:{clean,rollup,dts,meta}\"",
+  "build:clean": "rimraf \"dist/*\"",
+  "build:dts": "dts-bundle-generator --project tsconfig/dts.json --out-file dist/index.d.ts src/index.ts && dts-bundle-generator --project tsconfig/dts.json --out-file dist/es5.d.ts src/index.ts",
+  "build:meta": "cpx \"{LICENSE,package.json,README.md}\" dist/",
+  "build:rollup": "rollup --config scripts/rollup.config.js",
+  "postversion": "release",
+  "preversion": "npm test",
+  "test": "run-s \"test:{clean,tsc,lint,format,mocha}\"",
+  "test:clean": "rimraf \"coverage/*\"",
+  "test:format": "prettier --check .",
+  "test:lint": "eslint .",
+  "test:mocha": "ts-node scripts/test",
+  "test:tsc": "tsc -p tsconfig/build.json --noEmit",
+  "version": "npm run build",
+  "watch:mocha": "mocha --require ts-node/register/transpile-only --extensions ts --watch-files src,test --watch \"test/*.ts\""
+ },
+ "sideEffects": false,
+ "unpkg": "umd.js",
+ "version": "6.0.2"
+}

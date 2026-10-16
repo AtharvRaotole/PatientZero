@@ -1,0 +1,90 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "value-or-promise@1.0.12",
+ "_nodeVersion": "19.0.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/value-or-promise_1.0.12_1672733556190_0.3660953935661744"
+ },
+ "_npmUser": {
+  "email": "yaacovcr@gmail.com",
+  "name": "yaacovcr"
+ },
+ "_npmVersion": "8.19.2",
+ "bugs": {
+  "url": "https://github.com/yaacovCR/value-or-promise/issues"
+ },
+ "description": "A thenable to streamline a possibly sync / possibly async workflow.",
+ "devDependencies": {
+  "@changesets/cli": "^2.26.0",
+  "@types/mocha": "^10.0.1",
+  "@types/node": "^18.11.18",
+  "@typescript-eslint/eslint-plugin": "^5.48.0",
+  "@typescript-eslint/parser": "^5.48.0",
+  "eslint": "^8.31.0",
+  "eslint-config-prettier": "^8.6.0",
+  "eslint-plugin-eslint-comments": "^3.2.0",
+  "eslint-plugin-functional": "^4.4.1",
+  "eslint-plugin-import": "^2.26.0",
+  "expect": "^29.3.1",
+  "mocha": "^10.2.0",
+  "npm-run-all": "^4.1.5",
+  "prettier": "^2.8.1",
+  "ts-node": "^10.9.1",
+  "typescript": "^4.9.4"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 12,
+  "integrity": "sha512-Z6Uz+TYwEqE7ZN50gwn+1LCVo9ZVrpxRPOhOLnncYkY1ZzOYtrX8Fwf/rFktZ8R5mJms6EZf5TqNOMeZmnPq9Q==",
+  "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v4.10.10\r\nComment: https://openpgpjs.org\r\n\r\nwsFzBAEBCAAGBQJjs+N0ACEJED1NWxICdlZqFiEECWMYAoorWMhJKdjhPU1b\r\nEgJ2Vmqf0w/9G3S7JgfXJ1iaqK2fz4FtBqJkENcQHwwyiJJ7bPcb6YXRXzwL\r\nxhtMwKL2hGVr03PEUrsX2cjGL2x+sJ9U2c3FC/7HeckNFX4rsp6lrqnXmRVm\r\noTwchrLg2KecZsU5nubWTYBoDVBmQEN86Tu/7fBJ1iyrbCAMUuK5MdDuNoFH\r\nJiRsF7UM8udaIRx3+sk2fq3wK3HJPq4Ki0gU7miQSEuWWaF/Uns8PupGdND9\r\ngbX1r+QPGfGpYsglZkYC4YvknUvi+6TiT87LnnlzU/0fBvMtUtBFSX5J85kG\r\nbHh6th3WceiGtzorkiHMAAcjhNNi08sJkjkrt9mrx48ZLaFssXCP7JoqX8v3\r\ncio2GH+g2pR3mjr4sKe6nLGJfmx2pSFBe6R8E1Mf1moIPNIFFIEelwgTRUac\r\nysFQf7z0ErTfRLcU5f5OxjnqhHW5A/qXezMECc+VGWRtzUtYRnBO6DxkHKCs\r\nFV3EJSIrHms+8NBzTpoc2/LK3t4An0QiJXOw+Qgpi2brgg9bqPt7mN3iRFDX\r\nJ4h6WwAODU8/QRN7ygZe0TkiU9zAvpe6LE739H8zSfmI89y3MfoSrB4e4H3d\r\nTgMfgfdc3fvQCi+rVgl5HsT0LrxribmsVJe4JE/A+K0dfAJEGHEpzLuT7a+v\r\nP6p7ddgbWEiuv0+fEhuzFjqfz0F9VV4oQDM=\r\n=JFGX\r\n-----END PGP SIGNATURE-----\r\n",
+  "shasum": "0e5abfeec70148c78460a849f6b003ea7986f15c",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIFiLZg2GRxrYA0vzbbaQgWmJ5hOrxMOmFmKL0wq3VYPEAiEAzZwjp50tUyq5OKq8viDTfMJKeKxhkbxJpxgVDwpno4c="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/value-or-promise/-/value-or-promise-1.0.12.tgz",
+  "unpackedSize": 30239
+ },
+ "engines": {
+  "node": ">=12"
+ },
+ "gitHead": "3d14cd5e0ff9fbceb9b881345e58491d18187b19",
+ "homepage": "https://github.com/yaacovCR/value-or-promise#readme",
+ "keywords": [],
+ "license": "MIT",
+ "main": "build/main/index.js",
+ "maintainers": [
+  {
+   "email": "yaacovcr@gmail.com",
+   "name": "yaacovcr"
+  }
+ ],
+ "module": "build/module/index.js",
+ "name": "value-or-promise",
+ "prettier": {
+  "singleQuote": true
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/yaacovCR/value-or-promise.git"
+ },
+ "scripts": {
+  "build": "run-p build:*",
+  "build:main": "tsc -p tsconfig.json",
+  "build:module": "tsc -p tsconfig.module.json",
+  "fix": "run-s fix:*",
+  "fix:lint": "eslint src --ext .ts --fix",
+  "fix:prettier": "prettier \"src/**/*.ts\" --write",
+  "test": "run-s build test:*",
+  "test:lint": "eslint src --ext .ts",
+  "test:mocha": "mocha --require ts-node/register \"src/**/*.spec.ts\"",
+  "test:prettier": "prettier \"src/**/*.ts\" --list-different",
+  "watch:build": "tsc -p tsconfig.json -w",
+  "watch:test": "mocha --require ts-node/register --watch --watch-extensions ts --watch-files src \"src/**/*.spec.ts\" "
+ },
+ "typings": "build/main/index.d.ts",
+ "version": "1.0.12"
+}

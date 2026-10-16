@@ -1,0 +1,85 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "electron-to-chromium@1.5.457",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/electron-to-chromium_1.5.457_1792116332475_0.791380743941984"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "837a2eed-8c59-4f11-b029-d978b1c59ad2"
+  }
+ },
+ "_npmVersion": "11.21.1",
+ "author": {
+  "name": "Kilian Valkhof"
+ },
+ "bugs": {
+  "url": "https://github.com/Kilian/electron-to-chromium/issues"
+ },
+ "description": "Provides a list of electron-to-chromium version mappings",
+ "devDependencies": {
+  "ava": "^7.0.0",
+  "compare-versions": "^6.1.1",
+  "node-fetch": "^3.3.2",
+  "nyc": "^18.0.0",
+  "shelljs": "^0.10.0"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/electron-to-chromium@1.5.457"
+  },
+  "fileCount": 12,
+  "integrity": "sha512-RNKsgErRmkzRgC8nOV1wzFhSbfGlYJ6k4LT/aE7oFrDYaQgHhTh5oTp0ZgSbRRybKR8HlZIdCWc38Y+CDTk1Jw==",
+  "shasum": "90198ca2f187be9410a2c3c394db204eb76e78aa",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQCSwNvD34we9W44qj7Ac1GY6AjV0NqV5/axEeF/WIrJMwIhAIRo/PZXj8owY+NT4pZ0b1BNY4ah0Z9osWNm5cCsa05/"
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQCG7eoU4O0YAfcszJXFRJto5YoQ18OaUbYiKhd3fK4v3QIhALngwigKiBlhiDhnj4ihWK34H28T0kVnoBUtxqrjgOxV"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/electron-to-chromium/-/electron-to-chromium-1.5.457.tgz",
+  "unpackedSize": 205524
+ },
+ "gitHead": "76298acdf269f45a5faa4c7fee3f2c1cb3cdf6fc",
+ "homepage": "https://github.com/Kilian/electron-to-chromium#readme",
+ "keywords": [
+  "electron",
+  "chrome",
+  "chromium",
+  "browserslist",
+  "browserlist"
+ ],
+ "license": "ISC",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "kilian@kilianvalkhof.com",
+   "name": "kilianvalkhof"
+  }
+ ],
+ "name": "electron-to-chromium",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/Kilian/electron-to-chromium.git"
+ },
+ "scripts": {
+  "build": "node build.mjs",
+  "report": "nyc report --reporter=text-lcov > coverage.lcov",
+  "test": "nyc ava --verbose",
+  "update": "node automated-update.js"
+ },
+ "version": "1.5.457"
+}

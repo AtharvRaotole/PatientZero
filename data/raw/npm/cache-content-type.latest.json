@@ -1,0 +1,118 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "cache-content-type@2.1.0",
+ "_nodeVersion": "20.18.3",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/cache-content-type_2.1.0_1741710947500_0.40461729355739284"
+ },
+ "_npmUser": {
+  "email": "fengmk2@gmail.com",
+  "name": "fengmk2"
+ },
+ "_npmVersion": "10.8.2",
+ "author": {
+  "name": "dead_horse"
+ },
+ "bugs": {
+  "url": "https://github.com/node-modules/cache-content-type/issues"
+ },
+ "dependencies": {
+  "mime-types": "^2.1.35",
+  "ylru": "^2.0.0"
+ },
+ "description": "Create a full Content-Type header given a MIME type or extension and cache the result",
+ "devDependencies": {
+  "@eggjs/bin": "7",
+  "@eggjs/tsconfig": "2",
+  "@types/mime-types": "2",
+  "@types/mocha": "10",
+  "@types/node": "^22",
+  "eslint": "8",
+  "eslint-config-egg": "14",
+  "mm": "4",
+  "tshy": "3",
+  "tshy-after": "1",
+  "typescript": "5"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/cache-content-type@2.1.0"
+  },
+  "fileCount": 11,
+  "integrity": "sha512-cunyfzwf3p86sXOE3PyWFWlPtIb21DyLV9KAq1HhrqLupxx+mtLrqXdEe9vxUmLpTLk/jP/Zf4YyAlSoAbEVEg==",
+  "shasum": "6bfb2b0d0c76a6fe1e5b93a18c2d0ce949bf05ad",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIAkxcenFdQgfA7XuaGDtQbALEfGS9MxEJiktVngzpFjwAiEA0aEC5xrX6LMdeNoplVTQwVOsvS2yIAJQS3kSk0a7F1Q="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/cache-content-type/-/cache-content-type-2.1.0.tgz",
+  "unpackedSize": 8144
+ },
+ "engines": {
+  "node": ">= 18.0.0"
+ },
+ "exports": {
+  ".": {
+   "import": {
+    "default": "./dist/esm/index.js",
+    "types": "./dist/esm/index.d.ts"
+   },
+   "require": {
+    "default": "./dist/commonjs/index.js",
+    "types": "./dist/commonjs/index.d.ts"
+   }
+  },
+  "./package.json": "./package.json"
+ },
+ "gitHead": "b4d59700bf3f0d4aad25db504cb316526fc029fa",
+ "homepage": "https://github.com/node-modules/cache-content-type#readme",
+ "keywords": [
+  "mime",
+  "content-type",
+  "lru"
+ ],
+ "license": "MIT",
+ "main": "./dist/commonjs/index.js",
+ "maintainers": [
+  {
+   "email": "dead_horse@qq.com",
+   "name": "dead_horse"
+  },
+  {
+   "email": "fengmk2@gmail.com",
+   "name": "fengmk2"
+  }
+ ],
+ "module": "./dist/esm/index.js",
+ "name": "cache-content-type",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/node-modules/cache-content-type.git"
+ },
+ "scripts": {
+  "ci": "egg-bin cov",
+  "clean": "tsc --build --clean",
+  "lint": "eslint src test",
+  "postci": "npm run prepublishOnly && npm run clean",
+  "preci": "npm run clean && npm run lint",
+  "prepublishOnly": "tshy && tshy-after",
+  "pretest": "npm run clean && npm run lint -- --fix",
+  "test": "egg-bin test"
+ },
+ "tshy": {
+  "exports": {
+   ".": "./src/index.ts",
+   "./package.json": "./package.json"
+  }
+ },
+ "type": "module",
+ "types": "./dist/commonjs/index.d.ts",
+ "version": "2.1.0"
+}

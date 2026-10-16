@@ -1,0 +1,101 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@humanwhocodes/module-importer@1.0.1",
+ "_nodeVersion": "12.22.12",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/module-importer_1.0.1_1660845350879_0.0746999354770519"
+ },
+ "_npmUser": {
+  "email": "nicholas@nczconsulting.com",
+  "name": "nzakas"
+ },
+ "_npmVersion": "6.14.16",
+ "author": {
+  "name": "Nicholas C. Zaks"
+ },
+ "bugs": {
+  "url": "https://github.com/humanwhocodes/module-importer/issues"
+ },
+ "description": "Universal module importer for Node.js",
+ "devDependencies": {
+  "@types/node": "^18.7.6",
+  "c8": "7.12.0",
+  "chai": "4.3.6",
+  "eslint": "8.22.0",
+  "lint-staged": "13.0.3",
+  "mocha": "9.2.2",
+  "rollup": "2.78.0",
+  "typescript": "4.7.4",
+  "yorkie": "2.0.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 10,
+  "integrity": "sha512-bxveV4V8v5Yb4ncFTT3rPSgZBOpCkjfK0y4oVVVJwIuDVBRMDXrPyXRL988i5ap9m9bnyEEjWfm5WkBmtffLfA==",
+  "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v4.10.10\r\nComment: https://openpgpjs.org\r\n\r\nwsFzBAEBCAAGBQJi/n0nACEJED1NWxICdlZqFiEECWMYAoorWMhJKdjhPU1b\r\nEgJ2Vmp0Bw//TMMh4MKPGZsdB9qsox+zBU4F/23x4OR7Nk8ms16Pf7rmo3Jp\r\nmFCWE+2AQQEMowkrG1LcgJZCYxO0qgbd0szro/9sJHOXRP8dWXCd8/Ken5EC\r\nKK4Z2hAaTz017pjmWAxRCxWs3OdRSH3QmXOuS7s3SbwBv5mEWXUHwdFVlkMU\r\nK1/oTvIdjPSp9ETvL6ACCb7/U/wowjSyDClTqA26Hoa8ClHUy8IpcGQSRkNP\r\ntnbWArgGch4ko/uw+B67FZIHaGhykqIQhE7stkrNDexPSlIl/Zf6iy7UF+Fo\r\nThsCnIG153/A0fQcaYTiyknM5JdSr8bjuDDhFzwP8boLO+XTL3v1Ofuaib0l\r\noKc5uC2vSklWNffyMVFUQJScvD5dndU9w5OXs/79yDOj36bfeJiLyfpBLoA2\r\n2407ayxENXDdxzXjPY6gUoVsN4EOERO+H0R3TspG91ESanXyIus63ASYD2Yr\r\n37h/hS+jZy41jRPTNzYKUgYLJoyoShQSLsx7HsRG/AP/qmDLz1xLhVlfMsuU\r\nq+oMsxgweuBGu56FELCOUkBj10WA+5z7LvfBc95v7Zv4L/QFeFXwe7fZ3D9X\r\nW2PhYmW6xaUTrpYS+UFfPt34ux9MWdFgs/gerFwIX5kd8AElMwaMJEw3Qn6h\r\n/l9IShNEAZxgO93N0kseJGP+QHPVVYCmkoo=\r\n=YWcW\r\n-----END PGP SIGNATURE-----\r\n",
+  "shasum": "af5b2691a22b44be847b0ca81641c5fb6ad0172c",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEQCIAwEl7WYJX3Nf8MCSAGIsWc7dmTYhXbUbFMj+7gt82dVAiAH2f6o/LCDJ1RKpoHNaY6KdMNRscLLX4fNckGCLO/zow=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@humanwhocodes/module-importer/-/module-importer-1.0.1.tgz",
+  "unpackedSize": 21177
+ },
+ "engines": {
+  "node": ">=12.22"
+ },
+ "exports": {
+  "import": "./src/module-importer.js",
+  "require": "./src/module-importer.cjs"
+ },
+ "funding": {
+  "type": "github",
+  "url": "https://github.com/sponsors/nzakas"
+ },
+ "gitHead": "3cffc3ea6238f08be710a406908b1eeb1d230c9f",
+ "gitHooks": {
+  "pre-commit": "lint-staged"
+ },
+ "homepage": "https://github.com/humanwhocodes/module-importer#readme",
+ "keywords": [
+  "modules",
+  "esm",
+  "commonjs"
+ ],
+ "license": "Apache-2.0",
+ "lint-staged": {
+  "*.js": [
+   "eslint --fix"
+  ]
+ },
+ "main": "src/module-importer.cjs",
+ "maintainers": [
+  {
+   "email": "nicholas@nczconsulting.com",
+   "name": "nzakas"
+  }
+ ],
+ "module": "src/module-importer.js",
+ "name": "@humanwhocodes/module-importer",
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/humanwhocodes/module-importer.git"
+ },
+ "scripts": {
+  "build": "rollup -c && tsc",
+  "lint": "eslint src/ tests/",
+  "prepare": "npm run build",
+  "test": "npm run test:unit && npm run test:build",
+  "test:build": "node tests/pkg.test.cjs && node tests/pkg.test.mjs",
+  "test:unit": "c8 mocha tests/module-importer.test.js"
+ },
+ "type": "module",
+ "types": "dist/module-importer.d.ts",
+ "version": "1.0.1"
+}

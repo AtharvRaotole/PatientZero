@@ -1,0 +1,70 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@types/d3-ease@3.0.2",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/d3-ease_3.0.2_1699386871087_0.2376227113787619"
+ },
+ "_npmUser": {
+  "email": "ts-npm-types@microsoft.com",
+  "name": "types"
+ },
+ "contributors": [
+  {
+   "githubUsername": "tomwanzek",
+   "name": "Tom Wanzek",
+   "url": "https://github.com/tomwanzek"
+  },
+  {
+   "githubUsername": "gustavderdrache",
+   "name": "Alex Ford",
+   "url": "https://github.com/gustavderdrache"
+  },
+  {
+   "githubUsername": "borisyankov",
+   "name": "Boris Yankov",
+   "url": "https://github.com/borisyankov"
+  },
+  {
+   "githubUsername": "Methuselah96",
+   "name": "Nathan Bierema",
+   "url": "https://github.com/Methuselah96"
+  }
+ ],
+ "dependencies": {},
+ "description": "TypeScript definitions for d3-ease",
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-NcV1JjO5oDzoK26oMzbILE6HW7uVXOHLQvHshBUW4UMdZGfiY6v5BeQwh9a9tCzv+CeefZQHJt5SRgK154RtiA==",
+  "shasum": "e28db1bfbfa617076f7770dd1d9a48eaa3b6c51b",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEYCIQDDV6w0oA9m8jC/Gzj2B0wHaREyrIsJQ2iIwCQhINm5gQIhAMogl+FseMtpGr4pV91QkDj4wnvN9x+fwG3hltRJjYwc"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@types/d3-ease/-/d3-ease-3.0.2.tgz",
+  "unpackedSize": 13405
+ },
+ "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/d3-ease",
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "ts-npm-types@microsoft.com",
+   "name": "types"
+  }
+ ],
+ "name": "@types/d3-ease",
+ "repository": {
+  "directory": "types/d3-ease",
+  "type": "git",
+  "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+ },
+ "scripts": {},
+ "typeScriptVersion": "4.5",
+ "types": "index.d.ts",
+ "typesPublisherContentHash": "2995c518f8de4fa6f2abb2f13065cb4fe65acaea9422f9883b24414ef50cd1ab",
+ "version": "3.0.2"
+}

@@ -1,0 +1,140 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "secure-json-parse@4.1.1",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/secure-json-parse_4.1.1_1791628281036_0.1812050080829246"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "347136fb-c27a-4d60-8734-ad8653092287"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "author": {
+  "email": "eran@sideway.com",
+  "name": "Eran Hammer"
+ },
+ "bugs": {
+  "url": "https://github.com/fastify/secure-json-parse/issues"
+ },
+ "contributors": [
+  {
+   "email": "hello@matteocollina.com",
+   "name": "Matteo Collina"
+  },
+  {
+   "name": "Tomas Della Vedova",
+   "url": "https://delvedor.dev"
+  },
+  {
+   "email": "aras.abbasi@gmail.com",
+   "name": "Aras Abbasi"
+  },
+  {
+   "email": "frazer.dev@icloud.com",
+   "name": "Frazer Smith",
+   "url": "https://github.com/fdawgs"
+  }
+ ],
+ "description": "JSON parse with prototype poisoning protection",
+ "devDependencies": {
+  "airtap": "^5.0.0",
+  "airtap-playwright": "^1.0.1",
+  "c8": "^12.0.0",
+  "eslint": "^9.17.0",
+  "neostandard": "^0.13.0",
+  "playwright": "^1.43.1",
+  "tape": "^5.7.5",
+  "tstyche": "^7.1.0"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/secure-json-parse@4.1.1"
+  },
+  "fileCount": 20,
+  "integrity": "sha512-lnd81MQEZKjhW/Gd2TQqdd4XP6QYNdDW/EP+I7nTrFHP9y2LmaGPIHk9xsnzcOiEr1c39c/e84xFgGviQKBTRw==",
+  "shasum": "065e41f68da3fb4472d01d1b08d290d257070d8f",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCID4yDHY0JgV6U5NEQ6Uw+4+XcGip4Ry+b4kn55exgec9AiBzWsZnRl96q5pnIIGmspC1TpJLfqWH4Hf4JOT9ZwwGMA=="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIBLriBR4ZI7H32BdA1X9nTXM/2yp9hRuBDWLztWGXz1jAiEA4yHJuOJlOtz/6xm+yPNrukM5T7opyGEy0BEKF+X2k/o="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/secure-json-parse/-/secure-json-parse-4.1.1.tgz",
+  "unpackedSize": 62310
+ },
+ "funding": [
+  {
+   "type": "github",
+   "url": "https://github.com/sponsors/fastify"
+  },
+  {
+   "type": "opencollective",
+   "url": "https://opencollective.com/fastify"
+  }
+ ],
+ "gitHead": "b5fc694ae2f1407667da651ec8765335994dbd2a",
+ "homepage": "https://github.com/fastify/secure-json-parse#readme",
+ "keywords": [
+  "JSON",
+  "parse",
+  "safe",
+  "security",
+  "prototype",
+  "pollution"
+ ],
+ "license": "BSD-3-Clause",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "james.sumners@gmail.com",
+   "name": "jsumners"
+  },
+  {
+   "email": "tommydelved@gmail.com",
+   "name": "delvedor"
+  },
+  {
+   "email": "hello@matteocollina.com",
+   "name": "matteo.collina"
+  },
+  {
+   "email": "behemoth89@gmail.com",
+   "name": "eomm"
+  },
+  {
+   "email": "kaka@kakawebsitedemo.com",
+   "name": "climba03003"
+  }
+ ],
+ "name": "secure-json-parse",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/fastify/secure-json-parse.git"
+ },
+ "scripts": {
+  "benchmark": "cd benchmarks && npm install && npm run all",
+  "lint": "eslint",
+  "lint:fix": "eslint --fix",
+  "test": "c8 --all --include index.js --check-coverage --100 npm run test:unit && npm run test:typescript",
+  "test:browser": "airtap test/*.test.js",
+  "test:typescript": "tstyche",
+  "test:unit": "tape \"test/*.test.js\""
+ },
+ "type": "commonjs",
+ "types": "types/index.d.ts",
+ "version": "4.1.1"
+}

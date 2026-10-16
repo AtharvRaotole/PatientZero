@@ -1,0 +1,97 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "denque@2.1.0",
+ "_nodeVersion": "18.3.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/denque_2.1.0_1658139268951_0.7196133466662422"
+ },
+ "_npmUser": {
+  "email": "mike.diarmid@gmail.com",
+  "name": "salakar"
+ },
+ "_npmVersion": "8.11.0",
+ "author": {
+  "email": "oss@invertase.io",
+  "name": "Invertase",
+  "url": "http://github.com/invertase/"
+ },
+ "bugs": {
+  "url": "https://github.com/invertase/denque/issues"
+ },
+ "contributors": [
+  {
+   "email": "mike@invertase.io",
+   "name": "Mike Diarmid",
+   "url": "Salakar"
+  }
+ ],
+ "description": "The fastest javascript implementation of a double-ended queue. Used by the official Redis, MongoDB, MariaDB & MySQL libraries for Node.js and many other libraries. Maintains compatability with deque.",
+ "devDependencies": {
+  "benchmark": "^2.1.4",
+  "codecov": "^3.8.3",
+  "double-ended-queue": "^2.1.0-0",
+  "istanbul": "^0.4.5",
+  "mocha": "^3.5.3",
+  "typescript": "^3.4.1"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 6,
+  "integrity": "sha512-HVQE3AAb/pxF8fQAoiqpvg9i3evqug3hoiwakOyZAwJm+6vZehbkYXZ0l4JxS+I3QxM97v5aaRNhj8v5oBhekw==",
+  "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v4.10.10\r\nComment: https://openpgpjs.org\r\n\r\nwsFzBAEBCAAGBQJi1TKFACEJED1NWxICdlZqFiEECWMYAoorWMhJKdjhPU1b\r\nEgJ2Vmpzaw/9FdIxUf3Yk5IEH0yYhOjtUa824wvwPHMvgnv0lfxriJ1vFr5C\r\nb2mNBi9/9b+aAcoCbsVrMxAMZ+TmCdlWkVfC34FBIA62qQvfkNJLfa2M5xXu\r\nWwuJiPQMXHxA5tk+9dBjndervrmB4pnANlSxP7SH6WaCqGcoMUpErMkStOgh\r\n1npvbNFm4nBC+RWVPa6pYdx/MJRjBFhfJ+17eEm6/Br1mms7fA6OVrivSymv\r\nKWGaB46eC9CGGa+y8ZvtCKdsZyI0NdwBgbiVOjPzIOdVS0aRPDk7JqFEfVdU\r\nWVbTHdsQcX7oD8SP7Is72lBPu39kt8Irosq0amcTUYMmBE2IncSv2WHvGfqw\r\nvOJ6LkuVrrMIhll/2AOSabIFvr6plOoSGriDLqw665mrQQ2rYKWW312sNDKV\r\nRdnnngTV/AZzQW/L4GFJkWovRuYoRbgnEuVGFRRe80Wifq21TF5sVwRskAW+\r\nY+R3nml/radt1YTXn0Ciasl/I/LP20JBzUej7FkYl2iG2HypxvRVyCU6SuFW\r\nQXq3g8p+Gnw8jb7umfAS6aR4nwFC5om5S9iRR19SZ1Sj/Wku3APUGIt4CYj1\r\nRhJyJUrYFeHiPNIeNDMqy9KeyYLmp/6AG/XAyLf97RucLAUzWyUg59JIyTdW\r\nyt5RwPT1YuWN8ebx5udOwyR/5q3ZLyztK/I=\r\n=gX5c\r\n-----END PGP SIGNATURE-----\r\n",
+  "shasum": "e93e1a6569fb5e66f16a3c2a2964617d349d6ab1",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIQCJLtIWDGdPVi66lvzFzHTvAxbrUcE/6nZCxIMHUa6ibwIgesl6s1DKxubgME0qTuvsYXrg6Exbd0es4WCS1ZAB+xA="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/denque/-/denque-2.1.0.tgz",
+  "unpackedSize": 30361
+ },
+ "engines": {
+  "node": ">=0.10"
+ },
+ "gitHead": "539105bb57854e997dd469221cdc52a0ad80e0a2",
+ "homepage": "https://docs.page/invertase/denque",
+ "keywords": [
+  "data-structure",
+  "data-structures",
+  "queue",
+  "double",
+  "end",
+  "ended",
+  "deque",
+  "denque",
+  "double-ended-queue"
+ ],
+ "license": "Apache-2.0",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "mike.diarmid@gmail.com",
+   "name": "salakar"
+  }
+ ],
+ "name": "denque",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/invertase/denque.git"
+ },
+ "scripts": {
+  "benchmark_2mil": "node benchmark/two_million",
+  "benchmark_fromArray": "node benchmark/fromArray",
+  "benchmark_growth": "node benchmark/growth",
+  "benchmark_remove": "node benchmark/remove",
+  "benchmark_removeOne": "node benchmark/removeOne",
+  "benchmark_splice": "node benchmark/splice",
+  "benchmark_thousand": "node benchmark/thousand",
+  "benchmark_toArray": "node benchmark/toArray",
+  "coveralls": "cat ./coverage/lcov.info | coveralls",
+  "test": "istanbul cover --report lcov _mocha && npm run typescript",
+  "typescript": "tsc --project ./test/type/tsconfig.json"
+ },
+ "types": "./index.d.ts",
+ "version": "2.1.0"
+}

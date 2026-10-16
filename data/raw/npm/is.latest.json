@@ -1,0 +1,103 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "is@3.3.2",
+ "_nodeVersion": "24.4.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/is_3.3.2_1752952412932_0.8444742620967722"
+ },
+ "_npmUser": {
+  "email": "ljharb@gmail.com",
+  "name": "ljharb"
+ },
+ "_npmVersion": "11.4.2",
+ "author": {
+  "name": "Enrico Marino",
+  "url": "http://onirame.com"
+ },
+ "bugs": {
+  "url": "https://github.com/enricomarino/is/issues"
+ },
+ "contributors": [
+  {
+   "name": "Jordan Harband",
+   "url": "https://github.com/ljharb"
+  }
+ ],
+ "description": "the definitive JavaScript type testing library",
+ "devDependencies": {
+  "@ljharb/eslint-config": "^21.1.1",
+  "aud": "^2.0.4",
+  "eslint": "=8.8.0",
+  "foreach": "^2.0.6",
+  "in-publish": "^2.0.1",
+  "make-generator-function": "^1.1.0",
+  "nyc": "^10.3.2",
+  "safe-publish-latest": "^2.0.0",
+  "tape": "^5.7.5"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 8,
+  "integrity": "sha512-a2xr4E3s1PjDS8ORcGgXpWx6V+liNs+O3JRD2mb9aeugD7rtkkZ0zgLdYgw0tWsKhsdiezGYptSiMlVazCBTuQ==",
+  "shasum": "dfc285f4937f08564675f2f17cc6ac6cd2113ace",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIHOxALG0r7YMgjgkVOWqvok1+JGE3fqzp5Z4SMV9L2x5AiAQ67ybKbRUSL0qR/R9e9lxjdEUlYM9Zb0MelKua631Tg=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/is/-/is-3.3.2.tgz",
+  "unpackedSize": 57547
+ },
+ "engines": {
+  "node": ">= 0.4"
+ },
+ "gitHead": "0fe137a5946e4ecb0e649bd7dea48d5415a242fc",
+ "homepage": "https://github.com/enricomarino/is",
+ "keywords": [
+  "util",
+  "type",
+  "test"
+ ],
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "ljharb@gmail.com",
+   "name": "ljharb"
+  }
+ ],
+ "name": "is",
+ "repository": {
+  "type": "git",
+  "url": "git://github.com/enricomarino/is.git"
+ },
+ "scripts": {
+  "lint": "eslint .",
+  "posttest": "aud --production",
+  "prepublish": "not-in-publish || npm run prepublishOnly",
+  "prepublishOnly": "safe-publish-latest",
+  "pretest": "npm run lint",
+  "test": "npm run --silent tests-only",
+  "tests-only": "nyc tape 'test/**/*.js'"
+ },
+ "testling": {
+  "browsers": [
+   "iexplore/6.0..latest",
+   "firefox/3.0",
+   "firefox/15.0..latest",
+   "firefox/nightly",
+   "chrome/4.0",
+   "chrome/22.0..latest",
+   "chrome/canary",
+   "opera/10.0..latest",
+   "opera/next",
+   "safari/5.0.5..latest",
+   "ipad/6.0..latest",
+   "iphone/6.0..latest"
+  ],
+  "files": "test/index.js"
+ },
+ "version": "3.3.2"
+}

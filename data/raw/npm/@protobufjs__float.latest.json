@@ -1,0 +1,67 @@
+{
+ "_from": ".",
+ "_id": "@protobufjs/float@1.0.2",
+ "_nodeVersion": "6.9.1",
+ "_npmOperationalInternal": {
+  "host": "packages-12-west.internal.npmjs.com",
+  "tmp": "tmp/float-1.0.2.tgz_1491129941022_0.6265034212265164"
+ },
+ "_npmUser": {
+  "email": "dcode+npm@dcode.io",
+  "name": "dcode"
+ },
+ "_npmVersion": "4.0.5",
+ "_shasum": "5e9e1abdcb73fc0a7cb8b291df78c8cbd97b87d1",
+ "author": {
+  "email": "dcode+protobufjs@dcode.io",
+  "name": "Daniel Wirtz"
+ },
+ "bugs": {
+  "url": "https://github.com/dcodeIO/protobuf.js/issues"
+ },
+ "dependencies": {},
+ "description": "Reads / writes floats / doubles from / to buffers in both modern and ancient browsers.",
+ "devDependencies": {
+  "benchmark": "^2.1.4",
+  "chalk": "^1.1.3",
+  "ieee754": "^1.1.8",
+  "istanbul": "^0.4.5",
+  "tape": "^4.6.3"
+ },
+ "dist": {
+  "integrity": "sha512-Ddb+kVXlXst9d+R9PfTIxh1EdNkgoRe5tOX6t01f1lYWOvJnSPDBlG241QLzcyPdoNTsblLUdujGSE4RzrTZGQ==",
+  "shasum": "5e9e1abdcb73fc0a7cb8b291df78c8cbd97b87d1",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEYCIQCxk0cGOArQ9V+xvg7eVP/sGVnFmoFw5WyfD9LJvH1fuQIhAIqEYF8zon5aEgvgKxeKKH9eqfT5Vd2/uaLDPiaJACl/"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@protobufjs/float/-/float-1.0.2.tgz"
+ },
+ "homepage": "https://github.com/dcodeIO/protobuf.js#readme",
+ "license": "BSD-3-Clause",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "dcode+npm@dcode.io",
+   "name": "dcode"
+  },
+  {
+   "email": "dcode+protobufjs@dcode.io",
+   "name": "protobufjs"
+  }
+ ],
+ "name": "@protobufjs/float",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/dcodeIO/protobuf.js.git"
+ },
+ "scripts": {
+  "bench": "node bench",
+  "coverage": "istanbul cover node_modules/tape/bin/tape tests/*.js",
+  "test": "tape tests/*.js"
+ },
+ "types": "index.d.ts",
+ "version": "1.0.2"
+}

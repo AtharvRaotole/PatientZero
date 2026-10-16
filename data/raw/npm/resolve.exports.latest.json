@@ -1,0 +1,90 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "resolve.exports@2.0.4",
+ "_nodeVersion": "26.11.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/resolve.exports_2.0.4_1791844458233_0.32452693536574073"
+ },
+ "_npmUser": {
+  "email": "luke@lukeed.com",
+  "name": "lukeed"
+ },
+ "_npmVersion": "11.20.0",
+ "author": {
+  "email": "luke.edwards05@gmail.com",
+  "name": "Luke Edwards",
+  "url": "https://lukeed.com"
+ },
+ "bugs": {
+  "url": "https://github.com/lukeed/resolve.exports/issues"
+ },
+ "description": "A tiny (952b), correct, general-purpose, and configurable \"exports\" and \"imports\" resolver without file-system reliance",
+ "devDependencies": {
+  "bundt": "next",
+  "tsm": "2.3.0",
+  "typescript": "4.9.4",
+  "uvu": "0.5.4"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 6,
+  "integrity": "sha512-zepuGL0ulf+nt+XaFrlKeaiTJeyPFPLLY62+ncq1/VTHBdt3HsfXOH60priZ6tnXQozdGcDeIF5JVTanvIcYWQ==",
+  "shasum": "49921cfd9cd266053a9699e3f43c8bcbdf964331",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIEYSXXoUm6wGig1ijYcOD8OLDg3OTVC4GV+FhrYAKWOQAiAxFnj0d1atUPSotWl5yy2Mp0IPqKjJW+rB/NAu4UmFKA=="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQCnwN4sUYQkR6MfP8GPblZBIFDmAXWP16mQdCwk6eip2AIhAKE/NL1cGfxyhTqDBY1PX6U+WfpoEIap+qWoFYBsqHEe"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/resolve.exports/-/resolve.exports-2.0.4.tgz",
+  "unpackedSize": 24062
+ },
+ "engines": {
+  "node": ">=10"
+ },
+ "exports": {
+  ".": {
+   "import": "./dist/index.mjs",
+   "require": "./dist/index.js",
+   "types": "./index.d.ts"
+  },
+  "./package.json": "./package.json"
+ },
+ "gitHead": "415bd6ab2fcf05a35df031c19d78bc12b9eb9042",
+ "homepage": "https://github.com/lukeed/resolve.exports#readme",
+ "keywords": [
+  "esm",
+  "exports",
+  "esmodules",
+  "fields",
+  "modules",
+  "resolution",
+  "resolve"
+ ],
+ "license": "MIT",
+ "main": "dist/index.js",
+ "maintainers": [
+  {
+   "email": "luke@lukeed.com",
+   "name": "lukeed"
+  }
+ ],
+ "module": "dist/index.mjs",
+ "name": "resolve.exports",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/lukeed/resolve.exports.git"
+ },
+ "scripts": {
+  "build": "bundt -m",
+  "test": "uvu -r tsm test",
+  "types": "tsc --noEmit"
+ },
+ "types": "index.d.ts",
+ "version": "2.0.4"
+}

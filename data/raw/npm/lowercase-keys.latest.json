@@ -1,0 +1,82 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "lowercase-keys@4.0.1",
+ "_nodeVersion": "25.3.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/lowercase-keys_4.0.1_1770057934863_0.6815968200709253"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "11.7.0",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/lowercase-keys/issues"
+ },
+ "description": "Lowercase the keys of an object",
+ "devDependencies": {
+  "ava": "^6.4.1",
+  "tsd": "^0.33.0",
+  "xo": "^1.2.3"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-wI9Nui/L8VfADa/cr/7NQruaASk1k23/Uh1khQ02BCVYiiy8F4AhOGnQzJy3Fl/c44GnYSbZHv8g7EcG3kJ1Qg==",
+  "shasum": "03f169f2bfc01709582366ede4f58d79ab6e766b",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQC32DHZ62rzQ6Yx9W31sJRNdExtoEi1yvJVx/Re8iuXYwIgcx4ANX7VjVvr0s0uHkJEE5j+ClcoxONXuJfSSrWNg/s="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/lowercase-keys/-/lowercase-keys-4.0.1.tgz",
+  "unpackedSize": 5054
+ },
+ "engines": {
+  "node": ">=20"
+ },
+ "exports": {
+  "default": "./index.js",
+  "types": "./index.d.ts"
+ },
+ "funding": "https://github.com/sponsors/sindresorhus",
+ "gitHead": "ad1f8f14777d2f27d516005d62f88e918eb656e5",
+ "homepage": "https://github.com/sindresorhus/lowercase-keys#readme",
+ "keywords": [
+  "object",
+  "assign",
+  "extend",
+  "properties",
+  "lowercase",
+  "lower-case",
+  "case",
+  "keys",
+  "key"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "lowercase-keys",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/lowercase-keys.git"
+ },
+ "scripts": {
+  "test": "xo && ava && tsd"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "4.0.1"
+}

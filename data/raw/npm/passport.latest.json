@@ -1,0 +1,89 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "passport@0.7.0",
+ "_nodeVersion": "16.13.2",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/passport_0.7.0_1701125858674_0.765912206479902"
+ },
+ "_npmUser": {
+  "email": "jaredhanson@gmail.com",
+  "name": "jaredhanson"
+ },
+ "_npmVersion": "8.1.2",
+ "author": {
+  "email": "jaredhanson@gmail.com",
+  "name": "Jared Hanson",
+  "url": "https://www.jaredhanson.me/"
+ },
+ "bugs": {
+  "url": "https://github.com/jaredhanson/passport/issues"
+ },
+ "dependencies": {
+  "passport-strategy": "1.x.x",
+  "pause": "0.0.1",
+  "utils-merge": "^1.0.1"
+ },
+ "description": "Simple, unobtrusive authentication for Node.js.",
+ "devDependencies": {
+  "chai": "2.x.x",
+  "chai-connect-middleware": "0.3.x",
+  "chai-passport-strategy": "0.2.x",
+  "make-node": "0.3.x",
+  "mocha": "2.x.x",
+  "proxyquire": "1.4.x"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 21,
+  "integrity": "sha512-cPLl+qZpSc+ireUvt+IzqbED1cHHkDoVYMo30jbJIdOOjQ1MQYZBPiNvmi8UM6lJuOpTPXJGZQk0DtC4y61MYQ==",
+  "shasum": "3688415a59a48cf8068417a8a8092d4492ca3a05",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEYCIQDTnOVty8qFuUMjlSCMhBC+WsaKWiDftNYmYx6ugCrclAIhAIuox9Jmwaugbdrmy0HCh2DyjeSD4iEBrSd3mEmOYx2+"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/passport/-/passport-0.7.0.tgz",
+  "unpackedSize": 156687
+ },
+ "engines": {
+  "node": ">= 0.4.0"
+ },
+ "funding": {
+  "type": "github",
+  "url": "https://github.com/sponsors/jaredhanson"
+ },
+ "gitHead": "33b92f96616642864844753a481df7c5b823e047",
+ "homepage": "https://www.passportjs.org/",
+ "keywords": [
+  "express",
+  "connect",
+  "auth",
+  "authn",
+  "authentication"
+ ],
+ "license": "MIT",
+ "licenses": [
+  {
+   "type": "MIT",
+   "url": "https://opensource.org/licenses/MIT"
+  }
+ ],
+ "main": "./lib",
+ "maintainers": [
+  {
+   "email": "jaredhanson@gmail.com",
+   "name": "jaredhanson"
+  }
+ ],
+ "name": "passport",
+ "repository": {
+  "type": "git",
+  "url": "git://github.com/jaredhanson/passport.git"
+ },
+ "scripts": {
+  "test": "mocha --reporter spec --require test/bootstrap/node test/*.test.js test/**/*.test.js"
+ },
+ "version": "0.7.0"
+}

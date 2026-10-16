@@ -1,0 +1,123 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "content-type@3.1.1",
+ "_nodeVersion": "26.9.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/content-type_3.1.1_1789665777658_0.4971689350556654"
+ },
+ "_npmUser": {
+  "approver": {
+   "email": "hello@blakeembrey.com",
+   "name": "blakeembrey"
+  },
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:7bdcc576-a33f-4d3b-a990-9c30738fc4c6"
+  }
+ },
+ "_npmVersion": "11.19.1",
+ "author": {
+  "email": "doug@somethingdoug.com",
+  "name": "Douglas Christopher Wilson"
+ },
+ "bugs": {
+  "url": "https://github.com/jshttp/content-type/issues"
+ },
+ "description": "Create and parse HTTP Content-Type header",
+ "devDependencies": {
+  "@borderless/ts-scripts": "^0.15.0",
+  "@size-limit/preset-small-lib": "^13.0.3",
+  "@vitest/coverage-v8": "^4.1.11",
+  "size-limit": "^13.0.3",
+  "typescript": "^7.0.2",
+  "vitest": "^4.1.11"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/content-type@3.1.1"
+  },
+  "fileCount": 6,
+  "integrity": "sha512-GW4qUsfFo59d0HbUibDlWv5wPz+vAAcaTWbKIuKCf0JkC7wWkSyf8f13IpXn5JkeMlB2P8iTSSIjwXljorg2vA==",
+  "shasum": "7c80289f1a03ae3fc1f8399c388d22ae44d1394f",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIEq9vYsRmJ32pxSXGKnMxyVo/mHI+eDfJptoshKgclzUAiEArdYJCdPpvXNh5RSh/UwLUivvNFRojW0dSgq8bwPM+jc="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/content-type/-/content-type-3.1.1.tgz",
+  "unpackedSize": 36219
+ },
+ "engines": {
+  "node": ">=22"
+ },
+ "exports": "./dist/index.js",
+ "funding": {
+  "type": "opencollective",
+  "url": "https://opencollective.com/express"
+ },
+ "gitHead": "d005d8bfd9846bb9eb73a9aad0944536e1a5cf39",
+ "homepage": "https://github.com/jshttp/content-type#readme",
+ "keywords": [
+  "content-type",
+  "http",
+  "req",
+  "res",
+  "rfc7231",
+  "rfc9110"
+ ],
+ "license": "MIT",
+ "main": "./dist/index.js",
+ "maintainers": [
+  {
+   "email": "ulisesgascondev@gmail.com",
+   "name": "ulisesgascon"
+  },
+  {
+   "email": "hello@blakeembrey.com",
+   "name": "blakeembrey"
+  },
+  {
+   "email": "doug@somethingdoug.com",
+   "name": "dougwilson"
+  }
+ ],
+ "name": "content-type",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/jshttp/content-type.git"
+ },
+ "scripts": {
+  "bench": "vitest bench",
+  "build": "ts-scripts build",
+  "format": "ts-scripts format",
+  "prepare": "ts-scripts install && npm run build",
+  "size": "size-limit",
+  "specs": "ts-scripts specs",
+  "test": "ts-scripts test && npm run size"
+ },
+ "size-limit": [
+  {
+   "limit": "1.15 kB",
+   "path": "dist/index.js"
+  }
+ ],
+ "ts-scripts": {
+  "dist": [
+   "dist"
+  ],
+  "project": [
+   "tsconfig.build.json"
+  ]
+ },
+ "type": "module",
+ "typings": "./dist/index.d.ts",
+ "version": "3.1.1"
+}

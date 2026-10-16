@@ -1,0 +1,90 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "istanbul-lib-coverage@3.2.2",
+ "_nodeVersion": "14.21.3",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/istanbul-lib-coverage_3.2.2_1699450266714_0.49168921917805797"
+ },
+ "_npmUser": {
+  "email": "bencoe+oss-bot@gmail.com",
+  "name": "oss-bot"
+ },
+ "_npmVersion": "6.14.18",
+ "author": {
+  "email": "kananthmail-github@yahoo.com",
+  "name": "Krishnan Anantheswaran"
+ },
+ "bugs": {
+  "url": "https://github.com/istanbuljs/istanbuljs/issues"
+ },
+ "description": "Data library for istanbul coverage objects",
+ "devDependencies": {
+  "chai": "^4.2.0",
+  "mocha": "^6.2.2",
+  "nyc": "^15.0.0-beta.2"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 10,
+  "integrity": "sha512-O8dpsF+r0WV/8MNRKfnmrtCWhuKjxrq2w+jpzBL5UZKTi2LeVWnWOmWRxFlesJONmc+wLAGvKQZEOanko0LFTg==",
+  "shasum": "2d166c4b0644d43a39f04bf6c2edd1e585f31756",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIQDAjL6Y4m6nqWo+6RxCFVtBezkAMP2zGkMyBynYPg9IRwIgFP2GbQvingveSmjNlxWq3bq1hZOoWwplfbsctPqFsRk="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/istanbul-lib-coverage/-/istanbul-lib-coverage-3.2.2.tgz",
+  "unpackedSize": 34367
+ },
+ "engines": {
+  "node": ">=8"
+ },
+ "homepage": "https://istanbul.js.org/",
+ "karmaDeps": {
+  "browserify-istanbul": "^0.2.1",
+  "karma": "^0.13.10",
+  "karma-browserify": "^4.2.1",
+  "karma-chrome-launcher": "^0.2.0",
+  "karma-coverage": "^0.4.2",
+  "karma-mocha": "^0.2.0",
+  "karma-phantomjs-launcher": "^0.2.0",
+  "phantomjs": "^1.9.17"
+ },
+ "keywords": [
+  "istanbul",
+  "coverage",
+  "data"
+ ],
+ "license": "BSD-3-Clause",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "kananthmail-github@yahoo.com",
+   "name": "gotwarlost"
+  },
+  {
+   "email": "bencoe@gmail.com",
+   "name": "bcoe"
+  },
+  {
+   "email": "git@cfware.com",
+   "name": "coreyfarrell"
+  },
+  {
+   "email": "bencoe+oss-bot@gmail.com",
+   "name": "oss-bot"
+  }
+ ],
+ "name": "istanbul-lib-coverage",
+ "repository": {
+  "directory": "packages/istanbul-lib-coverage",
+  "type": "git",
+  "url": "git+ssh://git@github.com/istanbuljs/istanbuljs.git"
+ },
+ "scripts": {
+  "test": "nyc mocha"
+ },
+ "version": "3.2.2"
+}

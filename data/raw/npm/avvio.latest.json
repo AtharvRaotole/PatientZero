@@ -1,0 +1,140 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "avvio@9.3.1",
+ "_nodeVersion": "24.21.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/avvio_9.3.1_1791626571767_0.7107763540088066"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "3cc4002b-60e5-4df9-acb2-5d8a80925302"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "author": {
+  "email": "hello@matteocollina.com",
+  "name": "Matteo Collina"
+ },
+ "bugs": {
+  "url": "https://github.com/fastify/avvio/issues"
+ },
+ "contributors": [
+  {
+   "name": "Tomas Della Vedova",
+   "url": "https://delvedor.dev"
+  },
+  {
+   "email": "behemoth89@gmail.com",
+   "name": "Manuel Spigolon"
+  },
+  {
+   "email": "aras.abbasi@gmail.com",
+   "name": "Aras Abbasi"
+  },
+  {
+   "email": "frazer.dev@icloud.com",
+   "name": "Frazer Smith",
+   "url": "https://github.com/fdawgs"
+  }
+ ],
+ "dependencies": {
+  "@fastify/error": "^4.0.0",
+  "fastq": "^1.17.1"
+ },
+ "description": "Asynchronous bootstrapping of Node applications",
+ "devDependencies": {
+  "@jsumners/line-reporter": "^1.0.1",
+  "@types/node": "^26.0.0",
+  "borp": "^1.0.0",
+  "c8": "^12.0.0",
+  "eslint": "^9.17.0",
+  "neostandard": "^0.13.0",
+  "typescript": "~6.0.2"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/avvio@9.3.1"
+  },
+  "fileCount": 77,
+  "integrity": "sha512-QyTKW61/qlba+cUQBm/sT9X8lri4UdomqSDwCnrnj1IvLVDRRiXRkz4CgBRWB+/cmfC7SK5WQc8T1vSdGvaUcQ==",
+  "shasum": "9f48a9fd07afa823549e12a334b81dad2575996f",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQCNdDsTZuwfGlba89QkihTH8xzzlqDhtdfnmYR1L+01BQIhAMp/H8lnyRMLqXQR7Wu06jGG3XVC1Dllzz1kROMhJ/Ft"
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQDb/ZaGWrSycSSWJf3mOl5ZscFCOXLP+796XmO7u7lyXgIhANyZk2+O3E7DU+IJQT33bV013FcD2R15lgm23tLpNgqY"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/avvio/-/avvio-9.3.1.tgz",
+  "unpackedSize": 232204
+ },
+ "funding": [
+  {
+   "type": "github",
+   "url": "https://github.com/sponsors/fastify"
+  },
+  {
+   "type": "opencollective",
+   "url": "https://opencollective.com/fastify"
+  }
+ ],
+ "gitHead": "dc35b4af2bd1d5d258d4f20e92d6087064390c50",
+ "homepage": "https://github.com/fastify/avvio#readme",
+ "keywords": [
+  "async",
+  "boot",
+  "delayed",
+  "open"
+ ],
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "james.sumners@gmail.com",
+   "name": "jsumners"
+  },
+  {
+   "email": "tommydelved@gmail.com",
+   "name": "delvedor"
+  },
+  {
+   "email": "hello@matteocollina.com",
+   "name": "matteo.collina"
+  },
+  {
+   "email": "behemoth89@gmail.com",
+   "name": "eomm"
+  },
+  {
+   "email": "kaka@kakawebsitedemo.com",
+   "name": "climba03003"
+  }
+ ],
+ "name": "avvio",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/fastify/avvio.git"
+ },
+ "scripts": {
+  "lint": "eslint",
+  "lint:fix": "eslint --fix",
+  "test": "npm run test:unit && npm run test:typescript",
+  "test:coverage": "c8 borp --reporter=@jsumners/line-reporter",
+  "test:typescript": "tsc --project ./test/types/tsconfig.json",
+  "test:unit": "borp --coverage --check-coverage --reporter=@jsumners/line-reporter"
+ },
+ "type": "commonjs",
+ "types": "index.d.ts",
+ "version": "9.3.1"
+}

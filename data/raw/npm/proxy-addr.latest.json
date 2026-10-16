@@ -1,0 +1,106 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "proxy-addr@2.0.8",
+ "_nodeVersion": "24.20.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/proxy-addr_2.0.8_1789452765304_0.3371392596044507"
+ },
+ "_npmUser": {
+  "approver": {
+   "email": "ulisesgascondev@gmail.com",
+   "name": "ulisesgascon"
+  },
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:1f1d6579-61f3-4256-86eb-33a2392d7f7b"
+  }
+ },
+ "_npmVersion": "12.0.2",
+ "author": {
+  "email": "doug@somethingdoug.com",
+  "name": "Douglas Christopher Wilson"
+ },
+ "bugs": {
+  "url": "https://github.com/jshttp/proxy-addr/issues"
+ },
+ "dependencies": {
+  "forwarded": "0.2.0",
+  "ipaddr.js": "1.9.1"
+ },
+ "description": "Determine address of proxied request",
+ "devDependencies": {
+  "beautify-benchmark": "0.2.4",
+  "benchmark": "2.1.4",
+  "deep-equal": "1.1.2",
+  "eslint": "7.26.0",
+  "eslint-config-standard": "14.1.1",
+  "eslint-plugin-import": "2.32.0",
+  "eslint-plugin-markdown": "2.2.1",
+  "eslint-plugin-node": "11.1.0",
+  "eslint-plugin-promise": "4.3.1",
+  "eslint-plugin-standard": "4.1.0",
+  "mocha": "8.4.0",
+  "nyc": "15.1.0"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/proxy-addr@2.0.8"
+  },
+  "fileCount": 5,
+  "integrity": "sha512-5nnx0yGyVUcY6t9RnWcARWtwT9F1D8O9rt08htPvnd49W1IgZtmLkhu9WfMzQj1cFxjHIO6connUNVW5k7AVyQ==",
+  "shasum": "624e760fd8ab06b1b8320c2f8506d4422cf8e932",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIHfDElOGXemn8m2D5JLKDtJLbmq875S2kM8l+XiiUm/KAiA+TbRsKHlW54iyWr1/je6gfrgDU2EkUEhlW8gt22De4g=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/proxy-addr/-/proxy-addr-2.0.8.tgz",
+  "unpackedSize": 16326
+ },
+ "engines": {
+  "node": ">= 0.10"
+ },
+ "funding": {
+  "type": "opencollective",
+  "url": "https://opencollective.com/express"
+ },
+ "gitHead": "a11ad82545698af5c33e59f3ed0b52eab79bf610",
+ "homepage": "https://github.com/jshttp/proxy-addr#readme",
+ "keywords": [
+  "ip",
+  "proxy",
+  "x-forwarded-for"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "ulisesgascondev@gmail.com",
+   "name": "ulisesgascon"
+  },
+  {
+   "email": "doug@somethingdoug.com",
+   "name": "dougwilson"
+  }
+ ],
+ "name": "proxy-addr",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/jshttp/proxy-addr.git"
+ },
+ "scripts": {
+  "bench": "node benchmark/index.js",
+  "lint": "eslint .",
+  "test": "mocha --reporter spec --bail --check-leaks test/",
+  "test-ci": "nyc --reporter=lcov --reporter=text npm test",
+  "test-cov": "nyc --reporter=html --reporter=text npm test"
+ },
+ "version": "2.0.8"
+}

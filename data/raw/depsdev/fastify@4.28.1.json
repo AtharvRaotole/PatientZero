@@ -1,0 +1,807 @@
+{
+ "edges": [
+  {
+   "fromNode": 0,
+   "requirement": "^3.5.0",
+   "toNode": 1
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^3.4.0",
+   "toNode": 2
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^4.3.0",
+   "toNode": 3
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^2.0.1",
+   "toNode": 6
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^8.3.0",
+   "toNode": 11
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^1.1.0",
+   "toNode": 13
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^5.8.0",
+   "toNode": 16
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^8.0.0",
+   "toNode": 21
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^5.11.0",
+   "toNode": 26
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^9.0.0",
+   "toNode": 28
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^3.0.0",
+   "toNode": 31
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^2.0.7",
+   "toNode": 33
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^1.3.0",
+   "toNode": 39
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^2.7.0",
+   "toNode": 42
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^7.5.4",
+   "toNode": 43
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^3.3.0",
+   "toNode": 48
+  },
+  {
+   "fromNode": 1,
+   "requirement": "^8.11.0",
+   "toNode": 7
+  },
+  {
+   "fromNode": 1,
+   "requirement": "^2.1.1",
+   "toNode": 8
+  },
+  {
+   "fromNode": 1,
+   "requirement": "^2.0.0",
+   "toNode": 18
+  },
+  {
+   "fromNode": 3,
+   "requirement": "^5.7.0",
+   "toNode": 16
+  },
+  {
+   "fromNode": 4,
+   "requirement": "^3.1.3",
+   "toNode": 15
+  },
+  {
+   "fromNode": 7,
+   "requirement": "^3.1.3",
+   "toNode": 15
+  },
+  {
+   "fromNode": 7,
+   "requirement": "^3.0.1",
+   "toNode": 19
+  },
+  {
+   "fromNode": 7,
+   "requirement": "^1.0.0",
+   "toNode": 25
+  },
+  {
+   "fromNode": 7,
+   "requirement": "^2.0.2",
+   "toNode": 36
+  },
+  {
+   "fromNode": 8,
+   "requirement": "^8.0.0",
+   "toNode": 7
+  },
+  {
+   "fromNode": 9,
+   "requirement": "^8.0.0",
+   "toNode": 7
+  },
+  {
+   "fromNode": 11,
+   "requirement": "^3.3.0",
+   "toNode": 2
+  },
+  {
+   "fromNode": 11,
+   "requirement": "^1.17.1",
+   "toNode": 20
+  },
+  {
+   "fromNode": 16,
+   "requirement": "^0.1.0",
+   "toNode": 4
+  },
+  {
+   "fromNode": 16,
+   "requirement": "^8.10.0",
+   "toNode": 7
+  },
+  {
+   "fromNode": 16,
+   "requirement": "^3.0.1",
+   "toNode": 9
+  },
+  {
+   "fromNode": 16,
+   "requirement": "^3.1.3",
+   "toNode": 15
+  },
+  {
+   "fromNode": 16,
+   "requirement": "^2.1.0",
+   "toNode": 18
+  },
+  {
+   "fromNode": 16,
+   "requirement": "^1.0.1",
+   "toNode": 24
+  },
+  {
+   "fromNode": 16,
+   "requirement": "^1.2.0",
+   "toNode": 39
+  },
+  {
+   "fromNode": 17,
+   "requirement": "^1.0.1",
+   "toNode": 14
+  },
+  {
+   "fromNode": 20,
+   "requirement": "^1.0.4",
+   "toNode": 38
+  },
+  {
+   "fromNode": 21,
+   "requirement": "^3.1.3",
+   "toNode": 15
+  },
+  {
+   "fromNode": 21,
+   "requirement": "^1.0.0",
+   "toNode": 17
+  },
+  {
+   "fromNode": 21,
+   "requirement": "^3.1.0",
+   "toNode": 40
+  },
+  {
+   "fromNode": 24,
+   "requirement": "^3.1.3",
+   "toNode": 15
+  },
+  {
+   "fromNode": 26,
+   "requirement": "^0.7.0",
+   "toNode": 12
+  },
+  {
+   "fromNode": 26,
+   "requirement": "^3.0.0",
+   "toNode": 31
+  },
+  {
+   "fromNode": 26,
+   "requirement": "^2.4.1",
+   "toNode": 44
+  },
+  {
+   "fromNode": 28,
+   "requirement": "^0.4.0",
+   "toNode": 5
+  },
+  {
+   "fromNode": 28,
+   "requirement": "^1.0.0",
+   "toNode": 10
+  },
+  {
+   "fromNode": 28,
+   "requirement": "^2.1.0",
+   "toNode": 27
+  },
+  {
+   "fromNode": 28,
+   "requirement": "^2.0.0",
+   "toNode": 29
+  },
+  {
+   "fromNode": 28,
+   "requirement": "^7.0.0",
+   "toNode": 30
+  },
+  {
+   "fromNode": 28,
+   "requirement": "^5.0.0",
+   "toNode": 32
+  },
+  {
+   "fromNode": 28,
+   "requirement": "^4.0.3",
+   "toNode": 34
+  },
+  {
+   "fromNode": 28,
+   "requirement": "^0.2.0",
+   "toNode": 35
+  },
+  {
+   "fromNode": 28,
+   "requirement": "^2.3.1",
+   "toNode": 41
+  },
+  {
+   "fromNode": 28,
+   "requirement": "^4.0.1",
+   "toNode": 45
+  },
+  {
+   "fromNode": 28,
+   "requirement": "^3.0.0",
+   "toNode": 47
+  },
+  {
+   "fromNode": 29,
+   "requirement": "^4.0.0",
+   "toNode": 46
+  },
+  {
+   "fromNode": 33,
+   "requirement": "0.2.0",
+   "toNode": 22
+  },
+  {
+   "fromNode": 33,
+   "requirement": "1.9.1",
+   "toNode": 23
+  },
+  {
+   "fromNode": 40,
+   "requirement": "~0.4.0",
+   "toNode": 37
+  },
+  {
+   "fromNode": 45,
+   "requirement": "^1.0.0",
+   "toNode": 10
+  },
+  {
+   "fromNode": 47,
+   "requirement": "^0.2.0",
+   "toNode": 35
+  }
+ ],
+ "error": "",
+ "nodes": [
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "SELF",
+   "versionKey": {
+    "name": "fastify",
+    "system": "NPM",
+    "version": "4.28.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "@fastify/ajv-compiler",
+    "system": "NPM",
+    "version": "3.6.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "@fastify/error",
+    "system": "NPM",
+    "version": "3.4.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "@fastify/fast-json-stringify-compiler",
+    "system": "NPM",
+    "version": "4.3.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "@fastify/merge-json-schemas",
+    "system": "NPM",
+    "version": "0.1.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "@pinojs/redact",
+    "system": "NPM",
+    "version": "0.4.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "abstract-logging",
+    "system": "NPM",
+    "version": "2.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "ajv",
+    "system": "NPM",
+    "version": "8.20.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "ajv-formats",
+    "system": "NPM",
+    "version": "2.1.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "ajv-formats",
+    "system": "NPM",
+    "version": "3.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "atomic-sleep",
+    "system": "NPM",
+    "version": "1.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "avvio",
+    "system": "NPM",
+    "version": "8.4.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "cookie",
+    "system": "NPM",
+    "version": "0.7.2"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "fast-content-type-parse",
+    "system": "NPM",
+    "version": "1.1.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "fast-decode-uri-component",
+    "system": "NPM",
+    "version": "1.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "fast-deep-equal",
+    "system": "NPM",
+    "version": "3.1.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "fast-json-stringify",
+    "system": "NPM",
+    "version": "5.16.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "fast-querystring",
+    "system": "NPM",
+    "version": "1.1.2"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "fast-uri",
+    "system": "NPM",
+    "version": "2.4.7"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "fast-uri",
+    "system": "NPM",
+    "version": "3.1.8"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "fastq",
+    "system": "NPM",
+    "version": "1.20.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "find-my-way",
+    "system": "NPM",
+    "version": "8.2.2"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "forwarded",
+    "system": "NPM",
+    "version": "0.2.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "ipaddr.js",
+    "system": "NPM",
+    "version": "1.9.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "json-schema-ref-resolver",
+    "system": "NPM",
+    "version": "1.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "json-schema-traverse",
+    "system": "NPM",
+    "version": "1.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "light-my-request",
+    "system": "NPM",
+    "version": "5.14.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "on-exit-leak-free",
+    "system": "NPM",
+    "version": "2.1.2"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "pino",
+    "system": "NPM",
+    "version": "9.14.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "pino-abstract-transport",
+    "system": "NPM",
+    "version": "2.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "pino-std-serializers",
+    "system": "NPM",
+    "version": "7.1.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "process-warning",
+    "system": "NPM",
+    "version": "3.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "process-warning",
+    "system": "NPM",
+    "version": "5.1.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "proxy-addr",
+    "system": "NPM",
+    "version": "2.0.8"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "quick-format-unescaped",
+    "system": "NPM",
+    "version": "4.0.4"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "real-require",
+    "system": "NPM",
+    "version": "0.2.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "require-from-string",
+    "system": "NPM",
+    "version": "2.0.2"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "ret",
+    "system": "NPM",
+    "version": "0.4.3"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "reusify",
+    "system": "NPM",
+    "version": "1.1.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "rfdc",
+    "system": "NPM",
+    "version": "1.4.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "safe-regex2",
+    "system": "NPM",
+    "version": "3.1.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "safe-stable-stringify",
+    "system": "NPM",
+    "version": "2.5.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "secure-json-parse",
+    "system": "NPM",
+    "version": "2.7.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "semver",
+    "system": "NPM",
+    "version": "7.8.5"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "set-cookie-parser",
+    "system": "NPM",
+    "version": "2.7.2"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "sonic-boom",
+    "system": "NPM",
+    "version": "4.2.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "split2",
+    "system": "NPM",
+    "version": "4.2.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "thread-stream",
+    "system": "NPM",
+    "version": "3.2.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "toad-cache",
+    "system": "NPM",
+    "version": "3.7.4"
+   }
+  }
+ ]
+}

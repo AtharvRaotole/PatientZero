@@ -1,0 +1,155 @@
+{
+ "_from": "file:formdata-node-6.0.3.tgz",
+ "_hasShrinkwrap": false,
+ "_id": "formdata-node@6.0.3",
+ "_integrity": "sha512-8e1++BCiTzUno9v5IZ2J6bv4RU+3UKDmqWUQD0MIMVCd9AdhWkO1gw57oo1mNEX1dMq2EGI+FbWz4B92pscSQg==",
+ "_nodeVersion": "20.8.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/formdata-node_6.0.3_1698184505676_0.20426503706697874"
+ },
+ "_npmUser": {
+  "email": "nick.kruchinin@gmail.com",
+  "name": "octetstream"
+ },
+ "_npmVersion": "10.1.0",
+ "_resolved": "/tmp/c444e8949698bf2e15097f985e8699ca/formdata-node-6.0.3.tgz",
+ "author": {
+  "email": "io@octetstream.me",
+  "name": "Nick K."
+ },
+ "browser": "./lib/browser.js",
+ "bugs": {
+  "url": "https://github.com/octet-stream/form-data/issues"
+ },
+ "description": "Spec-compliant FormData implementation for Node.js",
+ "devDependencies": {
+  "@changesets/changelog-github": "0.4.8",
+  "@changesets/cli": "2.26.2",
+  "@octetstream/eslint-config": "7.2.1",
+  "@types/node": "20.8.8",
+  "@types/sinon": "10.0.20",
+  "@typescript-eslint/eslint-plugin": "6.9.0",
+  "@typescript-eslint/parser": "6.9.0",
+  "ava": "5.3.1",
+  "c8": "8.0.1",
+  "cross-env": "7.0.3",
+  "del-cli": "5.1.0",
+  "eslint": "8.52.0",
+  "eslint-config-airbnb": "19.0.4",
+  "eslint-config-airbnb-typescript": "17.1.0",
+  "eslint-import-resolver-typescript": "3.6.1",
+  "eslint-plugin-import": "2.29.0",
+  "husky": "8.0.3",
+  "lint-staged": "15.0.2",
+  "node-fetch": "3.3.2",
+  "pinst": "3.0.0",
+  "sinon": "17.0.0",
+  "ts-expect": "1.3.0",
+  "ts-node": "10.9.1",
+  "tsup": "7.2.0",
+  "typescript": "5.2.2"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 16,
+  "integrity": "sha512-8e1++BCiTzUno9v5IZ2J6bv4RU+3UKDmqWUQD0MIMVCd9AdhWkO1gw57oo1mNEX1dMq2EGI+FbWz4B92pscSQg==",
+  "shasum": "48f8e2206ae2befded82af621ef015f08168dc6d",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIQCWJK8wAk3ONxqOL+DJnjYIX0osDhT+79IqYXoqjv7i4AIgb0VRquxXeETeaFLCx23qWFHQg/P21sk7iq5615Yf1HY="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/formdata-node/-/formdata-node-6.0.3.tgz",
+  "unpackedSize": 127636
+ },
+ "engines": {
+  "node": ">= 18"
+ },
+ "exports": {
+  ".": {
+   "browser": {
+    "import": {
+     "default": "./lib/browser.js",
+     "types": "./lib/browser.d.ts"
+    },
+    "require": {
+     "default": "./lib/browser.cjs",
+     "types": "./lib/browser.d.cts"
+    }
+   },
+   "default": {
+    "import": "./lib/form-data.js",
+    "types": "./lib/form-data.d.ts"
+   },
+   "node": {
+    "import": {
+     "default": "./lib/form-data.js",
+     "types": "./lib/form-data.d.ts"
+    },
+    "require": {
+     "default": "./lib/form-data.cjs",
+     "types": "./lib/form-data.d.cts"
+    }
+   }
+  },
+  "./file-from-path": {
+   "import": {
+    "default": "./lib/file-from-path.js",
+    "types": "./@lib/file-from-path.d.ts"
+   },
+   "require": {
+    "default": "./lib/file-from-path.cjs",
+    "types": "./@lib/file-from-path.d.cts"
+   }
+  },
+  "./package.json": "./package.json"
+ },
+ "homepage": "https://github.com/octet-stream/form-data#readme",
+ "keywords": [
+  "form-data",
+  "node",
+  "form",
+  "upload",
+  "files-upload",
+  "ponyfill"
+ ],
+ "license": "MIT",
+ "main": "./lib/form-data.js",
+ "maintainers": [
+  {
+   "email": "nick.kruchinin@gmail.com",
+   "name": "octetstream"
+  }
+ ],
+ "module": "./lib/browser.js",
+ "name": "formdata-node",
+ "packageManager": "pnpm@8.5.1",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/octet-stream/form-data.git"
+ },
+ "scripts": {
+  "build": "pnpm exec del-cli lib && pnpm exec tsup",
+  "ci": "c8 pnpm test && c8 report --reporter=json",
+  "coverage": "c8 pnpm test",
+  "eslint": "eslint src/**/*.ts",
+  "lint:types": "tsc --noEmit",
+  "release": "pnpm run build && pnpm exec changeset publish",
+  "report:html": "c8 -r=html pnpm test",
+  "staged": "lint-staged",
+  "test": "cross-env NODE_OPTIONS=\"--no-warnings --loader=ts-node/esm\" ava"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "./lib/form-data.d.ts",
+ "typesVersions": {
+  "*": {
+   "file-from-path": [
+    "./lib/file-from-path.d.ts"
+   ]
+  }
+ },
+ "version": "6.0.3"
+}

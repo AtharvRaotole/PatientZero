@@ -1,0 +1,91 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "router@2.2.0",
+ "_nodeVersion": "22.10.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/router_2.2.0_1743035898326_0.3199944387338467"
+ },
+ "_npmUser": {
+  "email": "ulisesgascondev@gmail.com",
+  "name": "ulisesgascon"
+ },
+ "_npmVersion": "10.9.0",
+ "author": {
+  "email": "doug@somethingdoug.com",
+  "name": "Douglas Christopher Wilson"
+ },
+ "bugs": {
+  "url": "https://github.com/pillarjs/router/issues"
+ },
+ "contributors": [
+  {
+   "email": "hello@blakeembrey.com",
+   "name": "Blake Embrey"
+  }
+ ],
+ "dependencies": {
+  "debug": "^4.4.0",
+  "depd": "^2.0.0",
+  "is-promise": "^4.0.0",
+  "parseurl": "^1.3.3",
+  "path-to-regexp": "^8.0.0"
+ },
+ "description": "Simple middleware-style router",
+ "devDependencies": {
+  "finalhandler": "^2.1.0",
+  "mocha": "10.2.0",
+  "nyc": "15.1.0",
+  "run-series": "^1.1.9",
+  "standard": "^17.1.0",
+  "supertest": "6.3.3"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 7,
+  "integrity": "sha512-nLTrUKm2UyiL7rlhapu/Zl45FwNgkZGaCpZbIHajDYgwlJCOzLSk+cIPAnsEqV955GjILJnKbdQC1nVPz+gAYQ==",
+  "shasum": "019be620b711c87641167cc79b99090f00b146ef",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIG1z9CfKLZPzyVBKnAK3covJDJ0/O73YnA4SwsesneLYAiEA22tGWJxiFBxRTEU/ot8+oZqloPqUb+g9IoNvUZR6eGM="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/router/-/router-2.2.0.tgz",
+  "unpackedSize": 46851
+ },
+ "engines": {
+  "node": ">= 18"
+ },
+ "gitHead": "e6d6b609fc355e558174ccd5b1db646f739fe88c",
+ "homepage": "https://github.com/pillarjs/router#readme",
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "wes@wesleytodd.com",
+   "name": "wesleytodd"
+  },
+  {
+   "email": "ulisesgascondev@gmail.com",
+   "name": "ulisesgascon"
+  },
+  {
+   "email": "doug@somethingdoug.com",
+   "name": "dougwilson"
+  }
+ ],
+ "name": "router",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/pillarjs/router.git"
+ },
+ "scripts": {
+  "lint": "standard",
+  "test": "mocha --reporter spec --bail --check-leaks test/",
+  "test-ci": "nyc --reporter=lcov --reporter=text npm test",
+  "test-cov": "nyc --reporter=text npm test",
+  "test:debug": "mocha --reporter spec --bail --check-leaks test/ --inspect --inspect-brk",
+  "version": "node scripts/version-history.js && git add HISTORY.md"
+ },
+ "version": "2.2.0"
+}

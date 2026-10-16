@@ -1,0 +1,90 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "flat@6.0.1",
+ "_nodeVersion": "20.7.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/flat_6.0.1_1695134839317_0.3338423327586695"
+ },
+ "_npmUser": {
+  "email": "jonkoops@gmail.com",
+  "name": "jkoops"
+ },
+ "_npmVersion": "10.1.0",
+ "author": {
+  "email": "hughskennedy@gmail.com",
+  "name": "Hugh Kennedy",
+  "url": "https://hughsk.io"
+ },
+ "bin": {
+  "flat": "cli.js"
+ },
+ "bugs": {
+  "url": "https://github.com/hughsk/flat/issues"
+ },
+ "description": "Take a nested Javascript object and flatten it, or unflatten an object with delimited keys",
+ "devDependencies": {
+  "standard": "^17.1.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 6,
+  "integrity": "sha512-/3FfIa8mbrg3xE7+wAhWeV+bd7L2Mof+xtZb5dRDKZ+wDvYJK4WDYeIOuOhre5Yv5aQObZrlbRmk3RTSiuQBtw==",
+  "shasum": "09070cf918293b401577f20843edeadf4d3e8755",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIQChW8EtQ8DsB1ieJYbMj4Q0pnR7Yz2wuR/G3JoMJhx+fAIgIKnaN3cxJNqP22X4C6tCqAmAU4fdJJ2MjtALPySmggo="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/flat/-/flat-6.0.1.tgz",
+  "unpackedSize": 11951
+ },
+ "engines": {
+  "node": ">=18"
+ },
+ "exports": {
+  ".": {
+   "default": "./index.js",
+   "types": "./index.d.ts"
+  }
+ },
+ "gitHead": "05ac9ca6c4f612ca5ac30cd3ca8ccc396d97c4bf",
+ "homepage": "https://github.com/hughsk/flat",
+ "keywords": [
+  "flat",
+  "json",
+  "flatten",
+  "unflatten",
+  "split",
+  "object",
+  "nested"
+ ],
+ "license": "BSD-3-Clause",
+ "maintainers": [
+  {
+   "email": "hughskennedy@gmail.com",
+   "name": "hughsk"
+  },
+  {
+   "email": "secoif@gmail.com",
+   "name": "timoxley"
+  },
+  {
+   "email": "jonkoops@gmail.com",
+   "name": "jkoops"
+  }
+ ],
+ "name": "flat",
+ "repository": {
+  "type": "git",
+  "url": "git://github.com/hughsk/flat.git"
+ },
+ "scripts": {
+  "test": "node --test && standard cli.js index.js test/test.js"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "6.0.1"
+}

@@ -1,0 +1,111 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "dataloader@2.2.3",
+ "_nodeVersion": "22.5.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/dataloader_2.2.3_1733250491899_0.5210331654789884"
+ },
+ "_npmUser": {
+  "email": "saihajpreet.singh@gmail.com",
+  "name": "saihaj"
+ },
+ "_npmVersion": "10.8.2",
+ "bugs": {
+  "url": "https://github.com/graphql/dataloader/issues"
+ },
+ "contributors": [
+  {
+   "email": "lee@leebyron.com",
+   "name": "Lee Byron",
+   "url": "http://leebyron.com/"
+  },
+  {
+   "email": "dschafer@fb.com",
+   "name": "Daniel Schafer"
+  },
+  {
+   "email": "schrockn@fb.com",
+   "name": "Nicholas Schrock"
+  }
+ ],
+ "description": "A data loading utility to reduce requests to a backend via batching and caching.",
+ "devDependencies": {
+  "@babel/cli": "7.7.0",
+  "@babel/core": "7.7.2",
+  "@babel/node": "7.7.0",
+  "@babel/preset-env": "7.7.1",
+  "@babel/preset-flow": "7.0.0",
+  "@changesets/changelog-github": "0.4.6",
+  "@changesets/cli": "2.24.3",
+  "babel-eslint": "10.0.3",
+  "eslint": "6.6.0",
+  "eslint-plugin-prettier": "^3.4.1",
+  "flow-bin": "0.112.0",
+  "jest": "24.9.0",
+  "prettier": "^2.8.3",
+  "sane": "4.1.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 6,
+  "integrity": "sha512-y2krtASINtPFS1rSDjacrFgn1dcUuoREVabwlOGOe4SdxenREqwjwjElAdwvbGM7kgZz9a3KVicWR7vcz8rnzA==",
+  "shasum": "42d10b4913515f5b37c6acedcb4960d6ae1b1517",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIQCTEqopcLVYHNfro0hbmwslkQnz/WIGtkPKHNbho/IicwIgdspAxVGjjmQySdl/Hjma/10xrU9Vw4Vd1SLxCOAZhSc="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/dataloader/-/dataloader-2.2.3.tgz",
+  "unpackedSize": 62369
+ },
+ "gitHead": "5e851ce7d3ad4e4473fb4782ebfecb6b1290bd81",
+ "homepage": "https://github.com/graphql/dataloader",
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "lee@leebyron.com",
+   "name": "leebyron"
+  },
+  {
+   "email": "saihajpreet.singh@gmail.com",
+   "name": "saihaj"
+  }
+ ],
+ "name": "dataloader",
+ "prettier": {
+  "arrowParens": "avoid",
+  "overrides": [
+   {
+    "files": "src/**/*.js",
+    "options": {
+     "parser": "babel-flow"
+    }
+   }
+  ],
+  "singleQuote": true,
+  "trailingComma": "all"
+ },
+ "publishConfig": {
+  "access": "public"
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+ssh://git@github.com/graphql/dataloader.git"
+ },
+ "scripts": {
+  "build": "babel src --ignore src/__tests__ --out-dir dist/ ; cp src/index.js dist/index.js.flow ; cp src/index.d.ts dist/",
+  "check": "flow check --max-warnings 0",
+  "lint": "eslint .",
+  "prerelease": ". ./resources/prepublish.sh",
+  "release": "changeset publish",
+  "test": "npm run lint && npm run check && npm run testonly",
+  "test:ci": "npm run lint && npm run check && npm run testonly -- --coverage",
+  "testonly": "jest src",
+  "watch": "babel resources/watch.js | node"
+ },
+ "typings": "index.d.ts",
+ "version": "2.2.3"
+}

@@ -1,0 +1,89 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "cli-truncate@6.1.1",
+ "_nodeVersion": "24.18.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/cli-truncate_6.1.1_1783611606446_0.4942648087167716"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "11.18.0",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/cli-truncate/issues"
+ },
+ "dependencies": {
+  "slice-ansi": "^9.0.0",
+  "string-width": "^8.2.0"
+ },
+ "description": "Truncate a string to a specific width in the terminal",
+ "devDependencies": {
+  "ava": "^7.0.0",
+  "tsd": "^0.33.0",
+  "xo": "^2.0.2"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-06p9vyLahLa4zkGcgsGxU6iEkSOiuI4fhCH6Emhe2lPAcoUv73n72DnODsnHA+5wwXGnV0n9M9/qOQJSjYhFhw==",
+  "shasum": "35ae66a040eef357aedcfffd6149d847bf7a2eb1",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQDGJUW1WYyLAVLaSgfgXWwsgcIXPYscJ6WPiMFibtim3gIhAP6anmI6YyDo54uPIqIUjBCGNXV/rcPWz1ZXvjB6Zu9Z"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/cli-truncate/-/cli-truncate-6.1.1.tgz",
+  "unpackedSize": 14261
+ },
+ "engines": {
+  "node": ">=22"
+ },
+ "exports": {
+  "default": "./index.js",
+  "types": "./index.d.ts"
+ },
+ "funding": "https://github.com/sponsors/sindresorhus",
+ "gitHead": "00818cbd97f5bd6c9b8af39f19c0cd1e42971e54",
+ "homepage": "https://github.com/sindresorhus/cli-truncate#readme",
+ "keywords": [
+  "truncate",
+  "ellipsis",
+  "text",
+  "limit",
+  "slice",
+  "cli",
+  "terminal",
+  "term",
+  "shell",
+  "width",
+  "ansi",
+  "string"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "cli-truncate",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/cli-truncate.git"
+ },
+ "scripts": {
+  "test": "xo && ava && tsd"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "6.1.1"
+}

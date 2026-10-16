@@ -1,0 +1,1325 @@
+{
+ "_id": "has-ansi",
+ "_rev": "42-080f8de8c960703f77fa4fc1bf64330d",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/chalk/has-ansi/issues"
+ },
+ "description": "Check if a string has ANSI escape codes",
+ "dist-tags": {
+  "latest": "6.0.2"
+ },
+ "homepage": "https://github.com/chalk/has-ansi#readme",
+ "keywords": [
+  "ansi",
+  "styles",
+  "color",
+  "colour",
+  "colors",
+  "terminal",
+  "console",
+  "string",
+  "tty",
+  "escape",
+  "shell",
+  "xterm",
+  "command-line",
+  "text",
+  "regex",
+  "regexp",
+  "match",
+  "test",
+  "find",
+  "pattern",
+  "has"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "has-ansi",
+ "readme": "",
+ "readmeFilename": "",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/chalk/has-ansi.git"
+ },
+ "time": {
+  "0.1.0": "2014-06-14T19:40:55.321Z",
+  "1.0.0": "2014-08-13T19:31:02.679Z",
+  "1.0.1": "2014-12-28T11:16:06.415Z",
+  "1.0.2": "2015-02-16T17:54:27.012Z",
+  "1.0.3": "2015-02-22T09:19:28.925Z",
+  "2.0.0": "2015-06-30T16:17:34.067Z",
+  "3.0.0": "2017-06-20T19:33:02.569Z",
+  "4.0.0": "2019-09-10T19:30:39.907Z",
+  "4.0.1": "2021-02-26T09:20:09.495Z",
+  "5.0.0": "2021-04-16T07:27:11.602Z",
+  "5.0.1": "2021-09-13T18:12:17.678Z",
+  "6.0.0": "2024-07-10T23:46:34.489Z",
+  "6.0.1": "2025-09-08T13:19:46.490Z",
+  "6.0.2": "2025-09-08T15:08:53.260Z",
+  "created": "2014-06-14T19:40:55.321Z",
+  "modified": "2025-09-08T17:21:49.501Z"
+ },
+ "users": {
+  "arteffeckt": true,
+  "flumpus-dev": true,
+  "insomniaqc": true,
+  "michalskuza": true,
+  "mojaray2k": true,
+  "scottfreecode": true,
+  "tunnckocore": true
+ },
+ "versions": {
+  "0.1.0": {
+   "_from": ".",
+   "_id": "has-ansi@0.1.0",
+   "_npmUser": {
+    "email": "sindresorhus@gmail.com",
+    "name": "sindresorhus"
+   },
+   "_npmVersion": "1.4.9",
+   "_shasum": "84f265aae8c0e6a88a12d7022894b7568894c62e",
+   "author": {
+    "email": "sindresorhus@gmail.com",
+    "name": "Sindre Sorhus",
+    "url": "http://sindresorhus.com"
+   },
+   "bin": {
+    "has-ansi": "cli.js"
+   },
+   "bugs": {
+    "url": "https://github.com/sindresorhus/has-ansi/issues"
+   },
+   "dependencies": {
+    "ansi-regex": "^0.2.0"
+   },
+   "description": "Check if a string has ANSI escape codes",
+   "devDependencies": {
+    "mocha": "*"
+   },
+   "directories": {},
+   "dist": {
+    "integrity": "sha512-1YsTg1fk2/6JToQhtZkArMkurq8UoWU1Qe0aR3VUHjgij4nOylSWLWAtBXoZ4/dXOmugfLGm1c+QhuD0JyedFA==",
+    "shasum": "84f265aae8c0e6a88a12d7022894b7568894c62e",
+    "signatures": [
+     {
+      "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+      "sig": "MEUCIFiTQi1iIDDptEEPbaWsAtYjsktjogc9ZPwkQ+/dQZ2qAiEAyXnzdSeMKb3mpgtYkB5wPQmd6JwUIYesO/ju/m8RpM8="
+     }
+    ],
+    "tarball": "https://registry.npmjs.org/has-ansi/-/has-ansi-0.1.0.tgz"
+   },
+   "engines": {
+    "node": ">=0.10.0"
+   },
+   "files": [
+    "index.js",
+    "cli.js"
+   ],
+   "homepage": "https://github.com/sindresorhus/has-ansi",
+   "keywords": [
+    "cli",
+    "bin",
+    "ansi",
+    "styles",
+    "color",
+    "colour",
+    "colors",
+    "terminal",
+    "console",
+    "string",
+    "tty",
+    "escape",
+    "shell",
+    "xterm",
+    "command-line",
+    "text",
+    "regex",
+    "regexp",
+    "re",
+    "match",
+    "test",
+    "find",
+    "pattern",
+    "has"
+   ],
+   "license": "MIT",
+   "maintainers": [
+    {
+     "email": "sindresorhus@gmail.com",
+     "name": "sindresorhus"
+    }
+   ],
+   "name": "has-ansi",
+   "repository": {
+    "type": "git",
+    "url": "git://github.com/sindresorhus/has-ansi"
+   },
+   "scripts": {
+    "test": "mocha"
+   },
+   "version": "0.1.0"
+  },
+  "1.0.0": {
+   "_from": ".",
+   "_id": "has-ansi@1.0.0",
+   "_npmUser": {
+    "email": "sindresorhus@gmail.com",
+    "name": "sindresorhus"
+   },
+   "_npmVersion": "1.4.21",
+   "_shasum": "a173e6c8832f3952492821b11b8921fedeffbe55",
+   "author": {
+    "email": "sindresorhus@gmail.com",
+    "name": "Sindre Sorhus",
+    "url": "http://sindresorhus.com"
+   },
+   "bin": {
+    "has-ansi": "cli.js"
+   },
+   "bugs": {
+    "url": "https://github.com/sindresorhus/has-ansi/issues"
+   },
+   "dependencies": {
+    "ansi-regex": "^1.0.0",
+    "get-stdin": "^1.0.0"
+   },
+   "description": "Check if a string has ANSI escape codes",
+   "devDependencies": {
+    "mocha": "*"
+   },
+   "directories": {},
+   "dist": {
+    "integrity": "sha512-aLOrCIwPOwTDHH0a+H6WWPPmcSoJS5kY/pbX8QqwXs1LtagNXOae30NgPdSj0PgdBB98Aw8i0qjKctLfwVdxPg==",
+    "shasum": "a173e6c8832f3952492821b11b8921fedeffbe55",
+    "signatures": [
+     {
+      "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+      "sig": "MEYCIQCijBQNbn7hhF363acp+UWhvi4hiyR2asyUtHqekH5fJgIhAOCCEq+PJaZLcrbiVkmfkG110mp0D8GOaUKNo/R9DTP5"
+     }
+    ],
+    "tarball": "https://registry.npmjs.org/has-ansi/-/has-ansi-1.0.0.tgz"
+   },
+   "engines": {
+    "node": ">=0.10.0"
+   },
+   "files": [
+    "index.js",
+    "cli.js"
+   ],
+   "gitHead": "132e2bed03a264bbf11952d271a76342b7e0c759",
+   "homepage": "https://github.com/sindresorhus/has-ansi",
+   "keywords": [
+    "cli",
+    "bin",
+    "ansi",
+    "styles",
+    "color",
+    "colour",
+    "colors",
+    "terminal",
+    "console",
+    "string",
+    "tty",
+    "escape",
+    "shell",
+    "xterm",
+    "command-line",
+    "text",
+    "regex",
+    "regexp",
+    "re",
+    "match",
+    "test",
+    "find",
+    "pattern",
+    "has"
+   ],
+   "license": "MIT",
+   "maintainers": [
+    {
+     "email": "sindresorhus@gmail.com",
+     "name": "sindresorhus"
+    },
+    {
+     "email": "jappelman@xebia.com",
+     "name": "jbnicolai"
+    }
+   ],
+   "name": "has-ansi",
+   "repository": {
+    "type": "git",
+    "url": "https://github.com/sindresorhus/has-ansi"
+   },
+   "scripts": {
+    "test": "mocha"
+   },
+   "version": "1.0.0"
+  },
+  "1.0.1": {
+   "_from": ".",
+   "_id": "has-ansi@1.0.1",
+   "_nodeVersion": "0.10.35",
+   "_npmUser": {
+    "email": "jappelman@xebia.com",
+    "name": "jbnicolai"
+   },
+   "_npmVersion": "2.1.16",
+   "_shasum": "ffaa06e14721835d653dc77f1eeee1167825941f",
+   "author": {
+    "email": "sindresorhus@gmail.com",
+    "name": "Sindre Sorhus",
+    "url": "http://sindresorhus.com"
+   },
+   "bin": {
+    "has-ansi": "cli.js"
+   },
+   "bugs": {
+    "url": "https://github.com/sindresorhus/has-ansi/issues"
+   },
+   "dependencies": {
+    "ansi-regex": "^1.0.0",
+    "get-stdin": "^3.0.2"
+   },
+   "description": "Check if a string has ANSI escape codes",
+   "devDependencies": {
+    "mocha": "*"
+   },
+   "directories": {},
+   "dist": {
+    "integrity": "sha512-vUmMnGRNknDUrTUuktlp/vdg3uTVtEFJPEfmMocCwZKlmY7DF+LmNg/J8AVEQQiDUxw+S5pi602SxVDqgkQ+9w==",
+    "shasum": "ffaa06e14721835d653dc77f1eeee1167825941f",
+    "signatures": [
+     {
+      "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+      "sig": "MEYCIQDCkEp6lLG6HQHN2dAp2xfOJx1pUdGGcLtqgfODu8Z4hQIhAPguarKu+e/oCc1VbaQgDT1AfzU6ggBch3+5bJph9zFZ"
+     }
+    ],
+    "tarball": "https://registry.npmjs.org/has-ansi/-/has-ansi-1.0.1.tgz"
+   },
+   "engines": {
+    "node": ">=0.10.0"
+   },
+   "files": [
+    "index.js",
+    "cli.js"
+   ],
+   "gitHead": "c9cf8ab6ab05ac0cfbc08285e56f439fa67e60dd",
+   "homepage": "https://github.com/sindresorhus/has-ansi",
+   "keywords": [
+    "cli",
+    "bin",
+    "ansi",
+    "styles",
+    "color",
+    "colour",
+    "colors",
+    "terminal",
+    "console",
+    "string",
+    "tty",
+    "escape",
+    "shell",
+    "xterm",
+    "command-line",
+    "text",
+    "regex",
+    "regexp",
+    "re",
+    "match",
+    "test",
+    "find",
+    "pattern",
+    "has"
+   ],
+   "license": "MIT",
+   "maintainers": [
+    {
+     "email": "sindresorhus@gmail.com",
+     "name": "sindresorhus"
+    },
+    {
+     "email": "jappelman@xebia.com",
+     "name": "jbnicolai"
+    }
+   ],
+   "name": "has-ansi",
+   "repository": {
+    "type": "git",
+    "url": "https://github.com/sindresorhus/has-ansi"
+   },
+   "scripts": {
+    "test": "mocha"
+   },
+   "version": "1.0.1"
+  },
+  "1.0.2": {
+   "_from": ".",
+   "_id": "has-ansi@1.0.2",
+   "_nodeVersion": "0.12.0",
+   "_npmUser": {
+    "email": "sindresorhus@gmail.com",
+    "name": "sindresorhus"
+   },
+   "_npmVersion": "2.5.1",
+   "_shasum": "93b944b82255606b110c028a7e6fef237e50d7dc",
+   "author": {
+    "email": "sindresorhus@gmail.com",
+    "name": "Sindre Sorhus",
+    "url": "http://sindresorhus.com"
+   },
+   "bin": {
+    "has-ansi": "cli.js"
+   },
+   "bugs": {
+    "url": "https://github.com/sindresorhus/has-ansi/issues"
+   },
+   "dependencies": {
+    "ansi-regex": "^1.0.0",
+    "get-stdin": "^4.0.1"
+   },
+   "description": "Check if a string has ANSI escape codes",
+   "devDependencies": {
+    "mocha": "*"
+   },
+   "directories": {},
+   "dist": {
+    "integrity": "sha512-XHKMx7+J7GT8Tuq1xCqH5HnesPC5y/conttvv0afNWvwCI3noy+9YQXHNQ+Me8JUi74icvSbFErngNQ0Ke6hUA==",
+    "shasum": "93b944b82255606b110c028a7e6fef237e50d7dc",
+    "signatures": [
+     {
+      "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+      "sig": "MEUCIQDaUzWRhIyG3wb+i2Q4jo4Pk1VgTq/cOiIiMSso6hWTygIgJeP1kISu7t52KrN/VARnxLeU/EiNlFEFkZ4rlx5DSqo="
+     }
+    ],
+    "tarball": "https://registry.npmjs.org/has-ansi/-/has-ansi-1.0.2.tgz"
+   },
+   "engines": {
+    "node": ">=0.10.0"
+   },
+   "files": [
+    "index.js",
+    "cli.js"
+   ],
+   "gitHead": "dd528d92b556cbdf442a2dcf72733172a98b8300",
+   "homepage": "https://github.com/sindresorhus/has-ansi",
+   "keywords": [
+    "cli",
+    "bin",
+    "ansi",
+    "styles",
+    "color",
+    "colour",
+    "colors",
+    "terminal",
+    "console",
+    "string",
+    "tty",
+    "escape",
+    "shell",
+    "xterm",
+    "command-line",
+    "text",
+    "regex",
+    "regexp",
+    "re",
+    "match",
+    "test",
+    "find",
+    "pattern",
+    "has"
+   ],
+   "license": "MIT",
+   "maintainers": [
+    {
+     "email": "sindresorhus@gmail.com",
+     "name": "sindresorhus"
+    },
+    {
+     "email": "jappelman@xebia.com",
+     "name": "jbnicolai"
+    }
+   ],
+   "name": "has-ansi",
+   "repository": {
+    "type": "git",
+    "url": "https://github.com/sindresorhus/has-ansi"
+   },
+   "scripts": {
+    "test": "mocha"
+   },
+   "version": "1.0.2"
+  },
+  "1.0.3": {
+   "_from": ".",
+   "_id": "has-ansi@1.0.3",
+   "_nodeVersion": "0.10.35",
+   "_npmUser": {
+    "email": "jappelman@xebia.com",
+    "name": "jbnicolai"
+   },
+   "_npmVersion": "2.1.16",
+   "_shasum": "c0b5b1615d9e382b0ff67169d967b425e48ca538",
+   "author": {
+    "email": "sindresorhus@gmail.com",
+    "name": "Sindre Sorhus",
+    "url": "http://sindresorhus.com"
+   },
+   "bin": {
+    "has-ansi": "cli.js"
+   },
+   "bugs": {
+    "url": "https://github.com/sindresorhus/has-ansi/issues"
+   },
+   "dependencies": {
+    "ansi-regex": "^1.1.0",
+    "get-stdin": "^4.0.1"
+   },
+   "description": "Check if a string has ANSI escape codes",
+   "devDependencies": {
+    "mocha": "*"
+   },
+   "directories": {},
+   "dist": {
+    "integrity": "sha512-XwLzIec2hoj/LW9F3nCcQpEwZ5fDJ1LOc6SAgc0pz79CGiY9zmZhIkbf7OnK+tC36UhpQBa03HPt13QavGoF6Q==",
+    "shasum": "c0b5b1615d9e382b0ff67169d967b425e48ca538",
+    "signatures": [
+     {
+      "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+      "sig": "MEUCIDX/iwYf+tXOoMnQpvQh97RbFGkTyaEBciEBTfY73USUAiEA8OKZtR018EQqU/Et0T+vkLyNR4GSo8UKKW43zC+3bG8="
+     }
+    ],
+    "tarball": "https://registry.npmjs.org/has-ansi/-/has-ansi-1.0.3.tgz"
+   },
+   "engines": {
+    "node": ">=0.10.0"
+   },
+   "files": [
+    "index.js",
+    "cli.js"
+   ],
+   "gitHead": "416428ed16f8e9718aec54cea083173af6019917",
+   "homepage": "https://github.com/sindresorhus/has-ansi",
+   "keywords": [
+    "cli",
+    "bin",
+    "ansi",
+    "styles",
+    "color",
+    "colour",
+    "colors",
+    "terminal",
+    "console",
+    "string",
+    "tty",
+    "escape",
+    "shell",
+    "xterm",
+    "command-line",
+    "text",
+    "regex",
+    "regexp",
+    "re",
+    "match",
+    "test",
+    "find",
+    "pattern",
+    "has"
+   ],
+   "license": "MIT",
+   "maintainers": [
+    {
+     "email": "sindresorhus@gmail.com",
+     "name": "sindresorhus"
+    },
+    {
+     "email": "jappelman@xebia.com",
+     "name": "jbnicolai"
+    }
+   ],
+   "name": "has-ansi",
+   "repository": {
+    "type": "git",
+    "url": "https://github.com/sindresorhus/has-ansi"
+   },
+   "scripts": {
+    "test": "mocha"
+   },
+   "version": "1.0.3"
+  },
+  "2.0.0": {
+   "_from": ".",
+   "_id": "has-ansi@2.0.0",
+   "_nodeVersion": "0.12.5",
+   "_npmUser": {
+    "email": "sindresorhus@gmail.com",
+    "name": "sindresorhus"
+   },
+   "_npmVersion": "2.11.2",
+   "_shasum": "34f5049ce1ecdf2b0649af3ef24e45ed35416d91",
+   "author": {
+    "email": "sindresorhus@gmail.com",
+    "name": "Sindre Sorhus",
+    "url": "sindresorhus.com"
+   },
+   "bugs": {
+    "url": "https://github.com/sindresorhus/has-ansi/issues"
+   },
+   "dependencies": {
+    "ansi-regex": "^2.0.0"
+   },
+   "description": "Check if a string has ANSI escape codes",
+   "devDependencies": {
+    "ava": "0.0.4"
+   },
+   "directories": {},
+   "dist": {
+    "integrity": "sha512-C8vBJ8DwUCx19vhm7urhTuUsr4/IyP6l4VzNQDv+ryHQObW3TTTp9yB68WpYgRe2bbaGuZ/se74IqFeVnMnLZg==",
+    "shasum": "34f5049ce1ecdf2b0649af3ef24e45ed35416d91",
+    "signatures": [
+     {
+      "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+      "sig": "MEUCIA47GtbB0wd5JhDUJSxpQj4bCfdGjpgQh239W6mglvTFAiEAuxioGzvEWDNmZMd26X0VLAliVeLao1VBnsVFGiloJ4A="
+     }
+    ],
+    "tarball": "https://registry.npmjs.org/has-ansi/-/has-ansi-2.0.0.tgz"
+   },
+   "engines": {
+    "node": ">=0.10.0"
+   },
+   "files": [
+    "index.js"
+   ],
+   "gitHead": "0722275e1bef139fcd09137da6e5550c3cd368b9",
+   "homepage": "https://github.com/sindresorhus/has-ansi",
+   "keywords": [
+    "ansi",
+    "styles",
+    "color",
+    "colour",
+    "colors",
+    "terminal",
+    "console",
+    "string",
+    "tty",
+    "escape",
+    "shell",
+    "xterm",
+    "command-line",
+    "text",
+    "regex",
+    "regexp",
+    "re",
+    "match",
+    "test",
+    "find",
+    "pattern",
+    "has"
+   ],
+   "license": "MIT",
+   "maintainers": [
+    {
+     "email": "sindresorhus@gmail.com",
+     "name": "sindresorhus"
+    },
+    {
+     "email": "jappelman@xebia.com",
+     "name": "jbnicolai"
+    }
+   ],
+   "name": "has-ansi",
+   "repository": {
+    "type": "git",
+    "url": "https://github.com/sindresorhus/has-ansi"
+   },
+   "scripts": {
+    "test": "node test.js"
+   },
+   "version": "2.0.0"
+  },
+  "3.0.0": {
+   "_from": ".",
+   "_id": "has-ansi@3.0.0",
+   "_nodeVersion": "4.8.3",
+   "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/has-ansi-3.0.0.tgz_1497987181489_0.9539871530141681"
+   },
+   "_npmUser": {
+    "email": "sindresorhus@gmail.com",
+    "name": "sindresorhus"
+   },
+   "_npmVersion": "2.15.11",
+   "_shasum": "36077ef1d15f333484aa7fa77a28606f1c655b37",
+   "author": {
+    "email": "sindresorhus@gmail.com",
+    "name": "Sindre Sorhus",
+    "url": "sindresorhus.com"
+   },
+   "bugs": {
+    "url": "https://github.com/chalk/has-ansi/issues"
+   },
+   "dependencies": {
+    "ansi-regex": "^3.0.0"
+   },
+   "description": "Check if a string has ANSI escape codes",
+   "devDependencies": {
+    "ava": "*",
+    "xo": "*"
+   },
+   "directories": {},
+   "dist": {
+    "integrity": "sha512-5JRDTvNq6mVkaMHQVXrGnaCXHD6JfqxwCy8LA/DQSqLLqePR9uaJVm2u3Ek/UziJFQz+d1ul99RtfIhE2aorkQ==",
+    "shasum": "36077ef1d15f333484aa7fa77a28606f1c655b37",
+    "signatures": [
+     {
+      "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+      "sig": "MEQCIBaawXGrI3y0ZPOz1wS2FZwQs5asWJKKJiWlHb03F7IRAiBOn/caA8UW/anxi6ylCxFzrPXa2COqzhMZi7kVi2EWig=="
+     }
+    ],
+    "tarball": "https://registry.npmjs.org/has-ansi/-/has-ansi-3.0.0.tgz"
+   },
+   "engines": {
+    "node": ">=4"
+   },
+   "files": [
+    "index.js"
+   ],
+   "gitHead": "5b1f1e1dace10ad37ec9553aab2fae022a646dab",
+   "homepage": "https://github.com/chalk/has-ansi#readme",
+   "keywords": [
+    "ansi",
+    "styles",
+    "color",
+    "colour",
+    "colors",
+    "terminal",
+    "console",
+    "string",
+    "tty",
+    "escape",
+    "shell",
+    "xterm",
+    "command-line",
+    "text",
+    "regex",
+    "regexp",
+    "re",
+    "match",
+    "test",
+    "find",
+    "pattern",
+    "has"
+   ],
+   "license": "MIT",
+   "maintainers": [
+    {
+     "email": "threedeecee@gmail.com",
+     "name": "dthree"
+    },
+    {
+     "email": "i.am.qix@gmail.com",
+     "name": "qix"
+    },
+    {
+     "email": "sindresorhus@gmail.com",
+     "name": "sindresorhus"
+    }
+   ],
+   "name": "has-ansi",
+   "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chalk/has-ansi.git"
+   },
+   "scripts": {
+    "test": "xo && ava"
+   },
+   "version": "3.0.0"
+  },
+  "4.0.0": {
+   "_hasShrinkwrap": false,
+   "_id": "has-ansi@4.0.0",
+   "_nodeVersion": "10.16.0",
+   "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/has-ansi_4.0.0_1568143839702_0.1041117865762402"
+   },
+   "_npmUser": {
+    "email": "sindresorhus@gmail.com",
+    "name": "sindresorhus"
+   },
+   "_npmVersion": "6.11.3",
+   "author": {
+    "email": "sindresorhus@gmail.com",
+    "name": "Sindre Sorhus",
+    "url": "sindresorhus.com"
+   },
+   "bugs": {
+    "url": "https://github.com/chalk/has-ansi/issues"
+   },
+   "dependencies": {
+    "ansi-regex": "^4.1.0"
+   },
+   "description": "Check if a string has ANSI escape codes",
+   "devDependencies": {
+    "ava": "^2.3.0",
+    "xo": "^0.24.0"
+   },
+   "directories": {},
+   "dist": {
+    "fileCount": 4,
+    "integrity": "sha512-VvDupLMvFX9yyed3h1DajPUYQZv82EL2h9I9Jy0ays9gYRJ30hbmGapTiam5cISr42ZCuC3nRgyVBM/YZbpi9A==",
+    "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.4\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJdd/ngCRA9TVsSAnZWagAAAnwP/iPXgg8K4lUzCY0NiJi/\nsh58GxLLa+1CAM4uQ0ftrMJhXBRW1T1ixZFWbImf2x7zaoQQhx6/V3TrMp/K\nFPsydTpray725yraTXk4iuWgdM88t9Jen664ON8LPkfFnjVfN+4GVTwak1Oi\nK7K5IDbCs0T1LHh7R4xOw7Z8TyrVXOT9z5BYvkKlM4/TV8WS7FT/y84O0f1P\n+PJpLXh/JDUSOHUT4o1whqnRx2jCsqZPUR78EG2hZ8ZNtvYx8Jv8idrmSYfv\nzxiFjnN0gir41flBwwZgWSYMN4OLmQeSZAjrzkD2RP40Vvp2bqWwgxCJsv8b\nuv3lCfCe9gg4T5bB5KVSTbcs7h4MHPJaiLN2kCaPn1uOG5ZUwN08h25op/LA\njNV8JCV+zI8QFvwiUUG1f6oe/28x3RI1kPjkfHitd4iUXjXXHzBTUdFGPI+n\nRTICNXVypZ30++fpY0vKLZSYzt42Tjn8Aqnm8DMrvLw2661IEdjAaUNN4bnk\niiAVG1cfciSnB19LDYwEfFfWDRvKQcBlCp660QTgbY2FrBoLhYzUsrVRMc0J\nvcDTgArq/aCAPuKtFultcPsGbbBcQRSlrT60QFZ6gbYOu9Sn7OtxBnhd5ASg\ngD04bfL7ZmcnEDkaPqO/zT9bBykd9lYXzrv1A4jIJpxEBmcNbJKZg/fcrlgq\nM7CU\r\n=oZE5\r\n-----END PGP SIGNATURE-----\r\n",
+    "shasum": "50e6b59f262c855343baff0ba15753247906fcd5",
+    "signatures": [
+     {
+      "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+      "sig": "MEUCIDGDSpJrssRSDdooaTXaQvZlQvUF0ALcBEdzfC4wZRVZAiEAiD9O6Dtoo4pFjI6myNQcQTJPqtnc0MafjcrSe7ZEDY0="
+     }
+    ],
+    "tarball": "https://registry.npmjs.org/has-ansi/-/has-ansi-4.0.0.tgz",
+    "unpackedSize": 3318
+   },
+   "engines": {
+    "node": ">=8"
+   },
+   "gitHead": "e0482ff90bc06ba2ab5fe6e06ce6a5b74d15c545",
+   "homepage": "https://github.com/chalk/has-ansi#readme",
+   "keywords": [
+    "ansi",
+    "styles",
+    "color",
+    "colour",
+    "colors",
+    "terminal",
+    "console",
+    "string",
+    "tty",
+    "escape",
+    "shell",
+    "xterm",
+    "command-line",
+    "text",
+    "regex",
+    "regexp",
+    "match",
+    "test",
+    "find",
+    "pattern",
+    "has"
+   ],
+   "license": "MIT",
+   "maintainers": [
+    {
+     "email": "i.am.qix@gmail.com",
+     "name": "qix"
+    },
+    {
+     "email": "sindresorhus@gmail.com",
+     "name": "sindresorhus"
+    }
+   ],
+   "name": "has-ansi",
+   "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chalk/has-ansi.git"
+   },
+   "scripts": {
+    "test": "xo && ava"
+   },
+   "version": "4.0.0"
+  },
+  "4.0.1": {
+   "_hasShrinkwrap": false,
+   "_id": "has-ansi@4.0.1",
+   "_nodeVersion": "15.10.0",
+   "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/has-ansi_4.0.1_1614331209303_0.048337302685141026"
+   },
+   "_npmUser": {
+    "email": "sindresorhus@gmail.com",
+    "name": "sindresorhus"
+   },
+   "_npmVersion": "6.14.10",
+   "author": {
+    "email": "sindresorhus@gmail.com",
+    "name": "Sindre Sorhus",
+    "url": "sindresorhus.com"
+   },
+   "bugs": {
+    "url": "https://github.com/chalk/has-ansi/issues"
+   },
+   "dependencies": {
+    "ansi-regex": "^4.1.0"
+   },
+   "description": "Check if a string has ANSI escape codes",
+   "devDependencies": {
+    "ava": "^2.3.0",
+    "xo": "^0.24.0"
+   },
+   "directories": {},
+   "dist": {
+    "fileCount": 4,
+    "integrity": "sha512-Qr4RtTm30xvEdqUXbSBVWDu+PrTokJOwe/FU+VdfJPk+MXAPoeOzKpRyrDTnZIJwAkQ4oBLTU53nu0HrkF/Z2A==",
+    "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.13\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJgOL1JCRA9TVsSAnZWagAABU4P/1c4ZRYVFC4Vt4abijPt\nuG133PvEaKXywvKAwlMrpcUfEIHeVF07pjpuKjkxqwnHWqZk0BMib5lKryPi\noj7pokaGJpYmRpwXfHfpu2kWUtP8MeMr7ZKBbuMrvHMwu4hF8thqW1IGkoLS\nJGNFDSye8KakFO9L/SPiMmLbGOHrghUvBWFx62QtL5R+vCDZKFyj2G2Y9dWI\nMgpxWYCIotCcGIbgSsGl5uTdjlKYgPPa22Bi65C4SNwBSviX/XI+nafn8pSi\nFSTVuIeQ2sTTzoUm8b+ro7MADKsO8wGBd6jX5BKriFgz5q6edoox9jC/D7ff\nkby0Xw+CzvLVBxxoMr5JgHcU/rVweVifoQuoeuhZI8KDAuwDtZF2tCpjA2rg\nMNoHKsNusdSpKxXOGiuh2aCPOIQyrEsec/OTxsVx5RiLfI8UB0w8/gIkwLri\nIBbGnwfpxKE5BH1ZAghG8XwvXmmN9YIDPrQHSKwgfTV7kf98yU/CBE+xSAGa\nzc2tKg8d5Eq6T3l38/TaC1UwluUs1PxlpQ0gN/r/k8R0YwrJH5ZBq77ytxHc\nPGhh3gDq09vpw2iXIVYoGDdxpAfxocHmfeoUSb59ESI055GPkyOT0oHCt/iM\njx8NxQftFNRBv34zv5+OoONqNxHuh/u2wuI0HhQ1UD4K0scLu2QhqUG/PXHv\no/tn\r\n=fEmW\r\n-----END PGP SIGNATURE-----\r\n",
+    "shasum": "f216a8c8d7b129e490dc15f4a62cc1cdb9603ce8",
+    "signatures": [
+     {
+      "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+      "sig": "MEYCIQCzypCWRO4qJ1223OVQfLvMoE8xB361FDX33n+YlxXM8wIhAKM8WVJwgwz5B23hqRc+/DIAFrgB411lGXc40M+MhUip"
+     }
+    ],
+    "tarball": "https://registry.npmjs.org/has-ansi/-/has-ansi-4.0.1.tgz",
+    "unpackedSize": 3180
+   },
+   "engines": {
+    "node": ">=8"
+   },
+   "gitHead": "43ec17d1446acc19f483deb57c853ca15c65e58c",
+   "homepage": "https://github.com/chalk/has-ansi#readme",
+   "keywords": [
+    "ansi",
+    "styles",
+    "color",
+    "colour",
+    "colors",
+    "terminal",
+    "console",
+    "string",
+    "tty",
+    "escape",
+    "shell",
+    "xterm",
+    "command-line",
+    "text",
+    "regex",
+    "regexp",
+    "match",
+    "test",
+    "find",
+    "pattern",
+    "has"
+   ],
+   "license": "MIT",
+   "maintainers": [
+    {
+     "email": "sindresorhus@gmail.com",
+     "name": "sindresorhus"
+    },
+    {
+     "email": "i.am.qix@gmail.com",
+     "name": "qix"
+    }
+   ],
+   "name": "has-ansi",
+   "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chalk/has-ansi.git"
+   },
+   "scripts": {
+    "test": "xo && ava"
+   },
+   "version": "4.0.1"
+  },
+  "5.0.0": {
+   "_hasShrinkwrap": false,
+   "_id": "has-ansi@5.0.0",
+   "_nodeVersion": "14.16.1",
+   "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/has-ansi_5.0.0_1618558031472_0.8124268955096601"
+   },
+   "_npmUser": {
+    "email": "sindresorhus@gmail.com",
+    "name": "sindresorhus"
+   },
+   "_npmVersion": "6.14.10",
+   "author": {
+    "email": "sindresorhus@gmail.com",
+    "name": "Sindre Sorhus",
+    "url": "https://sindresorhus.com"
+   },
+   "bugs": {
+    "url": "https://github.com/chalk/has-ansi/issues"
+   },
+   "dependencies": {
+    "ansi-regex": "^6.0.0"
+   },
+   "description": "Check if a string has ANSI escape codes",
+   "devDependencies": {
+    "ava": "^3.15.0",
+    "xo": "^0.38.2"
+   },
+   "directories": {},
+   "dist": {
+    "fileCount": 4,
+    "integrity": "sha512-196I6rrOXWxQKuYBuNGcQrj6CSUXHM4gNFT9lApuJjkryc4SlAAzv+xhdaQW9yCG1Mvuj3wBwiaqd2Y6R7Fxgg==",
+    "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.13\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJgeTxQCRA9TVsSAnZWagAApbsP/0jgoQaMTrbTgylJVAJR\ndmQx52THrRzsO4U7TjePsDSAbxHOSGPvCv6HF4MAGp8mV7eV4GCaIN7nlxcS\nwTQtsFh5yfFn5p2ppadFKlrOWiFVb0JmNqlIK6rOnyOLBxrExAywbnjGULTo\npsY/VmKRGnsJ03GyyUppyGOp+DzAnG6rCC3tlTEfevB0uLvqCP6gfNN7CQur\n+mji27UEXBxI4N+DEmxguF9ZFIJvExPPrYUXCcRdgl4cJ5qZXck+mNxAlNfe\nq+JGzcLrQxU/QIqOFSpItLU5etAub9kY0mp8fBSMyXiNrfE6jpsPSzV4qFVA\n6C/MoW83ElccirC5l/DsC+Y9YSIAYh+2ZC5baSdBxC4/nZpUSPNkqUVCvrl5\nAV/67HALrJNNUdcjItX5nTyv3iWs1nq0BQQA/w1GoxJwAM5OYp4HbUgg4r99\nyoo0nZ6trfvxm2n55UQyLz0QJSmgHHhG9DtL7Jgw51Q1XhC0jMQMyY+nr24w\nxgZjGPZ/5PLxPW9wpSkTKfsy3fWSpxy66+MDLAm9rcSL6J6v9wwqoJ903xjB\nM2OUIJZalKmkc/fcYweRdJSkfstqtpYHISwBM+Sl9FGC9/OMaAw+MGrXQ7H+\nD182po7lpYsBolNXJysus96U9LkWTk9ZhT9C2KvgE2WuT3zYNi7834+mK7Te\n1PH/\r\n=tuhM\r\n-----END PGP SIGNATURE-----\r\n",
+    "shasum": "186d10d61e1b9428a290926a86e00ab29c203191",
+    "signatures": [
+     {
+      "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+      "sig": "MEUCIQC8kIl8yS/X5GK9CwKluPCMKaIbiVXuJd6OwIoo4AQtyQIgYYsMtT3pPKZsO3w9S4/bgwBoyoG80nqavD+QRZ6VTFw="
+     }
+    ],
+    "tarball": "https://registry.npmjs.org/has-ansi/-/has-ansi-5.0.0.tgz",
+    "unpackedSize": 3298
+   },
+   "engines": {
+    "node": ">=12"
+   },
+   "exports": "./index.js",
+   "funding": "https://github.com/chalk/has-ansi?sponsor=1",
+   "gitHead": "525ed42ece7ff77b33fd3ec7f1a5e09b5dafa7c8",
+   "homepage": "https://github.com/chalk/has-ansi#readme",
+   "keywords": [
+    "ansi",
+    "styles",
+    "color",
+    "colour",
+    "colors",
+    "terminal",
+    "console",
+    "string",
+    "tty",
+    "escape",
+    "shell",
+    "xterm",
+    "command-line",
+    "text",
+    "regex",
+    "regexp",
+    "match",
+    "test",
+    "find",
+    "pattern",
+    "has"
+   ],
+   "license": "MIT",
+   "maintainers": [
+    {
+     "email": "sindresorhus@gmail.com",
+     "name": "sindresorhus"
+    },
+    {
+     "email": "i.am.qix@gmail.com",
+     "name": "qix"
+    }
+   ],
+   "name": "has-ansi",
+   "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chalk/has-ansi.git"
+   },
+   "scripts": {
+    "test": "xo && ava"
+   },
+   "type": "module",
+   "version": "5.0.0"
+  },
+  "5.0.1": {
+   "_hasShrinkwrap": false,
+   "_id": "has-ansi@5.0.1",
+   "_nodeVersion": "12.22.1",
+   "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/has-ansi_5.0.1_1631556737404_0.5638303870101145"
+   },
+   "_npmUser": {
+    "email": "sindresorhus@gmail.com",
+    "name": "sindresorhus"
+   },
+   "_npmVersion": "7.20.3",
+   "author": {
+    "email": "sindresorhus@gmail.com",
+    "name": "Sindre Sorhus",
+    "url": "https://sindresorhus.com"
+   },
+   "bugs": {
+    "url": "https://github.com/chalk/has-ansi/issues"
+   },
+   "dependencies": {
+    "ansi-regex": "^6.0.1"
+   },
+   "description": "Check if a string has ANSI escape codes",
+   "devDependencies": {
+    "ava": "^3.15.0",
+    "xo": "^0.44.0"
+   },
+   "directories": {},
+   "dist": {
+    "fileCount": 4,
+    "integrity": "sha512-Fp2IsZDnnyoJkKg22ZyQFvD7QRCcMTsLAtloKXyXWJ1joGLtItRU9Bv/k1o0tELL2NF3ZZBcycSKryZUM+Yl3g==",
+    "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.13\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJhP5SBCRA9TVsSAnZWagAAzaMQAKQxmX2dA8bHpA7EDy6P\nuCT53WV6piLzQHZhJNO5mgrggkOHN2ZHDUqTzR0gEOQ4G9e8TckwA9oFgerW\nmtmmO+iNPdUp3xl6vAAWMcE3vlv7C6bKM2G1qibCjYod5uO9H0Y0CgxjjKPG\nNQwhNDQ09vmrESoD5974HHpOvA0YtOnZCkCDPNt8L7/rMiJnYIstqanjPTHO\nb5GJ8EyW4h33LcGcEpJvoan32NX7k9ltFRFrFOFGw5TKtboRHKA6hq+IVxqk\ndyndPHI+dwy3y9/Y3QIsF19tXCWsOfwrU7PxVlgXARMPxz2W+DGMb/GZ+3e/\nesbqKEmQk1GnSMHEpEvuTFQ5NMH14mMV+cBMTK2+1HY5qi2Hqo4Viq1qq1P+\n713B/8+CUcCXuef180wKvIBT+bpA0nlL8FuDyvisbRzn0wFjX9zWjCJQXmSn\nej/Qx25UH4ujoYrTf9CKmR0sOQ7ChpBhyU9E14mFpmOlFV6MiDJqg+Gg+HES\nwIhKGB2odio6Hf0uJQlHg41mtr6bYbWn77kGD0AgyhBX9OsDDx50Y1+w1k2A\nu7fFdyQ/RifNAqNSqSWSQyDW3zIAAjDP4KhCq7cq70aeAUmFDITsYjssHlL0\nIASJn0HxMaI3nlqR8+mbikkH9krKMU9KrJzHSIXrI4m3xZcQbvAfHTGuY9p8\nq4PQ\r\n=3sgC\r\n-----END PGP SIGNATURE-----\r\n",
+    "shasum": "eb5ce8db3465c66e0b83c7f01fd0c1ea87687071",
+    "signatures": [
+     {
+      "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+      "sig": "MEQCIB6phSQZoV3O9j497xTRlXvV86L2SX9kUJ+XVnn7eRfrAiA6z5qP5TKda9NbhVc0UImwoIkp08FmniR22Ej1ZhZnZw=="
+     }
+    ],
+    "tarball": "https://registry.npmjs.org/has-ansi/-/has-ansi-5.0.1.tgz",
+    "unpackedSize": 3298
+   },
+   "engines": {
+    "node": ">=12"
+   },
+   "exports": "./index.js",
+   "funding": "https://github.com/chalk/has-ansi?sponsor=1",
+   "gitHead": "a285373adebe5e01f325d5a2e9df2686a09bc0d7",
+   "homepage": "https://github.com/chalk/has-ansi#readme",
+   "keywords": [
+    "ansi",
+    "styles",
+    "color",
+    "colour",
+    "colors",
+    "terminal",
+    "console",
+    "string",
+    "tty",
+    "escape",
+    "shell",
+    "xterm",
+    "command-line",
+    "text",
+    "regex",
+    "regexp",
+    "match",
+    "test",
+    "find",
+    "pattern",
+    "has"
+   ],
+   "license": "MIT",
+   "maintainers": [
+    {
+     "email": "sindresorhus@gmail.com",
+     "name": "sindresorhus"
+    },
+    {
+     "email": "josh@junon.me",
+     "name": "qix"
+    }
+   ],
+   "name": "has-ansi",
+   "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chalk/has-ansi.git"
+   },
+   "scripts": {
+    "test": "xo && ava"
+   },
+   "type": "module",
+   "version": "5.0.1"
+  },
+  "6.0.0": {
+   "_hasShrinkwrap": false,
+   "_id": "has-ansi@6.0.0",
+   "_nodeVersion": "18.20.2",
+   "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/has-ansi_6.0.0_1720655194357_0.8545299904688077"
+   },
+   "_npmUser": {
+    "email": "sindresorhus@gmail.com",
+    "name": "sindresorhus"
+   },
+   "_npmVersion": "10.6.0",
+   "author": {
+    "email": "sindresorhus@gmail.com",
+    "name": "Sindre Sorhus",
+    "url": "https://sindresorhus.com"
+   },
+   "bugs": {
+    "url": "https://github.com/chalk/has-ansi/issues"
+   },
+   "dependencies": {
+    "ansi-regex": "^6.0.1"
+   },
+   "description": "Check if a string has ANSI escape codes",
+   "devDependencies": {
+    "ava": "^6.1.3",
+    "tsd": "^0.31.1",
+    "xo": "^0.58.0"
+   },
+   "directories": {},
+   "dist": {
+    "fileCount": 5,
+    "integrity": "sha512-1AYj+gqAskFf9Skb7xuEYMfJqkW3TJ8lukw4Fczw+Y6jRkgxvcE4JiFWuTO4DsoleMvvHudryolA9ObJHJKHWQ==",
+    "shasum": "8118b2fb548c062f9356c7d5013b192a238ce3b3",
+    "signatures": [
+     {
+      "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+      "sig": "MEUCICMlwMam7SJtBaw5XrLTUEriPYoi1LVbeSi9cBopYxy4AiEAuLNa32t7e4SUQkL18cDhM5GPu9IiHmSXdEga5lAdHYY="
+     }
+    ],
+    "tarball": "https://registry.npmjs.org/has-ansi/-/has-ansi-6.0.0.tgz",
+    "unpackedSize": 3150
+   },
+   "engines": {
+    "node": ">=18"
+   },
+   "exports": {
+    "default": "./index.js",
+    "types": "./index.d.ts"
+   },
+   "funding": "https://github.com/chalk/has-ansi?sponsor=1",
+   "gitHead": "3277295225f4aa102f7349cb5a42d097b6eb3317",
+   "homepage": "https://github.com/chalk/has-ansi#readme",
+   "keywords": [
+    "ansi",
+    "styles",
+    "color",
+    "colour",
+    "colors",
+    "terminal",
+    "console",
+    "string",
+    "tty",
+    "escape",
+    "shell",
+    "xterm",
+    "command-line",
+    "text",
+    "regex",
+    "regexp",
+    "match",
+    "test",
+    "find",
+    "pattern",
+    "has"
+   ],
+   "license": "MIT",
+   "maintainers": [
+    {
+     "email": "sindresorhus@gmail.com",
+     "name": "sindresorhus"
+    },
+    {
+     "email": "josh@junon.me",
+     "name": "qix"
+    }
+   ],
+   "name": "has-ansi",
+   "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chalk/has-ansi.git"
+   },
+   "scripts": {
+    "test": "xo && ava && tsd"
+   },
+   "sideEffects": false,
+   "type": "module",
+   "types": "./index.d.ts",
+   "version": "6.0.0"
+  },
+  "6.0.2": {
+   "_hasShrinkwrap": false,
+   "_id": "has-ansi@6.0.2",
+   "_nodeVersion": "22.12.0",
+   "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages-npm-production",
+    "tmp": "tmp/has-ansi_6.0.2_1757344133069_0.6146199115128055"
+   },
+   "_npmUser": {
+    "email": "sindresorhus@gmail.com",
+    "name": "sindresorhus"
+   },
+   "_npmVersion": "10.9.2",
+   "author": {
+    "email": "sindresorhus@gmail.com",
+    "name": "Sindre Sorhus",
+    "url": "https://sindresorhus.com"
+   },
+   "bugs": {
+    "url": "https://github.com/chalk/has-ansi/issues"
+   },
+   "dependencies": {
+    "ansi-regex": "^6.0.1"
+   },
+   "description": "Check if a string has ANSI escape codes",
+   "devDependencies": {
+    "ava": "^6.1.3",
+    "tsd": "^0.31.1",
+    "xo": "^0.58.0"
+   },
+   "directories": {},
+   "dist": {
+    "fileCount": 5,
+    "integrity": "sha512-vAyM+6+jAYwSwz0/M0jYKfU9AvAMCz0kH791RsUhvMKGUHXled/3FjcQB3YiQ4Astj5srHdb6B2FHGIfZkOQNg==",
+    "shasum": "f246fe923a734f19cdd26fe264610d1aece5965b",
+    "signatures": [
+     {
+      "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+      "sig": "MEQCIE6J+vm4SmaiK8gNOBtIVR7tdOaclwWnIo2eHIeeeOUlAiAwnx1HObRyWVKkRiOKtY3d3wqpb5gCuW+iyZe/6UfNtw=="
+     }
+    ],
+    "tarball": "https://registry.npmjs.org/has-ansi/-/has-ansi-6.0.2.tgz",
+    "unpackedSize": 3150
+   },
+   "engines": {
+    "node": ">=18"
+   },
+   "exports": {
+    "default": "./index.js",
+    "types": "./index.d.ts"
+   },
+   "funding": "https://github.com/chalk/has-ansi?sponsor=1",
+   "gitHead": "8ad46b5ecc1f66de8e526c506d72fbe3e092ef20",
+   "homepage": "https://github.com/chalk/has-ansi#readme",
+   "keywords": [
+    "ansi",
+    "styles",
+    "color",
+    "colour",
+    "colors",
+    "terminal",
+    "console",
+    "string",
+    "tty",
+    "escape",
+    "shell",
+    "xterm",
+    "command-line",
+    "text",
+    "regex",
+    "regexp",
+    "match",
+    "test",
+    "find",
+    "pattern",
+    "has"
+   ],
+   "license": "MIT",
+   "maintainers": [
+    {
+     "email": "sindresorhus@gmail.com",
+     "name": "sindresorhus"
+    }
+   ],
+   "name": "has-ansi",
+   "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chalk/has-ansi.git"
+   },
+   "scripts": {
+    "test": "xo && ava && tsd"
+   },
+   "sideEffects": false,
+   "type": "module",
+   "types": "./index.d.ts",
+   "version": "6.0.2"
+  }
+ }
+}

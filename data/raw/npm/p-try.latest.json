@@ -1,0 +1,81 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "p-try@3.0.0",
+ "_nodeVersion": "12.22.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/p-try_3.0.0_1633364383167_0.2080334787200102"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "7.20.3",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/p-try/issues"
+ },
+ "description": "`Start a promise chain",
+ "devDependencies": {
+  "ava": "^3.15.0",
+  "tsd": "^0.17.0",
+  "xo": "^0.45.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-nD1xrH3cV2epQsO8pv6p28i/TdrzJQ5g73c41a+fu+3uhABdf7xujY58ebIuSrOQYxNb8WqNDpX6HjYl8P0KfQ==",
+  "shasum": "9d56ac76f66a7396c6f0c81407cb39e3375be3c2",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEYCIQC+MMfxCGDlITl2HYhGkT9890d/syzKaiUM621H0agRXgIhAMt9sbpMv455yr6hlbs7M+3ZOVql7jxH+YHiaSAmhv9P"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/p-try/-/p-try-3.0.0.tgz",
+  "unpackedSize": 4125
+ },
+ "engines": {
+  "node": "^12.20.0 || ^14.13.1 || >=16.0.0"
+ },
+ "exports": "./index.js",
+ "funding": "https://github.com/sponsors/sindresorhus",
+ "gitHead": "8cb14e34e1031dbdfc385058c36b47f90910332e",
+ "homepage": "https://github.com/sindresorhus/p-try#readme",
+ "keywords": [
+  "promise",
+  "try",
+  "resolve",
+  "function",
+  "catch",
+  "async",
+  "await",
+  "promises",
+  "settled",
+  "ponyfill",
+  "polyfill",
+  "shim",
+  "bluebird"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "p-try",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/p-try.git"
+ },
+ "scripts": {
+  "test": "xo && ava && tsd"
+ },
+ "type": "module",
+ "version": "3.0.0"
+}

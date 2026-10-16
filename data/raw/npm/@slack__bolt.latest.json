@@ -1,0 +1,174 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@slack/bolt@5.1.0",
+ "_nodeVersion": "24.20.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/bolt_5.1.0_1788362372627_0.5561911813632296"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:850de0ac-f4a4-4b78-b5e6-d4410d22f786"
+  }
+ },
+ "_npmVersion": "11.19.0",
+ "author": {
+  "name": "Slack Technologies, LLC"
+ },
+ "bugs": {
+  "url": "https://github.com/slackapi/bolt-js/issues"
+ },
+ "dependencies": {
+  "@slack/logger": "^5.0.0",
+  "@slack/oauth": "^4.0.0",
+  "@slack/socket-mode": "^3.0.1",
+  "@slack/types": "^3.1.0",
+  "@slack/web-api": "^8.1.1",
+  "express": "^5.0.0",
+  "path-to-regexp": "^8.1.0",
+  "raw-body": "^3",
+  "tsscmp": "^1.0.6"
+ },
+ "description": "A framework for building Slack apps, fast.",
+ "devDependencies": {
+  "@biomejs/biome": "^2.4.15",
+  "@changesets/cli": "^3.0.1",
+  "@tsconfig/node20": "^20.1.5",
+  "@types/chai": "^4.1.7",
+  "@types/mocha": "^10.0.1",
+  "@types/node": "20.19.0",
+  "@types/proxyquire": "^1.3.31",
+  "@types/sinon": "^17.0.4",
+  "@types/tsscmp": "^1.0.0",
+  "c8": "^10.1.2",
+  "chai": "~4.3.0",
+  "mocha": "^10.2.0",
+  "proxyquire": "^2.1.3",
+  "shx": "^0.3.2",
+  "sinon": "^20.0.0",
+  "source-map-support": "^0.5.12",
+  "ts-node": "^10.9.2",
+  "tsd": "^0.31.2",
+  "typescript": "5.3.3"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@slack%2fbolt@5.1.0"
+  },
+  "fileCount": 187,
+  "integrity": "sha512-lSQzEs/OMDVIbTVb+ZXZa7zsYGvnB1d58CnK55vdYdVeSmHMON1RjSgPf3lGUE9lYhNTUIjbFCrCrsJ1j5SAUA==",
+  "shasum": "37ca9ef8ef9d4ba59a49fc2f033443e971c2cef6",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQDlMrIvdpfuJyFAp6YP7vXxuuP07dR2nK/8lo+CJa/28QIgVdxJKaE/LRzbFESMdArSTZhekmPRcZCQlbepMTa4mH4="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIERXoAE9BjqYsDJ3RGqg+N3Ui3A0T/J1c4IjfsCzgs+MAiAieC0G4EF+PW21uSxBL0xYw3n/Q41yQnBDIp78/Kiq8w=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@slack/bolt/-/bolt-5.1.0.tgz",
+  "unpackedSize": 526860
+ },
+ "engines": {
+  "node": ">=20",
+  "npm": ">=9.6.4"
+ },
+ "gitHead": "ffbe0b6c03a6b1e16b3d5d3c5c9a8ab3effcbc1d",
+ "homepage": "https://docs.slack.dev/tools/bolt-js",
+ "keywords": [
+  "slack",
+  "bot",
+  "events-api",
+  "slash-commands",
+  "interactive-components",
+  "api",
+  "chatops",
+  "integration",
+  "slack-app"
+ ],
+ "license": "MIT",
+ "main": "./dist/index.js",
+ "maintainers": [
+  {
+   "email": "opensource@slack.com",
+   "name": "slackhq"
+  },
+  {
+   "email": "macdonald.andrew@gmail.com",
+   "name": "ajm"
+  },
+  {
+   "email": "sgorbachov@slack-corp.com",
+   "name": "sgorbach0v"
+  },
+  {
+   "email": "stevengill97@gmail.com",
+   "name": "stevegill"
+  },
+  {
+   "email": "it@slack-corp.com",
+   "name": "slack_biztech"
+  },
+  {
+   "email": "alissa.renz@gmail.com",
+   "name": "misscoded"
+  },
+  {
+   "email": "michael@michaelbrooks.ca",
+   "name": "mwbrooks"
+  },
+  {
+   "email": "cchensh88@gmail.com",
+   "name": "cchensh"
+  },
+  {
+   "email": "shelby.spencer@salesforce.com",
+   "name": "sspencer-slack"
+  },
+  {
+   "email": "evegeris@salesforce.com",
+   "name": "evegeris"
+  },
+  {
+   "email": "eden.zimbelman@salesforce.com",
+   "name": "e-zim"
+  },
+  {
+   "email": "farhanjk@gmail.com",
+   "name": "farhanjk"
+  }
+ ],
+ "name": "@slack/bolt",
+ "peerDependencies": {
+  "@types/express": "^5.0.0"
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/slackapi/bolt-js.git"
+ },
+ "scripts": {
+  "build": "npm run build:clean && tsc",
+  "build:clean": "shx rm -rf ./dist ./coverage",
+  "changeset": "npx @changesets/cli",
+  "lint": "npx @biomejs/biome check docs src test examples",
+  "lint:fix": "npx @biomejs/biome check --write docs src test examples",
+  "prepare": "npm run build",
+  "test": "npm run build && npm run lint && npm run test:types && npm run test:coverage",
+  "test:coverage": "c8 npm run test:unit",
+  "test:types": "tsd --files test/types",
+  "test:unit": "TS_NODE_PROJECT=tsconfig.json mocha --config test/unit/.mocharc.json",
+  "version": "npm run changeset version && npm install",
+  "watch": "npx nodemon --watch 'src' --ext 'ts' --exec npm run build"
+ },
+ "types": "./dist/index.d.ts",
+ "version": "5.1.0"
+}

@@ -1,0 +1,106 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "string-width@8.3.0",
+ "_nodeVersion": "26.9.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/string-width_8.3.0_1790260672138_0.19897500311784921"
+ },
+ "_npmUser": {
+  "email": "sindresorhus@gmail.com",
+  "name": "sindresorhus"
+ },
+ "_npmVersion": "12.0.1",
+ "author": {
+  "email": "sindresorhus@gmail.com",
+  "name": "Sindre Sorhus",
+  "url": "https://sindresorhus.com"
+ },
+ "bugs": {
+  "url": "https://github.com/sindresorhus/string-width/issues"
+ },
+ "dependencies": {
+  "get-east-asian-width": "^1.5.0",
+  "strip-ansi": "^7.1.2"
+ },
+ "description": "Get the visual width of a string - the number of columns required to display it",
+ "devDependencies": {
+  "ava": "^6.4.1",
+  "tsd": "^0.33.0",
+  "xo": "^1.2.3"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-ZbmZM0JCihQN91dWnxoipT2KOEyHqEyfRXUyjuRhW8b/xnqPDoq4gWEVApTVa9db2wN8mmoikgFBbjh71+cGeQ==",
+  "shasum": "f1e85ca6d276ed9226c979c3651fb7abf548fbbe",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQD/p/T1oJ3fOPbbTbQiDaDCSfsjICE/27P9JsDpXgxmqAIhAKPn9HtHFEudgH46SlAbaN5lZ6pIyTbdp7JBeCVScA4+"
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQCwCQS3QdeGW6RWtu2f0/n0mMBy2P0YM4wXBo/iStndFAIhAIfoJWE2TPMjBCYO1bsSDkCQpjF7Pv/QKbMkspuguqBe"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/string-width/-/string-width-8.3.0.tgz",
+  "unpackedSize": 11986
+ },
+ "engines": {
+  "node": ">=20"
+ },
+ "exports": {
+  "default": "./index.js",
+  "types": "./index.d.ts"
+ },
+ "funding": "https://github.com/sponsors/sindresorhus",
+ "gitHead": "ffa1de3894af8f0471a86b60a624a3fd7a44580d",
+ "homepage": "https://github.com/sindresorhus/string-width#readme",
+ "keywords": [
+  "string",
+  "character",
+  "unicode",
+  "width",
+  "visual",
+  "column",
+  "columns",
+  "fullwidth",
+  "full-width",
+  "wcwidth",
+  "wcswidth",
+  "full",
+  "ansi",
+  "escape",
+  "codes",
+  "cli",
+  "command-line",
+  "terminal",
+  "console",
+  "cjk",
+  "chinese",
+  "japanese",
+  "korean",
+  "fixed-width",
+  "east-asian-width"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "sindresorhus@gmail.com",
+   "name": "sindresorhus"
+  }
+ ],
+ "name": "string-width",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/sindresorhus/string-width.git"
+ },
+ "scripts": {
+  "test": "xo && ava && tsd"
+ },
+ "sideEffects": false,
+ "type": "module",
+ "types": "./index.d.ts",
+ "version": "8.3.0"
+}

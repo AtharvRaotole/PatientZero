@@ -1,0 +1,76 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "cookie-signature@1.2.2",
+ "_nodeVersion": "12.22.12",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/cookie-signature_1.2.2_1730230787351_0.6616803087142129"
+ },
+ "_npmUser": {
+  "email": "natevw@yahoo.com",
+  "name": "natevw"
+ },
+ "_npmVersion": "8.19.4",
+ "author": {
+  "email": "tj@learnboost.com",
+  "name": "TJ Holowaychuk"
+ },
+ "bugs": {
+  "url": "https://github.com/visionmedia/node-cookie-signature/issues"
+ },
+ "dependencies": {},
+ "description": "Sign and unsign cookies",
+ "devDependencies": {
+  "mocha": "*",
+  "should": "*"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-D76uU73ulSXrD1UXF4KE2TMxVVwhsnCgfAyTg9k8P6KGZjlXKrOLe4dJQKI3Bxi5wjesZoFXJWElNWBjPZMbhg==",
+  "shasum": "57c7fc3cc293acab9fec54d73e15690ebe4a1793",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIEV0n21AvW1d1ud6J1a6OOPUxJBTsbHTQI+mDOuAk964AiEAsJUQ16IhyVgMzmXM0KFLSg9uWjpJd/jdkrdL/zJg4KI="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/cookie-signature/-/cookie-signature-1.2.2.tgz",
+  "unpackedSize": 4993
+ },
+ "engines": {
+  "node": ">=6.6.0"
+ },
+ "gitHead": "b7bd4cb9500bfa5e696143f51d61e5f24f7a625d",
+ "homepage": "https://github.com/visionmedia/node-cookie-signature#readme",
+ "keywords": [
+  "cookie",
+  "sign",
+  "unsign"
+ ],
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "natevw@yahoo.com",
+   "name": "natevw"
+  },
+  {
+   "email": "tj@vision-media.ca",
+   "name": "tjholowaychuk"
+  },
+  {
+   "email": "doug@somethingdoug.com",
+   "name": "dougwilson"
+  }
+ ],
+ "name": "cookie-signature",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/visionmedia/node-cookie-signature.git"
+ },
+ "scripts": {
+  "test": "mocha --require should --reporter spec"
+ },
+ "version": "1.2.2"
+}

@@ -1,0 +1,69 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@protobufjs/inquire@1.1.2",
+ "_nodeVersion": "24.15.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/inquire_1.1.2_1779031124378_0.15346952079710285"
+ },
+ "_npmUser": {
+  "email": "dcode+npm@dcode.io",
+  "name": "dcode"
+ },
+ "_npmVersion": "11.12.1",
+ "author": {
+  "email": "dcode+protobufjs@dcode.io",
+  "name": "Daniel Wirtz"
+ },
+ "bugs": {
+  "url": "https://github.com/dcodeIO/protobuf.js/issues"
+ },
+ "description": "Requires a module only if available and hides the require call from bundlers.",
+ "devDependencies": {
+  "istanbul": "^0.4.5",
+  "tape": "^5.0.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 11,
+  "integrity": "sha512-pa0vFRuws4wkvaXKK1uXZMAwAX4/t8ANaJo45iw/oQHNQ9q5xUzwgFmVJGXiga2BeN+zpX7Vf9vmsiIa2J+MUw==",
+  "shasum": "ae64fbc014ff44c8bfad03dd4c93cd2d6a4c82db",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIEzPe+qV3ZZ+0kSzN0g/qFkJqrQ00+ZVkBVSj4DzBlO1AiEApiQj3uoo5DIs0X2YtdpIC6Zu11MGoBA7gDNJy+4sJrE="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@protobufjs/inquire/-/inquire-1.1.2.tgz",
+  "unpackedSize": 5271
+ },
+ "gitHead": "e5a58c4b658739da42f1bc2efa3bdb0d1394edfb",
+ "homepage": "https://github.com/dcodeIO/protobuf.js#readme",
+ "license": "BSD-3-Clause",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "dcode+npm@dcode.io",
+   "name": "dcode"
+  },
+  {
+   "email": "dcode+protobufjs@dcode.io",
+   "name": "protobufjs"
+  },
+  {
+   "email": "node-team-npm+wombot@google.com",
+   "name": "google-wombot"
+  }
+ ],
+ "name": "@protobufjs/inquire",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/dcodeIO/protobuf.js.git"
+ },
+ "scripts": {
+  "coverage": "istanbul cover node_modules/tape/bin/tape tests/*.js",
+  "test": "tape tests/*.js"
+ },
+ "types": "index.d.ts",
+ "version": "1.1.2"
+}

@@ -1,0 +1,307 @@
+{
+ "vulns": [
+  {
+   "id": "GHSA-257v-vj4p-3w2h",
+   "summary": "Regular Expression Denial of Service (ReDOS)",
+   "details": "In the npm package `color-string`, there is a  ReDos (Regular Expression Denial of Service) vulnerability regarding an exponential time complexity for\nlinearly increasing input lengths for `hwb()` color strings.\n\nStrings reaching more than 5000 characters would see several\nmilliseconds of processing time; strings reaching more than\n50,000 characters began seeing 1500ms (1.5s) of processing time.\n\nThe cause was due to a the regular expression that parses\nhwb() strings - specifically, the hue value - where\nthe integer portion of the hue value used a 0-or-more quantifier\nshortly thereafter followed by a 1-or-more quantifier.\n\nThis caused excessive backtracking and a cartesian scan,\nresulting in exponential time complexity given a linear\nincrease in input length.",
+   "aliases": [
+    "CVE-2021-29060"
+   ],
+   "modified": "2023-11-08T04:05:32.674569Z",
+   "published": "2021-06-22T01:14:09Z",
+   "database_specific": {
+    "nvd_published_at": "2021-06-21T16:15:00Z",
+    "cwe_ids": [
+     "CWE-770"
+    ],
+    "severity": "MODERATE",
+    "github_reviewed": true,
+    "github_reviewed_at": "2021-06-21T23:20:37Z"
+   },
+   "references": [
+    {
+     "type": "ADVISORY",
+     "url": "https://nvd.nist.gov/vuln/detail/CVE-2021-29060"
+    },
+    {
+     "type": "WEB",
+     "url": "https://github.com/Qix-/color-string/commit/0789e21284c33d89ebc4ab4ca6f759b9375ac9d3"
+    },
+    {
+     "type": "WEB",
+     "url": "https://github.com/Qix-/color-string/releases/tag/1.5.5"
+    },
+    {
+     "type": "WEB",
+     "url": "https://github.com/yetingli/PoCs/blob/main/CVE-2021-29060/Color-String.md"
+    },
+    {
+     "type": "WEB",
+     "url": "https://github.com/yetingli/SaveResults/blob/main/js/color-string.js"
+    },
+    {
+     "type": "WEB",
+     "url": "https://www.npmjs.com/package/color-string"
+    }
+   ],
+   "affected": [
+    {
+     "package": {
+      "name": "color-string",
+      "ecosystem": "npm",
+      "purl": "pkg:npm/color-string"
+     },
+     "ranges": [
+      {
+       "type": "SEMVER",
+       "events": [
+        {
+         "introduced": "0"
+        },
+        {
+         "fixed": "1.5.5"
+        }
+       ]
+      }
+     ],
+     "database_specific": {
+      "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2021/06/GHSA-257v-vj4p-3w2h/GHSA-257v-vj4p-3w2h.json"
+     }
+    }
+   ],
+   "schema_version": "1.9.0",
+   "severity": [
+    {
+     "type": "CVSS_V3",
+     "score": "CVSS:3.1/AV:N/AC:L/PR:N/UI:N/S:U/C:N/I:N/A:L"
+    }
+   ]
+  },
+  {
+   "id": "GHSA-286p-vc9p-p5qv",
+   "summary": "color-string@2.1.1 contains malware after npm account takeover",
+   "details": "### Impact\nOn 8 September 2025, the npm publishing account for `color-string` was taken over after a phishing attack. Version `2.1.1` was published, functionally identical to the previous patch version, but with a malware payload added attempting to redirect cryptocurrency transactions to the attacker's own addresses from within browser environments.\n\nLocal environments, server environments, command line applications, etc. are not affected. If the package was used in a browser context (e.g. a direct `<script>` inclusion, or via a bundling tool such as Babel, Rollup, Vite, Next.js, etc.) there is a chance the malware still exists and such bundles will need to be rebuilt.\n\nThe malware seemingly only targets cryptocurrency transactions and wallets such as MetaMask. See references below for more information on the payload.\n\n### Patches\nnpm removed the offending package from the registry over the course of the day on 8 September, preventing further downloads from npm proper.\n\nOn 13 September, the package owner published new patch versions to help cache-bust those using private registries who might still have the compromised version cached. This version is functionally identical to the previously known-good version, published as a patch version bump above the compromised version.\n\nUsers should update to the latest patch version, completely remove their `node_modules` directory, clean their package manager's global cache, and rebuild any browser bundles from scratch.\n\nThose operating private registries or registry mirrors should purge the offending versions from any caches.\n\n### References\n- https://www.aikido.dev/blog/npm-debug-and-chalk-packages-compromised\n- https://socket.dev/blog/npm-author-qix-compromised-in-major-supply-chain-attack\n- https://www.ox.security/blog/npm-packages-compromised/\n\n### Point of Contact\nIn the event suspicious behavior is still observed for the package listed in this security advisory after performing all of the above cleaning operations (see _Patches_ above), please reach out via one of the following channels of communication:\n\n- Bluesky, package owner: https://bsky.app/profile/bad-at-computer.bsky.social\n- `debug` repository, tracking issue (applies to all packages affected in the breach): https://github.com/debug-js/debug/issues/1005",
+   "aliases": [
+    "CVE-2025-59142",
+    "GHSA-3q87-f72r-3gm6",
+    "MAL-2025-46973"
+   ],
+   "modified": "2025-09-16T06:44:38.313754Z",
+   "published": "2025-09-15T21:23:54Z",
+   "database_specific": {
+    "github_reviewed_at": "2025-09-15T21:23:54Z",
+    "nvd_published_at": "2025-09-15T20:15:38Z",
+    "cwe_ids": [
+     "CWE-506"
+    ],
+    "severity": "HIGH",
+    "github_reviewed": true
+   },
+   "references": [
+    {
+     "type": "WEB",
+     "url": "https://github.com/Qix-/color-string/security/advisories/GHSA-286p-vc9p-p5qv"
+    },
+    {
+     "type": "ADVISORY",
+     "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-59142"
+    },
+    {
+     "type": "WEB",
+     "url": "https://github.com/debug-js/debug/issues/1005"
+    },
+    {
+     "type": "PACKAGE",
+     "url": "https://github.com/Qix-/color-string"
+    },
+    {
+     "type": "WEB",
+     "url": "https://socket.dev/blog/npm-author-qix-compromised-in-major-supply-chain-attack"
+    },
+    {
+     "type": "WEB",
+     "url": "https://www.aikido.dev/blog/npm-debug-and-chalk-packages-compromised"
+    },
+    {
+     "type": "WEB",
+     "url": "https://www.ox.security/blog/npm-packages-compromised"
+    }
+   ],
+   "affected": [
+    {
+     "package": {
+      "name": "color-string",
+      "ecosystem": "npm",
+      "purl": "pkg:npm/color-string"
+     },
+     "ranges": [
+      {
+       "type": "SEMVER",
+       "events": [
+        {
+         "introduced": "2.1.1"
+        },
+        {
+         "fixed": "2.1.2"
+        }
+       ]
+      }
+     ],
+     "versions": [
+      "2.1.1"
+     ],
+     "database_specific": {
+      "source": "https://github.com/github/advisory-database/blob/main/advisories/github-reviewed/2025/09/GHSA-286p-vc9p-p5qv/GHSA-286p-vc9p-p5qv.json"
+     }
+    }
+   ],
+   "schema_version": "1.9.0",
+   "severity": [
+    {
+     "type": "CVSS_V4",
+     "score": "CVSS:4.0/AV:N/AC:L/AT:N/PR:N/UI:N/VC:L/VI:H/VA:N/SC:N/SI:N/SA:N/E:A/U:Red"
+    }
+   ]
+  },
+  {
+   "id": "MAL-2025-46973",
+   "summary": "Malicious code in color-string (npm)",
+   "details": "The package was compromised and malicious code added.\n\n---\n_-= Per source details. Do not edit below this line.=-_\n\n## Source: ghsa-malware (f96d7c74748e121e50b19198355b3f8f9f8ba84bcfd1731896fcf4b9ebc76370)\nAny computer that has this package installed or running should be considered fully compromised. All secrets and keys stored on that computer should be rotated immediately from a different computer. The package should be removed, but as full control of the computer may have been given to an outside entity, there is no guarantee that removing the package will remove all malicious software resulting from installing it.\n",
+   "aliases": [
+    "CVE-2025-59142",
+    "GHSA-286p-vc9p-p5qv",
+    "GHSA-3q87-f72r-3gm6"
+   ],
+   "modified": "2025-09-16T06:44:38.313754Z",
+   "published": "2025-09-08T15:19:21Z",
+   "database_specific": {
+    "malicious-packages-origins": [
+     {
+      "modified_time": "2025-09-08T18:21:07Z",
+      "sha256": "f96d7c74748e121e50b19198355b3f8f9f8ba84bcfd1731896fcf4b9ebc76370",
+      "source": "ghsa-malware",
+      "versions": [
+       "2.1.1"
+      ],
+      "id": "GHSA-3q87-f72r-3gm6",
+      "import_time": "2025-09-09T00:35:48.406622179Z"
+     },
+     {
+      "id": "GHSA-3q87-f72r-3gm6",
+      "import_time": "2025-09-10T00:34:05.21641786Z",
+      "modified_time": "2025-09-08T18:21:07Z",
+      "sha256": "7f075a338651127f30eccbdfe25742a55c6877b8e4984d7c04c7ad7a954561eb",
+      "source": "ghsa-malware",
+      "versions": [
+       "2.1.1"
+      ]
+     },
+     {
+      "id": "GHSA-3q87-f72r-3gm6",
+      "import_time": "2025-09-11T00:34:35.451970247Z",
+      "modified_time": "2025-09-10T17:50:21Z",
+      "sha256": "cb841b8db8c83b8d19b0cb0703391f1176ff0442daf9b54cb6b27888a6cdb64a",
+      "source": "ghsa-malware",
+      "versions": [
+       "2.1.1"
+      ]
+     },
+     {
+      "id": "GHSA-3q87-f72r-3gm6",
+      "import_time": "2025-09-12T00:33:58.015092523Z",
+      "modified_time": "2025-09-10T17:50:21Z",
+      "sha256": "3602353f23f84e25cd0ba31d6f01a7edf6b3e0163d024f93ab05115744a6484e",
+      "source": "ghsa-malware",
+      "versions": [
+       "2.1.1"
+      ]
+     },
+     {
+      "id": "GHSA-3q87-f72r-3gm6",
+      "import_time": "2025-09-16T00:34:25.587232592Z",
+      "modified_time": "2025-09-15T23:52:36Z",
+      "sha256": "3114eb24b22f8b9f5e16618d2a3f1fc92c383fc24db2edc838fa2206b7006f9a",
+      "source": "ghsa-malware",
+      "versions": [
+       "2.1.1"
+      ]
+     },
+     {
+      "modified_time": "2025-09-15T23:52:36Z",
+      "sha256": "966d89d45db4d0cbc1b119c581b778c7a974951782f9605f9f78dcf6b7740de3",
+      "source": "ghsa-malware",
+      "versions": [
+       "2.1.1"
+      ],
+      "id": "GHSA-3q87-f72r-3gm6",
+      "import_time": "2025-09-17T00:07:09.217740125Z"
+     },
+     {
+      "id": "GHSA-3q87-f72r-3gm6",
+      "import_time": "2025-09-17T00:34:59.037457111Z",
+      "modified_time": "2025-09-15T23:52:36Z",
+      "sha256": "8794d0bf0324129730f752b7acb64d977f0ede8dd2f1a178d3ecfa64c03adcf3",
+      "source": "ghsa-malware",
+      "versions": [
+       "2.1.1"
+      ]
+     }
+    ]
+   },
+   "references": [
+    {
+     "type": "ARTICLE",
+     "url": "https://www.aikido.dev/blog/npm-debug-and-chalk-packages-compromised"
+    },
+    {
+     "type": "ARTICLE",
+     "url": "https://www.bleepingcomputer.com/news/security/hackers-hijack-npm-packages-with-2-billion-weekly-downloads-in-supply-chain-attack/"
+    },
+    {
+     "type": "WEB",
+     "url": "https://github.com/github/advisory-database/issues/6099"
+    },
+    {
+     "type": "ADVISORY",
+     "url": "https://github.com/advisories/GHSA-3q87-f72r-3gm6"
+    },
+    {
+     "type": "WEB",
+     "url": "https://github.com/Qix-/color-string/security/advisories/GHSA-286p-vc9p-p5qv"
+    }
+   ],
+   "affected": [
+    {
+     "package": {
+      "name": "color-string",
+      "ecosystem": "npm",
+      "purl": "pkg:npm/color-string"
+     },
+     "versions": [
+      "2.1.1"
+     ],
+     "database_specific": {
+      "source": "https://github.com/ossf/malicious-packages/blob/main/osv/malicious/npm/color-string/MAL-2025-46973.json",
+      "cwes": [
+       {
+        "cweId": "CWE-506",
+        "description": "The product contains code that appears to be malicious in nature.",
+        "name": "Embedded Malicious Code"
+       }
+      ]
+     }
+    }
+   ],
+   "schema_version": "1.7.3",
+   "credits": [
+    {
+     "name": "Amazon Inspector",
+     "contact": [
+      "actran@amazon.com"
+     ],
+     "type": "FINDER"
+    }
+   ]
+  }
+ ]
+}

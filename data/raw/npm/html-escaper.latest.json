@@ -1,0 +1,83 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "html-escaper@3.0.3",
+ "_nodeVersion": "15.8.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/html-escaper_3.0.3_1613637319338_0.7634744920365071"
+ },
+ "_npmUser": {
+  "email": "andrea.giammarchi@gmail.com",
+  "name": "webreflection"
+ },
+ "_npmVersion": "6.14.11",
+ "author": {
+  "name": "Andrea Giammarchi"
+ },
+ "bugs": {
+  "url": "https://github.com/WebReflection/html-escaper/issues"
+ },
+ "description": "fast and safe way to escape and unescape &<>'\" chars",
+ "devDependencies": {
+  "ascjs": "^5.0.1",
+  "c8": "^7.6.0",
+  "coveralls": "^3.1.0",
+  "rollup": "^2.39.0",
+  "uglify-es": "^3.3.9"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 10,
+  "integrity": "sha512-RuMffC89BOWQoY0WKGpIhn5gX3iI54O6nRA0yC124NYVtzjmFWBIiFd8M0x+ZdX0P9R4lADg1mgP8C7PxGOWuQ==",
+  "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.13\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJgLibHCRA9TVsSAnZWagAAP3YQAIsbVDxa2usE75KzTZs2\nciMMeQ25FTsGziWWIzvjaNIPHJMfEPklrmKFSy5O4fm4D6DXtSTa52Ts2VDd\nitFokseY6pdLqp6L01uHFMFacs98UZglZ5i+sqBCNZDtMjFICAmSclaNZpzi\nAZJuNbAnVuGpCQy7sTnu9TsksXq28yLS/pj5ybx23XM8TDUO1+XzevhC+yX1\n6ppTO0y3ob08PamneUlZlnCXnxuK3imC1PvRygnprSEMF+LaY0eoWfIllDOd\n/caTpmxCrgvSVongJ65L/bqZTM0n23Kqt1cWE9expKw+xwjEltEZ/sdrmVwi\n/DEBWJBnOLLDGvUERyP69FcC+XICqL+HA/6CF7kY4EGQJ2MkaW3ks84nQvt8\n0Vu6G4vkf7KkR1PmZZUAN0yISteHoSaeP+fD5eC132AOXKX7RFNK040DOE+o\nS78FOlxm6OZbmZR60lmJP1MDFqzbqP2sKBTLdRXSnB+rUg8osWb9NWovsx5W\nVHPTy5wGK9l0IJG05Q/E40HeUTUrpOdpcGPHxSw7/wCR9eENr6fErXZqT8Vr\n8c9Hsw09pyAfMKNIk8AbLN4MuB2Bw4RzCj8+LYe+/VkFxGcsAWEEBVnlBCeG\nLiniVSNhTBw+tYX7dlEX2374LmlIoi8RrMwj83jLr1Ju/AilalUPtSBH3qdI\nB5yl\r\n=4ZcL\r\n-----END PGP SIGNATURE-----\r\n",
+  "shasum": "4d336674652beb1dcbc29ef6b6ba7f6be6fdfed6",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEYCIQDZiuHuRrG7wr2eoAg3G+hnjdv/wp+jIHzNVXJyjcyllgIhANLbKSTfSYiULiXm6u1zb5XbL9cKaiSIFMkVwhkySPNR"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/html-escaper/-/html-escaper-3.0.3.tgz",
+  "unpackedSize": 15567
+ },
+ "exports": {
+  "default": "./cjs/index.js",
+  "import": "./esm/index.js"
+ },
+ "gitHead": "c6e2b50d7b6f486afb3ddc92bfcfec89857b75d7",
+ "homepage": "https://github.com/WebReflection/html-escaper",
+ "keywords": [
+  "html",
+  "escape",
+  "encode",
+  "unescape",
+  "decode",
+  "entities"
+ ],
+ "license": "MIT",
+ "main": "./cjs/index.js",
+ "maintainers": [
+  {
+   "email": "andrea.giammarchi@gmail.com",
+   "name": "webreflection"
+  }
+ ],
+ "module": "./esm/index.js",
+ "name": "html-escaper",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/WebReflection/html-escaper.git"
+ },
+ "scripts": {
+  "build": "npm run cjs && npm run rollup && npm run minify && npm test && npm run size",
+  "cjs": "ascjs esm cjs",
+  "coveralls": "c8 report --reporter=text-lcov | coveralls",
+  "minify": "uglifyjs index.js --comments=/^!/ --compress --mangle -o min.js",
+  "rollup": "rollup --config rollup.config.js",
+  "size": "cat index.js | wc -c;cat min.js | wc -c;gzip -c min.js | wc -c",
+  "test": "c8 node ./test/index.js"
+ },
+ "type": "module",
+ "unpkg": "min.js",
+ "version": "3.0.3"
+}

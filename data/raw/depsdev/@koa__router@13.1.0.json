@@ -1,0 +1,137 @@
+{
+ "edges": [
+  {
+   "fromNode": 0,
+   "requirement": "^2.0.0",
+   "toNode": 2
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^4.1.0",
+   "toNode": 4
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^6.3.0",
+   "toNode": 5
+  },
+  {
+   "fromNode": 2,
+   "requirement": "~2.0.0",
+   "toNode": 1
+  },
+  {
+   "fromNode": 2,
+   "requirement": "~2.0.4",
+   "toNode": 3
+  },
+  {
+   "fromNode": 2,
+   "requirement": "~1.2.0",
+   "toNode": 6
+  },
+  {
+   "fromNode": 2,
+   "requirement": "~2.0.2",
+   "toNode": 7
+  },
+  {
+   "fromNode": 2,
+   "requirement": "~1.0.1",
+   "toNode": 8
+  }
+ ],
+ "error": "",
+ "nodes": [
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "SELF",
+   "versionKey": {
+    "name": "@koa/router",
+    "system": "NPM",
+    "version": "13.1.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "depd",
+    "system": "NPM",
+    "version": "2.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "http-errors",
+    "system": "NPM",
+    "version": "2.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "inherits",
+    "system": "NPM",
+    "version": "2.0.4"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "koa-compose",
+    "system": "NPM",
+    "version": "4.1.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "path-to-regexp",
+    "system": "NPM",
+    "version": "6.3.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "setprototypeof",
+    "system": "NPM",
+    "version": "1.2.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "statuses",
+    "system": "NPM",
+    "version": "2.0.2"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "toidentifier",
+    "system": "NPM",
+    "version": "1.0.1"
+   }
+  }
+ ]
+}

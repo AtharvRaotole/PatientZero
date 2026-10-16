@@ -1,0 +1,74 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@one-ini/wasm@0.2.1",
+ "_nodeVersion": "24.13.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/wasm_0.2.1_1771867988656_0.23982094090747208"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:461fdff2-caae-4bb5-9372-99938c7997f1"
+  }
+ },
+ "_npmVersion": "11.6.2",
+ "bugs": {
+  "url": "https://github.com/one-ini/core/issues"
+ },
+ "collaborators": [
+  "Jed Mao <jedmao@outlook.com>",
+  "Joe Hildebrand <joe-github@cursive.net>",
+  "Florian Neumann <florian.neumann@mindkeeper.solutions>"
+ ],
+ "description": "Parse EditorConfig-INI file contents into AST",
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@one-ini%2fwasm@0.2.1"
+  },
+  "fileCount": 6,
+  "integrity": "sha512-TUqERXGNTifZ9y2g3wPxQrw3HpHv/02DsW3D90T9x0hhonrL1ZqpSmNrU2XkoIq0fP1N6gZfVQzy2Fw1ZvGBNg==",
+  "shasum": "5e85cbb433460b23aaa18ac024cd1a556e9e5df9",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQDGTdxkNzmAsPvoOq/8xJGQh4ZlVp+/TeXQ5CcLrPG6JQIhAK2lmW1BgUvWt72oml4W5rExEHhHvndoHoUfMyF/O+zi"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@one-ini/wasm/-/wasm-0.2.1.tgz",
+  "unpackedSize": 102549
+ },
+ "gitHead": "a9374aa5b8a193223f6248bee100f8207e69388f",
+ "homepage": "https://github.com/one-ini/core#readme",
+ "keywords": [
+  "editorconfig",
+  "ini",
+  "parser",
+  "ast"
+ ],
+ "license": "MIT",
+ "main": "one_ini.js",
+ "maintainers": [
+  {
+   "email": "florian.neumann@mindkeeper.solutions",
+   "name": "florianb"
+  },
+  {
+   "email": "joe-github@cursive.net",
+   "name": "hildjj"
+  }
+ ],
+ "name": "@one-ini/wasm",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/one-ini/core.git"
+ },
+ "types": "one_ini.d.ts",
+ "version": "0.2.1"
+}

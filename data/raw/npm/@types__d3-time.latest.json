@@ -1,0 +1,76 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@types/d3-time@3.0.4",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/d3-time_3.0.4_1732528947707_0.8724641239799096"
+ },
+ "_npmUser": {
+  "email": "ts-npm-types@microsoft.com",
+  "name": "types"
+ },
+ "contributors": [
+  {
+   "githubUsername": "tomwanzek",
+   "name": "Tom Wanzek",
+   "url": "https://github.com/tomwanzek"
+  },
+  {
+   "githubUsername": "gustavderdrache",
+   "name": "Alex Ford",
+   "url": "https://github.com/gustavderdrache"
+  },
+  {
+   "githubUsername": "borisyankov",
+   "name": "Boris Yankov",
+   "url": "https://github.com/borisyankov"
+  },
+  {
+   "githubUsername": "denisname",
+   "name": "denisname",
+   "url": "https://github.com/denisname"
+  },
+  {
+   "githubUsername": "Methuselah96",
+   "name": "Nathan Bierema",
+   "url": "https://github.com/Methuselah96"
+  }
+ ],
+ "dependencies": {},
+ "description": "TypeScript definitions for d3-time",
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-yuzZug1nkAAaBlBBikKZTgzCeA+k1uy4ZFwWANOfKw5z5LRhV0gNA7gNkKm7HoK+HRN0wX3EkxGk0fpbWhmB7g==",
+  "shasum": "8472feecd639691450dd8000eb33edd444e1323f",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIEm3T2jBUZxriOrpFayWAvBLgOUgnmwDWpcHvTL+OQxaAiEAlngRGeiLkMdVVyXWuaiuyYjX/1GMIv0S+EZpMcUu/lA="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@types/d3-time/-/d3-time-3.0.4.tgz",
+  "unpackedSize": 31274
+ },
+ "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/d3-time",
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "ts-npm-types@microsoft.com",
+   "name": "types"
+  }
+ ],
+ "name": "@types/d3-time",
+ "peerDependencies": {},
+ "repository": {
+  "directory": "types/d3-time",
+  "type": "git",
+  "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+ },
+ "scripts": {},
+ "typeScriptVersion": "4.9",
+ "types": "index.d.ts",
+ "typesPublisherContentHash": "995c6a7a1f21328f5dceb32804c5f3d92ab20a98694246d9c8f213f4eef298ed",
+ "version": "3.0.4"
+}

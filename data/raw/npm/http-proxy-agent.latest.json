@@ -1,0 +1,98 @@
+{
+ "_from": "file:http-proxy-agent-9.1.0.tgz",
+ "_hasShrinkwrap": false,
+ "_id": "http-proxy-agent@9.1.0",
+ "_integrity": "sha512-2NxoveTT58mjYT4n3RPTEfCZGLMbidoO8XEieXfpSYxu+PQJ1qpx4ypwH6N+uF9twBPIvRRgvkvW5HUTYWENig==",
+ "_nodeVersion": "20.20.2",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/http-proxy-agent_9.1.0_1780937244071_0.23526695768300998"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:d2603736-74bc-4bbf-ad96-99a984d8617d"
+  }
+ },
+ "_npmVersion": "11.16.0",
+ "_resolved": "/tmp/54e18d6f1e4f952bb0f355d091c5008e/http-proxy-agent-9.1.0.tgz",
+ "author": {
+  "email": "nathan@tootallnate.net",
+  "name": "Nathan Rajlich",
+  "url": "http://n8.io/"
+ },
+ "bugs": {
+  "url": "https://github.com/TooTallNate/proxy-agents/issues"
+ },
+ "dependencies": {
+  "agent-base": "9.0.0",
+  "debug": "^4.3.4",
+  "proxy-agent-negotiate": "1.1.0"
+ },
+ "description": "An HTTP(s) proxy `http.Agent` implementation for HTTP",
+ "devDependencies": {
+  "@types/debug": "^4.1.7",
+  "@types/node": "^22.13.0",
+  "async-listen": "^3.0.0",
+  "proxy": "4.1.0",
+  "tsconfig": "0.0.0",
+  "typescript": "^5.1.6"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/http-proxy-agent@9.1.0"
+  },
+  "fileCount": 7,
+  "integrity": "sha512-2NxoveTT58mjYT4n3RPTEfCZGLMbidoO8XEieXfpSYxu+PQJ1qpx4ypwH6N+uF9twBPIvRRgvkvW5HUTYWENig==",
+  "shasum": "fd8b39dcb58ac8046139e5f4ea80de78e8beaf7b",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQCLD/mRuLDKiTLRM1juziGVgNL8wCTJCMBKaKuapDUY3gIhAJzzChLf5rCFRsdDl4bl42iOZe81WN53TEZpxhsahVAo"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/http-proxy-agent/-/http-proxy-agent-9.1.0.tgz",
+  "unpackedSize": 17632
+ },
+ "engines": {
+  "node": ">= 20"
+ },
+ "exports": {
+  "default": "./dist/index.js",
+  "types": "./dist/index.d.ts"
+ },
+ "homepage": "https://github.com/TooTallNate/proxy-agents#readme",
+ "keywords": [
+  "http",
+  "proxy",
+  "endpoint",
+  "agent"
+ ],
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "nathan@tootallnate.net",
+   "name": "tootallnate"
+  }
+ ],
+ "name": "http-proxy-agent",
+ "repository": {
+  "directory": "packages/http-proxy-agent",
+  "type": "git",
+  "url": "git+https://github.com/TooTallNate/proxy-agents.git"
+ },
+ "scripts": {
+  "build": "tsc",
+  "lint": "eslint . --ext .ts",
+  "pack": "node ../../scripts/pack.mjs",
+  "test": "vitest"
+ },
+ "type": "module",
+ "version": "9.1.0"
+}

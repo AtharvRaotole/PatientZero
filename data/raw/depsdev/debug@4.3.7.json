@@ -1,0 +1,32 @@
+{
+ "edges": [
+  {
+   "fromNode": 0,
+   "requirement": "^2.1.3",
+   "toNode": 1
+  }
+ ],
+ "error": "",
+ "nodes": [
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "SELF",
+   "versionKey": {
+    "name": "debug",
+    "system": "NPM",
+    "version": "4.3.7"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "ms",
+    "system": "NPM",
+    "version": "2.1.3"
+   }
+  }
+ ]
+}

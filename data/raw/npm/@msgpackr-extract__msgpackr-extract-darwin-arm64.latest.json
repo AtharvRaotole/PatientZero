@@ -1,0 +1,56 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@msgpackr-extract/msgpackr-extract-darwin-arm64@3.0.4",
+ "_nodeVersion": "24.10.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/msgpackr-extract-darwin-arm64_3.0.4_1779716364756_0.8198386837205913"
+ },
+ "_npmUser": {
+  "email": "kriszyp@gmail.com",
+  "name": "kriszyp"
+ },
+ "_npmVersion": "11.14.1",
+ "author": {
+  "name": "Kris Zyp"
+ },
+ "bugs": {
+  "url": "https://github.com/kriszyp/msgpackr-extract/issues"
+ },
+ "cpu": [
+  "arm64"
+ ],
+ "description": "Platform specific binary for msgpackr-extract on darwin OS with arm64 architecture",
+ "directories": {},
+ "dist": {
+  "fileCount": 4,
+  "integrity": "sha512-LCkGo6JDfaBhgST7UpPWgNgLINpcpabaHfyz5OBx75nUYxBsaEPxjnyNjWpeb/xBup/682QnBfRBy2/LvPutZQ==",
+  "shasum": "22619f76a6b10ba78c8b74025b0d9754cad69cc7",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIH1Me3XG9XQkb82IYXPzL86ni2qnmPat0PWNXQGHiwAmAiBsnacgd6xbrZKHbMMnZW2b7o0N2CUW3MZq5JYa+AV9wQ=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@msgpackr-extract/msgpackr-extract-darwin-arm64/-/msgpackr-extract-darwin-arm64-3.0.4.tgz",
+  "unpackedSize": 53604
+ },
+ "gitHead": "71def7bd969e5c88d2c918e0d81ee2ba3155d19c",
+ "homepage": "https://github.com/kriszyp/msgpackr-extract#readme",
+ "license": "MIT",
+ "maintainers": [
+  {
+   "email": "kriszyp@gmail.com",
+   "name": "kriszyp"
+  }
+ ],
+ "name": "@msgpackr-extract/msgpackr-extract-darwin-arm64",
+ "os": [
+  "darwin"
+ ],
+ "repository": {
+  "type": "git",
+  "url": "git+ssh://git@github.com/kriszyp/msgpackr-extract.git"
+ },
+ "version": "3.0.4"
+}

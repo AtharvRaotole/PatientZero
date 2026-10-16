@@ -1,0 +1,93 @@
+{
+ "_from": "file:/tmp/publishing-artifacts-3712920134/@google-cloud/paginator/7.2.0/paginator-7.2.0.tgz",
+ "_hasShrinkwrap": false,
+ "_id": "@google-cloud/paginator@7.2.0",
+ "_integrity": "sha512-l+x6YObHGTuqBCMvC0SXo3Cnyqg4FkWWKYRptf46PACHJ5GAUuhsd2b3wphgGrg1ybs/LAb+q5MnUTuG/3+v7w==",
+ "_nodeVersion": "22.18.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/paginator_7.2.0_1791842738302_0.5629109043733014"
+ },
+ "_npmUser": {
+  "email": "node-team-npm+wombot@google.com",
+  "name": "google-wombot"
+ },
+ "_npmVersion": "10.9.3",
+ "_resolved": "/tmp/publishing-artifacts-3712920134/@google-cloud/paginator/7.2.0/paginator-7.2.0.tgz",
+ "author": {
+  "name": "Google Inc."
+ },
+ "bugs": {
+  "url": "https://github.com/googleapis/google-cloud-node/issues"
+ },
+ "dependencies": {
+  "extend": "^3.0.2"
+ },
+ "description": "A result paging utility used by Google node.js modules",
+ "devDependencies": {
+  "@types/extend": "^3.0.4",
+  "@types/jest": "^29.5.12",
+  "@types/node": "^22.13.8",
+  "gts": "^6.0.2",
+  "jest": "^29.7.0",
+  "jsdoc": "^4.0.4",
+  "jsdoc-fresh": "^6.0.0",
+  "jsdoc-region-tag": "^5.0.0",
+  "linkinator": "^6.1.2",
+  "path-to-regexp": "^8.2.0",
+  "ts-jest": "^29.4.10",
+  "typescript": "^5.8.2"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 7,
+  "integrity": "sha512-l+x6YObHGTuqBCMvC0SXo3Cnyqg4FkWWKYRptf46PACHJ5GAUuhsd2b3wphgGrg1ybs/LAb+q5MnUTuG/3+v7w==",
+  "shasum": "280b8fab01b0d9e80ef13c009d5de74a15b06c08",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIBbLkST7rjRXqidXL2DzTMrGhFiWfSDS5j8slmf8eop7AiEAylu0uGPykCjrALycLsYoJR5pZUJuwW8TpNbfJvckKV4="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEYCIQD4uu4fP5PqTUfVgg21XXq+E147+TDpCbVNQbe+IOKUaAIhAKPna1oNNlcFJHIj1/YKdUiUaxdxKP/h9htyqzjfmtxQ"
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@google-cloud/paginator/-/paginator-7.2.0.tgz",
+  "unpackedSize": 36936
+ },
+ "engines": {
+  "node": ">=22"
+ },
+ "homepage": "https://github.com/googleapis/google-cloud-node/tree/main/core/paginator",
+ "keywords": [],
+ "license": "Apache-2.0",
+ "main": "build/src/index.js",
+ "maintainers": [
+  {
+   "email": "node-team-npm+wombot@google.com",
+   "name": "google-wombot"
+  }
+ ],
+ "name": "@google-cloud/paginator",
+ "repository": {
+  "directory": "core/paginator",
+  "type": "git",
+  "url": "git+https://github.com/googleapis/google-cloud-node.git"
+ },
+ "scripts": {
+  "clean": "gts clean",
+  "compile": "tsc -p .",
+  "docs": "jsdoc -c .jsdoc.js",
+  "fix": "gts fix",
+  "lint": "gts check",
+  "precompile": "gts clean",
+  "prepare": "npm run compile",
+  "pretest": "npm run compile",
+  "samples-test": "echo 'no samples test'",
+  "system-test": "echo 'no system test'",
+  "test": "jest --coverage"
+ },
+ "types": "build/src/index.d.ts",
+ "version": "7.2.0"
+}

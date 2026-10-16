@@ -1,0 +1,99 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "fastq@1.20.3",
+ "_nodeVersion": "24.19.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/fastq_1.20.3_1787985120579_0.8466871352630663"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:1d09b8eb-48ea-4ccb-a9f1-780eaead0953"
+  }
+ },
+ "_npmVersion": "12.0.2",
+ "author": {
+  "email": "hello@matteocollina.com",
+  "name": "Matteo Collina"
+ },
+ "bugs": {
+  "url": "https://github.com/mcollina/fastq/issues"
+ },
+ "dependencies": {
+  "reusify": "^1.0.4"
+ },
+ "description": "Fast, in memory work queue",
+ "devDependencies": {
+  "async": "^3.1.0",
+  "eslint": "^9.36.0",
+  "neo-async": "^2.6.1",
+  "neostandard": "^0.12.2",
+  "nyc": "^17.0.0",
+  "pre-commit": "^1.2.2",
+  "tape": "^5.0.0",
+  "typescript": "^5.0.4"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/fastq@1.20.3"
+  },
+  "fileCount": 14,
+  "integrity": "sha512-XKv5nnLs6nLF71NgiKJLIZFLkPyIEuOselLG7ujZnGrRfQK8HpvY+WqKhAJUAdLomwVHErVS4LfxFlPq0/FTAw==",
+  "shasum": "7ab8731e647b56abcfeee997dae333ca3ee1d04d",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQC9EGuq/oq0cgUx+5q34kUHE1a8OeTkomKD9cuol6d9hAIgdqSSJsGZtOmMP4rK7XmfKaNaB9ZdkZ/dEY9vGAzLtK8="
+   },
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCIGggKw6NM4LKMJcnZLenX6LLHy2i9KXJV7BDNNzGNP9DAiBtvUio7c+ikqOQX68Fza6s3TyRIFbUXouIgJTUEB4i8w=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/fastq/-/fastq-1.20.3.tgz",
+  "unpackedSize": 50569
+ },
+ "gitHead": "733cb2c78d475f0b0b76f54e737200a54fee7d27",
+ "homepage": "https://github.com/mcollina/fastq#readme",
+ "keywords": [
+  "fast",
+  "queue",
+  "async",
+  "worker"
+ ],
+ "license": "ISC",
+ "main": "queue.js",
+ "maintainers": [
+  {
+   "email": "hello@matteocollina.com",
+   "name": "matteo.collina"
+  }
+ ],
+ "name": "fastq",
+ "pre-commit": [
+  "test",
+  "typescript"
+ ],
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/mcollina/fastq.git"
+ },
+ "scripts": {
+  "coverage": "nyc --reporter=html --reporter=cobertura --reporter=text tape test/test.js test/promise.js",
+  "legacy": "tape test/test.js",
+  "lint": "eslint .",
+  "test": "npm run lint && npm run unit",
+  "test:report": "npm run lint && npm run unit:report",
+  "typescript": "tsc --project ./test/tsconfig.json",
+  "unit": "nyc --lines 100 --branches 100 --functions 100 --check-coverage --reporter=text tape test/test.js test/promise.js"
+ },
+ "type": "commonjs",
+ "version": "1.20.3"
+}

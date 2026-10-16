@@ -1,0 +1,97 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@types/qs@6.15.1",
+ "_nodeVersion": "24.14.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/qs_6.15.1_1778111160873_0.3126500922408775"
+ },
+ "_npmUser": {
+  "email": "ts-npm-types@microsoft.com",
+  "name": "types"
+ },
+ "contributors": [
+  {
+   "githubUsername": "RWander",
+   "name": "Roman Korneev",
+   "url": "https://github.com/RWander"
+  },
+  {
+   "githubUsername": "leonyu",
+   "name": "Leon Yu",
+   "url": "https://github.com/leonyu"
+  },
+  {
+   "githubUsername": "tehbelinda",
+   "name": "Belinda Teh",
+   "url": "https://github.com/tehbelinda"
+  },
+  {
+   "githubUsername": "zyml",
+   "name": "Melvin Lee",
+   "url": "https://github.com/zyml"
+  },
+  {
+   "githubUsername": "artursvonda",
+   "name": "Arturs Vonda",
+   "url": "https://github.com/artursvonda"
+  },
+  {
+   "githubUsername": "CarlosBonetti",
+   "name": "Carlos Bonetti",
+   "url": "https://github.com/CarlosBonetti"
+  },
+  {
+   "githubUsername": "dpsmith3",
+   "name": "Dan Smith",
+   "url": "https://github.com/dpsmith3"
+  },
+  {
+   "githubUsername": "hperrin",
+   "name": "Hunter Perrin",
+   "url": "https://github.com/hperrin"
+  },
+  {
+   "githubUsername": "ljharb",
+   "name": "Jordan Harband",
+   "url": "https://github.com/ljharb"
+  }
+ ],
+ "dependencies": {},
+ "description": "TypeScript definitions for qs",
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-GZHUBZR9hckSUhrxmp1nG6NwdpM9fCunJwyThLW1X3AyHgd9IlHb6VANpQQqDr2o/qQp6McZ3y/IA2rVzKzSbw==",
+  "shasum": "8606884272c63f0db96986bd3548650d8a9388bf",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIEj0dZ00x5y61S+5QyPnm9Qq31blEkSO1p2hN4ugu+wGAiEAutz5HyBFaOUiSn+P5pKRjaZK2Sx5fD7EdWcUqed+aW0="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@types/qs/-/qs-6.15.1.tgz",
+  "unpackedSize": 7564
+ },
+ "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/qs",
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "ts-npm-types@microsoft.com",
+   "name": "types"
+  }
+ ],
+ "name": "@types/qs",
+ "peerDependencies": {},
+ "repository": {
+  "directory": "types/qs",
+  "type": "git",
+  "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+ },
+ "scripts": {},
+ "typeScriptVersion": "5.3",
+ "types": "index.d.ts",
+ "typesPublisherContentHash": "05a407916d8a33f07ac30ace141b782ae9df30ee4857eb8430a1cf88ce3ad457",
+ "version": "6.15.1"
+}

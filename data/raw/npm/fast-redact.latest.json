@@ -1,0 +1,89 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "fast-redact@3.5.0",
+ "_nodeVersion": "20.11.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/fast-redact_3.5.0_1710872806416_0.09421757003721254"
+ },
+ "_npmUser": {
+  "email": "hello@matteocollina.com",
+  "name": "matteo.collina"
+ },
+ "_npmVersion": "10.2.4",
+ "author": {
+  "email": "david.clements@nearform.com",
+  "name": "David Mark Clements"
+ },
+ "bugs": {
+  "url": "https://github.com/davidmarkclements/fast-redact/issues"
+ },
+ "description": "very fast object redaction",
+ "devDependencies": {
+  "fastbench": "^1.0.1",
+  "pino-noir": "^2.2.1",
+  "snazzy": "^8.0.0",
+  "standard": "^12.0.1",
+  "tap": "^12.5.2"
+ },
+ "directories": {
+  "example": "example",
+  "lib": "lib",
+  "test": "test"
+ },
+ "dist": {
+  "fileCount": 22,
+  "integrity": "sha512-dwsoQlS7h9hMeYUq1W++23NDcBLV4KqONnITDV9DjfS3q1SgDGVrBdvvTLUotWtPSD7asWDV9/CmsZPy8Hf70A==",
+  "shasum": "e9ea02f7e57d0cd8438180083e93077e496285e4",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIGK4k9AHyheWKcXi/FQsa3G5DLjRkuLUBe65+LHCIZPCAiEA38n5T1WSrCfR/uQjUrb5Khhv+OlFvEc7KKgS9BEgDYI="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/fast-redact/-/fast-redact-3.5.0.tgz",
+  "unpackedSize": 92665
+ },
+ "engines": {
+  "node": ">=6"
+ },
+ "gitHead": "e268c1c3b5a3be770f8082583f626bc4ba5c648d",
+ "homepage": "https://github.com/davidmarkclements/fast-redact#readme",
+ "keywords": [
+  "redact",
+  "censor",
+  "performance",
+  "performant",
+  "gdpr",
+  "fast",
+  "speed",
+  "serialize",
+  "stringify"
+ ],
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "hello@matteocollina.com",
+   "name": "matteo.collina"
+  },
+  {
+   "email": "david.mark.clements@gmail.com",
+   "name": "davidmarkclements"
+  }
+ ],
+ "name": "fast-redact",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/davidmarkclements/fast-redact.git"
+ },
+ "scripts": {
+  "bench": "node benchmark",
+  "ci": "tap --cov --100 test",
+  "cov": "tap --cov test",
+  "cov-ui": "tap --coverage-report=html test",
+  "posttest": "standard index.js 'lib/*.js' 'example/*.js' benchmark/index.js test/index.js | snazzy",
+  "test": "tap test"
+ },
+ "version": "3.5.0"
+}

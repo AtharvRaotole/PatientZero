@@ -1,0 +1,147 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "signal-exit@4.1.0",
+ "_nodeVersion": "18.16.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/signal-exit_4.1.0_1690609496546_0.23985049542845926"
+ },
+ "_npmUser": {
+  "email": "i@izs.me",
+  "name": "isaacs"
+ },
+ "_npmVersion": "9.7.2",
+ "author": {
+  "email": "ben@npmjs.com",
+  "name": "Ben Coe"
+ },
+ "browser": "./dist/mjs/browser.js",
+ "bugs": {
+  "url": "https://github.com/tapjs/signal-exit/issues"
+ },
+ "description": "when you want to fire an event no matter how a process exits.",
+ "devDependencies": {
+  "@types/cross-spawn": "^6.0.2",
+  "@types/node": "^18.15.11",
+  "@types/signal-exit": "^3.0.1",
+  "@types/tap": "^15.0.8",
+  "c8": "^7.13.0",
+  "prettier": "^2.8.6",
+  "tap": "^16.3.4",
+  "ts-node": "^10.9.1",
+  "typedoc": "^0.23.28",
+  "typescript": "^5.0.2"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 29,
+  "integrity": "sha512-bzyZ1e88w9O1iNJbKnOlvYTrWPDl46O1bG0D3XInv+9tkPrxrN8jUUTiFlDkkmKWgn1M6CfIA13SuGqOa9Korw==",
+  "shasum": "952188c1cbd546070e2dd20d0f41c0ae0530cb04",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIQC17YSNmo/hSXVVI2cchqvs3la7twHltiehlUoPq/9VGgIgD2Hb18tHfjmWx8vendx1mWOOOYvu7+XRLUj+wwxejPE="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/signal-exit/-/signal-exit-4.1.0.tgz",
+  "unpackedSize": 76966
+ },
+ "engines": {
+  "node": ">=14"
+ },
+ "exports": {
+  ".": {
+   "import": {
+    "default": "./dist/mjs/index.js",
+    "types": "./dist/mjs/index.d.ts"
+   },
+   "require": {
+    "default": "./dist/cjs/index.js",
+    "types": "./dist/cjs/index.d.ts"
+   }
+  },
+  "./browser": {
+   "import": {
+    "default": "./dist/mjs/browser.js",
+    "types": "./dist/mjs/browser.d.ts"
+   },
+   "require": {
+    "default": "./dist/cjs/browser.js",
+    "types": "./dist/cjs/browser.d.ts"
+   }
+  },
+  "./signals": {
+   "import": {
+    "default": "./dist/mjs/signals.js",
+    "types": "./dist/mjs/signals.d.ts"
+   },
+   "require": {
+    "default": "./dist/cjs/signals.js",
+    "types": "./dist/cjs/signals.d.ts"
+   }
+  }
+ },
+ "funding": {
+  "url": "https://github.com/sponsors/isaacs"
+ },
+ "gitHead": "458776d9cf8be89712aa1f7b45bb2163ce15ef4a",
+ "homepage": "https://github.com/tapjs/signal-exit#readme",
+ "keywords": [
+  "signal",
+  "exit"
+ ],
+ "license": "ISC",
+ "main": "./dist/cjs/index.js",
+ "maintainers": [
+  {
+   "email": "i@izs.me",
+   "name": "isaacs"
+  },
+  {
+   "email": "bencoe@gmail.com",
+   "name": "bcoe"
+  }
+ ],
+ "module": "./dist/mjs/index.js",
+ "name": "signal-exit",
+ "prettier": {
+  "arrowParens": "avoid",
+  "bracketSameLine": true,
+  "endOfLine": "lf",
+  "jsxSingleQuote": false,
+  "printWidth": 75,
+  "semi": false,
+  "singleQuote": true,
+  "tabWidth": 2,
+  "useTabs": false
+ },
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/tapjs/signal-exit.git"
+ },
+ "scripts": {
+  "format": "prettier --write . --loglevel warn",
+  "postversion": "npm publish",
+  "prepare": "tsc -p tsconfig.json && tsc -p tsconfig-esm.json && bash ./scripts/fixup.sh",
+  "preprepare": "rm -rf dist",
+  "prepublishOnly": "git push origin --follow-tags",
+  "presnap": "npm run prepare",
+  "pretest": "npm run prepare",
+  "preversion": "npm test",
+  "snap": "c8 tap",
+  "test": "c8 tap",
+  "typedoc": "typedoc --tsconfig tsconfig-esm.json ./src/*.ts"
+ },
+ "tap": {
+  "coverage": false,
+  "jobs": 1,
+  "node-arg": [
+   "--no-warnings",
+   "--loader",
+   "ts-node/esm"
+  ],
+  "ts": false
+ },
+ "types": "./dist/mjs/index.d.ts",
+ "version": "4.1.0"
+}

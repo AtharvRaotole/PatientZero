@@ -1,0 +1,75 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "node-abort-controller@3.1.1",
+ "_nodeVersion": "14.21.1",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/node-abort-controller_3.1.1_1674745843324_0.1528626211069215"
+ },
+ "_npmUser": {
+  "email": "ethan@arrowood.dev",
+  "name": "ethan_arrowood"
+ },
+ "_npmVersion": "6.14.17",
+ "author": {
+  "email": "southpolesteve@gmail.com",
+  "name": "Steve Faulkner"
+ },
+ "browser": "browser.js",
+ "bugs": {
+  "url": "https://github.com/southpolesteve/node-abort-controller/issues"
+ },
+ "description": "AbortController for Node based on EventEmitter",
+ "devDependencies": {
+  "jest": "^27.2.4",
+  "node-fetch": "^2.6.5",
+  "whatwg-fetch": "^3.6.2"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 13,
+  "integrity": "sha512-AGK2yQKIjRuqnc6VkX2Xj5d+QW8xZ87pa1UK6yA6ouUyuxfHuMP6umE5QK7UmTeOAymo+Zx1Fxiuw9rVx8taHQ==",
+  "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v4.10.10\r\nComment: https://openpgpjs.org\r\n\r\nwsFzBAEBCAAGBQJj0pfzACEJED1NWxICdlZqFiEECWMYAoorWMhJKdjhPU1b\r\nEgJ2VmpGsA//eaS4PMn0zUWef0XAdrQ4UkncjTHaiN79jxpaKXINWdyQMR0a\r\n2LNiVbL0icalB+gkvP9sGsWA87ymM2i+TRtLtAC+VrieKcVXreBs2RuYbelA\r\nc6A5A8CXSUMuGFm6X9AMvj4JDbSEKpAqCYW3fuZcTQfDF5zVC88cqWhUZm4G\r\no5q/uyI4b/dHunuHiC63xazOBWREewMzV1qT8UCjDMT7sDflsmjpO0lszX9S\r\nNm33OdovCPdPSdMpsVfsKGBOOf86ulaC4eK02eUbJlFSlDbhf/PyIQjKVnn0\r\n08PfT3U6X6vWAUOBsmqjB6yShtgf3epQjsFL88xbGsK3xEqUIpTyh9RaeBwv\r\nU2E9dRAXZSEt73Ms4TIuuJEcLcPo9fuTJk8lFD+dnslG1lAmGUI2HaswkvAg\r\nIMfQM3cLxrPYNuBX4EoKt9QH+50Z/1tmFapPYm1A9/tckot4weEWVpY3xCvZ\r\nseLhVnnQTsPi6C62cfVkGUdJBIcIImzwnJICtoyN1MeD85l5kOfAgz7Lsz31\r\n0/na9FBm7j+2NtdSTxfLE37sP7XWfugv+/RVlw1++GmznxnUjBlQICp/98IP\r\nnVpj9tBo3Bn0hc8eFb7BJDuU1wWZL9yVYCMbAMMNNHXxCelklx9I304LWg3C\r\nYn+C6NuBQqjdjHobkSFELTUWAkUteqeu6jY=\r\n=RxPf\r\n-----END PGP SIGNATURE-----\r\n",
+  "shasum": "a94377e964a9a37ac3976d848cb5c765833b8548",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCID6x+3qy5lWztY59RWNPaEincHtz6J1OEPU+Hnu1NRcaAiEAi3R5M+pHg1uoNILVtGXuFBxrnMJ0owOknwuSR0l4x5U="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/node-abort-controller/-/node-abort-controller-3.1.1.tgz",
+  "unpackedSize": 16885
+ },
+ "gitHead": "10e0cea66a069d9319f948d055621e1d37aea5db",
+ "homepage": "https://github.com/southpolesteve/node-abort-controller#readme",
+ "jest": {
+  "testEnvironment": "jsdom"
+ },
+ "keywords": [
+  "AbortController",
+  "AbortSignal",
+  "fetch",
+  "polyfill"
+ ],
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "southpolesteve@gmail.com",
+   "name": "southpolesteve"
+  },
+  {
+   "email": "ethan@arrowood.dev",
+   "name": "ethan_arrowood"
+  }
+ ],
+ "name": "node-abort-controller",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/southpolesteve/node-abort-controller.git"
+ },
+ "scripts": {
+  "test": "jest"
+ },
+ "version": "3.1.1"
+}

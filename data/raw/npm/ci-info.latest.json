@@ -1,0 +1,104 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "ci-info@4.4.0",
+ "_nodeVersion": "22.22.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/ci-info_4.4.0_1769703796206_0.9381462581693203"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:862a6afa-7c0f-4e34-a8b6-c7ccae61207a"
+  }
+ },
+ "_npmVersion": "11.8.0",
+ "author": {
+  "email": "w@tson.dk",
+  "name": "Thomas Watson Steen",
+  "url": "https://twitter.com/wa7son"
+ },
+ "bugs": {
+  "url": "https://github.com/watson/ci-info/issues"
+ },
+ "contributors": [
+  {
+   "name": "Sibiraj",
+   "url": "https://github.com/sibiraj-s"
+  }
+ ],
+ "description": "Get details about the current Continuous Integration environment",
+ "devDependencies": {
+  "clear-module": "^4.1.2",
+  "husky": "^9.1.7",
+  "publint": "^0.3.12",
+  "standard": "^17.1.2",
+  "tape": "^5.9.0"
+ },
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/ci-info@4.4.0"
+  },
+  "fileCount": 7,
+  "integrity": "sha512-77PSwercCZU2Fc4sX94eF8k8Pxte6JAwL4/ICZLFjJLqegs7kCuAsqqj/70NQF6TvDpgFjkubQB2FW2ZZddvQg==",
+  "shasum": "7d54eff9f54b45b62401c26032696eb59c8bd18c",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQD5n/+Y1cjQJJKIrAXUvVgplKmYeQnmUoZDzi+gawrYswIgHEa6kApFuXN8QHGzUYpXTB8t1MQMajyV41MgF1H+KAw="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/ci-info/-/ci-info-4.4.0.tgz",
+  "unpackedSize": 29955
+ },
+ "engines": {
+  "node": ">=8"
+ },
+ "funding": [
+  {
+   "type": "github",
+   "url": "https://github.com/sponsors/sibiraj-s"
+  }
+ ],
+ "gitHead": "c4e1d0565552fb20ea3c133db2e056a574e78e6b",
+ "homepage": "https://github.com/watson/ci-info",
+ "keywords": [
+  "ci",
+  "continuous",
+  "integration",
+  "test",
+  "detect"
+ ],
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "w@tson.dk",
+   "name": "watson"
+  },
+  {
+   "email": "npmjs.unbroken940@passmail.com",
+   "name": "sibiraj-s"
+  }
+ ],
+ "name": "ci-info",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/watson/ci-info.git"
+ },
+ "scripts": {
+  "build": "node sort-vendors.js && node create-typings.js",
+  "lint:fix": "standard --fix",
+  "prepare": "husky install || true",
+  "test": "standard && node test.js"
+ },
+ "type": "commonjs",
+ "typings": "index.d.ts",
+ "version": "4.4.0"
+}

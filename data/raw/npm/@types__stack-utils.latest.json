@@ -1,0 +1,55 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@types/stack-utils@2.0.3",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/stack-utils_2.0.3_1699376438422_0.7620630988387651"
+ },
+ "_npmUser": {
+  "email": "ts-npm-types@microsoft.com",
+  "name": "types"
+ },
+ "contributors": [
+  {
+   "githubUsername": "BendingBender",
+   "name": "BendingBender",
+   "url": "https://github.com/BendingBender"
+  }
+ ],
+ "dependencies": {},
+ "description": "TypeScript definitions for stack-utils",
+ "directories": {},
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-9aEbYZ3TbYMznPdcdr3SmIrLXwC/AKZXQeCf9Pgao5CKb8CyHuEX5jzWPTkvregvhRJHcpRO6BFoGW9ycaOkYw==",
+  "shasum": "6209321eb2c1712a7e7466422b8cb1fc0d9dd5d8",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIQDMjw6oVM5EaOyw9v/0jcVSclkhAEUg1A1O7Y7Yym4PlwIgMalKOH23Ol8Qc5oZMgLcMd5ZE7yOJ3rLQYtKsiO5t3E="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@types/stack-utils/-/stack-utils-2.0.3.tgz",
+  "unpackedSize": 6426
+ },
+ "homepage": "https://github.com/DefinitelyTyped/DefinitelyTyped/tree/master/types/stack-utils",
+ "license": "MIT",
+ "main": "",
+ "maintainers": [
+  {
+   "email": "ts-npm-types@microsoft.com",
+   "name": "types"
+  }
+ ],
+ "name": "@types/stack-utils",
+ "repository": {
+  "directory": "types/stack-utils",
+  "type": "git",
+  "url": "https://github.com/DefinitelyTyped/DefinitelyTyped.git"
+ },
+ "scripts": {},
+ "typeScriptVersion": "4.5",
+ "types": "index.d.ts",
+ "typesPublisherContentHash": "ab51d155e7946b0b0e0edab741811a35172a48de2674195feb31eaaf7bf992b7",
+ "version": "2.0.3"
+}

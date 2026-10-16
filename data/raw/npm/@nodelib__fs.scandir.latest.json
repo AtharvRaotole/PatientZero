@@ -1,0 +1,83 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "@nodelib/fs.scandir@4.0.1",
+ "_nodeVersion": "22.11.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/fs.scandir_4.0.1_1733087314614_0.7615024294490511"
+ },
+ "_npmUser": {
+  "email": "dmalinochkin@rambler.ru",
+  "name": "mrmlnc"
+ },
+ "_npmVersion": "lerna/3.10.0/node@v22.11.0+arm64 (darwin)",
+ "dependencies": {
+  "@nodelib/fs.stat": "4.0.0",
+  "run-parallel": "^1.2.0"
+ },
+ "description": "List files and directories inside the specified directory",
+ "devDependencies": {
+  "@nodelib/fs.macchiato": "3.0.0",
+  "@nodelib/fs.scandir.previous": "npm:@nodelib/fs.scandir@3",
+  "@types/run-parallel": "^1.1.0"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 25,
+  "integrity": "sha512-vAkI715yhnmiPupY+dq+xenu5Tdf2TBQ66jLvBIcCddtz+5Q8LbMKaf9CIJJreez8fQ8fgaY+RaywQx8RJIWpw==",
+  "shasum": "4b981a1d6e34e2baff9a33c84b57709e30e8ce30",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIQCuMQrTslMkU/2OEcWylVk8G4Zu9dBbCNOarSlBWfS+EQIgOLyluf7CKIkkoNU1F9Z5Sy57dJ1gIpEr+OQ4Wp1d44U="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@nodelib/fs.scandir/-/fs.scandir-4.0.1.tgz",
+  "unpackedSize": 19727
+ },
+ "engines": {
+  "node": ">=18.18.0"
+ },
+ "exports": {
+  ".": {
+   "default": "./out/index.js"
+  },
+  "./promises": {
+   "default": "./out/scandir-promises.js"
+  }
+ },
+ "gitHead": "4750471fdceb6b90ac7c58a93872d61e3f7f143b",
+ "keywords": [
+  "NodeLib",
+  "fs",
+  "FileSystem",
+  "file system",
+  "scandir",
+  "readdir",
+  "dirent"
+ ],
+ "license": "MIT",
+ "main": "out/index.js",
+ "maintainers": [
+  {
+   "email": "dmalinochkin@rambler.ru",
+   "name": "mrmlnc"
+  }
+ ],
+ "name": "@nodelib/fs.scandir",
+ "repository": "https://github.com/nodelib/nodelib/tree/master/packages/fs/fs.scandir",
+ "scripts": {
+  "bench": "npm run bench:sync && npm run bench:async",
+  "bench:async": "hereby bench:async",
+  "bench:sync": "hereby bench:sync",
+  "build": "npm run clean && npm run compile && npm run lint && npm test",
+  "clean": "rimraf {tsconfig.tsbuildinfo,out}",
+  "compile": "tsc -b .",
+  "compile:watch": "tsc -b . --watch --sourceMap",
+  "lint": "eslint \"src/**/*.ts\" --cache",
+  "test": "mocha \"out/**/*.spec.js\" -s 0",
+  "watch": "npm run clean && npm run compile:watch"
+ },
+ "typings": "out/index.d.ts",
+ "version": "4.0.1"
+}

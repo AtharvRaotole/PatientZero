@@ -1,0 +1,409 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "async-retry@1.3.3",
+ "_nodeVersion": "14.16.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages",
+  "tmp": "tmp/async-retry_1.3.3_1629166233172_0.6967964695401219"
+ },
+ "_npmUser": {
+  "email": "lrobinson2011@gmail.com",
+  "name": "leerobinson"
+ },
+ "_npmVersion": "6.14.11",
+ "ava": {
+  "failFast": true
+ },
+ "bugs": {
+  "url": "https://github.com/vercel/async-retry/issues"
+ },
+ "dependencies": {
+  "retry": "0.13.1"
+ },
+ "description": "Retrying made simple, easy and async",
+ "devDependencies": {
+  "ava": "3.15.0",
+  "eslint": "7.32.0",
+  "eslint-config-airbnb": "18.2.1",
+  "eslint-config-prettier": "8.3.0",
+  "eslint-plugin-import": "2.24.0",
+  "eslint-plugin-jsx-a11y": "6.4.1",
+  "eslint-plugin-react": "7.24.0",
+  "lint-staged": "11.1.2",
+  "node-fetch": "2.6.1",
+  "pre-commit": "1.2.2",
+  "prettier": "2.3.2",
+  "then-sleep": "1.0.1"
+ },
+ "directories": {},
+ "dist": {
+  "fileCount": 4,
+  "integrity": "sha512-wfr/jstw9xNi/0teMHrRW7dsz3Lt5ARhYNZ2ewpadnhaIp5mbALhOAP+EAdsC7t4Z6wqsDVv9+W6gm1Dk9mEyw==",
+  "npm-signature": "-----BEGIN PGP SIGNATURE-----\r\nVersion: OpenPGP.js v3.0.13\r\nComment: https://openpgpjs.org\r\n\r\nwsFcBAEBCAAQBQJhGxqZCRA9TVsSAnZWagAAThEP/A5Tcd4/UKHygJxJceyC\nzo8ZIGq8D6NRn016kxWRtyCUXGLV9B5bxLDHQpKTUlfgPelglduGo3dHu6GZ\nZch+WsLL83VK/5CzguCZ8F19bF9Ak3oVXpecu2c2LyqNrZHFGXUFirhCwoSY\n6fwLxcuPMECFmhUIkB6+Altx7pSuBH/maggAMTHH083/MNa0M2sx7SAHUXle\naU+ZG1MoKxFWLbOMrDQDhDVLBPiYNMEl6ft83KNcvf7CtdPyBQLww0QCezdK\nty0dbFEhepF6LS/N6mmVfBmjB8t8cL+SmCCON9YCU+oSfacVKdbtayGOOphf\nWqoPIUPiaJ0toYtp6knNJiXibKlaLW+J5bjSaR5GFAO6QtZngC3RuO6cAhca\n9+DnljsULIMoOtGzYcgkjAiM0CV0pQQu0BJZM3SZqicW0wYMExikGFymn3VC\nQ0UJpaHTcJzMe9eiwkfuvFdc6O16/vQFmnImjgypTMY/T7P1fUR7y4THMtrY\n3xfKVKWyILTBF3qdUoT7Bq13GJEx59OZ2YYozxTtiNs3iZsWi/qELsa4INhU\nsWjJSyDUXPFn+ggP8JxviY9AdZGCSYjW0nTeC3OTZ2cjynBIsaklEwCgzIaW\n1Rne5E45gcShkUj7/TzEgaPvMuQNrBVc9/iubHyHwKXonyBFedl9ncN/55FF\nUjlZ\r\n=+ML7\r\n-----END PGP SIGNATURE-----\r\n",
+  "shasum": "0e7f36c04d8478e7a58bdbed80cedf977785f280",
+  "signatures": [
+   {
+    "keyid": "SHA256:jl3bwswu80PjjokCgh0o2w5c2U4LhQAE57gj9cz1kzA",
+    "sig": "MEUCIHZSWzFrFxhCwocKhD7YzEKvMP2JbHVpS6ZQUnosFI+DAiEA0xGDkISOvIjpF8jmk0r1L3UK8NtVh2DILwFDZxFqJIQ="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/async-retry/-/async-retry-1.3.3.tgz",
+  "unpackedSize": 5215
+ },
+ "eslintConfig": {
+  "extends": [
+   "airbnb",
+   "prettier"
+  ],
+  "rules": {
+   "no-var": 0,
+   "prefer-arrow-callback": 0
+  }
+ },
+ "gitHead": "9505be1f829ea297e7aff6c731ca3d5bd7052ed7",
+ "homepage": "https://github.com/vercel/async-retry#readme",
+ "license": "MIT",
+ "lint-staged": {
+  "*.js": [
+   "eslint",
+   "prettier --write --single-quote",
+   "git add"
+  ]
+ },
+ "main": "./lib/index.js",
+ "maintainers": [
+  {
+   "email": "a@vercel.com",
+   "name": "redacted-vercel"
+  },
+  {
+   "email": "gkaragkiaouris2@gmail.com",
+   "name": "gkaragkiaouris"
+  },
+  {
+   "email": "matheus.frndes@gmail.com",
+   "name": "matheuss"
+  },
+  {
+   "email": "igor@klopov.com",
+   "name": "igorklopov"
+  },
+  {
+   "email": "mindrun@icloud.com",
+   "name": "leo"
+  },
+  {
+   "email": "naoyuki.kanezawa@gmail.com",
+   "name": "nkzawa"
+  },
+  {
+   "email": "nathan@tootallnate.net",
+   "name": "tootallnate"
+  },
+  {
+   "email": "rauchg@gmail.com",
+   "name": "rauchg"
+  },
+  {
+   "email": "tim@timneutkens.nl",
+   "name": "timneutkens"
+  },
+  {
+   "email": "javier.velasco86@gmail.com",
+   "name": "javivelasco"
+  },
+  {
+   "email": "hello@evilrabb.it",
+   "name": "iamevilrabbit"
+  },
+  {
+   "email": "joecohenr@gmail.com",
+   "name": "joecohens"
+  },
+  {
+   "email": "ds303077135@gmail.com",
+   "name": "quietshu"
+  },
+  {
+   "email": "mail@connordav.is",
+   "name": "dav-is"
+  },
+  {
+   "email": "juancampa@gmail.com",
+   "name": "juancampa"
+  },
+  {
+   "email": "steven@ceriously.com",
+   "name": "styfle"
+  },
+  {
+   "email": "team@zeit.co",
+   "name": "zeit-bot"
+  },
+  {
+   "email": "luc.leray@gmail.com",
+   "name": "lucleray"
+  },
+  {
+   "email": "mark.glagola@gmail.com",
+   "name": "mglagola"
+  },
+  {
+   "email": "artzbitz@gmail.com",
+   "name": "andybitz"
+  },
+  {
+   "email": "paulogdemitri@gmail.com",
+   "name": "paulogdm"
+  },
+  {
+   "email": "ana.trajkovska2015@gmail.com",
+   "name": "anatrajkovska"
+  },
+  {
+   "email": "timer150@gmail.com",
+   "name": "timer"
+  },
+  {
+   "email": "iyatomi@gmail.com",
+   "name": "umegaya"
+  },
+  {
+   "email": "franco@studiofreight.com",
+   "name": "arzafran"
+  },
+  {
+   "email": "jj@jjsweb.site",
+   "name": "ijjk"
+  },
+  {
+   "email": "mrfix84@gmail.com",
+   "name": "mfix22"
+  },
+  {
+   "email": "luisito453@gmail.com",
+   "name": "lfades"
+  },
+  {
+   "email": "rabautse@gmail.com",
+   "name": "rabaut"
+  },
+  {
+   "email": "allenhai03@gmail.com",
+   "name": "coetry"
+  },
+  {
+   "email": "mail@mcs.dev",
+   "name": "msweeneydev"
+  },
+  {
+   "email": "william@bbi.studio",
+   "name": "williamli"
+  },
+  {
+   "email": "ragojosefrancisco@gmail.com",
+   "name": "ragojose"
+  },
+  {
+   "email": "guybedford@gmail.com",
+   "name": "guybedford"
+  },
+  {
+   "email": "pvco.coursey@gmail.com",
+   "name": "paco"
+  },
+  {
+   "email": "skllcrn@zeit.co",
+   "name": "skllcrn"
+  },
+  {
+   "email": "janicklasralph036@gmail.com",
+   "name": "janicklas-ralph"
+  },
+  {
+   "email": "atcastle@gmail.com",
+   "name": "atcastle"
+  },
+  {
+   "email": "npm@keanulee.com",
+   "name": "keanulee"
+  },
+  {
+   "email": "shubhie@gmail.com",
+   "name": "spanicker"
+  },
+  {
+   "email": "jason@developit.ca",
+   "name": "developit"
+  },
+  {
+   "email": "houssein.djirdeh@gmail.com",
+   "name": "housseindjirdeh"
+  },
+  {
+   "email": "gbmonaco@google.com",
+   "name": "gmonaco"
+  },
+  {
+   "email": "josefrancisco.verdu@gmail.com",
+   "name": "kikobeats"
+  },
+  {
+   "email": "prateek89born@gmail.com",
+   "name": "prateekbh"
+  },
+  {
+   "email": "jan.krems@gmail.com",
+   "name": "jkrems"
+  },
+  {
+   "email": "jared@palmer.net",
+   "name": "jaredpalmer"
+  },
+  {
+   "email": "g.cobben@gmail.com",
+   "name": "gielcobben"
+  },
+  {
+   "email": "shu@chibicode.com",
+   "name": "chibicode"
+  },
+  {
+   "email": "nazareno@basement.studio",
+   "name": "nazarenooviedo"
+  },
+  {
+   "email": "samko9522@gmail.com",
+   "name": "samsisle"
+  },
+  {
+   "email": "curciobel@gmail.com",
+   "name": "okbel"
+  },
+  {
+   "email": "hank@vercel.com",
+   "name": "hankvercel"
+  },
+  {
+   "email": "lrobinson2011@gmail.com",
+   "name": "leerobinson"
+  },
+  {
+   "email": "lsimon@commoner.com",
+   "name": "elsigh"
+  },
+  {
+   "email": "julianbenegas99@gmail.com",
+   "name": "julianbenegas"
+  },
+  {
+   "email": "rizwana.akmal@hotmail.com",
+   "name": "rizbizkits"
+  },
+  {
+   "email": "freiberggg@gmail.com",
+   "name": "raunofreiberg"
+  },
+  {
+   "email": "tobias.koppers@googlemail.com",
+   "name": "sokra"
+  },
+  {
+   "email": "haltaffer@gmail.com",
+   "name": "cl3arglass"
+  },
+  {
+   "email": "github.wolle404@gmail.com",
+   "name": "chriswdmr"
+  },
+  {
+   "email": "lapapelera@gmail.com",
+   "name": "ernestd"
+  },
+  {
+   "email": "ismaelrumzan@gmail.com",
+   "name": "ismaelrumzan"
+  },
+  {
+   "email": "jrshoch@gmail.com",
+   "name": "jhoch"
+  },
+  {
+   "email": "mitchellbwright@gmail.com",
+   "name": "mitchellwright"
+  },
+  {
+   "email": "mrmckeb.npm@outlook.com",
+   "name": "mrmckeb"
+  },
+  {
+   "email": "npm-public@qfox.nl",
+   "name": "kuvos"
+  },
+  {
+   "email": "tim@creationix.com",
+   "name": "creationix"
+  },
+  {
+   "email": "aaron@aaronboodman.com",
+   "name": "aboodman"
+  },
+  {
+   "email": "inbox@huozhi.im",
+   "name": "huozhi"
+  },
+  {
+   "email": "christina@vercel.com",
+   "name": "cmvnk"
+  },
+  {
+   "email": "erik.arvidsson@gmail.com",
+   "name": "arv"
+  },
+  {
+   "email": "ktcarter09@gmail.com",
+   "name": "ktcarter"
+  },
+  {
+   "email": "aspctub@gmail.com",
+   "name": "aspctub"
+  },
+  {
+   "email": "dev@padmaia.rocks",
+   "name": "padmaia"
+  },
+  {
+   "email": "delbabrown@gmail.com",
+   "name": "delba"
+  },
+  {
+   "email": "joshuadgon@gmail.com",
+   "name": "catsaremlg"
+  },
+  {
+   "email": "stevensteel97@gmail.com",
+   "name": "steventey"
+  },
+  {
+   "email": "gsandhu@csumb.edu",
+   "name": "gsandhu"
+  },
+  {
+   "email": "dbredvick@gmail.com",
+   "name": "dbredvick"
+  }
+ ],
+ "name": "async-retry",
+ "pre-commit": "lint:staged",
+ "repository": {
+  "type": "git",
+  "url": "git+https://github.com/vercel/async-retry.git"
+ },
+ "scripts": {
+  "lint:staged": "lint-staged",
+  "test": "yarn run test-lint && yarn run test-unit",
+  "test-lint": "eslint .",
+  "test-unit": "ava"
+ },
+ "version": "1.3.3"
+}

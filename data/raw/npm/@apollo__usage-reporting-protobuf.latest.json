@@ -1,0 +1,111 @@
+{
+ "//": "Don't caret this, we want to be explicit about the version of our fork of protobufjs and update it intentionally if we need to.",
+ "_hasShrinkwrap": false,
+ "_id": "@apollo/usage-reporting-protobuf@4.1.2",
+ "_nodeVersion": "24.13.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/usage-reporting-protobuf_4.1.2_1777912541157_0.5337980189699019"
+ },
+ "_npmUser": {
+  "email": "npm-oidc-no-reply@github.com",
+  "name": "GitHub Actions",
+  "trustedPublisher": {
+   "id": "github",
+   "oidcConfigId": "oidc:88c69fb2-232f-4a21-a58e-79db1ea336c5"
+  }
+ },
+ "_npmVersion": "11.6.2",
+ "author": {
+  "email": "packages@apollographql.com",
+  "name": "Apollo"
+ },
+ "bugs": {
+  "url": "https://github.com/apollographql/apollo-server/issues"
+ },
+ "dependencies": {
+  "@apollo/protobufjs": "1.2.8"
+ },
+ "description": "Protobuf format for Apollo usage reporting",
+ "directories": {},
+ "dist": {
+  "attestations": {
+   "provenance": {
+    "predicateType": "https://slsa.dev/provenance/v1"
+   },
+   "url": "https://registry.npmjs.org/-/npm/v1/attestations/@apollo%2fusage-reporting-protobuf@4.1.2"
+  },
+  "fileCount": 10,
+  "integrity": "sha512-aTnAD41RYz0d5dawlyR5Iclkgzx0Xb0njUJmEfvZ6pS4f4HU8wCYyctPpWat/HWp2PmRwDfX5R1k4uVcDKZ4xA==",
+  "shasum": "e70e9d2ec00858900f93c4133ca49c9f710896a2",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEUCIQCIHgXSQIPD4iMuOmDDkY8w4g36dOcShSUTBdx+1Inb1QIgce65Egv8zH/wMPVx0J22cPX+/TWWvh5jKxtSOe7ml8w="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/@apollo/usage-reporting-protobuf/-/usage-reporting-protobuf-4.1.2.tgz",
+  "unpackedSize": 1015619
+ },
+ "exports": {
+  ".": {
+   "import": "./generated/esm/protobuf.js",
+   "require": "./generated/cjs/protobuf.js",
+   "types": {
+    "default": "./generated/esm/protobuf.d.ts",
+    "require": "./generated/cjs/protobuf.d.ts"
+   }
+  }
+ },
+ "gitHead": "16ae2928bb1def080a82920111f039a4bcee630d",
+ "homepage": "https://github.com/apollographql/apollo-server#readme",
+ "keywords": [
+  "GraphQL",
+  "Apollo",
+  "Server",
+  "Javascript"
+ ],
+ "license": "MIT",
+ "main": "generated/cjs/protobuf.js",
+ "maintainers": [
+  {
+   "email": "glasser@apollographql.com",
+   "name": "glasser"
+  },
+  {
+   "email": "dariusz_kuc@hotmail.com",
+   "name": "dkuc"
+  },
+  {
+   "email": "mail@lenzw.de",
+   "name": "phryneas"
+  },
+  {
+   "email": "npm@apollographql.com",
+   "name": "apollo-bot"
+  },
+  {
+   "email": "npmjs@jro.cc",
+   "name": "abernix"
+  }
+ ],
+ "module": "generated/esm/protobuf.js",
+ "name": "@apollo/usage-reporting-protobuf",
+ "repository": {
+  "directory": "packages/usage-reporting-protobuf",
+  "type": "git",
+  "url": "git+https://github.com/apollographql/apollo-server.git"
+ },
+ "scripts": {
+  "generate": "rm -rf generated && mkdir -p generated/{esm,cjs} && npm run pbjs-cjs && npm run pbjs-esm && npm run pbts",
+  "pbjs-cjs": "apollo-pbjs --target static-module --out generated/cjs/protobuf.cjs --wrap commonjs --force-number --no-from-object src/reports.proto",
+  "pbjs-esm": "apollo-pbjs --target static-module --out generated/esm/protobuf.mjs --es6 --force-number --no-from-object src/reports.proto",
+  "pbts": "npm run pbts-cjs && npm run pbts-esm",
+  "pbts-cjs": "mv generated/cjs/protobuf.{c,}js && apollo-pbts -o generated/cjs/protobuf.d.ts generated/cjs/protobuf.js",
+  "pbts-esm": "mv generated/esm/protobuf.{m,}js && apollo-pbts -o generated/esm/protobuf.d.ts generated/esm/protobuf.js",
+  "update-proto": "curl -sSfo src/reports.proto https://usage-reporting.api.apollographql.com/proto/reports.proto"
+ },
+ "type": "module",
+ "types": "generated/esm/protobuf.d.ts",
+ "version": "4.1.2"
+}

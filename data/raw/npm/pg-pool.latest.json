@@ -1,0 +1,80 @@
+{
+ "_hasShrinkwrap": false,
+ "_id": "pg-pool@3.14.0",
+ "_nodeVersion": "24.14.0",
+ "_npmOperationalInternal": {
+  "host": "s3://npm-registry-packages-npm-production",
+  "tmp": "tmp/pg-pool_3.14.0_1779105618142_0.7737445552150028"
+ },
+ "_npmUser": {
+  "email": "brian.m.carlson@gmail.com",
+  "name": "brianc"
+ },
+ "_npmVersion": "lerna/3.22.1/node@v24.14.0+arm64 (darwin)",
+ "author": {
+  "name": "Brian M. Carlson"
+ },
+ "bugs": {
+  "url": "https://github.com/brianc/node-postgres/issues"
+ },
+ "description": "Connection pool for node-postgres",
+ "devDependencies": {
+  "bluebird": "3.7.2",
+  "co": "4.6.0",
+  "expect.js": "0.3.1",
+  "lodash": "^4.17.11",
+  "mocha": "^11.7.5"
+ },
+ "directories": {
+  "test": "test"
+ },
+ "dist": {
+  "fileCount": 5,
+  "integrity": "sha512-gKtPkFdQPU3DksooVLi9LsjZxrsBUZIpa+7aVx+LV5pNh0KzP4Zleud2po+ConrxbuXGBJ6Hfer6hdgpIBpBaw==",
+  "shasum": "f35ae4eb846780cad71af24099b3edfa9781ad90",
+  "signatures": [
+   {
+    "keyid": "SHA256:DhQ8wR5APBvFHLF/+Tc+AYvPOdTpcIDqOhxsBHRwC7U",
+    "sig": "MEQCID6eMMP5Dil4+sGJEGNi3VC6s/nZ6DUA/8GnrTgt9aIqAiAGs0on79jJ3Lb/Z6OicJI7Ujnh6+zQb++SbYKCOOHEKw=="
+   }
+  ],
+  "tarball": "https://registry.npmjs.org/pg-pool/-/pg-pool-3.14.0.tgz",
+  "unpackedSize": 29835
+ },
+ "exports": {
+  ".": {
+   "default": "./index.js",
+   "import": "./esm/index.mjs",
+   "require": "./index.js"
+  }
+ },
+ "gitHead": "544b1ce8152bc280e398dc1e8a66920abe6a640e",
+ "homepage": "https://github.com/brianc/node-postgres/tree/master/packages/pg-pool#readme",
+ "keywords": [
+  "pg",
+  "postgres",
+  "pool",
+  "database"
+ ],
+ "license": "MIT",
+ "main": "index.js",
+ "maintainers": [
+  {
+   "email": "brian.m.carlson@gmail.com",
+   "name": "brianc"
+  }
+ ],
+ "name": "pg-pool",
+ "peerDependencies": {
+  "pg": ">=8.0"
+ },
+ "repository": {
+  "directory": "packages/pg-pool",
+  "type": "git",
+  "url": "git://github.com/brianc/node-postgres.git"
+ },
+ "scripts": {
+  "test": " node_modules/.bin/mocha"
+ },
+ "version": "3.14.0"
+}

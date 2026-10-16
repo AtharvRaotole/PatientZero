@@ -1,0 +1,197 @@
+{
+ "edges": [
+  {
+   "fromNode": 0,
+   "requirement": "^1.1.1",
+   "toNode": 1
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^2.6.4",
+   "toNode": 2
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^3.6.2",
+   "toNode": 4
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^1.6.1",
+   "toNode": 5
+  },
+  {
+   "fromNode": 0,
+   "requirement": "^2.1.0",
+   "toNode": 6
+  },
+  {
+   "fromNode": 0,
+   "requirement": "1.x",
+   "toNode": 7
+  },
+  {
+   "fromNode": 6,
+   "requirement": "1.0.1",
+   "toNode": 3
+  },
+  {
+   "fromNode": 6,
+   "requirement": "~2.0.0",
+   "toNode": 8
+  },
+  {
+   "fromNode": 6,
+   "requirement": "~1.0.0",
+   "toNode": 9
+  },
+  {
+   "fromNode": 6,
+   "requirement": "~1.0.4",
+   "toNode": 10
+  },
+  {
+   "fromNode": 6,
+   "requirement": "^1.1.0",
+   "toNode": 11
+  },
+  {
+   "fromNode": 11,
+   "requirement": "^4.0.0",
+   "toNode": 12
+  }
+ ],
+ "error": "",
+ "nodes": [
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "SELF",
+   "versionKey": {
+    "name": "pg",
+    "system": "NPM",
+    "version": "8.12.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "pg-cloudflare",
+    "system": "NPM",
+    "version": "1.4.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "pg-connection-string",
+    "system": "NPM",
+    "version": "2.14.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "pg-int8",
+    "system": "NPM",
+    "version": "1.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "pg-pool",
+    "system": "NPM",
+    "version": "3.14.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "pg-protocol",
+    "system": "NPM",
+    "version": "1.16.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "pg-types",
+    "system": "NPM",
+    "version": "2.2.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "DIRECT",
+   "versionKey": {
+    "name": "pgpass",
+    "system": "NPM",
+    "version": "1.0.6"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "postgres-array",
+    "system": "NPM",
+    "version": "2.0.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "postgres-bytea",
+    "system": "NPM",
+    "version": "1.0.1"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "postgres-date",
+    "system": "NPM",
+    "version": "1.0.7"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "postgres-interval",
+    "system": "NPM",
+    "version": "1.2.0"
+   }
+  },
+  {
+   "bundled": false,
+   "errors": [],
+   "relation": "INDIRECT",
+   "versionKey": {
+    "name": "xtend",
+    "system": "NPM",
+    "version": "4.0.2"
+   }
+  }
+ ]
+}
