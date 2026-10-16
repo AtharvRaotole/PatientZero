@@ -51,9 +51,12 @@ def test_mcp_server_lists_spec_tools_plus_investigate():
 def test_ask_runs_through_mcp_and_matches_direct(q, intent):
     r = c.post("/api/ask", json={"query": q, "mode": "deterministic"}).json()
     assert r["tool_via"] == "mcp"
-    st = mcp_steps(r)[0]
-    assert st["via"] == "mcp" and st["mcp_tool"] == "investigate" and st["intent"] == intent
-    assert st["params"]["question"] == q and st["ms"] > 0 and st["tools_listed"] >= 9
+    steps = mcp_steps(r)
+    assert r["trace"][0] is steps[0] and steps[0]["mcp_tool"] == "resolve_entity"
+    assert steps[0]["params"] == {"text": q} and steps[0]["ms"] > 0 and steps[0]["tools_listed"] >= 9
+    assert all(s["via"] == "mcp" and s["intent"] == intent for s in steps)
+    assert [s["mcp_tool"] for s in steps] == r["mcp"]["tools"] and "investigate" not in r["mcp"]["tools"]
+    assert r["mcp"]["tool"] == mcp_domain.INTENT_TOOL[intent] and r["mcp"]["tool"] in r["mcp"]["tools"]
     assert r["mcp"]["transport"] == "memory"
     direct = DOMAIN.route(q)
     assert r["outcome"] == direct["outcome"] and r["exposed_count"] == direct["exposed_count"]
@@ -63,9 +66,21 @@ def test_ask_runs_through_mcp_and_matches_direct(q, intent):
 
 def test_depth_and_session_are_carried_as_tool_args():
     r = c.post("/api/ask", json={"query": "debug@4.4.2", "depth": 2, "session": "s-mcp", "mode": "deterministic"}).json()
-    st = mcp_steps(r)[0]
-    assert st["params"]["depth"] == 2 and st["params"]["session"] == "s-mcp"
-    assert r["depth"] == 2
+    st = next(s for s in mcp_steps(r) if s["mcp_tool"] == "exposure")
+    assert st["params"]["depth"] == 2 and st["params"]["scope"] == ["debug@4.4.2"]
+    assert r["depth"] == 2 and r["mcp"]["tools"] == ["resolve_entity", "recall", "incident_scope", "exposure",
+                                                     "who_to_wake"]
+
+
+def test_chained_tool_error_falls_back_to_investigate(monkeypatch):
+    from app import catalog
+
+    def boom(*a, **k):
+        raise ValueError("simulated tool bug")
+    monkeypatch.setattr(catalog, "path_between", boom)
+    r = c.post("/api/ask", json={"query": "path from img-service to simple-swizzle", "mode": "deterministic"}).json()
+    assert r["tool_via"] == "mcp" and r["mcp"]["tool"] == "investigate" and "simulated" in r["mcp"]["fallback"]
+    assert r["outcome"] == "answered_with_path" and mcp_steps(r)[0]["mcp_tool"] == "investigate"
 
 
 def test_transport_failure_falls_back_to_direct_with_flag(monkeypatch):
@@ -118,6 +133,8 @@ def test_llm_path_gets_mcp_tool_schemas_and_calls_through_mcp(llm_on, monkeypatc
     assert "remediation_plan" not in names and {"investigate", "who_to_wake", "exposure"} <= names
     inv = next(t for t in seen["tools"] if t["function"]["name"] == "investigate")
     assert set(inv["function"]["parameters"]["properties"]) == {"question", "depth"}
+    exp = next(t for t in seen["tools"] if t["function"]["name"] == "exposure")
+    assert "scope" not in exp["function"]["parameters"]["properties"]  # agent-internal bulk mode stays hidden
     st = [s for s in mcp_steps(r) if s.get("mcp_tool") == "who_to_wake"]
     assert st and st[0]["via"] == "mcp" and st[0]["params"] == {"service": "auth-service"}
     assert any(s.get("query") == "who_to_wake" for s in r["trace"])  # the tool's own Cypher step came back too
@@ -140,9 +157,10 @@ def test_stdio_transport_lists_tools():
 
 def test_fix_runs_through_mcp_investigate_with_generate_fix():
     r = c.post("/api/fix", json={"query": "chalk@5.6.1", "depth": 4, "session": "t-mcp-fix"}).json()
-    st = mcp_steps(r)[0]
-    assert st["via"] == "mcp" and st["params"].get("generate_fix") is True
+    assert r["tool_via"] == "mcp" and {"incident_scope", "exposure", "who_to_wake"} <= set(r["mcp"]["tools"])
+    assert mcp_steps(r)[0]["via"] == "mcp"
     assert r["fix"] and r["fix"].get("incident_id")
+    assert any(s.get("query") == "remediation_plan" or s.get("write") for s in r["trace"])  # writes stay in process
 
 
 def test_tenant_context_reaches_the_mcp_tool():
@@ -165,3 +183,23 @@ def test_write_tools_hidden_from_llm():
     assert "crew_run" not in names and "remediation_plan" not in names
     with pytest.raises(ValueError):
         AGENT_DOMAIN.registry.call("crew_run", {})
+
+
+@pytest.mark.parametrize("q", ["maintainer qix was phished", "please help with something odd"])
+def test_llm_mode_first_tool_step_is_mcp(llm_on, monkeypatch, q):
+    """LLM mode: the trace opens with the agent/LLM decision step (no tool runs there), and the first tool step,
+    plus every tool the LLM picks, is an MCP tools/call."""
+    replies = iter([
+        {"role": "assistant", "content": None, "tool_calls": [{"id": "c1", "type": "function", "function": {
+            "name": "who_to_wake", "arguments": json.dumps({"service": "auth-service"})}}]},
+        {"role": "assistant", "content": "Wake Amara Okafor."},
+    ])
+    monkeypatch.setattr(agent.httpx, "post", lambda url, **kw: httpx.Response(
+        200, json={"choices": [{"message": next(replies)}], "usage": {"total_tokens": 10}},
+        request=httpx.Request("POST", url)))
+    r = agent.run(AGENT_DOMAIN, q, mode="llm", session="s-llm-trace")
+    assert r["mode"] == "llm"
+    tool_steps = [s for s in r["trace"] if s.get("tool") not in ("agent", "llm")]
+    assert tool_steps[0]["tool"] == "mcp" and tool_steps[0]["via"] == "mcp"
+    picked = [s for s in mcp_steps(r) if s.get("mcp_tool") == "who_to_wake" and "chosen by the LLM" in s["note"]]
+    assert picked and picked[0]["via"] == "mcp"

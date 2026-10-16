@@ -1,8 +1,9 @@
 """Domain wrapper that makes the agent select and execute its tools through MCP.
 
-- Deterministic path: the intent router (app.router.classify) picks the MCP tool for the question, and the agent
-  executes it with tools/call on PatientZero's own MCP server. Every incident, wake, path, recall and SPOF answer
-  is produced by the composite `investigate` MCP tool, which runs the same router pipeline server side.
+- Deterministic path: the intent router runs inside gateway.chain(), so each graph tool it picks (resolve_entity,
+  then for example recall, incident_scope, exposure, who_to_wake) is executed with tools/call on PatientZero's own
+  MCP server, one trace step per call. The composite `investigate` tool is only the fallback when a chained tool
+  errors or the request carries options the chain cannot carry.
 - LLM path: the function schemas given to the model are built from the MCP server's tools/list, and each tool the
   model picks is executed with tools/call.
 
@@ -28,10 +29,14 @@ ROUTE_OPTS = {"depth", "fresh", "session", "generate_fix"}
 PASS_OPTS = {"client_ip"}  # used by the agent loop (LLM budget), not by the tool
 # Tools the LLM is never offered (writes go through the UI's explicit "Generate fix" button only).
 LLM_HIDDEN_TOOLS = {"remediation_plan", "crew_run"}
-# Deterministic intent -> MCP tool. Every intent's full structured answer (panels, graph, wake list) comes from
-# the composite `investigate` tool; the intent is recorded next to it in the trace.
-INTENT_TOOL = {"exposure": "investigate", "who_to_wake": "investigate", "path_between": "investigate",
-               "single_points_of_failure": "investigate", "recall": "investigate", "resolve": "investigate"}
+# Deterministic intent -> the MCP tool that answers it. The router runs inside gateway.chain(), so every graph
+# tool it calls (resolve_entity first, then for example incident_scope -> exposure -> who_to_wake) is an MCP
+# tools/call with its own trace step; mcp.tools in the response lists the chain. `investigate` is the fallback.
+INTENT_TOOL = {"exposure": "exposure", "who_to_wake": "who_to_wake", "path_between": "path_between",
+               "single_points_of_failure": "single_points_of_failure", "recall": "recall",
+               "resolve": "resolve_entity"}
+# Agent-internal arguments (bulk modes used by the router chain), hidden from the LLM's function schemas.
+AGENT_ARGS = {"exposure": ("scope",), "who_to_wake": ("services",), "recall": ("key", "limit")}
 
 _stats = {"mcp_calls": 0, "direct_fallbacks": 0, "last_error": None, "last_ms": None}
 
@@ -83,7 +88,8 @@ class McpRegistry:
             d = t["description"]
             out.append({"type": "function", "function": {
                 "name": t["name"], "description": (d.split(". ")[0].rstrip(".") + ".")[:160],
-                "parameters": compact_schema(t["inputSchema"], hide=CONTEXT_ARGS if t["name"] == "investigate" else ())}})
+                "parameters": compact_schema(t["inputSchema"], hide=CONTEXT_ARGS if t["name"] == "investigate"
+                                             else AGENT_ARGS.get(t["name"], ()))}})
         return out
 
     def call(self, name: str, args: dict | None = None, ctx: dict | None = None) -> dict:
@@ -155,9 +161,32 @@ class McpDomain:
         return getattr(self.inner, item)
 
     def route(self, text: str, **opts) -> dict:
+        """Run the router with every graph tool it picks executed over MCP (gateway.chain). Falls back to the
+        composite `investigate` MCP tool if a chained tool errors, and to direct calls if MCP itself fails."""
         from ..router import classify
+        from . import gateway
         intent = classify(text or "")
-        tool = INTENT_TOOL.get(intent, "investigate")
+        extra = {k: v for k, v in opts.items() if k not in ROUTE_OPTS | PASS_OPTS and v not in (None, "", False)}
+        if extra:  # options the chain cannot carry: the composite tool forwards what ask accepts
+            return self._investigate(text, opts, intent, "route options beyond depth/fresh/session/generate_fix")
+        t0 = time.perf_counter()
+        try:
+            with gateway.chain(intent) as ch:
+                r = self.inner.route(text, **opts)
+        except gateway.McpToolError as e:
+            return self._investigate(text, opts, intent, str(e))
+        final = r.get("intent") or intent
+        names = [c["tool"] for c in ch.calls]
+        r["tool_via"] = "mcp" if ch.via == "mcp" else "direct"  # any tool that fell back makes it "direct"
+        r["mcp"] = {"via": ch.via, "transport": client.TRANSPORT, "intent": final,
+                    "tool": INTENT_TOOL.get(final, names[-1] if names else "resolve_entity"), "tools": names,
+                    "calls": len(names), "ms": round(sum(c["ms"] for c in ch.calls), 2),
+                    "wall_ms": round((time.perf_counter() - t0) * 1000, 2)}
+        return r
+
+    def _investigate(self, text: str, opts: dict, intent: str, why: str) -> dict:
+        """Fallback: the whole question through the composite `investigate` MCP tool."""
+        tool = "investigate"
         extra = {k: v for k, v in opts.items() if k not in ROUTE_OPTS | PASS_OPTS and v not in (None, "", False)}
         args: dict[str, Any] = {"question": text}
         for k in ROUTE_OPTS:
@@ -180,12 +209,12 @@ class McpDomain:
         _stats["last_ms"] = res.ms
         r = res.body
         r.setdefault("trace", [])
-        r["trace"].insert(0, _mcp_step(res, f"router intent '{intent}' selected MCP tool {tool}; tools/call over "
-                                            f"the {res.transport} transport ({res.tools_listed} tools listed)",
-                                       intent=intent))
+        r["trace"].insert(0, _mcp_step(res, f"fallback to the composite MCP tool investigate ({why[:120]}); "
+                                            f"tools/call over the {res.transport} transport", intent=intent))
         r["tool_via"] = "mcp"
-        r["mcp"] = {"via": "mcp", "transport": res.transport, "tool": tool, "intent": intent,
-                    "args": _show_args(args), "ms": res.ms, "tools_listed": res.tools_listed}
+        r["mcp"] = {"via": "mcp", "transport": res.transport, "tool": tool, "intent": r.get("intent") or intent,
+                    "tools": [tool], "calls": 1, "fallback": why[:160], "args": _show_args(args), "ms": res.ms,
+                    "tools_listed": res.tools_listed}
         return r
 
     def _direct(self, text: str, opts: dict, tool: str, reason: str, args: dict) -> dict:

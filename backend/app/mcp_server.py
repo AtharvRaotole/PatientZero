@@ -22,18 +22,27 @@ def resolve_entity(text: str) -> dict:
 
 
 @mcp.tool(description=catalog.TOOL_DOCS["incident_scope"])
-def incident_scope(maintainer: str | None = None, advisory_id: str | None = None) -> dict:
-    return catalog.incident_scope(maintainer=maintainer, advisory_id=advisory_id)
+def incident_scope(maintainer: str | None = None, advisory_id: str | None = None, campaign: str | None = None,
+                   package: str | None = None, bad_version: str | None = None,
+                   packages: list[str] | None = None) -> dict:
+    return catalog.incident_scope(maintainer=maintainer, advisory_id=advisory_id, campaign=campaign,
+                                  package=package, bad_version=bad_version, packages=packages)
 
 
 @mcp.tool(description=catalog.TOOL_DOCS["exposure"])
-def exposure(package: str, bad_version: str, depth: int = 4) -> dict:
-    return catalog.exposure(package, bad_version, depth)
+def exposure(package: str | None = None, bad_version: str | None = None, depth: int = 4,
+             scope: list[dict] | None = None) -> dict:
+    return catalog.exposure(package, bad_version, depth, scope=scope)
 
 
 @mcp.tool(description=catalog.TOOL_DOCS["who_to_wake"])
-def who_to_wake(service: str) -> dict:
-    return catalog.who_to_wake(service)
+def who_to_wake(service: str | None = None, services: list[str] | None = None) -> dict:
+    return catalog.who_to_wake(service, services)
+
+
+@mcp.tool(description=catalog.TOOL_DOCS["package_maintainers"])
+def package_maintainers(package: str) -> dict:
+    return catalog.package_maintainers(package)
 
 
 @mcp.tool(description=catalog.TOOL_DOCS["single_points_of_failure"])
@@ -52,8 +61,8 @@ def remediation_plan(trigger: str, depth: int = 4) -> dict:
 
 
 @mcp.tool(description=catalog.TOOL_DOCS["recall"])
-def recall(entity: str) -> dict:
-    return catalog.recall(entity)
+def recall(entity: str | None = None, key: str | None = None, limit: int | None = None) -> dict:
+    return catalog.recall(entity, key, limit)
 
 
 # ---------------------------------------------------------------- crew, sessions, tenants (Track 2)

@@ -68,6 +68,15 @@ _Last updated: Fri Oct 16 2026, 1:30 PM ET_
 - [x] 252 tests green on FalkorDB 6.0.1 and 4.22.1 (throwaway instances).
 - [ ] Frontend: treat `database_unavailable` like `graph_unavailable` (page.tsx:281, panels.tsx:580).
 
+## Review 3: MCP per-intent tools, watch age and dedupe, bench honesty (Fri Oct 16 2026, about 2:45 PM ET)
+- [x] Real MCP tool selection: the router runs inside an MCP chain (app/mcp_agent/gateway.py), every graph tool it picks is its own tools/call on one shared MCP session per request, each with its own trace step (via mcp) followed by that tool's Cypher. Intent map: exposure -> exposure (chain resolve_entity, recall, incident_scope, exposure, who_to_wake), who_to_wake -> who_to_wake, path_between -> path_between, single_points_of_failure -> single_points_of_failure, recall -> recall, resolve -> resolve_entity. `investigate` is only the fallback. New MCP tool package_maintainers; backward compatible bulk args (exposure scope, who_to_wake services, recall key/limit, incident_scope campaign/package/packages), hidden from the LLM.
+- [x] Parity: tests/test_mcp_parity.py asks every README "Try it yourself" input, 14 more questions, depths 1/2/6, a 4-turn follow-up session and Globex, once with MCP_AGENT=off and once through the chain: identical answers field for field (except trace, timings, mcp). Crew does not go through the chain (unchanged).
+- [x] Cost: about 1 ms CPU per tools/call with the shared session (a session per call was about 3 ms). Local HTTP at 30 clients: 77 req/s via the chain vs 137 req/s MCP_AGENT=off (the single composite call was 94.5). In concurrency.md.
+- [x] Watch: replays collapse to one row per replayed advisory (replay_count, first/last replayed) in the feed and the timeline; every event has published, modified, first_seen_by_watch, published_ago and age_label ("published 3 days ago; first seen by watch at ..."); poll notes and timeline titles say "first seen by the watch (published X to Y)", never "new". FalkorDB 6.0.1 mis-projects several aggregates in one grouped WITH, so the queries use one aggregate each.
+- [x] Bench: /api/bench/last has `last.scope` (in-process to FalkorDB, synthetic scratch writes, retry_busy), `http` (49.4 req/s at 30 clients live) and `numbers` with both. concurrency.md opens with both numbers; the HTTP repro uses ADMIN_TOKEN (exempt from 120/min) or `--max-rps 1.8`; the script warns and reports `rate_limited`.
+- [ ] Frontend: render several MCP rows per answer (one per tools/call); show `age_label` instead of a "new" badge; replace a replay row on SSE by advisory+package instead of prepending; show `last.scope.summary` and `http.throughput_req_s` next to the bench number.
+- Not redeployed (as asked).
+
 ## Next actions
 - Final polish pass on screenshots for the README
 - Redeploy after pushing changes: `sh scripts/redeploy-railway.sh` (ships origin/main; no GitHub auto-deploy)

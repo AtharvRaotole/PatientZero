@@ -45,7 +45,7 @@ def _stats(lat, errs, secs):
             "max_ms": round(max(lat), 2) if lat else None, "mean_ms": round(sum(lat) / len(lat), 2) if lat else None}
 
 
-async def http_bench(url: str, clients: int, duration: float, seed: int | None) -> dict:
+async def http_bench(url: str, clients: int, duration: float, seed: int | None, max_rps: float = 0) -> dict:
     import httpx
     url = url.rstrip("/")
     lat = {"ask": [], "fleet": []}
@@ -57,14 +57,26 @@ async def http_bench(url: str, clients: int, duration: float, seed: int | None) 
     hdrs = {"User-Agent": "PatientZero-bench/1.0"}
     if os.getenv("ADMIN_TOKEN"):  # the per-IP ask rate limit exempts the admin token (never printed)
         hdrs["X-Admin-Token"] = os.environ["ADMIN_TOKEN"]
+    elif not url.startswith(("http://localhost", "http://127.0.0.1")):
+        print("warning: ADMIN_TOKEN is not set, so /api/ask is limited to 120 requests per minute per IP; "
+              "expect HTTP 429 after the first 120 asks (counted in rate_limited). Set ADMIN_TOKEN to measure "
+              "throughput, or keep --clients and --duration small.", file=sys.stderr)
     async with httpx.AsyncClient(timeout=30, limits=limits, headers=hdrs) as c:
         h = await c.get(url + "/health")
         health = h.json() if h.status_code == 200 else {"status": h.status_code}
         stop = time.perf_counter() + duration
 
+        gap = clients / max_rps if max_rps > 0 else 0.0  # per-worker pacing so the total stays under max_rps
+
         async def worker(i):
             r2 = random.Random(rnd.random())
+            nxt = time.perf_counter() + (gap * i / clients if gap else 0)
             while time.perf_counter() < stop:
+                if gap:
+                    await asyncio.sleep(max(0.0, nxt - time.perf_counter()))
+                    nxt += gap
+                    if time.perf_counter() >= stop:
+                        break
                 op = "fleet" if r2.random() < 0.15 else "ask"
                 t = time.perf_counter()
                 try:
@@ -92,6 +104,7 @@ async def http_bench(url: str, clients: int, duration: float, seed: int | None) 
     return {"target": "http", "url": url, "at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
             "clients": clients, "duration_s": round(secs, 2), "overall": _stats(all_lat, sum(errs.values()), secs),
             "by_op": {k: _stats(v, errs[k], secs) for k, v in lat.items()}, "status_counts": status_counts,
+            "rate_limited": status_counts.get("429", 0), "admin_token": bool(os.getenv("ADMIN_TOKEN")),
             "error_samples": samples, "health": {k: health.get(k) for k in ("status", "falkordb", "graph", "agent_mode")},
             "writes": "none (read-only HTTP load; server-side mixed runs use POST /api/bench/run)"}
 
@@ -111,11 +124,14 @@ def main() -> int:
     ap.add_argument("--seed", type=int, default=None)
     ap.add_argument("--save", action="store_true")
     ap.add_argument("--json", default=None)
+    ap.add_argument("--max-rps", type=float, default=0,
+                    help="http target: cap total requests per second (e.g. 1.8 stays under the 120/min ask limit "
+                         "without an admin token); 0 = unpaced")
     a = ap.parse_args()
     if a.target == "http":
         if a.clients > 64:
             ap.error("--clients is capped at 64 for HTTP runs")
-        res = asyncio.run(http_bench(a.url, a.clients, a.duration, a.seed))
+        res = asyncio.run(http_bench(a.url, a.clients, a.duration, a.seed, a.max_rps))
     else:
         from app.bench import runner
         mix = None

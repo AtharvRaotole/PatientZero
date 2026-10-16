@@ -40,7 +40,8 @@ CREATE (w:WatchEvent {id: e.id, ts: e.ts, poll_id: e.poll_id, tenant: e.tenant, 
                       all_versions: e.all_versions, verdict: e.verdict, exposed_services: e.exposed_services,
                       exposed_count: e.exposed_count, reachable_services: e.reachable_services,
                       fleet_size: e.fleet_size, depth: e.depth, replay: e.replay, published: e.published,
-                      summary: e.summary, url: e.url, reason: e.reason, check_ms: e.check_ms})
+                      modified: e.modified, summary: e.summary, url: e.url, reason: e.reason,
+                      check_ms: e.check_ms})
 WITH w, e
 MATCH (a:Advisory {id: e.advisory})
 MERGE (w)-[:ABOUT]->(a)
@@ -58,15 +59,29 @@ RETURN count(*) AS hits
 CREATE (p:WatchPoll {id: $poll.id, ts: $poll.ts, source: $poll.source, checked: $poll.checked,
                      new_advisories: $poll.new_advisories, already_known: $poll.already_known,
                      index_entries: $poll.index_entries, hits: $poll.hits, ms: $poll.ms, errors: $poll.errors,
-                     note: $poll.note})
+                     note: $poll.note, published_oldest: $poll.published_oldest,
+                     published_newest: $poll.published_newest})
 RETURN p.id AS id
 
 // @query watch_feed
-// Params: $limit. Newest first.
-MATCH (w:WatchEvent)
-RETURN properties(w) AS event
+// Params: $limit. Real (non-replay) WatchEvents, newest first, with the advisory's own OSV published and modified
+// times and when the watch first ingested it (events written before those fields existed read them from here).
+MATCH (w:WatchEvent) WHERE coalesce(w.replay, false) = false
+WITH w ORDER BY w.ts DESC LIMIT $limit
+OPTIONAL MATCH (w)-[:ABOUT]->(a:Advisory)
+RETURN properties(w) AS event, a.published AS a_published, a.modified AS a_modified, a.ingested_at AS a_ingested
 ORDER BY w.ts DESC
-LIMIT $limit
+
+// @query watch_feed_replays
+// Params: $limit. Replay WatchEvents, newest first, with the advisory's OSV times. The app collapses them to one
+// row per replayed advisory and package (the latest replay, with replay_count, first and last replay times), so
+// pressing Replay again never adds a second identical row. Grouped in Python: FalkorDB 6.0.1 mis-projects several
+// aggregates in one grouped WITH.
+MATCH (w:WatchEvent) WHERE w.replay = true
+WITH w ORDER BY w.ts DESC LIMIT $limit
+OPTIONAL MATCH (w)-[:ABOUT]->(a:Advisory)
+RETURN properties(w) AS event, a.published AS a_published, a.modified AS a_modified, a.ingested_at AS a_ingested
+ORDER BY w.ts DESC
 
 // @query watch_polls
 // Params: $limit. Newest first.

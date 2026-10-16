@@ -52,3 +52,22 @@ def test_bench_last_is_public_and_hides_host():
     assert "last" in j and "history" in j
     if j["last"]:
         assert "host" not in j["last"]
+
+
+def test_bench_last_states_what_the_number_measures(monkeypatch):
+    """The in-process ops/s never travels without its scope and the end-to-end HTTP number."""
+    from app.bench import api as bench_api
+    from app.main import app
+    fake = {"id": "B-x", "label": "server", "clients": 30, "procs": 2, "retry_busy": True, "read_graph": "fleet:acme",
+            "scratch_graph": "bench:B-x", "mix": {"read_exposure_incident": 40, "write_event": 20, "read_x": 40},
+            "overall": {"throughput_ops_s": 740.6}, "host": "secret-host"}
+    monkeypatch.setattr(bench_api.runner, "last", lambda: {"last": fake, "history": []})
+    j = TestClient(app).get("/api/bench/last").json()
+    sc = j["last"]["scope"]
+    assert sc["kind"] == "in_process_db" and sc["retry_busy"] is True and "host" not in j["last"]
+    assert "740.6 ops/s is measured in process" in sc["summary"] and "scratch graph bench:B-x" in sc["summary"]
+    assert "retry on FalkorDB queue-full" in sc["summary"] and "49.4 req/s at 30 clients" in sc["summary"]
+    assert j["numbers"] == {"in_process_ops_s": 740.6, "in_process_clients": 30, "http_req_s": 49.4,
+                            "http_clients": 30}
+    assert j["http"]["errors"] == 0 and j["http"]["requests"] == 1009
+    assert "\u2014" not in sc["summary"]

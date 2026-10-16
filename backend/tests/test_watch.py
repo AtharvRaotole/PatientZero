@@ -151,7 +151,7 @@ def test_poll_ingests_checks_and_records_verdicts(monkeypatch, tiny_graph):
         assert mal == [True, True]
         # Second poll with the same index: nothing new, nothing re-fetched.
         s2 = core.poll(source="test", graphs=tiny_graph, state_key=key)
-        assert s2["checked"] == 0 and "no new" in s2["note"]
+        assert s2["checked"] == 0 and "no npm MAL advisories" in s2["note"]
     finally:
         db.client().connection.delete(key)
 
@@ -186,8 +186,24 @@ def test_replay_is_labelled_and_hits_debug_in_acme():
     acme = next(e for e in j["events"] if e["tenant"] == "acme")
     assert acme["verdict"] == "hit" and acme["replay"] is True and acme["exposed_count"] >= 10
     assert acme["paths"] and acme["paths"][0]["via"][0] == acme["paths"][0]["service"]
-    f = c.get("/api/watch/feed", params={"tenant": "acme", "limit": 5}).json()
-    assert any(e["advisory"] == "MAL-2025-46974" and e["replay"] for e in f["events"])
+    assert acme["published"].startswith("2025-09-08") and "published" in acme["age_label"]
+    before = c.get("/api/watch/feed", params={"tenant": "acme", "limit": 200}).json()
+    n0 = next(e["replay_count"] for e in before["events"] if e["advisory"] == "MAL-2025-46974" and e["replay"])
+    core.replay("debug@4.4.2")  # a second replay action of the same advisory
+    f = c.get("/api/watch/feed", params={"tenant": "acme", "limit": 200}).json()
+    rows = [e for e in f["events"] if e["advisory"] == "MAL-2025-46974" and e["replay"]]
+    assert len(rows) == 1, "one row per replayed advisory, however many times Replay is pressed"
+    row = rows[0]
+    assert row["replay_count"] == n0 + 1 and row["last_replayed"] >= row["first_replayed"]
+    assert row["published"].startswith("2025-09-08") and row["published_age_s"] > 86400 * 300
+    assert row["age_label"].startswith("replay of a past advisory published") and " new" not in row["age_label"]
+    for e in f["events"]:
+        assert {"published", "modified", "first_seen_by_watch", "published_ago", "age_label"} <= set(e)
+        if not e["replay"]:
+            assert e["age_label"].startswith("published ") and "first seen by watch at" in e["age_label"]
+    tl = core.GraphRun(config.GRAPH_NAME).run("timeline_events")
+    reps = [t for t in tl if t["kind"] == "watch_replay" and "MAL-2025-46974" in t["title"]]
+    assert len(reps) == 1 and reps[0]["count"] == row["replay_count"] and "published 2025-09-08" in reps[0]["title"]
     assert c.post("/api/watch/replay", json={"advisory": "nope@0.0.0"}).status_code == 400
 
 

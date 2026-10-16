@@ -1,5 +1,15 @@
 # Concurrency benchmark (FalkorDB)
 
+**Read this first: two different numbers.**
+- **740.6 ops/s (live) is an in-process database benchmark.** The app process talks straight to FalkorDB with 30
+  FalkorDB connections (no HTTP, no FastAPI, no MCP in the timed path). 80% are the product's own read queries; the
+  20% writes are **synthetic** WatchEvent-shaped nodes in a scratch graph `bench:<run>` that is deleted afterwards
+  (not product writes), and FalkorDB queue-full rejections are retried like the app does (`retry_busy: true`).
+- **End to end over HTTP the live deploy serves about 50 req/s at 30 clients** (49.4 req/s, 0 errors, p99 1.15 s;
+  read-only `/api/ask` and `/api/fleet` through one uvicorn process).
+`GET /api/bench/last` carries both: `last.scope` (what the in-process number is) and `http` plus `numbers`
+(`in_process_ops_s`, `http_req_s`).
+
 Measured Fri Oct 16 2026, about 11:15 AM to 11:25 AM ET. Raw JSON for every run is in
 [docs/verification/bench](bench/). Reproduce with `scripts/bench_concurrency.py` (commands below).
 
@@ -56,10 +66,14 @@ Public at `GET /api/bench/last` and shown in the UI's benchmark view.
 |---|---|---|---|---|---|---|---|
 | Live Railway deploy (code before this change) | 30 | 1,104 | 53.8 req/s | 559 ms | 886 ms | 997 ms | **4 HTTP 500** |
 | Live Railway deploy, FalkorDB `MAX_QUEUED_QUERIES 200` (2026-10-16) | 30 | 1,009 | 49.4 req/s | 615 ms | 1,011 ms | 1,150 ms | **0** |
-| Local, one uvicorn process, agent via MCP (default) | 30 | 1,911 | 94.5 req/s | 313 ms | 509 ms | 586 ms | 0 |
+| Local, one uvicorn process, agent via MCP, one composite `investigate` call (before the per-intent chain) | 30 | 1,911 | 94.5 req/s | 313 ms | 509 ms | 586 ms | 0 |
 | Local, one uvicorn process, `MCP_AGENT=off` | 30 | 2,804 | 139.3 req/s | 210 ms | 342 ms | 439 ms | 0 |
+| Local, agent via MCP, per-intent tool chain on one shared MCP session (current; 15 s, 1:40 PM ET) | 30 | 1,182 | 77.3 req/s | 387 ms | 625 ms | 737 ms | 0 |
+| Local, `MCP_AGENT=off`, same box and minute (15 s) | 30 | 2,081 | 136.5 req/s | 216 ms | 346 ms | 404 ms | 0 |
 
-Unloaded single request locally: about 15 ms with the agent going through MCP vs about 11 ms with direct calls.
+Unloaded single request locally (median of 30): `debug@4.4.2` 26 ms through the MCP chain (5 tools/call) vs 12 ms
+direct; `who to wake for auth-service` 9 ms vs 4 ms. Raw JSON: bench/local-http-c30-mcp-chain.json and
+bench/local-http-c30-mcp-off-chain-era.json.
 
 ## Findings
 - **FalkorDB is not the bottleneck.** With 64 concurrent clients mixing traversals and writes it sustains about 2,300
@@ -73,9 +87,12 @@ Unloaded single request locally: about 15 ms with the agent going through MCP vs
   (`THREAD_COUNT` stays 2: the service is limited to 2 vCPU); the same 30-client live run then had 0 errors
   (docs/verification/bench/live-http-c30-queue200.json). The volume persisted across the DB restart (same incident,
   playbook and node counts).
-- **MCP tool selection costs about 4 ms per request.** Under saturation of one Python process that is about 32% fewer
-  requests per second (139 vs 94.5 req/s at 30 clients). It stays on by default, because routing the agent through
-  MCP is the product; `MCP_AGENT=off` restores direct calls.
+- **MCP tool selection costs about 1 ms of CPU per tools/call.** Each intent now runs its own MCP tools (2 to 6
+  calls, for example resolve_entity, recall, incident_scope, exposure, who_to_wake for an incident) on one shared
+  in-memory MCP session per request; a session per call cost about 3 ms each. Under saturation of one Python process
+  that is about 43% fewer requests per second than direct calls (77 vs 137 req/s at 30 clients; the single composite
+  call was 32%). It stays on by default, because routing the agent through MCP is the product; `MCP_AGENT=off`
+  restores direct calls with the same answers (tests/test_mcp_parity.py).
 - The HTTP numbers are read-only; mixed reads and writes are measured at the database level above, and on any deploy
   with `POST /api/bench/run` (admin).
 
@@ -89,8 +106,14 @@ uv run python ../scripts/bench_concurrency.py --clients 32 --procs 4 --duration 
 redis-server --port 6390 --save "" --appendonly no --daemonize yes --loadmodule ../.falkordb/falkordb.so THREAD_COUNT 2 MAX_QUEUED_QUERIES 25
 FALKORDB_PORT=6390 TENANTS=acme ../ingest/.venv/bin/python ../ingest/load.py
 FALKORDB_PORT=6390 TENANTS=acme uv run python ../scripts/bench_concurrency.py --clients 30 --procs 4 --duration 20 [--retry-busy]
-# HTTP (keep live runs modest)
-uv run python ../scripts/bench_concurrency.py --target http --url https://patientzero-production-2cb3.up.railway.app --clients 30 --duration 20
+# HTTP. /api/ask is limited to 120 requests per minute per IP; a valid admin token is exempt. Without ADMIN_TOKEN a
+# 30-client run gets HTTP 429 after the first 120 asks (the script warns and reports rate_limited). Read the token
+# from its file without printing it:
+ADMIN_TOKEN="$(cat ~/.config/patientzero/admin-token)" uv run python ../scripts/bench_concurrency.py --target http --url https://patientzero-production-2cb3.up.railway.app --clients 30 --duration 20
+# without a token, pace the run under the limit (a latency check, not a throughput number)
+uv run python ../scripts/bench_concurrency.py --target http --url https://patientzero-production-2cb3.up.railway.app --clients 4 --duration 30 --max-rps 1.8
+# local (loopback is exempt from the ask limit)
+uv run python ../scripts/bench_concurrency.py --target http --url http://localhost:8000 --clients 30 --duration 20
 # on a deploy with this code (admin): server-side mixed run, then read the result
 curl -XPOST $URL/api/bench/run -H "X-Admin-Token: $ADMIN_TOKEN" -H 'content-type: application/json' -d '{"clients":30,"duration_s":20}'
 curl $URL/api/bench/last

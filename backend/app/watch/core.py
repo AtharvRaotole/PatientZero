@@ -249,8 +249,8 @@ def _record(graphs: dict[str, str], advs: list[osv.Advisory], *, poll_id: str, r
                       package=a.pkg, bad_versions=a.bad_versions[:50], all_versions=a.all_versions,
                       verdict=v["verdict"], exposed_services=[x["service"] for x in v["exposed"]],
                       exposed_count=len(v["exposed"]), reachable_services=v["reachable"], fleet_size=fleet,
-                      depth=depth, replay=replay, published=a.published, summary=a.summary[:200], url=a.url,
-                      reason=v["reason"], check_ms=v["check_ms"])
+                      depth=depth, replay=replay, published=a.published, modified=a.modified,
+                      summary=a.summary[:200], url=a.url, reason=v["reason"], check_ms=v["check_ms"])
             evs.append(ev)
             hits += [{"id": eid, "service": s} for s in ev["exposed_services"]]
             events.append({**ev, "paths": [{"service": x["service"], "via": x["via"], "requirement": x["requirement"],
@@ -267,7 +267,10 @@ def _record(graphs: dict[str, str], advs: list[osv.Advisory], *, poll_id: str, r
 def _write_poll(graphs: dict[str, str], poll: dict) -> None:
     flat = {k: (v if isinstance(v, (int, float, str)) or v is None else json.dumps(v)[:500])
             for k, v in poll.items() if k in ("id", "ts", "source", "checked", "new_advisories", "already_known",
-                                               "index_entries", "hits", "ms", "errors", "note")}
+                                               "index_entries", "hits", "ms", "errors", "note",
+                                               "published_oldest", "published_newest")}
+    flat.setdefault("published_oldest", None)
+    flat.setdefault("published_newest", None)
     for g in graphs.values():
         gr = GraphRun(g)
         gr.run("watch_write_poll", {"poll": flat}, write=True)
@@ -333,8 +336,13 @@ def poll(max_batch: int = MAX_BATCH, source: str = "manual", graphs: dict[str, s
                         "updated": now_iso()})
             summary["watermark"] = new_wm or wm
             summary["remaining"] = max(0, len(fresh) - len(batch))
-            summary["note"] = (f"checked {summary['checked']} new advisories against {len(graphs)} tenant fleet(s)"
-                               if advs else "no new npm MAL advisories since the last poll")
+            pubs = sorted(a.published for a in advs if a.published)
+            summary["published_oldest"], summary["published_newest"] = (pubs[0], pubs[-1]) if pubs else (None, None)
+            span = (f" (OSV published {pubs[0][:10]}" + (f" to {pubs[-1][:10]}" if pubs[-1][:10] != pubs[0][:10]
+                                                         else "") + ")") if pubs else ""
+            summary["note"] = (f"checked {summary['checked']} advisories first seen by the watch{span} against "
+                               f"{len(graphs)} tenant fleet(s)" if advs
+                               else "no npm MAL advisories added or modified in OSV since the last poll")
         summary["ms"] = round((time.perf_counter() - t0) * 1000, 1)
         _write_poll(graphs, summary)
         BUS.publish("poll", {"poll": summary})
@@ -374,7 +382,9 @@ def replay(query: str = "debug@4.4.2", tenant_graphs_override: dict[str, str] | 
         source = "graph"
     poll_id = "R-" + datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S") + "-" + uuid.uuid4().hex[:4]
     events, _ = _record(graphs, advs, poll_id=poll_id, replay=True, ingest=False)
+    now = datetime.now(timezone.utc)
     for e in events:
+        _with_age(e, {}, now)
         BUS.publish("event", e)
     ms = round((time.perf_counter() - t0) * 1000, 1)
     summary = {"id": poll_id, "ts": now_iso(), "source": "replay", "replay": True, "record_source": source,
@@ -385,17 +395,82 @@ def replay(query: str = "debug@4.4.2", tenant_graphs_override: dict[str, str] | 
     return summary
 
 
+def _parse_ts(v) -> datetime | None:
+    if not v:
+        return None
+    try:
+        d = datetime.fromisoformat(str(v).replace("Z", "+00:00"))
+    except ValueError:
+        return None
+    return d if d.tzinfo else d.replace(tzinfo=timezone.utc)
+
+
+def _ago(seconds: float) -> str:
+    s = max(0, int(seconds))
+    if s < 3600:
+        return f"{max(1, s // 60)} min ago"
+    if s < 172800:
+        return f"{s // 3600} h ago"
+    return f"{s // 86400} days ago"
+
+
+def _utc(v) -> str:
+    d = _parse_ts(v)
+    return d.strftime("%Y-%m-%d %H:%M UTC") if d else "unknown"
+
+
+def _with_age(ev: dict, row: dict, now: datetime) -> dict:
+    """Honest age fields: when OSV published (and last modified) the advisory, and when this watch first saw it.
+    An advisory published days ago that the watch only just picked up is "first seen", never "new"."""
+    ev["published"] = ev.get("published") or row.get("a_published")
+    ev["modified"] = ev.get("modified") or row.get("a_modified")
+    first_seen = row.get("a_ingested") if row.get("a_ingested") else (None if ev.get("replay") else ev.get("ts"))
+    ev["first_seen_by_watch"] = first_seen
+    pub = _parse_ts(ev["published"])
+    ev["published_age_s"] = int((now - pub).total_seconds()) if pub else None
+    ev["published_ago"] = _ago(ev["published_age_s"]) if pub else None
+    if ev.get("replay"):
+        n = int(row.get("replay_count") or 1)
+        ev.update(replay_count=n, first_replayed=row.get("first_replayed") or ev.get("ts"),
+                  last_replayed=row.get("last_replayed") or ev.get("ts"))
+        ev["age_label"] = (f"replay of a past advisory published {ev['published_ago'] or 'at an unknown time'}"
+                           + (f" ({ev['published'][:10]})" if ev["published"] else "")
+                           + (f"; replayed {n} times, last at {_utc(ev['last_replayed'])}" if n > 1
+                              else f"; replayed at {_utc(ev['last_replayed'])}"))
+    else:
+        ev["age_label"] = (f"published {ev['published_ago'] or 'at an unknown time'}; "
+                           f"first seen by watch at {_utc(first_seen)}")
+    return ev
+
+
 def feed(tenant: str, limit: int = 50, graphs: dict[str, str] | None = None) -> dict:
+    """Recent WatchEvents for one tenant: real ones newest first, then replays collapsed to one row per replayed
+    advisory (latest replay, with replay_count). Each event carries published, modified, first_seen_by_watch,
+    published_ago and age_label."""
     graphs = graphs or tenant_graphs()
     if tenant not in graphs:
         raise ValueError(f"unknown tenant {tenant!r}")
     gr = GraphRun(graphs[tenant])
     limit = max(1, min(200, int(limit)))
-    evs = [r["event"] for r in gr.run("watch_feed", {"limit": limit})]
+    now = datetime.now(timezone.utc)
+    real = [_with_age(dict(r["event"]), r, now) for r in gr.run("watch_feed", {"limit": limit})]
+    groups: dict[tuple, dict] = {}
+    for r in gr.run("watch_feed_replays", {"limit": KEEP_EVENTS}):  # newest first
+        e = r["event"]
+        g = groups.get((e.get("advisory"), e.get("package")))
+        if g is None:
+            groups[(e.get("advisory"), e.get("package"))] = g = {**r, "event": dict(e), "replay_count": 0,
+                                                                  "last_replayed": e.get("ts")}
+        g["replay_count"] += 1
+        g["first_replayed"] = e.get("ts")
+    reps = [_with_age(g["event"], g, now) for g in list(groups.values())[:limit]]
+    evs = sorted(real + reps, key=lambda e: e.get("ts") or "", reverse=True)[:limit]
     polls = [r["poll"] for r in gr.run("watch_polls", {"limit": 5})]
     counts = (gr.run("watch_counts") or [{}])[0]
+    counts = {k: int(v or 0) for k, v in counts.items()}
+    counts["replayed_advisories"] = len(groups)
     return {"tenant": tenant, "graph": graphs[tenant], "events": evs, "polls": polls,
-            "counts": {k: int(v or 0) for k, v in counts.items()}, "last_poll": polls[0] if polls else None,
+            "counts": counts, "last_poll": polls[0] if polls else None,
             "running": LAST["running"], "loop": LAST["loop"], "trace": gr.steps}
 
 

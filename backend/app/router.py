@@ -6,8 +6,9 @@ import re
 import time
 from datetime import datetime
 
-from . import config, tools
+from . import config
 from .db import Trace
+from .mcp_agent.gateway import routed_tools as tools  # app.tools; graph reads go over MCP inside an agent chain
 
 INTENTS = [
     ("single_points_of_failure", re.compile(
