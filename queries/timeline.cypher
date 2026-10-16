@@ -7,8 +7,13 @@ MATCH (m:Maintainer)-[h:HAD_PUBLISH_RIGHTS]->(p:Package)
 WITH h.asOf AS at, m.npm AS who, collect(p.name) AS pkgs, h.source AS source
 RETURN 'compromise' AS kind, at, who AS title, size(pkgs) AS count, pkgs[0..25] AS items, source AS ref
 UNION ALL
-MATCH (a:Advisory)
+MATCH (a:Advisory) WHERE a.campaign IS NULL
 RETURN 'advisory' AS kind, a.published AS at, a.id AS title, 1 AS count, [a.pkg + '@' + a.bad_version] AS items, a.url AS ref
+UNION ALL
+// A named campaign (e.g. the Shai-Hulud worm, 203 advisories) is one event, not hundreds.
+MATCH (a:Advisory) WHERE a.campaign IS NOT NULL
+WITH a.campaign AS campaign, min(a.published) AS at, count(a) AS n, collect(a.pkg + '@' + a.bad_version) AS pkgs
+RETURN 'campaign' AS kind, at, campaign AS title, n AS count, pkgs[0..12] AS items, null AS ref
 UNION ALL
 MATCH (i:Incident)
 RETURN 'incident' AS kind, i.at AS at, i.id AS title, i.exposed_count AS count, [i.trigger] AS items, null AS ref

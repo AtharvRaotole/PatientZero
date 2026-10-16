@@ -138,3 +138,5 @@ docker run --rm -p 8000:8000 -e FALKORDB_HOST=host.docker.internal patientzero
 - **Before recording or judging, reset the demo** so everyone starts clean (incidents, findings, playbooks and
   BYO scan graphs; the fleet data is untouched):
   `curl -XPOST https://patientzero-production-2cb3.up.railway.app/api/admin/reset -H "X-Admin-Token: $(cat ~/.config/patientzero/admin-token)"`
+- `INCIDENTS=qix,shai-hulud` is set on the `patientzero` service. On start, `ingest/seed_if_missing.py` adds the
+  Shai-Hulud advisories to an existing graph with MERGE only (idempotent, memory untouched).

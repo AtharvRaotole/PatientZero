@@ -281,6 +281,14 @@ def _incident(out, tr, ent, depth, fresh, session, generate_fix):
                               f"version ({trigger}) at depth {depth}.{tail}")
     else:
         out["outcome"] = "not_in_graph"
+        if kind == "campaign":
+            npk = len({sc["package"] for sc in scope})
+            out["message"] = (f"Not hit: none of the {res['fleet_size']} services can install any of the {len(scope)} "
+                              f"malicious versions of the {npk} {ent['campaign'][1]} packages at depth {depth}. "
+                              + (f"{plural(len(res['safe']), 'service')} reach a listed package, but every range "
+                                 f"excludes the bad versions." if res["safe"] else
+                                 "No fleet service depends on any of those packages."))
+            return
         out["message"] = ((f"No advisory on file for {bad}. " if hypothetical else "")
                           + f"No fleet path admits this version at depth {depth} ({bad}). "
                           + (f"{plural(len(res['safe']), 'service')} reach the package, but every range excludes it."

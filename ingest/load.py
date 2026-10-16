@@ -191,7 +191,9 @@ def load(db=None):
 
 def load_shai_hulud(g):
     """One Advisory per OSV MAL record, AFFECTS every listed bad version (unpublished). No clean versions and
-    no single maintainer, so no HAD_PUBLISH_RIGHTS edge; scope it by Advisory.campaign."""
+    no single maintainer, so no HAD_PUBLISH_RIGHTS edge; scope it by Advisory.campaign.
+
+    Idempotent (MERGE only): safe to run again on a live graph without touching memory or other data."""
     f = DATA / "incidents" / "2025-09-15-shai-hulud.json"
     if not f.exists():
         print("WARN INCIDENTS includes shai-hulud but the incident file is missing; run ingest/fetch_shai_hulud.py",
@@ -206,17 +208,18 @@ def load_shai_hulud(g):
                          bad_versions=c["bad_versions"], published=c.get("published"), url=c["osv_url"],
                          summary=f"Malicious code in {c['package']} (npm), Shai-Hulud worm", campaign=inc["id"]))
     g.query("""UNWIND $rows AS r MERGE (p:Package {name:r.pkg})
-               CREATE (a:Advisory {id:r.id, ids:r.ids, aliases:r.aliases, ghsa:r.ghsa, cve:null, summary:r.summary,
-                                   published:r.published, url:r.url, pkg:r.pkg,
-                                   bad_version:r.bad_versions[size(r.bad_versions)-1], bad_versions:r.bad_versions,
-                                   fixed_version:null, campaign:r.campaign})
+               MERGE (a:Advisory {id:r.id})
+                 ON CREATE SET a.ids = r.ids, a.aliases = r.aliases, a.ghsa = r.ghsa, a.cve = null,
+                               a.summary = r.summary, a.published = r.published, a.url = r.url, a.pkg = r.pkg,
+                               a.bad_version = r.bad_versions[size(r.bad_versions)-1],
+                               a.bad_versions = r.bad_versions, a.fixed_version = null, a.campaign = r.campaign
                WITH a, p, r UNWIND r.bad_versions AS bv
                MERGE (v:Version {key: r.pkg + '@' + bv})
                  ON CREATE SET v.name = r.pkg + '@' + bv, v.pkg = r.pkg, v.version = bv, v.unpublished = true,
                                v.malicious = true
                  ON MATCH SET v.malicious = true
                MERGE (p)-[:HAS_VERSION]->(v)
-               CREATE (a)-[:AFFECTS]->(v)""", {"rows": rows})
+               MERGE (a)-[:AFFECTS]->(v)""", {"rows": rows})
     print(f"  + shai-hulud: {len(rows)} advisories, {sum(len(r['bad_versions']) for r in rows)} bad versions")
 
 

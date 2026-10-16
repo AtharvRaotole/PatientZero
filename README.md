@@ -18,6 +18,14 @@ plus an npm semver check on the last edge, shown with its trace. Nothing is gues
 | The Acme fleet: 22 services, 8 teams, 16 people, on-call | **Synthetic** (labelled as such in the UI) |
 | Bring-your-own repo scans | **Real** (your public GitHub repo or package.json, resolved live via deps.dev) |
 
+![The qix incident: 13 of 22 services exposed, exposed paths drawn on the fleet graph](docs/screenshots/02-qix-blast-radius-graph.png)
+
+| | | |
+|---|---|---|
+| ![Blast radius rings by hop distance](docs/screenshots/04-insight-blast-rings.png) | ![Fix: overrides, team drafts, approved playbook](docs/screenshots/08-fix-and-approve-playbook.png) | ![Bring your own repo: axios replayed against Sept 8, 2025](docs/screenshots/14-byo-axios-exposed.png) |
+
+More in [docs/screenshots](docs/screenshots).
+
 ## What you can do
 - **Ask** in plain English: "qix was phished, who is affected?", "debug@4.4.2", "GHSA-4x49-vf9v-38px", "who do I wake for checkout-api", "where are our single points of failure?", "why is img-service connected to is-arrayish?", "the guy who maintains chalk got phished".
 - **See** the blast radius on the live fleet graph, with exposed chains animated, a depth slider (1 to 6 hops) and honest negatives ("checkout-api reaches debug through express@4.21.2, but the exact pin 2.6.9 excludes 4.4.2").
@@ -29,7 +37,7 @@ plus an npm semver check on the last edge, shown with its trace. Nothing is gues
 - **Fix**: an install-safe package.json patch per service, Slack drafts per owning team, written back to the graph as an `(:Incident)`. Direct dependencies are bumped in `dependencies` (a plain override on a direct dependency fails with npm `EOVERRIDE`); transitive packages get an override scoped to the compromised major, for example `"ansi-styles@^6": "6.2.3"`, so chalk 4 keeps ansi-styles 4 and express 4 keeps debug 2. Verified with real `npm install` (npm 10, Node 20): [docs/verification/npm-patches.txt](docs/verification/npm-patches.txt), reproduce with `cd backend && uv run python ../scripts/verify_npm_patches.py`.
 - **Remember**: every incident question is answered by a fresh traversal, with the remembered incident shown next to it ("Seen before: INC-... on Oct 16, 13 services, patch on file", plus what changed since). A bare recall such as `qix` in a new session answers straight from graph memory. **Approve** a fix and it becomes a `(:Playbook)` that later incidents on the same packages reuse.
 - **Bring your own repo**: "Would you have been hit on Sept 8, 2025?" Paste a GitHub URL or package.json. Try `github.com/axios/axios` (exposed through `https-proxy-agent` then `debug`) and `github.com/expressjs/express/tree/4.x` with runtime deps only (clean).
-- **Optional Shai-Hulud worm**: load with `INCIDENTS=qix,shai-hulud` and ask "were we hit by the Shai-Hulud worm?".
+- **Second incident, the Shai-Hulud worm (Sept 15, 2025)**: 203 OSV malicious-package advisories (589 versions), loaded on the live deploy. Ask "were we hit by the Shai-Hulud worm?". The honest answer for the Acme fleet is "Not hit": no service depends on any of those packages. Locally, enable it with `INCIDENTS=qix,shai-hulud` (on an existing graph, `python ingest/seed_if_missing.py` adds it with MERGE only, so memory is kept). Bring-your-own scans check the qix incident only.
 
 ## Agent design
 - A **deterministic intent router** picks among 8 hand-written tools (`queries/*.cypher`). It is the default path, the fallback and the test oracle.
