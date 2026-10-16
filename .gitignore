@@ -1,0 +1,21 @@
+# env / secrets
+.env
+.env.local
+*.env.local
+# local FalkorDB runtime (module binary downloaded by scripts/start-falkordb.sh, data, logs)
+.falkordb/
+*.rdb
+# python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+# node / next
+node_modules/
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+# misc
+.DS_Store
+*.log
