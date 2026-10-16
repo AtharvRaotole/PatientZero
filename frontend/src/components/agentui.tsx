@@ -141,7 +141,7 @@ export function PlaybooksPanel({ playbooks, error }: { playbooks: Playbook[] | n
               {p.approved_at && <span className="shrink-0 text-[12px] text-ink-3">{p.approved_by ? `${p.approved_by}, ` : ""}{new Date(p.approved_at).toLocaleString([], { month: "short", day: "numeric", hour: "numeric", minute: "2-digit" })}</span>}
             </div>
             <p className="mt-1 truncate font-mono text-[12px] text-ink-2">
-              {p.overrides ? Object.entries(p.overrides).map(([k, v]) => `${k}@${v}`).join("   ") : p.incident_id}
+              {p.overrides ? Object.entries(p.overrides).map(([k, v]) => `"${k}": "${v}"`).join("   ") : p.incident_id}
             </p>
           </motion.div>
         ))}

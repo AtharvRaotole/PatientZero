@@ -186,3 +186,56 @@ def test_direct_dependency_cap_is_visible():
     pkg = {"dependencies": {f"pkg-{i}": "^1.0.0" for i in range(scan.MAX_DIRECT + 5)}}
     deps, skipped = scan.direct_deps(pkg, True)
     assert len(deps) == scan.MAX_DIRECT and len(skipped) == 5
+
+
+# --------------------------------------------------------------------------- P1-A runtime vs dev
+def _rows(order):
+    dev = dict(service="axios/axios", tier=1, pkg="debug", resolved_today="4.4.3", requirement="^4.4.0", hops=2,
+               via=["axios/axios", "express@5.3.0", "debug@4.4.3"], requirements=["^5.0.0", "^4.4.0"])
+    run = dict(service="axios/axios", tier=1, pkg="debug", resolved_today="4.4.3", requirement="4", hops=2,
+               via=["axios/axios", "https-proxy-agent@5.0.1", "debug@4.4.3"], requirements=["^5.0.1", "4"])
+    deep_dev = dict(dev, hops=3, via=["axios/axios", "mocha@10.0.0", "x@1.0.0", "debug@4.4.3"],
+                    requirements=["^10", "^1", "^4"], requirement="^4")
+    rows = {"dev": dev, "run": run, "deep": deep_dev}
+    return [rows[k] for k in order]
+
+
+@pytest.mark.parametrize("order", [("dev", "run", "deep"), ("run", "dev", "deep"), ("deep", "dev", "run"),
+                                   ("deep", "run", "dev")])
+def test_runtime_path_wins_regardless_of_tie_order(monkeypatch, order):
+    from app import tools
+    from app.byo import scan as sc
+    from app.db import Trace
+    monkeypatch.setattr(tools, "exposure_rows", lambda tr, pkgs, depth: _rows(order))
+    dev_keys = {"express@5.3.0", "mocha@10.0.0"}
+    scope = [dict(package="debug", bad_version="4.4.2", clean_version="4.4.3", advisory_id="MAL-2025-46974")]
+    res = tools.exposure(Trace(), scope, 4, fleet=[dict(service="axios/axios", tier=1, team=None)],
+                         prefer=lambda p: sc._is_dev(p, dev_keys), keep_exposed_paths=True)
+    f = res["exposed"][0]["findings"][0]
+    assert f["path"]["via"][1] == "https-proxy-agent@5.0.1"  # runtime path is primary
+    assert sc._dev_only(f, dev_keys) is False
+    exposed, _ = sc._flatten(res, {}, False, dev_keys)
+    assert exposed[0]["via_dev_dependency"] is False
+    assert exposed[0]["runtime_paths"] == ["axios/axios → https-proxy-agent@5.0.1 → debug 4 ⚠ 4.4.2"]
+    assert exposed[0]["dev_path_count"] == 2
+
+
+def test_dev_only_when_every_exposed_path_is_dev(monkeypatch):
+    from app import tools
+    from app.byo import scan as sc
+    from app.db import Trace
+    monkeypatch.setattr(tools, "exposure_rows", lambda tr, pkgs, depth: _rows(("dev", "deep")))
+    dev_keys = {"express@5.3.0", "mocha@10.0.0"}
+    scope = [dict(package="debug", bad_version="4.4.2", clean_version="4.4.3")]
+    res = tools.exposure(Trace(), scope, 4, fleet=[dict(service="axios/axios", tier=1, team=None)],
+                         prefer=lambda p: sc._is_dev(p, dev_keys), keep_exposed_paths=True)
+    exposed, _ = sc._flatten(res, {}, False, dev_keys)
+    assert exposed[0]["via_dev_dependency"] is True and exposed[0]["runtime_paths"] == []
+
+
+@live
+def test_axios_reports_runtime_exposure_through_https_proxy_agent():
+    d = _scan(github_url="https://github.com/axios/axios")
+    assert d["details"]["runtime_exposed"] == ["debug@4.4.2"]
+    assert "Through runtime dependencies: debug@4.4.2" in d["summary"]
+    assert any("https-proxy-agent@5.0.1 → debug 4" in p for p in d["details"]["runtime_paths"])

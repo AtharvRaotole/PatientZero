@@ -139,8 +139,13 @@ def clamp_depth(depth) -> int:
     return max(1, min(config.MAX_DEPTH, int(depth)))
 
 
-def exposure(tr: Trace, scope: list[dict], depth: int, fleet: list[dict] | None = None) -> dict:
-    """Variable-length traversal + semver decision on the last edge. Returns per-service findings."""
+def exposure(tr: Trace, scope: list[dict], depth: int, fleet: list[dict] | None = None,
+             prefer=None, keep_exposed_paths: bool = False) -> dict:
+    """Variable-length traversal + semver decision on the last edge. Returns per-service findings.
+
+    prefer(path) -> sortable: extra tie-break when choosing the primary path (BYO prefers runtime over dev paths).
+    keep_exposed_paths: keep every exposed path per finding (BYO), not only the primary and 3 alternatives.
+    Every finding carries `direct_exposed` (some exposed path is a direct dependency of the service)."""
     depth = clamp_depth(depth)
     bad: dict[str, list[dict]] = defaultdict(list)
     for s in scope:
@@ -172,13 +177,17 @@ def exposure(tr: Trace, scope: list[dict], depth: int, fleet: list[dict] | None 
     for svc, fmap in per.items():
         findings = []
         for f in fmap.values():
-            ps = sorted(f.pop("paths"), key=lambda p: (not p["exposed"], p["hops"]))
+            ps = sorted(f.pop("paths"), key=lambda p: (not p["exposed"], prefer(p) if prefer else 0, p["hops"],
+                                                       tuple(p["via"])))
             uniq, seen = [], set()
             for p in ps:
                 if tuple(p["via"]) not in seen:
                     seen.add(tuple(p["via"]))
                     uniq.append(p)
             f["path"], f["alternatives"] = uniq[0], uniq[1:4]
+            f["direct_exposed"] = any(p["exposed"] and len(p["via"]) == 2 for p in uniq)
+            if keep_exposed_paths:
+                f["exposed_paths"] = [p for p in uniq if p["exposed"]]
             findings.append(f)
         findings.sort(key=lambda f: (not f["exposed"], f["path"]["hops"], f["package"]))
         entry = dict(service=svc, tier=tier.get(svc), team=team.get(svc), findings=findings,
@@ -289,7 +298,7 @@ def package_json_patch(findings: list[dict], dev_direct: set[str] | None = None)
         if not clean:
             continue
         paths = [f["path"], *f.get("alternatives", [])]
-        direct = any(len(p["via"]) == 2 and p.get("exposed") for p in paths)
+        direct = f.get("direct_exposed", any(len(p["via"]) == 2 and p.get("exposed") for p in paths))
         scope = f"{pkg}@{major_range(f['bad_version'])}"
         if direct:
             (dev if pkg in (dev_direct or set()) else deps)[pkg] = f"^{clean}"
@@ -303,6 +312,20 @@ def package_json_patch(findings: list[dict], dev_direct: set[str] | None = None)
         out["devDependencies"] = dict(sorted(dev.items()))
     out["overrides"] = dict(sorted(overrides.items()))
     return out
+
+
+def spec_pins(patches) -> dict[str, str]:
+    """Scoped override spec -> concrete clean version, e.g. {'debug@^4': '4.4.3'}, from package.json patches."""
+    out: dict[str, str] = {}
+    for pj in patches:
+        for spec, val in ((pj or {}).get("overrides") or {}).items():
+            if "@" in spec[1:] and not val.startswith("$"):
+                out[spec] = val.lstrip("^~")
+    return dict(sorted(out.items()))
+
+
+def spec_package(spec: str) -> str:
+    return spec.rsplit("@", 1)[0] if "@" in spec[1:] else spec
 
 
 def build_fix(result: dict, wake: list[dict], dev_direct: set[str] | None = None) -> dict:
@@ -340,6 +363,7 @@ def build_fix(result: dict, wake: list[dict], dev_direct: set[str] | None = None
     comb = {"overrides": dict(sorted(combined.items()))}
     return dict(per_service=per_service, combined=comb, combined_json=json.dumps(comb, indent=2),
                 pins=dict(sorted(pins_all.items())),
+                specs=spec_pins(p["package_json"] for p in per_service),
                 note="Fleet-wide block covers transitive installs only; services that depend on a compromised "
                      "package directly also need the dependency bump from their own patch.")
 
@@ -350,7 +374,7 @@ def remediation_plan(tr: Trace, *, trigger: str, entity_kind: str, entity_key: s
     at = now_iso()
     slug = re.sub(r"[^a-z0-9]+", "-", entity_key.lower()).strip("-")[:40]
     inc_id = f"INC-{at[:10]}-{slug}-{uuid.uuid4().hex[:6]}"
-    patch = {p["service"]: p["pins"] for p in fix["per_service"]}
+    patch = {p["service"]: p["package_json"] for p in fix["per_service"]}
     tr.run("remediation_plan", "create_incident", dict(
         id=inc_id, at=at, trigger=trigger, entity_kind=entity_kind, entity_key=entity_key, depth=depth,
         exposed_count=len(result["exposed"]), patch=json.dumps(patch)), write=True)
@@ -373,7 +397,7 @@ def remediation_plan(tr: Trace, *, trigger: str, entity_kind: str, entity_key: s
     fix.update(incident_id=inc_id, at=at, exposed_edges=len(exp_rows))
     # Procedural memory: reuse playbooks a human approved for earlier incidents on the same packages.
     from . import playbooks
-    fix["playbooks"] = playbooks.apply_matching(tr, inc_id, fix["pins"])
+    fix["playbooks"] = playbooks.apply_matching(tr, inc_id, fix["specs"])
     return fix
 
 

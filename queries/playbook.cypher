@@ -3,9 +3,10 @@
 // the Incident it came from, the Packages it pins and the Advisories it mitigates. The next incident that
 // touches any of those packages finds it by traversal and reuses it (APPLIED_PLAYBOOK edge).
 //
-// (:Playbook {id, name, trigger_kind, trigger, approved_at, approved_by, overrides (JSON), services, steps})
+// (:Playbook {id, name, trigger_kind, trigger, approved_at, approved_by, overrides (JSON), service_patches (JSON),
+//             services, steps})
 //   -[:APPROVED_FROM]->(:Incident)
-//   -[:COVERS {pin}]->(:Package)
+//   -[:COVERS {spec, pin}]->(:Package)
 //   -[:MITIGATES]->(:Advisory)
 // (:Incident)-[:APPLIED_PLAYBOOK {at}]->(:Playbook)
 //
@@ -25,19 +26,21 @@ MATCH (pb:Playbook)-[:APPROVED_FROM]->(:Incident {id: $id})
 RETURN properties(pb) AS playbook
 
 // @query playbook_create
-// WRITE. Params: $id, $incident_id, $name, $trigger_kind, $trigger, $approved_at, $approved_by, $overrides,
-//        $services, $steps
+// WRITE. Params: $id, $incident_id, $name, $trigger_kind, $trigger, $approved_at, $approved_by, $overrides
+//        (JSON, fleet-wide transitive overrides scoped by major), $service_patches (JSON, per-service package.json
+//        patches incl. dependency bumps), $services, $steps
 MATCH (i:Incident {id: $incident_id})
 CREATE (pb:Playbook {id: $id, name: $name, trigger_kind: $trigger_kind, trigger: $trigger,
                      approved_at: $approved_at, approved_by: $approved_by, overrides: $overrides,
+                     service_patches: $service_patches,
                      services: $services, steps: $steps, incident_id: $incident_id})-[:APPROVED_FROM]->(i)
 RETURN pb.id AS id
 
 // @query playbook_link_packages
-// WRITE. Params: $id, $rows = [{pkg, pin}]
+// WRITE. Params: $id, $rows = [{pkg, spec, pin}], e.g. {pkg:'debug', spec:'debug@^4', pin:'4.4.3'}
 UNWIND $rows AS r
 MATCH (pb:Playbook {id: $id}), (p:Package {name: r.pkg})
-CREATE (pb)-[:COVERS {pin: r.pin}]->(p)
+CREATE (pb)-[:COVERS {pin: r.pin, spec: r.spec}]->(p)
 RETURN count(*) AS covers
 
 // @query playbook_link_advisories
@@ -60,7 +63,7 @@ ORDER BY pb.approved_at DESC LIMIT $limit
 // Read. Approved playbooks covering any of $pkgs, best overlap first. Params: $pkgs
 MATCH (pb:Playbook)-[c:COVERS]->(p:Package)
 WHERE p.name IN $pkgs
-WITH pb, collect({pkg: p.name, pin: c.pin}) AS matched
+WITH pb, collect({pkg: p.name, pin: c.pin, spec: c.spec}) AS matched
 OPTIONAL MATCH (pb)-[:APPROVED_FROM]->(src:Incident)
 RETURN properties(pb) AS playbook, matched, src.id AS source_incident, src.at AS source_at
 ORDER BY size(matched) DESC, playbook.approved_at DESC

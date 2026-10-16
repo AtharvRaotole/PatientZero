@@ -207,6 +207,17 @@ def build_graph(graph_name: str, service: str, meta: dict, resolved: list[source
 
 
 # --------------------------------------------------------------------------- results
+def _is_dev(path: dict, dev_keys: set) -> bool:
+    return len(path["via"]) > 1 and path["via"][1] in dev_keys
+
+
+def _dev_only(f: dict, dev_keys: set) -> bool:
+    """Dev-only exposure means EVERY exposed path enters through a devDependency (one runtime path is enough)."""
+    paths = f.get("exposed_paths") or [f["path"], *f.get("alternatives", [])]
+    paths = [p for p in paths if p.get("exposed")] or [f["path"]]
+    return all(_is_dev(p, dev_keys) for p in paths)
+
+
 def _flatten(result: dict, locked: dict[str, list[str]], has_lock: bool, dev_keys: set) -> tuple[list, list]:
     exposed, not_exposed = [], []
     for bucket in (result["exposed"], result["safe"]):
@@ -218,7 +229,12 @@ def _flatten(result: dict, locked: dict[str, list[str]], has_lock: bool, dev_key
                             path=p, alternatives=f.get("alternatives", []), package_path=p["via"],
                             requirement=p["requirement"], hops=p["hops"], reason=p["reason"],
                             path_count=f["path_count"], exposed_path_count=f.get("exposed_path_count", 0),
-                            via_dev_dependency=len(p["via"]) > 1 and p["via"][1] in dev_keys)
+                            via_dev_dependency=_dev_only(f, dev_keys))
+                if f["exposed"]:
+                    eps = f.get("exposed_paths") or [p]
+                    item["runtime_paths"] = [x["display"] for x in eps if not _is_dev(x, dev_keys)]
+                    devp = [x["display"] for x in eps if _is_dev(x, dev_keys)]
+                    item["dev_paths"], item["dev_path_count"] = devp[:10], len(devp)
                 if has_lock:
                     lv = locked.get(f["package"], [])
                     item["locked_versions"] = lv
@@ -293,14 +309,17 @@ def run_scan(*, github_url: str | None = None, package_json: str | None = None, 
 
     scope = tools.incident_scope(tr, maintainer=incident[0].get("maintainer") or "qix")
     fleet = [dict(service=service, tier=1, team=None)]
-    result = tools.exposure(tr, scope, depth, fleet=fleet)
-    locked = sources.lockfile_versions(lock)
     dev_keys = {f"{r.name}@{r.version}" for r in resolved if r.dev and r.version}
+    # Runtime paths win the primary slot over dev paths of the same length (P1-A).
+    result = tools.exposure(tr, scope, depth, fleet=fleet, prefer=lambda p: _is_dev(p, dev_keys),
+                            keep_exposed_paths=True)
+    locked = sources.lockfile_versions(lock)
     exposed, not_exposed = _flatten(result, locked, lock is not None, dev_keys)
 
     bad_pkgs = sorted({f"{x['package']}@{x['bad_version']}" for x in exposed})
     unresolved = [dict(package=r.name, requirement=r.requirement, error=r.error) for r in resolved if r.error]
     prod_hit = sorted({f"{x['package']}@{x['bad_version']}" for x in exposed if not x["via_dev_dependency"]})
+    runtime_paths = [p for x in exposed for p in x.get("runtime_paths", [])]
     if exposed:
         headline = (f"Yes: on Sept 8 2025 a fresh install of {repo or service} could have pulled "
                     f"{len(bad_pkgs)} malicious version(s): {', '.join(bad_pkgs)}. "
@@ -319,7 +338,8 @@ def run_scan(*, github_url: str | None = None, package_json: str | None = None, 
         hit = sorted({x["package"] for x in exposed if x.get("lockfile_has_bad_version")})
         lock_line = ("package-lock.json contains a malicious version: " + ", ".join(hit)) if hit else \
             "package-lock.json was read: it does not pin any of the malicious versions."
-    summary = dict(headline=headline, would_have_been_hit=bool(exposed), runtime_exposed=prod_hit, exposed_count=len(exposed),
+    summary = dict(headline=headline, would_have_been_hit=bool(exposed), runtime_exposed=prod_hit,
+                   runtime_paths=runtime_paths, exposed_count=len(exposed),
                    not_exposed_count=len(not_exposed), malicious_versions=bad_pkgs, depth=depth,
                    direct_dependencies=len(deps), skipped_direct=len(skipped), resolved_direct=counts["direct"], lockfile=lock_line,
                    assumption="Exposure = the semver range on the last edge admits the malicious version "

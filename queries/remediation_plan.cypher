@@ -4,7 +4,7 @@
 
 // @query create_incident
 // Params: $id, $at (ISO 8601), $trigger (raw user text), $entity_kind, $entity_key, $depth, $exposed_count,
-//         $patch (JSON string of the per-service overrides)
+//         $patch (JSON: per-service install-safe package.json patches)
 CREATE (i:Incident {id: $id, at: $at, trigger: $trigger, entity_kind: $entity_kind, entity_key: $entity_key,
                     depth: $depth, exposed_count: $exposed_count, patch: $patch})
 RETURN i.id AS id

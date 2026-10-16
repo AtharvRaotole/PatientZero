@@ -39,7 +39,14 @@ def test_approve_then_reuse(created):
     pb = body["playbook"]
     created["playbooks"].append(pb["id"])
     assert body["created"] is True
-    assert pb["overrides"]["debug"] == "4.4.3" and pb["approved_by"] == "atharv"
+    assert pb["approved_by"] == "atharv"
+    # P1-B: the remembered fix is the install-safe one: scoped by major, per-service patches, no global pins
+    assert pb["overrides"]["ansi-styles@^6"] == "6.2.3" and pb["overrides"]["debug@^4"] == "4.4.3"
+    assert not any("@" not in k[1:] for k in pb["overrides"]), pb["overrides"]
+    ship = pb["service_patches"]["shipping-tracker"]
+    assert ship["dependencies"] == {"debug": "^4.4.3"} and ship["overrides"]["debug@^4"] == "^4.4.3"
+    assert set(pb["service_patches"]) == set(pb["services"]) and len(pb["services"]) == 13
+    assert not any("every listed service" in st for st in pb["steps"])
     assert pb["trigger_kind"] == "maintainer_compromise" and pb["steps"]
     assert pb["incident_id"] == f1["incident_id"]
     # idempotent
@@ -47,11 +54,14 @@ def test_approve_then_reuse(created):
     assert again["created"] is False and again["playbook"]["id"] == pb["id"]
     # listed, linked to packages and advisories by graph edges
     listed = {p["id"]: p for p in client.get("/api/playbooks").json()["playbooks"]}
+    lp = listed[pb["id"]]
+    assert lp["overrides"] == pb["overrides"] and lp["service_patches"]["auth-service"]["overrides"] == {"debug@^4": "4.4.3"}
     assert "debug" in listed[pb["id"]]["packages"] and "MAL-2025-46974" in listed[pb["id"]]["advisories"]
     # a later incident touching debug reuses it
     f2 = fix("debug@4.4.2", created)
     msgs = [p for p in f2["playbooks"] if p["id"] == pb["id"]]
     assert msgs and msgs[0]["agrees_with_proposed_fix"] is True
+    assert any(m["spec"] == "debug@^4" and m["pin"] == "4.4.3" for m in msgs[0]["matched"])
     assert "Applying approved playbook" in msgs[0]["message"]
     reused = {p["id"]: p for p in client.get("/api/playbooks").json()["playbooks"]}[pb["id"]]["reused_by"]
     assert f2["incident_id"] in reused
