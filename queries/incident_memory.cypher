@@ -4,8 +4,9 @@
 // Every stored incident, newest first, for the memory panel. Params: $limit. Read-only.
 MATCH (i:Incident)
 OPTIONAL MATCH (i)-[e:EXPOSED]->(s:Service)
+WITH i, collect(s.name) AS services
 RETURN i.id AS id, i.at AS at, i.trigger AS trigger, i.entity_kind AS entity_kind, i.entity_key AS entity_key,
-       i.depth AS depth, i.exposed_count AS exposed_count, collect(s.name) AS services
+       i.depth AS depth, i.exposed_count AS exposed_count, services
 ORDER BY at DESC LIMIT $limit
 
 // @query incident_exposed_count

@@ -139,6 +139,14 @@ def build(tenant: str = TENANT):
     return fleet, incident, versions, requires, svc_deps, advisories, maint, pkgs
 
 
+def team_defaults(t: dict) -> dict:
+    """Every Team gets display/slack/pager, defaulted from its name when a fleet file omits them (who_to_wake and
+    the UI read all three; a missing one used to surface as null, and helped trip a FalkorDB 6.0.1 crash)."""
+    name = t["name"]
+    return {**t, "display": t.get("display") or name,
+            "slack": t.get("slack") or f"#team-{name}", "pager": t.get("pager") or name}
+
+
 def load(db=None, tenant: str = TENANT, graph: str | None = None):
     fleet, incident, versions, requires, svc_deps, advisories, maint, pkgs = build(tenant)
     if db is None:
@@ -166,7 +174,7 @@ def load(db=None, tenant: str = TENANT, graph: str | None = None):
 
     # people / teams / services (synthetic)
     q("UNWIND $rows AS r CREATE (:Team {name:r.name, display:r.display, slack:r.slack, pager:r.pager, synthetic:true})",
-      {"rows": fleet["teams"]})
+      {"rows": [team_defaults(t) for t in fleet["teams"]]})
     q("""UNWIND $rows AS r MATCH (t:Team {name:r.team})
          CREATE (p:Person {name:r.name, handle:r.handle, email:r.email, role:r.role, synthetic:true})-[:MEMBER_OF]->(t)
          FOREACH (_ IN CASE WHEN r.oncall THEN [1] ELSE [] END | CREATE (p)-[:ONCALL_FOR {rotation:'primary'}]->(t))""",

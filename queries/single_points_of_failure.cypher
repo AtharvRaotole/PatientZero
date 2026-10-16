@@ -11,7 +11,8 @@ WITH m, count(DISTINCT s) AS reach ORDER BY reach DESC LIMIT $limit
 CALL algo.pageRank('Version', 'REQUIRES') YIELD node, score
 WITH m, reach, node, score
 MATCH (m)-[:MAINTAINS|HAD_PUBLISH_RIGHTS]->(pk:Package)-[:HAS_VERSION]->(node)
-RETURN m.npm AS maintainer, reach, sum(score) AS pagerank, count(DISTINCT pk) AS packages_in_fleet,
+WITH m, reach, sum(score) AS pagerank, count(DISTINCT pk) AS packages_in_fleet
+RETURN m.npm AS maintainer, reach, pagerank, packages_in_fleet,
        size([(m)-[:HAD_PUBLISH_RIGHTS]->(x) | x]) > 0 AS compromised_in_incident
 ORDER BY reach DESC, pagerank DESC
 

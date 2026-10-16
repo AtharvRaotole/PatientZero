@@ -159,7 +159,8 @@ MATCH (r:CrewRun {id: $id})-[:RAN]->(a:AgentRun)
 OPTIONAL MATCH (a)-[:PRODUCED]->(f:Finding)
 WITH r, count(DISTINCT a) AS agents, count(f) AS findings
 OPTIONAL MATCH (r)-[:RAN]->(:AgentRun)-[h:HANDED_OFF_TO]->(:AgentRun)
-RETURN agents, findings, count(h) AS handoffs
+WITH agents, findings, count(h) AS handoffs
+RETURN agents, findings, handoffs
 
 // @query crew_delete_run
 // WRITE. Params: $id. Deletes one run with its agent runs and findings (tests).

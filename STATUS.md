@@ -43,6 +43,11 @@ _Last updated: Fri Oct 16 2026, 12:40 AM ET_
 - [x] `POST /api/admin/reset` keeps BYO scan graphs unless `?include_byo=true` (`INCLUDE_BYO=true scripts/reset-live.sh`).
 - [x] 185 tests green on FalkorDB 6.0.1 and 4.22.1 (acme with Shai-Hulud loaded, plus an old-format acme graph to exercise the backfill).
 
+## FalkorDB 6.0.1 crash fix (Fri Oct 16 2026, about 12:20 PM ET)
+- [x] Crashing construct: a RETURN with an aggregate plus 2+ grouping keys where a non-first key is null panics FalkorDB 6.0.1 (`src/reply.rs` unwrap on None, server exits). Minimal: `MATCH (n:N) RETURN n.name AS x, n.missing AS a, count(n)`. 4.22.1 is fine.
+- [x] Fix: aggregate in WITH, then RETURN (who_to_wake, fleet_overview, list_incidents, recall, single_points_of_failure, watch_replay_lookup, crew_count_check). who_to_wake also coalesces team display/slack/pager; `ingest/load.py team_defaults` sets them at build time (acme, globex).
+- [x] `tests/test_query_safety.py`: static check over every query plus a live run on prop-less nodes; 191 green on a throwaway 6.0.1, a throwaway 4.22.1, and the main local DB.
+
 ## Next actions
 - Final polish pass on screenshots for the README
 - Redeploy after pushing UI changes: `sh scripts/redeploy-railway.sh` (ships origin/main; no GitHub auto-deploy)

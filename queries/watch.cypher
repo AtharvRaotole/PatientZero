@@ -98,8 +98,9 @@ RETURN count(*) AS deleted
 // Params: $q (advisory id or alias, or pkg@version). The advisory record already in the graph.
 MATCH (a:Advisory)-[:AFFECTS]->(v:Version)
 WHERE toUpper($q) IN a.ids OR v.key = $q
+WITH a, v.pkg AS pkg, collect(DISTINCT v.version) AS bad_versions
 RETURN a.id AS id, a.ids AS ids, a.aliases AS aliases, a.summary AS summary, a.published AS published,
-       a.url AS url, v.pkg AS pkg, collect(DISTINCT v.version) AS bad_versions
+       a.url AS url, pkg, bad_versions
 LIMIT 1
 
 // @query watch_index_event_ts
