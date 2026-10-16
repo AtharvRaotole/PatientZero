@@ -98,8 +98,8 @@ function OwnershipGraph({ w }: { w: WakeEntry }) {
     ...w.oncall.map((o) => ({ ...o, on: true })),
     ...w.members.filter((m) => !oncall.has(m.handle)).map((m) => ({ ...m, on: false })),
   ].slice(0, 6);
-  const W = 330, rowH = 44, PX = 236, H = Math.max(150, people.length * rowH + 36);
-  const svc = { x: 40, y: H / 2 }, team = { x: 140, y: H / 2 };
+  const W = 350, rowH = 44, PX = 254, H = Math.max(150, people.length * rowH + 36);
+  const svc = { x: 62, y: H / 2 }, team = { x: 160, y: H / 2 };
   const py = (i: number) => H / 2 + (i - (people.length - 1) / 2) * rowH;
   const draw = (d: number) => ({ initial: { pathLength: 0, opacity: 0 }, animate: { pathLength: 1, opacity: 1 }, transition: { duration: 0.45, delay: d, ease: EASE } });
   return (

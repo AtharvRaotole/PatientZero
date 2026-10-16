@@ -186,7 +186,8 @@ app.include_router(admin.router)
 
 # Routers owned by other modules (BYO scans, playbooks). Included when importable; see
 # docs/CONTRACT-byo-playbooks.md. A missing or broken module never takes the core API down.
-for _mod in ("app.byo.routes", "app.byo.api", "app.playbooks", "app.playbook_routes", "app.byo.playbooks"):
+for _mod in ("app.byo.routes", "app.byo.api", "app.playbooks", "app.playbook_routes", "app.byo.playbooks",
+             "app.watch.api", "app.bench.api"):
     try:
         import importlib
 
@@ -199,3 +200,11 @@ for _mod in ("app.byo.routes", "app.byo.api", "app.playbooks", "app.playbook_rou
             log.warning("router %s not loaded: %s", _mod, _e)
     except Exception as _e:  # noqa: BLE001
         log.warning("router %s failed to load: %s", _mod, _e)
+
+# Live OSV watch: scheduled background poll (off under pytest or with WATCH_INTERVAL_S=0). See app/watch.
+try:
+    from .watch import core as _watch_core
+
+    _watch_core.start_background()
+except Exception as _e:  # noqa: BLE001
+    log.warning("watch loop not started: %s", _e)

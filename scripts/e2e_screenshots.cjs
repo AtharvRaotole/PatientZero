@@ -202,7 +202,7 @@ const exposedCount = (page) =>
   const wk = await p2.evaluate(() => {
     const el = document.querySelector("[data-testid='responder']");
     const h2 = [...document.querySelectorAll("#report h2")].map((x) => x.innerText).join(" | ");
-    return { text: el.innerText, top: el.getBoundingClientRect().top, vh: innerHeight, svg: !!el.querySelector("svg[role='img']"), h2 };
+    return { text: el.innerText, top: el.getBoundingClientRect().top, vh: innerHeight, svg: !!el.querySelector("svg[aria-label*='owns']"), h2 };
   });
   check("who to wake: responder card with team, Slack, pager, on-call and graph, in view",
     /Identity & Access/.test(wk.text) && /#team-identity/.test(wk.text) && /acme-identity/.test(wk.text) && /Amara Okafor/.test(wk.text) && wk.svg && wk.top < wk.vh && /Page Amara Okafor for auth-service/.test(wk.h2),

@@ -7,6 +7,7 @@ from __future__ import annotations
 
 import asyncio
 import concurrent.futures
+import contextvars
 import json
 import logging
 import os
@@ -51,8 +52,9 @@ def _run(coro_fn, *a):
         asyncio.get_running_loop()
     except RuntimeError:
         return asyncio.run(coro_fn(*a))
+    ctx = contextvars.copy_context()  # keep request context (tenant) in the helper thread
     with concurrent.futures.ThreadPoolExecutor(1) as ex:  # called from inside a running loop: use a thread
-        return ex.submit(asyncio.run, coro_fn(*a)).result()
+        return ex.submit(ctx.run, asyncio.run, coro_fn(*a)).result()
 
 
 class _Session:

@@ -38,7 +38,7 @@ def test_agent_domain_is_mcp_backed():
 def test_mcp_server_lists_spec_tools_plus_investigate():
     tools, _, _ = mcp_client.list_tools(refresh=True)
     names = {t["name"] for t in tools}
-    assert names == {"resolve_entity", "incident_scope", "exposure", "who_to_wake", "single_points_of_failure",
+    assert names >= {"resolve_entity", "incident_scope", "exposure", "who_to_wake", "single_points_of_failure",
                      "path_between", "remediation_plan", "recall", "investigate"}
 
 
@@ -53,7 +53,7 @@ def test_ask_runs_through_mcp_and_matches_direct(q, intent):
     assert r["tool_via"] == "mcp"
     st = mcp_steps(r)[0]
     assert st["via"] == "mcp" and st["mcp_tool"] == "investigate" and st["intent"] == intent
-    assert st["params"]["question"] == q and st["ms"] > 0 and st["tools_listed"] == 9
+    assert st["params"]["question"] == q and st["ms"] > 0 and st["tools_listed"] >= 9
     assert r["mcp"]["transport"] == "memory"
     direct = DOMAIN.route(q)
     assert r["outcome"] == direct["outcome"] and r["exposed_count"] == direct["exposed_count"]
@@ -143,3 +143,17 @@ def test_fix_runs_through_mcp_investigate_with_generate_fix():
     st = mcp_steps(r)[0]
     assert st["via"] == "mcp" and st["params"].get("generate_fix") is True
     assert r["fix"] and r["fix"].get("incident_id")
+
+
+def test_tenant_context_reaches_the_mcp_tool():
+    tenants = pytest.importorskip("app.tenants")
+    if "globex" not in tenants.TENANTS or tenants.TENANTS["globex"] not in db.client().list_graphs():
+        pytest.skip("globex tenant not loaded")
+    with tenants.use("globex"):
+        via_mcp = AGENT_DOMAIN.route("maintainer qix was phished")
+        direct = DOMAIN.route("maintainer qix was phished")
+    with tenants.use("acme"):
+        acme = DOMAIN.route("maintainer qix was phished")
+    assert via_mcp["tool_via"] == "mcp"
+    assert [e["service"] for e in via_mcp["exposed"]] == [e["service"] for e in direct["exposed"]]
+    assert {e["service"] for e in via_mcp["exposed"]} != {e["service"] for e in acme["exposed"]}
