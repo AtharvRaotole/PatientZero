@@ -246,7 +246,7 @@ export function TracePanel({ trace, loading }: { trace: TraceStep[]; loading: bo
   const total = trace.reduce((a, s) => a + (s.tool === "mcp" ? 0 : s.ms || 0), 0); // the MCP call wraps the steps after it
   return (
     <Card>
-      <CardHeader icon={<Terminal />} title="Agent trace" sub={trace[0]?.tool === "mcp" && trace[0].via !== "direct" ? "Called through our MCP server, then human-written Cypher from queries/*.cypher." : "A fixed catalogue of tools. Human-written Cypher from queries/*.cypher."}
+      <CardHeader icon={<Terminal />} title="Agent trace" sub={trace.some((s) => s.tool === "mcp" && s.via !== "direct") ? "Called through our MCP server, then parameterised Cypher from queries/*.cypher, never generated from your text." : "A fixed catalogue of tools: parameterised Cypher from queries/*.cypher, never generated from your text."}
         right={<span className="font-mono text-[12px] text-ink-3 tabular">{trace.length} steps · {total.toFixed(1)} ms</span>} />
       <div className="divide-y divide-line">
         {loading && <div className="space-y-2 p-4">{[0, 1, 2, 3].map((i) => <Skeleton key={i} className="h-8" />)}</div>}

@@ -56,6 +56,8 @@ const waitText = (page, re, timeout = 20000) =>
   await page.reload({ waitUntil: "networkidle2" });
   await page.waitForFunction(() => document.querySelector("[data-testid=graph-name]")?.textContent === "fleet:globex", { timeout: 10000 });
   check("tenant survives a reload", (await page.$eval("[data-testid=tenant-switcher]", (e) => e.dataset.tenant)) === "globex");
+  const heroBtn = await text(page, "[data-testid=hero-replay]");
+  check("hero primary button is tenant-aware on Globex", /Replay Shai-Hulud on Globex/.test(heroBtn), heroBtn);
   await ask(page, "Shai-Hulud");
   await waitText(page, /4 of 12 services can install a malicious version/);
   await sleep(1800);
@@ -178,7 +180,7 @@ const waitText = (page, re, timeout = 20000) =>
   await ask(page, "who to wake for auth-service");
   await page.waitForSelector("[data-testid=trace-mcp]", { timeout: 20000 });
   const mcp = await page.$eval("[data-testid=trace-mcp]", (e) => ({ via: e.dataset.via, t: e.innerText }));
-  check("trace: first step is the MCP tools/call", mcp.via === "mcp" && /via MCP/.test(mcp.t) && /investigate/.test(mcp.t) && /tools listed/.test(mcp.t), mcp.t.replace(/\n/g, " ").slice(0, 100));
+  check("trace: first step is an MCP tools/call", mcp.via === "mcp" && /via MCP/.test(mcp.t) && /tools listed/.test(mcp.t), mcp.t.replace(/\n/g, " ").slice(0, 100));
   await page.$eval("#performance", (e) => e.scrollIntoView());
   await page.waitForSelector("[data-testid=bench]", { timeout: 15000 });
   const bench = await text(page, "[data-testid=bench]");

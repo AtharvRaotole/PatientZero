@@ -4,7 +4,7 @@
 
 - **Live demo:** https://patientzero-production-2cb3.up.railway.app
 - **Demo video:** VIDEO_LINK_TBD (added at submission)
-- **Tracks:** FalkorDB Hackathon, Track 1 (Agents That Act on Connected Data), plus Track 2 via the Playbook memory (see [Tracks](#tracks))
+- **Tracks:** FalkorDB Hackathon, Track 1 (Agents That Act on Connected Data) and Track 2 (Agent Memory and Coordination); see [Tracks](#tracks)
 
 PatientZero replays the real September 8, 2025 npm compromise (maintainer `qix` phished, 19 malicious versions of
 `debug`, `chalk`, `ansi-styles` and friends) against a fleet graph in FalkorDB. Every answer is a Cypher traversal
@@ -64,16 +64,16 @@ Then scroll to **Would you have been hit on Sept 8, 2025?** and scan a public re
 - **Bring your own repo**: "Would you have been hit on Sept 8, 2025?" Paste a GitHub URL or package.json. Try `github.com/axios/axios` (exposed through `https-proxy-agent` then `debug`) and `github.com/expressjs/express/tree/4.x` with runtime deps only (clean).
 - **Second incident, the Shai-Hulud worm (Sept 15, 2025)**: 203 OSV malicious-package advisories (589 versions), loaded on the live deploy. Ask "were we hit by the Shai-Hulud worm?". The honest answer for the Acme fleet is "Not hit": no service depends on any of those packages. Locally, enable it with `INCIDENTS=qix,shai-hulud` (on an existing graph, `python ingest/seed_if_missing.py` adds it with MERGE only, so memory is kept). Bring-your-own scans check the qix incident only.
 
-- **Run the incident crew**: four agents (Triage, Investigator, Responder, Fixer) work the incident live: one lane per agent over SSE, the reads and handoffs drawn as a DAG, and a summary with who to page, page drafts (never sent), the patch plan and the playbook. Every run is replayable from the graph with a shareable `?run=` URL.
+- **Run the incident crew**: four deterministic agents (Triage, Investigator, Responder, Fixer; no LLM, reproducible, a run takes well under a second) work the incident over shared graph state: one lane per agent over SSE, the reads and handoffs drawn as a DAG, and a summary with who to page, page drafts (never sent), the patch plan and the playbook. Every run is replayable from the graph with a shareable `?run=` URL.
 - **Switch tenants**: Acme (22 services) and Globex (12 services) are separate FalkorDB graphs with separate memory. Shai-Hulud: Acme is not hit, Globex has 4 of 12 services exposed.
 - **Ask follow-ups**: "who should I wake for that?", "and at depth 6?". The session lives in the graph and the history rail shows every turn and what it resolved to.
 - **Watch live npm malware**: every 10 minutes the OSV watch checks new `MAL-*` advisories against both fleets and shows a per-tenant verdict on the timeline ("not hit: 25 new advisories checked"). A labelled replay runs the real `debug@4.4.2` advisory through the same pipeline. If every version of a package is malicious, the answer says so up front.
-- **See the MCP call**: the first step of every trace is the agent's MCP `tools/call` (tool, arguments, latency).
+- **See the MCP call**: every trace shows the agent's MCP `tools/call` (tool, arguments, latency). In deterministic mode it is the first step; in LLM mode it follows the model's tool choice.
 - **Benchmark view**: the latest concurrency run (throughput, p50/p95/p99, errors), labelled with where it ran.
 
 ## Agent design
-- A **deterministic intent router** picks among 8 hand-written tools (`queries/*.cypher`). It is the default path, the fallback and the test oracle.
-- **Tool selection through MCP.** The agent is an MCP client of PatientZero's own MCP server (the same server Claude Desktop or Cursor use), over the official `mcp` SDK's in-memory transport: it lists the tools (`tools/list`) and runs the chosen one with `tools/call`. The router maps its intent to an MCP tool; in LLM mode the model's function schemas are built from the MCP tool list (write tools such as `remediation_plan` and `crew_run` are never offered). Every answer's trace starts with the MCP call (`via: mcp`, tool, arguments, latency); if MCP itself fails the agent calls the same function directly and the trace says `via: direct`. Cost: about 4 ms per question. `MCP_AGENT=off` disables it.
+- A **deterministic intent router** picks among 8 tools, each backed by parameterised Cypher in `queries/*.cypher`. It is the default path, the fallback and the test oracle.
+- **Tool selection through MCP.** The agent is an MCP client of PatientZero's own MCP server (the same server Claude Desktop or Cursor use), over the official `mcp` SDK's in-memory transport: it lists the tools (`tools/list`) and runs the chosen one with `tools/call`. The deterministic router's graph tools run as MCP `tools/call`s (the trace names each one); in LLM mode the model itself selects among the MCP tools listed by `tools/list` (write tools such as `remediation_plan` and `crew_run` are never offered). The trace shows each MCP call (`via: mcp`, tool, arguments, latency): first in deterministic mode, after the model's choice in LLM mode; if MCP itself fails the agent calls the same function directly and the trace says `via: direct`. Cost: about 4 ms per question. `MCP_AGENT=off` disables it.
 - With `OPENAI_API_KEY` set, the **LLM is used only when the router is not confident** (or the user picks LLM mode). It can only call the same tools; it never writes Cypher. Plain-English phrasings of the loaded incident ("that npm phishing attack last September", "the guy who maintains chalk got phished") are mapped to maintainer `qix` by router synonyms first, so they never need the LLM.
 - **Name check on every LLM answer**: any service, package, person or @handle in the model's sentence that is not in the tool result (including names the graph has never heard of, like an invented service) is flagged. If anything is flagged, the model's sentence is dropped, the templated deterministic answer is shown instead, and the trace says "LLM answer rejected".
 - The **AI incident summary** runs only when the user clicks for it, and is withheld under the same rule.
@@ -191,7 +191,7 @@ trees. A path is exposed when the semver range on its last edge admits the malic
 on Sept 8, 2025 would have resolved). FalkorDB returns the candidate paths; npm semver runs in the app.
 
 ## Cypher queries and algorithms
-Every tool runs hand-written, parameterised Cypher from [`queries/`](queries/). No Cypher is ever generated from
+Every tool runs parameterised Cypher from [`queries/`](queries/). No Cypher is ever generated from
 user text or by the LLM. Each file marks its statements with `// @query <name>`.
 
 | File | Queries | What it does |
@@ -233,7 +233,7 @@ Each focus point of both tracks, the feature that covers it, and where it lives.
 |---|---|---|
 | Reason over connected data with multi-hop traversals | Exposure: service to compromised version over `DEPENDS_ON`/`REQUIRES` up to 6 hops, then npm semver on the last edge; honest negatives; `path_between`, blast radius rings | `queries/exposure.cypher`, `queries/incident_scope.cypher`, `queries/path_between.cypher`, `backend/app/tools.py`, `backend/app/router.py` |
 | Graph algorithms | Maintainer single points of failure with `algo.pageRank` plus fleet reach | `queries/single_points_of_failure.cypher` |
-| Tool use, with tool selection through MCP | The agent lists and calls its tools over its own MCP server (official SDK, in-memory transport); every trace starts with the MCP call; direct fallback flagged | `backend/app/mcp_agent/`, `backend/app/mcp_server.py` |
+| Tool use, with tool selection through MCP | The agent lists and calls its tools over its own MCP server (official SDK, in-memory transport). In deterministic mode the router's tool calls go over MCP; in LLM mode the model picks among the listed MCP tools. Direct fallback is flagged | `backend/app/mcp_agent/`, `backend/app/mcp_server.py` |
 | Grounded LLM use | The router first; the LLM only picks tools, never writes Cypher; answers naming anything not in the tool result are rejected | `backend/app/core/agent.py` |
 | Acting: decide and write back | Who to wake, an install-safe package.json patch per service (verified with real `npm install`), Slack drafts, `(:Incident)` written to the graph | `queries/who_to_wake.cypher`, `queries/remediation_plan.cypher`, `backend/app/tools.py`, `docs/verification/npm-patches.txt` |
 | Acting on live, real-world data | OSV npm malware watch every 10 minutes into every tenant graph, with a per-tenant verdict, SSE feed, timeline `watch` events and a labelled replay | `backend/app/watch/`, `queries/watch.cypher`, `docs/CONTRACT-watch-mcp-bench.md` |
@@ -248,7 +248,7 @@ Each focus point of both tracks, the feature that covers it, and where it lives.
 | Procedural memory | Approve a fix once and it becomes a `Playbook` that later incidents find by traversal, with `uses_count` and `last_used`; the Fixer prefers the most reused one | `backend/app/playbooks.py`, `queries/playbook.cypher` |
 | Persistent conversation history | `(:Session)-[:HAS_TURN]->(:Turn)-[:ABOUT]->(node)`; follow-ups resolve "that" from the last turn in the graph | `backend/app/sessions.py`, `queries/sessions.cypher` |
 | Separate memory per tenant | Acme and Globex are separate graphs (multigraph); nothing approved in Acme is recalled in Globex | `backend/app/tenants.py` |
-| High-concurrency reads and writes | 20 concurrent crews in a test with exact counts; live benchmark through `/api/bench/run` on the deployed FalkorDB 4.22.1: 30 clients for 20 s with 20% writes, **740.6 ops/s, p50 36 ms, p95 84 ms, p99 112 ms, 0 errors** (14,813 ops; reads 593/s, writes 147/s). Local: 64 clients 2,292 ops/s (p99 70 ms). Full numbers: [docs/verification/concurrency.md](docs/verification/concurrency.md) | `backend/app/bench/`, `scripts/bench_concurrency.py`, `backend/tests/test_crew_sessions_tenants.py` |
+| High-concurrency reads and writes | 20 concurrent crews in a test with exact counts; in-process database benchmark through `/api/bench/run` on the deployed FalkorDB 4.22.1: 30 clients for 20 s with 20% synthetic writes into a scratch graph (deleted afterwards) and retry on busy, **740.6 ops/s, p50 36 ms, p95 84 ms, p99 112 ms, 0 errors** (14,813 ops; reads 593/s, writes 147/s). This is not end-to-end HTTP throughput: through the public API it is about 50 req/s at 30 clients. Local in-process: 64 clients 2,292 ops/s (p99 70 ms). Full numbers: [docs/verification/concurrency.md](docs/verification/concurrency.md) | `backend/app/bench/`, `scripts/bench_concurrency.py`, `backend/tests/test_crew_sessions_tenants.py` |
 | Staying up under load | The crew never blocks the event loop; capped crew runs and SSE streams (global and per IP); bounded DB pool; stress test | `backend/app/streamguard.py`, `scripts/stress_streams.py`, `docs/verification/security.md` |
 
 ## Demo script
@@ -256,9 +256,9 @@ See [docs/DEMO.md](docs/DEMO.md).
 
 ## AI assistance disclosure
 - **Building:** this project was built with AI coding assistants (Grok Bot agents for research, spec, code, tests
-  and review). Every Cypher query in `queries/` was written for this project and reviewed by hand; all
+  and review). Every Cypher query in `queries/` is parameterised and was written for this project, never generated from user text; all
   acceptance checks are reproducible with the test commands above.
 - **At runtime:** the product works fully without any LLM. With `OPENAI_API_KEY` set, OpenAI `gpt-4o-mini` (via
-  `OPENAI_MODEL`) is used only to pick among the hand-written tools when the deterministic router is not confident,
+  `OPENAI_MODEL`) is used only to pick among the fixed tools when the deterministic router is not confident,
   to phrase answers, and for the optional click-to-run summary. It never writes Cypher, every name it outputs is
   checked against the tool result, and spend is capped server side.

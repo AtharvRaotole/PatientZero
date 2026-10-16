@@ -25,6 +25,7 @@ import { CommandBar, type Suggestion } from "@/components/CommandBar";
 import { QIX_DOWNLOADS_SOURCE, QIX_PACKAGES, QIX_WEEK_DOWNLOADS } from "@/lib/facts";
 
 const REPLAY = "maintainer qix was phished";
+const GLOBEX_REPLAY = "Shai-Hulud";
 const GraphCanvas = dynamic(() => import("@/components/GraphCanvas"), { ssr: false });
 
 const PRESETS: Suggestion[] = [
@@ -449,9 +450,9 @@ export default function Home() {
               onRun={(q, fromSuggestion) => run(q, { fresh: fromSuggestion && q.includes("phished") })} />
             <Interpreted result={loading ? null : result} asked={lastQuery} />
             <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
-              <button onClick={() => run(REPLAY, { fresh: true })} disabled={!up || loading}
+              <button onClick={() => run(tenant === "globex" ? GLOBEX_REPLAY : REPLAY, { fresh: true })} disabled={!up || loading} data-testid="hero-replay"
                 className="press inline-flex h-9 items-center gap-2 rounded-lg bg-ink px-3.5 text-[13.5px] font-medium text-paper transition-colors hover:bg-ink/85 disabled:opacity-40">
-                <Play className="h-3.5 w-3.5 fill-current" /> Replay the qix compromise
+                <Play className="h-3.5 w-3.5 fill-current" /> {tenant === "globex" ? "Replay Shai-Hulud on Globex" : "Replay the qix compromise"}
               </button>
               <button onClick={() => startCrew(tenant === "globex" ? "Shai-Hulud" : REPLAY)} disabled={!up} data-testid="hero-crew"
                 className="press inline-flex h-9 items-center gap-2 rounded-lg bg-surface px-3.5 text-[13.5px] font-medium text-ink ring-1 ring-inset ring-line-strong transition-colors hover:bg-subtle disabled:opacity-40">
@@ -532,7 +533,7 @@ export default function Home() {
           )}
           {err && <div className="mb-4"><ErrorCard kind={err.kind} message={err.message} onRetry={() => (lastQuery ? run(lastQuery) : loadMeta())} /></div>}
 
-          {!result && !loading && !err && up && <EmptyState onPick={(q) => run(q, { fresh: q.includes("phished") })} />}
+          {!result && !loading && !err && up && <EmptyState tenant={tenant} onPick={(q) => run(q, { fresh: q.includes("phished") || q === "Shai-Hulud" })} />}
 
           {loading && !result && <ReportSkeleton />}
 
@@ -666,8 +667,12 @@ function ReportSkeleton() {
   );
 }
 
-function EmptyState({ onPick }: { onPick: (q: string) => void }) {
-  const items = [
+function EmptyState({ onPick, tenant }: { onPick: (q: string) => void; tenant: string }) {
+  const items = tenant === "globex" ? [
+    { n: "01", title: "Replay Shai-Hulud on Globex", body: "The September 2025 worm against Globex's 12 services: what is exposed, through which chain, and who owns it.", q: "Shai-Hulud" },
+    { n: "02", title: "Replay the qix compromise", body: "The same 19 malicious versions Acme faced, traced through Globex's own fleet.", q: "maintainer qix was phished" },
+    { n: "03", title: "Find your single point of failure", body: "Rank npm accounts by how many Globex services they could reach if phished.", q: "who is our single point of failure?" },
+  ] : [
     { n: "01", title: "Replay the qix compromise", body: "Resolve the maintainer, scope the 19 malicious versions, walk every chain and find the owners.", q: "maintainer qix was phished" },
     { n: "02", title: "Find your single point of failure", body: "Rank npm accounts by how many services they could reach if phished.", q: "who is our single point of failure?" },
     { n: "03", title: "Explain a hidden dependency", body: "The shortest path from a service to a package, every range on the way.", q: "why is img-service connected to is-arrayish?" },
@@ -721,7 +726,7 @@ function LastTraversal({ result, loading, queries }: { result: AskResponse | nul
       <span className="tabular">{rows.toLocaleString()} rows read</span>
     </>
   );
-  else if (queries) body = <><span className="h-1.5 w-1.5 rounded-full bg-line-strong" />{queries} hand-written Cypher queries, no generated Cypher</>;
+  else if (queries) body = <><span className="h-1.5 w-1.5 rounded-full bg-line-strong" />{queries} parameterised Cypher queries, none generated from your text</>;
   else return <div className="h-5" />;
   return (
     <AnimatePresence mode="wait" initial={false}>

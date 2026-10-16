@@ -226,8 +226,8 @@ export function CrewView({ spec, onClose, onRunId, onFinished, onRestart }: {
         </div>
       </div>
       <div className="flex flex-wrap items-center gap-x-4 gap-y-1 border-b border-line bg-paper/60 px-5 py-2 text-[12px] text-ink-3">
-        <span>Four agents. Every handoff goes through FalkorDB: each agent reads its inputs back from the graph.</span>
-        <span className="ml-auto tabular">{realMs !== undefined ? <>Actual run <span className="font-mono text-ink-2">{realMs.toFixed(1)} ms</span>, shown at reading speed</> : v.replay ? "Replaying" : "Streaming"}</span>
+        <span>Four deterministic specialists over shared graph state: each one reads its inputs back from FalkorDB, and every finding and handoff is a node or edge there. No LLM in the loop.</span>
+        <span className="ml-auto tabular">{realMs !== undefined ? <>Actual run <span className="font-mono text-ink-2">{realMs.toFixed(1)} ms</span>, shown at reading speed</> : "Replayed at reading speed"}</span>
       </div>
       {v.followup && <div className="px-5 pt-1"><FollowupLine f={v.followup} /></div>}
 
@@ -509,7 +509,7 @@ function Summary({ r }: { r: CrewRun }) {
       </div>
 
       <div className="mt-5 grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-        <Tile title="Exposed" sub={`${br.safe?.length ?? 0} more reach an affected package, ranges exclude it`}>
+        <Tile title="Exposed" sub={`${exposed.length} service${exposed.length === 1 ? "" : "s"} can install a malicious version`}>
           <ul className="space-y-1.5">
             {exposed.map((e) => (
               <li key={e.service} className="flex items-center justify-between gap-2 text-[13px]">
@@ -518,6 +518,11 @@ function Summary({ r }: { r: CrewRun }) {
               </li>
             ))}
           </ul>
+          {(br.safe?.length ?? 0) > 0 && (
+            <p className="mt-3 border-t border-line pt-2.5 text-[12px] leading-relaxed text-ink-3">
+              Not exposed: {br.safe.length} more service{br.safe.length === 1 ? " reaches" : "s reach"} an affected package, but {br.safe.length === 1 ? "its range excludes" : "their ranges exclude"} the bad version.
+            </p>
+          )}
         </Tile>
         <Tile title="Who to page" sub={`${wake.length} team${wake.length === 1 ? "" : "s"}, highest tier first`}>
           <ul className="space-y-2" data-testid="crew-wake">
