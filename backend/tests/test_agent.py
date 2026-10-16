@@ -136,3 +136,22 @@ def test_registry_validates_args():
         reg.call("investigate", {})
     with pytest.raises(ValueError):
         reg.call("investigate", {"question": "q", "cypher": "MATCH (n) DELETE n"})
+
+
+def test_daily_cap_falls_back_with_note(llm_on, monkeypatch):
+    monkeypatch.setattr(config, "OPENAI_DAILY_CALL_CAP", 1)
+    mock_openai(monkeypatch, [{"role": "assistant", "content": "img-service is exposed."}])
+    d = FakeDomain()
+    assert agent.run(d, "first question")["mode"] == "llm"
+    r = agent.run(d, "second question")
+    assert r["mode"] == "deterministic"
+    assert any("daily LLM cap reached" in (t.get("note") or "") for t in r["trace"])
+
+
+def test_per_ip_limit(llm_on, monkeypatch):
+    monkeypatch.setattr(config, "OPENAI_PER_IP_PER_MIN", 2)
+    mock_openai(monkeypatch, [{"role": "assistant", "content": "ok"}] * 5)
+    d = FakeDomain()
+    modes = [agent.run(d, f"q{i}", client_ip="1.2.3.4")["mode"] for i in range(3)]
+    assert modes == ["llm", "llm", "deterministic"]
+    assert agent.run(d, "q9", client_ip="5.6.7.8")["mode"] == "llm"  # other clients unaffected

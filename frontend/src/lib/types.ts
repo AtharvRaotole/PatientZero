@@ -144,6 +144,56 @@ export interface AskResponse {
   graph: GraphElem;
   total_ms: number;
   llm_summary: string | null;
+  llm_unverified: string[];
+  mode: "llm" | "deterministic";
+  llm_model: string | null;
+}
+
+export interface SummaryResponse {
+  summary: string | null;
+  unverified: string[];
+  model: string | null;
+  ms?: number | null;
+  error?: string | null;
+}
+
+export interface Playbook {
+  id: string;
+  incident_id?: string;
+  name?: string;
+  approved_at?: string;
+  approved_by?: string;
+  trigger?: string;
+  overrides?: Record<string, string>;
+  services?: string[];
+  steps?: string[];
+  [k: string]: unknown;
+}
+
+export interface ByoItem {
+  package?: string;
+  bad_version?: string;
+  clean_version?: string | null;
+  advisory_id?: string | null;
+  ghsa?: string | null;
+  path?: Partial<PathInfo>;
+  via?: string[];
+  requirement?: string | null;
+  reason?: string;
+  hops?: number;
+}
+
+export interface ByoScan {
+  scan_id: string;
+  source?: { kind: string; label: string; ref?: string };
+  outcome?: Outcome;
+  summary: string;
+  exposed: ByoItem[];
+  not_exposed: ByoItem[];
+  overrides?: { overrides: Record<string, string> } | Record<string, string>;
+  graph?: GraphElem;
+  trace?: TraceStep[];
+  stats?: Record<string, number>;
 }
 
 export interface FleetGraph {
@@ -157,6 +207,7 @@ export interface Health {
   graph: string;
   graph_loaded: boolean;
   error?: string | null;
-  llm: "on" | "off";
+  agent_mode: "llm" | "deterministic";
+  llm_model: string | null;
   queries: number;
 }

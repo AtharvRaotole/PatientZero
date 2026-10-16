@@ -11,6 +11,9 @@ import {
   TracePanel, WakeCard, WakeOnly,
 } from "@/components/panels";
 import { Card, Pill, Skeleton } from "@/components/ui";
+import { AgentAnswer, PlaybooksPanel } from "@/components/agentui";
+import ByoSection from "@/components/ByoSection";
+import type { Playbook } from "@/lib/types";
 
 const GraphCanvas = dynamic(() => import("@/components/GraphCanvas"), { ssr: false });
 
@@ -49,6 +52,9 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [fixLoading, setFixLoading] = useState(false);
   const [err, setErr] = useState<Err | null>(null);
+  const [mode, setMode] = useState<"auto" | "deterministic">("auto");
+  const [playbooks, setPlaybooks] = useState<Playbook[] | null>(null);
+  const [pbErr, setPbErr] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
 
@@ -86,6 +92,21 @@ export default function Home() {
     return () => window.removeEventListener("keydown", onKey);
   }, []);
 
+  const refreshPlaybooks = useCallback(async () => {
+    try {
+      const r = await apiGet<{ playbooks: Playbook[] }>("/api/playbooks");
+      setPlaybooks(r.playbooks ?? []);
+      setPbErr(null);
+    } catch (e) {
+      const a = e as ApiError;
+      setPbErr(a.status === 404 ? "Playbooks are not enabled on this backend yet." : a.message);
+    }
+  }, []);
+
+  useEffect(() => {
+    refreshPlaybooks();
+  }, [refreshPlaybooks]);
+
   const refreshIncidents = useCallback(async () => {
     try {
       const inc = await apiGet<{ incidents: Incident[] }>("/api/incidents");
@@ -104,7 +125,7 @@ export default function Home() {
       setLoading(true);
       setErr(null);
       try {
-        const r = await apiPost<AskResponse>("/api/ask", { query: text, depth: opts.depth ?? depth, fresh: !!opts.fresh, session: sessionId() });
+        const r = await apiPost<AskResponse>("/api/ask", { query: text, depth: opts.depth ?? depth, fresh: !!opts.fresh, session: sessionId(), mode });
         setResult(r);
         setTimeout(() => resultsRef.current?.scrollIntoView({ behavior: "smooth", block: "start" }), 450);
       } catch (e) {
@@ -116,7 +137,7 @@ export default function Home() {
         setLoading(false);
       }
     },
-    [depth, loadMeta],
+    [depth, loadMeta, mode],
   );
 
   const onDepth = (d: number) => {
@@ -181,7 +202,8 @@ export default function Home() {
           ) : (
             <Skeleton className="h-5 w-40 rounded-full" />
           )}
-          <Pill>LLM {health?.llm ?? "off"}: deterministic router</Pill>
+          <a href="#byo" className="hidden rounded-full border border-white/10 px-3 py-0.5 text-[11px] text-white/70 transition hover:border-white/25 hover:text-white md:inline-flex">Scan your repo</a>
+          <ModeSwitch llm={health?.agent_mode === "llm"} model={health?.llm_model ?? null} mode={mode} setMode={setMode} />
         </div>
       </header>
 
@@ -308,6 +330,7 @@ export default function Home() {
           {result && (
             <div className={clsx("space-y-4 transition-opacity", loading && "opacity-50")}>
               <OutcomeBanner r={result} onFresh={() => run(lastQuery, { fresh: true })} />
+              <AgentAnswer key={result.query + result.total_ms} r={result} llmAvailable={health?.agent_mode === "llm"} />
               <ScopeStrip r={result} />
               <div className="grid gap-4 lg:grid-cols-[minmax(0,1.65fr)_minmax(0,1fr)]">
                 <div className="space-y-4">
@@ -326,23 +349,39 @@ export default function Home() {
                       </div>
                     </Card>
                   )}
-                  {(result.exposed.length > 0 || result.fix) && <FixPanel canFix={result.exposed.length > 0} fix={result.fix} loading={fixLoading} onFix={onFix} />}
+                  {(result.exposed.length > 0 || result.fix) && <FixPanel canFix={result.exposed.length > 0} fix={result.fix} loading={fixLoading} onFix={onFix} onApproved={() => refreshPlaybooks()} />}
                 </div>
                 <div className="space-y-4">
                   <TracePanel trace={result.trace} loading={false} />
                   <WakeCard wake={result.wake} />
                   <MemoryPanel incidents={incidents} onRecall={(q) => run(q)} onReset={onReset} />
+                  <PlaybooksPanel playbooks={playbooks} error={pbErr} />
                 </div>
               </div>
             </div>
           )}
         </div>
 
+        {up && <ByoSection />}
+
         <footer className="mt-16 flex flex-wrap items-center justify-between gap-3 border-t border-white/[0.06] pt-6 text-[11px] text-white/35">
           <span>Acme, its services, teams and people are synthetic. npm packages, versions, dependency ranges (deps.dev) and advisories (OSV) are real.</span>
           <span>Every answer comes from a Cypher query or algo.* call against FalkorDB. No LLM required.</span>
         </footer>
       </main>
+    </div>
+  );
+}
+
+function ModeSwitch({ llm, model, mode, setMode }: { llm: boolean; model: string | null; mode: "auto" | "deterministic"; setMode: (m: "auto" | "deterministic") => void }) {
+  if (!llm) return <Pill tone="accent">Deterministic router</Pill>;
+  return (
+    <div className="flex items-center rounded-full bg-white/[0.05] p-0.5 text-[11px] ring-1 ring-inset ring-white/10" title="Auto: deterministic router first, the LLM only picks tools when the router is unsure">
+      {(["auto", "deterministic"] as const).map((m) => (
+        <button key={m} onClick={() => setMode(m)} className={clsx("rounded-full px-2.5 py-0.5 font-medium transition", mode === m ? "bg-white/15 text-white" : "text-white/50 hover:text-white/80")}>
+          {m === "auto" ? `LLM assist · ${model ?? "gpt-4o-mini"}` : "Deterministic"}
+        </button>
+      ))}
     </div>
   );
 }

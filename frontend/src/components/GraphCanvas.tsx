@@ -5,9 +5,13 @@ import ForceGraph2D from "react-force-graph-2d";
 import type { FleetGraph, GraphElem } from "@/lib/types";
 
 type Props = {
+  /** Base graph (whole fleet). When null, `highlight` is rendered on its own. */
   fleet: FleetGraph | null;
+  /** Subgraph to emphasize: nodes/edges with type (service | package | affected) and status (exposed | safe | path). */
   highlight: GraphElem | null;
   onNodeClick?: (id: string) => void;
+  /** Reserve space on the left for an overlay panel (px). Defaults to the hero headline width on wide screens. */
+  leftInset?: number;
 };
 
 type N = { id: string; kind: "Service" | "Version"; tier?: number | null; team?: string | null; x?: number; y?: number };
@@ -21,7 +25,7 @@ const C = {
   dim: "rgba(148,163,184,0.45)",
 };
 
-export default function GraphCanvas({ fleet, highlight, onNodeClick }: Props) {
+export default function GraphCanvas({ fleet, highlight, onNodeClick, leftInset }: Props) {
   const wrap = useRef<HTMLDivElement>(null);
   const fg = useRef<any>(undefined);
   const [size, setSize] = useState({ w: 800, h: 560 });
@@ -35,7 +39,19 @@ export default function GraphCanvas({ fleet, highlight, onNodeClick }: Props) {
     return () => ro.disconnect();
   }, []);
 
+  // Only depend on `highlight` in standalone mode, so highlighting never resets the fleet simulation.
+  const standalone = fleet ? null : highlight;
   const data = useMemo(() => {
+    if (!fleet && standalone) {
+      const highlight = standalone;
+      // Standalone mode: render any subgraph (e.g. a BYO scan) without the fleet underneath.
+      const nodes: N[] = highlight.nodes.map((n) => ({ id: n.id, kind: n.type === "service" ? "Service" : "Version" }));
+      const ids = new Set(nodes.map((n) => n.id));
+      const links = highlight.edges
+        .filter((e) => ids.has(e.source) && ids.has(e.target))
+        .map((e) => ({ source: e.source, target: e.target, requirement: e.requirement, key: `${e.source}->${e.target}` }));
+      return { nodes, links };
+    }
     if (!fleet) return { nodes: [] as N[], links: [] as any[] };
     const nodes: N[] = fleet.nodes.map((n) => ({ id: n.id, kind: n.kind, tier: n.tier, team: n.team }));
     const ids = new Set(nodes.map((n) => n.id));
@@ -43,7 +59,7 @@ export default function GraphCanvas({ fleet, highlight, onNodeClick }: Props) {
       .filter((e) => ids.has(e.source) && ids.has(e.target))
       .map((e) => ({ source: e.source, target: e.target, requirement: e.requirement, key: `${e.source}->${e.target}` }));
     return { nodes, links };
-  }, [fleet]);
+  }, [fleet, standalone]);
 
   const hl = useMemo(() => {
     const nodes = new Map<string, { type: string; status?: string; bad?: string }>();
@@ -69,7 +85,7 @@ export default function GraphCanvas({ fleet, highlight, onNodeClick }: Props) {
       const filter = hl.active ? (n: N) => hl.nodes.has(n.id) : () => true;
       const bb = g.getGraphBbox(filter);
       if (!bb) return;
-      const leftPad = size.w >= 1100 ? Math.min(560, size.w * 0.42) : 0;
+      const leftPad = leftInset ?? (size.w >= 1100 ? Math.min(560, size.w * 0.42) : 0);
       const pad = 70;
       const bw = Math.max(bb.x[1] - bb.x[0], 1);
       const bh = Math.max(bb.y[1] - bb.y[0], 1);
@@ -82,7 +98,7 @@ export default function GraphCanvas({ fleet, highlight, onNodeClick }: Props) {
       g.zoom(z, 900);
     }, hl.active ? 150 : 1800);
     return () => clearTimeout(t);
-  }, [hl, data, size.w, size.h]);
+  }, [hl, data, size.w, size.h, leftInset]);
 
   const colorOf = (n: N): string => {
     const h = hl.nodes.get(n.id);

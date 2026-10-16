@@ -78,7 +78,7 @@ def base(text: str, intent: str, depth: int) -> dict:
 
 
 def ask(text: str, depth: int | None = None, fresh: bool = False, session: str = "",
-        generate_fix: bool = False) -> dict:
+        generate_fix: bool = False, client_ip: str = "") -> dict:
     t0 = time.perf_counter()
     depth = max(1, min(config.MAX_DEPTH, int(depth or config.DEFAULT_DEPTH)))
     text = (text or "").strip()

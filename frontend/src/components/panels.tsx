@@ -3,11 +3,13 @@ import { AnimatePresence, motion } from "framer-motion";
 import clsx from "clsx";
 import {
   Activity, AlertTriangle, BellRing, Brain, ChevronDown, CircleCheck, CircleHelp, Crown, Database, FileCode2,
-  GitBranch, History, RotateCcw, ShieldAlert, ShieldCheck, Sparkles, Terminal, Wand2,
+  GitBranch, History, RotateCcw, ShieldAlert, ShieldCheck, Terminal, Wand2,
 } from "lucide-react";
 import { useState } from "react";
 import type { AskResponse, Fix, Incident, ServiceExposure, TraceStep, WakeEntry } from "@/lib/types";
 import { Card, CardHeader, CopyButton, PathChain, Pill, Skeleton } from "./ui";
+import { ApproveBar, ModePill } from "./agentui";
+import type { Playbook } from "@/lib/types";
 
 const OUTCOME: Record<string, { label: string; tone: "danger" | "safe" | "violet" | "warn"; icon: React.ReactNode }> = {
   answered_with_path: { label: "answered_with_path", tone: "danger", icon: <GitBranch className="h-3.5 w-3.5" /> },
@@ -17,6 +19,7 @@ const OUTCOME: Record<string, { label: string; tone: "danger" | "safe" | "violet
 };
 
 export function OutcomeBanner({ r, onFresh }: { r: AskResponse; onFresh: () => void }) {
+  const tokens = r.trace.reduce((a, s) => a + (Number((s as { tokens?: number }).tokens) || 0), 0);
   const o = OUTCOME[r.outcome];
   const neutral = r.outcome === "answered_with_path" && !r.exposed.length;
   return (
@@ -25,6 +28,8 @@ export function OutcomeBanner({ r, onFresh }: { r: AskResponse; onFresh: () => v
         <Pill tone={neutral ? "accent" : o.tone}>{o.icon}{o.label}</Pill>
         <Pill>intent: {r.intent}</Pill>
         {r.trigger && <Pill tone="accent">trigger: {r.trigger}</Pill>}
+        <ModePill mode={r.mode} model={r.llm_model} />
+        {r.mode === "llm" && <Pill tone="violet">{tokens} tokens</Pill>}
         <Pill>{r.total_ms.toFixed(0)} ms total</Pill>
       </div>
       <div className="mt-3 flex flex-wrap items-end justify-between gap-4">
@@ -41,7 +46,6 @@ export function OutcomeBanner({ r, onFresh }: { r: AskResponse; onFresh: () => v
           </button>
         )}
       </div>
-      {r.llm_summary && <p className="mt-2 text-sm text-white/60"><Sparkles className="mr-1 inline h-3.5 w-3.5" />{r.llm_summary}</p>}
     </Card>
   );
 }
@@ -147,7 +151,15 @@ export function TracePanel({ trace, loading }: { trace: TraceStep[]; loading: bo
       <div className="scroll-thin max-h-[440px] space-y-1.5 overflow-y-auto p-4">
         {loading && [0, 1, 2, 3].map((i) => <Skeleton key={i} className="h-10" />)}
         {!loading && trace.length === 0 && <p className="py-6 text-center text-sm text-white/40">Tool calls appear here.</p>}
-        {!loading && trace.map((s, i) => (
+        {!loading && trace.map((s, i) => !s.cypher ? (
+          <motion.div key={i} initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.07 }}
+            className={clsx("flex items-center gap-3 rounded-xl border px-3 py-2", s.tool === "llm" ? "border-violet-400/20 bg-violet-500/[0.06]" : "border-white/[0.05] bg-white/[0.02]", s.error && "border-rose-400/30")}>
+            <span className={clsx("grid h-5 w-5 place-items-center rounded-md font-mono text-[10px]", s.tool === "llm" ? "bg-violet-500/20 text-violet-200" : "bg-white/[0.06] text-white/50")}>{s.tool === "llm" ? "AI" : i + 1}</span>
+            <span className={clsx("font-mono text-[12px]", s.tool === "llm" ? "text-violet-200" : "text-white/60")}>{s.tool}</span>
+            <span className="truncate text-[11.5px] text-white/50">{s.error ? `${s.note ?? ""} ${s.error}` : s.note}</span>
+            {s.ms > 0 && <span className="ml-auto shrink-0 font-mono text-[11px] text-white/40">{s.ms.toFixed(0)} ms</span>}
+          </motion.div>
+        ) : (
           <motion.div key={i} initial={{ opacity: 0, x: -8 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: i * 0.07 }}
             className={clsx("rounded-xl border bg-black/20", s.error ? "border-rose-400/30" : "border-white/[0.06]")}>
             <button onClick={() => setOpen(open === i ? null : i)} className="flex w-full items-center gap-3 px-3 py-2 text-left">
@@ -208,7 +220,7 @@ export function WakeCard({ wake }: { wake: WakeEntry[] }) {
   );
 }
 
-export function FixPanel({ canFix, fix, loading, onFix }: { canFix: boolean; fix: Fix | null; loading: boolean; onFix: () => void }) {
+export function FixPanel({ canFix, fix, loading, onFix, onApproved }: { canFix: boolean; fix: Fix | null; loading: boolean; onFix: () => void; onApproved: (p: Playbook) => void }) {
   const [sel, setSel] = useState(0);
   if (!canFix && !fix) return null;
   const s = fix?.per_service[sel];
@@ -228,6 +240,7 @@ export function FixPanel({ canFix, fix, loading, onFix }: { canFix: boolean; fix
             <Pill tone="violet"><Brain className="h-3 w-3" /> {fix.incident_id}</Pill>
             <Pill tone="safe">{fix.exposed_edges} EXPOSED edges written</Pill>
           </div>
+          <ApproveBar key={fix.incident_id} incidentId={fix.incident_id} onApproved={onApproved} />
           <div>
             <div className="mb-1.5 flex items-center justify-between">
               <span className="text-[11px] font-medium uppercase tracking-wider text-white/40">Fleet-wide overrides</span>

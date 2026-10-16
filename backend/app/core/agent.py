@@ -21,6 +21,7 @@ from typing import Any, Protocol
 import httpx
 
 from .. import config
+from . import budget
 from .registry import ToolRegistry
 
 MAX_STEPS = 6
@@ -66,6 +67,12 @@ def _llm_or_fallback(domain: Domain, text: str, **opts) -> dict:
     try:
         r = _run_llm(domain, text, **opts)
         _cache_put(key, r)
+        return r
+    except budget.BudgetExceeded as e:
+        r = domain.route(text, **opts)
+        r["trace"].insert(0, _step("llm", f"LLM skipped: {e}. Deterministic fallback.", llm_used=False,
+                                   budget_exceeded=True))
+        r["mode"] = "deterministic"
         return r
     except Exception as e:  # noqa: BLE001 - never fail the user because of the LLM
         r = domain.route(text, **opts)
@@ -123,7 +130,9 @@ def _step(tool: str, note: str, ms: float = 0, **kw) -> dict:
     return dict(tool=tool, query=None, cypher=None, params=kw.pop("params", {}), ms=ms, rows=0, note=note, **kw)
 
 
-def _chat(messages: list[dict], tools: list[dict] | None, max_tokens: int) -> tuple[dict, dict]:
+def _chat(messages: list[dict], tools: list[dict] | None, max_tokens: int, *, ip: str = "",
+          kind: str = "tools") -> tuple[dict, dict]:
+    budget.acquire(ip)  # raises BudgetExceeded: caller falls back to the deterministic router
     body: dict[str, Any] = {"model": config.OPENAI_MODEL, "temperature": 0, "messages": messages,
                             "max_tokens": max_tokens}
     if tools:
@@ -132,7 +141,9 @@ def _chat(messages: list[dict], tools: list[dict] | None, max_tokens: int) -> tu
                    headers={"Authorization": f"Bearer {config.OPENAI_API_KEY}"}, json=body)
     r.raise_for_status()
     data = r.json()
-    return data["choices"][0]["message"], data.get("usage") or {}
+    usage = data.get("usage") or {}
+    budget.record(kind, usage.get("total_tokens", 0), ip, config.OPENAI_MODEL)
+    return data["choices"][0]["message"], usage
 
 
 def _run_llm(domain: Domain, text: str, **opts) -> dict:
@@ -145,7 +156,8 @@ def _run_llm(domain: Domain, text: str, **opts) -> dict:
     total_tokens = 0
     for _ in range(MAX_STEPS):
         t = time.perf_counter()
-        msg, usage = _chat(messages, domain.registry.openai_tools(), config.LLM_MAX_TOKENS_TOOLS)
+        msg, usage = _chat(messages, domain.registry.openai_tools(), config.LLM_MAX_TOKENS_TOOLS,
+                           ip=opts.get("client_ip", ""))
         calls = msg.get("tool_calls") or []
         tokens = usage.get("total_tokens", 0)
         total_tokens += tokens
@@ -213,7 +225,7 @@ def unverified_names(text: str, allowed: set[str], known: set[str]) -> list[str]
     return bad
 
 
-def summarize(domain: Domain, response: dict) -> dict:
+def summarize(domain: Domain, response: dict, ip: str = "") -> dict:
     """One-paragraph AI incident summary of a deterministic result, name-checked against that result."""
     if not llm_available():
         return {"summary": None, "unverified": [], "model": None, "error": "LLM not configured (OPENAI_API_KEY)"}
@@ -227,7 +239,7 @@ def summarize(domain: Domain, response: dict) -> dict:
     if hit is not None:
         return {**hit, "cached": True}
     t = time.perf_counter()
-    msg, usage = _chat(msgs, None, config.LLM_MAX_TOKENS_SUMMARY)
+    msg, usage = _chat(msgs, None, config.LLM_MAX_TOKENS_SUMMARY, ip=ip, kind="summary")
     text = (msg.get("content") or "").strip()
     out = {"summary": text, "model": config.OPENAI_MODEL, "ms": round((time.perf_counter() - t) * 1000, 2),
            "tokens": usage.get("total_tokens", 0),

@@ -57,18 +57,25 @@ def health() -> dict[str, Any]:
             "graph_loaded": p.get("graph_loaded", False), "error": p.get("error"),
             "agent_mode": "llm" if agent.llm_available() else "deterministic",
             "llm_model": config.OPENAI_MODEL if agent.llm_available() else None,
-            "domain": DOMAIN.name, "tools": DOMAIN.registry.names(),
+            "domain": DOMAIN.name, "tools": DOMAIN.registry.names(), "llm_budget": agent.budget.status(),
             "queries": len(db.CATALOGUE)}
 
 
-def _ask(query: str, depth: int | None, fresh: bool, session: str, fix: bool, mode: str = "auto") -> AskResponse:
-    r = agent.run(DOMAIN, query, mode=mode, depth=depth, fresh=fresh, session=session, generate_fix=fix)
+def client_ip(request: Request) -> str:
+    fwd = request.headers.get("x-forwarded-for", "")
+    return fwd.split(",")[0].strip() if fwd else (request.client.host if request.client else "")
+
+
+def _ask(query: str, depth: int | None, fresh: bool, session: str, fix: bool, mode: str = "auto",
+         ip: str = "") -> AskResponse:
+    r = agent.run(DOMAIN, query, mode=mode, depth=depth, fresh=fresh, session=session, generate_fix=fix,
+                  client_ip=ip)
     return AskResponse.model_validate(r)
 
 
 @app.post("/api/ask", response_model=AskResponse, responses={503: {"model": ErrorResponse}})
-def api_ask(req: AskRequest) -> AskResponse:
-    return _ask(req.query, req.depth, req.fresh, req.session, False, req.mode)
+def api_ask(req: AskRequest, request: Request) -> AskResponse:
+    return _ask(req.query, req.depth, req.fresh, req.session, False, req.mode, client_ip(request))
 
 
 @app.post("/api/fix", response_model=AskResponse, responses={503: {"model": ErrorResponse}})
@@ -81,11 +88,13 @@ def api_fix(req: FixRequest) -> AskResponse:
 
 
 @app.post("/api/summary", response_model=SummaryResponse)
-def api_summary(req: SummaryRequest) -> SummaryResponse:
+def api_summary(req: SummaryRequest, request: Request) -> SummaryResponse:
     """Optional AI incident summary (one paragraph) of the deterministic result, name-checked against it."""
     r = DOMAIN.route(req.query, depth=req.depth, fresh=req.fresh)
     try:
-        return SummaryResponse(**agent.summarize(DOMAIN, r))
+        return SummaryResponse(**agent.summarize(DOMAIN, r, client_ip(request)))
+    except agent.budget.BudgetExceeded as e:
+        return SummaryResponse(summary=None, error=f"LLM limit: {e}")
     except Exception as e:  # noqa: BLE001 - optional feature
         return SummaryResponse(summary=None, error=f"LLM error: {type(e).__name__}")
 
