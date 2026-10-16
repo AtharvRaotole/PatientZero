@@ -132,4 +132,9 @@ docker run --rm -p 8000:8000 -e FALKORDB_HOST=host.docker.internal patientzero
   `POST /api/byo/cleanup`.
 - Upstream calls (raw.githubusercontent.com, api.deps.dev) are cached under `data/raw/byo/`. When the
   network fails, a stale cache entry is used before the scan gives up.
-- Memory housekeeping for demos: `POST /api/memory/reset` (incidents and findings), `DELETE /api/playbooks`.
+- Admin endpoints (`POST /api/admin/reset`, `POST /api/memory/reset`, `DELETE /api/playbooks`,
+  `POST /api/byo/cleanup`) need the `X-Admin-Token` header. Set `ADMIN_TOKEN` on the Railway `patientzero`
+  service (a strong random value; stored locally at `~/.config/patientzero/admin-token`, chmod 600).
+- **Before recording or judging, reset the demo** so everyone starts clean (incidents, findings, playbooks and
+  BYO scan graphs; the fleet data is untouched):
+  `curl -XPOST https://patientzero-production-2cb3.up.railway.app/api/admin/reset -H "X-Admin-Token: $(cat ~/.config/patientzero/admin-token)"`

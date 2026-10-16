@@ -2,7 +2,9 @@
 
 > When an npm maintainer gets phished, PatientZero tells you in seconds which of your services are hit, the exact dependency chain, who to wake, and the fix. Built on FalkorDB.
 
-**Track:** FalkorDB Hackathon, Track 1 (Agents That Act on Connected Data)
+- **Live demo:** https://patientzero-production-2cb3.up.railway.app
+- **Demo video:** VIDEO_LINK_TBD (added at submission)
+- **Tracks:** FalkorDB Hackathon, Track 1 (Agents That Act on Connected Data), plus Track 2 via the Playbook memory (see [Tracks](#tracks))
 
 PatientZero replays the real September 8, 2025 npm compromise (maintainer `qix` phished, 19 malicious versions of
 `debug`, `chalk`, `ansi-styles` and friends) against a fleet graph in FalkorDB. Every answer is a Cypher traversal
@@ -17,23 +19,24 @@ plus an npm semver check on the last edge, shown with its trace. Nothing is gues
 | Bring-your-own repo scans | **Real** (your public GitHub repo or package.json, resolved live via deps.dev) |
 
 ## What you can do
-- **Ask** in plain English: "qix was phished, who is affected?", "debug@4.4.2", "GHSA-4x49-vf9v-38px", "who do I wake for checkout-api", "where are our single points of failure?", "how does auth-service reach simple-swizzle?".
+- **Ask** in plain English: "qix was phished, who is affected?", "debug@4.4.2", "GHSA-4x49-vf9v-38px", "who do I wake for checkout-api", "where are our single points of failure?", "why is img-service connected to is-arrayish?", "the guy who maintains chalk got phished".
 - **See** the blast radius on the live fleet graph, with exposed chains animated, a depth slider (1 to 6 hops) and honest negatives ("checkout-api reaches debug through express@4.21.2, but the exact pin 2.6.9 excludes 4.4.2").
 - **Insights**, all derived from the returned graph paths:
   - *Blast radius rings*: compromised package in the center, one ring per hop out to the services.
   - *Exposure matrix*: services x compromised packages, shaded by the number of admitting paths.
   - *Reach vs PageRank*: maintainer single points of failure (fleet reach from Cypher, `algo.pageRank` over the dependency graph).
   - *Incident timeline*: every dated event in the graph, from the compromise and OSV advisories to incidents and approved playbooks.
-- **Fix**: per-service `overrides` JSON pinned to clean versions, Slack drafts per owning team, written back to the graph as an `(:Incident)`.
-- **Remember**: ask again in a new session and the answer comes from graph memory. **Approve** a fix and it becomes a `(:Playbook)` that later incidents on the same packages reuse.
+- **Fix**: an install-safe package.json patch per service, Slack drafts per owning team, written back to the graph as an `(:Incident)`. Direct dependencies are bumped in `dependencies` (a plain override on a direct dependency fails with npm `EOVERRIDE`); transitive packages get an override scoped to the compromised major, for example `"ansi-styles@^6": "6.2.3"`, so chalk 4 keeps ansi-styles 4 and express 4 keeps debug 2. Verified with real `npm install` (npm 10, Node 20): [docs/verification/npm-patches.txt](docs/verification/npm-patches.txt), reproduce with `cd backend && uv run python ../scripts/verify_npm_patches.py`.
+- **Remember**: every incident question is answered by a fresh traversal, with the remembered incident shown next to it ("Seen before: INC-... on Oct 16, 13 services, patch on file", plus what changed since). A bare recall such as `qix` in a new session answers straight from graph memory. **Approve** a fix and it becomes a `(:Playbook)` that later incidents on the same packages reuse.
 - **Bring your own repo**: "Would you have been hit on Sept 8, 2025?" Paste a GitHub URL or package.json. Try `github.com/axios/axios` (exposed through `https-proxy-agent` then `debug`) and `github.com/expressjs/express/tree/4.x` with runtime deps only (clean).
 - **Optional Shai-Hulud worm**: load with `INCIDENTS=qix,shai-hulud` and ask "were we hit by the Shai-Hulud worm?".
 
 ## Agent design
 - A **deterministic intent router** picks among 8 hand-written tools (`queries/*.cypher`). It is the default path, the fallback and the test oracle.
-- With `OPENAI_API_KEY` set, the **LLM is used only when the router is not confident**. It can only call the same tools; it never writes Cypher. Every package or service name in its answer is checked against the graph results and unverified names are flagged in the UI.
-- The **AI incident summary** runs only when the user clicks for it, and is name-checked the same way.
-- **Cost controls**: `OPENAI_MODEL` (default gpt-4o-mini), max tokens 400 (tools) and 250 (summary), answer cache per (question, graph), a server-side daily call cap (`OPENAI_DAILY_CALL_CAP`, default 200) and a per-client limit (`OPENAI_PER_IP_PER_MIN`, default 10). Over a limit, the answer comes from the deterministic router with a visible note in the trace. Token usage is logged to `.cache/llm_usage.jsonl`. The trace always shows whether the LLM was used and its token count. Tests never call the API.
+- With `OPENAI_API_KEY` set, the **LLM is used only when the router is not confident** (or the user picks LLM mode). It can only call the same tools; it never writes Cypher. Plain-English phrasings of the loaded incident ("that npm phishing attack last September", "the guy who maintains chalk got phished") are mapped to maintainer `qix` by router synonyms first, so they never need the LLM.
+- **Name check on every LLM answer**: any service, package, person or @handle in the model's sentence that is not in the tool result (including names the graph has never heard of, like an invented service) is flagged. If anything is flagged, the model's sentence is dropped, the templated deterministic answer is shown instead, and the trace says "LLM answer rejected".
+- The **AI incident summary** runs only when the user clicks for it, and is withheld under the same rule.
+- **Cost controls**: `OPENAI_MODEL` (default gpt-4o-mini), max tokens 400 (tools) and 250 (summary), compact tool schemas and a trimmed tool-result digest (a question costs about 1.2k to 1.7k tokens, usually one call, because the router pre-runs `investigate`), answer cache per (question, graph), a server-side daily call cap (`OPENAI_DAILY_CALL_CAP`, default 200) and a per-client limit (`OPENAI_PER_IP_PER_MIN`, default 10). Over a limit, the answer comes from the deterministic router with a visible note in the trace. Token usage is logged to `.cache/llm_usage.jsonl`. The trace always shows whether the LLM was used and its token count. Tests never call the API.
 
 ## Stack
 - **Graph DB:** FalkorDB 6.0.1, as a Redis module (`falkordb.so` in `redis-server`, no Docker needed locally) or FalkorDB Cloud (`FALKORDB_URL`)
@@ -74,10 +77,15 @@ NODE_PATH=/path/to/node_modules node scripts/e2e_screenshots.cjs           # 12 
 | GET | `/api/fleet`, `/api/fleet/graph` | Fleet services and the full graph for the hero view |
 | GET | `/api/incidents` | Incidents in graph memory |
 | GET | `/api/timeline` | Dated events: compromise, advisories, incidents, playbooks |
-| POST | `/api/memory/reset` | Clear incidents (demo reset) |
+| POST | `/api/memory/reset` | Clear incidents (admin) |
+| POST | `/api/admin/reset` | Demo reset: incidents, findings, playbooks and every BYO scan graph (admin) |
 | GET | `/api/tools`, POST `/api/tools/{name}` | The tool catalogue, callable directly |
 | POST | `/api/byo/scan` | `{github_url \| package_json, include_dev?, depth?}`: scan your repo in an isolated graph |
-| POST | `/api/incidents/{id}/approve`, GET `/api/playbooks` | Approve-then-remember |
+| POST | `/api/incidents/{id}/approve`, GET `/api/playbooks` | Approve-then-remember (DELETE `/api/playbooks` is admin) |
+| POST | `/api/byo/cleanup` | Delete expired BYO scan graphs (admin) |
+
+Admin endpoints need the `X-Admin-Token` header when `ADMIN_TOKEN` is set (always on the public deploy):
+`curl -XPOST $URL/api/admin/reset -H "X-Admin-Token: $ADMIN_TOKEN"`. Locally, with `ADMIN_TOKEN` empty, they are open.
 
 ## MCP server (Claude Desktop, Cursor)
 The same 8 tools over stdio. Add to `claude_desktop_config.json` or `.cursor/mcp.json`:
@@ -94,13 +102,81 @@ The same 8 tools over stdio. Add to `claude_desktop_config.json` or `.cursor/mcp
 ```
 
 ## Graph data model
-See [ingest/README.md](ingest/README.md) for the full model, sources and the exposure rule. In short:
-`(:Team)-[:OWNS]->(:Service)-[:DEPENDS_ON]->(:Version)-[:REQUIRES*]->(:Version)<-[:HAS_VERSION]-(:Package)`,
-`(:Advisory)-[:AFFECTS]->(:Version)`, `(:Maintainer)-[:MAINTAINS|HAD_PUBLISH_RIGHTS]->(:Package)`, and app write-backs
-`(:Incident)-[:EXPOSED]->(:Service)`, `(:Playbook)-[:APPROVED_FROM]->(:Incident)`.
+One graph per tenant: `fleet:acme` for the demo fleet, and an isolated `byo:<hash>` graph per bring-your-own scan
+(FalkorDB multi-graph, same schema). Full details, sources and the exposure rule: [ingest/README.md](ingest/README.md).
+
+| Node | Key properties | Source |
+|---|---|---|
+| `Team` | name, display, slack, pager | synthetic |
+| `Person` | name, handle, role | synthetic |
+| `Service` | name, tier, env, runtime, repo | synthetic (deps are real npm) |
+| `Package` | name | npm registry |
+| `Version` | key `pkg@ver`, pkg, version, unpublished, malicious | deps.dev, npm |
+| `Advisory` | id (OSV MAL id), ids, aliases (GHSA, CVE), bad_version, fixed_version, campaign | OSV, GitHub advisories |
+| `Maintainer` | npm | npm registry, curated incident data |
+| `Incident`, `Finding` | id, at, trigger, entity_key, depth, exposed_count, patch | written by the agent (memory) |
+| `Playbook` | id, approved_at, approved_by, overrides, steps | written when a human approves a fix |
+
+| Relationship | Meaning |
+|---|---|
+| `(:Team)-[:OWNS]->(:Service)` | ownership |
+| `(:Person)-[:MEMBER_OF]->(:Team)`, `(:Person)-[:ONCALL_FOR]->(:Team)` | who to wake |
+| `(:Service)-[:DEPENDS_ON {requirement}]->(:Version)` | direct dependency, declared range kept |
+| `(:Version)-[:REQUIRES {requirement}]->(:Version)` | resolved transitive edge, declared range kept |
+| `(:Package)-[:HAS_VERSION]->(:Version)` | versions of a package |
+| `(:Advisory)-[:AFFECTS]->(:Version {malicious:true})` | malicious (unpublished) versions |
+| `(:Maintainer)-[:MAINTAINS]->(:Package)` | today's maintainers |
+| `(:Maintainer {npm:'qix'})-[:HAD_PUBLISH_RIGHTS {asOf}]->(:Package)` | curated, 19 edges |
+| `(:Incident)-[:ABOUT]->(...)`, `-[:EXPOSED {path}]->(:Service)`, `-[:HAS_FINDING]->(:Finding)` | episodic memory |
+| `(:Playbook)-[:APPROVED_FROM]->(:Incident)`, `-[:COVERS {pin}]->(:Package)`, `-[:MITIGATES]->(:Advisory)`, `(:Incident)-[:APPLIED_PLAYBOOK]->(:Playbook)` | procedural memory |
+
+**Exposure rule.** The malicious versions were unpublished within hours, so they never appear in today's resolved
+trees. A path is exposed when the semver range on its last edge admits the malicious version (what a fresh install
+on Sept 8, 2025 would have resolved). FalkorDB returns the candidate paths; npm semver runs in the app.
+
+## Cypher queries and algorithms
+Every tool runs hand-written, parameterised Cypher from [`queries/`](queries/). No Cypher is ever generated from
+user text or by the LLM. Each file marks its statements with `// @query <name>`.
+
+| File | Queries | What it does |
+|---|---|---|
+| [resolve_entity.cypher](queries/resolve_entity.cypher) | `resolve_entity` | Maps free text (maintainer, advisory id or alias, pkg@ver, service, package) to graph nodes before any traversal |
+| [incident_scope.cypher](queries/incident_scope.cypher) | `incident_scope_by_maintainer`, `_by_advisory`, `_by_version`, `_by_campaign` | The malicious versions in scope, with advisory ids and clean versions |
+| [incident_scope_by_package.cypher](queries/incident_scope_by_package.cypher) | `incident_scope_by_packages` | Same, for bare package names ("chalk and debug were compromised") |
+| [exposure.cypher](queries/exposure.cypher) | `exposure` | **Variable-length traversal** `(:Service)-[:DEPENDS_ON\|REQUIRES*1..6]->(:Version)` to every version of the affected packages, filtered by `length(p) <= $depth`, returning the path and the requirement on every hop |
+| [path_between.cypher](queries/path_between.cypher) | `path_between`, `path_between_shortestpath` | "Why is img-service connected to is-arrayish?": **`algo.SPpaths`** shortest weighted path over DEPENDS_ON/REQUIRES, with `shortestPath()` as fallback |
+| [single_points_of_failure.cypher](queries/single_points_of_failure.cypher) | `single_points_of_failure`, `package_reach`, `top_packages_pagerank` | Which maintainer, if phished, reaches the most services (reach over `*1..6`), tie-broken by **`algo.pageRank('Version','REQUIRES')`** |
+| [who_to_wake.cypher](queries/who_to_wake.cypher) | `who_to_wake` | Owning team, Slack, pager, on-call and members per service |
+| [package_maintainers.cypher](queries/package_maintainers.cypher) | `package_maintainers` | Today's npm maintainers plus curated historical publish rights for a package |
+| [remediation_plan.cypher](queries/remediation_plan.cypher) | `create_incident`, `link_incident_entity`, `link_exposed`, `add_findings` | Writes the incident, one EXPOSED edge per exposed service and per-service findings (memory) |
+| [recall.cypher](queries/recall.cypher) | `recall` | Prior incidents about an entity, directly or through the maintainer's publish rights; shown as "Seen before" |
+| [incident_memory.cypher](queries/incident_memory.cypher) | `list_incidents`, `incident_exposed_count`, `reset_memory` | Memory panel, AC9 edge check, admin reset |
+| [playbook.cypher](queries/playbook.cypher) | `playbook_create`, `playbook_match`, `playbook_apply`, ... | Approve-then-remember: stores an approved fix as a Playbook and finds it by traversal for later incidents |
+| [timeline.cypher](queries/timeline.cypher) | `timeline_events` | Every dated event: compromise, advisories, incidents, playbooks |
+| [fleet_overview.cypher](queries/fleet_overview.cypher) | `fleet_overview`, `graph_stats` | Home screen fleet list and counts |
+| [fleet_graph.cypher](queries/fleet_graph.cypher) | `fleet_graph_nodes`, `fleet_graph_edges` | The whole fleet dependency graph for the hero visualization |
+| [byo.cypher](queries/byo.cypher) | `byo_create_*`, `byo_export_incident`, ... | Builds an isolated `byo:<hash>` graph per scanned repo; the unchanged `exposure` query then runs on it |
+
+FalkorDB features used: multi-graph tenancy, variable-length paths, `algo.SPpaths`, `algo.pageRank`,
+`shortestPath()`, pattern comprehensions, `UNWIND` batch writes, indexes on every lookup key, and parameterised
+`ro_query` for every read.
+
+## Tracks
+- **Track 1: Agents That Act on Connected Data.** The agent resolves an incident against the graph, traverses
+  multi-hop dependency paths, decides exposure, finds who to wake, proposes an install-safe fix and writes the
+  incident back to the graph.
+- **Track 2 (memory).** Episodic memory (`Incident`, `Finding`, recalled as "Seen before" next to fresh results)
+  and procedural memory (`Playbook`: a human approves a fix once, and later incidents that touch the same packages
+  find it by graph traversal and reuse it, recorded as `APPLIED_PLAYBOOK`).
 
 ## Demo script
 See [docs/DEMO.md](docs/DEMO.md).
 
 ## AI assistance disclosure
-Built with AI coding assistants. All Cypher in `queries/` is hand-reviewed; the runtime LLM (optional) can only call those tools.
+- **Building:** this project was built with AI coding assistants (Grok Bot agents for research, spec, code, tests
+  and review). Every Cypher query in `queries/` was written for this project and reviewed by hand; all
+  acceptance checks are reproducible with the test commands above.
+- **At runtime:** the product works fully without any LLM. With `OPENAI_API_KEY` set, OpenAI `gpt-4o-mini` (via
+  `OPENAI_MODEL`) is used only to pick among the hand-written tools when the deterministic router is not confident,
+  to phrase answers, and for the optional click-to-run summary. It never writes Cypher, every name it outputs is
+  checked against the tool result, and spend is capped server side.
