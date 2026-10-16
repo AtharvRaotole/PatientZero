@@ -1,6 +1,7 @@
 """Per-client rate limits for the public endpoints that do real work (graph traversals, writes, optional LLM).
 
-ASK_PER_IP_PER_MIN (default 60) covers /api/ask, /api/fix, /api/summary and /api/tools/{name};
+ASK_PER_IP_PER_MIN (default 120; a slider drag sends one ask per step) covers /api/ask, /api/fix, /api/summary and
+/api/tools/{name};
 APPROVE_PER_IP_PER_MIN (default 10) covers playbook approval. A valid X-Admin-Token skips them (benchmarks, ops),
 and so does a direct loopback request without X-Forwarded-For (local dev and the in-process bench; on Railway every
 request arrives through the edge proxy, which always adds X-Forwarded-For).
@@ -15,7 +16,7 @@ from fastapi import HTTPException, Request
 from . import config
 from .byo.ratelimit import RateLimiter, client_ip
 
-ASK = RateLimiter(int(os.getenv("ASK_PER_IP_PER_MIN", "60")), 60.0)
+ASK = RateLimiter(int(os.getenv("ASK_PER_IP_PER_MIN", "120")), 60.0)
 APPROVE = RateLimiter(int(os.getenv("APPROVE_PER_IP_PER_MIN", "10")), 60.0)
 
 

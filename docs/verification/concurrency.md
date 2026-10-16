@@ -40,6 +40,17 @@ with exactly those arguments:
 | Raw (every rejection counted) | 30 | 1,520 ops/s | 18.2 ms | 37.2 ms | 50.3 ms | **305** "Max pending queries exceeded" (1.0%) |
 | With the app's retry (`--retry-busy`) | 30 | 1,589 ops/s | 17.6 ms | 34.5 ms | 45.4 ms | **0** |
 
+### Live deploy, in-process (`POST /api/bench/run`, admin token; Fri Oct 16 2026, 12:25 PM ET)
+The app on Railway drives the live FalkorDB 4.22.1 (2 vCPU, `THREAD_COUNT 2`, `MAX_QUEUED_QUERIES 200`) from 2
+processes with 30 clients for 20 s: 80% reads over `fleet:acme` (exposure from an incident 40%, deep exposure 20%,
+who to wake 16%, scratch read 4%) and 20% writes into a scratch graph that is deleted afterwards.
+
+| Ops | Throughput | p50 | p95 | p99 | max | Errors |
+|---|---|---|---|---|---|---|
+| 14,813 (11,868 reads, 2,945 writes) | **740.6 ops/s** (reads 593.4/s, writes 147.2/s) | 36.1 ms | 84.4 ms | 112.2 ms | 333 ms | **0** |
+
+Public at `GET /api/bench/last` and shown in the UI's benchmark view.
+
 ### End-to-end HTTP (`--target http`, read-only `/api/ask` in deterministic mode plus `/api/fleet`, no LLM)
 | Target | Clients | Requests in 20 s | Throughput | p50 | p95 | p99 | Errors |
 |---|---|---|---|---|---|---|---|

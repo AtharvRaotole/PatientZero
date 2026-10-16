@@ -88,6 +88,8 @@ const waitText = (page, re, timeout = 20000) =>
   await page.waitForFunction(() => /at depth 6/.test(document.querySelector("[data-testid=followup-line]")?.innerText || ""), { timeout: 20000 });
   const slider = await page.$eval("input[aria-label='graph depth']", (e) => e.value);
   check("follow-up: 'and at depth 6?' reruns at depth 6 and moves the slider", slider === "6", `slider=${slider}`);
+  // The rail refetches the session after each answer; on a remote deploy that GET lands a moment after the answer.
+  await page.waitForFunction(() => /3 turns/.test(document.querySelector("[data-testid=session-rail]")?.innerText || ""), { timeout: 10000 }).catch(() => {});
   const rail = await text(page, "[data-testid=session-rail]");
   check("session rail lists 3 turns with the resolved follow-ups", /3 turns/.test(rail) && /from turn 1/.test(rail) && /from turn 2/.test(rail), rail.replace(/\n/g, " | ").slice(0, 160));
 
