@@ -27,3 +27,9 @@ frontend/.next/
 # BYO scan cache: only the committed demo set (axios, express 4.x, express v5, vercel/ms and a few more) is
 # tracked; new scans write here at runtime and stay local.
 data/raw/byo/**
+
+# demo video artifacts (large / regenerated)
+demo/*.mp4
+demo/raw/
+demo/frames/
+demo/beats.json

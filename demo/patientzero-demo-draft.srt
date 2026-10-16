@@ -1,0 +1,83 @@
+1
+00:00:00,801 --> 00:00:04,401
+Sept 8, 2025: one npm maintainer, qix, was phished.
+
+2
+00:00:05,232 --> 00:00:09,432
+19 packages, 2.71 billion downloads the week before. Are we hit?
+
+3
+00:00:09,665 --> 00:00:13,265
+PatientZero answers from a FalkorDB graph of our 22 services.
+
+4
+00:00:15,244 --> 00:00:19,644
+Red means the range on the last edge admits the malicious version.
+
+5
+00:00:21,567 --> 00:00:24,967
+Six hand-written Cypher queries, answered in milliseconds.
+
+6
+00:00:27,285 --> 00:00:31,285
+Every chain ends in an npm semver check on the last edge.
+
+7
+00:00:33,603 --> 00:00:38,203
+Honest negatives: checkout-api reaches debug, but its range excludes the bad version.
+
+8
+00:00:43,344 --> 00:00:47,745
+Direct dependencies only: 1 service. Transitive depth is the whole story.
+
+9
+00:00:51,751 --> 00:00:56,551
+14 of the 19 compromised packages are reachable from this fleet.
+
+10
+00:00:57,450 --> 00:01:00,650
+Every cell in the matrix is a path in the graph.
+
+11
+00:01:02,367 --> 00:01:05,567
+Owning team and on-call for every exposed service, from the graph.
+
+12
+00:01:08,712 --> 00:01:13,312
+Overrides pinned to clean versions, one draft per team. Written back to FalkorDB.
+
+13
+00:01:14,234 --> 00:01:17,634
+A human approves the plan; it is remembered as a playbook.
+
+14
+00:01:20,409 --> 00:01:23,009
+Ask again, in one word.
+
+15
+00:01:25,634 --> 00:01:29,834
+Answered from graph memory, citing the incident and when.
+
+16
+00:01:31,808 --> 00:01:36,208
+Compromise, advisories, our incident and the approved playbook, as dated nodes.
+
+17
+00:01:37,349 --> 00:01:41,749
+Bring your own repo: its real dependency graph, in a separate FalkorDB graph.
+
+18
+00:01:43,398 --> 00:01:47,798
+axios: exposed at runtime through https-proxy-agent, then debug.
+
+19
+00:01:52,815 --> 00:01:57,215
+Express 4 pins debug 2.6.9 exactly, so its runtime was clean.
+
+20
+00:01:57,291 --> 00:02:02,891
+The same tools over MCP: a real client calling exposure.
+
+21
+00:02:03,502 --> 00:02:08,102
+Deterministic first. The LLM only when needed, name-checked, with hard spend caps.

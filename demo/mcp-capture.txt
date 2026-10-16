@@ -1,0 +1,6 @@
+spawn MCP server over stdio: python -m app.mcp_server
+connected: patientzero (protocol 2025-11-25)
+tools/list -> 8 tools: exposure, incident_scope, path_between, recall, remediation_plan, resolve_entity, single_points_of_failure, who_to_wake
+tools/call exposure {"package": "debug", "bad_version": "4.4.2", "depth": 4}
+<- 10 exposed services in 9 ms: analytics-ingest, auth-service, inventory-service, lint-service, pdf-invoices, realtime-gateway, search-api, shipping-tracker, support-bot, test-harness
+<- e.g. analytics-ingest -> express@5.1.0 -> debug@4.4.3  [debug ^4.4.0 (caret) admits 4.4.2]
