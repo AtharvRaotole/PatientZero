@@ -322,6 +322,9 @@ def remediation_plan(tr: Trace, *, trigger: str, entity_kind: str, entity_key: s
         tr.run("remediation_plan", "add_findings", {"id": inc_id, "at": at, "session": session, "rows": findings},
                write=True)
     fix.update(incident_id=inc_id, at=at, exposed_edges=len(exp_rows))
+    # Procedural memory: reuse playbooks a human approved for earlier incidents on the same packages.
+    from . import playbooks
+    fix["playbooks"] = playbooks.apply_matching(tr, inc_id, fix["combined"]["overrides"])
     return fix
 
 

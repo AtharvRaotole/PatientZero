@@ -131,7 +131,8 @@ def load():
                  "CREATE INDEX FOR (a:Advisory) ON (a.id)",
                  "CREATE INDEX FOR (t:Team) ON (t.name)",
                  "CREATE INDEX FOR (p:Person) ON (p.handle)",
-                 "CREATE INDEX FOR (i:Incident) ON (i.id)"]:
+                 "CREATE INDEX FOR (i:Incident) ON (i.id)",
+                 "CREATE INDEX FOR (pb:Playbook) ON (pb.id)"]:
         q(stmt)
 
     # people / teams / services (synthetic)
