@@ -17,7 +17,15 @@ _Last updated: Fri Oct 16 2026, 12:40 AM ET_
 - [x] Shai-Hulud campaign routing (incident_scope_by_campaign); honest message when the campaign is not loaded
 - [x] Static export (NEXT_OUTPUT=export, NEXT_PUBLIC_API_URL=.) verified served by app.serve on one origin, browser smoke test clean
 - [x] Deployed on Railway: **https://patientzero-production-2cb3.up.railway.app** (services `patientzero` from the Dockerfile, `falkordb` v4.22.1 with a `/data` volume, password auth, AOF). Live checks passed: /health up, UI, qix depth 4 gives 13 exposed, BYO axios, approve then recall shows the playbook, data survives app and DB redeploys. Details in DEPLOY.md
-- [x] Verification: backend pytest 89 passed; browser e2e 12/12; BYO presets checked in browser (axios exposed, express 4.x runtime clean)
+- [x] Verification: backend pytest 116 passed (was 89); browser e2e 12/12; BYO presets checked in browser (axios exposed, express 4.x runtime clean)
+
+## Review 1 fixes (Fri Oct 16 2026, about 12:25 AM ET)
+- [x] P0-1 memory never replaces a fresh traversal: pkg@ver, advisory ids, explicit depth and compromise reports always traverse; memory is attached as `memory.seen_before` (UI: "Seen before: INC-...", with a diff). Bare `qix` at the stored depth still answers from memory (AC10). Regression tests: backend/tests/test_memory_regression.py
+- [x] P1-1 LLM answers naming any service, package, person or @handle not in the tool result are rejected and replaced by the deterministic answer (trace: "LLM answer rejected"); AI summary withheld the same way
+- [x] P1-2 install-safe patches (direct deps bumped with a same-spec scoped override, transitive overrides scoped to the compromised major). Verified with npm 10.9.9 / Node 20: docs/verification/npm-patches.txt (`cd backend && uv run python ../scripts/verify_npm_patches.py`)
+- [x] P2: hypothetical wording for pkg@ver without an advisory; unknown package named in mixed questions; ADMIN_TOKEN guard (X-Admin-Token) on reset/cleanup/DELETE plus POST /api/admin/reset; LLM prompt about 1.2k to 1.7k tokens per question (router pre-runs investigate, compact digest); router synonyms for plain-English incident phrasings; BYO 60-dependency cap in headline and warnings; tests delete their BYO graphs; BYO cache gitignored except the committed demo set
+- [x] Live deploy redeployed with ADMIN_TOKEN set (value in ~/.config/patientzero/admin-token, chmod 600); live demo memory reset
+- Reset before recording: `curl -XPOST https://patientzero-production-2cb3.up.railway.app/api/admin/reset -H "X-Admin-Token: $(cat ~/.config/patientzero/admin-token)"`
 
 ## Next actions
 - Final polish pass on screenshots for the README
