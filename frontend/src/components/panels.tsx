@@ -429,7 +429,7 @@ export function ErrorCard({ message, kind, onRetry }: { message: string; kind: s
 export function ScopeStrip({ r }: { r: AskResponse }) {
   if (!r.scope.length) return null;
   return (
-    <div className="scroll-thin flex gap-1.5 overflow-x-auto pb-1">
+    <div className="scroll-thin flex gap-1.5 overflow-x-auto px-0.5 pb-1 [mask-image:linear-gradient(90deg,transparent,black_12px,black_calc(100%-48px),transparent)]">
       {r.scope.map((s) => (
         <span key={s.package + s.bad_version} className="inline-flex shrink-0 items-center gap-1.5 rounded-lg bg-rose-500/[0.07] px-2 py-1 font-mono text-[11px] text-rose-200/90 ring-1 ring-inset ring-rose-400/15">
           <FileCode2 className="h-3 w-3 opacity-60" />{s.package}@{s.bad_version}

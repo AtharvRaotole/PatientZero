@@ -7,7 +7,9 @@ const path = require("path");
 
 const APP = process.env.APP_URL || "http://localhost:3001";
 const API = process.env.API_URL || "http://localhost:8000";
-const OUT = path.join(__dirname, "..", "docs", "screenshots");
+// Test captures go to a scratch dir; the curated README set is made by scripts/screenshots.cjs.
+const OUT = process.env.E2E_OUT || "/tmp/pz-e2e";
+require("fs").mkdirSync(OUT, { recursive: true });
 const results = [];
 const errors = [];
 
