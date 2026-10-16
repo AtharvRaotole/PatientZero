@@ -25,6 +25,6 @@ retry on busy; about 49 req/s end to end over HTTP at 30 clients).
 | followups | 0:50 Follow-ups | Sessions live in the graph too. A follow-up resolves against earlier turns, and asking who to wake gives the teams and on-call people first. |
 | fix | 1:05 Act and remember | It writes the incident into Falkor DB, I approve the plan as a playbook, and the next time it answers from graph memory. |
 | tenants | 1:15 Tenants | Each tenant is its own graph. Globex is hit by Shai-Hulud, and Acme is not. Nothing from Acme's memory or sessions shows up in Globex. |
-| watch | 1:28 Live watch | A real feed: npm malware advisories from OSV, checked against every tenant within one poll, with their real publish dates. This button replays a past advisory, labelled as a replay. |
-| hood | 1:40 Under the hood | Every answer is traced: each MCP tool call, then parameterised Cypher, never generated from your text. The benchmark runs in process, on synthetic scratch writes. End to end over HTTP, it is about fifty requests a second. |
+| watch | 1:28 Live watch | A real feed: npm malware advisories from OSV, checked against every tenant within one poll. This button replays a past advisory, labelled as a replay. |
+| hood | 1:40 Under the hood | Every answer is traced: each MCP call, then parameterised Cypher, never generated from your text. The benchmark runs in process on synthetic writes; over HTTP, about fifty requests a second. |
 | close | 1:52 Close | Deterministic first, every answer traced, memory in the graph. PatientZero. |

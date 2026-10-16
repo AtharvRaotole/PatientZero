@@ -1,6 +1,6 @@
 # STATUS (PatientZero)
 
-_Last updated: Fri Oct 16 2026, 1:30 PM ET_
+_Last updated: Fri Oct 16 2026, 3:10 PM ET_
 
 ## Completed
 - [x] FalkorDB 6.0.1 running locally without Docker: `redis-server` 8.0.2 (apt) + `falkordb-x64.so` module (sha256 verified), port 6379
@@ -83,10 +83,18 @@ _Last updated: Fri Oct 16 2026, 1:30 PM ET_
 - [x] LLM mode responses carry `tool_via` and `mcp` (tools, llm_tools, chosen_by llm) from the MCP steps in the trace (3-line hook in core/agent.py, `llm_meta` in mcp_agent/domain.py).
 - [x] 255 tests green on FalkorDB 6.0.1 and 4.22.1.
 
-## Next actions
-- Final polish pass on screenshots for the README
-- Redeploy after pushing changes: `sh scripts/redeploy-railway.sh` (ships origin/main; no GitHub auto-deploy)
-- Optional: load Shai-Hulud (INCIDENTS=qix,shai-hulud) in the demo graph and add a preset chip
+## Final recording (Fri Oct 16 2026, about 3:00 PM ET; REVIEW-4 checklist)
+- [x] Deadline fixed to Sun Oct 18, 2:29 PM ET in SPEC.md and FIRST_BRIEF.md; README AI disclosure states Atharv's own contribution (rule 13).
+- [x] Frontend: startup loads (health, fleet graph, incidents) time out at 8 s with one retry and a clean error state; a stale session id is dropped quietly (`GET /api/sessions/{id}?missing_ok=1`, no console 404); watch header shows ages ("Last poll 2m ago", "Next poll in 8m", "3h ago"). 256 tests pass, build green. Deployed d9cf700.
+- [x] `scripts/record_demo.cjs` and `demo/voiceover.md` / `scripts/voiceover.py` follow docs/DEMO.md beat for beat (depth 6 before wake; counters settle; one Replay click; each beat held for its narration).
+- [x] Recorded against live after resetting both tenants with CLEAR_REPLAYS=1 and no reseed: `demo/patientzero-demo-voiced.mp4` (1:58.1, voice onyx, gpt-4o-mini-tts, 12 TTS calls in total) and `demo/patientzero-demo.mp4` (silent), captions in `demo/patientzero-demo.srt`. No console errors or 4xx/5xx during the take. Frames checked at every beat.
+- [x] Live reset again after the take (CLEAR_REPLAYS=1, no reseed): acme and globex each 0 incidents, 0 playbooks, 0 crew runs, 0 replay rows, 25 real watch verdicts.
+
+## Next actions (Atharv)
+- Make the repo public (rule 10).
+- Upload `demo/patientzero-demo-voiced.mp4` and replace `VIDEO_LINK_TBD` in the README with the link.
+- Submit naming Track 1 and Track 2 by Sun Oct 18, 2:29 PM ET.
+- Nobody should click Replay or run the crew on live before judging; if anyone does, rerun both resets with CLEAR_REPLAYS=1.
 
 ## Assumptions
 - Plain `redis-server` + module replaces Docker locally; FalkorDB Browser uses port 3000, so the frontend dev server runs on **3001**

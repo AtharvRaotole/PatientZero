@@ -22,7 +22,7 @@ const ROOT = path.join(__dirname, "..");
 const OUT = path.join(ROOT, "demo");
 const RAW = path.join(OUT, "raw");
 const W = 1600, H = 830; // recorded viewport, scaled to 1920x996 on encode
-const LEAD = 0.3, TAIL = 0.45; // voice starts LEAD s into a beat; the beat ends TAIL s after the voice does
+const LEAD = 0.3, TAIL = 0.3; // voice starts LEAD s into a beat; the beat ends TAIL s after the voice does
 const sleep = (ms) => new Promise((r) => setTimeout(r, ms));
 const DUR = JSON.parse(fs.readFileSync(path.join(OUT, "vo", "durations.json"), "utf8"));
 
@@ -91,7 +91,7 @@ async function scrollToEl(loc, offset = 80, ms = 1000) {
   await scrollToY(y, ms);
 }
 async function typeHuman(text) {
-  for (const ch of text) { await page.keyboard.type(ch); await sleep(70 + Math.random() * 90); }
+  for (const ch of text) { await page.keyboard.type(ch); await sleep(38 + Math.random() * 34); }
 }
 const text = (t) => page.getByText(t, { exact: true });
 const waitText = (re, timeout = 60000) => page.waitForFunction((src) => new RegExp(src).test(document.body.innerText), re.source, { timeout });
@@ -176,9 +176,9 @@ async function ask(q, ms = 600) {
 }
 async function switchTenant(id) {
   await scrollToY(0, 500);
-  await click(page.locator("[data-testid=tenant-switcher] button"), 600);
-  await sleep(250);
-  await click(page.locator(`[data-tenant-option=${id}]`), 500);
+  await click(page.locator("[data-testid=tenant-switcher] button"), 450);
+  await sleep(200);
+  await click(page.locator(`[data-tenant-option=${id}]`), 400);
   await page.waitForFunction((t) => document.querySelector("[data-testid=graph-name]")?.textContent === `fleet:${t}`, id, { timeout: 30000 });
 }
 
@@ -226,18 +226,18 @@ async function switchTenant(id) {
   await startBeat("replay");
   await click(page.getByRole("button", { name: "Replay the qix compromise", exact: true }), 700);
   await waitText(/13 of 22 services can install a malicious version/);
-  await sleep(2400); // auto-scroll to the graph, chains draw in hop by hop
-  await hoverNode("img-service", 0.133, 0.386, 900); // one red chain lights up
-  await sleep(1400);
-  await scrollToEl(page.locator("h2", { hasText: /^Exposure$/ }), 90, 900);
-  await click(page.getByRole("tab", { name: /Excluded by range/ }).first(), 700);
-  await sleep(300);
-  await hover(page.getByText("checkout-api", { exact: true }).first(), 700);
-  await sleep(1800);
-  await scrollToEl(page.locator("#graph"), 70, 800);
-  await dragDepth(4, 1, 350, 450);
+  await sleep(1900); // auto-scroll to the graph, chains draw in hop by hop
+  await hoverNode("img-service", 0.133, 0.386, 800); // one red chain lights up
+  await sleep(1200);
+  await scrollToEl(page.locator("h2", { hasText: /^Exposure$/ }), 90, 800);
+  await click(page.getByRole("tab", { name: /Excluded by range/ }).first(), 600);
+  await sleep(200);
+  await hover(page.getByText("checkout-api", { exact: true }).first(), 600);
+  await sleep(1500);
+  await scrollToEl(page.locator("#graph"), 70, 700);
+  await dragDepth(4, 1, 300, 400);
   await waitText(/(^|\D)1 of 22 services can install/);
-  await sleep(1300);
+  await sleep(1100);
   await dragDepth(1, 4, 300, 450);
   await waitText(/13 of 22 services can install/);
 
@@ -246,100 +246,106 @@ async function switchTenant(id) {
   await scrollToY(0, 600);
   await click(page.locator("[data-testid=hero-crew]"), 700);
   await page.locator("[data-testid=crew-view]").waitFor({ timeout: 30000 });
-  await sleep(1200);
-  await scrollToEl(page.locator("[data-testid=crew-view]"), 72, 600);
-  await sleep(3800); // lanes fill at reading speed; the handoffs fan out to Investigator and Responder in parallel
+  await sleep(700);
+  await scrollToEl(page.locator("[data-testid=crew-view]"), 72, 500);
+  await sleep(3000); // lanes fill at reading speed; the handoffs fan out to Investigator and Responder in parallel
   const chip = page.getByText("Read from the graph", { exact: true });
-  if (await chip.count()) await hover(chip.first(), 700);
-  await sleep(1400);
+  if (await chip.count()) await hover(chip.first(), 600);
+  await sleep(1000);
   const skip = page.getByRole("button", { name: /Skip to end/ });
   if (await skip.count()) await click(skip.first(), 600);
   await page.locator("[data-testid=crew-view][data-status=done]").waitFor({ timeout: 60000 });
   await sleep(400);
   await scrollToEl(page.locator("[data-testid=crew-summary]"), 90, 900);
-  await hover(page.getByText("Not sent", { exact: false }).first(), 700);
-  await sleep(1200);
+  await hover(page.getByText("Not sent", { exact: false }).first(), 600);
+  await sleep(1000);
   const share = page.getByRole("button", { name: /Share replay/ });
-  if (await share.count()) await click(share.first(), 700);
-  await sleep(700);
+  if (await share.count()) await click(share.first(), 600);
+  await sleep(500);
 
   // 0:50 Follow-ups: "and at depth 6?" first, then "who should I wake for that?"
   await startBeat("followups");
-  await ask("and at depth 6?", 500);
-  await waitText(/14 of 22 services can install a malicious version/);
-  await sleep(400);
-  await scrollToY(0, 400);
-  await sleep(900);
-  await hover(page.locator("[data-testid=followup-line]"), 500);
+  await scrollToY(0, 500);
+  await click(page.locator("[aria-label='Close the crew view']"), 450); // the session rail stays; the crew run is a turn in it
+  await page.locator("[data-testid=crew-view]").waitFor({ state: "detached", timeout: 5000 }).catch(() => console.log("  (crew view still open)"));
+  await ask("and at depth 6?", 200);
+  await page.waitForFunction(() => /at depth 6/.test(document.querySelector("[data-testid=followup-line]")?.innerText || ""), null, { timeout: 30000 });
+  await sleep(300);
+  await scrollToEl(page.locator("#report"), 80, 600);
+  await hover(page.locator("[data-testid=followup-line]"), 450);
   await sleep(500);
-  await ask("who should I wake for that?", 300);
-  await waitText(/Wake 8 teams for 14 exposed services/);
-  await sleep(500);
-  await scrollToEl(page.locator("#who-to-wake"), 90, 800);
-  await sleep(600);
+  await ask("who should I wake for that?", 450);
+  await page.locator("[data-testid=wake-headline]").waitFor({ timeout: 30000 });
+  await sleep(300);
+  await scrollToEl(page.locator("#report"), 80, 600);
+  await sleep(700);
 
   // 1:05 Act and remember: Depth back to 4, Generate fix, Approve, then ask "qix"
   await startBeat("fix");
-  await scrollToEl(page.locator("#graph"), 70, 600);
-  await dragDepth(6, 4, 300, 400);
+  await scrollToEl(page.locator("#graph"), 70, 500);
+  await dragDepth(6, 4, 250, 350);
   await waitText(/13 of 22 services can install/);
-  await scrollToEl(page.locator("h2", { hasText: /^Fix$/ }), 90, 800);
-  await click(page.getByRole("button", { name: /Generate fix/ }), 600);
+  await scrollToEl(page.locator("h2", { hasText: /^Fix$/ }), 90, 550);
+  await click(page.getByRole("button", { name: /Generate fix/ }), 450);
   await waitText(/written to the graph/);
-  await sleep(500);
-  await scrollToEl(page.locator("h2", { hasText: /^Fix$/ }), 90, 400);
-  await click(page.getByRole("button", { name: /^Approve$/ }), 600);
+  await sleep(200);
+  await scrollToEl(page.locator("h2", { hasText: /^Fix$/ }), 90, 300);
+  await click(page.getByRole("button", { name: /^Approve$/ }), 500);
   await waitText(/Approved and remembered/);
-  await sleep(700);
-  await ask("qix", 600);
+  await sleep(350);
+  await ask("qix", 500);
   await waitText(/Answered from graph memory/);
+  await sleep(400);
+  await scrollToEl(page.locator("#report"), 80, 500);
   await sleep(300);
-  await scrollToY(0, 300);
 
   // 1:15 Tenants
   await startBeat("tenants");
   await switchTenant("globex");
-  await sleep(500);
-  await ask("were we hit by Shai-Hulud?", 300);
+  await ask("were we hit by Shai-Hulud?", 200);
+  await waitText(/of 12 services can install a malicious version/);
+  await sleep(700); // let the app's own scroll to the graph finish first
+  await scrollToEl(page.locator("#report"), 80, 450);
   await waitText(/4 of 12 services can install a malicious version/);
-  await sleep(1600);
+  await sleep(1300);
   await switchTenant("acme");
-  await ask("were we hit by Shai-Hulud?", 300);
+  await ask("were we hit by Shai-Hulud?", 200);
   await page.locator("[data-testid=not-hit]").waitFor({ timeout: 30000 });
-  await sleep(500);
-  await scrollToY(0, 300);
+  await sleep(300);
+  await scrollToEl(page.locator("#report"), 80, 400);
+  await sleep(300);
 
   // 1:28 Live watch, one Replay click
   await startBeat("watch");
-  await scrollToEl(page.locator("#watch"), 70, 1100);
+  await scrollToEl(page.locator("#watch"), 70, 900);
   await page.locator("[data-testid=live-watch]").waitFor({ timeout: 30000 });
   await sleep(300);
   await hover(page.locator("[data-testid=watch-headline]"), 700);
-  await sleep(2400);
-  await hover(page.locator("[data-testid=watch-verdicts]"), 600);
-  await sleep(1000);
+  await sleep(1400);
+  await hover(page.locator("[data-testid=watch-verdicts]"), 500);
+  await sleep(600);
   await click(page.locator("[data-testid=watch-replay]"), 700);
   await page.locator("[data-testid=watch-replay-result]").waitFor({ timeout: 30000 });
   await sleep(500);
-  await hover(page.locator("[data-testid=watch-replay-result]"), 600);
-  await sleep(1200);
+  await hover(page.locator("[data-testid=watch-replay-result]"), 500);
+  await sleep(800);
   const rrow = page.locator("[data-testid=watch-feed] li[data-replay=true]");
   if (await rrow.count()) await hover(rrow.first(), 600);
 
   // 1:40 Under the hood: an exposure answer's 5-call MCP chain, one Cypher step, then the bench card
   await startBeat("hood");
-  await ask("debug@4.4.2", 600);
+  await ask("debug@4.4.2", 400);
   await page.waitForFunction(() => +(document.querySelector("[data-testid=mcp-chain]")?.dataset.calls || 0) >= 5, null, { timeout: 30000 });
   await sleep(300);
-  await scrollToEl(page.locator("[data-testid=mcp-chain]"), 120, 1000);
-  await hover(page.locator("[data-testid=mcp-chain]"), 500);
-  await sleep(600);
-  await click(page.locator("[data-testid=trace-mcp] button").first(), 500);
-  await sleep(700);
+  await scrollToEl(page.locator("[data-testid=mcp-chain]"), 120, 800);
+  await hover(page.locator("[data-testid=mcp-chain]"), 450);
+  await sleep(300);
+  await click(page.locator("[data-testid=trace-mcp] button").first(), 450);
+  await sleep(400);
   const steps = page.locator("button[aria-expanded]").filter({ hasText: /rows?/ });
   if (await steps.count()) await click(steps.first(), 500);
-  await sleep(1300);
-  await scrollToEl(page.locator("#performance"), 70, 1100);
+  await sleep(900);
+  await scrollToEl(page.locator("#performance"), 70, 800);
   await page.locator("[data-testid=bench]").waitFor({ timeout: 30000 });
   await sleep(200);
   await hover(page.locator("[data-testid=bench-http]"), 600);
