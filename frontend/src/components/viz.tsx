@@ -254,7 +254,7 @@ export type TimelineEvent = { kind: "compromise" | "advisory" | "campaign" | "in
 const KIND = {
   compromise: { icon: Skull, color: "text-signal", ring: "ring-signal/40 bg-surface", label: "Account compromised" },
   advisory: { icon: FileWarning, color: "text-risk", ring: "ring-line-strong bg-surface", label: "Advisories published" },
-  campaign: { icon: Skull, color: "text-risk", ring: "ring-line-strong bg-surface", label: "Worm campaign advisories" },
+  campaign: { icon: Skull, color: "text-risk", ring: "ring-line-strong bg-surface", label: "Malicious-package advisories published" },
   incident: { icon: Brain, color: "text-ink-2", ring: "ring-line-strong bg-surface", label: "Incident written to graph" },
   playbook: { icon: BookCheck, color: "text-safe", ring: "ring-line-strong bg-surface", label: "Playbook approved" },
 } as const;
