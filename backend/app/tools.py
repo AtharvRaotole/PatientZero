@@ -265,17 +265,56 @@ def path_between(tr: Trace, service: str, package: str) -> dict | None:
 
 
 # --------------------------------------------------------------------------- remediation_plan
-def build_fix(result: dict, wake: list[dict]) -> dict:
-    """Pure function: per-service npm overrides + notification drafts (no I/O)."""
+def major_range(version: str) -> str:
+    """npm range covering the compromised release line: '^6' for 6.2.2, '^0.2' for 0.2.3 (caret on 0.x is minor)."""
+    parts = (version or "0").split("-")[0].split(".")
+    return f"^{parts[0]}" if parts[0] != "0" else f"^0.{parts[1] if len(parts) > 1 else 0}"
+
+
+def package_json_patch(findings: list[dict], dev_direct: set[str] | None = None) -> dict:
+    """Install-safe package.json patch for one service.
+
+    * A compromised package that is a DIRECT dependency gets its range bumped in dependencies (or
+      devDependencies) to ^clean. npm rejects an override on a direct dependency (EOVERRIDE) unless both use the
+      exact same spec, so the scoped override repeats "^clean" to also cover transitive copies. ("$pkg"
+      references fail with "Unable to resolve reference" under a scoped key in npm 10, verified.)
+    * A transitive-only package gets an override scoped to the compromised major, e.g. "ansi-styles@^6": "6.2.3",
+      so other majors in the tree (chalk 4 needs ansi-styles 4, express 4 needs debug 2) are left alone.
+    """
+    deps: dict[str, str] = {}
+    dev: dict[str, str] = {}
+    overrides: dict[str, str] = {}
+    for f in findings:
+        pkg, clean = f["package"], f.get("clean_version")
+        if not clean:
+            continue
+        paths = [f["path"], *f.get("alternatives", [])]
+        direct = any(len(p["via"]) == 2 and p.get("exposed") for p in paths)
+        scope = f"{pkg}@{major_range(f['bad_version'])}"
+        if direct:
+            (dev if pkg in (dev_direct or set()) else deps)[pkg] = f"^{clean}"
+            overrides[scope] = f"^{clean}"
+        else:
+            overrides[scope] = clean
+    out: dict = {}
+    if deps:
+        out["dependencies"] = dict(sorted(deps.items()))
+    if dev:
+        out["devDependencies"] = dict(sorted(dev.items()))
+    out["overrides"] = dict(sorted(overrides.items()))
+    return out
+
+
+def build_fix(result: dict, wake: list[dict], dev_direct: set[str] | None = None) -> dict:
+    """Pure function: per-service install-safe package.json patch + notification drafts (no I/O)."""
     owners = {w["service"]: w for w in wake}
-    per_service, combined = [], {}
+    per_service, combined, pins_all = [], {}, {}
     for e in result["exposed"]:
         ex = [f for f in e["findings"] if f["exposed"]]
-        overrides = {}
-        for f in ex:
-            if f.get("clean_version"):
-                overrides[f["package"]] = f["clean_version"]
-                combined[f["package"]] = f["clean_version"]
+        pins = {f["package"]: f["clean_version"] for f in ex if f.get("clean_version")}
+        pins_all.update(pins)
+        patch = package_json_patch(ex, dev_direct)
+        combined.update({k: v for k, v in patch["overrides"].items() if not v.startswith("^")})
         w = owners.get(e["service"], {})
         oncall = w.get("oncall") or []
         oc = ", ".join(f"{o['name']} ({o['handle']})" for o in oncall) or "no on-call recorded"
@@ -289,16 +328,20 @@ def build_fix(result: dict, wake: list[dict]) -> dict:
         missing = [f["package"] for f in ex if not f.get("clean_version")]
         if missing:
             lines.append(f"No clean version on record for: {', '.join(missing)}. Pin manually.")
-        lines.append("Action: add the overrides below to package.json, reinstall from a clean cache, redeploy, "
-                     "and check CI logs for installs during the attack window.")
-        lines.append(json.dumps({"overrides": overrides}, indent=2))
+        lines.append("Action: merge this into package.json (direct dependencies are bumped, transitive ones are "
+                     "overridden only on the compromised major), run npm install from a clean cache, redeploy, and "
+                     "check CI logs for installs during the attack window.")
+        lines.append(json.dumps(patch, indent=2))
         per_service.append(dict(service=e["service"], tier=e["tier"], team=w.get("team") or e.get("team"),
                                 team_display=w.get("team_display"), slack=w.get("slack"), oncall=oncall,
-                                overrides={"overrides": overrides},
-                                overrides_json=json.dumps({"overrides": overrides}, indent=2),
+                                pins=pins, overrides=patch, package_json=patch,
+                                overrides_json=json.dumps(patch, indent=2),
                                 draft="\n".join(lines), paths=[f["path"]["display"] for f in ex]))
     comb = {"overrides": dict(sorted(combined.items()))}
-    return dict(per_service=per_service, combined=comb, combined_json=json.dumps(comb, indent=2))
+    return dict(per_service=per_service, combined=comb, combined_json=json.dumps(comb, indent=2),
+                pins=dict(sorted(pins_all.items())),
+                note="Fleet-wide block covers transitive installs only; services that depend on a compromised "
+                     "package directly also need the dependency bump from their own patch.")
 
 
 def remediation_plan(tr: Trace, *, trigger: str, entity_kind: str, entity_key: str, depth: int, result: dict,
@@ -307,7 +350,7 @@ def remediation_plan(tr: Trace, *, trigger: str, entity_kind: str, entity_key: s
     at = now_iso()
     slug = re.sub(r"[^a-z0-9]+", "-", entity_key.lower()).strip("-")[:40]
     inc_id = f"INC-{at[:10]}-{slug}-{uuid.uuid4().hex[:6]}"
-    patch = {p["service"]: p["overrides"]["overrides"] for p in fix["per_service"]}
+    patch = {p["service"]: p["pins"] for p in fix["per_service"]}
     tr.run("remediation_plan", "create_incident", dict(
         id=inc_id, at=at, trigger=trigger, entity_kind=entity_kind, entity_key=entity_key, depth=depth,
         exposed_count=len(result["exposed"]), patch=json.dumps(patch)), write=True)
@@ -330,7 +373,7 @@ def remediation_plan(tr: Trace, *, trigger: str, entity_kind: str, entity_key: s
     fix.update(incident_id=inc_id, at=at, exposed_edges=len(exp_rows))
     # Procedural memory: reuse playbooks a human approved for earlier incidents on the same packages.
     from . import playbooks
-    fix["playbooks"] = playbooks.apply_matching(tr, inc_id, fix["combined"]["overrides"])
+    fix["playbooks"] = playbooks.apply_matching(tr, inc_id, fix["pins"])
     return fix
 
 

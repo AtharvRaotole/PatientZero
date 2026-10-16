@@ -4,11 +4,11 @@ from __future__ import annotations
 import logging
 from typing import Any
 
-from fastapi import FastAPI, HTTPException, Request
+from fastapi import Depends, FastAPI, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse
 
-from . import catalog, config, db, tools
+from . import admin, catalog, config, db, tools
 from .core import agent
 from .domains.patientzero import DOMAIN
 from .db import GraphUnavailable, Trace
@@ -58,7 +58,7 @@ def health() -> dict[str, Any]:
             "agent_mode": "llm" if agent.llm_available() else "deterministic",
             "llm_model": config.OPENAI_MODEL if agent.llm_available() else None,
             "domain": DOMAIN.name, "tools": DOMAIN.registry.names(), "llm_budget": agent.budget.status(),
-            "queries": len(db.CATALOGUE)}
+            "queries": len(db.CATALOGUE), "admin_guard": bool(config.ADMIN_TOKEN)}
 
 
 def client_ip(request: Request) -> str:
@@ -138,7 +138,7 @@ def api_incident_check(incident_id: str) -> dict[str, Any]:
     return {"id": incident_id, "exposed_edges": rows[0]["exposed_edges"] if rows else 0}
 
 
-@app.post("/api/memory/reset")
+@app.post("/api/memory/reset", dependencies=[Depends(admin.require_admin)])
 def api_reset() -> dict[str, Any]:
     """Demo housekeeping: delete Incident/Finding nodes (agent memory). The data graph is untouched."""
     tr = Trace()
@@ -171,6 +171,8 @@ def graph_demo() -> dict[str, Any]:
     tr = Trace()
     return {"path": tools.path_between(tr, "img-service", "is-arrayish"), "trace": tr.steps}
 
+
+app.include_router(admin.router)
 
 # Routers owned by other modules (BYO scans, playbooks). Included when importable; see
 # docs/CONTRACT-byo-playbooks.md. A missing or broken module never takes the core API down.

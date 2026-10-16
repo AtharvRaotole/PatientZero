@@ -97,7 +97,12 @@ def test_ac9_fix_and_writeback(cleanup):
         o = json.loads(p["overrides_json"])["overrides"]
         assert o
         assert p["team"] and p["oncall"] and "path:" in p["draft"] and "MAL-" in p["draft"]
-    assert json.loads(fix["combined_json"])["overrides"]["debug"] == "4.4.3"
+    comb = json.loads(fix["combined_json"])["overrides"]
+    assert comb["debug@^4"] == "4.4.3" and "debug" not in comb  # scoped to the compromised major (P1-2)
+    ship = next(p for p in fix["per_service"] if p["service"] == "shipping-tracker")
+    assert ship["package_json"]["dependencies"] == {"debug": "^4.4.3"}  # direct dep bumped, not overridden
+    assert ship["package_json"]["overrides"]["debug@^4"] == "^4.4.3"
+    assert fix["pins"]["debug"] == "4.4.3"
     chk = client.get(f"/api/incidents/{fix['incident_id']}/check").json()
     assert chk["exposed_edges"] == len(d["exposed"])
     # AC10 (memory part): a new session recalls it before traversing.

@@ -11,10 +11,11 @@ import uuid
 from datetime import datetime, timezone
 from typing import Any
 
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field
 
+from .admin import require_admin
 from .db import Trace
 
 router = APIRouter(tags=["playbooks"])
@@ -149,7 +150,7 @@ def api_playbooks_match(packages: str) -> dict[str, Any]:
     return {"packages": pk, "playbooks": matching(tr, pk), "trace": tr.steps}
 
 
-@router.delete("/api/playbooks")
+@router.delete("/api/playbooks", dependencies=[Depends(require_admin)])
 def api_playbooks_reset() -> dict[str, Any]:
     tr = Trace()
     rows = tr.run("playbook", "playbook_reset", write=True)

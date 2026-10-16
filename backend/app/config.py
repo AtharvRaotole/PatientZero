@@ -38,3 +38,6 @@ LLM_USAGE_DIR = os.getenv("LLM_USAGE_DIR", str(ROOT / ".cache"))  # usage log + 
 LLM_CACHE_TTL = int(os.getenv("LLM_CACHE_TTL", "1800"))  # seconds
 LLM_CACHE_FILE = os.getenv("LLM_CACHE_FILE", str(ROOT / ".cache" / "llm_cache.json"))  # "" disables disk cache
 LLM_TIMEOUT = float(os.getenv("LLM_TIMEOUT", "20"))
+
+# Destructive endpoints (reset, cleanup, DELETE) require the X-Admin-Token header when this is set.
+ADMIN_TOKEN = os.getenv("ADMIN_TOKEN") or ""

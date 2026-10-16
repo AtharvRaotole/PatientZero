@@ -5,10 +5,11 @@ import asyncio
 import os
 from typing import Any
 
-from fastapi import APIRouter, Request
+from fastapi import APIRouter, Depends, Request
 from fastapi.responses import JSONResponse
 from pydantic import BaseModel, Field, model_validator
 
+from ..admin import require_admin
 from ..db import GraphUnavailable
 from . import scan
 from .ratelimit import RateLimiter, client_ip
@@ -69,6 +70,6 @@ def byo_scans() -> dict[str, Any]:
     return {"scans": out, "ttl_seconds": scan.TTL_S, "max_graphs": scan.MAX_GRAPHS}
 
 
-@router.post("/cleanup")
+@router.post("/cleanup", dependencies=[Depends(require_admin)])
 def byo_cleanup() -> dict[str, Any]:
     return {"deleted": scan.cleanup()}

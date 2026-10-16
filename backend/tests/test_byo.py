@@ -133,7 +133,7 @@ def test_pasted_deep_chain_exposed_and_isolated_graph():
     sw = pk["simple-swizzle"]
     assert [n.split("@")[0] for n in sw["package_path"]][1:] == ["sharp", "color", "color-string", "simple-swizzle"]
     assert sw["requirement"] == "^0.2.2" and sw["bad_version"] == "0.2.3" and sw["advisory"] == "MAL-2025-46978"
-    assert d["overrides"]["overrides"]["debug"] == "4.4.3"
+    assert d["overrides"]["overrides"]["debug@^4"] == "4.4.3"  # transitive (eslint): scoped override
     assert d["graph"]["nodes"] and d["graph"]["edges"] and d["subgraph"] == d["graph"]
     # isolated tenant graph exists and is listed; fleet graph untouched
     assert d["graph_name"] in db.client().list_graphs()
@@ -179,3 +179,10 @@ def test_scan_graph_down_is_503(monkeypatch):
         assert c.get("/api/byo/scans").status_code == 503
     finally:
         db._db = None
+
+
+def test_direct_dependency_cap_is_visible():
+    from app.byo import scan
+    pkg = {"dependencies": {f"pkg-{i}": "^1.0.0" for i in range(scan.MAX_DIRECT + 5)}}
+    deps, skipped = scan.direct_deps(pkg, True)
+    assert len(deps) == scan.MAX_DIRECT and len(skipped) == 5

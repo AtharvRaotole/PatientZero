@@ -261,6 +261,10 @@ def run_scan(*, github_url: str | None = None, package_json: str | None = None, 
         warnings.append("Monorepo detected (workspaces): only the root package.json was scanned.")
 
     deps, skipped = direct_deps(pkg, include_dev)
+    if skipped:
+        warnings.append(f"Only the first {MAX_DIRECT} of {MAX_DIRECT + len(skipped)} direct dependencies were "
+                        f"scanned ({len(skipped)} skipped, devDependencies last). A 'No' may miss exposure "
+                        f"through the skipped ones.")
     if not deps:
         raise ByoError(422, "no_dependencies",
                        "package.json has no dependencies" + ("" if include_dev else " (devDependencies excluded)"))
@@ -307,6 +311,9 @@ def run_scan(*, github_url: str | None = None, package_json: str | None = None, 
                     f"packages, but no declared range admits a malicious version.")
     else:
         headline = f"No: none of the 19 affected packages appear in {repo or service}'s dependency tree (depth {depth})."
+    if skipped:
+        headline += (f" Caveat: {len(skipped)} of {MAX_DIRECT + len(skipped)} direct dependencies were not "
+                     f"scanned (cap of {MAX_DIRECT}).")
     lock_line = None
     if lock is not None:
         hit = sorted({x["package"] for x in exposed if x.get("lockfile_has_bad_version")})
@@ -314,12 +321,13 @@ def run_scan(*, github_url: str | None = None, package_json: str | None = None, 
             "package-lock.json was read: it does not pin any of the malicious versions."
     summary = dict(headline=headline, would_have_been_hit=bool(exposed), runtime_exposed=prod_hit, exposed_count=len(exposed),
                    not_exposed_count=len(not_exposed), malicious_versions=bad_pkgs, depth=depth,
-                   direct_dependencies=len(deps), resolved_direct=counts["direct"], lockfile=lock_line,
+                   direct_dependencies=len(deps), skipped_direct=len(skipped), resolved_direct=counts["direct"], lockfile=lock_line,
                    assumption="Exposure = the semver range on the last edge admits the malicious version "
                               "(what a fresh install on Sept 8 2025 would resolve). Trees are deps.dev "
                               "resolutions; direct deps use the newest matching version published before the "
                               "attack.")
-    fix = tools.build_fix(result, [])
+    fix = tools.build_fix(result, [], dev_direct={r.name for r in resolved if r.dev})
+    patch = fix["per_service"][0]["package_json"] if fix["per_service"] else {"overrides": {}}
     viz = graph_elements(result["exposed"], result["safe"])
     stats = dict(direct=counts["direct"], direct_declared=len(deps), versions=counts["versions"],
                  edges=counts["requires"] + counts["direct"], packages=counts["packages"],
@@ -328,6 +336,6 @@ def run_scan(*, github_url: str | None = None, package_json: str | None = None, 
                 source=dict(kind="github" if github_url else "package_json", label=repo or service, ref=ref),
                 outcome="answered_with_path" if exposed else "not_in_graph",
                 summary=headline, details=summary, exposed=exposed, not_exposed=not_exposed,
-                overrides=fix["combined"], graph=viz, subgraph=viz, trace=tr.steps, stats=stats,
+                overrides=patch, graph=viz, subgraph=viz, trace=tr.steps, stats=stats,
                 unresolved=unresolved, skipped=skipped, warnings=warnings,
                 created_at=_iso(now), expires_at=_iso(now + TTL_S))
