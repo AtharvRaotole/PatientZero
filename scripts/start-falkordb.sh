@@ -25,7 +25,7 @@ fi
 
 chmod +x "$SO"
 redis-server --port "$PORT" --loadmodule "$SO" \
-  --dir "$DIR/data" --save 60 1 --daemonize yes \
+  --dir "$DIR/data" --save 60 1 --appendonly yes --appendfsync everysec --daemonize yes \
   --logfile "$DIR/falkordb.log" --pidfile "$DIR/falkordb.pid"
 
 for i in $(seq 1 30); do

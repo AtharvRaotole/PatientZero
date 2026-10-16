@@ -8,6 +8,8 @@ dependencies = [
     "falkordb>=1.8.0",
     "fastapi>=0.143.2",
     "httpx>=0.28.1",
+    "mcp>=2.3.0",
+    "node-semver>=0.9.1",
     "pydantic>=2.14.1",
     "python-dotenv>=1.2.4",
     "uvicorn[standard]>=0.54.0",
@@ -15,3 +17,8 @@ dependencies = [
 
 [tool.uv]
 package = false
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]
