@@ -96,7 +96,7 @@ export default function GraphCanvas({ fleet, highlight, onNodeClick, leftInset, 
     const bh = Math.max(bb.y[1] - bb.y[0], 1);
     const availW = size.w - leftPad - pad * 2;
     const availH = size.h - pad * 2 - overlay;
-    const z = Math.max(0.4, Math.min(isStandalone ? 1.8 : hl.active ? 3.2 : 2.2, availW / bw, availH / bh));
+    const z = Math.max(0.4, Math.min(isStandalone ? (data.nodes.length < 12 ? 3.2 : 1.8) : hl.active ? 3.2 : 2.2, availW / bw, availH / bh));
     const cx = (bb.x[0] + bb.x[1]) / 2 - leftPad / 2 / z;
     const cy = (bb.y[0] + bb.y[1]) / 2 - overlay / 2 / z;
     g.centerAt(cx, cy, ms);

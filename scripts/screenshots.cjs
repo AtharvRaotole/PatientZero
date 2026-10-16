@@ -120,6 +120,13 @@ const shot = async (page, name) => {
   await scrollToId(p2, "report");
   await shot(p2, "10-memory-recall.png");
 
+  // The same trigger again: always a fresh traversal, with graph memory alongside as "Seen before".
+  await ask(p2, "maintainer qix was phished");
+  await waitText(p2, /Seen before/);
+  await settle(p2);
+  await scrollToId(p2, "report");
+  await shot(p2, "10b-seen-before.png");
+
   await scrollTo(p2, "From compromise to remediation", 72);
   await sleep(800);
   await shot(p2, "11-incident-timeline.png");

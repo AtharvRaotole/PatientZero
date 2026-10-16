@@ -116,7 +116,7 @@ const exposedCount = (page) =>
   });
   await new Promise((r) => setTimeout(r, 600));
   await page.screenshot({ path: `${OUT}/05-generate-fix.png` });
-  const fixOk = await page.evaluate(() => document.body.innerText.includes('"debug": "4.4.3"'));
+  const fixOk = await page.evaluate(() => /"debug(@[^"]*)?": "4\.4\.3"/.test(document.body.innerText));
   check("AC9 overrides JSON with clean versions + incident written", fixOk);
 
   // AC6: debug@4.4.2 honest negative (fresh session to avoid memory: use the Run fresh button if recalled)

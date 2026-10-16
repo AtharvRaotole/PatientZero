@@ -37,6 +37,12 @@ function norm(i: ByoItem) {
   };
 }
 
+/** Drop the leading "Yes:"/"No:" (the headline says it) and capitalize, unless the sentence starts with a host or path. */
+function tidy(summary: string) {
+  const t = summary.replace(/^(Yes|No)[:.]\s*/, "");
+  return /^[^\s]*[./]/.test(t) ? t : t.charAt(0).toUpperCase() + t.slice(1);
+}
+
 export default function ByoSection() {
   const [tab, setTab] = useState<"github" | "json">("github");
   const [url, setUrl] = useState("");
@@ -148,7 +154,7 @@ export default function ByoSection() {
             <span className={clsx("h-2.5 w-2.5 shrink-0 rounded-full", hit ? "bg-signal" : "bg-safe")} />
             {hit ? "Yes. A fresh install could have pulled malware." : "No. Every range excluded the malicious versions."}
           </h3>
-          <p className="mt-2 max-w-[820px] text-[15px] leading-relaxed text-ink-2">{scan.summary.replace(/^(Yes|No)[:.]\s*/, "").replace(/^./, (c) => c.toUpperCase())}</p>
+          <p className="mt-2 max-w-[820px] text-[15px] leading-relaxed text-ink-2">{tidy(scan.summary)}</p>
 
           <div className="mt-8 grid gap-4 lg:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
             {scan.graph && scan.graph.nodes.length > 0 && (
@@ -159,7 +165,7 @@ export default function ByoSection() {
             )}
             <div className="space-y-4">
               <Card>
-                <CardHeader title={`Exposed`} sub="The range on the last edge admits the malicious version." right={<span className="text-[13px] font-semibold text-signal-ink tabular">{scan.exposed.length}</span>} />
+                <CardHeader title={`Exposed`} sub="The range on the last edge admits the malicious version." right={<span className={clsx("text-[13px] font-semibold tabular", scan.exposed.length ? "text-signal-ink" : "text-ink-3")}>{scan.exposed.length}</span>} />
                 <div className="scroll-thin max-h-72 divide-y divide-line overflow-y-auto">
                   {scan.exposed.length === 0 && <p className="px-5 py-4 text-[13px] text-ink-3">Nothing exposed.</p>}
                   {scan.exposed.map((i, k) => {

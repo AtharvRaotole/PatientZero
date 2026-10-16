@@ -37,7 +37,7 @@ export function OutcomeBanner({ r, onFresh }: { r: AskResponse; onFresh: () => v
               <CountUp key={r.query + r.depth} value={r.exposed.length} className="text-signal" /> of {r.fleet_size} services can install a malicious version.
             </h2>
           ) : (
-            <h2 className="text-[24px] font-semibold leading-tight tracking-[-0.02em] text-ink md:text-[28px]">{HEADLINE[r.outcome] ?? r.message.split(/(?<=\.)\s/)[0]}</h2>
+            <h2 className="text-[24px] font-semibold leading-tight tracking-[-0.02em] text-ink md:text-[28px]">{HEADLINE[r.outcome] ?? split(r.message)[0]}</h2>
           )}
           {detail(r, hit) && <p className="mt-3 text-[15px] leading-relaxed text-ink-2">{detail(r, hit)}</p>}
         </div>
@@ -52,11 +52,18 @@ export function OutcomeBanner({ r, onFresh }: { r: AskResponse; onFresh: () => v
   );
 }
 
+/** First sentence (or the clause before a colon) as the headline, the rest as detail. Version dots never split. */
+function split(msg: string): [string, string] {
+  const m = msg.match(/^(.+?)(?::\s+|\.\s+(?=[A-Z])|\.$)([\s\S]*)$/);
+  if (!m) return [msg, ""];
+  return [m[1].trim() + ".", m[2].trim()];
+}
+
 /** The backend message minus what the headline and the Seen-before row already say. */
 function detail(r: AskResponse, hit: boolean): string {
   let m = r.message;
   if (hit) m = m.replace(/^\s*\d+ of \d+ services can install a malicious version[^.]*\.\s*/, "");
-  else if (!HEADLINE[r.outcome]) m = m.replace(/^[^.]*\.\s*/, "");
+  else if (!HEADLINE[r.outcome]) m = split(m)[1];
   if (r.memory?.seen_before && r.outcome !== "answered_from_memory") m = m.replace(/\s*Seen before:[\s\S]*$/, "");
   return m.trim();
 }

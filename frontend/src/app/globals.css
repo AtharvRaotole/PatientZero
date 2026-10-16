@@ -150,3 +150,12 @@ input[type="range"].depth::-webkit-slider-thumb:hover {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* force-graph hover tooltip: our own white card is the whole tooltip */
+.float-tooltip-kap,
+.graph-tooltip {
+  background: transparent !important;
+  padding: 0 !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
