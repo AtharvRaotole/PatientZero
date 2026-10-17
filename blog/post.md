@@ -2,7 +2,7 @@
 title: "One phished npm maintainer, 13 of 22 services exposed: how I built PatientZero on FalkorDB"
 description: "I replayed the September 2025 npm qix compromise against a dependency graph in FalkorDB. Variable-length Cypher, graph memory and a four-agent crew answer the 2 AM questions: are we hit, how bad is it, and who do I wake?"
 tags: falkordb, graphdb, ai, hackathon
-cover_image: https://raw.githubusercontent.com/AtharvRaotole/FalkorDB/main/blog/images/cover.png
+cover_image: https://raw.githubusercontent.com/AtharvRaotole/PatientZero/main/blog/images/cover.png
 published: false
 ---
 
@@ -15,7 +15,7 @@ If you ran a platform team that night, you didn't care about the payload. You ha
 > - Exposure is a variable-length Cypher traversal plus an npm semver check on the last edge. On my 22-service test fleet: direct dependencies find **1** exposed service, four hops find **13**.
 > - Incidents, approved playbooks, conversations and agent handoffs all live in the graph, so the agent remembers and can explain itself.
 > - Four agents hand off work through `HANDED_OFF_TO` edges, the agent calls its tools through its own MCP server, and a live OSV watch checks new npm malware every 10 minutes.
-> - **Live demo:** [patientzero-production-2cb3.up.railway.app](https://patientzero-production-2cb3.up.railway.app) · **Code:** [github.com/AtharvRaotole/FalkorDB](https://github.com/AtharvRaotole/FalkorDB)
+> - **Live demo:** [patientzero-production-2cb3.up.railway.app](https://patientzero-production-2cb3.up.railway.app) · **Code:** [github.com/AtharvRaotole/PatientZero](https://github.com/AtharvRaotole/PatientZero)
 
 ## The 2 AM problem is a path problem
 
@@ -33,7 +33,7 @@ A graph stores both things a lockfile scan can't easily join: the chain, and the
 
 ## The graph model
 
-![PatientZero graph model: npm supply chain, organisation and agent memory in one FalkorDB graph](https://raw.githubusercontent.com/AtharvRaotole/FalkorDB/main/blog/images/graph-model.png)
+![PatientZero graph model: npm supply chain, organisation and agent memory in one FalkorDB graph](https://raw.githubusercontent.com/AtharvRaotole/PatientZero/main/blog/images/graph-model.png)
 *The model. Red is the exposure traversal and the `EXPOSED` edges it writes back. Everything in the top panel is written by the agents.*
 
 Three neighbourhoods share one graph:
@@ -59,7 +59,7 @@ FalkorDB returns every candidate path from a service to any version of an affect
 
 One detail I learned the hard way: FalkorDB doesn't accept a parameter as a variable-length bound, so `*1..$depth` won't work. I fixed the pattern at `*1..6` and filter with `length(p) <= $depth`. That filter drives the depth slider in the UI.
 
-![The qix blast radius on the fleet graph: 13 of 22 services can install a malicious version at depth 4](https://raw.githubusercontent.com/AtharvRaotole/FalkorDB/main/blog/images/01-qix-blast-radius.png)
+![The qix blast radius on the fleet graph: 13 of 22 services can install a malicious version at depth 4](https://raw.githubusercontent.com/AtharvRaotole/PatientZero/main/blog/images/01-qix-blast-radius.png)
 *Replaying the qix compromise. Red chains are exposed paths; hollow nodes reach an affected package but their ranges exclude the bad version.*
 
 Drag the slider and the story changes: 1 of 22 at depth 1, 13 at depth 4, 14 at depth 6. The answer also reports **honest negatives**. `checkout-api` reaches `debug` through `express@4.21.2`, but the exact pin `2.6.9` excludes `4.4.2`. At 2 AM, knowing why a service is safe saves you from waking a team you don't need.
@@ -81,7 +81,7 @@ WHERE (n:Maintainer AND n.npm = $entity_key)
 
 An incident filed about maintainer `qix` is recalled when someone later asks about `debug@4.4.2`, or about an advisory id, because memory is reached by traversal rather than string matching. In a new session, a bare `qix` is answered straight from memory, with the incident id and the patch on file.
 
-![Answered from graph memory: the qix incident recalled with 13 exposed services and the patch on file](https://raw.githubusercontent.com/AtharvRaotole/FalkorDB/main/blog/images/04-answered-from-memory.png)
+![Answered from graph memory: the qix incident recalled with 13 exposed services and the patch on file](https://raw.githubusercontent.com/AtharvRaotole/PatientZero/main/blog/images/04-answered-from-memory.png)
 *A bare recall in a new session. Each recalled service still shows its full chain.*
 
 Two more kinds of memory sit on top of that:
@@ -89,7 +89,7 @@ Two more kinds of memory sit on top of that:
 - **Procedural.** "Generate fix" builds an install-safe `package.json` patch per service (verified with real `npm install`). When a human clicks **Approve**, it becomes a `(:Playbook)` that `COVERS {pin}` each package. Later incidents on the same packages find it by traversal, and every reuse bumps `uses_count`, so the Fixer prefers the playbook that has worked most often.
 - **Conversational.** Every question is a `(:Turn)` linked `ABOUT` the nodes it resolved to. So "and at depth 6?" reruns the last question deeper, and "who should I wake for that?" knows what "that" is.
 
-![Follow-up resolved from the graph: wake 8 teams for 14 exposed services, with on-call people first](https://raw.githubusercontent.com/AtharvRaotole/FalkorDB/main/blog/images/03-wake-8-teams.png)
+![Follow-up resolved from the graph: wake 8 teams for 14 exposed services, with on-call people first](https://raw.githubusercontent.com/AtharvRaotole/PatientZero/main/blog/images/03-wake-8-teams.png)
 *"who should I wake for that?" after "and at depth 6?". Eight teams, on-call first, highest tier first. "Seen before" flags one newly exposed service.*
 
 Because sessions live in FalkorDB, they survive restarts and every agent can see them.
@@ -110,14 +110,14 @@ ORDER BY f.seq
 
 Since the whole run is nodes and edges, any run replays from the graph with a shareable `?run=` link.
 
-![The response crew: four agent lanes, the handoff DAG, and the findings each agent read from the graph](https://raw.githubusercontent.com/AtharvRaotole/FalkorDB/main/blog/images/02-crew-handoffs.png)
+![The response crew: four agent lanes, the handoff DAG, and the findings each agent read from the graph](https://raw.githubusercontent.com/AtharvRaotole/PatientZero/main/blog/images/02-crew-handoffs.png)
 *A crew run done in 331 ms (replayed at reading speed). Each lane lists the upstream findings it read from FalkorDB. Page drafts are never sent.*
 
 ## The agent uses its own MCP server
 
 PatientZero ships an MCP server you can plug into Claude Desktop or Cursor. The agent itself is a client of that same server, over the official SDK's in-memory transport. Each intent runs its own chain of `tools/call`s on one shared session. An exposure question runs five: `resolve_entity`, `recall`, `incident_scope`, `exposure`, `who_to_wake`.
 
-![Agent trace: 5 MCP tool calls in one session, each followed by its parameterised Cypher steps](https://raw.githubusercontent.com/AtharvRaotole/FalkorDB/main/blog/images/06-mcp-chain.png)
+![Agent trace: 5 MCP tool calls in one session, each followed by its parameterised Cypher steps](https://raw.githubusercontent.com/AtharvRaotole/PatientZero/main/blog/images/06-mcp-chain.png)
 *Every answer is traced: each MCP call, then the named Cypher query it ran, with rows and milliseconds.*
 
 The deterministic router handles everything by default. With an OpenAI key, a model is consulted only when the router isn't confident, and even then it can only pick from the same tools. It never writes Cypher. Any name in its answer that isn't in the tool result gets the sentence rejected, and the templated answer is shown instead.
@@ -128,12 +128,12 @@ MCP isn't free. It costs about 1 ms of CPU per call, and locally that meant 77 r
 
 Every 10 minutes, PatientZero pulls new `MAL-*` npm advisories from OSV, writes them into every tenant's graph and runs the same traversal. Most polls end in "Not hit". A clearly labelled replay of the real `debug@4.4.2` advisory shows what a hit looks like: Acme 10 of 22, Globex 5 of 12.
 
-![Live OSV watch: per-tenant verdicts and a labelled replay of debug@4.4.2](https://raw.githubusercontent.com/AtharvRaotole/FalkorDB/main/blog/images/07-live-watch.png)
+![Live OSV watch: per-tenant verdicts and a labelled replay of debug@4.4.2](https://raw.githubusercontent.com/AtharvRaotole/PatientZero/main/blog/images/07-live-watch.png)
 *The live watch. Real advisories with real publish dates; the replay is marked as a replay and never counted as a new alert.*
 
 Multi-tenancy came almost for free with FalkorDB's multi-graph support: Acme is `fleet:acme`, Globex is `fleet:globex`, same schema, separate memory. The Shai-Hulud worm (203 packages, 589 malicious versions) is the best demo of this. Acme is not hit. Globex has 4 of 12 services exposed. Nothing Acme approved is ever recalled in Globex.
 
-![Globex tenant: 4 of 12 services can install a Shai-Hulud malicious version](https://raw.githubusercontent.com/AtharvRaotole/FalkorDB/main/blog/images/05-globex-shai-hulud.png)
+![Globex tenant: 4 of 12 services can install a Shai-Hulud malicious version](https://raw.githubusercontent.com/AtharvRaotole/PatientZero/main/blog/images/05-globex-shai-hulud.png)
 *Same question, different graph. Many worm packages have no clean version to pin to, and the answer says so.*
 
 ## The numbers, with their asterisks
@@ -178,7 +178,7 @@ The tradeoffs are real too. The Acme and Globex fleets are synthetic (the npm da
 
 Open the [live app](https://patientzero-production-2cb3.up.railway.app) and type `qix`, `debug@4.4.2`, `who to wake for auth-service` or `path from img-service to simple-swizzle`. Then scroll to **Would you have been hit on Sept 8, 2025?** and paste a public repo. `github.com/axios/axios` comes back exposed through `https-proxy-agent` and `debug@4.4.2`.
 
-The code, the 20 query files and the verification docs are at [github.com/AtharvRaotole/FalkorDB](https://github.com/AtharvRaotole/FalkorDB). If you scan your own repo and something lights up red, I'd love to hear about it.
+The code, the 20 query files and the verification docs are at [github.com/AtharvRaotole/PatientZero](https://github.com/AtharvRaotole/PatientZero). If you scan your own repo and something lights up red, I'd love to hear about it.
 
 *Built for Graph Hacks: Context for AI Agents by WeMakeDevs and FalkorDB, entered in Track 1 (Agents That Act on Connected Data) and Track 2 (Agent Memory and Coordination). Disclosure: I wrote PatientZero with Cursor as my AI coding assistant, using AI agents for research, code, tests and review. I chose the problem and the design, reviewed every build, and every Cypher query is parameterised and checked by the test suite.*
 

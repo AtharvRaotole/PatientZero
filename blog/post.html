@@ -50,7 +50,7 @@ hr{border:0;border-top:1px solid var(--rule);margin:40px 0}
 <li>Exposure is a variable-length Cypher traversal plus an npm semver check on the last edge. On my 22-service test fleet: direct dependencies find <strong>1</strong> exposed service, four hops find <strong>13</strong>.</li>
 <li>Incidents, approved playbooks, conversations and agent handoffs all live in the graph, so the agent remembers and can explain itself.</li>
 <li>Four agents hand off work through <code>HANDED_OFF_TO</code> edges, the agent calls its tools through its own MCP server, and a live OSV watch checks new npm malware every 10 minutes.</li>
-<li><strong>Live demo:</strong> <a href="https://patientzero-production-2cb3.up.railway.app">patientzero-production-2cb3.up.railway.app</a> · <strong>Code:</strong> <a href="https://github.com/AtharvRaotole/FalkorDB">github.com/AtharvRaotole/FalkorDB</a></li>
+<li><strong>Live demo:</strong> <a href="https://patientzero-production-2cb3.up.railway.app">patientzero-production-2cb3.up.railway.app</a> · <strong>Code:</strong> <a href="https://github.com/AtharvRaotole/PatientZero">github.com/AtharvRaotole/PatientZero</a></li>
 </ul>
 </blockquote>
 <h2 id="the-2-am-problem-is-a-path-problem">The 2 AM problem is a path problem</h2>
@@ -157,7 +157,7 @@ hr{border:0;border-top:1px solid var(--rule);margin:40px 0}
 <p>The tradeoffs are real too. The Acme and Globex fleets are synthetic (the npm data is real), semver runs in the app rather than in the database, and bring-your-own-repo scans check the qix incident only.</p>
 <h2 id="try-it">Try it</h2>
 <p>Open the <a href="https://patientzero-production-2cb3.up.railway.app">live app</a> and type <code>qix</code>, <code>debug@4.4.2</code>, <code>who to wake for auth-service</code> or <code>path from img-service to simple-swizzle</code>. Then scroll to <strong>Would you have been hit on Sept 8, 2025?</strong> and paste a public repo. <code>github.com/axios/axios</code> comes back exposed through <code>https-proxy-agent</code> and <code>debug@4.4.2</code>.</p>
-<p>The code, the 20 query files and the verification docs are at <a href="https://github.com/AtharvRaotole/FalkorDB">github.com/AtharvRaotole/FalkorDB</a>. If you scan your own repo and something lights up red, I&#39;d love to hear about it.</p>
+<p>The code, the 20 query files and the verification docs are at <a href="https://github.com/AtharvRaotole/PatientZero">github.com/AtharvRaotole/PatientZero</a>. If you scan your own repo and something lights up red, I&#39;d love to hear about it.</p>
 <p><em>Built for Graph Hacks: Context for AI Agents by WeMakeDevs and FalkorDB, entered in Track 1 (Agents That Act on Connected Data) and Track 2 (Agent Memory and Coordination). Disclosure: I wrote PatientZero with Cursor as my AI coding assistant, using AI agents for research, code, tests and review. I chose the problem and the design, reviewed every build, and every Cypher query is parameterised and checked by the test suite.</em></p>
 
 <div class="tags"><span>#falkordb</span> <span>#graphdb</span> <span>#ai</span> <span>#hackathon</span></div>

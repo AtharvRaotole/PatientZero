@@ -3,7 +3,7 @@ const {marked}=require('/home/box/.npm/_npx/668c188756b835f3/node_modules/marked
 const src=fs.readFileSync('/workspace/falkor-hack/blog/post.md','utf8');
 const m=src.match(/^---\n([\s\S]*?)\n---\n([\s\S]*)$/);
 const fm=Object.fromEntries(m[1].split('\n').map(l=>{const i=l.indexOf(':');return [l.slice(0,i).trim(),l.slice(i+1).trim().replace(/^"|"$/g,'')]}));
-let body=m[2].replaceAll('https://raw.githubusercontent.com/AtharvRaotole/FalkorDB/main/blog/images/','images/');
+let body=m[2].replaceAll('https://raw.githubusercontent.com/AtharvRaotole/PatientZero/main/blog/images/','images/');
 body=body.replace(/\n#FalkorDB #GraphDB #AI #hackathon\s*$/,'\n');
 const KW=/\b(MATCH|OPTIONAL|WHERE|WITH|RETURN|ORDER BY|DISTINCT|AND|OR|IN|AS|CREATE|MERGE|SET)\b/g;
 const esc=s=>s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
