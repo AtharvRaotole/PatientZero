@@ -14,7 +14,7 @@ the first argument to ship something else, e.g. `sh scripts/redeploy-railway.sh 
 is never touched, so the graph, incidents and playbooks survive. A build plus deploy takes about 1 to 2 minutes;
 check `curl -s https://patientzero-production-2cb3.up.railway.app/health`.
 
-The app service is not connected to GitHub (Railway's GitHub app has no access to `AtharvRaotole/FalkorDB`),
+The app service is not connected to GitHub (Railway's GitHub app has no access to `AtharvRaotole/PatientZero`),
 so pushes do not auto-deploy. Install the Railway GitHub app on the repo and connect it in the service
 settings if you want that.
 
@@ -32,7 +32,7 @@ BYO scans, playbooks and ingest never call an LLM.
 
 ## Railway
 
-1. **Create a project** from the GitHub repo `AtharvRaotole/FalkorDB` (branch `main`). Railway picks up
+1. **Create a project** from the GitHub repo `AtharvRaotole/PatientZero` (branch `main`). Railway picks up
    `railway.json`, which builds the `Dockerfile` and health-checks `/health`.
 2. **Add the database service:** New, then Docker Image, then `falkordb/falkordb-server:v4.22.1`. Name it `falkordb`.
    - Add a **Volume** mounted at `/data`.

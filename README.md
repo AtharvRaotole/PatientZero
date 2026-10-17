@@ -105,7 +105,7 @@ Then scroll to **Would you have been hit on Sept 8, 2025?** and scan a public re
 
 ## Setup and run (local)
 ```bash
-git clone https://github.com/AtharvRaotole/FalkorDB.git && cd FalkorDB
+git clone https://github.com/AtharvRaotole/PatientZero.git && cd PatientZero
 cp .env.example .env                 # defaults work locally; every key is optional (OPENAI_API_KEY, ADMIN_TOKEN, ...)
 ./scripts/start-falkordb.sh          # skip if you started the Docker container; else downloads falkordb.so (v6.0.1) and starts it on :6379
 python3 -m venv ingest/.venv && ingest/.venv/bin/pip install -r ingest/requirements.txt

@@ -24,7 +24,7 @@ RECORD_MAX_BYTES = int(os.getenv("WATCH_RECORD_MAX_BYTES", str(512 * 1024)))
 TIMEOUT = float(os.getenv("WATCH_HTTP_TIMEOUT", "10"))
 WORKERS = int(os.getenv("WATCH_FETCH_WORKERS", "8"))
 ID_RE = re.compile(r"^MAL-\d{4}-\d{1,7}$")
-UA = {"User-Agent": "PatientZero-watch/1.0 (+https://github.com/AtharvRaotole/FalkorDB)"}
+UA = {"User-Agent": "PatientZero-watch/1.0 (+https://github.com/AtharvRaotole/PatientZero)"}
 RAW_OSV = Path(__file__).resolve().parents[3] / "data" / "raw" / "osv"
 
 

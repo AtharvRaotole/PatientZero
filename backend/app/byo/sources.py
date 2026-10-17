@@ -29,7 +29,7 @@ VERSIONS_TTL = 24 * 3600
 HTTP_TIMEOUT = httpx.Timeout(15.0, connect=5.0)
 MAX_PACKAGE_JSON = 200_000          # bytes
 MAX_LOCKFILE = 8_000_000            # bytes
-UA = {"User-Agent": "patientzero-byo/1.0 (+https://github.com/AtharvRaotole/FalkorDB)"}
+UA = {"User-Agent": "patientzero-byo/1.0 (+https://github.com/AtharvRaotole/PatientZero)"}
 
 GITHUB_RE = re.compile(
     r"^(?:https?://)?(?:www\.)?github\.com/(?P<owner>[A-Za-z0-9](?:[A-Za-z0-9-]{0,38}))/"
